@@ -3,3 +3,6 @@
 target
 test.properties
 web.properties
+.settings
+.project
+.classpath
