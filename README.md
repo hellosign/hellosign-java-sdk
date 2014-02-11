@@ -14,6 +14,8 @@ Alternatively, you can build the SDK yourself by forking this repository and use
 
 Locate the JAR file in the `target` directory and place it on your project classpath. 
 
+The SDK is built with Java 7 and depends on the SL4J 1.7.5 and JSON v20090211 libraries. If your project does not already include these, you can use the [JAR that includes these dependencies](https://github.com/HelloFax/hellosign-java-sdk/raw/master/dist/hellosign-java-sdk-1.0-jar-with-dependencies.jar).
+
 ## Usage
 
 All HelloSign API requests can be made using the `HelloSignClient`. This class must be initialized with your authentication details, such as an [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations) (preferred) or website credentials.
