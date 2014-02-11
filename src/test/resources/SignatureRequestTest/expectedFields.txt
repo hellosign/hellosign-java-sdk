@@ -1,0 +1,13 @@
+title=NDA with Acme Co.
+subject=The NDA we talked about
+message=Please sign this NDA and then we can discuss more. Let me know if you have any questions.
+signers[1][email_address]=jack@example.com
+signers[1][name]=Jack
+signers[1][order]=0
+signers[2][email_address]=jill@example.com
+signers[2][name]=Jill
+signers[2][order]=1
+cc_email_addresses[1]=lawyer@hellosign.com
+cc_email_addresses[2]=lawyer@example.com
+file[1]=*
+file[2]=*

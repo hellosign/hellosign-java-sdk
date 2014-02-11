@@ -1,0 +1,58 @@
+package com.hellosign.sdk.test;
+
+import static org.junit.Assert.*;
+
+import java.net.HttpURLConnection;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.hellosign.sdk.AbstractHelloSignTest;
+import com.hellosign.sdk.HelloSignClient;
+import com.hellosign.sdk.resource.EmbeddedRequest;
+import com.hellosign.sdk.resource.SignatureRequest;
+
+/**
+ * Exercise the EmbeddedRequest wrapper.
+ * 
+ * @author "Chris Paul (chris@hellosign.com)"
+ */
+public class EmbeddedSignatureRequestTest extends AbstractHelloSignTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(EmbeddedSignatureRequestTest.class);
+	
+	@Test
+	public void testEmbeddedRequestCreate() throws Exception {
+		// Create the signature request
+		SignatureRequest request = new SignatureRequest();
+    	request.setTestMode(true);
+    	request.setTitle("Embedded NDA");
+    	request.setSubject("Please sign this NDA");
+    	request.setMessage("Sign this NDA so we can discuss the project in more detail.");
+    	request.addSigner("jill@example.com", "Jill");
+    	request.addCC("lawyer@hellosign.com");
+    	request.addFile(getTestFile("nda.pdf"));
+    	
+    	// Create the embedded request
+    	logger.debug("Testing creation of Embedded Signature Request...");
+    	EmbeddedRequest embeddedReq = new EmbeddedRequest(clientId, request);
+    	assertNotNull(embeddedReq);
+    	assertTrue(areFieldsEqual(getExpectedFields(), embeddedReq.getPostFields()));
+    	
+		if (isHelloSignAvailable()) {
+			// Just pass the request through the HelloSignClient since we are already
+			// testing the request output for SignatureRequest/TemplateSignatureRequest
+			// in their respective test classes.
+	    	HelloSignClient client = new HelloSignClient(auth);
+	    	SignatureRequest response = client.createEmbeddedRequest(embeddedReq);
+	    	assertNotNull(response);
+	    	assertTrue(response.hasId());
+	    	
+	    	// Cancel the signature request
+	    	logger.debug("Cancelling signature request...");
+	    	assertTrue(HttpURLConnection.HTTP_OK == client.cancelSignatureRequest(response.getId()));
+	    	logger.debug("\tSuccess!");
+		}
+	}
+}

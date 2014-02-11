@@ -1,0 +1,8 @@
+title=Embedded NDA
+subject=Please sign this NDA
+message=Sign this NDA so we can discuss the project in more detail.
+signers[1][email_address]=jill@example.com
+signers[1][name]=Jill
+cc_email_addresses[1]=lawyer@hellosign.com
+file[1]=*
+client_id=*

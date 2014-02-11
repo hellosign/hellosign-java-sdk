@@ -1,0 +1,528 @@
+{
+  "list_info": {
+    "page": 2,
+    "num_pages": 2,
+    "num_results": 24,
+    "page_size": 20
+  },
+  "reusable_forms": [
+    {
+      "reusable_form_id": "f3a57496414736cf93afd04d2d0f12721ef79fee",
+      "title": "Template Test 1",
+      "message": "",
+      "is_creator": true,
+      "can_edit": true,
+      "signer_roles": [
+        {
+          "name": "Client",
+          "order": null
+        }
+      ],
+      "cc_roles": [],
+      "documents": [
+        {
+          "index": "0",
+          "name": "contract.doc",
+          "custom_fields": [],
+          "form_fields": [
+            {
+              "name": "",
+              "type": "signature",
+              "signer": "1",
+              "x": 266,
+              "y": 486,
+              "width": 120,
+              "height": 30,
+              "required": true,
+              "api_id": "97ce01_2"
+            }
+          ]
+        }
+      ],
+      "custom_fields": [],
+      "named_form_fields": [
+        {
+          "name": "",
+          "type": "signature",
+          "signer": "1",
+          "x": 266,
+          "y": 486,
+          "width": 120,
+          "height": 30,
+          "required": true,
+          "api_id": "97ce01_2"
+        }
+      ],
+      "accounts": [
+        {
+          "account_id": "c2122655309c9d006b9f95aa685b7b0c9e9a7e03",
+          "email_address": "chris@hellosign.com",
+          "is_paid_hs": true,
+          "is_paid_hf": false,
+          "quotas": {
+            "templates_left": null,
+            "api_signature_requests_left": "1250"
+          }
+        }
+      ]
+    },
+    {
+      "reusable_form_id": "db5f6facbe65055cae1be5566551e069644fd071",
+      "title": "Contract For Biz",
+      "message": "Let's get down to it.",
+      "is_creator": true,
+      "can_edit": true,
+      "signer_roles": [
+        {
+          "name": "Secret Customer",
+          "order": null
+        },
+        {
+          "name": "Public Company",
+          "order": null
+        }
+      ],
+      "cc_roles": [],
+      "documents": [
+        {
+          "index": "0",
+          "name": "contract.doc",
+          "custom_fields": [
+            {
+              "name": "Important Notice",
+              "type": "text",
+              "signer": null,
+              "x": 191,
+              "y": 22,
+              "width": 223,
+              "height": 112,
+              "required": false,
+              "api_id": "9ddea3_1"
+            }
+          ],
+          "form_fields": [
+            {
+              "name": "",
+              "type": "signature",
+              "signer": "1",
+              "x": 261,
+              "y": 485,
+              "width": 120,
+              "height": 30,
+              "required": true,
+              "api_id": "3c1190_2"
+            },
+            {
+              "name": "Public Co Info",
+              "type": "text",
+              "signer": "2",
+              "x": 485,
+              "y": 472,
+              "width": 223,
+              "height": 112,
+              "required": true,
+              "api_id": "3c1190_4"
+            },
+            {
+              "name": "",
+              "type": "date_signed",
+              "signer": "1",
+              "x": 280,
+              "y": 583,
+              "width": 105,
+              "height": 16,
+              "required": true,
+              "api_id": "3c1190_9"
+            }
+          ]
+        }
+      ],
+      "custom_fields": [
+        {
+          "name": "Important Notice",
+          "type": "text",
+          "signer": null,
+          "x": 191,
+          "y": 22,
+          "width": 223,
+          "height": 112,
+          "required": false,
+          "api_id": "9ddea3_1"
+        }
+      ],
+      "named_form_fields": [
+        {
+          "name": "",
+          "type": "signature",
+          "signer": "1",
+          "x": 261,
+          "y": 485,
+          "width": 120,
+          "height": 30,
+          "required": true,
+          "api_id": "3c1190_2"
+        },
+        {
+          "name": "Public Co Info",
+          "type": "text",
+          "signer": "2",
+          "x": 485,
+          "y": 472,
+          "width": 223,
+          "height": 112,
+          "required": true,
+          "api_id": "3c1190_4"
+        },
+        {
+          "name": "",
+          "type": "date_signed",
+          "signer": "1",
+          "x": 280,
+          "y": 583,
+          "width": 105,
+          "height": 16,
+          "required": true,
+          "api_id": "3c1190_9"
+        }
+      ],
+      "accounts": [
+        {
+          "account_id": "c2122655309c9d006b9f95aa685b7b0c9e9a7e03",
+          "email_address": "chris@hellosign.com",
+          "is_paid_hs": true,
+          "is_paid_hf": false,
+          "quotas": {
+            "templates_left": null,
+            "api_signature_requests_left": "1250"
+          }
+        }
+      ]
+    },
+    {
+      "reusable_form_id": "2ee9bb08c5a239874ab961088598a5039d9b8ac3",
+      "title": "Sample Fillable PDF",
+      "message": "We didn't need to do nothin about nothing.",
+      "is_creator": true,
+      "can_edit": true,
+      "signer_roles": [
+        {
+          "name": "Contract Signer",
+          "order": null
+        }
+      ],
+      "cc_roles": [],
+      "documents": [
+        {
+          "index": "0",
+          "name": "editable.pdf",
+          "custom_fields": [],
+          "form_fields": [
+            {
+              "name": "",
+              "type": "text",
+              "signer": "1",
+              "x": 286.359375,
+              "y": 490.828125,
+              "width": 246,
+              "height": 21,
+              "required": false,
+              "api_id": "7eb70c_1"
+            },
+            {
+              "name": "",
+              "type": "text",
+              "signer": "1",
+              "x": 286.359375,
+              "y": 521.34375,
+              "width": 246,
+              "height": 23,
+              "required": false,
+              "api_id": "7eb70c_2"
+            },
+            {
+              "name": "",
+              "type": "checkbox",
+              "signer": "1",
+              "x": 195.921875,
+              "y": 575.1875,
+              "width": 16,
+              "height": 17,
+              "required": false,
+              "api_id": "7eb70c_4"
+            },
+            {
+              "name": "",
+              "type": "checkbox",
+              "signer": "1",
+              "x": 283.75,
+              "y": 576.578125,
+              "width": 17,
+              "height": 17,
+              "required": false,
+              "api_id": "7eb70c_5"
+            },
+            {
+              "name": "",
+              "type": "checkbox",
+              "signer": "1",
+              "x": 376.328125,
+              "y": 576.109375,
+              "width": 17,
+              "height": 16,
+              "required": false,
+              "api_id": "7eb70c_6"
+            },
+            {
+              "name": "",
+              "type": "checkbox",
+              "signer": "1",
+              "x": 477.984375,
+              "y": 576.078125,
+              "width": 17,
+              "height": 16,
+              "required": false,
+              "api_id": "7eb70c_7"
+            },
+            {
+              "name": "",
+              "type": "checkbox",
+              "signer": "1",
+              "x": 575.921875,
+              "y": 576.765625,
+              "width": 15,
+              "height": 17,
+              "required": false,
+              "api_id": "7eb70c_8"
+            },
+            {
+              "name": "",
+              "type": "text",
+              "signer": "1",
+              "x": 214.734375,
+              "y": 598.28125,
+              "width": 193,
+              "height": 23,
+              "required": false,
+              "api_id": "7eb70c_3"
+            },
+            {
+              "name": "",
+              "type": "signature",
+              "signer": "1",
+              "x": 285,
+              "y": 629,
+              "width": 120,
+              "height": 30,
+              "required": true,
+              "api_id": "7eb70c_10"
+            }
+          ]
+        }
+      ],
+      "custom_fields": [],
+      "named_form_fields": [
+        {
+          "name": "",
+          "type": "text",
+          "signer": "1",
+          "x": 286.359375,
+          "y": 490.828125,
+          "width": 246,
+          "height": 21,
+          "required": false,
+          "api_id": "7eb70c_1"
+        },
+        {
+          "name": "",
+          "type": "text",
+          "signer": "1",
+          "x": 286.359375,
+          "y": 521.34375,
+          "width": 246,
+          "height": 23,
+          "required": false,
+          "api_id": "7eb70c_2"
+        },
+        {
+          "name": "",
+          "type": "checkbox",
+          "signer": "1",
+          "x": 195.921875,
+          "y": 575.1875,
+          "width": 16,
+          "height": 17,
+          "required": false,
+          "api_id": "7eb70c_4"
+        },
+        {
+          "name": "",
+          "type": "checkbox",
+          "signer": "1",
+          "x": 283.75,
+          "y": 576.578125,
+          "width": 17,
+          "height": 17,
+          "required": false,
+          "api_id": "7eb70c_5"
+        },
+        {
+          "name": "",
+          "type": "checkbox",
+          "signer": "1",
+          "x": 376.328125,
+          "y": 576.109375,
+          "width": 17,
+          "height": 16,
+          "required": false,
+          "api_id": "7eb70c_6"
+        },
+        {
+          "name": "",
+          "type": "checkbox",
+          "signer": "1",
+          "x": 477.984375,
+          "y": 576.078125,
+          "width": 17,
+          "height": 16,
+          "required": false,
+          "api_id": "7eb70c_7"
+        },
+        {
+          "name": "",
+          "type": "checkbox",
+          "signer": "1",
+          "x": 575.921875,
+          "y": 576.765625,
+          "width": 15,
+          "height": 17,
+          "required": false,
+          "api_id": "7eb70c_8"
+        },
+        {
+          "name": "",
+          "type": "text",
+          "signer": "1",
+          "x": 214.734375,
+          "y": 598.28125,
+          "width": 193,
+          "height": 23,
+          "required": false,
+          "api_id": "7eb70c_3"
+        },
+        {
+          "name": "",
+          "type": "signature",
+          "signer": "1",
+          "x": 285,
+          "y": 629,
+          "width": 120,
+          "height": 30,
+          "required": true,
+          "api_id": "7eb70c_10"
+        }
+      ],
+      "accounts": [
+        {
+          "account_id": "c2122655309c9d006b9f95aa685b7b0c9e9a7e03",
+          "email_address": "chris@hellosign.com",
+          "is_paid_hs": true,
+          "is_paid_hf": false,
+          "quotas": {
+            "templates_left": null,
+            "api_signature_requests_left": "1250"
+          }
+        }
+      ]
+    },
+    {
+      "reusable_form_id": "3e1e3f8a61cf4ba9495b3cd47170c8a3f6e03ac1",
+      "title": "VIP Contract",
+      "message": "You're VIP!",
+      "is_creator": true,
+      "can_edit": true,
+      "signer_roles": [
+        {
+          "name": "VIP 1",
+          "order": null
+        },
+        {
+          "name": "VIP 2",
+          "order": null
+        }
+      ],
+      "cc_roles": [
+        {
+          "name": "Lawyer"
+        }
+      ],
+      "documents": [
+        {
+          "index": "0",
+          "name": "contract.doc",
+          "custom_fields": [],
+          "form_fields": [
+            {
+              "name": "",
+              "type": "signature",
+              "signer": "1",
+              "x": 219,
+              "y": 483,
+              "width": 120,
+              "height": 30,
+              "required": true,
+              "api_id": "eead72_2"
+            },
+            {
+              "name": "",
+              "type": "signature",
+              "signer": "2",
+              "x": 372,
+              "y": 483,
+              "width": 120,
+              "height": 30,
+              "required": true,
+              "api_id": "eead72_4"
+            }
+          ]
+        }
+      ],
+      "custom_fields": [],
+      "named_form_fields": [
+        {
+          "name": "",
+          "type": "signature",
+          "signer": "1",
+          "x": 219,
+          "y": 483,
+          "width": 120,
+          "height": 30,
+          "required": true,
+          "api_id": "eead72_2"
+        },
+        {
+          "name": "",
+          "type": "signature",
+          "signer": "2",
+          "x": 372,
+          "y": 483,
+          "width": 120,
+          "height": 30,
+          "required": true,
+          "api_id": "eead72_4"
+        }
+      ],
+      "accounts": [
+        {
+          "account_id": "c2122655309c9d006b9f95aa685b7b0c9e9a7e03",
+          "email_address": "chris@hellosign.com",
+          "is_paid_hs": true,
+          "is_paid_hf": false,
+          "quotas": {
+            "templates_left": null,
+            "api_signature_requests_left": "1250"
+          }
+        }
+      ]
+    }
+  ]
+}

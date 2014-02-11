@@ -1,0 +1,10 @@
+reusable_form_id=*
+client_id=*
+title=Embedded Purchase Order
+subject=Congratulations on your purchase
+message=Glad we could come to an agreement. Please sign when you have a chance.
+signers[Client][name]=Katie
+signers[Client][email_address]=katie@test.com
+ccs[Accounting][email_address]=accounting@hellosign.com
+custom_fields[Cost]=$50,000
+test_mode=true

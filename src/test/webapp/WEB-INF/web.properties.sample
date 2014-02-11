@@ -1,0 +1,12 @@
+org.apache.commons.logging.Log=org.apache.commons.logging.impl.SimpleLog
+
+# This is the API key the ExampleCallbackServlet will use to validate
+# events posted from HelloSign. You can find yours at:
+#   https://www.hellosign.com/home/myAccount/current_tab/integrations
+hellosign.api.key=
+
+# The client ID and secret are created on a per-application basis.
+# Create an application here:
+#   https://www.hellosign.com/oauth/createAppForm
+client.id=
+client.secret=
