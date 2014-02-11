@@ -4,11 +4,11 @@ Use the HelloSign Java SDK to get your Java app connected to HelloSign's service
 
 ## Installing
 
-Download the HelloSign Java SDK JAR:
+Download the HelloSign Java SDK JAR and include it in your project classpath:
 
-[hellosign-java-sdk-1.0.jar](http://www.github.com/HelloFax/)
+* [hellosign-java-sdk-1.0.jar](https://github.com/HelloFax/hellosign-java-sdk/raw/master/dist/hellosign-java-sdk-1.0.jar)
 
-Include it in your project classpath. Alternatively, you can build the SDK yourself by forking this repository and use Maven to build it:
+Alternatively, you can build the SDK yourself by forking this repository and use Maven to build it:
 
     mvn clean package -DskipTests
 
@@ -93,18 +93,8 @@ if (response.isComplete()) {
 ### Handling HelloSign Events
 The [Event](src/main/java/com/hellosign/sdk/resource/Event.java) class simplifies handling HelloSign callback messages. A sample servlet is provided in the test code to listen for HelloSign events and you can see it in action by following a few configuration steps:
 
-1. Copy the file
-
-    ```
-    src/test/webapp/WEB-INF/web.properties.sample
-    ```
-to
-
-    ```
-    src/test/webapp/WEB-INF/web.properties
-    ```
-
-1. Edit the newly created properties file and enter your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations) in the "hellosign.api.key" property, and your [Client ID and Client Secret](https://www.hellosign.com/oauth/createAppForm) in the "hellosign.client.id" and "hellosign.client.secret" properties.
+1. Copy the file `src/test/webapp/WEB-INF/web.properties.sample` to `src/test/webapp/WEB-INF/web.properties`.
+1. Edit `web.properties` and enter your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations) in the "hellosign.api.key" property, and your [Client ID and Client Secret](https://www.hellosign.com/oauth/createAppForm) in the "hellosign.client.id" and "hellosign.client.secret" properties.
 1. Run the servlet by executing the "mvn jetty:run" command from the project directory:
 
     ```
@@ -118,10 +108,7 @@ to
     [INFO] Started Jetty Server
     ```
 
-1. Verify the server is accessible from your local machine by opening a web browser to:
-    ```
-    http://localhost:8080
-    ```
+1. Verify the server is accessible from your local machine by opening a web browser to [http://localhost:8080]().
 1. Configure the server so that it is accessible from HelloSign (i.e., the internet). 
 1. Set your HelloSign account's callback URL via the API, either with the `HelloSignClient.setCallbackUrl(String)` method or by executing a [curl](http://www.hellosign.com/api/gettingStarted#RetrievingSignedDocuments) request from the command line. The callback URL should be set to `http://[your_server]:8080/hello`, where "your_server" is the Internet-accessible IP or hostname of your server. 
 
