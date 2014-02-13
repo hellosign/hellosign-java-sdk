@@ -677,19 +677,10 @@ public class HelloSignClient {
 		HttpURLConnection connection = null;
 		try {
 			connection = (HttpURLConnection) new URL(URL_API).openConnection();
-			connection.getInputStream();
+			connection.setRequestMethod("OPTIONS");
+			return HttpURLConnection.HTTP_OK == connection.getResponseCode();
 		} catch (Exception ex) {
-			if (connection != null) {
-				String errorStr = AbstractHttpRequest.convertStreamToString(
-						connection.getErrorStream());
-				try {
-					JSONObject error = new JSONObject(errorStr);
-					// We are expecting an error
-					return (error.has("error"));
-				} catch (JSONException e) {
-					// Ignore
-				}
-			}
+			// Ignore
 		}
 		return false;
 	}
