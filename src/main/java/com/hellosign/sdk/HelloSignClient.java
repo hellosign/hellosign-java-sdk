@@ -19,7 +19,6 @@ import javax.net.ssl.X509TrustManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.hellosign.sdk.http.AbstractHttpRequest;
 import com.hellosign.sdk.http.Authentication;
 import com.hellosign.sdk.http.HttpGetRequest;
 import com.hellosign.sdk.http.HttpPostRequest;

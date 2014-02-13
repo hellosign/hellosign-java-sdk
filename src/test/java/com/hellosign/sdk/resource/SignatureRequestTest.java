@@ -2,7 +2,6 @@ package com.hellosign.sdk.resource;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.List;
