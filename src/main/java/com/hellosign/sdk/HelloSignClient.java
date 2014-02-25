@@ -90,6 +90,7 @@ public class HelloSignClient {
 	private String URL_SIGNATURE_REQUEST_CANCEL;
 	private String URL_SIGNATURE_REQUEST_REMIND;
 	private String URL_SIGNATURE_REQUEST_FINAL_COPY;
+	private String URL_SIGNATURE_REQUEST_FILES;
 	private String URL_SIGNATURE_REQUEST_EMBEDDED;
 	private String URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE;
 	private String URL_EMBEDDED_SIGN_URL;
@@ -98,6 +99,9 @@ public class HelloSignClient {
 	
 	public static final String FINAL_COPY_FILE_NAME = "final-copy";
 	public static final String FINAL_COPY_FILE_EXT = "pdf";
+	
+	public static final String FILES_FILE_NAME = "files";
+	public static final String FILES_FILE_EXT = "pdf";
 	
 	public static final String OAUTH_CODE = "code";
 	public static final String OAUTH_STATE = "state";
@@ -145,6 +149,7 @@ public class HelloSignClient {
     	URL_SIGNATURE_REQUEST_CANCEL = URL_SIGNATURE_REQUEST + "/cancel";
     	URL_SIGNATURE_REQUEST_REMIND = URL_SIGNATURE_REQUEST + "/remind";
     	URL_SIGNATURE_REQUEST_FINAL_COPY = URL_SIGNATURE_REQUEST + "/final_copy";
+    	URL_SIGNATURE_REQUEST_FILES = URL_SIGNATURE_REQUEST + "/files";
     	URL_SIGNATURE_REQUEST_EMBEDDED = URL_SIGNATURE_REQUEST + "/create_embedded";
     	URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE = URL_SIGNATURE_REQUEST + "/create_embedded_with_reusable_form";
     	URL_EMBEDDED_SIGN_URL = URL_API + "/embedded/sign_url";
@@ -609,11 +614,25 @@ public class HelloSignClient {
 	 * @param requestId String SignatureRequest ID
 	 * @return File final copy file, or null if it does not yet exist
 	 * @throws HelloSignException
+	 * @deprecated Use getFiles(requestId)
 	 */
 	public File getFinalCopy(String requestId) throws HelloSignException {
 		String finalCopyUrl = URL_SIGNATURE_REQUEST_FINAL_COPY + "/" + requestId;
 		String filename = FINAL_COPY_FILE_NAME + "." + FINAL_COPY_FILE_EXT; 
 		HttpGetRequest request = new HttpGetRequest(finalCopyUrl, auth);
+		return request.getFileResponse(filename);
+	}
+
+	/**
+	 * Retrieves a PDF copy of the files associated with a signature request.
+	 * @param requestId String signature ID
+	 * @return File PDF file
+	 * @throws HelloSignException
+	 */
+	public File getFiles(String requestId) throws HelloSignException {
+		String filesUrl = URL_SIGNATURE_REQUEST_FILES + "/" + requestId;
+		String filename = FILES_FILE_NAME + "." + FILES_FILE_EXT; 
+		HttpGetRequest request = new HttpGetRequest(filesUrl, auth);
 		return request.getFileResponse(filename);
 	}
 	
