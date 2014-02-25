@@ -2,6 +2,7 @@ package com.hellosign.sdk.resource;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.List;
@@ -115,8 +116,29 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
 	    	try {
 	    		client.getFinalCopy(response.getId());
 	    	} catch (HelloSignException ex) {
-	    		assertEquals(ex.getMessage(), "Not allowed (not complete)");
+	    		assertEquals(ex.getMessage(), "Not ready");
 	    	}
+	    	
+	    	logger.debug("Testing retrieval of files...");
+	    	File f = null;
+	    	int tries = 0;
+	    	int sleep = 5000; // 5 seconds
+	    	while (f == null && tries < 10) {
+	    		try {
+	    			f = client.getFiles(response.getId());
+	    		} catch (HelloSignException ex) {
+	    			assertEquals(ex.getMessage(), "Not ready");
+	    			try {
+	    				logger.debug("Sleeping " + sleep + " milliseconds...");
+	    				Thread.sleep(sleep);
+	    				tries++;
+	    			} catch (Exception e) {};
+	    		}
+	    	}
+    		
+    		assertNotNull(f);
+    		assertTrue(f.exists());
+    		
 	    	logger.debug("\tSuccess!");
 	    	
 	    	// Cancel the signature request

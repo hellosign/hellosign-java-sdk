@@ -38,6 +38,7 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_HAS_ERROR = "has_error";
 	public static final String SIGREQ_RESPONSE_DATA = "response_data";
 	public static final String SIGREQ_FINAL_COPY_URL = "final_copy_url";
+	public static final String SIGREQ_FILES_URL = "files_url";
 	public static final String SIGREQ_SIGNING_URL = "signing_url";
 	public static final String SIGREQ_DETAILS_URL = "details_url";
 	public static final String SIGREQ_REQUESTER_EMAIL = "requester_email_address";
@@ -397,8 +398,19 @@ public class SignatureRequest extends AbstractRequest {
 	public List<ResponseData> getResponseData() {
 		return getList(ResponseData.class, SIGREQ_RESPONSE_DATA);
 	}
+	/**
+	 * @deprecated use getFilesUrl()
+	 * @return String URL
+	 */
 	public String getFinalCopyUrl() {
 		return getString(SIGREQ_FINAL_COPY_URL);
+	}
+	/**
+	 * Returns the API URL to retrieve the PDF copy of this signature request.
+	 * @return String URL
+	 */
+	public String getFilesUrl() {
+		return getString(SIGREQ_FILES_URL);
 	}
 	public String getSigningUrl() {
 		return getString(SIGREQ_SIGNING_URL);
