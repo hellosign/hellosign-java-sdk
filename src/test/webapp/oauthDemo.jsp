@@ -92,6 +92,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/css/prettify.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/css/main-loggedOut.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/demos.css" />
         <script type="text/javascript" src="/js/init.js"></script>
 
         <script type="text/javascript" src="/js/prettify.js"></script>
@@ -167,7 +168,7 @@
                      <a id="signinButton" class="signin blue-sub" href="https://www.hellosign.com/account/logIn">Sign in</a>
                  </div>
                 <div id="main-content">
-                    <p><a href="/">Index</a> &gt; OAuth Demo</p>
+                	<div class="sub-nav"><a href="/">Index</a> <span class="rsaquo">&rsaquo;</span> OAuth Demo</div>
                     <h2 class="page-title default headline">OAuth Demo</h2>
                     <div class="embeddedSigning bs_container">
                         <p class="intro">
@@ -180,7 +181,7 @@
                                 <ul>
                                     <li><b>1.</b>&nbsp;Obtain an API key.<br /><em>Sign up for an API plan <a href="https://www.hellosign.com/api/pricing">here</a>. Adding embedded signing to your website requires a Silver or Gold API plan. However, you can test the functionality for free by creating signature requests in test mode.</em></li>
                                     <li><b>2.</b>&nbsp;Obtain a Client ID.<br /><em>Sign up for a Client ID for your application <a href="https://www.hellosign.com/oauth/createAppForm">here</a>. To fully enable this demo, configure your application server to be accessible from HelloSign and set the OAuth callback URL to the demo callback (e.g., "http://localhost:8080/oauthDemoCallback.jsp"). This callback page will store the HelloSign access token in the current session for use in the user's requests.</em></li>
-                                    <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">jello-sign/src/main/webapp/WEB-INF/web.properties</pre></li>
+                                    <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">hellosign-java-sdk/src/main/webapp/WEB-INF/web.properties</pre></li>
                                 </ul>
                                 <br />
                                 <h2>Try It Out</h2>
@@ -207,7 +208,7 @@
                                 <p>The steps below demonstrate how to add embedded signing to a JSP-based web page, but the steps are similar for other JEE-based applications. See the server-side source of this file for the code used in this example.</p><br />
                                 <ul>
                                     <li><b>1.</b>&nbsp;<b>Server-side</b>: Create a callback page that can receive the OAuth request token, with which you can retrieve the user's OAuth access token. See the page <a href="/oauthDemoCallback.jsp">/oauthDemoCallback.jsp</a> for an example of how this should be done.</li>
-                                    <li><b>2.</b>&nbsp;<b>Server-side</b>: Import the packages for jello-sign, along with the rest of your dependencies.<br /><pre class="code-render prettyprint">&lt;%@page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*"%&gt;</pre></li>
+                                    <li><b>2.</b>&nbsp;<b>Server-side</b>: Import the packages for hellosign-java-sdk, along with the rest of your dependencies.<br /><pre class="code-render prettyprint">&lt;%@page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*"%&gt;</pre></li>
                                     <li><b>3.</b>&nbsp;<b>Client-side</b>: Create a form that will collect any information from the user needed for the request they want to make. In the case of this demo, we are building a signature request with one signer. Therefore, the form has inputs for the signer's email address and name.</li>
                                     <li><b>4.</b>&nbsp;<b>Client-side</b>: Provide a way for the user to request OAuth authorization from HelloSign. Typically, this comes in the form of a button the user clicks, which checks for the presence of the OAuth access token and directs the user to the authorization page if it doesn't exist. In this demo, the "Launch Demo" button provides this functionality. If the OAuth access token does not exist on the user's session, the necessary JavaScript is rendered to override the default button behavior and redirect the user to the authorization page prior to launching the demo.<br />
 <pre class="code-render prettyprint">
@@ -235,7 +236,7 @@ $("#startButton").click(function() {
 });
 </pre>
                                     </li>
-                                    <li><b>5.</b>&nbsp;<b>Server-side</b>: Create the HelloSign request using the jello-sign classes and provide the user's OAuth access token to the client.<br />
+                                    <li><b>5.</b>&nbsp;<b>Server-side</b>: Create the HelloSign request using the hellosign-java-sdk classes and provide the user's OAuth access token to the client.<br />
 <pre class="code-render prettyprint">
     // Instantiate the client
     // Notice we are not providing any other authorization other than

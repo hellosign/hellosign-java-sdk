@@ -10,3 +10,14 @@ hellosign.api.key=
 #   https://www.hellosign.com/oauth/createAppForm
 client.id=
 client.secret=
+
+# Mashup api keys and settings not needed for the core examples
+
+# Twilio
+# sign up for a free trial at https://www.twilio.com/try-twilio
+twilio.account.sid=
+twilio.auth.token=
+# for sender.number just use the 10 digits e.g. 5556667777
+twilio.sender.number=
+# Optional redirect url after someone has signed the twilio demo
+twilio.redirect.url=http://localhost:8080/twilioSigningDemo.jsp?alldone=1

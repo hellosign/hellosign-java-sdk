@@ -37,6 +37,7 @@ body {
 	line-height: 1.34;
 	background: url(./images/common/body_gradient.png) top center repeat-x #FFF;
 	display: block;
+	height: auto;
 }
 
 html, body {
