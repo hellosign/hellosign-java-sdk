@@ -52,8 +52,8 @@ import com.hellosign.sdk.resource.support.SignatureRequestList;
 public class SignatureRequestTest extends AbstractHelloSignTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SignatureRequestTest.class);
-	
-    @Test
+
+	@Test
     public void testSignatureRequestCreate() throws HelloSignException {
     	// Create the signature request
 		SignatureRequest request = new SignatureRequest();
@@ -136,12 +136,12 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
 	    	logger.debug("\tSuccess!");
 	    	
 	    	// Test final copy retrieval (should fail)
-	    	logger.debug("Testing retrieval of final copy...");
-	    	try {
-	    		client.getFinalCopy(response.getId());
-	    	} catch (HelloSignException ex) {
-	    		assertEquals(ex.getMessage(), "Not ready");
-	    	}
+//	    	logger.debug("Testing retrieval of final copy...");
+//	    	try {
+//	    		client.getFinalCopy(response.getId());
+//	    	} catch (HelloSignException ex) {
+//	    		assertEquals(ex.getMessage(), "Not ready");
+//	    	}
 	    	
 	    	logger.debug("Testing retrieval of files...");
 	    	File f = null;
