@@ -67,6 +67,7 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_SIGNING_URL = "signing_url";
 	public static final String SIGREQ_DETAILS_URL = "details_url";
 	public static final String SIGREQ_REQUESTER_EMAIL = "requester_email_address";
+	public static final String SIGREQ_USE_TEXT_TAGS = "use_text_tags";
 	
 	// Fields specific to request
 	private List<Signer> signers = new ArrayList<Signer>();
@@ -467,5 +468,11 @@ public class SignatureRequest extends AbstractRequest {
 	}
 	public void setRequesterEmail(String email) {
 		set(SIGREQ_REQUESTER_EMAIL, email);
+	}
+	public Boolean isUsingTextTags() {
+		return getBoolean(SIGREQ_USE_TEXT_TAGS);
+	}
+	public void setUseTextTags(boolean useTextTags) {
+		set(SIGREQ_USE_TEXT_TAGS, useTextTags);
 	}
 }
