@@ -47,12 +47,6 @@
 			<version>${slf4jVersion}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-		    <groupId>com.twilio.sdk</groupId>
-		    <artifactId>twilio-java-sdk</artifactId>
-		    <version>3.4.1</version>
-		    <scope>compile</scope>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
