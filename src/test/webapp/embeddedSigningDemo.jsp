@@ -88,6 +88,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/css/prettify.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/css/main-loggedOut.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/demos.css" />
         <script type="text/javascript" src="/js/init.js"></script>
         <script type="text/javascript" src="/js/prettify.js"></script>
         <link rel="stylesheet" type="text/css" media="screen" href="/css/hs/main.css" />
@@ -137,7 +138,7 @@
                      <a id="signinButton" class="signin blue-sub" href="https://www.hellosign.com/account/logIn">Sign in</a>
                  </div>
                 <div id="main-content">
-                	<p><a href="/">Index</a> &gt; Embedded Signing Demo</p>
+                	<div class="sub-nav"><a href="/">Index</a> <span class="rsaquo">&rsaquo;</span> Embedded Signing Demo</div>
                     <h2 class="page-title default headline">Embedded Signing Demo</h2>
                     <div class="embeddedSigning bs_container">
                         <p class="intro">
@@ -150,7 +151,7 @@
                                 <ul>
                                     <li><b>1.</b>&nbsp;Obtain an API key.<br />Sign up for an API plan <a href="https://www.hellosign.com/api/pricing">here</a>. Adding embedded signing to your website requires a Silver or Gold API plan. However, you can test the functionality for free by creating signature requests in test mode.</li>
                                     <li><b>2.</b>&nbsp;Obtain a Client ID.<br />Sign up for a Client ID for your application <a href="https://www.hellosign.com/oauth/createAppForm">here</a>.</li>
-                                    <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">jello-sign/src/main/webapp/WEB-INF/web.properties</pre></li>
+                                    <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">hellosign-java-sdk/src/main/webapp/WEB-INF/web.properties</pre></li>
                                 </ul>
                                 <br />
                                 <h2>Try It Out</h2>
@@ -171,7 +172,7 @@
                                 <h2>Creating an Embedded Signature Request</h2>
                                 <p>The steps below demonstrate how to add embedded signing to a JSP-based web page, but the steps are similar for other JEE-based applications. See the server-side source of this file for the code used in this example.</p><br />
                                 <ul>
-                                    <li><b>1.</b>&nbsp;<b>Server-side</b>: Import the packages for jello-sign and its dependencies.<br /><pre class="code-render prettyprint">&lt;%@ page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.File,java.util.*" %&gt;</pre></li>
+                                    <li><b>1.</b>&nbsp;<b>Server-side</b>: Import the packages for hellosign-java-sdk and its dependencies.<br /><pre class="code-render prettyprint">&lt;%@ page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.File,java.util.*" %&gt;</pre></li>
                                     <li><b>2.</b>&nbsp;<b>Server-side</b>: Create the embedded signature request.<br />
 <pre class="code-render prettyprint">
     // Create the signature request

@@ -35,6 +35,9 @@ public class Signer {
 	
 	String nameOrRole;
 	String email;
+	String pin;
+	
+	public static final int PIN_LENGTH = 4;
 	
 	public Signer() {}
 	
@@ -56,5 +59,15 @@ public class Signer {
 			throw new HelloSignException("Invalid email address: " + email);
 		}
 		this.email = email;
+	}
+	public void setPin(String pin) throws HelloSignException {
+		if(!pin.matches("[0-9]{" + PIN_LENGTH + "," + PIN_LENGTH + "}")) {
+			throw new HelloSignException("Invalid signer pin - must be " + PIN_LENGTH + " digits: " + pin);
+		}
+		
+		this.pin = pin;
+	}
+	public String getPin() {
+		return pin;
 	}
 }

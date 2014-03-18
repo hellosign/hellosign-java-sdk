@@ -55,6 +55,7 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_SIGNER_EMAIL = "email_address";
 	public static final String SIGREQ_SIGNER_NAME = "name";
 	public static final String SIGREQ_SIGNER_ORDER = "order";
+	public static final String SIGREQ_SIGNER_PIN = "pin";
 	public static final String SIGREQ_CCS = "cc_email_addresses";
 	public static final String SIGREQ_FILES = "file";
 	public static final String SIGREQ_FORM_FIELDS = "form_fields_per_document";
@@ -146,6 +147,15 @@ public class SignatureRequest extends AbstractRequest {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Adds the signer to the list of signers for this request.
+	 * @param signer Signer
+	 * @throws HelloSignException 
+	 */
+	public void addSigner(Signer signer) throws HelloSignException {
+		signers.add(signer);
 	}
 	
 	/**
@@ -372,6 +382,10 @@ public class SignatureRequest extends AbstractRequest {
 					fields.put(SIGREQ_SIGNERS + 
 							"[" + (i + 1) + "][" + SIGREQ_SIGNER_ORDER + "]", i);
 				}
+				if(s.getPin() != null) {
+					fields.put(SIGREQ_SIGNERS + 
+							"[" + (i + 1) + "][" + SIGREQ_SIGNER_PIN + "]", s.getPin());
+				}
 			}
 			List<String> ccz = getCCs();
 			for (int i = 0; i < ccz.size(); i++) {
@@ -399,6 +413,9 @@ public class SignatureRequest extends AbstractRequest {
 			}
 			if (hasRequesterEmail()) {
 				fields.put(SIGREQ_REQUESTER_EMAIL, getRequesterEmail());
+			}
+			if (hasRedirectUrl()) {
+				fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
 			}
 		} catch (Exception ex) {
 			throw new HelloSignException(

@@ -134,6 +134,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
         <link rel="stylesheet" type="text/css" media="screen" href="/css/prettify.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/css/main-loggedOut.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/demos.css" />
         <script type="text/javascript" src="/js/init.js"></script>
 
         <script type="text/javascript" src="/js/prettify.js"></script>
@@ -172,12 +173,14 @@ if (ServletFileUpload.isMultipartContent(request)) {
         	function initTemplates() {
         		var templates = [
 <%
-Iterator<Template> it = templateList.iterator();
-while(it.hasNext()) {
-	Template t = it.next();
-	out.write(t.toString());
-	if (it.hasNext()) {
-		out.write(",");
+if(templateList != null) {
+	Iterator<Template> it = templateList.iterator();
+	while(it != null && it.hasNext()) {
+		Template t = it.next();
+		out.write(t.toString());
+		if (it.hasNext()) {
+			out.write(",");
+		}
 	}
 }
 %>
@@ -229,7 +232,7 @@ while(it.hasNext()) {
             $(document).ready(function(){
                 initEmbeddedDemo();
                 initTemplates();
-<% if (signUrl != "") { %>
+<% if (!signUrl.isEmpty()) { %>
                 // Initialize HelloSign with the client ID
                 HelloSign.init("<%= clientId %>");
 
@@ -268,7 +271,7 @@ while(it.hasNext()) {
                      <a id="signinButton" class="signin blue-sub" href="https://www.hellosign.com/account/logIn">Sign in</a>
                  </div>
                 <div id="main-content">
-                	<p><a href="/">Index</a> &gt; Embedded Template Request Demo</p>
+                	<div class="sub-nav"><a href="/">Index</a> <span class="rsaquo">&rsaquo;</span> Embedded Template Request Demo</div>
                     <h2 class="page-title default headline">Embedded Template Request Demo</h2>
                     <div class="embeddedSigning bs_container">
                         <p class="intro">
@@ -281,7 +284,7 @@ while(it.hasNext()) {
                                 <ul>
                                     <li><b>1.</b>&nbsp;Obtain an API key.<br />Sign up for an API plan <a href="https://www.hellosign.com/api/pricing">here</a>. Adding embedded signing to your website requires a Silver or Gold API plan. However, you can test the functionality for free by creating signature requests in test mode.</li>
                                     <li><b>2.</b>&nbsp;Obtain a Client ID.<br />Sign up for a Client ID for your application <a href="https://www.hellosign.com/oauth/createAppForm">here</a>.</li>
-                                    <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">jello-sign/src/main/webapp/WEB-INF/web.properties</pre></li>
+                                    <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">hellosign-java-sdk/src/main/webapp/WEB-INF/web.properties</pre></li>
                                     <li><b>4.</b>&nbsp;Create a template.<br />Create a template on the HelloSign website <a href="https://www.hellosign.com/home/createReusableDocs">here</a>. Your templates will be retrieved for use in the demo when you load this page.</li>
                                 </ul>
                                 <br />
@@ -314,7 +317,7 @@ while(it.hasNext()) {
                                 <p>The steps below demonstrate how to embedded a signature request capability based on a HelloSign template into a JSP web page. See the server-side source of this file for the code used in this example.</p><br />
                                 <ul>
                                     <li><b>1.</b>&nbsp;Obtain the template to be used. In this example, the JSP retrieves the demo user's templates and makes them available as a select list to choose from.</li>
-                                    <li><b>2.</b>&nbsp;<b>Server-side</b>: Import the packages for jello-sign and its dependencies.<br /><pre class="code-render prettyprint">&lt;%@ page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.*,java.util.*,org.apache.commons.fileupload.*,org.apache.commons.fileupload.servlet.*,org.apache.commons.fileupload.disk.*,org.apache.commons.io.*" %&gt;</pre></li>
+                                    <li><b>2.</b>&nbsp;<b>Server-side</b>: Import the packages for hellosign-java-sdk and its dependencies.<br /><pre class="code-render prettyprint">&lt;%@ page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.*,java.util.*,org.apache.commons.fileupload.*,org.apache.commons.fileupload.servlet.*,org.apache.commons.fileupload.disk.*,org.apache.commons.io.*" %&gt;</pre></li>
                                     <li><b>3.</b>&nbsp;<b>Server-side</b>: Obtain the information provided by the user in Step 1 and create an Unclaimed Draft.<br />
 <pre class="code-render prettyprint">
     UnclaimedDraft draft = new UnclaimedDraft();
