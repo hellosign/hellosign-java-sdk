@@ -130,7 +130,7 @@
 
                        var win = window.open(
 <% if (isLocalDev) { %>
-                               "https://www.my.hellosign.com/oauth/authorize?" +
+                               "https://www.my.hellosign.com/webapp_dev.php/oauth/authorize?" +
 <% } else if (isStaging) { %>
                                "https://staging.hellosign.com/oauth/authorize?" +
 <% } else { %>
