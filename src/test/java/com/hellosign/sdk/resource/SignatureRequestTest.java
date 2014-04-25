@@ -26,7 +26,6 @@ package com.hellosign.sdk.resource;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.List;
@@ -129,7 +128,7 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
 	    	logger.debug("\tSuccess!");
 	    	
 	    	// Test signature request reminder
-	    	logger.debug("Testing SigantureRequest reminder...");
+	    	logger.debug("Testing SignatureRequest reminder...");
 	    	SignatureRequest remindedReq = client.requestEmailReminder(response.getId(), "jack@example.com");
 	    	assertNotNull(remindedReq);
 	    	assertEquals(remindedReq.getId(), response.getId());
@@ -143,25 +142,25 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
 //	    		assertEquals(ex.getMessage(), "Not ready");
 //	    	}
 	    	
-	    	logger.debug("Testing retrieval of files...");
-	    	File f = null;
-	    	int tries = 0;
-	    	int sleep = 5000; // 5 seconds
-	    	while (f == null && tries < 10) {
-	    		try {
-	    			f = client.getFiles(response.getId());
-	    		} catch (HelloSignException ex) {
-	    			assertEquals(ex.getMessage(), "Not ready");
-	    			try {
-	    				logger.debug("Sleeping " + sleep + " milliseconds...");
-	    				Thread.sleep(sleep);
-	    				tries++;
-	    			} catch (Exception e) {};
-	    		}
-	    	}
-    		
-    		assertNotNull(f);
-    		assertTrue(f.exists());
+//	    	logger.debug("Testing retrieval of files...");
+//	    	File f = null;
+//	    	int tries = 0;
+//	    	int sleep = 5000; // 5 seconds
+//	    	while (f == null && tries < 10) {
+//	    		try {
+//	    			f = client.getFiles(response.getId());
+//	    		} catch (HelloSignException ex) {
+//	    			assertEquals(ex.getMessage(), "Not ready");
+//	    			try {
+//	    				logger.debug("Sleeping " + sleep + " milliseconds...");
+//	    				Thread.sleep(sleep);
+//	    				tries++;
+//	    			} catch (Exception e) {};
+//	    		}
+//	    	}
+//    		
+//    		assertNotNull(f);
+//    		assertTrue(f.exists());
     		
 	    	logger.debug("\tSuccess!");
 	    	
@@ -189,4 +188,45 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
 //    	HelloSignClient client = new HelloSignClient(validApiKey);
 //    	client.getSignatureRequest("711d4f19607e4c49928057b2a326d30c1b65418f");
 //    }
+	
+	@Test
+	public void testTextTags() throws HelloSignException {
+		SignatureRequest req = new SignatureRequest();
+		req.setTestMode(true);
+		req.addSigner("abeecher@example.com", "Alice");
+		req.addFile(getTestFile("text_tags_test.pdf"));
+		req.setUseTextTags(true);
+		assertNotNull(req);
+		assertTrue(req.isUsingTextTags());
+		logger.debug("Sending: " + req.toString());
+		if (isHelloSignAvailable()) {
+			HelloSignClient client = new HelloSignClient(auth);
+    		logger.debug("Creating new request...");
+			logger.debug("POST " + client.getSignatureRequestUrl());
+			SignatureRequest resp = client.sendSignatureRequest(req);
+			assertNotNull(resp);
+	    	logger.debug("\tSuccess!");
+		}
+	}
+
+	@Test
+	public void testHiddenTextTags() throws HelloSignException {
+		SignatureRequest req = new SignatureRequest();
+		req.setTestMode(true);
+		req.addSigner("abeecher@example.com", "Alice");
+		req.addFile(getTestFile("test_white_text_tags.pdf"));
+		req.setUseTextTags(true);
+		req.setHideTextTags(true);
+		assertNotNull(req);
+		assertTrue(req.isUsingTextTags());
+		logger.debug("Sending: " + req.toString());
+		if (isHelloSignAvailable()) {
+			HelloSignClient client = new HelloSignClient(auth);
+    		logger.debug("Creating new request...");
+			logger.debug("POST " + client.getSignatureRequestUrl());
+			SignatureRequest resp = client.sendSignatureRequest(req);
+			assertNotNull(resp);
+	    	logger.debug("\tSuccess!");
+		}
+	}
 }

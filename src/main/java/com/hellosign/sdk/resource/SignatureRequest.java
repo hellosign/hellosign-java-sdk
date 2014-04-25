@@ -68,6 +68,7 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_DETAILS_URL = "details_url";
 	public static final String SIGREQ_REQUESTER_EMAIL = "requester_email_address";
 	public static final String SIGREQ_USE_TEXT_TAGS = "use_text_tags";
+	public static final String SIGREQ_HIDE_TEXT_TAGS = "hide_text_tags";
 	
 	// Fields specific to request
 	private List<Signer> signers = new ArrayList<Signer>();
@@ -418,6 +419,9 @@ public class SignatureRequest extends AbstractRequest {
 			if (hasRedirectUrl()) {
 				fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
 			}
+			if (hasUseTextTags()) {
+				fields.put(SIGREQ_USE_TEXT_TAGS, isUsingTextTags());
+			}
 		} catch (Exception ex) {
 			throw new HelloSignException(
 					"Could not extract form fields from SignatureRequest.", ex);
@@ -469,10 +473,22 @@ public class SignatureRequest extends AbstractRequest {
 	public void setRequesterEmail(String email) {
 		set(SIGREQ_REQUESTER_EMAIL, email);
 	}
+	public boolean hasUseTextTags() {
+		return has(SIGREQ_USE_TEXT_TAGS);
+	}
 	public Boolean isUsingTextTags() {
 		return getBoolean(SIGREQ_USE_TEXT_TAGS);
 	}
 	public void setUseTextTags(boolean useTextTags) {
 		set(SIGREQ_USE_TEXT_TAGS, useTextTags);
+	}
+	public boolean hasHideTextTags() {
+		return has(SIGREQ_HIDE_TEXT_TAGS);
+	}
+	public Boolean isHidingTextTags() {
+		return getBoolean(SIGREQ_HIDE_TEXT_TAGS);
+	}
+	public void setHideTextTags(boolean hideTextTags) {
+		set(SIGREQ_HIDE_TEXT_TAGS, hideTextTags);
 	}
 }
