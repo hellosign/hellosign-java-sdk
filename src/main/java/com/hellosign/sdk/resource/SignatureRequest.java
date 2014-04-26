@@ -69,6 +69,9 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_REQUESTER_EMAIL = "requester_email_address";
 	public static final String SIGREQ_USE_TEXT_TAGS = "use_text_tags";
 	public static final String SIGREQ_HIDE_TEXT_TAGS = "hide_text_tags";
+
+	public static final String SIGREQ_FORMAT_ZIP = "zip";
+	public static final String SIGREQ_FORMAT_PDF = "pdf";
 	
 	// Fields specific to request
 	private List<Signer> signers = new ArrayList<Signer>();

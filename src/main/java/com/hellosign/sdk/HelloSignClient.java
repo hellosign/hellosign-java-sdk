@@ -120,6 +120,8 @@ public class HelloSignClient {
 	private String URL_EMBEDDED_SIGN_URL;
 	private String URL_UNCLAIMED_DRAFT_CREATE;
 	private String URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED;
+
+	private String URL_PARAM_FILE_TYPE = "file_type";
 	
 	public static final String FINAL_COPY_FILE_NAME = "final-copy";
 	public static final String FINAL_COPY_FILE_EXT = "pdf";
@@ -654,9 +656,22 @@ public class HelloSignClient {
 	 * @throws HelloSignException
 	 */
 	public File getFiles(String requestId) throws HelloSignException {
+		return getFiles(requestId, SignatureRequest.SIGREQ_FORMAT_PDF);
+	}
+
+	/**
+	 * Retrieves the file associated with a signature request.
+	 * @param requestId String signature ID
+	 * @param format String format, see SignatureRequest for available types
+	 * @return File
+	 * @throws HelloSignException
+	 */
+	public File getFiles(String requestId, String format) throws HelloSignException {
 		String filesUrl = URL_SIGNATURE_REQUEST_FILES + "/" + requestId;
-		String filename = FILES_FILE_NAME + "." + FILES_FILE_EXT; 
-		HttpGetRequest request = new HttpGetRequest(filesUrl, auth);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put(URL_PARAM_FILE_TYPE, format);
+		HttpGetRequest request = new HttpGetRequest(filesUrl, params, auth);
+		String filename = FILES_FILE_NAME + "." + FILES_FILE_EXT;
 		return request.getFileResponse(filename);
 	}
 	
