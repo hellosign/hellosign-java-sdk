@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.OauthData;
+import com.hellosign.sdk.resource.support.Quotas;
 import com.hellosign.sdk.resource.support.types.RoleType;
 
 /**
@@ -42,12 +43,12 @@ public class Account extends AbstractResource {
 	public static final String ACCOUNT_EMAIL_ADDRESS = "email_address";
 	public static final String ACCOUNT_IS_PAID_HS = "is_paid_hs";
 	public static final String ACCOUNT_IS_PAID_HF = "is_paid_hf";
-	public static final String ACCOUNT_TEMPLATES_LEFT = "templates_left";
-	public static final String ACCOUNT_API_SIG_REQS_LEFT = "api_signature_requests_left";
 	public static final String ACCOUNT_CALLBACK_URL = "callback_url";
 	public static final String ACCOUNT_ROLE_CODE = "role_code";
 	public static final String OAUTH_DATA = "oauth_data";
 	public static final String ACCOUNT_PASSWORD = "password";
+
+	private Quotas quotas;
 	
 	public Account() {
 		super();
@@ -55,6 +56,7 @@ public class Account extends AbstractResource {
 	
 	public Account(JSONObject json) throws HelloSignException {
 		super(json, ACCOUNT_KEY);
+		quotas = new Quotas(dataObj);
 	}
 
 	public String getId() {
@@ -82,11 +84,15 @@ public class Account extends AbstractResource {
 	}
 	
 	public Integer getTemplatesLeft() {
-		return getInteger(ACCOUNT_TEMPLATES_LEFT);
+		return quotas.getTemplatesLeft();
 	}
 	
-	public Integer getApiSigReqsLeft() {
-		return getInteger(ACCOUNT_API_SIG_REQS_LEFT);
+	public Integer getApiSignatureRequestsLeft() {
+		return quotas.getApiSignatureRequestsLeft();
+	}
+
+	public Integer getDocumentsLeft() {
+		return quotas.getDocumentsLeft();
 	}
 	
 	public String getCallbackUrl() {
@@ -114,5 +120,8 @@ public class Account extends AbstractResource {
 	public OauthData getOauthData() throws HelloSignException {
 		return new OauthData((JSONObject) get(OAUTH_DATA));
 	}
-	
+
+	public Quotas getQuotas() {
+		return quotas;
+	}
 }
