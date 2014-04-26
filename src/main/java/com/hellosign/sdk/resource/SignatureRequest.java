@@ -384,9 +384,9 @@ public class SignatureRequest extends AbstractRequest {
 					fields.put(SIGREQ_SIGNERS + 
 							"[" + (i + 1) + "][" + SIGREQ_SIGNER_ORDER + "]", i);
 				}
-				if(s.getPin() != null) {
+				if(s.getAccessCode() != null) {
 					fields.put(SIGREQ_SIGNERS + 
-							"[" + (i + 1) + "][" + SIGREQ_SIGNER_PIN + "]", s.getPin());
+							"[" + (i + 1) + "][" + SIGREQ_SIGNER_PIN + "]", s.getAccessCode());
 				}
 			}
 			List<String> ccz = getCCs();

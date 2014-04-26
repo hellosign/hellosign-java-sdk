@@ -63,10 +63,11 @@ public class AccountTest extends AbstractHelloSignTest {
 				Account account = client.createAccount(testEmail, testPassword);
 				assertNotNull(account);
 				assertTrue(account.hasId());
+				assertNotNull(account.getTemplatesLeft());
+				assertNotNull(account.getApiSignatureRequestsLeft());
+				assertNotNull(account.getDocumentsLeft());
 			} catch (HelloSignException ex) {
-				assertTrue(ex.getMessage().contains("Unauthorized user"));
-				logger.debug("\tUser (" + validApiKey + ") does not have authorization to create a new user. Skipping.");
-				return;
+				fail(ex.getMessage());
 			}
 		}
 	}
