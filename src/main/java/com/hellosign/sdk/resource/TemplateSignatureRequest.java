@@ -42,7 +42,7 @@ import com.hellosign.sdk.resource.support.Signer;
  */
 public class TemplateSignatureRequest extends AbstractRequest {
 
-	private static final String TEMPLATE_ID = "reusable_form_id";
+	private static final String TEMPLATE_ID = "template_id";
 	private static final String TEMPLATE_SIGNERS = "signers";
 	private static final String TEMPLATE_SIGNERS_EMAIL = "email_address";
 	private static final String TEMPLATE_SIGNERS_NAME = "name";

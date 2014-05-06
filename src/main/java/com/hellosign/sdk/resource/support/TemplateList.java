@@ -38,6 +38,6 @@ import com.hellosign.sdk.resource.Template;
 public class TemplateList extends AbstractResourceList<Template> {
 	
 	public TemplateList(JSONObject json) throws HelloSignException {
-		super(json, "reusable_forms");
+		super(json, "templates");
 	}
 }
