@@ -52,7 +52,7 @@ public class Authentication {
 	private String accessTokenType = new String();
 	
 	private static final String[] allowedOauthOps = {
-		"signature_request", "reusable_form"
+		"signature_request", "reusable_form", "template"
 	};
 	
 	public Authentication() {} 

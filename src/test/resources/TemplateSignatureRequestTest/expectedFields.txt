@@ -1,4 +1,4 @@
-reusable_form_id=*
+template_id=*
 subject=Purchase Order
 message=Glad we could come to an agreement.
 signers[Client][name]=George

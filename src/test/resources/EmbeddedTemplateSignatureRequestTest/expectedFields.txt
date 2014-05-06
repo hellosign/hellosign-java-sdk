@@ -1,4 +1,4 @@
-reusable_form_id=*
+template_id=*
 client_id=*
 title=Embedded Purchase Order
 subject=Congratulations on your purchase
