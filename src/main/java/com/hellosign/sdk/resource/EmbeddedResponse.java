@@ -40,6 +40,7 @@ public class EmbeddedResponse extends AbstractResource {
 	private static final String EMBEDDED_KEY = "embedded";
 	private static final String EMBEDDED_SIGN_URL = "sign_url";
 	private static final String EMBEDDED_EXPIRES_AT = "expires_at";
+	private static final String EMBEDDED_SIGREQ_ID = "signature_request_id";
 
 	public EmbeddedResponse(JSONObject json) throws HelloSignException {
 		super(json, EMBEDDED_KEY);
@@ -51,5 +52,14 @@ public class EmbeddedResponse extends AbstractResource {
 	
 	public Date getExpiresAt() {
 		return getDate(EMBEDDED_EXPIRES_AT);
+	}
+
+	/**
+	 * If the embedded request type was a Signature Request, then the response
+	 * will contain the signature request ID. 
+	 * @return String signature request ID or null
+	 */
+	public String getSignatureRequestId() {
+		return getString(EMBEDDED_SIGREQ_ID);
 	}
 }
