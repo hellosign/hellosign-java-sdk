@@ -60,11 +60,7 @@ public class UnclaimedDraft extends AbstractRequest {
 	
 	private String clientId;
 	private boolean isForEmbeddedSigning = false;
-	
-	// This *could* be an AbstractRequest if we ever wanted to support creating
-	// unclaimed drafts based on Templates. For now, I'm making this explicit so 
-	// it's easier to pipe the SignatureRequest methods to the underlying 
-	// request object.
+
 	private AbstractRequest request;
 	
 	/**
@@ -77,7 +73,7 @@ public class UnclaimedDraft extends AbstractRequest {
 	
 	/**
 	 * Creates an unclaimed draft with the provided AbstractRequest, and defaults
-	 * the type to UnclaimeddraftType.send_document.
+	 * the type to <code>UnclaimedDraftType.send_document</code>.
 	 * @param request AbstractRequest
 	 */
 	public UnclaimedDraft(AbstractRequest request) {
@@ -323,5 +319,4 @@ public class UnclaimedDraft extends AbstractRequest {
 	public String getId() {
 		return request.getId();
 	}
-	
 }

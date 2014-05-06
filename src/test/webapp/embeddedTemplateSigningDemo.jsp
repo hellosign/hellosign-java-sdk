@@ -84,6 +84,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
         	// First, create a templated request
             TemplateSignatureRequest sigReq = new TemplateSignatureRequest();
             sigReq.setTestMode(true);
+            System.out.println("Using templateId: " + templateId);
             sigReq.setTemplateId(templateId);
             for (String role : signersList.keySet()) {
             	Signer s = signersList.get(role);
@@ -112,7 +113,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
             // Use the sign URL to open the embedded signing page
             signUrl = embeddedResponse.getSignUrl();
-
+            System.out.println("CHRIS: " + embeddedResponse.getSignatureRequestId());
         } catch (HelloSignException ex) {
         	errorMessage = ex.getMessage();
             ex.printStackTrace();
@@ -122,7 +123,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 %>
 <html>
     <head>
-        <title>Embedded Template Signature Request Demo | HelloSign</title>
+        <title>Embedded Template Signing Demo | HelloSign</title>
         <script type="text/javascript" src="/js/jquery.js"></script>
 <% if (isLocalDev) { %>
         <script type="text/javascript" src="//www.my.hellosign.com/js/embedded.js"></script>
@@ -221,7 +222,7 @@ if(templateList != null) {
 	        				var newCFField = $(newCFFieldStr);
 	        				$('#customFieldsContainer').append(newCFField);
 	        			}
-	        			$('#templateId').val(template.reusable_form_id);
+	        			$('#templateId').val(template.template_id);
 	        			$('#startButton').show();
         			} else {
         				$('#templateFields').hide();
@@ -241,6 +242,7 @@ if(templateList != null) {
                     url: "<%= signUrl %>",
                     debug: true,
                     allowCancel: true,
+                    skipDomainVerification: true,
                     messageListener: function(eventData) {
 						console.log("Event received: " + eventData);
 						var msg;
@@ -251,7 +253,7 @@ if(templateList != null) {
                         } else {
                         	msg = eventData.event;
                         }
-                        $("#demoContainer").html(msg + "<br /><a href=\"/embeddedTemplateRequestDemo.jsp\">Try it again</a>");
+                        $("#demoContainer").html(msg + "<br /><a href=\"/embeddedTemplateSigningDemo.jsp\">Try it again</a>");
                     }
                 });
 <% } %>
@@ -293,7 +295,7 @@ if(templateList != null) {
                                 <div id="message"><%= errorMessage %></div>
 <% } %>
                                 <div id="demoContainer">
-                                    <form action="/embeddedTemplateRequestDemo.jsp" method="post" enctype="multipart/form-data">
+                                    <form action="/embeddedTemplateSigningDemo.jsp" method="post" enctype="multipart/form-data">
     									<input type="hidden" name="template" id="templateId" value="" />
                                         <div id="demoForm">
                                             <h3>Your Templates</h3>
@@ -344,6 +346,7 @@ if(templateList != null) {
     function openSigningDialog() {
         HelloSign.init("&lt;%= clientId %&gt;");
         HelloSign.open({
+            skipDomainVerification: true,
             url: "&lt;%= embeddedResponse.getSignUrl() %&gt;"
         });
     }

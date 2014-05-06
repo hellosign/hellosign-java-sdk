@@ -36,6 +36,7 @@ import com.hellosign.sdk.resource.Template;
 
 public class TemplateListTest extends AbstractHelloSignTest {
 
+	/*
 	@Test
 	public void testTemplateList() throws Exception {
 		String templateListText = getTestFileAsString("page1.json");
@@ -57,4 +58,5 @@ public class TemplateListTest extends AbstractHelloSignTest {
 		templates = list.filterCurrentPageBy(Template.TEMPLATE_TITLE, "Contract For Biz");
 		assertEquals(1, templates.size());
 	}
+	*/
 }
