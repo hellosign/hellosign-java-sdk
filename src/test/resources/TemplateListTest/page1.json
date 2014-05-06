@@ -5,9 +5,9 @@
     "num_results": 24,
     "page_size": 20
   },
-  "reusable_forms": [
+  "templates": [
     {
-      "reusable_form_id": "5cfc3531f368ad493cb1540e06d923664e4e8112",
+      "template_id": "5cfc3531f368ad493cb1540e06d923664e4e8112",
       "title": "testTemplateSignatureRequest",
       "message": "",
       "is_creator": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "reusable_form_id": "81d57d81eab62700157f9b95f1f8f4e61140c375",
+      "template_id": "81d57d81eab62700157f9b95f1f8f4e61140c375",
       "title": "Test Template 19",
       "message": "",
       "is_creator": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "reusable_form_id": "f91031a6db29183ac203b49eac755386fa6a949c",
+      "template_id": "f91031a6db29183ac203b49eac755386fa6a949c",
       "title": "Test Template 19",
       "message": "",
       "is_creator": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "reusable_form_id": "2b67fb1e56318e9f82bfb9e4eb20f10fc5e29e79",
+      "template_id": "2b67fb1e56318e9f82bfb9e4eb20f10fc5e29e79",
       "title": "Test Template 18",
       "message": "",
       "is_creator": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "reusable_form_id": "bf9d660386813ccf27a7e41a092c8e552af8fbe0",
+      "template_id": "bf9d660386813ccf27a7e41a092c8e552af8fbe0",
       "title": "Test Template 17",
       "message": "",
       "is_creator": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "reusable_form_id": "957f52a550f31645560d7c71cae397bfe9d969f4",
+      "template_id": "957f52a550f31645560d7c71cae397bfe9d969f4",
       "title": "Test Template 16",
       "message": "",
       "is_creator": true,
@@ -395,7 +395,7 @@
       ]
     },
     {
-      "reusable_form_id": "9218954f8ff2d6e56d77f3e2ec4cd117171a496e",
+      "template_id": "9218954f8ff2d6e56d77f3e2ec4cd117171a496e",
       "title": "Test Template 15",
       "message": "",
       "is_creator": true,
@@ -455,7 +455,7 @@
       ]
     },
     {
-      "reusable_form_id": "0f0b360158a6255114bd9b6605aca8e3a6e65502",
+      "template_id": "0f0b360158a6255114bd9b6605aca8e3a6e65502",
       "title": "Test Template 14",
       "message": "",
       "is_creator": true,
@@ -515,7 +515,7 @@
       ]
     },
     {
-      "reusable_form_id": "70b9490b6d8ed9cf98aea623194386f94a79f97c",
+      "template_id": "70b9490b6d8ed9cf98aea623194386f94a79f97c",
       "title": "Test Template 13",
       "message": "",
       "is_creator": true,
@@ -575,7 +575,7 @@
       ]
     },
     {
-      "reusable_form_id": "4e511330f8c6c1ada60aacff9d640e741818b439",
+      "template_id": "4e511330f8c6c1ada60aacff9d640e741818b439",
       "title": "Test Template 12",
       "message": "",
       "is_creator": true,
@@ -635,7 +635,7 @@
       ]
     },
     {
-      "reusable_form_id": "deeae175eebca676023796d1c0cc5dac189b8eba",
+      "template_id": "deeae175eebca676023796d1c0cc5dac189b8eba",
       "title": "Test Template 11",
       "message": "",
       "is_creator": true,
@@ -695,7 +695,7 @@
       ]
     },
     {
-      "reusable_form_id": "ae0efd03f4190442a2c91d13e9c7a44a0aa66496",
+      "template_id": "ae0efd03f4190442a2c91d13e9c7a44a0aa66496",
       "title": "Test Template 10",
       "message": "",
       "is_creator": true,
@@ -755,7 +755,7 @@
       ]
     },
     {
-      "reusable_form_id": "173fa2354ecf4c33064e72d414a371414c31c14b",
+      "template_id": "173fa2354ecf4c33064e72d414a371414c31c14b",
       "title": "Test Template 9",
       "message": "",
       "is_creator": true,
@@ -815,7 +815,7 @@
       ]
     },
     {
-      "reusable_form_id": "e8aef165152e52f746d9ac5f3a6576d3a9d66d44",
+      "template_id": "e8aef165152e52f746d9ac5f3a6576d3a9d66d44",
       "title": "Test Template 8",
       "message": "",
       "is_creator": true,
@@ -875,7 +875,7 @@
       ]
     },
     {
-      "reusable_form_id": "bf05ad54fc6f1d8c33a1b8c66eb1b9bbc63ed2d4",
+      "template_id": "bf05ad54fc6f1d8c33a1b8c66eb1b9bbc63ed2d4",
       "title": "Template Test 7",
       "message": "",
       "is_creator": true,
@@ -935,7 +935,7 @@
       ]
     },
     {
-      "reusable_form_id": "3afc80020ee84d1fa402288c4683be2a02088629",
+      "template_id": "3afc80020ee84d1fa402288c4683be2a02088629",
       "title": "Template Test 6",
       "message": "",
       "is_creator": true,
@@ -995,7 +995,7 @@
       ]
     },
     {
-      "reusable_form_id": "51c6a856c4d582ad5c3a8171f16675401c1f4c4f",
+      "template_id": "51c6a856c4d582ad5c3a8171f16675401c1f4c4f",
       "title": "Template Test 5",
       "message": "",
       "is_creator": true,
@@ -1055,7 +1055,7 @@
       ]
     },
     {
-      "reusable_form_id": "f41efeb65d49d27ae54db41689558de47d35355d",
+      "template_id": "f41efeb65d49d27ae54db41689558de47d35355d",
       "title": "Template Test 4",
       "message": "",
       "is_creator": true,
@@ -1115,7 +1115,7 @@
       ]
     },
     {
-      "reusable_form_id": "c5aa3dd9b35522ed74c73c6314ce11ce57f04bd6",
+      "template_id": "c5aa3dd9b35522ed74c73c6314ce11ce57f04bd6",
       "title": "Template Test 3",
       "message": "",
       "is_creator": true,
@@ -1175,7 +1175,7 @@
       ]
     },
     {
-      "reusable_form_id": "da4e35a522ef8b6621f42ef706a6c624e186b5d3",
+      "template_id": "da4e35a522ef8b6621f42ef706a6c624e186b5d3",
       "title": "Template Test 2",
       "message": "",
       "is_creator": true,

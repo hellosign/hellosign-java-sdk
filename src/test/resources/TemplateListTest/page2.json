@@ -5,9 +5,9 @@
     "num_results": 24,
     "page_size": 20
   },
-  "reusable_forms": [
+  "templates": [
     {
-      "reusable_form_id": "f3a57496414736cf93afd04d2d0f12721ef79fee",
+      "template_id": "f3a57496414736cf93afd04d2d0f12721ef79fee",
       "title": "Template Test 1",
       "message": "",
       "is_creator": true,
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "reusable_form_id": "db5f6facbe65055cae1be5566551e069644fd071",
+      "template_id": "db5f6facbe65055cae1be5566551e069644fd071",
       "title": "Contract For Biz",
       "message": "Let's get down to it.",
       "is_creator": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "reusable_form_id": "2ee9bb08c5a239874ab961088598a5039d9b8ac3",
+      "template_id": "2ee9bb08c5a239874ab961088598a5039d9b8ac3",
       "title": "Sample Fillable PDF",
       "message": "We didn't need to do nothin about nothing.",
       "is_creator": true,
@@ -435,7 +435,7 @@
       ]
     },
     {
-      "reusable_form_id": "3e1e3f8a61cf4ba9495b3cd47170c8a3f6e03ac1",
+      "template_id": "3e1e3f8a61cf4ba9495b3cd47170c8a3f6e03ac1",
       "title": "VIP Contract",
       "message": "You're VIP!",
       "is_creator": true,
