@@ -18,7 +18,7 @@ The SDK is built with Java 7 and depends on the SL4J 1.7.5 and JSON v20090211 li
 
 ## Usage
 
-All HelloSign API requests can be made using the `HelloSignClient`. This class must be initialized with your authentication details, such as an [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations) (preferred) or website credentials.
+All HelloSign API requests can be made using the `HelloSignClient`. This class must be initialized with your authentication details, such as an [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api) (preferred) or website credentials.
 
 ```java
 HelloSignClient client = new HelloSignClient(apiKey);
@@ -96,7 +96,7 @@ if (response.isComplete()) {
 The [Event](src/main/java/com/hellosign/sdk/resource/Event.java) class simplifies handling HelloSign callback messages. A sample servlet is provided in the test code to listen for HelloSign events and you can see it in action by following a few configuration steps:
 
 1. Copy the file `src/test/webapp/WEB-INF/web.properties.sample` to `src/test/webapp/WEB-INF/web.properties`.
-1. Edit `web.properties` and enter your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations) in the "hellosign.api.key" property, and your [Client ID and Client Secret](https://www.hellosign.com/oauth/createAppForm) in the "hellosign.client.id" and "hellosign.client.secret" properties.
+1. Edit `web.properties` and enter your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api) in the "hellosign.api.key" property, and your [Client ID and Client Secret](https://www.hellosign.com/oauth/createAppForm) in the "hellosign.client.id" and "hellosign.client.secret" properties.
 1. Run the servlet by executing the "mvn jetty:run" command from the project directory:
 
     ```
@@ -137,7 +137,7 @@ This project contains JUnit tests that exercise the SDK code and provide example
 To run the tests, first configure your environment:
 
 1. Copy the file: `/src/test/resources/test.properties.sample` to `/src/test/resources/test.properties`.
-1. Edit the new file and enter your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations) and your [Client ID](https://www.hellosign.com/oauth/createAppForm), as well as a callback URL. (For testing, any value will do, but it helps to set this to a valid callback URL that HelloSign can use to send events.).
+1. Edit the new file and enter your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api) and your [Client ID](https://www.hellosign.com/oauth/createAppForm), as well as a callback URL. (For testing, any value will do, but it helps to set this to a valid callback URL that HelloSign can use to send events.).
 1. Run: `mvn test`
 
 
