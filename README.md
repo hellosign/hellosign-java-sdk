@@ -134,6 +134,8 @@ In order for the demonstration to work completely, HelloSign must be able to red
 ## Testing
 This project contains JUnit tests that exercise the SDK code and provide examples of how to use library classes. Most are functional and integrated tests that walk through real user scenarios. In some cases, this means you must have an active network connection with access to HelloSign to execute all tests.
 
+*NOTE: In general, we advise running these tests against your personal account as they may perform destructive actions.*
+
 To run the tests, first configure your environment:
 
 1. Copy the file: `/src/test/resources/test.properties.sample` to `/src/test/resources/test.properties`.
