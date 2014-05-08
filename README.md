@@ -124,10 +124,10 @@ The HelloSign servers can POST events to the URL you provided and the server wil
         Signature ID: 6e980b82f444a11e051643388b9e003bf5824ac1
 
 ### Creating an Embedded Signature Request
-This project contains sample JSPs that demonstrate adding embedded signing capabilities to your Java-based web application. To see these demos in action, deploy them to Jetty using Maven by following the instructions above for [Handling HelloSign Events](#handling-hellosign-events). Once your Jetty server is running, navigate to [http://localhost:8080/](http://localhost:8080/). The landing page contains links to API documentation and available demos that describe the steps required to add embedded similar behavior in your site.
+This project contains sample JSPs that demonstrate adding embedded signing capabilities to your Java-based web application. To see these demos in action, deploy them to Jetty using Maven by following the instructions above for [Handling HelloSign Events](#handling-hellosign-events). Once your Jetty server is running, navigate to http://localhost:8080/. The landing page contains links to API documentation and available demos that describe the steps required to add embedded similar behavior in your site.
 
 ### Enabling OAuth
-This project contains two sample JSPs that demonstrate how to add OAuth to your Java-based web application. This allows your application to perform HelloSign requests on behalf of your users, using their HelloSign accounts. Like the samples above, configure and deploy them to Jetty by following the instructions for [Handling HelloSign Events](#handling-hellosign-events). Then navigate to the demo index page at [http://localhost:8080/](http://localhost:8080/) and click on the "OAuth Demo" link.
+This project contains two sample JSPs that demonstrate how to add OAuth to your Java-based web application. This allows your application to perform HelloSign requests on behalf of your users, using their HelloSign accounts. Like the samples above, configure and deploy them to Jetty by following the instructions for [Handling HelloSign Events](#handling-hellosign-events). Then navigate to the demo index page at http://localhost:8080/ and click on the "OAuth Demo" link.
 
 In order for the demonstration to work completely, HelloSign must be able to redirect the user to the callback URL provided in the [Application setup](https://www.hellosign.com/oauth/createAppForm). This must be a non-localhost hostname, e.g., `http://[your_server]:8080/oauthDemoCallback.jsp`.
 
