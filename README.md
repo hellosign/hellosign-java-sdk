@@ -110,7 +110,7 @@ The [Event](src/main/java/com/hellosign/sdk/resource/Event.java) class simplifie
     [INFO] Started Jetty Server
     ```
 
-1. Verify the server is accessible from your local machine by opening a web browser to [http://localhost:8080]().
+1. Verify the server is accessible from your local machine by opening a web browser to http://localhost:8080.
 1. Configure the server so that it is accessible from HelloSign (i.e., the internet). 
 1. Set your HelloSign account's callback URL via the API, either with the `HelloSignClient.setCallbackUrl(String)` method or by executing a [curl](http://www.hellosign.com/api/gettingStarted#RetrievingSignedDocuments) request from the command line. The callback URL should be set to `http://[your_server]:8080/hello`, where "your_server" is the Internet-accessible IP or hostname of your server. 
 
