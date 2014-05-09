@@ -132,7 +132,9 @@ public class HelloSignClient {
 	public static final String OAUTH_CODE = "code";
 	public static final String OAUTH_STATE = "state";
 	public static final String OAUTH_GRANT_TYPE = "grant_type";
+	public static final String OAUTH_REFRESH_TOKEN = "refresh_token";
 	public static final String OAUTH_GRANT_TYPE_AUTHORIZE_CODE = "authorization_code";
+	public static final String OAUTH_GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
 
 	public static final String CLIENT_SECRET = "client_secret";
 	public static final String CLIENT_ID = "client_id";
@@ -365,7 +367,28 @@ public class HelloSignClient {
 		}
 		return data;
 	}
-	
+
+	/**
+	 * Refreshes the OauthData for this client with the provided refresh
+	 * token.
+	 * @param refreshToken String
+	 * @return OauthData new OAuthData returned from HelloSign
+	 * @throws HelloSignException
+	 */
+	public OauthData refreshOauthData(String refreshToken) 
+			throws HelloSignException {
+		Map<String, Serializable> fields = new HashMap<String, Serializable>();
+		fields.put(OAUTH_GRANT_TYPE, OAUTH_GRANT_TYPE_REFRESH_TOKEN);
+		fields.put(OAUTH_REFRESH_TOKEN, refreshToken);
+		HttpPostRequest request = new HttpPostRequest(URL_OAUTH_TOKEN, fields, auth);
+		JSONObject json = request.getJsonResponse();
+		OauthData data = new OauthData(json);
+		if (data != null) {
+			setAccessToken(data.getAccessToken(), data.getTokenType());
+		}
+		return data;
+	}
+
 	/**
 	 * Retrieves the Team for the current user account.
 	 * @return Team

@@ -117,7 +117,7 @@
 
 	            // Create an unclaimed draft from the request
 				UnclaimedDraft draft = new UnclaimedDraft(sigReq);
-				draft.setIsForEmbeddedSigning(true);
+				//draft.setIsForEmbeddedSigning(true);
 	            draft.setClientId(clientId);
 
 	            // Send it to HelloSign
@@ -203,6 +203,7 @@
                 	$("#startButton").show();
                 });
 <% if (signUrl != "") { %>
+                console.log("Claim URL: <%= signUrl %>");
                 // Initialize HelloSign with the client ID
                 HelloSign.init("<%= clientId %>");
 
@@ -217,9 +218,9 @@
                         console.log(eventData);
                         var msg;
                         if (eventData.event == HelloSign.EVENT_SENT) {
-                        	msg = "Request Sent!";
-                        } else if (eventData.event == HelloSign.EVENT_SIGNED) {
-                        	msg = "Request Signed!";
+                        	msg = "Request Sent! Your recipient will receive an email with a link to the document signature page on HelloSign.com.";
+                        } else if (eventData.event == HelloSign.EVENT_CANCELED) {
+                        	msg = "Request Cancelled";
                         } else {
                         	msg = eventData.event;
                         }
