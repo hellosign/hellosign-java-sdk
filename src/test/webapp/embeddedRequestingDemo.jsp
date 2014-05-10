@@ -2,6 +2,7 @@
 <%@page import="com.hellosign.sdk.HelloSignClient"%>
 <%@page import="com.hellosign.sdk.resource.UnclaimedDraft"%>
 <%@page import="com.hellosign.sdk.resource.SignatureRequest"%>
+<%@page import="com.hellosign.sdk.resource.support.types.UnclaimedDraftType"%>
 <%@page import="org.apache.commons.io.FilenameUtils"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
@@ -23,7 +24,7 @@
 	properties.load(getServletContext().getResourceAsStream("/WEB-INF/web.properties"));
 	String apiKey = properties.getProperty("hellosign.api.key");
 	String clientId = properties.getProperty("client.id");
-	String signUrl = "";
+	String requestUrl = "";
 	String errorMessage = null;
     String env = System.getProperty("hellosign.env");
     boolean isLocalDev = "dev".equalsIgnoreCase(env);
@@ -116,8 +117,8 @@
 	            }
 
 	            // Create an unclaimed draft from the request
-				UnclaimedDraft draft = new UnclaimedDraft(sigReq);
-				//draft.setIsForEmbeddedSigning(true);
+				UnclaimedDraft draft = new UnclaimedDraft(sigReq, UnclaimedDraftType.request_signature);
+				draft.setIsForEmbeddedSigning(true);
 	            draft.setClientId(clientId);
 
 	            // Send it to HelloSign
@@ -125,7 +126,7 @@
 	            UnclaimedDraft responseDraft = client.createUnclaimedDraft(draft);
 
 	         	// Retrieve the embedded signing URL from the response
-	            signUrl = responseDraft.getClaimUrl();
+	            requestUrl = responseDraft.getClaimUrl();
 
 	        } catch (HelloSignException ex) {
 	        	errorMessage = ex.getMessage();
@@ -202,31 +203,36 @@
                 $("#file_1").change(function(e) {
                 	$("#startButton").show();
                 });
-<% if (signUrl != "") { %>
-                console.log("Claim URL: <%= signUrl %>");
+<% if (requestUrl != "") { %>
+                console.log("Claim URL: <%= requestUrl %>");
                 // Initialize HelloSign with the client ID
                 HelloSign.init("<%= clientId %>");
 
-                // Open the iFrame dialog for embedded signing
-                HelloSign.open({
-                    url: "<%= signUrl %>",
-                    debug: true,
-                    allowCancel: true,
-                    skipDomainVerification: true,
-                    messageListener: function(eventData) {
-                    	console.log("Event received:");
-                        console.log(eventData);
-                        var msg;
-                        if (eventData.event == HelloSign.EVENT_SENT) {
-                        	msg = "Request Sent! Your recipient will receive an email with a link to the document signature page on HelloSign.com.";
-                        } else if (eventData.event == HelloSign.EVENT_CANCELED) {
-                        	msg = "Request Cancelled";
-                        } else {
-                        	msg = eventData.event;
+                var openHS = function _openHS() {
+                    console.log("OPEN");
+                    // Open the iFrame dialog for embedded signing
+                    HelloSign.open({
+                        url: "<%= requestUrl %>",
+                        debug: true,
+                        allowCancel: true,
+                        skipDomainVerification: true,
+                        messageListener: function(eventData) {
+                            console.log("Event received:");
+                            console.log(eventData);
+                            var msg;
+                            if (eventData.event == HelloSign.EVENT_SENT) {
+                                msg = "Request Sent! Your recipient will receive an email with a link to the document signature page on HelloSign.com.";
+                            } else if (eventData.event == HelloSign.EVENT_CANCELED) {
+                                msg = "Request Cancelled";
+                            } else {
+                                msg = eventData.event;
+                            }
+                            $("#demoForm").html(msg + "<br /><a href=\"/embeddedRequestingDemo.jsp\">Try it again</a>");
+                            setTimeout(openHS, 5000);
                         }
-                        $("#demoForm").html(msg + "<br /><a href=\"/embeddedRequestingDemo.jsp\">Try it again</a>");
-                    }
-                });
+                    });
+                }
+                openHS();
 <% } %>
             });
         </script>
@@ -327,7 +333,7 @@
 <pre class="code-render prettyprint">
     HelloSignClient client = new HelloSignClient(apiKey);
     UnclaimedDraft responseDraft = client.createUnclaimedDraft(draft);
-    signUrl = responseDraft.getClaimUrl();
+    requestUrl = responseDraft.getClaimUrl();
 </pre>
                                     </li>
                                     <li><b>5.</b>&nbsp;<b>Client-side</b>: Include "embedded.js".<br /><pre class="code-render prettyprint">&lt;script type="text/javascript" src="//s3.amazonaws.com/cdn.hellofax.com/js/embedded.js"&gt;&lt;/script&gt;</pre></li>
@@ -336,7 +342,7 @@
     function openSigningDialog() {
         HelloSign.init("&lt;%= clientId %&gt;");
         HelloSign.open({
-            url: "&lt;%= embeddedResponse.getSignUrl() %&gt;"
+            url: "&lt;%= embeddedResponse.getrequestUrl() %&gt;"
         });
     }
 &lt;/script&gt;</pre>
