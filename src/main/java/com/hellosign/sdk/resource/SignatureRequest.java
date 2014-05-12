@@ -66,7 +66,6 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_FILES_URL = "files_url";
 	public static final String SIGREQ_SIGNING_URL = "signing_url";
 	public static final String SIGREQ_DETAILS_URL = "details_url";
-	public static final String SIGREQ_REQUESTER_EMAIL = "requester_email_address";
 	public static final String SIGREQ_USE_TEXT_TAGS = "use_text_tags";
 	public static final String SIGREQ_HIDE_TEXT_TAGS = "hide_text_tags";
 
@@ -416,9 +415,6 @@ public class SignatureRequest extends AbstractRequest {
 			if (isTestMode()) {
 				fields.put(REQUEST_TEST_MODE, true);	
 			}
-			if (hasRequesterEmail()) {
-				fields.put(SIGREQ_REQUESTER_EMAIL, getRequesterEmail());
-			}
 			if (hasRedirectUrl()) {
 				fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
 			}
@@ -466,15 +462,6 @@ public class SignatureRequest extends AbstractRequest {
 	}
 	public String getDetailsUrl() {
 		return getString(SIGREQ_DETAILS_URL);
-	}
-	public String getRequesterEmail() {
-		return getString(SIGREQ_REQUESTER_EMAIL);
-	}
-	public boolean hasRequesterEmail() {
-		return has(SIGREQ_REQUESTER_EMAIL);
-	}
-	public void setRequesterEmail(String email) {
-		set(SIGREQ_REQUESTER_EMAIL, email);
 	}
 	public boolean hasUseTextTags() {
 		return has(SIGREQ_USE_TEXT_TAGS);

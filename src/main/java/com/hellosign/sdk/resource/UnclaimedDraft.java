@@ -53,12 +53,11 @@ public class UnclaimedDraft extends AbstractRequest {
 	public static final String UNCLAIMED_DRAFT_KEY = "unclaimed_draft";
 	public static final String UNCLAIMED_DRAFT_CLAIM_URL = "claim_url";
 	public static final String UNCLAIMED_DRAFT_TYPE = "type";
-	public static final String UNCLAIMED_DRAFT_CLIENT_ID = "client_id";
+	public static final String UNCLAIMED_DRAFT_REQUESTER_EMAIL = "requester_email_address";
 	public static final String UNCLAIMED_IS_FOR_EMBEDDED_SIGNING = "is_for_embedded_signing";
 	
 	private UnclaimedDraftType type;
-	
-	private String clientId;
+
 	private boolean isForEmbeddedSigning = false;
 
 	private AbstractRequest request;
@@ -212,37 +211,29 @@ public class UnclaimedDraft extends AbstractRequest {
 	 */
 	public void setIsForEmbeddedSigning(boolean b) {
 		isForEmbeddedSigning = b;
-		if (isForEmbeddedSigning) {
-			// TODO: Verify we can automatically set this for embedded signing...
-			setType(UnclaimedDraftType.request_signature);
-		}
-	}
-	
-	/**
-	 * Sets the client ID for embedded drafts.
-	 * @param id
-	 */
-	public void setClientId(String id) {
-		this.clientId = id;
-	}
-	
-	/**
-	 * Returns the client ID.
-	 * @return String
-	 */
-	public String getClientId() {
-		return clientId;
 	}
 	
 	@Override
 	public Map<String, Serializable> getPostFields() throws HelloSignException {
 		Map<String, Serializable> map = request.getPostFields();
 		map.put(UNCLAIMED_DRAFT_TYPE, getTypeString());
-		if (isForEmbeddedSigning() && getClientId() != null) {
+		if (isForEmbeddedSigning()) {
 			map.put(UNCLAIMED_IS_FOR_EMBEDDED_SIGNING, "1");
-			map.put(UNCLAIMED_DRAFT_CLIENT_ID, getClientId());
+		}
+		if (hasRequesterEmail()) {
+			map.put(UNCLAIMED_DRAFT_REQUESTER_EMAIL, getRequesterEmail());
 		}
 		return map;
+	}
+
+	public String getRequesterEmail() {
+		return getString(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
+	}
+	public boolean hasRequesterEmail() {
+		return has(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
+	}
+	public void setRequesterEmail(String email) {
+		set(UNCLAIMED_DRAFT_REQUESTER_EMAIL, email);
 	}
 
 	@Override

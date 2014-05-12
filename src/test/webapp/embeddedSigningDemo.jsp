@@ -55,7 +55,7 @@
 
 		        // Send it to HelloSign
 		        HelloSignClient client = new HelloSignClient(apiKey);
-		        SignatureRequest newRequest = client.createEmbeddedRequest(embedded);
+		        SignatureRequest newRequest = (SignatureRequest) client.createEmbeddedRequest(embedded);
 
 		        // Grab the signature ID for the signature page that will
 		        // be embedded in the page (for the demo, we'll just use the first one)
@@ -188,7 +188,7 @@
 
     // Send it to HelloSign
     HelloSignClient client = new HelloSignClient(apiKey);
-    SignatureRequest newRequest = client.createEmbeddedRequest(embedded);
+    SignatureRequest newRequest = (SignatureRequest) client.createEmbeddedRequest(embedded);
 </pre>
                                     </li>
                                     <li><b>3.</b>&nbsp;<b>Server-side</b>: Retrieve a signing URL for the new request.<br />

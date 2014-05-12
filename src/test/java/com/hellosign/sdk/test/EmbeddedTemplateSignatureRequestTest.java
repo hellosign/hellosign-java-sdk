@@ -92,7 +92,7 @@ public class EmbeddedTemplateSignatureRequestTest extends AbstractHelloSignTest 
 		// testing the request output for SignatureRequest/TemplateSignatureRequest
 		// in their respective test classes.
     	logger.debug("Creating Embedded Tempalte Signature Request...");
-    	SignatureRequest response = client.createEmbeddedRequest(embeddedReq);
+    	SignatureRequest response = (SignatureRequest) client.createEmbeddedRequest(embeddedReq);
     	assertNotNull(response);
     	assertTrue(response.hasId());
     	logger.debug("\tSuccess!");

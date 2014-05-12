@@ -26,6 +26,7 @@ package com.hellosign.sdk;
 
 import java.io.File;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.SecureRandom;
@@ -46,6 +47,7 @@ import org.json.JSONObject;
 import com.hellosign.sdk.http.Authentication;
 import com.hellosign.sdk.http.HttpGetRequest;
 import com.hellosign.sdk.http.HttpPostRequest;
+import com.hellosign.sdk.resource.AbstractRequest;
 import com.hellosign.sdk.resource.AbstractResourceList;
 import com.hellosign.sdk.resource.Account;
 import com.hellosign.sdk.resource.EmbeddedRequest;
@@ -704,15 +706,24 @@ public class HelloSignClient {
 	 * @return SignatureRequest
 	 * @throws HelloSignException
 	 */
-	public SignatureRequest createEmbeddedRequest(EmbeddedRequest embeddedReq) 
+	public AbstractRequest createEmbeddedRequest(EmbeddedRequest embeddedReq) 
 			throws HelloSignException {
 		String url = URL_SIGNATURE_REQUEST_EMBEDDED;
+		Class<?> returnType = SignatureRequest.class;
 		if (embeddedReq.getRequest() instanceof TemplateSignatureRequest) {
 			url = URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE;
+		} else if (embeddedReq.getRequest() instanceof UnclaimedDraft) {
+			url = URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED;
+			returnType = UnclaimedDraft.class;
 		}
 		HttpPostRequest request = new HttpPostRequest(url, embeddedReq.getPostFields(), auth);
 		JSONObject json = request.getJsonResponse();
-		return new SignatureRequest(json);
+		try {
+			Constructor<?> constructor = returnType.getConstructor(JSONObject.class);
+			return (AbstractRequest) constructor.newInstance(json);
+		} catch (Exception ex) {
+			throw new HelloSignException(ex);
+		}
 	}
 	
 	/**

@@ -102,7 +102,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
             // Send it to HelloSign
             HelloSignClient client = new HelloSignClient(apiKey);
-            SignatureRequest newSigReq = client.createEmbeddedRequest(embedded);
+            SignatureRequest newSigReq = (SignatureRequest) client.createEmbeddedRequest(embedded);
 
             // Retrieve the first Signature ID
             // (for demo purposes we'll just demonstrate embedding the first signature request)

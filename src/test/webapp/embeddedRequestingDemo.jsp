@@ -1,5 +1,6 @@
 <%@page import="com.hellosign.sdk.HelloSignException"%>
 <%@page import="com.hellosign.sdk.HelloSignClient"%>
+<%@page import="com.hellosign.sdk.resource.EmbeddedRequest"%>
 <%@page import="com.hellosign.sdk.resource.UnclaimedDraft"%>
 <%@page import="com.hellosign.sdk.resource.SignatureRequest"%>
 <%@page import="com.hellosign.sdk.resource.support.types.UnclaimedDraftType"%>
@@ -109,21 +110,24 @@
 		                sigReq.addSigner(s.getEmail(), s.getNameOrRole());
 		            }
 		        }
-	            if (myEmail != null) {
-	            	sigReq.setRequesterEmail(myEmail);
-	            }
 	            for (File file : files) {
 	                sigReq.addFile(file);
 	            }
 
 	            // Create an unclaimed draft from the request
 				UnclaimedDraft draft = new UnclaimedDraft(sigReq, UnclaimedDraftType.request_signature);
-				draft.setIsForEmbeddedSigning(true);
-	            draft.setClientId(clientId);
+				draft.setIsForEmbeddedSigning(false);
+                draft.setType(UnclaimedDraftType.request_signature);
+                if (myEmail != null) {
+                    draft.setRequesterEmail(myEmail);
+                }
+
+                // Make this an embedded unclaimed draft
+                EmbeddedRequest embed = new EmbeddedRequest(clientId, draft);
 
 	            // Send it to HelloSign
 	            HelloSignClient client = new HelloSignClient(apiKey);
-	            UnclaimedDraft responseDraft = client.createUnclaimedDraft(draft);
+	            UnclaimedDraft responseDraft = (UnclaimedDraft) client.createEmbeddedRequest(embed);
 
 	         	// Retrieve the embedded signing URL from the response
 	            requestUrl = responseDraft.getClaimUrl();
