@@ -45,6 +45,8 @@ public abstract class AbstractRequest extends AbstractResource {
 	public static final String REQUEST_MESSAGE = "message";
 	public static final String REQUEST_REDIRECT_URL = "signing_redirect_url";
 	public static final String REQUEST_TEST_MODE = "test_mode";
+	public static final String REQUEST_USE_TEXT_TAGS = "use_text_tags";
+	public static final String REQUEST_HIDE_TEXT_TAGS = "hide_text_tags";
 
 	public AbstractRequest() {
 		super();
@@ -115,5 +117,24 @@ public abstract class AbstractRequest extends AbstractResource {
 	
 	public boolean hasRedirectUrl() {
 		return has(REQUEST_REDIRECT_URL);
+	}
+
+	public boolean hasUseTextTags() {
+		return has(REQUEST_USE_TEXT_TAGS);
+	}
+	public Boolean isUsingTextTags() {
+		return getBoolean(REQUEST_USE_TEXT_TAGS);
+	}
+	public void setUseTextTags(boolean useTextTags) {
+		set(REQUEST_USE_TEXT_TAGS, useTextTags);
+	}
+	public boolean hasHideTextTags() {
+		return has(REQUEST_HIDE_TEXT_TAGS);
+	}
+	public Boolean isHidingTextTags() {
+		return getBoolean(REQUEST_HIDE_TEXT_TAGS);
+	}
+	public void setHideTextTags(boolean hideTextTags) {
+		set(REQUEST_HIDE_TEXT_TAGS, hideTextTags);
 	}
 }

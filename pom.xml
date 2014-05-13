@@ -4,7 +4,7 @@
 	<groupId>com.hellosign</groupId>
 	<artifactId>hellosign-java-sdk</artifactId>
 	<packaging>jar</packaging>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 	<name>HelloSign Java SDK</name>
 	<url>http://maven.apache.org</url>
 	<properties>

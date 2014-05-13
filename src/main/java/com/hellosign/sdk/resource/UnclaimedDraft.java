@@ -223,6 +223,12 @@ public class UnclaimedDraft extends AbstractRequest {
 		if (hasRequesterEmail()) {
 			map.put(UNCLAIMED_DRAFT_REQUESTER_EMAIL, getRequesterEmail());
 		}
+		if (hasUseTextTags()) {
+			map.put(REQUEST_USE_TEXT_TAGS, isUsingTextTags());
+		}
+		if (hasHideTextTags()) {
+			map.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
+		}
 		return map;
 	}
 

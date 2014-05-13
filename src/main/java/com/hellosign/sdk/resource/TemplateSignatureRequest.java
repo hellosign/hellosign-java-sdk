@@ -247,4 +247,47 @@ public class TemplateSignatureRequest extends AbstractRequest {
 	public String getId() {
 		return null;
 	}
+	
+	/**
+	 * Override the following, since templates do not have text tags.
+	 */
+	
+	/**
+	 * Not implemented for templates.
+	 */
+	@Override
+	public boolean hasUseTextTags() {
+		return false;
+	}
+	/**
+	 * Not implemented for templates.
+	 */
+	@Override
+	public Boolean isUsingTextTags() {
+		return null;
+	}
+	/**
+	 * Not implemented for templates.
+	 */
+	@Override
+	public void setUseTextTags(boolean useTextTags) {}
+	/**
+	 * Not implemented for templates.
+	 */
+	@Override
+	public boolean hasHideTextTags() {
+		return false;
+	}
+	/**
+	 * Not implemented for templates.
+	 */
+	@Override
+	public Boolean isHidingTextTags() {
+		return null;
+	}
+	/**
+	 * Not implemented for templates.
+	 */
+	@Override
+	public void setHideTextTags(boolean hideTextTags) {}
 }

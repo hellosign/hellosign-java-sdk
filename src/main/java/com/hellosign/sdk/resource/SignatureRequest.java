@@ -66,8 +66,6 @@ public class SignatureRequest extends AbstractRequest {
 	public static final String SIGREQ_FILES_URL = "files_url";
 	public static final String SIGREQ_SIGNING_URL = "signing_url";
 	public static final String SIGREQ_DETAILS_URL = "details_url";
-	public static final String SIGREQ_USE_TEXT_TAGS = "use_text_tags";
-	public static final String SIGREQ_HIDE_TEXT_TAGS = "hide_text_tags";
 
 	public static final String SIGREQ_FORMAT_ZIP = "zip";
 	public static final String SIGREQ_FORMAT_PDF = "pdf";
@@ -419,7 +417,10 @@ public class SignatureRequest extends AbstractRequest {
 				fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
 			}
 			if (hasUseTextTags()) {
-				fields.put(SIGREQ_USE_TEXT_TAGS, isUsingTextTags());
+				fields.put(REQUEST_USE_TEXT_TAGS, isUsingTextTags());
+			}
+			if (hasHideTextTags()) {
+				fields.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
 			}
 		} catch (Exception ex) {
 			throw new HelloSignException(
@@ -462,23 +463,5 @@ public class SignatureRequest extends AbstractRequest {
 	}
 	public String getDetailsUrl() {
 		return getString(SIGREQ_DETAILS_URL);
-	}
-	public boolean hasUseTextTags() {
-		return has(SIGREQ_USE_TEXT_TAGS);
-	}
-	public Boolean isUsingTextTags() {
-		return getBoolean(SIGREQ_USE_TEXT_TAGS);
-	}
-	public void setUseTextTags(boolean useTextTags) {
-		set(SIGREQ_USE_TEXT_TAGS, useTextTags);
-	}
-	public boolean hasHideTextTags() {
-		return has(SIGREQ_HIDE_TEXT_TAGS);
-	}
-	public Boolean isHidingTextTags() {
-		return getBoolean(SIGREQ_HIDE_TEXT_TAGS);
-	}
-	public void setHideTextTags(boolean hideTextTags) {
-		set(SIGREQ_HIDE_TEXT_TAGS, hideTextTags);
 	}
 }
