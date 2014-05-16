@@ -130,6 +130,7 @@
 
 	         	// Retrieve the embedded signing URL from the response
 	            requestUrl = responseDraft.getClaimUrl();
+                System.out.println("CHRIS: " + responseDraft.getSignatureRequestId());
 
 	        } catch (HelloSignException ex) {
 	        	errorMessage = ex.getMessage();

@@ -54,7 +54,8 @@ public class UnclaimedDraft extends AbstractRequest {
 	public static final String UNCLAIMED_DRAFT_CLAIM_URL = "claim_url";
 	public static final String UNCLAIMED_DRAFT_TYPE = "type";
 	public static final String UNCLAIMED_DRAFT_REQUESTER_EMAIL = "requester_email_address";
-	public static final String UNCLAIMED_IS_FOR_EMBEDDED_SIGNING = "is_for_embedded_signing";
+	public static final String UNCLAIMED_DRAFT_IS_FOR_EMBEDDED_SIGNING = "is_for_embedded_signing";
+	public static final String UNCLAIMED_DRAFT_SIGNATURE_REQUEST_ID = "signature_request_id";
 	
 	private UnclaimedDraftType type;
 
@@ -212,13 +213,21 @@ public class UnclaimedDraft extends AbstractRequest {
 	public void setIsForEmbeddedSigning(boolean b) {
 		isForEmbeddedSigning = b;
 	}
+
+	public boolean hasSignatureRequestId() {
+		return has(UNCLAIMED_DRAFT_SIGNATURE_REQUEST_ID);
+	}
+
+	public String getSignatureRequestId() {
+		return getString(UNCLAIMED_DRAFT_SIGNATURE_REQUEST_ID);
+	}
 	
 	@Override
 	public Map<String, Serializable> getPostFields() throws HelloSignException {
 		Map<String, Serializable> map = request.getPostFields();
 		map.put(UNCLAIMED_DRAFT_TYPE, getTypeString());
 		if (isForEmbeddedSigning()) {
-			map.put(UNCLAIMED_IS_FOR_EMBEDDED_SIGNING, "1");
+			map.put(UNCLAIMED_DRAFT_IS_FOR_EMBEDDED_SIGNING, "1");
 		}
 		if (hasRequesterEmail()) {
 			map.put(UNCLAIMED_DRAFT_REQUESTER_EMAIL, getRequesterEmail());

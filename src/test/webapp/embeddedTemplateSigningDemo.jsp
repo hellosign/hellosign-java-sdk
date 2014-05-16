@@ -113,7 +113,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
             // Use the sign URL to open the embedded signing page
             signUrl = embeddedResponse.getSignUrl();
-            System.out.println("CHRIS: " + embeddedResponse.getSignatureRequestId());
+
         } catch (HelloSignException ex) {
         	errorMessage = ex.getMessage();
             ex.printStackTrace();
