@@ -26,13 +26,14 @@ package com.hellosign.sdk.resource;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.Signer;
 
 /**
- * Represents a HelloSign signature request based on a Template. 
+ * Represents a HelloSign signature request based on one or more Templates. 
  * 
  * Unlike the SignatureRequest, this object is only used to submit
  * the request. A successfully submitted TemplateSignatureRequest will
@@ -42,7 +43,10 @@ import com.hellosign.sdk.resource.support.Signer;
  */
 public class TemplateSignatureRequest extends AbstractRequest {
 
+	// Placing all "template_id" parameters in the new "template_ids[]"
+	// array parameter for now. May remove this at some point.
 	private static final String TEMPLATE_ID = "template_id";
+	private static final String TEMPLATE_IDS = "template_ids";
 	private static final String TEMPLATE_SIGNERS = "signers";
 	private static final String TEMPLATE_SIGNERS_EMAIL = "email_address";
 	private static final String TEMPLATE_SIGNERS_NAME = "name";
@@ -57,6 +61,32 @@ public class TemplateSignatureRequest extends AbstractRequest {
 	private Map<String, Signer> signers = new HashMap<String, Signer>();	
 	private Map<String, String> ccs = new HashMap<String, String>();
 	private Map<String, String> customFields = new HashMap<String, String>();
+
+	public TemplateSignatureRequest() {
+		super();
+	}
+
+	/**
+	 * Convenience constructor that accepts a single Template.
+	 * @param template Template
+	 * @throws HelloSignException
+	 */
+	public TemplateSignatureRequest(Template template) throws HelloSignException {
+		this();
+		setTemplateId(template.getId());
+	}
+
+	/**
+	 * Convenience constructor that accepts a list of Templates.
+	 * @param templates List<Template>
+	 * @throws HelloSignException
+	 */
+	public TemplateSignatureRequest(List<Template> templates) throws HelloSignException {
+		this();
+		for (Template template : templates) {
+			addTemplateId(template.getId());
+		}
+	}
 
 	/**
 	 * Returns a reference to the map of current roles 
@@ -176,18 +206,70 @@ public class TemplateSignatureRequest extends AbstractRequest {
 	 * Set the template ID of the template that should be used with this request.
 	 * @param id String
 	 */
-	public void setTemplateId(String id) {
-		set(TEMPLATE_ID, id);
+	public void setTemplateId(String id) throws HelloSignException {
+		clearList(TEMPLATE_IDS);
+		addTemplateId(id, null);
 	}
 	
 	/**
 	 * Get the template ID that will be used with this request.
-	 * @return String
+	 * @return String 
 	 */
-	public String getTemplateId() {
-		return getString(TEMPLATE_ID);
+	public String getTemplateId() throws HelloSignException {
+		List<String> templateIds = getTemplateIds();
+		if (templateIds.size() == 0) {
+			return null;
+		}
+		return templateIds.get(0);
 	}
-	
+
+	/**
+	 * Adds the template ID to be used in this request.
+	 * @param id
+	 */
+	public void addTemplateId(String id) throws HelloSignException {
+		addTemplateId(id, null);
+	}
+
+	/**
+	 * Add the template ID to be used at the specified index.
+	 * @param id
+	 * @param index
+	 * @throws HelloSignException
+	 */
+	public void addTemplateId(String id, Integer index) throws HelloSignException {
+		List<String> currentList = getList(String.class, TEMPLATE_IDS);
+		if (index == null) {
+			index = currentList.size();
+		} else if (index < 0) {
+			throw new HelloSignException("index cannot be negative");
+		} else if (index > currentList.size()) {
+			throw new HelloSignException("index is greater than template ID list size: " + currentList.size());
+		}
+		if (index == currentList.size()) {
+			add(TEMPLATE_IDS, id); // Just append the item
+		} else {
+			// Insert the item at the given index
+			clearList(TEMPLATE_IDS);
+			int limit = currentList.size(); // We'll be adding one
+			for (int i = 0; i < limit + 1; i++) {
+				if (i == index) {
+					add(TEMPLATE_IDS, id);
+				}
+				if (i < limit) {
+					add(TEMPLATE_IDS, currentList.get(i));
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get the list of template IDs that are used for this request.
+	 * @return List<String>
+	 */
+	public List<String> getTemplateIds() {
+		return getList(String.class, TEMPLATE_IDS);
+	}
 	
 	/**
 	 * Internal method used to retrieve the necessary POST fields to submit the
@@ -199,7 +281,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
 		Map<String, Serializable> fields = new HashMap<String, Serializable>();
 		try {
 			// Mandatory fields
-			fields.put(TEMPLATE_ID, getTemplateId());
+			List<String> templateIds = getTemplateIds();
+			for (int i = 0; i < templateIds.size(); i++) {
+				fields.put(TEMPLATE_IDS + "[" + i + "]", templateIds.get(i));
+			}
 			Map<String, Signer> signerz = getSigners();
 			for (String role : signerz.keySet()) {
 				Signer s = signerz.get(role);

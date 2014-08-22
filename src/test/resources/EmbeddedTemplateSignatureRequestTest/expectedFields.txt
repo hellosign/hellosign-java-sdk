@@ -1,4 +1,4 @@
-template_id=*
+template_ids[0]=*
 client_id=*
 title=Embedded Purchase Order
 subject=Congratulations on your purchase

@@ -1,4 +1,4 @@
-template_id=*
+template_ids[0]=*
 subject=Purchase Order
 message=Glad we could come to an agreement.
 signers[Client][name]=George

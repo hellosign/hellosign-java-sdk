@@ -46,71 +46,76 @@ public class TeamTest extends AbstractHelloSignTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeamTest.class);
 
-	@Test
-	public void testTeam() throws Exception {
-		
-		if (!isHelloSignAvailable()) {
-			logger.debug("No API access, skipping tests...");
-			return;
-		}
-		
-		logger.debug("Retrieving current user's team...");
-		HelloSignClient client = new HelloSignClient(auth);
-		Team originalTeam = null;
-		boolean teamCreated = false;
-		
-		try {
-			originalTeam = client.getTeam();
-			assertNotNull(originalTeam);
-
-			// Determine if we're the owner of the current team
-			// If not, we can skip these tests because there is no way to
-			// do any of them without owner status and you cannot currently 
-			// leave a team.
-			for (Account account : originalTeam.getAccounts()) {
-				if (validApiKey.equals(account.getEmail())) {
-					if (RoleType.MEMBER.equals(account.getRoleCode())) {
-						logger.debug("\tCannot test teams for user " + validApiKey + ". Must be owner of team.");
-						return;
-					} else {
-						break;
-					}
-				}
-			}
-		} catch (HelloSignException ex) {
-			// It's likely the team doesn't exist yet, so let's create one
-		}
-		
-		String updatedName = "";
-		if (originalTeam == null) {
-			logger.debug("\tNo team found, creating one...");
-			originalTeam = client.createTeam(teamName);
-			assertNotNull(originalTeam);
-			assertTrue(teamName.equals(originalTeam.getName()));
-			teamCreated = true;
-			updatedName = originalTeam.getName();
-		}
-		logger.debug("\tSuccess!");
-		
-		// Update the team name
-		String newName = (updatedName != "" ? updatedName + " " : "") + "UPDATED";
-		logger.debug("Updating team name to: " + newName);
-		Team updatedTeam = client.updateTeamName(newName);
-		assertNotNull(updatedTeam);
-		assertTrue(newName.equals(updatedTeam.getName()));
-		logger.debug("\tSuccess!");
-		
-		// Revert the team name
-		logger.debug("Reverting team name to: " + originalTeam.getName());
-		updatedTeam = client.updateTeamName(originalTeam.getName());
-		assertNotNull(updatedTeam);
-		assertTrue(originalTeam.getName().equals(updatedTeam.getName()));
-		logger.debug("\tSuccess!");
-
-		if (validUserEmail2 == null || validUserEmail2.equals("")) {
-			logger.debug("No valid user provided, skipping remainder of tests.");
-			return;
-		}
+	// These tests will not work with new users, since you cannot
+	// create teams with a free account any more. Will need to revisit
+	// these tests once we can upgrade a user via the API, or
+	// allow configuration of the test to use an upgraded user.
+	
+//	@Test
+//	public void testTeam() throws Exception {
+//		
+//		if (!isHelloSignAvailable()) {
+//			logger.debug("No API access, skipping tests...");
+//			return;
+//		}
+//		
+//		logger.debug("Retrieving current user's team...");
+//		HelloSignClient client = new HelloSignClient(auth);
+//		Team originalTeam = null;
+//		boolean teamCreated = false;
+//		
+//		try {
+//			originalTeam = client.getTeam();
+//			assertNotNull(originalTeam);
+//
+//			// Determine if we're the owner of the current team
+//			// If not, we can skip these tests because there is no way to
+//			// do any of them without owner status and you cannot currently 
+//			// leave a team.
+//			for (Account account : originalTeam.getAccounts()) {
+//				if (validApiKey.equals(account.getEmail())) {
+//					if (RoleType.MEMBER.equals(account.getRoleCode())) {
+//						logger.debug("\tCannot test teams for user " + validApiKey + ". Must be owner of team.");
+//						return;
+//					} else {
+//						break;
+//					}
+//				}
+//			}
+//		} catch (HelloSignException ex) {
+//			// It's likely the team doesn't exist yet, so let's create one
+//		}
+//		
+//		String updatedName = "";
+//		if (originalTeam == null) {
+//			logger.debug("\tNo team found, creating one...");
+//			originalTeam = client.createTeam(teamName);
+//			assertNotNull(originalTeam);
+//			assertTrue(teamName.equals(originalTeam.getName()));
+//			teamCreated = true;
+//			updatedName = originalTeam.getName();
+//		}
+//		logger.debug("\tSuccess!");
+//		
+//		// Update the team name
+//		String newName = (updatedName != "" ? updatedName + " " : "") + "UPDATED";
+//		logger.debug("Updating team name to: " + newName);
+//		Team updatedTeam = client.updateTeamName(newName);
+//		assertNotNull(updatedTeam);
+//		assertTrue(newName.equals(updatedTeam.getName()));
+//		logger.debug("\tSuccess!");
+//		
+//		// Revert the team name
+//		logger.debug("Reverting team name to: " + originalTeam.getName());
+//		updatedTeam = client.updateTeamName(originalTeam.getName());
+//		assertNotNull(updatedTeam);
+//		assertTrue(originalTeam.getName().equals(updatedTeam.getName()));
+//		logger.debug("\tSuccess!");
+//
+//		if (validUserEmail2 == null || validUserEmail2.equals("")) {
+//			logger.debug("No valid user provided, skipping remainder of tests.");
+//			return;
+//		}
 		
 		// Invite new user to team
 //		logger.debug("Inviting new user to team: " + validUserEmail2);
@@ -159,20 +164,20 @@ public class TeamTest extends AbstractHelloSignTest {
 //		}
 //		
 		// We don't want to destroy the team if it has more than one member
-		if (updatedTeam.getAccounts().size() != 1) {
-			logger.debug("Skipping remainder of tests...");
-			return;
-		}
-		
-		// We don't want to destroy the team if we didn't create it for the test
-		if (!teamCreated) {
-			logger.debug("Skipping remainder of tests...");
-			return;
-		}
-		
-		// Test destroying team
-		logger.debug("Testing destoy team...");
-		assertTrue(HttpURLConnection.HTTP_OK == client.destroyTeam());
-		logger.debug("\tSuccess!");
-	}
+//		if (updatedTeam.getAccounts().size() != 1) {
+//			logger.debug("Skipping remainder of tests...");
+//			return;
+//		}
+//		
+//		// We don't want to destroy the team if we didn't create it for the test
+//		if (!teamCreated) {
+//			logger.debug("Skipping remainder of tests...");
+//			return;
+//		}
+//		
+//		// Test destroying team
+//		logger.debug("Testing destoy team...");
+//		assertTrue(HttpURLConnection.HTTP_OK == client.destroyTeam());
+//		logger.debug("\tSuccess!");
+//	}
 }
