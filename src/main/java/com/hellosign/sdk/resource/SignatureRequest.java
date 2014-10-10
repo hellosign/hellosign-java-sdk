@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ import org.json.JSONObject;
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.FormField;
+import com.hellosign.sdk.resource.support.Metadata;
 import com.hellosign.sdk.resource.support.ResponseData;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.Signer;
@@ -421,6 +423,16 @@ public class SignatureRequest extends AbstractRequest {
 			}
 			if (hasHideTextTags()) {
 				fields.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
+			}
+			Metadata metadata = getMetadata();
+			if (metadata != null) {
+				JSONObject mj = metadata.getJSONObject();
+				@SuppressWarnings("unchecked")
+				Iterator<String> keys = (Iterator<String>) mj.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					fields.put(REQUEST_METADATA + "[" + key + "]", mj.getString(key));
+				}
 			}
 		} catch (Exception ex) {
 			throw new HelloSignException(

@@ -1,0 +1,8 @@
+message=Please sign this NDA and then we can discuss more. Let me know if you have any questions.
+metadata[client_id]=1234
+title=NDA with Acme Co.
+metadata[new!]=Hello, world!
+subject=The NDA we talked about
+cc_email_addresses[2]=lawyer2@example.com
+cc_email_addresses[1]=lawyer@example.com
+test_mode=true
