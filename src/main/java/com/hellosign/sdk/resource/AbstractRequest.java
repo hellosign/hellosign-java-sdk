@@ -25,11 +25,13 @@ package com.hellosign.sdk.resource;
  */
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Metadata;
 
 /**
  * Requests to HelloSign will have common fields such as a 
@@ -47,6 +49,9 @@ public abstract class AbstractRequest extends AbstractResource {
 	public static final String REQUEST_TEST_MODE = "test_mode";
 	public static final String REQUEST_USE_TEXT_TAGS = "use_text_tags";
 	public static final String REQUEST_HIDE_TEXT_TAGS = "hide_text_tags";
+	public static final String REQUEST_METADATA = "metadata";
+
+	private Metadata metadata;
 
 	public AbstractRequest() {
 		super();
@@ -55,6 +60,7 @@ public abstract class AbstractRequest extends AbstractResource {
 	public AbstractRequest(JSONObject json, String optionalKey) 
 			throws HelloSignException {
 		super(json, optionalKey);
+		metadata = new Metadata(dataObj);
 	}
 
 	protected abstract Map<String, Serializable> getPostFields() throws HelloSignException;
@@ -136,5 +142,14 @@ public abstract class AbstractRequest extends AbstractResource {
 	}
 	public void setHideTextTags(boolean hideTextTags) {
 		set(REQUEST_HIDE_TEXT_TAGS, hideTextTags);
+	}
+	public Metadata getMetadata() {
+		return metadata;
+	}
+	public void addMetadata(String key, String value) {
+		metadata.set(key, value);
+	}
+	public String getMetadata(String key) {
+		return metadata.get(key);
 	}
 }

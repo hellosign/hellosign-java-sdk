@@ -1,0 +1,53 @@
+{
+    "signature_request": {
+        "signature_request_id": "2811a41aede6b43e065f1eb42667438d58c01105",
+        "title": "NDA with Acme Co.",
+        "original_title": "The NDA we talked about",
+        "subject": "The NDA we talked about",
+        "message": "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
+        "test_mode": true,
+        "metadata": {
+            "client_id": "1234"
+        },
+        "is_complete": false,
+        "has_error": false,
+        "custom_fields": [
+        ],
+        "response_data": [
+        ],
+        "signing_url": "https:\/\/www.my.hellosign.com\/webapp_dev.php\/editor\/sign?guid=2811a41aede6b43e065f1eb42667438d58c01105",
+        "signing_redirect_url": null,
+        "final_copy_uri": "\/v3\/signature_request\/final_copy\/2811a41aede6b43e065f1eb42667438d58c01105",
+        "files_url": "https:\/\/api.my.hellosign.com\/apiapp_dev.php\/v3\/signature_request\/files\/2811a41aede6b43e065f1eb42667438d58c01105",
+        "details_url": "https:\/\/www.my.hellosign.com\/webapp_dev.php\/home\/manage?locate=2811a41aede6b43e065f1eb42667438d58c01105",
+        "requester_email_address": "chris@hellosign.com",
+        "signatures": [
+            {
+                "signature_id": "37a89db548fa14ca47a6a80e07e145ba",
+                "has_pin": false,
+                "signer_email_address": "jack@example.com",
+                "signer_name": "Jack",
+                "order": 0,
+                "status_code": "awaiting_signature",
+                "signed_at": null,
+                "last_viewed_at": null,
+                "last_reminded_at": null
+            },
+            {
+                "signature_id": "4c136da5b377e9fb623f8337d40ee77a",
+                "has_pin": false,
+                "signer_email_address": "jill@example.com",
+                "signer_name": "Jill",
+                "order": 1,
+                "status_code": "awaiting_signature",
+                "signed_at": null,
+                "last_viewed_at": null,
+                "last_reminded_at": null
+            }
+        ],
+        "cc_email_addresses": [
+            "lawyer@example.com",
+            "lawyer2@example.com"
+        ]
+    }
+}
