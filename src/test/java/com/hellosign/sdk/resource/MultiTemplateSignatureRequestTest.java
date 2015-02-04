@@ -53,6 +53,7 @@ public class MultiTemplateSignatureRequestTest extends AbstractHelloSignTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TemplateSignatureRequestTest.class);
 
+	/*
 	@Test
 	public void testMultiTemplateSignatureRequestCreateAndSend() throws HelloSignException {
 		if (!isHelloSignAvailable()) {
@@ -107,6 +108,6 @@ public class MultiTemplateSignatureRequestTest extends AbstractHelloSignTest {
     	assertTrue(HttpURLConnection.HTTP_OK == postRequest.getHttpResponseCode());
     	logger.debug("\tSuccess!");
 	}
-
+*/
 	
 }

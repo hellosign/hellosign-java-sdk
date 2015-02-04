@@ -26,12 +26,18 @@ package com.hellosign.sdk.resource;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Document;
+import com.hellosign.sdk.resource.support.FormField;
 import com.hellosign.sdk.resource.support.Metadata;
+import com.hellosign.sdk.resource.support.Signer;
 
 /**
  * Requests to HelloSign will have common fields such as a 
@@ -55,6 +61,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
 	public AbstractRequest() {
 		super();
+		metadata = new Metadata();
 	}
 	
 	public AbstractRequest(JSONObject json, String optionalKey) 
@@ -63,7 +70,24 @@ public abstract class AbstractRequest extends AbstractResource {
 		metadata = new Metadata(dataObj);
 	}
 
-	protected abstract Map<String, Serializable> getPostFields() throws HelloSignException;
+	protected Map<String, Serializable> getPostFields() throws HelloSignException {
+		Map<String, Serializable> fields = new HashMap<String, Serializable>();
+		try {
+			Metadata metadata = getMetadata();
+			if (metadata != null) {
+				JSONObject mj = metadata.getJSONObject();
+				@SuppressWarnings("unchecked")
+				Iterator<String> keys = (Iterator<String>) mj.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					fields.put(REQUEST_METADATA + "[" + key + "]", mj.getString(key));
+				}
+			}
+		} catch (Exception ex) {
+			throw new HelloSignException("Could not extract metadata fields.", ex);
+		}
+		return fields;
+	}
 	
 	public abstract String getId();
 

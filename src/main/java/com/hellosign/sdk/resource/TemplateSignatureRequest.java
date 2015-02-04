@@ -278,7 +278,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
 	 * @throws HelloSignException
 	 */
 	public Map<String, Serializable> getPostFields() throws HelloSignException {
-		Map<String, Serializable> fields = new HashMap<String, Serializable>();
+		Map<String, Serializable> fields = super.getPostFields();
 		try {
 			// Mandatory fields
 			List<String> templateIds = getTemplateIds();

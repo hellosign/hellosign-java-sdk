@@ -359,7 +359,7 @@ public class SignatureRequest extends AbstractRequest {
 	 * @throws HelloSignException
 	 */
 	public Map<String, Serializable> getPostFields() throws HelloSignException {
-		Map<String, Serializable> fields = new HashMap<String, Serializable>();
+		Map<String, Serializable> fields = super.getPostFields();
 		try {
 			if (hasTitle()) {
 				fields.put(REQUEST_TITLE, getTitle());
@@ -423,16 +423,6 @@ public class SignatureRequest extends AbstractRequest {
 			}
 			if (hasHideTextTags()) {
 				fields.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
-			}
-			Metadata metadata = getMetadata();
-			if (metadata != null) {
-				JSONObject mj = metadata.getJSONObject();
-				@SuppressWarnings("unchecked")
-				Iterator<String> keys = (Iterator<String>) mj.keys();
-				while (keys.hasNext()) {
-					String key = keys.next();
-					fields.put(REQUEST_METADATA + "[" + key + "]", mj.getString(key));
-				}
 			}
 		} catch (Exception ex) {
 			throw new HelloSignException(

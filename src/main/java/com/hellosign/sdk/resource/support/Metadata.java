@@ -8,7 +8,11 @@ import com.hellosign.sdk.resource.AbstractResource;
 public class Metadata extends AbstractResource {
 
 	public static final String METADATA_KEY = "metadata";
-	
+
+	public Metadata() {
+		super();
+	}
+
 	public Metadata(JSONObject json) throws HelloSignException {
 		super(json, METADATA_KEY);
 	}
