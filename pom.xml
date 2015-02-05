@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<version>3.0.5</version>
 	<name>HelloSign Java SDK</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/HelloFax/hellosign-java-sdk</url>
 	<properties>
 		<user.name>Chris Paul (chris@hellosign.com)</user.name>
 		<jettyVersion>7.6.14.v20131031</jettyVersion>
@@ -181,4 +181,39 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<description>Use the HelloSign Java SDK to get your Java app connected to HelloSign's services in minutes.</description>
+	<organization>
+		<name>HelloSign</name>
+		<url>https://www.hellosign.com/</url>
+	</organization>
+	<scm>
+		<url>https://github.com/HelloFax/hellosign-java-sdk</url>
+		<developerConnection>scm:git:git@github.com:HelloFax/hellosign-java-sdk.git</developerConnection>
+		<connection>scm:git:git://github.com/HelloFax/hellosign-java-sdk.git</connection>
+	</scm>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>chris-hellosign</id>
+			<name>Chris Paul</name>
+			<email>chris@hellosign.com</email>
+				<url>https://www.hellosign.com</url>
+				<organization>HelloSign</organization>
+				<organizationUrl>https://www.hellosign.com</organizationUrl>
+				<roles>
+					<role>architect</role>
+					<role>developer</role>
+				</roles>
+				<timezone>America/Los_Angeles</timezone>
+				<properties>
+					<picUrl>https://www.gravatar.com/avatar/7970e197406612872f6895a71a803f08</picUrl>
+				</properties>
+		</developer>
+	</developers>
 </project>
