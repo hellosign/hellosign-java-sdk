@@ -1,0 +1,14 @@
+signer_roles[2][name]=Signer 2
+file_url[2]=https://www.yahoo.com
+merge_fields[0][name]=Text
+subject=Subject
+file_url[1]=https://www.google.com
+test_mode=true
+merge_fields[0][type]=text
+message=Message
+title=Title
+cc_roles[1]=CC Role 1
+signer_roles[1][name]=Signer 1
+merge_fields[1][name]=Checkbox
+merge_fields[1][type]=checkbox
+file[1]=*
