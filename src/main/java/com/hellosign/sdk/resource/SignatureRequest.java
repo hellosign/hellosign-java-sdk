@@ -24,11 +24,8 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +35,6 @@ import org.json.JSONObject;
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.FormField;
-import com.hellosign.sdk.resource.support.Metadata;
 import com.hellosign.sdk.resource.support.ResponseData;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.Signer;
@@ -74,8 +70,6 @@ public class SignatureRequest extends AbstractRequest {
 	
 	// Fields specific to request
 	private List<Signer> signers = new ArrayList<Signer>();
-	private List<Document> documents = new ArrayList<Document>();
-	private boolean orderMatters = false;
 	
 	public SignatureRequest() {
 		super();
@@ -228,108 +222,7 @@ public class SignatureRequest extends AbstractRequest {
 			}
 		}
 	}
-	
-	/**
-	 * Adds the file to the request. 
-	 * @param file File
-	 * @throws HelloSignException
-	 */
-	public void addFile(File file) throws HelloSignException {
-		addFile(file, null);
-	}
-	
-	/**
-	 * Adds the file to the request in the given order. 
-	 * 
-	 * The order should be a 0-based index into the file list. 
-	 * Therefore, the first item of the file list is 0, and so forth.
-	 * 
-	 * If order is null, the document is appended to the end of the file list.
-	 * 
-	 * @param file File
-	 * @param order Integer or null
-	 * @throws HelloSignException
-	 */
-	public void addFile(File file, Integer order) throws HelloSignException {
-		Document doc = new Document();
-		doc.setFile(file);
-    	if (order == null) {
-    		addDocument(doc);
-    	} else {
-    		addDocument(doc, order);
-    	}
-	}
-	
-	/**
-	 * Adds a Document to the signature request.
-	 * @param doc
-	 * @throws HelloSignException
-	 */
-	public void addDocument(Document doc) throws HelloSignException {
-		if (doc == null) {
-			throw new HelloSignException("Document cannot be null");
-		}
-		documents.add(doc);
-	}
-	
-	/**
-	 * Adds a Document to the signature request at the specific order. 
-	 * @param doc
-	 * @param order
-	 * @throws HelloSignException
-	 */
-	public void addDocument(Document doc, int order) throws HelloSignException {
-		if (doc == null) {
-			throw new HelloSignException("Document cannot be null");
-		}
-		try {
-			documents.add(order, doc);
-		} catch (Exception ex) {
-			throw new HelloSignException(ex);
-		}
-	}
-	
-	/**
-	 * Returns a reference to the list of documents for this request. 
-	 * Modifying this list will modify the list that will be sent with the
-	 * request. Useful for more fine-grained modification.
-	 * @return List<Document>
-	 */
-	public List<Document> getDocuments() {
-		return documents;
-	}
-	
-	/**
-	 * Overwrites this requests document list with the provided document list.
-	 * @param docs List<Document>
-	 */
-	public void setDocuments(List<Document> docs) {
-		documents = docs;
-	}
-	
-	/**
-	 * Remove all documents from this request.
-	 */
-	public void clearDocuments() {
-		documents = new ArrayList<Document>();
-	}
 
-	/**
-	 * Determines whether the order of the signers list is to be enforced.
-	 * @param b true if the order matters, false otherwise
-	 */
-	public void setOrderMatters(boolean b) {
-		orderMatters = b;
-	}
-	
-	/**
-	 * A flag that determines whether order of the signers list is enforced.
-	 * @return true if the order matters, false otherwise
-	 */
-	public boolean getOrderMatters() {
-		return orderMatters;
-	}
-	
 	/**
 	 * Utility method that allows you to search for a Signature object 
 	 * on this request by email and name. It requires both because neither
@@ -408,6 +301,10 @@ public class SignatureRequest extends AbstractRequest {
 					docFormFields.put(ff.getJSONObject());
 				}
 				reqFormFields.put(docFormFields);
+			}
+			List<String> fileUrls = getFileUrls();
+			for (int i = 0; i < fileUrls.size(); i++) {
+				fields.put("file_url[" + (i + 1) + "]", fileUrls.get(i));
 			}
 			if (hasFormFields) {
 				fields.put(SIGREQ_FORM_FIELDS, reqFormFields.toString());

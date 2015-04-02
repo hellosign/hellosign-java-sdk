@@ -185,7 +185,7 @@
                 return false;
             }
             function removeSigner(signerNumber) {
-                var el = $("#fileDiv_" + fileNumber);
+                var el = $("#signerDiv_" + fileNumber);
                 if (el) {
                     el.remove();
                 }

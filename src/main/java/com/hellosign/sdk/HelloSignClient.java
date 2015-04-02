@@ -55,6 +55,7 @@ import com.hellosign.sdk.resource.EmbeddedResponse;
 import com.hellosign.sdk.resource.SignatureRequest;
 import com.hellosign.sdk.resource.Team;
 import com.hellosign.sdk.resource.Template;
+import com.hellosign.sdk.resource.TemplateDraft;
 import com.hellosign.sdk.resource.TemplateSignatureRequest;
 import com.hellosign.sdk.resource.UnclaimedDraft;
 import com.hellosign.sdk.resource.support.OauthData;
@@ -112,6 +113,8 @@ public class HelloSignClient {
 	private String URL_TEMPLATE_LIST;
 	private String URL_TEMPLATE_ADD_USER;
 	private String URL_TEMPLATE_REMOVE_USER;
+	private String URL_TEMPLATE_DELETE;
+	private String URL_TEMPLATE_CREATE_EMBEDDED_DRAFT; // Embedded Templates
 	private String URL_TEMPLATE_SIGNATURE_REQUEST;
 	private String URL_SIGNATURE_REQUEST_CANCEL;
 	private String URL_SIGNATURE_REQUEST_REMIND;
@@ -120,8 +123,10 @@ public class HelloSignClient {
 	private String URL_SIGNATURE_REQUEST_EMBEDDED;
 	private String URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE;
 	private String URL_EMBEDDED_SIGN_URL;
+	private String URL_EMBEDDED_EDIT_URL; // Embedded Templates
 	private String URL_UNCLAIMED_DRAFT_CREATE;
 	private String URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED;
+	private String URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE;
 
 	private String URL_PARAM_FILE_TYPE = "file_type";
 	
@@ -175,6 +180,8 @@ public class HelloSignClient {
     	URL_TEMPLATE_LIST = URL_TEMPLATE + "/list";
     	URL_TEMPLATE_ADD_USER = URL_TEMPLATE + "/add_user";
     	URL_TEMPLATE_REMOVE_USER = URL_TEMPLATE + "/remove_user";
+    	URL_TEMPLATE_DELETE = URL_TEMPLATE + "/delete";
+    	URL_TEMPLATE_CREATE_EMBEDDED_DRAFT = URL_TEMPLATE + "/create_embedded_draft";
     	URL_TEMPLATE_SIGNATURE_REQUEST = URL_SIGNATURE_REQUEST + "/send_with_template";
     	URL_SIGNATURE_REQUEST_CANCEL = URL_SIGNATURE_REQUEST + "/cancel";
     	URL_SIGNATURE_REQUEST_REMIND = URL_SIGNATURE_REQUEST + "/remind";
@@ -183,8 +190,10 @@ public class HelloSignClient {
     	URL_SIGNATURE_REQUEST_EMBEDDED = URL_SIGNATURE_REQUEST + "/create_embedded";
     	URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE = URL_SIGNATURE_REQUEST + "/create_embedded_with_template";
     	URL_EMBEDDED_SIGN_URL = URL_API + "/embedded/sign_url";
+    	URL_EMBEDDED_SIGN_URL = URL_API + "/embedded/edit_url";
     	URL_UNCLAIMED_DRAFT_CREATE = URL_API + "/unclaimed_draft/create";
     	URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED = URL_API + "/unclaimed_draft/create_embedded";
+    	URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE = URL_API + "/unclaimed_draft/create_embedded_with_template";
 	}
 
 	/**
@@ -740,7 +749,7 @@ public class HelloSignClient {
 		JSONObject json = request.getJsonResponse();
 		return new EmbeddedResponse(json);
 	}
-	
+
 	/**
 	 * Creates an unclaimed draft using the provided request draft object.
 	 * @param draft UnclaimedDraft
@@ -756,6 +765,26 @@ public class HelloSignClient {
 		HttpPostRequest request = new HttpPostRequest(url, draft.getPostFields(), auth);
 		JSONObject json = request.getJsonResponse();
 		return new UnclaimedDraft(json);
+	}
+
+	/**
+	 * Creates a template draft that can be used for embedded template creation.
+	 * @param req EmbeddedRequest
+	 * @return Template the unclaimed template draft
+	 * @throws HelloSignException
+	 */
+	public TemplateDraft createEmbeddedTemplateDraft(EmbeddedRequest req)
+			throws HelloSignException {
+		String url = URL_TEMPLATE_CREATE_EMBEDDED_DRAFT;
+		Class<?> returnType = TemplateDraft.class;
+		HttpPostRequest request = new HttpPostRequest(url, req.getPostFields(), auth);
+		JSONObject json = request.getJsonResponse();
+		try {
+			Constructor<?> constructor = returnType.getConstructor(JSONObject.class);
+			return (TemplateDraft) constructor.newInstance(json);
+		} catch (Exception ex) {
+			throw new HelloSignException(ex);
+		}
 	}
 
 	/**
