@@ -71,8 +71,6 @@ public class TemplateDraftTest extends AbstractHelloSignTest {
 		t.addCCRole("CC Role 1");
 		t.setTitle("Title");
 		t.setSubject("Subject");
-		t.addFileUrl("https://www.google.com");
-		t.addFileUrl("https://www.yahoo.com");
 		t.setMessage("Message");
 		t.addMergeField("Text", FieldType.text);
 		t.addMergeField("Checkbox", FieldType.checkbox);
