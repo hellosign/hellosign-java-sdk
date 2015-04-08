@@ -146,7 +146,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 	</div>
 <jsp:include page="/common-jsp/footer.jsp" />
 
-<script type="text/javascript" src="/js/embeddedTemplateDemo.js"></script>
+<script type="text/javascript" src="/js/embeddedTemplateXDemo.js"></script>
 <script type='text/javascript'>
     var templates = [
 <%if(templateList != null) {
@@ -162,7 +162,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
     ];
     $(document).ready(function() {
 
-        // Defined in /js/embeddedTemplateDemo.js
+        // Defined in /js/embeddedTemplateXDemo.js
         initTemplates();
 
 <% if (!signUrl.isEmpty()) { %>

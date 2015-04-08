@@ -156,7 +156,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
 <jsp:include page="/common-jsp/footer.jsp" />
 
-    <script type="text/javascript" src="/js/embeddedTemplateDemo.js"></script>
+    <script type="text/javascript" src="/js/embeddedTemplateXDemo.js"></script>
 	<script type='text/javascript'>
 		var templates = [
 <%
@@ -176,7 +176,7 @@ if (templateList != null) {
 		$(document).ready(function(){
 
 		    // This function initializes the form behavior and is
-            // defined in /js/embeddedTemplateDemo.js
+            // defined in /js/embeddedTemplateXDemo.js
             initTemplates();
 
 <%if (!claimUrl.isEmpty()) {%>

@@ -1,74 +1,49 @@
-function initTemplates() {
-    var templateFields = $("#templateFields");
-    templateFields.hide();
-    $('#startButton').hide();
-    var selectList = $("#templates");
-    for (var i = 0; i < templates.length; i++) {
-        selectList.append('<option value="' + i + '">' + templates[i].title
-                + '</option>');
+var fileCount = 1;
+var signerCount = 1;
+var ccCount = 1;
+function removeFile(fileNumber) {
+    var el = $("#fileDiv_" + fileNumber);
+    if (el) {
+        el.remove();
     }
-    selectList
-            .change(function(e) {
-                templateFields.show();
-                $('#signersContainer').text('(None)');
-                $('#ccsContainer').text('(None)');
-                $('#customFieldsContainer').text('(None)');
-                var template = templates[$("option:selected", this).attr(
-                        "value")];
-                if (template) {
-                    if (template.signer_roles.length > 0) {
-                        $('#signersContainer').empty();
-                    }
-                    for (var i = 0; i < template.signer_roles.length; i++) {
-                        var signerRole = template.signer_roles[i];
-                        var newOptionStr = '<label for="signerRole_'
-                                + signerRole.name
-                                + '">'
-                                + (signerRole.order != null ? signerRole.order
-                                        : '')
-                                + signerRole.name
-                                + ':</label>&nbsp;<input type="text" name="signerRole_email_'
-                                + signerRole.name
-                                + '" placeholder="Email address"/> '
-                                + '<input type="text" name="signerRole_name_'
-                                + signerRole.name
-                                + '" placeholder="Name"/><br />';
-                        var newSignerFields = $(newOptionStr);
-                        $('#signersContainer').append(newSignerFields);
-                    }
-                    if (template.cc_roles.length > 0) {
-                        $('#ccsContainer').text('(None)');
-                    }
-                    for (var i = 0; i < template.cc_roles.length; i++) {
-                        var ccRole = template.cc_roles[i].name;
-                        var newCCFieldStr = '<label for="ccRole_'
-                                + ccRole
-                                + '">'
-                                + ccRole
-                                + ':</label>&nbsp;<input type="text" name="ccRole_'
-                                + ccRole
-                                + '" placeholder="Email address"/><br />'
-                        var newCCFields = $(newCCFieldStr);
-                        $('#ccsContainer').append(newCCFields);
-                    }
-                    if (template.custom_fields.length > 0) {
-                        $('#customFieldsContainer').text('(None)');
-                    }
-                    for (var i = 0; i < template.custom_fields.length; i++) {
-                        var cf = template.custom_fields[i];
-                        var newCFFieldStr = '<label for="cf_' + cf.name + '">'
-                                + cf.name
-                                + ':</label>&nbsp;<input type="text" name="cf_'
-                                + cf.name + '" placeholder="' + cf.type
-                                + '"/><br />';
-                        var newCFField = $(newCFFieldStr);
-                        $('#customFieldsContainer').append(newCFField);
-                    }
-                    $('#templateId').val(template.template_id);
-                    $('#startButton').show();
-                } else {
-                    $('#templateFields').hide();
-                    $('#startButton').hide();
-                }
-            });
-};
+    return false;
+}
+function removeSignerRole(signerNumber) {
+    var el = $("#signerRoleDiv_" + signerNumber);
+    if (el) {
+        el.remove();
+    }
+    return false;
+}
+function removeCCRole(ccNumber) {
+    var el = $("#ccRoleDiv_" + ccNumber);
+    if (el) {
+        el.remove();
+    }
+    return false;
+}
+function initTemplateDemo() {
+    $('#toggleOptionalFields').click(function(e) {
+        $('#optionalFields').toggle();
+        return false;
+    });
+    $("#addFile").click(function(e) {
+        fileCount++;
+        $("#files").append('<div class="field-container" id="fileDiv_' + fileCount + '"><input id="file_' + fileCount + '" type="file" name="file_' + fileCount + '" />&nbsp;<button class="btn btn-xs btn-default remove" onclick="removeFile(' + fileCount + '); return false;">X</button></div>');
+        return false;
+    });
+    $("#addSignerRole").click(function(e) {
+        signerCount++;
+        $("#signerRoles").append('<div class="field-container" id="signerRoleDiv_' + signerCount + '"><br /><input type="text" name="signerRole' + signerCount + '" placeholder="Signer role" />&nbsp;<button class="btn btn-xs btn-default remove" onclick="removeSignerRole(' + signerCount + '); return false;">X</button></div>');
+        return false;
+    });
+    $("#addCCRole").click(function(e) {
+        ccCount++;
+        $("#ccRoles").append('<div class="field-container" id="ccRoleDiv_' + ccCount + '"><br /><input type="text" name="ccRole' + ccCount + '" placeholder="CC role" />&nbsp;<button class="btn btn-xs btn-default remove" onclick="removeCCRole(' + ccCount + '); return false;">X</button></div>');
+        return false;
+    });
+    $("#file_1").change(function(e) {
+        $("#startButton").show();
+    });
+    $("#startButton").hide();
+}
