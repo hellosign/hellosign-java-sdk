@@ -185,7 +185,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
                 } else {
                     msg = eventData.event;
                 }
-                $("#demoContainer").html(msg + "<br /><a href=\"/embeddedTemplateSigningDemo.jsp\">Try it again</a>");
+                $("#demoContainer").html("<h3>" + msg + "</h3><a class=\"btn btn-lg btn-success\" href=\"/embeddedTemplateRequestingDemo.jsp\">Try it again</a>");
             }
         });
 <% } %>
