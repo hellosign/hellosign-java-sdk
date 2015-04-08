@@ -768,7 +768,7 @@ public class HelloSignClient {
 
 	/**
 	 * Retrieves the necessary information to edit an embedded template.
-	 * @param signatureId String ID of the signature request to embed
+	 * @param templateId String ID of the signature request to embed
 	 * @return EmbeddedResponse
 	 * @throws HelloSignException
 	 */

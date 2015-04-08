@@ -118,8 +118,7 @@ public class TemplateDraft extends AbstractRequest {
 	 * This means that adding an item at order 1 will place it in the 0th
 	 * index of the list (it will be the first item).
 	 * 
-	 * @param email String
-	 * @param name String
+	 * @param role String
 	 * @param order int
 	 * @throws HelloSignException 
 	 */
