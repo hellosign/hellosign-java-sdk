@@ -53,9 +53,12 @@
                                 <span class="caret"></span>
                         </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li class="active"><a
-                                    href="/embeddedTemplateRequestingDemo.jsp">Embedded
-                                        Template Request Demo</a></li>
+                                <li><a href="/embeddedSigningDemo.jsp">Signing</a></li>
+                                <li><a href="/embeddedRequestingDemo.jsp">Requesting</a></li>
+                                <li><a href="/embeddedTemplateDemo.jsp">Template Creation</a></li>
+                                <li><a href="/embeddedTemplateSigningDemo.jsp">Signing with a Template</a></li>
+                                <li><a href="/embeddedTemplateRequestingDemo.jsp">Requesting with a Template</a></li>
+                                <li><a href="/oauthDemo.jsp">OAuth 2.0 Demo</a></li>
                             </ul></li>
                         <li><a href="https://www.hellosign.com/api/documentation"
                             target="_blank">Docs</a></li>

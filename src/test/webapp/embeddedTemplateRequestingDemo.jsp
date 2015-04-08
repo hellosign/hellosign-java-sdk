@@ -1,8 +1,7 @@
 <%@page
-	import="com.hellosign.sdk.resource.support.types.UnclaimedDraftType"%>
-<%@page
-	import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.*,java.util.*,org.apache.commons.fileupload.*,org.apache.commons.fileupload.servlet.*,org.apache.commons.fileupload.disk.*,org.apache.commons.io.*"%>
+	import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.*,java.util.*,org.apache.commons.fileupload.*,org.apache.commons.fileupload.servlet.*,org.apache.commons.fileupload.disk.*,org.apache.commons.io.*,com.hellosign.sdk.resource.support.types.UnclaimedDraftType"%>
 <%
+
 // Load authentication properties
 Properties properties = new Properties();
 properties.load(getServletContext().getResourceAsStream("/WEB-INF/web.properties"));
@@ -127,36 +126,37 @@ if (ServletFileUpload.isMultipartContent(request)) {
                     below to add this feature to your Java-based web application." />
     <jsp:param name="errorMessage" value="${errorMessage}"/>
 </jsp:include>
-                        <input type="hidden" name="template" id="templateId" value="" />
-                        <div id="demoForm">
-                            <h3>1. Enter the requester's email address</h3>
-                            <input name="requester_email_address"
-								placeholder="email@example.com" type="text" />
-							<h3>2. Select a Template</h3>
-							<select id="templates">
-								<option selected>Choose a template...</option>
-							</select> <em>(Create templates <a href="/embeddedTemplateDemo.jsp">here</a>)
-							</em>
-							<div id="templateFields">
-								<h3>Template Details</h3>
-								<fieldset id="signers">
-									<legend>Signers</legend>
-									<div id="signersContainer">(None)</div>
-								</fieldset>
-								<fieldset id="ccs">
-									<legend>Carbon Copy</legend>
-									<div id="ccsContainer">(None)</div>
-								</fieldset>
-								<fieldset id="customFields">
-									<legend>Custom Fields</legend>
-									<div id="customFieldsContainer">(None)</div>
-								</fieldset>
-							</div>
-						</div>
+
+	<input type="hidden" name="template" id="templateId" value="" />
+	<div id="demoForm">
+		<h3>1. Enter the requester's email address</h3>
+		<input name="requester_email_address" placeholder="email@example.com"
+			type="text" />
+		<h3>2. Select a Template</h3>
+		<select id="templates">
+			<option selected>Choose a template...</option>
+		</select> <em>(Create templates <a href="/embeddedTemplateDemo.jsp">here</a>)
+		</em>
+		<div id="templateFields">
+			<h3>Template Details</h3>
+			<fieldset id="signers">
+				<legend>Signers</legend>
+				<div id="signersContainer">(None)</div>
+			</fieldset>
+			<fieldset id="ccs">
+				<legend>Carbon Copy</legend>
+				<div id="ccsContainer">(None)</div>
+			</fieldset>
+			<fieldset id="customFields">
+				<legend>Custom Fields</legend>
+				<div id="customFieldsContainer">(None)</div>
+			</fieldset>
+		</div>
+	</div>
 
 <jsp:include page="/common-jsp/footer.jsp" />
 
-    <script type="text/javascript" src="/js/embeddedTemplateRequestingDemo.js"></script>
+    <script type="text/javascript" src="/js/embeddedTemplateDemo.js"></script>
 	<script type='text/javascript'>
 		var templates = [
 <%
@@ -176,7 +176,7 @@ if (templateList != null) {
 		$(document).ready(function(){
 
 		    // This function initializes the form behavior and is
-            // defined in /js/embeddedTemplateRequestingDemo.js
+            // defined in /js/embeddedTemplateDemo.js
             initTemplates();
 
 <%if (!claimUrl.isEmpty()) {%>
