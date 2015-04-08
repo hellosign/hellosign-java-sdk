@@ -17,9 +17,6 @@
 <%@page import="java.util.Properties"%>
 
 <%
-
-
-
 	// Load authentication properties
 	Properties properties = new Properties();
 	properties.load(getServletContext().getResourceAsStream("/WEB-INF/web.properties"));
@@ -176,7 +173,9 @@
 		    <input type="text" name="message" placeholder="Message (optional)" style="height: 100px;"/>
         </div>
 	</div>
+
 <jsp:include page="/common-jsp/footer.jsp" />
+
     <script type="text/javascript" src="/js/embeddedRequestingDemo.js" ></script>
     <script type='text/javascript'>
         
