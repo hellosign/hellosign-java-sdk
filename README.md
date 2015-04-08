@@ -6,7 +6,7 @@ Use the HelloSign Java SDK to get your Java app connected to HelloSign's service
 
 Download the HelloSign Java SDK JAR and include it in your project classpath:
 
-* [hellosign-java-sdk-3.0.5.jar](https://github.com/HelloFax/hellosign-java-sdk/raw/v3/dist/hellosign-java-sdk-3.0.5.jar)
+* [hellosign-java-sdk-3.1.0.jar](https://github.com/HelloFax/hellosign-java-sdk/raw/v3/dist/hellosign-java-sdk-3.1.0.jar)
 
 Alternatively, you can build the SDK yourself by forking this repository and use Maven to build it:
 
@@ -14,7 +14,7 @@ Alternatively, you can build the SDK yourself by forking this repository and use
 
 Locate the JAR file in the `target` directory and place it on your project classpath. 
 
-The SDK is built with Java 7 and depends on the SL4J 1.7.5 and JSON v20090211 libraries. If your project does not already include these, you can use the [JAR that includes these dependencies](https://github.com/HelloFax/hellosign-java-sdk/raw/v3/dist/hellosign-java-sdk-3.0.5-jar-with-dependencies.jar).
+The SDK is built with Java 7 and depends on the SL4J 1.7.5 and JSON v20090211 libraries. If your project does not already include these, you can use the [JAR that includes these dependencies](https://github.com/HelloFax/hellosign-java-sdk/raw/v3/dist/hellosign-java-sdk-3.1.0-jar-with-dependencies.jar).
 
 ## Usage
 
