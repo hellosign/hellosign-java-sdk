@@ -1,7 +1,9 @@
-<%@page import="com.hellosign.sdk.resource.support.types.UnclaimedDraftType"%>
-<%@ page import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.*,java.util.*,org.apache.commons.fileupload.*,org.apache.commons.fileupload.servlet.*,org.apache.commons.fileupload.disk.*,org.apache.commons.io.*" %>
+<%@page
+	import="com.hellosign.sdk.resource.support.types.UnclaimedDraftType"%>
+<%@page
+	import="com.hellosign.sdk.*,com.hellosign.sdk.resource.*,com.hellosign.sdk.resource.support.*,java.io.*,java.util.*,org.apache.commons.fileupload.*,org.apache.commons.fileupload.servlet.*,org.apache.commons.fileupload.disk.*,org.apache.commons.io.*"%>
 <%
-// Load authentication properties
+    // Load authentication properties
 Properties properties = new Properties();
 properties.load(getServletContext().getResourceAsStream("/WEB-INF/web.properties"));
 String apiKey = properties.getProperty("hellosign.api.key");
@@ -17,19 +19,19 @@ String errorMessage = null;
 //Get the user's templates to populate the form
 TemplateList templateList = null;
 if (apiKey != null) {
-	try {
-	    HelloSignClient client = new HelloSignClient(apiKey);
-	    templateList = client.getTemplates();
-	} catch (HelloSignException ex) {
-		errorMessage = ex.getMessage();
-		ex.printStackTrace();
-	}
+    try {
+        HelloSignClient client = new HelloSignClient(apiKey);
+        templateList = client.getTemplates();
+    } catch (HelloSignException ex) {
+        errorMessage = ex.getMessage();
+        ex.printStackTrace();
+    }
 }
 
 // If this is a form submission, pull the form fields from the request
 if (ServletFileUpload.isMultipartContent(request)) {
 
-	// Store the form field information for our request
+    // Store the form field information for our request
     Map<String, Signer> signersList = new HashMap<String, Signer>();
     Map<String, String> ccList = new HashMap<String, String>();
     Map<String, String> customFieldList = new HashMap<String, String>();
@@ -77,7 +79,7 @@ if (ServletFileUpload.isMultipartContent(request)) {
             }
         }
     } catch (Exception e) {
-    	errorMessage = e.getMessage();
+        errorMessage = e.getMessage();
         e.printStackTrace();
     }
 
@@ -86,20 +88,20 @@ if (ServletFileUpload.isMultipartContent(request)) {
 
         try {
 
-        	// First, create a templated request
+            // First, create a templated request
             TemplateSignatureRequest sigReq = new TemplateSignatureRequest();
             sigReq.setTestMode(true);
             System.out.println("Using templateId: " + templateId);
             sigReq.setTemplateId(templateId);
             for (String role : signersList.keySet()) {
-            	Signer s = signersList.get(role);
-            	sigReq.setSigner(role, s.getEmail(), s.getNameOrRole());
+                Signer s = signersList.get(role);
+                sigReq.setSigner(role, s.getEmail(), s.getNameOrRole());
             }
             for (String role : ccList.keySet()) {
-            	sigReq.setCC(role, ccList.get(role));
+                sigReq.setCC(role, ccList.get(role));
             }
             for (String fieldName : customFieldList.keySet()) {
-            	sigReq.setCustomFieldValue(fieldName, customFieldList.get(fieldName));
+                sigReq.setCustomFieldValue(fieldName, customFieldList.get(fieldName));
             }
 
             // Next create an Unclaimed Draft to hold it
@@ -116,239 +118,252 @@ if (ServletFileUpload.isMultipartContent(request)) {
             claimUrl = draft.getClaimUrl();
 
         } catch (HelloSignException ex) {
-        	errorMessage = ex.getMessage();
+            errorMessage = ex.getMessage();
             ex.printStackTrace();
         }
     }
 }
 %>
-<html>
-    <head>
-        <title>Embedded Template Signing Demo | HelloSign</title>
-        <script type="text/javascript" src="/js/jquery.js"></script>
-<% if (isLocalDev) { %>
-        <script type="text/javascript" src="//www.my.hellosign.com/js/embedded.js"></script>
-<% } else if (isStaging) { %>
-        <script type="text/javascript" src="//staging.hellosign.com/js/embedded.js"></script>
-<% } else { %>
-        <script type="text/javascript" src="//s3.amazonaws.com/cdn.hellofax.com/js/embedded.js"></script>
-<% } %>
-        <link rel="stylesheet" type="text/css" media="screen" href="/css/prettify.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="/css/main-loggedOut.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="/css/demos.css" />
-        <script type="text/javascript" src="/js/init.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Embedded Template Request Demo | HelloSign</title>
 
-        <script type="text/javascript" src="/js/prettify.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="/css/hs/main.css" />
-        <script type="text/javascript" src="/js/main.js" ></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png" />
-        <style>
-            html { background-color: white !important; }
-            pre { font-family: Monaco; font-size: 13px; margin-left: 15px; margin-top: 5px; }
-            input#startButton { padding: 10px 20px; height: 40px; font-size: 16px; }
-            input[type='file'] { padding: 5px; border: 1px solid #EEE; clear:both; }
-            label { display: block; margin: 4px; margin-top: 10px;}
-            button#addFile { margin-left: 10px;}
-            button#addSigner { margin-left: 10px;}
-            div#files { margin-bottom: 5px;}
-            div#signers { margin-bottom:5px;}
-            div#fileContainer { width: 400px;}
-            div#demoForm {border: 1px solid gray; padding: 20px;}
-            fieldset {
-            	border: 1px solid gray;
-            	padding: 10px;
-            	margin: 4px;
-            	-webkit-box-shadow: none;
-            	-moz-box-shadow: none;
-            	box-shadow: none;
-            	-webkit-border-radius: 3px;
-            	-khtml-border-radius: 3px;
-            	-moz-border-radius: 3px;
-            	border-radius: 3px;
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="shortcut icon" href="/favicon.ico?v=2" />
+<link rel="apple-touch-icon"
+	href="/apple-touch-icon-precomposed.png?v=2" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<div class="container">
+
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">hellosign-java-sdk Demos</a>
+				</div>
+				<div id="navbar"
+					class="navbar-collapse collapse nav nav-pills pull-right">
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">Demos
+								<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li class="active"><a
+									href="/embeddedTemplateRequestingDemo.jsp">Embedded
+										Template Request Demo</a></li>
+							</ul></li>
+						<li><a href="https://www.hellosign.com/api/documentation"
+							target="_blank">Docs</a></li>
+						<li><a href="https://www.hellosign.com/api/pricing"
+							target="_blank">Pricing</a></li>
+						<li><a
+							href="https://www.github.com/hellofax/hellosign-java-sdk"
+							target="_blank">GitHub</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+	</div>
+
+	<div class="container">
+		<div class="clearfix">
+			<div class="jumbotron">
+				<h2>Embedded Template Request Demo</h2>
+				<p class="lead">Request signatures for documents based on a
+					HelloSign Template directly from your website. Follow the steps
+					below to add this feature to your Java-based web application.</p>
+				<div id="demoContainer">
+					<div class="error-message"><%= (errorMessage != null ? errorMessage : "") %></div>
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="template" id="templateId" value="" />
+                        <div id="demoForm">
+                            <h3>1. Enter the requester's email address</h3>
+                            <input name="requester_email_address"
+								placeholder="email@example.com" type="text" />
+							<h3>2. Select a Template</h3>
+							<select id="templates">
+								<option selected>Choose a template...</option>
+							</select> <em>(Create templates <a href="/embeddedTemplateDemo.jsp">here</a>)
+							</em>
+							<div id="templateFields">
+								<h3>Template Details</h3>
+								<fieldset id="signers">
+									<legend>Signers</legend>
+									<div id="signersContainer">(None)</div>
+								</fieldset>
+								<fieldset id="ccs">
+									<legend>Carbon Copy</legend>
+									<div id="ccsContainer">(None)</div>
+								</fieldset>
+								<fieldset id="customFields">
+									<legend>Custom Fields</legend>
+									<div id="customFieldsContainer">(None)</div>
+								</fieldset>
+							</div>
+						</div>
+						<input class="btn btn-lg btn-primary" id="startButton"
+							type="submit" value="Launch Demo" />
+					</form>
+				</div>
+			</div>
+
+			<footer class="footer">
+				<p>&copy; HelloSign 2015</p>
+			</footer>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<!-- Include the HelloSign embedded.js library -->
+	<%
+        if (isLocalDev) {
+    %>
+	<script type="text/javascript"
+		src="//www.my.hellosign.com/js/embedded.js"></script>
+	<%
+        } else if (isStaging) {
+    %>
+	<script type="text/javascript"
+		src="//staging.hellosign.com/js/embedded.js"></script>
+	<%
+        } else {
+    %>
+	<script type="text/javascript"
+		src="//s3.amazonaws.com/cdn.hellofax.com/js/embedded.js"></script>
+	<%
+        }
+    %>
+	<script type='text/javascript'>
+        function initTemplates() {
+            var templates = [
+<%if(templateList != null) {
+    Iterator<Template> it = templateList.iterator();
+    while(it != null && it.hasNext()) {
+        Template t = it.next();
+        out.write(t.toString());
+        if (it.hasNext()) {
+            out.write(",");
+        }
+    }
+}%>
+            ];
+            var templateFields = $("#templateFields");
+            templateFields.hide();
+            $('#startButton').hide();
+            var selectList = $("#templates");
+            for (var i = 0; i < templates.length; i++) {
+                selectList.append('<option value="' + i + '">' + templates[i].title + '</option>');
             }
-            div#message { margin: 10px; color: red; }
-        </style>
-        <script type='text/javascript'>
-        	function initTemplates() {
-        		var templates = [
-<%
-if(templateList != null) {
-	Iterator<Template> it = templateList.iterator();
-	while(it != null && it.hasNext()) {
-		Template t = it.next();
-		out.write(t.toString());
-		if (it.hasNext()) {
-			out.write(",");
-		}
-	}
-}
-%>
-        		];
-        		var templateFields = $("#templateFields");
-        		templateFields.hide();
-        		$("#startButton").hide();
-        		var selectList = $("#templates");
-        		for (var i = 0; i < templates.length; i++) {
-        			selectList.append('<option value="' + i + '">' + templates[i].title + '</option>');
-        		}
-        		selectList.change(function(e) {
-        			templateFields.show();
-        			$('#signersContainer').text('(None)');
-        			$('#ccsContainer').text('(None)');
-        			$('#customFieldsContainer').text('(None)');
-        			var template = templates[$("option:selected", this).attr("value")];
-        			if (template) {
-        				if (template.signer_roles.length > 0) {
-        					$('#signersContainer').empty();
-        				}
-	        			for (var i = 0; i < template.signer_roles.length; i++) {
-	        				var signerRole = template.signer_roles[i];
-	        				var newOptionStr = '<label for="signerRole_' + signerRole.name + '">' + (signerRole.order != null ? signerRole.order : '') +
-	    						signerRole.name + ':</label>&nbsp;<input type="text" name="signerRole_email_' + signerRole.name + '" placeholder="Email address"/> ' +
-	    						'<input type="text" name="signerRole_name_' + signerRole.name + '" placeholder="Name"/><br />';
-	    					var newSignerFields = $(newOptionStr);
-	        				$('#signersContainer').append(newSignerFields);
-	        			}
-	        			if (template.cc_roles.length > 0) {
-	        				$('#ccsContainer').text('(None)');
-	        			}
-	        			for (var i = 0; i < template.cc_roles.length; i++) {
-	        				var ccRole = template.cc_roles[i].name;
-	        				var newCCFieldStr = '<label for="ccRole_' + ccRole + '">' + ccRole + ':</label>&nbsp;<input type="text" name="ccRole_' +
-	        					ccRole + '" placeholder="Email address"/><br />'
-	        				var newCCFields = $(newCCFieldStr);
-	       					$('#ccsContainer').append(newCCFields);
-	        			}
-	        			if (template.custom_fields.length > 0) {
-	        				$('#customFieldsContainer').text('(None)');
-	        			}
-	        			for (var i = 0; i < template.custom_fields.length; i++) {
-	        				var cf = template.custom_fields[i];
-	        				var newCFFieldStr = '<label for="cf_' + cf.name + '">' + cf.name + ':</label>&nbsp;<input type="text" name="cf_' + cf.name + '" placeholder="' +
-	        					cf.type + '"/><br />';
-	        				var newCFField = $(newCFFieldStr);
-	        				$('#customFieldsContainer').append(newCFField);
-	        			}
-	        			$('#templateId').val(template.template_id);
-	        			$('#startButton').show();
-        			} else {
-        				$('#templateFields').hide();
-        				$('#startButton').hide();
-        			}
-        		});
-        	};
-            $(document).ready(function(){
-                initEmbeddedDemo();
-                initTemplates();
-<% if (!claimUrl.isEmpty()) { %>
-                // Initialize HelloSign with the client ID
-                HelloSign.init("<%= clientId %>");
-
-                // Open the iFrame dialog for embedded signing
-                HelloSign.open({
-                    url: "<%= claimUrl %>",
-                    debug: true,
-                    allowCancel: true,
-                    skipDomainVerification: true,
-                    messageListener: function(eventData) {
-						console.log("Event received: " + eventData);
-						var msg;
-                        if (eventData.event == HelloSign.EVENT_SENT) {
-                        	msg = "Request Sent!";
-                        } else if (eventData.event == HelloSign.EVENT_SIGNED) {
-                        	msg = "Request Signed!";
-                        } else {
-                        	msg = eventData.event;
-                        }
-                        $("#demoContainer").html(msg + "<br /><a href=\"/embeddedTemplateRequestingDemo.jsp\">Try it again</a>");
+            selectList.change(function(e) {
+                templateFields.show();
+                $('#signersContainer').text('(None)');
+                $('#ccsContainer').text('(None)');
+                $('#customFieldsContainer').text('(None)');
+                var template = templates[$("option:selected", this).attr("value")];
+                if (template) {
+                    if (template.signer_roles.length > 0) {
+                        $('#signersContainer').empty();
                     }
-                });
-<% } %>
+                    for (var i = 0; i < template.signer_roles.length; i++) {
+                        var signerRole = template.signer_roles[i];
+                        var newOptionStr = '<label for="signerRole_' + signerRole.name + '">' + (signerRole.order != null ? signerRole.order : '') +
+                            signerRole.name + ':</label>&nbsp;<input type="text" name="signerRole_email_' + signerRole.name + '" placeholder="Email address"/> ' +
+                            '<input type="text" name="signerRole_name_' + signerRole.name + '" placeholder="Name"/><br />';
+                        var newSignerFields = $(newOptionStr);
+                        $('#signersContainer').append(newSignerFields);
+                    }
+                    if (template.cc_roles.length > 0) {
+                        $('#ccsContainer').text('(None)');
+                    }
+                    for (var i = 0; i < template.cc_roles.length; i++) {
+                        var ccRole = template.cc_roles[i].name;
+                        var newCCFieldStr = '<label for="ccRole_' + ccRole + '">' + ccRole + ':</label>&nbsp;<input type="text" name="ccRole_' + ccRole + '" placeholder="Email address"/><br />'
+                        var newCCFields = $(newCCFieldStr);
+                        $('#ccsContainer').append(newCCFields);
+                    }
+                    if (template.custom_fields.length > 0) {
+                        $('#customFieldsContainer').text('(None)');
+                    }
+                    for (var i = 0; i < template.custom_fields.length; i++) {
+                        var cf = template.custom_fields[i];
+                        var newCFFieldStr = '<label for="cf_' + cf.name + '">' + cf.name + ':</label>&nbsp;<input type="text" name="cf_' + cf.name + '" placeholder="' + cf.type + '"/><br />';
+                        var newCFField = $(newCFFieldStr);
+                        $('#customFieldsContainer').append(newCFField);
+                    }
+                    $('#templateId').val(template.template_id);
+                    $('#startButton').show();
+                } else {
+                    $('#templateFields').hide();
+                    $('#startButton').hide();
+                }
             });
-        </script>
-    </head>
-    <body class="api documentation logged-out " id="hs">
-        <div id="wrap">
-            <div id="container">
-                 <div id="header">
-                     <a href="https://www.hellosign.com"><span id="logo"></span></a>
-                     <a href="https://www.hellosign.com/api/gettingStarted" class="nav">Getting Started</a>
-                     <a href="https://www.hellosign.com/api/embedded" class="nav selected">Embedded</a>
-                     <a href="https://www.hellosign.com/api/reference" class="nav">API Reference</a>
-                     <a href="https://www.hellosign.com/api/libraries" class="nav">Libraries</a>
-                     <a href="https://www.hellosign.com/api/pricing" class="nav">Pricing</a>
-                     <a id="signinButton" class="signin blue-sub" href="https://www.hellosign.com/account/logIn">Sign in</a>
-                 </div>
-                <div id="main-content">
-                	<div class="sub-nav"><a href="/">Index</a> <span class="rsaquo">&rsaquo;</span> Embedded Template Request Demo</div>
-                    <h2 class="page-title default headline">Embedded Template Request Demo</h2>
-                    <div class="embeddedSigning bs_container">
-                        <p class="intro">
-                            Request signatures for documents based on a HelloSign Template directly from your website. Follow the steps below to add this feature to your Java-based web application.
-                        </p>
-                        <br />
-                        <div class="row">
-                            <div class="span12">
-                                <h2>Try it Out</h2>
-<% if (errorMessage != null) { %>
-                                <div id="message"><%= errorMessage %></div>
-<% } %>
-                                <div id="demoContainer">
-                                    <form action="/embeddedTemplateRequestingDemo.jsp" method="post" enctype="multipart/form-data">
-    									<input type="hidden" name="template" id="templateId" value="" />
-                                        <div id="demoForm">
-                                            <h3>1. Select a Template</h3>
-                                            <select id="templates">
-                                            	<option selected>Choose a template...</option>
-                                            </select>
-                                            <br />
-                                            <br />
-                                            <p>(You can create a template <a href="/embeddedTemplateDemo.jsp">here</a>)</p>
-                                            <br />
-                                            <h3>2. Enter the requester's email address</h3>
-                                            <input name="requester_email_address" placeholder="email@example.com" type="text" />
-                                            <br />
-                                            <br />
-                                            <div id="templateFields">
-    	                                        <h3>Template Details</h3>
-    	                                        <fieldset id="signers"><legend>Signers</legend><div id="signersContainer">(None)</div></fieldset>
-    	                                        <fieldset id="ccs"><legend>Carbon Copy</legend><div id="ccsContainer">(None)</div></fieldset>
-    	                                        <fieldset id="customFields"><legend>Custom Fields</legend><div id="customFieldsContainer">(None)</div></fieldset>
-                                           	 </div>
-                                        </div>
-                                        <br />
-                                        <input class="btn blue-sub" id="startButton" type="submit" value="Launch Demo" />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="footer" class="border-box">
-            <div class="footer_container">
-                <div class="inner border-box">
-                    <div id="footer_links" class="clearfix">
-                        <div class="col left">
-                            <span><a id="footer_contact" href="https://www.hellosign.com/info/contact">Contact</a></span> <span><a id="footer_about_us" href="https://www.hellosign.com/info/aboutUs">About Us</a></span> <span><a id="footer_pricing" href="https://www.hellosign.com/info/pricing">Pricing</a></span> <span><a id="footer_benefits" href="https://www.hellosign.com/info/benefits">Benefits</a></span>
-                        </div>
-                        <div class="col left">
-                            <span><a target="_blank" id="footer_faq" href="http://faq.hellofax.com">FAQ</a></span> <span><a target="_blank" id="footer_hs" href="https://www.my.hellosign.com/webapp_dev.php/">HelloSign</a></span> <span><a id="footer_security" href="https://www.hellosign.com/info/security">Security</a></span> <span><a target="_blank" id="footer_blog" href="http://blog.hellofax.com">Blog</a></span>
-                        </div>
-                        <div class="col left">
-                            <span><a id="footer_jobs" href="https://www.hellosign.com/info/jobs">Jobs</a></span> <span><a id="footer_legal" href="https://www.hellosign.com/info/legal">Legal</a></span> <span><a id="footer_privacy" href="https://www.hellosign.com/info/privacyPolicy">Privacy</a></span> <span><a id="footer_tos" href="https://www.hellosign.com/info/tos">Terms</a></span>
-                        </div>
-                        <p class="legal">
-                            &copy; <strong>HelloFax, Inc.</strong>, 2014. All rights reserved.
-                        </p>
-                        <div class="clearfix"></div>
-                    </div><br>
-                </div>
-            </div>
-        </div>
-    </body>
+        };
+        $(document).ready(function(){
+            initTemplates();
+<%if (!claimUrl.isEmpty()) {%>
+            // Initialize HelloSign with the client ID
+            HelloSign.init("<%=clientId%>");
+
+            // Open the iFrame dialog for embedded signing
+            HelloSign.open({
+                url: "<%=claimUrl%>",
+                debug : true,
+                allowCancel : true,
+                skipDomainVerification : true,
+                messageListener : function(eventData) {
+                    console.log("Event received: " + eventData);
+                    var msg;
+                    if (eventData.event == HelloSign.EVENT_SENT) {
+                        msg = "Request Sent!";
+                    } else if (eventData.event == HelloSign.EVENT_SIGNED) {
+                        msg = "Request Signed!";
+                    } else {
+                        msg = eventData.event;
+                    }
+                    $("#demoContainer")
+                            .html("<h3>" + msg + "</h3><a class=\"btn btn-lg btn-success\" href=\"/embeddedTemplateRequestingDemo.jsp\">Try it again</a>");
+                }
+            });
+    <%}%>
+        });
+    </script>
+</body>
 </html>
