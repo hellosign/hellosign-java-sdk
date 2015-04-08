@@ -3,7 +3,11 @@
 	boolean isLocalDev = "dev".equalsIgnoreCase(env);
 	boolean isStaging = "staging".equalsIgnoreCase(env);
 %>
+<%
+if (request.getParameter("hideButton") == null) {
+%>
                         <input class="btn btn-lg btn-primary" id="startButton" type="submit" value="Launch Demo" />
+<% } %>
                     </form>
                 </div>
             </div>

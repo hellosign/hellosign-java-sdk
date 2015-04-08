@@ -39,9 +39,10 @@
                     <button type="button" class="navbar-toggle collapsed"
                         data-toggle="collapse" data-target="#navbar" aria-expanded="false"
                         aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span> <span
-                            class="icon-bar"></span> <span class="icon-bar"></span> <span
-                            class="icon-bar"></span>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">hellosign-java-sdk Demos</a>
                 </div>
@@ -60,10 +61,15 @@
                                 <li><a href="/embeddedTemplateRequestingDemo.jsp">Requesting with a Template</a></li>
                                 <li><a href="/oauthDemo.jsp">OAuth 2.0 Demo</a></li>
                             </ul></li>
-                        <li><a href="https://www.hellosign.com/api/documentation"
-                            target="_blank">Docs</a></li>
-                        <li><a href="https://www.hellosign.com/api/pricing"
-                            target="_blank">Pricing</a></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle"
+                            data-toggle="dropdown" role="button" aria-expanded="false">Docs
+                                <span class="caret"></span>
+                        </a>
+                            <ul class="dropdown-menu" role="menu">
+	                            <li><a href="/javadoc">JavaDoc</a></li>
+	                            <li><a href="https://www.hellosign.com/api/documentation"
+	                               target="_blank">API Doc</a></li>
+                            </ul></li>
                         <li><a
                             href="https://www.github.com/hellofax/hellosign-java-sdk"
                             target="_blank">GitHub</a></li>
