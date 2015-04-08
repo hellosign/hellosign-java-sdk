@@ -56,7 +56,7 @@ public class Event extends AbstractResource {
 	
 	public static final String HASH_ALGORITHM = "HmacSHA256";
 	
-	private SignatureRequest request;
+	private AbstractResource resource;
 	
 	/**
 	 * Default constructor. Provide this constructor with the JSONObject
@@ -69,10 +69,18 @@ public class Event extends AbstractResource {
 		if (EventType.test.equals(getType())) {
 			return;
 		}
-		try {
-			request = new SignatureRequest(json.getJSONObject(SignatureRequest.SIGREQ_KEY));
-		} catch (JSONException ex) {
-			throw new HelloSignException(ex);
+		if (json.has(SignatureRequest.SIGREQ_KEY)) {
+			try {
+				resource = new SignatureRequest(json.getJSONObject(SignatureRequest.SIGREQ_KEY));
+			} catch (JSONException ex) {
+				throw new HelloSignException(ex);
+			}
+		} else if (json.has(Template.TEMPLATE_KEY)) {
+			try {
+				resource = new Template(json.getJSONObject(Template.TEMPLATE_KEY));
+			} catch (JSONException ex) {
+				throw new HelloSignException(ex);
+			}
 		}
 	}
 	
@@ -141,7 +149,8 @@ public class Event extends AbstractResource {
 	}
 	
 	/**
-	 * Returns the associated Signature object with this event. 
+	 * Returns the associated Signature object with this event, if the
+	 * event is associated with a Signature Request.
 	 * @return Signature
 	 * @throws HelloSignException
 	 */
@@ -150,7 +159,7 @@ public class Event extends AbstractResource {
 		if (id == null) {
 			return null;
 		}
-		for (Signature sig : request.getSignatures()) {
+		for (Signature sig : ((SignatureRequest) resource).getSignatures()) {
 			if (id.equals(sig.getId())) {
 				return sig;
 			}
@@ -164,15 +173,37 @@ public class Event extends AbstractResource {
 	 * @return SignatureRequest
 	 */
 	public SignatureRequest getSignatureRequest() {
-		return request;
+		if (hasSignatureRequest()) {
+			return (SignatureRequest) resource;
+		}
+		return null;
 	}
 	
 	/**
 	 * Returns true if this Event is associated with a Signature Request.
-	 * @return true, or false if it does not have a Signature Request
+	 * @return boolean
 	 */
 	public boolean hasSignatureRequest() {
-		return request != null && request.getId() != null;
+		return resource != null && resource instanceof SignatureRequest;
+	}
+
+	/**
+	 * Returns a reference to the Template that is attached to the Event.
+	 * @return Template
+	 */
+	public Template getTemplate() {
+		if (hasTemplate()) {
+			return (Template) resource;
+		}
+		return null;
+	}
+
+	/**
+	 * Returns true if this event is associated with a Template.
+	 * @return boolean
+	 */
+	public boolean hasTemplate() {
+		return resource != null && resource instanceof Template;
 	}
 	
 	/**
@@ -246,9 +277,10 @@ public class Event extends AbstractResource {
 	@Override
 	public String toString() {
 		String retStr = super.toString();
-		if (hasSignatureRequest()) {
-			retStr += "\nEvent signature request:\n";
-			retStr += request.toString();
+		if (resource != null) {
+			String className = resource.getClass().getName();
+			retStr += "\nAssociated " + className + ":\n";
+			retStr += resource.toString();
 		}
 		return retStr;
 	}

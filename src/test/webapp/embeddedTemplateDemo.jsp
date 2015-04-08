@@ -1,3 +1,5 @@
+<%@page import="java.io.Serializable"%>
+<%@page import="com.hellosign.sdk.resource.TemplateSignatureRequest"%>
 <%@page import="com.hellosign.sdk.resource.TemplateDraft"%>
 <%@page import="com.hellosign.sdk.HelloSignException"%>
 <%@page import="com.hellosign.sdk.HelloSignClient"%>
@@ -19,143 +21,111 @@
 
 <%
 
-
-
-	// Load authentication properties
-	Properties properties = new Properties();
-	properties.load(getServletContext().getResourceAsStream("/WEB-INF/web.properties"));
-	String apiKey = properties.getProperty("hellosign.api.key");
-	String clientId = properties.getProperty("client.id");
-	String requestUrl = "";
-	String errorMessage = null;
+    // Load authentication properties
+    Properties properties = new Properties();
+    properties.load(getServletContext().getResourceAsStream("/WEB-INF/web.properties"));
+    String apiKey = properties.getProperty("hellosign.api.key");
+    String clientId = properties.getProperty("client.id");
+    String editUrl = "";
+    String templateId = "";
+    String errorMessage = null;
     String env = System.getProperty("hellosign.env");
     boolean isLocalDev = "dev".equalsIgnoreCase(env);
     boolean isStaging = "staging".equalsIgnoreCase(env);
 
-	if (ServletFileUpload.isMultipartContent(request)) {
+    if (ServletFileUpload.isMultipartContent(request)) {
 
-	    List<File> files = new ArrayList<File>();
-	    Map<Integer, Signer> signers = new HashMap<Integer, Signer>();
-	    String myEmail = null;
-	    String myName = null;
-	    String subject = null;
-	    String message = null;
+        List<File> files = new ArrayList<File>();
+        List<String> signerRoles = new ArrayList<String>();
+        List<String> ccRoles = new ArrayList<String>();
+        String subject = null;
+        String message = null;
+        boolean isOrdered = false;
 
-    	try {
-	        // Process the files uploaded by the user
-	        List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-	        for (FileItem item : items) {
-	            if (item.isFormField()) {
-	                String fieldName = item.getFieldName();
-	                String value = item.getString();
-	                System.out.println("item.getFieldName() = " + fieldName);
-	                System.out.println("item.getString() = " + value);
-	                if (value == null || value.equals("") || fieldName == null || fieldName.equals("")) {
-	                    continue;
-	                }
-	                if (fieldName.startsWith("signer")) {
-	                    int i = Integer.valueOf(fieldName.substring(6, 7)) - 1;
-	                    Signer s;
-	                    if (!signers.containsKey(i)) {
-	                        s = new Signer();
-	                        signers.put(i, s);
-	                    } else {
-	                        s = signers.get(i);
-	                    }
-	                    String type = fieldName.substring(8, fieldName.length());
-	                    if ("name".equals(type)) {
-	                        s.setNameOrRole(value);
-	                    } else if ("email".equals(type)) {
-	                        s.setEmail(value);
-	                    }
-	                } else if ("yourName".equals(fieldName)) {
-	                    myName = value;
-	                } else if ("yourEmail".equals(fieldName)) {
-	                    myEmail = value;
-	                } else if ("subject".equals(fieldName)) {
-	                    subject = value;
-	                } else if ("message".equals(fieldName)) {
-	                    message = value;
-	                }
-	            } else {
-	                String filename = FilenameUtils.getName(item.getName());
-	                if (filename == null || filename.equals("")) {
-	                    continue;
-	                }
-	                String prefix = filename.substring(0, filename.indexOf("."));
-	                String suffix = filename.substring(filename.indexOf("."), filename.length());
-	                File outfile = File.createTempFile(prefix, suffix);
-	                item.write(outfile);
-	                System.out.println("Saved upload to: " + outfile.getAbsolutePath());
-	                files.add(outfile);
-	            }
-	        }
-	    } catch (Exception e) {
-	    	errorMessage = e.getMessage();
-	        e.printStackTrace();
-	    }
-	    if (files.size() > 0) {
-	        try {
-	        	TemplateDraft draft = new TemplateDraft();
-	        	draft.setTestMode(true);
-	        	
-	        	if (subject != null) {
-	        		draft.setSubject(subject);
-	        	}
-	        	if (message != null) {
-	        		draft.setMessage(message);
-	        	}
-
-	        	for (File file : files) {
-	        		draft.addFile(file);
-	        	}
-	        	
-	        	
-	        	
-
-//	        	// Create a signature request
-//	            SignatureRequest sigReq = new SignatureRequest();
-//	            sigReq.setTestMode(true);
-//	            if (subject != null) {
-//	            	sigReq.setSubject(subject);
-//	            }
-//	            if (message != null) {
-//	            	sigReq.setMessage(message);
-//	            }
-//	            if (signers.size() > 0) {
-//		            for (Integer key : signers.keySet()) {
-//		                Signer s = signers.get(key);
-//		                sigReq.addSigner(s.getEmail(), s.getNameOrRole());
-//		            }
-//		        }
-//	            for (File file : files) {
-//	                sigReq.addFile(file);
-//	            }
-//
-//	            // Create an unclaimed draft from the request
-//				UnclaimedDraft draft = new UnclaimedDraft(sigReq, UnclaimedDraftType.request_signature);
-//				draft.setIsForEmbeddedSigning(false);
-//                if (myEmail != null) {
-//                    draft.setRequesterEmail(myEmail);
-//                }
-//
-//                // Make this an embedded unclaimed draft
-//                EmbeddedRequest embed = new EmbeddedRequest(clientId, draft);
-//
-//	            // Send it to HelloSign
-//	            HelloSignClient client = new HelloSignClient(apiKey);
-//	            UnclaimedDraft responseDraft = (UnclaimedDraft) client.createEmbeddedRequest(embed);
-//
-//	         	// Retrieve the embedded signing URL from the response
-//	            requestUrl = responseDraft.getClaimUrl();
-//                System.out.println("CHRIS: " + responseDraft.getSignatureRequestId());
-
-	        } catch (HelloSignException ex) {
-	        	errorMessage = ex.getMessage();
-	            ex.printStackTrace();
-	        }
-	    }
-	}
+        try {
+            // Process the files uploaded by the user
+            List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+            for (FileItem item : items) {
+                if (item.isFormField()) {
+                    String fieldName = item.getFieldName();
+                    String value = item.getString();
+                    System.out.println("item.getFieldName() = " + fieldName);
+                    System.out.println("item.getString() = " + value);
+                    if (value == null || value.equals("") || fieldName == null || fieldName.equals("")) {
+                        continue;
+                    }
+                    if (fieldName.startsWith("signerRoleOrdered")) {
+                        if ("on".equals(value)) {
+                            isOrdered = true;
+                        }
+                    } else if (fieldName.startsWith("signerRole")) {
+                        int i = Integer.valueOf(fieldName.substring(10, 11)) - 1;
+                        signerRoles.add(i, value);
+                    } else if (fieldName.startsWith("ccRole")) {
+                        int i = Integer.valueOf(fieldName.substring(6, 7)) - 1;
+                        ccRoles.add(i, value);
+                    } else if ("subject".equals(fieldName)) {
+                        subject = value;
+                    } else if ("message".equals(fieldName)) {
+                        message = value;
+                    }
+                } else {
+                    String filename = FilenameUtils.getName(item.getName());
+                    if (filename == null || filename.equals("")) {
+                        continue;
+                    }
+                    String prefix = filename.substring(0, filename.indexOf("."));
+                    String suffix = filename.substring(filename.indexOf("."), filename.length());
+                    while (prefix.length() < 3) {
+                        prefix += '_';
+                    }
+                    File outfile = File.createTempFile(prefix, suffix);
+                    item.write(outfile);
+                    System.out.println("Saved upload to: " + outfile.getAbsolutePath());
+                    files.add(outfile);
+                }
+            }
+        } catch (Exception e) {
+            errorMessage = e.getMessage();
+            e.printStackTrace();
+        }
+        if (files.size() > 0) {
+            try {
+                // Create a template draft
+                TemplateDraft draft = new TemplateDraft();
+                draft.setTestMode(true);
+                for (File file : files) {
+                    draft.addFile(file);
+                }
+                draft.setOrderMatters(isOrdered);
+                for (int i = 0; i < signerRoles.size(); i++) {
+                    String signerRole = signerRoles.get(i);
+                    draft.addSignerRole(signerRole, i + 1);
+                }
+                for (String cc : ccRoles) {
+                    draft.addCCRole(cc);
+                }
+                if (!"".equals(subject)) {
+                    draft.setTitle(subject);
+                }
+                if (!"".equals(message)) {
+                    draft.setMessage(message);
+                }
+                EmbeddedRequest req = new EmbeddedRequest(clientId, draft);
+                Map<String, Serializable> postFields = req.getPostFields();
+                for (String key : postFields.keySet()) {
+                    Serializable value = postFields.get(key);
+                    System.out.println(key + " = " + value.toString());
+                }
+                HelloSignClient client = new HelloSignClient(apiKey);
+                TemplateDraft embeddedDraft = client.createEmbeddedTemplateDraft(req);
+                editUrl = embeddedDraft.getEditUrl();
+            } catch (HelloSignException ex) {
+                errorMessage = ex.getMessage();
+                ex.printStackTrace();
+            }
+        }
+    }
 %>
 <html>
     <head>
@@ -204,14 +174,14 @@
                 return false;
             }
             function removeSignerRole(signerNumber) {
-                var el = $("#signerRoleDiv_" + fileNumber);
+                var el = $("#signerRoleDiv_" + signerNumber);
                 if (el) {
                     el.remove();
                 }
                 return false;
             }
             function removeCCRole(ccNumber) {
-                var el = $("#ccRoleDiv_" + fileNumber);
+                var el = $("#ccRoleDiv_" + ccNumber);
                 if (el) {
                     el.remove();
                 }
@@ -219,7 +189,10 @@
             }
             $(document).ready(function(){
                 initEmbeddedDemo();
-                $("#startButton").hide();
+                $('#toggleOptionalFields').click(function(e) {
+                    $('#optionalFields').toggle();
+                    return false;
+                });
                 $("#addFile").click(function(e) {
                     fileCount++;
                     $("#files").append('<div id="fileDiv_' + fileCount + '"><input id="file_' + fileCount + '" type="file" name="file_' + fileCount + '" />&nbsp;<button onclick="removeFile(' + fileCount + '); return false;">X</button></div>');
@@ -236,10 +209,11 @@
                     return false;
                 });
                 $("#file_1").change(function(e) {
-                	$("#startButton").show();
+                    $("#startButton").show();
                 });
-<% if (requestUrl != "") { %>
-                console.log("Claim URL: <%= requestUrl %>");
+<% if (editUrl != "") { %>
+                $("#startButton").hide();
+                console.log("Edit URL: <%= editUrl %>");
                 // Initialize HelloSign with the client ID
                 HelloSign.init("<%= clientId %>");
 
@@ -247,23 +221,17 @@
                     console.log("OPEN");
                     // Open the iFrame dialog for embedded signing
                     HelloSign.open({
-                        url: "<%= requestUrl %>",
+                        url: "<%= editUrl %>",
                         debug: true,
                         allowCancel: true,
                         skipDomainVerification: true,
                         messageListener: function(eventData) {
                             console.log("Event received:");
                             console.log(eventData);
-//                            var msg;
-//                            if (eventData.event == HelloSign.EVENT_SENT) {
-//                                msg = "Request Sent! Your recipient will receive an email with a link to the document signature page on HelloSign.com.";
-//                            } else if (eventData.event == HelloSign.EVENT_CANCELED) {
-//                                msg = "Request Cancelled";
-//                            } else {
-//                                msg = eventData.event;
-//                            }
-//                            $("#demoForm").html(msg + "<br /><a href=\"/embeddedRequestingDemo.jsp\">Try it again</a>");
-//                            setTimeout(openHS, 5000);
+                            if (eventData.event == HelloSign.EVENT_TEMPLATE_CREATED) {
+                                $('#demoForm').empty().append('<p>Your template is being created!</p>')
+                                   .append('<p>Head over to the <a href="/embeddedTemplateSigningDemo.jsp">Embedded Template Signing Demo</a> to try it out.</p>');
+                            }
                         }
                     });
                 }
@@ -272,7 +240,7 @@
             });
         </script>
     </head>
-    <body class="api documentation logged-out " id="hs">
+    <body class="api documentation logged-out" id="hs">
         <div id="wrap">
             <div id="container">
                  <div id="header">
@@ -285,7 +253,7 @@
                      <a id="signinButton" class="signin blue-sub" href="https://www.hellosign.com/account/logIn">Sign in</a>
                  </div>
                 <div id="main-content">
-                	<div class="sub-nav"><a href="/">Index</a> <span class="rsaquo">&rsaquo;</span> Embedded Template Demo</div>
+                    <div class="sub-nav"><a href="/">Index</a> <span class="rsaquo">&rsaquo;</span> Embedded Template Demo</div>
                     <h2 class="page-title default headline">Embedded Template Demo</h2>
                     <div class="embeddedSigning bs_container">
                         <p class="intro">
@@ -301,13 +269,13 @@
                                     <li><b>3.</b>&nbsp;Set the API key and Client ID in the properties file:<br /><pre class="code-render prettyprint">hellosign-java-sdk/src/main/webapp/WEB-INF/web.properties</pre></li>
                                 </ul>
                                 <br />
-                                <form action="/embeddedRequestingDemo.jsp" method="post" enctype="multipart/form-data">
+                                <form action="/embeddedTemplateDemo.jsp" method="post" enctype="multipart/form-data">
                                     <h2>Try It Out</h2>
 <% if (errorMessage != null) { %>
                                     <div id="message"><%= errorMessage %></div>
 <% } %>
                                     <div id="demoForm">
-                                        <h3>What needs to be signed?</h3>
+                                        <h3>Upload documents for the template:</h3>
                                         <div id="fileContainer">
                                             <div id="files" >
                                                 <input id="file_1" type="file" name="file_1" />
@@ -315,34 +283,39 @@
                                             <button id="addFile">Add File</button>
                                         </div>
                                         <br />
-                                        <h3>Who are you?</h3>
-                                        <input type="text" name="yourName" placeholder="Your name" /> <input type="text" name="yourEmail" placeholder="Your email" />
+                                        <hr />
                                         <br />
                                         <br />
-                                        <p><em>The information below is optional. If you leave these fields blank, HelloSign will prompt for any missing information.</em></p>
+                                        <button id="toggleOptionalFields">Toggle optional parameters</button>
                                         <br />
-                                        <h3>What roles will be represented by this template?</h3>
-                                        <div id="signerRoleContainer">
-                                            <div id="signerRoles">
-                                                <input type="text" name="signerRole1" placeholder="Signer role" />
+                                        <div id="optionalFields" style="display:none;">
+                                            <br />
+                                            <h3>What roles will be represented by this template?</h3>
+                                            <div id="signerRoleContainer">
+                                                <div id="signerRoles">
+                                                    <input type="text" name="signerRole1" placeholder="Signer role" />
+                                                </div>
+                                                <br />
+                                                <button id="addSignerRole">Add Signer Role</button>
                                             </div>
-                                            <button id="addSignerRole">Add Signer Role</button>
-                                        </div>
-                                        <div id="signerRoleOrderContainer">
-                                            <label for="signerRoleOrdered">Signer Roles Ordered?</label><input type="checkmark" name="signerRoleOrdered" />
-                                        </div>
-                                        <br />
-                                        <h3>Any CC roles?</h3>
-                                        <div id="ccRoleContainer">
-                                            <div id="ccRoles">
-                                                <input type="text" name="ccRole1" placeholder="CC role" />
+                                            <br />
+                                            <div id="signerRoleOrderContainer">
+                                                <input type="checkbox" name="signerRoleOrdered" /><label for="signerRoleOrdered">Signer Roles Ordered?</label>
                                             </div>
-                                            <button id="addCCRole">Add CC Role</button>
+                                            <br />
+                                            <h3>Any CC roles?</h3>
+                                            <div id="ccRoleContainer">
+                                                <div id="ccRoles">
+                                                    <input type="text" name="ccRole1" placeholder="CC role" />
+                                                </div>
+                                                <br />
+                                                <button id="addCCRole">Add CC Role</button>
+                                            </div>
+                                            <br />
+                                            <h3>Anything else?</h3>
+                                            <input type="text" name="subject" placeholder="Subject (optional)" /><br /><br />
+                                            <input type="text" name="message" placeholder="Message (optional)" style="width:400px; height: 100px;" />
                                         </div>
-                                        <br />
-                                        <h3>Anything else?</h3>
-                                        <input type="text" name="subject" placeholder="Subject (optional)" /><br /><br />
-                                        <input type="text" name="message" placeholder="Message (optional)" style="width:400px; height: 100px;" />
                                     </div>
                                     <br />
                                     <input class="btn blue-sub" id="startButton" type="submit" value="Upload and Launch Demo" />

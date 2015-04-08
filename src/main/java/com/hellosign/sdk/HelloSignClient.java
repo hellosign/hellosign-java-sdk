@@ -190,7 +190,7 @@ public class HelloSignClient {
     	URL_SIGNATURE_REQUEST_EMBEDDED = URL_SIGNATURE_REQUEST + "/create_embedded";
     	URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE = URL_SIGNATURE_REQUEST + "/create_embedded_with_template";
     	URL_EMBEDDED_SIGN_URL = URL_API + "/embedded/sign_url";
-    	URL_EMBEDDED_SIGN_URL = URL_API + "/embedded/edit_url";
+    	URL_EMBEDDED_EDIT_URL = URL_API + "/embedded/edit_url";
     	URL_UNCLAIMED_DRAFT_CREATE = URL_API + "/unclaimed_draft/create";
     	URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED = URL_API + "/unclaimed_draft/create_embedded";
     	URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE = URL_API + "/unclaimed_draft/create_embedded_with_template";
@@ -597,6 +597,17 @@ public class HelloSignClient {
 		JSONObject json = request.getJsonResponse();
 		return new Template(json);
 	}
+
+	public boolean deleteTemplate(String templateId) 
+			throws HelloSignException {
+		String url = this.URL_TEMPLATE_DELETE + "/" + templateId;
+		HttpPostRequest request = new HttpPostRequest(url, auth);
+		int response = request.getHttpResponseCode();
+		if (response == 200) {
+			return true;
+		}
+		throw new HelloSignException("Unable to delete template with ID " + templateId + ". Server returned: " + response);
+	}
 	
 	/**
 	 * Adds the provided user to the template indicated by the provided template ID. 
@@ -719,10 +730,15 @@ public class HelloSignClient {
 			throws HelloSignException {
 		String url = URL_SIGNATURE_REQUEST_EMBEDDED;
 		Class<?> returnType = SignatureRequest.class;
-		if (embeddedReq.getRequest() instanceof TemplateSignatureRequest) {
+		AbstractRequest req = embeddedReq.getRequest();
+		if (req instanceof TemplateSignatureRequest) {
 			url = URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE;
-		} else if (embeddedReq.getRequest() instanceof UnclaimedDraft) {
-			url = URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED;
+		} else if (req instanceof UnclaimedDraft) {
+			if (((UnclaimedDraft) req).getRequest() instanceof TemplateSignatureRequest) {
+				url = URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE;
+			} else {
+				url = URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED;
+			}
 			returnType = UnclaimedDraft.class;
 		}
 		HttpPostRequest request = new HttpPostRequest(url, embeddedReq.getPostFields(), auth);
@@ -734,7 +750,7 @@ public class HelloSignClient {
 			throw new HelloSignException(ex);
 		}
 	}
-	
+
 	/**
 	 * Retrieves the necessary information to build an embedded signature
 	 * request. 
@@ -745,6 +761,20 @@ public class HelloSignClient {
 	public EmbeddedResponse getEmbeddedSignUrl(String signatureId) 
 			throws HelloSignException {
 		String url = URL_EMBEDDED_SIGN_URL + "/" + signatureId;
+		HttpPostRequest request = new HttpPostRequest(url, auth);
+		JSONObject json = request.getJsonResponse();
+		return new EmbeddedResponse(json);
+	}
+
+	/**
+	 * Retrieves the necessary information to edit an embedded template.
+	 * @param signatureId String ID of the signature request to embed
+	 * @return EmbeddedResponse
+	 * @throws HelloSignException
+	 */
+	public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId) 
+			throws HelloSignException {
+		String url = this.URL_EMBEDDED_EDIT_URL + "/" + templateId;
 		HttpPostRequest request = new HttpPostRequest(url, auth);
 		JSONObject json = request.getJsonResponse();
 		return new EmbeddedResponse(json);

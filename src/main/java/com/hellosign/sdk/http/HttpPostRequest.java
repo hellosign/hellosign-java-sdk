@@ -160,6 +160,9 @@ public class HttpPostRequest extends AbstractHttpRequest {
 		connection.setDoOutput(true); // sets POST method
 		connection.setRequestProperty("user-agent", USER_AGENT);
 		connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
+		if (auth == null) {
+			logger.debug("CHRIS I'M NULL!");
+		}
 		auth.authenticate(connection, url);
 		StringBuffer sb = new StringBuffer();
 		if (fields != null) {

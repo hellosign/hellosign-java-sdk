@@ -41,8 +41,7 @@ import com.hellosign.sdk.resource.support.TemplateRole;
  */
 public class Template extends AbstractResource {
 	
-	private static final String TEMPLATE_KEY = "template";
-	
+	public static final String TEMPLATE_KEY = "template";
 	public static final String TEMPLATE_ID = "template_id";
 	public static final String TEMPLATE_TITLE = "title";
 	public static final String TEMPLATE_MESSAGE = "message";

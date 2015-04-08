@@ -24,11 +24,9 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,11 +35,6 @@ import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.Document;
-import com.hellosign.sdk.resource.support.FormField;
-import com.hellosign.sdk.resource.support.Metadata;
-import com.hellosign.sdk.resource.support.ResponseData;
-import com.hellosign.sdk.resource.support.Signature;
-import com.hellosign.sdk.resource.support.Signer;
 import com.hellosign.sdk.resource.support.types.FieldType;
 
 /**
@@ -270,12 +263,16 @@ public class TemplateDraft extends AbstractRequest {
 			}
 
 			Map<String, FieldType> mergeFields = getMergeFields();
-			int i = 0;
-			for (String key : mergeFields.keySet()) {
-				fields.put("merge_fields[" + i + "][name]", key);
-				FieldType type = mergeFields.get(key);
-				fields.put("merge_fields[" + i + "][type]", type.toString());
-				i++;
+			if (mergeFields.size() > 0) {
+				JSONArray mergeFieldArray = new JSONArray();
+				for (String key : mergeFields.keySet()) {
+					FieldType type = mergeFields.get(key);
+					JSONObject mergeFieldObj = new JSONObject();
+					mergeFieldObj.put("name", key);
+					mergeFieldObj.put("type", type.toString());
+					mergeFieldArray.put(mergeFieldObj);
+				}
+				fields.put("merge_fields", mergeFieldArray.toString());
 			}
 
 			if (isTestMode()) {
