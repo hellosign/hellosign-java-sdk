@@ -49,9 +49,11 @@ body {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
-.jumbotron .btn {
+/* .jumbotron .btn {
   padding: 14px 24px;
   font-size: 21px;
+} */
+.btn-lg {
   width: 100%;
 }
 
@@ -110,4 +112,19 @@ fieldset {
 
 .error-message {
 	color: red;
+}
+input[type="file"] {
+	width: auto;
+	margin: 0;
+	display: inline;
+}
+.field-container {
+    padding: 2% 5%;
+}
+.field-container input {
+	padding: 2% 0;
+}
+.field-container .btn {
+	display: inline-block;
+	margin-top: 0px;
 }

@@ -3,8 +3,7 @@
 	boolean isLocalDev = "dev".equalsIgnoreCase(env);
 	boolean isStaging = "staging".equalsIgnoreCase(env);
 %>
-                        <input class="btn btn-lg btn-primary" id="startButton"
-                            type="submit" value="Launch Demo" />
+                        <input class="btn btn-lg btn-primary" id="startButton" type="submit" value="Launch Demo" />
                     </form>
                 </div>
             </div>
