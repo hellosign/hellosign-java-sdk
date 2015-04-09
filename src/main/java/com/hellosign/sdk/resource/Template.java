@@ -52,6 +52,7 @@ public class Template extends AbstractResource {
 	public static final String TEMPLATE_CAN_EDIT = "can_edit";
 	public static final String TEMPLATE_IS_CREATOR = "is_creator";
 	public static final String TEMPLATE_CUSTOM_FIELDS = "custom_fields";
+	public static final String TEMPLATE_IS_EMBEDDED = "is_embedded";
 	
 	public Template() {
 		super();
@@ -114,5 +115,14 @@ public class Template extends AbstractResource {
 	}
 	public List<CustomField> getCustomFields() {
 		return getList(CustomField.class, TEMPLATE_CUSTOM_FIELDS);
+	}
+
+	/**
+	 * Returns true if this template was created on a site other than
+	 * hellosign.com.
+	 * @return boolean
+	 */
+	public boolean isEmbedded() {
+	    return getBoolean(TEMPLATE_IS_EMBEDDED);
 	}
 }
