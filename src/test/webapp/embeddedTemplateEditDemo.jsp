@@ -130,26 +130,22 @@ if (ServletFileUpload.isMultipartContent(request)) {
         HelloSign.init("<%= clientId %>");
 
         // Open the iFrame dialog for embedded signing
-        var openHS = function() {
-            HelloSign.open({
-	            url: "<%= editUrl %>",
-	            debug: true,
-	            allowCancel: true,
-	            skipDomainVerification: true,
-	            messageListener: function(eventData) {
-	                console.log("Event received: " + eventData);
-	                var msg;
-	                if (eventData.event == HelloSign.EVENT_TEMPLATE_CREATED) {
-	                    msg = "Success!";
-	                } else {
-	                    msg = eventData.event;
-	                }
-	                $("#demoContainer").html("<h3>" + msg + "</h3><a class=\"btn btn-lg btn-success\" href=\"/embeddedTemplateEditDemo.jsp\">Try it again</a>");
-	                setTimeout(openHS, 1000);
-	            }
-	        });
-        }
-        openHS();
+           HelloSign.open({
+            url: "<%= editUrl %>",
+            debug: true,
+            allowCancel: true,
+            skipDomainVerification: true,
+            messageListener: function(eventData) {
+                console.log("Event received: " + eventData);
+                var msg;
+                if (eventData.event == HelloSign.EVENT_TEMPLATE_CREATED) {
+                    msg = "Success!";
+                } else {
+                    msg = eventData.event;
+                }
+                $("#demoContainer").html("<h3>" + msg + "</h3><a class=\"btn btn-lg btn-success\" href=\"/embeddedTemplateEditDemo.jsp\">Try it again</a>");
+            }
+        });
 <% } %>
     });
 </script>
