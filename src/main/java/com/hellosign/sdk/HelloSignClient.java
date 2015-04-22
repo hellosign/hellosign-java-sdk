@@ -295,6 +295,18 @@ public class HelloSignClient {
 		return new Account(json);
 	}
 	
+    /**
+     * Creates a new HelloSign account. The user will still need to validate their email address
+     * to complete the creation process to set a password. Note: This request does not require
+     * authentication, so just performs the basic POST.
+     * @param email String New user's email address
+     * @return Account New user's account information
+     * @throws HelloSignException
+     */
+	public Account createAccount(String email) throws HelloSignException {
+	    return createAccount(email, null, null);
+	}
+
 	/**
 	 * Creates a new HelloSign account. The user will still need to validate their email address
 	 * to complete the creation process.
@@ -305,31 +317,57 @@ public class HelloSignClient {
 	 * @param password String New user's password
 	 * @return Account New user's account information
 	 * @throws HelloSignException
+	 * @deprecated as of 3.1.1, replaced by {@link #createAccount(String)}
 	 */
 	public Account createAccount(String email, String password) throws HelloSignException {
 		return createAccount(email, password, null, null);
 	}
+
+   /**
+     * Creates a new HelloSign account and provides OAuth app credentials to automatically
+     * generate an OAuth token with the user Account response.
+     * @param email String New user's email address
+     * @param clientId String Client ID
+     * @param clientSecret String App secret
+     * @return Account New user's account information
+     * @throws HelloSignException
+     */
+    public Account createAccount(String email, String clientId, String clientSecret) throws HelloSignException {
+        Map<String, Serializable> fields = new HashMap<String, Serializable>();
+        fields.put(Account.ACCOUNT_EMAIL_ADDRESS, email);
+        if (clientId != null && clientSecret != null) {
+            fields.put(CLIENT_ID, clientId);
+            fields.put(CLIENT_SECRET, clientSecret);
+        }
+        HttpPostRequest request = new HttpPostRequest(URL_ACCOUNT_CREATE, 
+                fields, auth);
+        JSONObject json = request.getJsonResponse();
+        return new Account(json);
+    }
 	
 	/**
 	 * Creates a new HelloSign account and provides OAuth app credentials to automatically
 	 * generate an OAuth token with the user Account response.
 	 * @param email String New user's email address
-	 * @param password String New user's password
+	 * @param password String New user's password (NOTE: WILL BE IGNORED BY THE API)
 	 * @param clientId String Client ID
 	 * @param clientSecret String App secret
 	 * @return Account New user's account information
 	 * @throws HelloSignException
+	 * @deprecated as of 3.1.1, replaced by {@link #createAccount(String, String, String)}
 	 */
 	public Account createAccount(String email, String password, String clientId, String clientSecret) throws HelloSignException {
 		Map<String, Serializable> fields = new HashMap<String, Serializable>();
 		fields.put(Account.ACCOUNT_EMAIL_ADDRESS, email);
+
+		// Deprecated - we no longer allow setting a password when creating an account
 		fields.put(Account.ACCOUNT_PASSWORD, password);
+
 		if (clientId != null && clientSecret != null) {
 			fields.put(CLIENT_ID, clientId);
 			fields.put(CLIENT_SECRET, clientSecret);
 		}
-		HttpPostRequest request = new HttpPostRequest(URL_ACCOUNT_CREATE, 
-				fields, auth);
+		HttpPostRequest request = new HttpPostRequest(URL_ACCOUNT_CREATE, fields, auth);
 		JSONObject json = request.getJsonResponse();
 		return new Account(json);
 	}
