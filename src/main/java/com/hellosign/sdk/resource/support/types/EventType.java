@@ -31,8 +31,10 @@ public enum EventType {
 	signature_request_all_signed,
 	signature_request_invalid,
 	signature_request_remind,
+  account_confirmed,
 	template_created,
 	template_error,
 	file_error,
-	test
+	test,
+  unknown_error
 }
