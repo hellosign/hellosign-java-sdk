@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Warning;
 
 /**
  * A nice place to put code that is common to all HelloSign resource classes.
@@ -44,6 +45,7 @@ import com.hellosign.sdk.HelloSignException;
 public abstract class AbstractResource {
 	
 	protected JSONObject dataObj;
+	protected List<Warning> warnings = new ArrayList<Warning>();
 	
 	protected AbstractResource() {
 		dataObj = new JSONObject();
@@ -55,6 +57,12 @@ public abstract class AbstractResource {
 			dataObj = json;
 			if (json.has(optionalKey)) {
 				dataObj = json.getJSONObject(optionalKey);
+			}
+			if (json.has("warnings")) {
+			    JSONArray ws = json.getJSONArray("warnings");
+			    for (int i = 0; i < ws.length(); i++) {
+			        warnings.add(new Warning(ws.getJSONObject(i)));
+			    }
 			}
 		} catch (JSONException ex) {
 			throw new HelloSignException(ex);
@@ -280,5 +288,9 @@ public abstract class AbstractResource {
 			e.printStackTrace();
 		}
 		return retStr;
+	}
+
+	public List<Warning> getWarnings() {
+	    return warnings;
 	}
 }
