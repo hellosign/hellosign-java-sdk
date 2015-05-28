@@ -4,13 +4,32 @@ Use the HelloSign Java SDK to get your Java app connected to HelloSign's service
 
 ## Installing
 
-Download the HelloSign Java SDK JAR and include it in your project classpath. Alternatively, you can build the SDK yourself by forking this repository and use Maven to build it:
+The HelloSign Java SDK is built and deployed to the [Sonatype Nexus Maven repository](https://oss.sonatype.org/#nexus-search;quick~hellosign). To include it, add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>com.hellosign</groupId>
+  <artifactId>hellosign-java-sdk</artifactId>
+  <version>3.1.3</version>
+</dependency>
+```
+
+It is compiled with and targeted for Java 7 and depends on the [SL4J 1.7.5](http://www.slf4j.org/) and JSON v20090211 libraries. If your project does not already include these, you can use the JAR that includes these dependencies:
+
+```xml
+<dependency>
+  <groupId>com.hellosign</groupId>
+  <artifactId>hellosign-java-sdk</artifactId>
+  <version>3.1.3</version>
+  <classifier>jar-with-dependencies</classifier>
+</dependency>
+```
+
+Alternatively, you can build the JAR yourself:
 
     mvn clean package -DskipTests
 
-Locate the JAR file in the `target` directory and place it on your project classpath. 
-
-The SDK is built with Java 7 and depends on the SL4J 1.7.5 and JSON v20090211 libraries. If your project does not already include these, you can use the [JAR that includes these dependencies](https://github.com/HelloFax/hellosign-java-sdk/raw/v3/dist/hellosign-java-sdk-3.1.0-jar-with-dependencies.jar).
+Locate the JAR file in the `target` directory and place it on your project classpath.
 
 ## Usage
 
@@ -107,8 +126,8 @@ The [Event](src/main/java/com/hellosign/sdk/resource/Event.java) class simplifie
     ```
 
 1. Verify the server is accessible from your local machine by opening a web browser to http://localhost:8080.
-1. Configure the server so that it is accessible from HelloSign (i.e., the internet). 
-1. Set your HelloSign account's callback URL via the API, either with the `HelloSignClient.setCallbackUrl(String)` method or by executing a [curl](http://www.hellosign.com/api/gettingStarted#RetrievingSignedDocuments) request from the command line. The callback URL should be set to `http://[your_server]:8080/hello`, where "your_server" is the Internet-accessible IP or hostname of your server. 
+1. Configure the server so that it is accessible from HelloSign (i.e., the internet).
+1. Set your HelloSign account's callback URL via the API, either with the `HelloSignClient.setCallbackUrl(String)` method or by executing a [curl](http://www.hellosign.com/api/gettingStarted#RetrievingSignedDocuments) request from the command line. The callback URL should be set to `http://[your_server]:8080/hello`, where "your_server" is the Internet-accessible IP or hostname of your server.
 
 The HelloSign servers can POST events to the URL you provided and the server will log them to the console like so:
 
