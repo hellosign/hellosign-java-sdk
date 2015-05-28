@@ -29,7 +29,7 @@ if (request.getParameter("hideButton") == null) {
         if (isLocalDev) {
     %>
     <script type="text/javascript"
-        src="//www.my.hellosign.com/js/embedded.js"></script>
+        src="//www.dev-hellosign.com/js/embedded.js"></script>
     <%
         } else if (isStaging) {
     %>

@@ -126,13 +126,13 @@
                        // Note: This is currently set to query a local HelloSign development
                        // environment, so use this JSP more as an example for setting up
                        // your own OAuth solution. You would simply replace the
-                       // "www.my.hellosign.com" with "www.hellosign.com" for this to work.
+                       // "www.dev-hellosign.com" with "www.hellosign.com" for this to work.
                        // (Be sure to correctly configure your app's OAuth callback using
                        // the oauthDemoCallback.jsp as an example).
 
                        var win = window.open(
     <% if (isLocalDev) { %>
-                               "https://www.my.hellosign.com/webapp_dev.php/oauth/authorize?" +
+                               "https://www.dev-hellosign.com/webapp_dev.php/oauth/authorize?" +
     <% } else if (isStaging) { %>
                                "https://staging.hellosign.com/oauth/authorize?" +
     <% } else { %>

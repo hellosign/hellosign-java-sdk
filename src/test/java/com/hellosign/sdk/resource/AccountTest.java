@@ -63,9 +63,6 @@ public class AccountTest extends AbstractHelloSignTest {
 				Account account = client.createAccount(testEmail, testPassword);
 				assertNotNull(account);
 				assertTrue(account.hasId());
-				assertNotNull(account.getTemplatesLeft());
-				assertNull(account.getApiSignatureRequestsLeft()); // New accounts no longer have API sig request quotas
-				assertNotNull(account.getDocumentsLeft());
 			} catch (HelloSignException ex) {
 				fail(ex.getMessage());
 			}

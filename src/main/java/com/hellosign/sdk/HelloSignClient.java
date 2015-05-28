@@ -88,13 +88,13 @@ public class HelloSignClient {
     // We'll set this based on a system property "hellosign.env"
     private String URL_HELLOSIGN;
 	private static final String URL_HELLOSIGN_PRODUCTION = "https://api.hellosign.com";
-    private static final String URL_HELLOSIGN_DEV = "https://www.my.hellosign.com/apiapp_dev.php";
+    private static final String URL_HELLOSIGN_DEV = "https://www.dev-hellosign.com/apiapp_dev.php";
     private static final String URL_HELLOSIGN_STAGING = "https://staging.hellosign.com/apiapp_dev.php";
     
     // We'll set this based on the system property "hellosign.env"
     private String URL_OAUTH_TOKEN;
     private static final String URL_OAUTH_TOKEN_PRODUCTION = "https://www.hellosign.com/oauth/token";
-    private static final String URL_OAUTH_TOKEN_DEV = "https://www.my.hellosign.com/webapp_dev.php/oauth/token";
+    private static final String URL_OAUTH_TOKEN_DEV = "https://www.dev-hellosign.com/webapp_dev.php/oauth/token";
     private static final String URL_OAUTH_TOKEN_STAGING = "https://staging.hellosign.com/webapp_dev.php/oauth/token";
     
     private String URL_API;
