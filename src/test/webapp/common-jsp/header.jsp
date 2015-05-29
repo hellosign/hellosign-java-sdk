@@ -67,7 +67,7 @@
                                 <span class="caret"></span>
                         </a>
                             <ul class="dropdown-menu" role="menu">
-	                            <li><a href="/javadoc">JavaDoc</a></li>
+	                            <li><a href="http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk" target="_blank">JavaDoc</a></li>
 	                            <li><a href="https://www.hellosign.com/api/documentation"
 	                               target="_blank">API Doc</a></li>
                             </ul></li>
