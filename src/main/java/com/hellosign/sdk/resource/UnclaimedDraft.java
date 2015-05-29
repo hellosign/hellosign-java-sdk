@@ -238,8 +238,8 @@ public class UnclaimedDraft extends AbstractRequest {
 		if (hasHideTextTags()) {
 			map.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
 		}
-		if (hasUsePredefinedFields()) {
-		    map.put(REQUEST_USE_PREDEFINED_FIELDS, isUsingPredefinedFields());
+		if (hasUsePreexistingFields()) {
+		    map.put(REQUEST_USE_PREDEFINED_FIELDS, isUsingPreexistingFields());
 		}
 		return map;
 	}

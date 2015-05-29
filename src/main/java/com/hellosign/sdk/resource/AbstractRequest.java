@@ -53,7 +53,7 @@ public abstract class AbstractRequest extends AbstractResource {
 	public static final String REQUEST_REDIRECT_URL = "signing_redirect_url";
 	public static final String REQUEST_TEST_MODE = "test_mode";
 	public static final String REQUEST_USE_TEXT_TAGS = "use_text_tags";
-	public static final String REQUEST_USE_PREDEFINED_FIELDS = "use_predefined_fields";
+	public static final String REQUEST_USE_PREEXISTING_FIELDS = "use_preexisting_fields";
 	public static final String REQUEST_HIDE_TEXT_TAGS = "hide_text_tags";
 	public static final String REQUEST_METADATA = "metadata";
 
@@ -170,14 +170,14 @@ public abstract class AbstractRequest extends AbstractResource {
 	public void setHideTextTags(boolean hideTextTags) {
 		set(REQUEST_HIDE_TEXT_TAGS, hideTextTags);
 	}
-    public boolean hasUsePredefinedFields() {
-        return has(REQUEST_USE_PREDEFINED_FIELDS);
+    public boolean hasUsePreexistingFields() {
+        return has(REQUEST_USE_PREEXISTING_FIELDS);
     }
-    public Boolean isUsingPredefinedFields() {
-        return getBoolean(REQUEST_USE_PREDEFINED_FIELDS);
+    public Boolean isUsingPreexistingFields() {
+        return getBoolean(REQUEST_USE_PREEXISTING_FIELDS);
     }
-    public void setUsePredefinedFields(boolean usePredefinedFields) {
-        set(REQUEST_USE_PREDEFINED_FIELDS, usePredefinedFields);
+    public void setUsePreexistingFields(boolean usePreexistingFields) {
+        set(REQUEST_USE_PREEXISTING_FIELDS, usePreexistingFields);
     }
 	public Metadata getMetadata() {
 		return metadata;
