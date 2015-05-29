@@ -45,8 +45,6 @@ Or:
 HelloSignClient client = new HelloSignClient(emailAddress, password);
 ```
 
-You can additionally authenticate using an OAuth access token to perform requests on behalf of your users. See the [OAuth demonstration](#enabling-oauth) section below for more information.
-
 ### Creating a Signature Request
 ```java
 SignatureRequest request = new SignatureRequest();
@@ -112,8 +110,8 @@ if (response.isComplete()) {
 The complete JavaDoc is kindly hosted at [javadoc.io](http://www.javadoc.io/):
 http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk
 
-We've also built a sample J2EE application that demonstrates how to use the SDK for creating requests, working with embedded flows, and handling callback events:
-https://www.github.com/cmpaul/jellosign
+<!-- We've also built a sample J2EE application that demonstrates how to use the SDK for creating requests, working with embedded flows, and handling callback events:
+https://www.github.com/cmpaul/jellosign -->
 
 ## License
 
