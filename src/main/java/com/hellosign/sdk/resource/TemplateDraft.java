@@ -274,6 +274,10 @@ public class TemplateDraft extends AbstractRequest {
 				fields.put("merge_fields", mergeFieldArray.toString());
 			}
 
+			if (hasUsePreexistingFields()) {
+			    fields.put(REQUEST_USE_PREEXISTING_FIELDS, true);
+			}
+
 			if (isTestMode()) {
 				fields.put(REQUEST_TEST_MODE, true);	
 			}
