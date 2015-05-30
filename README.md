@@ -10,7 +10,7 @@ The HelloSign Java SDK is built and deployed to the [Sonatype Nexus Maven reposi
 <dependency>
   <groupId>com.hellosign</groupId>
   <artifactId>hellosign-java-sdk</artifactId>
-  <version>3.1.3</version>
+  <version>LATEST</version>
 </dependency>
 ```
 
@@ -20,7 +20,7 @@ It is compiled with and targeted for Java 7 and depends on the [SL4J 1.7.5](http
 <dependency>
   <groupId>com.hellosign</groupId>
   <artifactId>hellosign-java-sdk</artifactId>
-  <version>3.1.3</version>
+  <version>LATEST</version>
   <classifier>jar-with-dependencies</classifier>
 </dependency>
 ```
