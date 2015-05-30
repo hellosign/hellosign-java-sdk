@@ -1,29 +1,21 @@
 # HelloSign Java SDK
 
-Use the HelloSign Java SDK to get your Java app connected to HelloSign's services in minutes.
+Use the `hellosign-java-sdk` to get your Java app connected to HelloSign's API in minutes.
 
 ## Installing
 
-The HelloSign Java SDK is built and deployed to the [Sonatype Nexus Maven repository](https://oss.sonatype.org/#nexus-search;quick~hellosign). To include it, add the following dependency to your `pom.xml`:
+The SDK is built and deployed to the [Central Maven repository](http://search.maven.org/#browse%7C-564959052). Add it to your Maven project by including the following `<dependency>` in your `pom.xml`:
 
 ```xml
 <dependency>
   <groupId>com.hellosign</groupId>
   <artifactId>hellosign-java-sdk</artifactId>
-  <version>LATEST</version>
-</dependency>
-```
-
-It is compiled with and targeted for Java 7 and depends on the [SL4J 1.7.5](http://www.slf4j.org/) and JSON v20090211 libraries. If your project does not already include these, you can use the JAR that includes these dependencies:
-
-```xml
-<dependency>
-  <groupId>com.hellosign</groupId>
-  <artifactId>hellosign-java-sdk</artifactId>
-  <version>LATEST</version>
+  <version>RELEASE</version>
   <classifier>jar-with-dependencies</classifier>
 </dependency>
 ```
+
+> NOTE: It is compiled with and targeted for Java 7 and depends on the [SL4J 1.7.5](http://www.slf4j.org/) and JSON v20090211 libraries. If your project already includes these, use the JAR without dependencies by removing the `<classifier>` element in the example above.
 
 Alternatively, you can build the JAR yourself:
 
@@ -33,34 +25,28 @@ Locate the JAR file in the `target` directory and place it on your project class
 
 ## Usage
 
-All HelloSign API requests can be made using the `HelloSignClient`. This class must be initialized with your authentication details, such as an [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api) (preferred) or website credentials.
-
+All HelloSign API requests are made using the `HelloSignClient`. This class must be initialized with your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api).
 ```java
 HelloSignClient client = new HelloSignClient(apiKey);
 ```
+The following examples assume the client has been initialized this way.
 
-Or:
-
-```java
-HelloSignClient client = new HelloSignClient(emailAddress, password);
-```
-
-### Creating a Signature Request
+### Create a Signature Request
+Construct a `SignatureRequest` object and populate it with request details. When you provide this object to the `HelloSignClient.sendSignatureRequest()` method, an HTTP request will be made and the method will return a `SignatureRequest` object. Use this object to read details about the new signature request.
 ```java
 SignatureRequest request = new SignatureRequest();
-request.setTitle("NDA with Acme Co.");
-request.setSubject("The NDA we talked about");
-request.setMessage("Please sign this NDA and let's discuss.");
+request.setSubject("NDA");
+request.setMessage("Hi Jack, Please sign this NDA and let's discuss.");
 request.addSigner("jack@example.com", "Jack");
-request.addSigner("jill@example.com", "Jill");
-request.addCC("lawyer@hellosign.com");
 request.addFile(new File("nda.pdf"));
 
 SignatureRequest response = client.sendSignatureRequest(request);
+System.out.println(response.toString());
+// Prints the JSON response to the console
 ```
 
-### Retrieving a User's Templates
-The HelloSign API provides paged lists in response to requests for user templates and signature requests. These lists are represented as objects that can be iterated upon:
+### Retrieve Templates
+The HelloSign API provides paged lists of templates and signature requests (`client.getSignatureRequests()`). These lists are represented as objects that can be iterated upon:
 
 ```java
 TemplateList templateList = client.getTemplates();
@@ -73,23 +59,24 @@ The paged list can also be filtered by a particular parameter and value:
 
 ```java
 TemplateList templateList = client.getTemplates();
-List<Template> filteredList = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, "W-2 for 2014");
+List<Template> filteredList = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, "W-2 Template");
 for (Template template : filteredList) {
     System.out.println(template.getTitle());
 }
 ```
 
-### Creating a Signature Request from a Template
+### Create a Signature Request from a Template
+Using a `template` object retrieved from the API, create a signature request with it:
 ```java
 TemplateSignatureRequest request = new TemplateSignatureRequest();
 request.setTemplateId(template.getId());
-request.setSubject("Purchase Order");
-request.setMessage("Glad we could come to an agreement.");
 request.setSigner("Client", "george@example.com", "George");
 request.setCC("Accounting", "accounting@hellosign.com");
 request.addCustomFieldValue("Cost", "$20,000");
 
 SignatureRequest response = client.sendTemplateSignatureRequest(request);
+System.out.println(response.toString());
+// Prints the JSON response to the console
 ```
 
 ### Checking the Status of a Signature Request
