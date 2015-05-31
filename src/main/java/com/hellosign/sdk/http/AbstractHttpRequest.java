@@ -24,7 +24,10 @@ package com.hellosign.sdk.http;
  * SOFTWARE.
  */
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 import java.util.Scanner;
 
 import org.json.JSONException;
@@ -35,7 +38,27 @@ import com.hellosign.sdk.HelloSignException;
 public abstract class AbstractHttpRequest {
 	
 	public final static String DEFAULT_ENCODING = "UTF-8";
-	public final static String USER_AGENT = "HelloSign Java SDK";
+	public final static String USER_AGENT = createUserAgent();
+
+	private static String createUserAgent() {
+	    String filename = "config.properties";
+	    Properties props = new Properties();
+        InputStream is = AbstractHttpRequest.class.getClassLoader().getResourceAsStream(filename);
+        if (is != null) {
+            try {
+                props.load(is);
+            } catch (IOException e) {
+                throw new Error(e);
+            }
+        } else {
+            throw new Error(new FileNotFoundException("Could not find " + filename));
+        }
+        String version = props.getProperty("sdk.version");
+        if (version == null) {
+            version = "x.x.x";
+        }
+        return "hellosign-java-sdk/" + version;
+	}
 	
 	protected String url;
 	protected Authentication auth;
