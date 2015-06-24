@@ -123,6 +123,10 @@ public class Template extends AbstractResource {
 	 * @return boolean
 	 */
 	public boolean isEmbedded() {
-	    return getBoolean(TEMPLATE_IS_EMBEDDED);
+	    boolean isEmbedded = false;
+	    if (has(TEMPLATE_IS_EMBEDDED)) {
+	        isEmbedded = getBoolean(TEMPLATE_IS_EMBEDDED);
+	    }
+	    return isEmbedded;
 	}
 }

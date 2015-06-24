@@ -43,9 +43,6 @@ import com.hellosign.sdk.resource.support.Signer;
  */
 public class TemplateSignatureRequest extends AbstractRequest {
 
-	// Placing all "template_id" parameters in the new "template_ids[]"
-	// array parameter for now. May remove this at some point.
-	private static final String TEMPLATE_ID = "template_id";
 	private static final String TEMPLATE_IDS = "template_ids";
 	private static final String TEMPLATE_SIGNERS = "signers";
 	private static final String TEMPLATE_SIGNERS_EMAIL = "email_address";
