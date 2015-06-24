@@ -17,7 +17,7 @@ We're excited you're considering contributing to our project! Your patches are e
 * Check for unnecessary whitespace with `git diff --check` before committing.
 * Make sure your commit messages are in [the proper format](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 * Make sure you have added any necessary tests for your changes.
-* Run all unit tests, if available, to assure nothing else was accidentally broken.
+* Run all unit tests, if available, to ensure nothing else was accidentally broken.
 
 ### Making trivial changes
 
