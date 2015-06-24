@@ -6,7 +6,7 @@
   <groupId>com.hellosign</groupId>
   <artifactId>hellosign-java-sdk</artifactId>
   <packaging>jar</packaging>
-  <version>3.1.5</version>
+  <version>3.1.6</version>
   <name>HelloSign Java SDK</name>
   <url>https://github.com/HelloFax/hellosign-java-sdk</url>
   <properties>
@@ -189,8 +189,7 @@
       </plugin>
     </plugins>
   </reporting>
-  <description>Use the HelloSign Java SDK to get your Java app connected to
-    HelloSign's services in minutes.</description>
+  <description>Use the HelloSign Java SDK to get your Java app connected to HelloSign's services in minutes.</description>
   <organization>
     <name>HelloSign</name>
     <url>https://www.hellosign.com/</url>
