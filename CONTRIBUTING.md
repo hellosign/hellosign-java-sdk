@@ -30,7 +30,7 @@ always necessary to create a new issue ticket.
 * Submit a pull request to the repository in the HelloFax organization.
 * Update your issue ticket to mark that you have submitted code and are ready for it to be reviewed (Status: Ready for Merge).
   * Include a link to the pull request in the ticket.
-* The core team looks at Pull Requests on a regular basis.
+* The HelloSign dev team looks at Pull Requests on a regular basis.
 * After feedback has been given we expect responses within two weeks. After two
   weeks we may close the pull request if it isn't showing any activity.
 
