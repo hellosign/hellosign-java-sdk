@@ -6,4 +6,4 @@ web.properties
 .settings
 .project
 .classpath
-src/test/webapp/WEB-INF/web.properties
+src/test/webapp
