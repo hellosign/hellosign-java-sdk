@@ -40,4 +40,3 @@ always necessary to create a new issue ticket.
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
 * [HelloSign API documentation](https://www.hellosign.com/api/documentation)
 * [HelloSign API HipChat room](https://www.hipchat.com/gq4BMFKt1)
-* [HelloSign API support (email)](mailto:apisupport@hellosign.com)
