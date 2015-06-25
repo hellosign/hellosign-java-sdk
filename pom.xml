@@ -189,7 +189,7 @@
       </plugin>
     </plugins>
   </reporting>
-  <description>Use the HelloSign Java SDK to get your Java app connected to HelloSign's services in minutes.</description>
+  <description>Use the HelloSign Java SDK to connect your Java app to HelloSign's service in microseconds!</description>
   <organization>
     <name>HelloSign</name>
     <url>https://www.hellosign.com/</url>
