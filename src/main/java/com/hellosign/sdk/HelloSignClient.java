@@ -89,10 +89,13 @@ public class HelloSignClient {
 
     // The base URL can be overridden by setting the "hellosign.base.url"
     // system property.
-	private static final String URL_HELLOSIGN_PRODUCTION = "https://api.hellosign.com";
+	private static final String URL_API_BASE = "https://api.hellosign.com";
     
     private String URL_OAUTH_TOKEN;
-    private static final String URL_OAUTH_TOKEN_PRODUCTION = "/oauth/token";
+
+    // The base URL can be overridden by setting the "hellosign.oauth.base.url"
+    // system property.
+    private static final String URL_OAUTH_TOKEN_PRODUCTION = "https://www.hellosign.com/oauth/token";
     
     private String URL_API;
     private String URL_ACCOUNT;
@@ -146,12 +149,16 @@ public class HelloSignClient {
     private Authentication auth = new Authentication();
     
     private HelloSignClient() {
-    	URL_HELLOSIGN = URL_HELLOSIGN_PRODUCTION;
+    	URL_HELLOSIGN = URL_API_BASE;
     	String baseUrl = System.getProperty("hellosign.base.url");
-    	if (baseUrl != null && !"".equals(baseUrl)) {
+    	if (!baseUrl.isEmpty()) {
     		URL_HELLOSIGN = baseUrl;
     	}
-    	URL_OAUTH_TOKEN = URL_HELLOSIGN + URL_OAUTH_TOKEN_PRODUCTION;
+    	URL_OAUTH_TOKEN = URL_OAUTH_TOKEN_PRODUCTION;
+    	String customOauthToken = System.getProperty("hellosign.oauth.base.url");
+    	if (!customOauthToken.isEmpty()) {
+    	    URL_OAUTH_TOKEN = customOauthToken;
+    	}
     	String disableSslCheck = System.getProperty("hellosign.disable.ssl");
     	if ("true".equalsIgnoreCase(disableSslCheck)) {
     	    disableStrictSSL();

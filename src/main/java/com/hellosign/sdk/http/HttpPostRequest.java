@@ -107,16 +107,22 @@ public class HttpPostRequest extends AbstractHttpRequest {
 			int httpCode = connection.getResponseCode();
 			InputStream response = null;
 			if (httpCode == HttpURLConnection.HTTP_OK) {
+			    logger.debug("OK!");
 				response = connection.getInputStream();
 			} else {
+			    logger.error("Error! HTTP Code = " + httpCode);
 				response = connection.getErrorStream();
 			}
-			String responseStr = convertStreamToString(response);
-			logger.debug(responseStr);
-			json = new JSONObject(responseStr);
-			validate(json, httpCode);
-			logger.debug("Response:");
-			logger.debug(json.toString(2));
+			String responseStr = "";
+			if (response == null) {
+			    logger.error("Unable to parse JSON from empty response!");
+			} else {
+			    responseStr = convertStreamToString(response);
+			    logger.debug("String Response: " + responseStr);
+		        json = new JSONObject(responseStr);
+	            validate(json, httpCode);
+	            logger.debug("JSON Response: " + json.toString(2));
+			}
 		} catch (Exception e) {
 			throw new HelloSignException(e);
 		}
@@ -160,9 +166,6 @@ public class HttpPostRequest extends AbstractHttpRequest {
 		connection.setDoOutput(true); // sets POST method
 		connection.setRequestProperty("user-agent", USER_AGENT);
 		connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
-		if (auth == null) {
-			logger.debug("CHRIS I'M NULL!");
-		}
 		auth.authenticate(connection, url);
 		StringBuffer sb = new StringBuffer();
 		if (fields != null) {
