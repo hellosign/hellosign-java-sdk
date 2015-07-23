@@ -51,15 +51,15 @@ import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
  */
 public class UnclaimedDraftTest extends AbstractHelloSignTest {
 
-	private static final Logger logger = LoggerFactory.getLogger(UnclaimedDraftTest.class);
-	
-	@Test
-	public void testUnclaimedDraftCreate() throws Exception {
-	    UnclaimedDraft draft = new UnclaimedDraft();
-	    draft.addFile(getTestFile("nda.pdf"));
-	    draft.setMessage("Message!");
-	    draft.setSubject("Subject!");
-	    draft.setTitle("TITLE!");
-	    assertTrue(areFieldsEqual(getExpectedFields(), draft.getPostFields()));
-	}
+    private static final Logger logger = LoggerFactory.getLogger(UnclaimedDraftTest.class);
+
+    @Test
+    public void testUnclaimedDraftCreate() throws Exception {
+        UnclaimedDraft draft = new UnclaimedDraft();
+        draft.addFile(getTestFile("nda.pdf"));
+        draft.setMessage("Message!");
+        draft.setSubject("Subject!");
+        draft.setTitle("TITLE!");
+        assertTrue(areFieldsEqual(getExpectedFields(), draft.getPostFields()));
+    }
 }

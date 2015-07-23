@@ -36,8 +36,8 @@ import com.hellosign.sdk.resource.Template;
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class TemplateList extends AbstractResourceList<Template> {
-	
-	public TemplateList(JSONObject json) throws HelloSignException {
-		super(json, "templates");
-	}
+
+    public TemplateList(JSONObject json) throws HelloSignException {
+        super(json, "templates");
+    }
 }

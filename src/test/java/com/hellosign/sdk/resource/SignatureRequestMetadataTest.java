@@ -13,14 +13,14 @@ import com.hellosign.sdk.HelloSignException;
 
 public class SignatureRequestMetadataTest extends AbstractHelloSignTest {
 
-	@Test
-	public void test() throws HelloSignException {
-		JSONObject json = getExpectedJSONResponse();
-		SignatureRequest sr = new SignatureRequest(json);
-		assertEquals(sr.getMetadata("client_id"), "1234");
-		sr.addMetadata("new!", "Hello, world!");
-		Map<String, Serializable> fields = sr.getPostFields();
-		assertTrue(areFieldsEqual(getExpectedFields(), fields));
-	}
+    @Test
+    public void test() throws HelloSignException {
+        JSONObject json = getExpectedJSONResponse();
+        SignatureRequest sr = new SignatureRequest(json);
+        assertEquals(sr.getMetadata("client_id"), "1234");
+        sr.addMetadata("new!", "Hello, world!");
+        Map<String, Serializable> fields = sr.getPostFields();
+        assertTrue(areFieldsEqual(getExpectedFields(), fields));
+    }
 
 }

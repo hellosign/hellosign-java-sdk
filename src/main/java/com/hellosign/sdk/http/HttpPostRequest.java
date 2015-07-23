@@ -51,244 +51,244 @@ import com.hellosign.sdk.HelloSignException;
  * POST requests to a web server.
  */
 public class HttpPostRequest extends AbstractHttpRequest {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HttpPostRequest.class);
-	
-	private final String boundary;
-	private static final String LINE_FEED = "\r\n";
-	
-	private HttpURLConnection httpConn;
-	private OutputStream outputStream;
-	private PrintWriter writer;
-	
-	private Map<String, Serializable> fields = null;
-	
-	public HttpPostRequest(String url) 
-			throws HelloSignException {
-		this(url, null, null);
-	}
-	
-	public HttpPostRequest(String url, Authentication auth) 
-			throws HelloSignException {
-		this(url, null, auth);
-	}
-	
-	public HttpPostRequest(String url, Map<String, Serializable> fields) 
-			throws HelloSignException {
-		this(url, fields, null);
-	}
-	
-	public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth) 
-			throws HelloSignException {
-		if (url == null || "".equals(url)) {
-			throw new HelloSignException("URL cannot be null or empty");
-		}
-		this.url = url;
-		if (fields != null) {
-			this.fields = fields;
-		}
-		if (auth != null) {
-			this.auth = new Authentication(auth);
-		}
-		// creates a unique boundary based on time stamp
-		boundary = "===" + Long.toHexString(System.currentTimeMillis()) + "===";
-	}
 
-	/**
-	 * Performs a POST request to the given URL, using the authentication
-	 * details and POST fields provided.
-	 * @return JSONObject
-	 * @throws HelloSignException
-	 */
-	public JSONObject getJsonResponse() throws HelloSignException {
-		HttpURLConnection connection = post();
-		JSONObject json = null;
-		try {
-			int httpCode = connection.getResponseCode();
-			InputStream response = null;
-			if (httpCode == HttpURLConnection.HTTP_OK) {
-			    logger.debug("OK!");
-				response = connection.getInputStream();
-			} else {
-			    logger.error("Error! HTTP Code = " + httpCode);
-				response = connection.getErrorStream();
-			}
-			String responseStr = "";
-			if (response == null) {
-			    logger.error("Unable to parse JSON from empty response!");
-			} else {
-			    responseStr = convertStreamToString(response);
-			    logger.debug("String Response: " + responseStr);
-		        json = new JSONObject(responseStr);
-	            validate(json, httpCode);
-	            logger.debug("JSON Response: " + json.toString(2));
-			}
-		} catch (Exception e) {
-			throw new HelloSignException(e);
-		}
-		return json;
-	}
-	
-	/**
-	 * Performs a field-less POST request to the provided URL using basic auth and
-	 * returns the HTTP code.
-	 * @return int HTTP status code
-	 * @throws HelloSignException
-	 */
-	public int getHttpResponseCode() throws HelloSignException {
-		HttpURLConnection connection = post();
-		try {
-			return connection.getResponseCode();
-		} catch (Exception ex) {
-			throw new HelloSignException(ex.getMessage());
-		}
-	}
-	
-	private HttpURLConnection post() throws HelloSignException {
-		if (fields != null) {
-			for (String key : fields.keySet()) {
-				if (fields.get(key) instanceof File) {
-					return postWithFile();
-				}
-			}
-		}
-		return postQuery();
-	}
+    private static final Logger logger = LoggerFactory.getLogger(HttpPostRequest.class);
 
-	private HttpURLConnection postQuery() throws HelloSignException {
-		logger.debug("POST: " + url);
-		HttpURLConnection connection;
-		try {
-			connection = (HttpURLConnection) new URL(url).openConnection();
-		} catch (Exception e) {
-			throw new HelloSignException(e);
-		}
-		connection.setDoOutput(true); // sets POST method
-		connection.setRequestProperty("user-agent", USER_AGENT);
-		connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
-		auth.authenticate(connection, url);
-		StringBuffer sb = new StringBuffer();
-		if (fields != null) {
-			Iterator<String> keys = fields.keySet().iterator();
-			while (keys.hasNext()) {
-				String key = keys.next();
-				Serializable val = fields.get(key);
-				String value;
-				String encodedKey;
-				try {
-					value = URLEncoder.encode(val.toString(), DEFAULT_ENCODING);
-					encodedKey = URLEncoder.encode(key, DEFAULT_ENCODING);
-				} catch (UnsupportedEncodingException e) {
-					throw new HelloSignException(e);
-				}
-				logger.debug("\t" + key + " = " + val.toString());
-				sb.append(encodedKey + "=" + value);
-				if (keys.hasNext()) {
-					sb.append("&");
-				}
-			}
-		}
-		try {
-			OutputStream output = connection.getOutputStream();
-			try {
-			     output.write(sb.toString().getBytes(DEFAULT_ENCODING));
-			} finally {
-			     try { output.close(); } catch (IOException logOrIgnore) {}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			throw new HelloSignException(ex.getMessage());
-		}
-		return connection;
-	}
-	
-	private HttpURLConnection postWithFile() throws HelloSignException {
-		try {
-			openMultipartPostConnection();
-			if (fields != null) {
-				for (String key : fields.keySet()) {
-					Serializable val = fields.get(key);
-					if (val instanceof File) {
-						addFilePart(key, (File) val); 
-					} else {
-						addFormField(key, val.toString());
-					}
-				}
-			}
-			return finish();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			throw new HelloSignException(ex.getMessage());
-		}
-	}
+    private final String boundary;
+    private static final String LINE_FEED = "\r\n";
 
-	private void openMultipartPostConnection()
-			throws IOException {
-		URL url = new URL(this.url);
-		httpConn = (HttpURLConnection) url.openConnection();
-		httpConn.setUseCaches(false);
-		httpConn.setDoOutput(true); // indicates POST method
-		httpConn.setDoInput(true);
-		httpConn.setRequestProperty("Content-Type",
-				"multipart/form-data; boundary=" + boundary);
-		httpConn.setRequestProperty("User-Agent", USER_AGENT);
-		if (auth != null) {
-			auth.authenticate(httpConn, this.url);
-		}
-		outputStream = httpConn.getOutputStream();
-		writer = new PrintWriter(new OutputStreamWriter(outputStream, DEFAULT_ENCODING),
-				true);
-	}
+    private HttpURLConnection httpConn;
+    private OutputStream outputStream;
+    private PrintWriter writer;
 
-	private void addFormField(String name, String value) {
-		write("--" + boundary).write(LINE_FEED);
-		write("Content-Disposition: form-data; name=\"" + name + "\"")
-			.write(LINE_FEED);
-		write("Content-Type: text/plain; charset=" + DEFAULT_ENCODING)
-			.write(LINE_FEED);
-		write(LINE_FEED);
-		write(value).append(LINE_FEED);
-		writer.flush();
-	}
+    private Map<String, Serializable> fields = null;
 
-	private void addFilePart(String fieldName, File uploadFile)
-			throws IOException {
-		String fileName = uploadFile.getName();
-		write("--" + boundary).write(LINE_FEED);
-		write("Content-Disposition: form-data; name=\"" + fieldName
-				+ "\"; filename=\"" + fileName + "\"")
-				.write(LINE_FEED);
-		write("Content-Type: "
-				+ URLConnection.guessContentTypeFromName(fileName))
-				.write(LINE_FEED);
-		write("Content-Transfer-Encoding: binary").write(LINE_FEED);
-		write(LINE_FEED);
-		writer.flush();
+    public HttpPostRequest(String url) 
+            throws HelloSignException {
+        this(url, null, null);
+    }
 
-		FileInputStream inputStream = new FileInputStream(uploadFile);
-		byte[] buffer = new byte[4096];
-		int bytesRead = -1;
-		while ((bytesRead = inputStream.read(buffer)) != -1) {
-			outputStream.write(buffer, 0, bytesRead);
-			logger.debug("  " + bytesRead + " bytes written...");
-		}
-		outputStream.flush();
-		inputStream.close();
+    public HttpPostRequest(String url, Authentication auth) 
+            throws HelloSignException {
+        this(url, null, auth);
+    }
 
-		write(LINE_FEED);
-		writer.flush();
-	}
+    public HttpPostRequest(String url, Map<String, Serializable> fields) 
+            throws HelloSignException {
+        this(url, fields, null);
+    }
 
-	private HttpURLConnection finish() throws IOException {
-		writer.flush();
-		write("--" + boundary + "--").write(LINE_FEED);
-		writer.close();
-		return httpConn;
-	}
-	
-	private PrintWriter write(String str) {
-		logger.debug(str);
-		return writer.append(str);
-	}
-	
+    public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth) 
+            throws HelloSignException {
+        if (url == null || "".equals(url)) {
+            throw new HelloSignException("URL cannot be null or empty");
+        }
+        this.url = url;
+        if (fields != null) {
+            this.fields = fields;
+        }
+        if (auth != null) {
+            this.auth = new Authentication(auth);
+        }
+        // creates a unique boundary based on time stamp
+        boundary = "===" + Long.toHexString(System.currentTimeMillis()) + "===";
+    }
+
+    /**
+     * Performs a POST request to the given URL, using the authentication
+     * details and POST fields provided.
+     * @return JSONObject
+     * @throws HelloSignException
+     */
+    public JSONObject getJsonResponse() throws HelloSignException {
+        HttpURLConnection connection = post();
+        JSONObject json = null;
+        try {
+            int httpCode = connection.getResponseCode();
+            InputStream response = null;
+            if (httpCode == HttpURLConnection.HTTP_OK) {
+                logger.debug("OK!");
+                response = connection.getInputStream();
+            } else {
+                logger.error("Error! HTTP Code = " + httpCode);
+                response = connection.getErrorStream();
+            }
+            String responseStr = "";
+            if (response == null) {
+                logger.error("Unable to parse JSON from empty response!");
+            } else {
+                responseStr = convertStreamToString(response);
+                logger.debug("String Response: " + responseStr);
+                json = new JSONObject(responseStr);
+                validate(json, httpCode);
+                logger.debug("JSON Response: " + json.toString(2));
+            }
+        } catch (Exception e) {
+            throw new HelloSignException(e);
+        }
+        return json;
+    }
+
+    /**
+     * Performs a field-less POST request to the provided URL using basic auth and
+     * returns the HTTP code.
+     * @return int HTTP status code
+     * @throws HelloSignException
+     */
+    public int getHttpResponseCode() throws HelloSignException {
+        HttpURLConnection connection = post();
+        try {
+            return connection.getResponseCode();
+        } catch (Exception ex) {
+            throw new HelloSignException(ex.getMessage());
+        }
+    }
+
+    private HttpURLConnection post() throws HelloSignException {
+        if (fields != null) {
+            for (String key : fields.keySet()) {
+                if (fields.get(key) instanceof File) {
+                    return postWithFile();
+                }
+            }
+        }
+        return postQuery();
+    }
+
+    private HttpURLConnection postQuery() throws HelloSignException {
+        logger.debug("POST: " + url);
+        HttpURLConnection connection;
+        try {
+            connection = (HttpURLConnection) new URL(url).openConnection();
+        } catch (Exception e) {
+            throw new HelloSignException(e);
+        }
+        connection.setDoOutput(true); // sets POST method
+        connection.setRequestProperty("user-agent", USER_AGENT);
+        connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
+        auth.authenticate(connection, url);
+        StringBuffer sb = new StringBuffer();
+        if (fields != null) {
+            Iterator<String> keys = fields.keySet().iterator();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                Serializable val = fields.get(key);
+                String value;
+                String encodedKey;
+                try {
+                    value = URLEncoder.encode(val.toString(), DEFAULT_ENCODING);
+                    encodedKey = URLEncoder.encode(key, DEFAULT_ENCODING);
+                } catch (UnsupportedEncodingException e) {
+                    throw new HelloSignException(e);
+                }
+                logger.debug("\t" + key + " = " + val.toString());
+                sb.append(encodedKey + "=" + value);
+                if (keys.hasNext()) {
+                    sb.append("&");
+                }
+            }
+        }
+        try {
+            OutputStream output = connection.getOutputStream();
+            try {
+                 output.write(sb.toString().getBytes(DEFAULT_ENCODING));
+            } finally {
+                 try { output.close(); } catch (IOException logOrIgnore) {}
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new HelloSignException(ex.getMessage());
+        }
+        return connection;
+    }
+
+    private HttpURLConnection postWithFile() throws HelloSignException {
+        try {
+            openMultipartPostConnection();
+            if (fields != null) {
+                for (String key : fields.keySet()) {
+                    Serializable val = fields.get(key);
+                    if (val instanceof File) {
+                        addFilePart(key, (File) val); 
+                    } else {
+                        addFormField(key, val.toString());
+                    }
+                }
+            }
+            return finish();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new HelloSignException(ex.getMessage());
+        }
+    }
+
+    private void openMultipartPostConnection()
+            throws IOException {
+        URL url = new URL(this.url);
+        httpConn = (HttpURLConnection) url.openConnection();
+        httpConn.setUseCaches(false);
+        httpConn.setDoOutput(true); // indicates POST method
+        httpConn.setDoInput(true);
+        httpConn.setRequestProperty("Content-Type",
+                "multipart/form-data; boundary=" + boundary);
+        httpConn.setRequestProperty("User-Agent", USER_AGENT);
+        if (auth != null) {
+            auth.authenticate(httpConn, this.url);
+        }
+        outputStream = httpConn.getOutputStream();
+        writer = new PrintWriter(new OutputStreamWriter(outputStream, DEFAULT_ENCODING),
+                true);
+    }
+
+    private void addFormField(String name, String value) {
+        write("--" + boundary).write(LINE_FEED);
+        write("Content-Disposition: form-data; name=\"" + name + "\"")
+            .write(LINE_FEED);
+        write("Content-Type: text/plain; charset=" + DEFAULT_ENCODING)
+            .write(LINE_FEED);
+        write(LINE_FEED);
+        write(value).append(LINE_FEED);
+        writer.flush();
+    }
+
+    private void addFilePart(String fieldName, File uploadFile)
+            throws IOException {
+        String fileName = uploadFile.getName();
+        write("--" + boundary).write(LINE_FEED);
+        write("Content-Disposition: form-data; name=\"" + fieldName
+                + "\"; filename=\"" + fileName + "\"")
+                .write(LINE_FEED);
+        write("Content-Type: "
+                + URLConnection.guessContentTypeFromName(fileName))
+                .write(LINE_FEED);
+        write("Content-Transfer-Encoding: binary").write(LINE_FEED);
+        write(LINE_FEED);
+        writer.flush();
+
+        FileInputStream inputStream = new FileInputStream(uploadFile);
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+            logger.debug("  " + bytesRead + " bytes written...");
+        }
+        outputStream.flush();
+        inputStream.close();
+
+        write(LINE_FEED);
+        writer.flush();
+    }
+
+    private HttpURLConnection finish() throws IOException {
+        writer.flush();
+        write("--" + boundary + "--").write(LINE_FEED);
+        writer.close();
+        return httpConn;
+    }
+
+    private PrintWriter write(String str) {
+        logger.debug(str);
+        return writer.append(str);
+    }
+
 }

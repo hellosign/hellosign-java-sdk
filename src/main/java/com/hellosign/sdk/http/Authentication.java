@@ -42,176 +42,176 @@ import com.hellosign.sdk.HelloSignException;
  * @author Chris Paul (chris@hellosign.com)
  */
 public class Authentication {
-	
-	private static final Logger logger = LoggerFactory.getLogger(Authentication.class);
 
-	private String email = new String();
-	private String password = new String();
-	private String apiKey = new String();
-	private String accessToken = new String();
-	private String accessTokenType = new String();
-	
-	private static final String[] allowedOauthOps = {
-		"account", "signature_request", "reusable_form", "template"
-	};
-	
-	public Authentication() {} 
-	
-	public Authentication (Authentication clone) 
-			throws HelloSignException {
-		if (clone.hasWebsiteCredentials()) {
-			setWebsiteCredentials(clone.getEmail(), clone.getPassword());
-		}
-		if (clone.hasApiKey()) {
-			setApiKey(clone.getApiKey());
-		}
-		if (clone.hasAccessToken()) {
-			setAccessToken(clone.getAccessToken(), clone.getAccessTokenType());
-		}
-	}
-	
-	/**
-	 * Sets the email and password to use for authenticating the
-	 * client.
-	 * @param email String email address
-	 * @param password String password
-	 * @throws HelloSignException thrown if either the email or password
-	 * 	are null
-	 */
-	public void setWebsiteCredentials(String email, String password) 
-			throws HelloSignException {
-		if (email == null) {
-			throw new HelloSignException("Email cannot be null");
-		}
-		if (password == null) {
-			throw new HelloSignException("Password cannot be null");
-		}
-		this.email = new String(email);
-		this.password = new String(password);
-	}
-	
-	/**
-	 * Returns the email address for this client.
-	 * @return String email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	
-	/**
-	 * Returns the password for this client.
-	 * @return String password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	
-	/**
-	 * Returns true if an email and password have been set.
-	 * @return true, or false if either are empty
-	 */
-	public boolean hasWebsiteCredentials() {
-		return !("".equals(email) || "".equals(password));
-	}
-	
-	/**
-	 * Returns a protected copy of the API key String.
-	 * @return String API key
-	 */
-	public String getApiKey() {
-		return new String(apiKey);
-	}
-	
-	/**
-	 * Sets the API key to use for authenticating this client.
-	 * @param apiKey String API Key
-	 */
-	public void setApiKey(String apiKey) {
-		if (apiKey == null) {
-			return;
-		}
-		this.apiKey = new String(apiKey);
-	}
-	
-	/**
-	 * Returns true if the API Key has been set.
-	 * @return true, or false if the key is empty
-	 */
-	public boolean hasApiKey() {
-		return !("".equals(apiKey));
-	}
-	
-	/**
-	 * Returns a protected copy of the access token.
-	 * @return String access token
-	 */
-	public String getAccessToken() {
-		return new String(accessToken);
-	}
-	
-	/**
-	 * Returns a protected copy of the access token type string.
-	 * @return String access token type
-	 */
-	public String getAccessTokenType() {
-		return new String(accessTokenType);
-	}
-	
-	/**
-	 * Sets the access token for the HelloSign client authentication.
-	 * @param accessToken String
-	 * @param tokenType String
-	 * @throws HelloSignException 
-	 * 		if either the accessToken or tokenType are null
-	 */
-	public void setAccessToken(String accessToken, String tokenType) 
-			throws HelloSignException {
-		if (accessToken == null) {
-			throw new HelloSignException("Access Token cannot be null");
-		}
-		if (tokenType == null) {
-			throw new HelloSignException("Token Type cannot be null");
-		}
-		this.accessToken = new String(accessToken);
-		this.accessTokenType = new String(tokenType);
-	}
-	
-	/**
-	 * Returns true if an access token and token type have been provided.
-	 * @return true or false if either are not set
-	 */
-	public boolean hasAccessToken() {
-		return !("".equals(accessToken) || "".equals(accessTokenType));
-	}
-	
-	private boolean isOperationOauth(String url) {
-		for (String op : allowedOauthOps) {
-			if (url.contains(op)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Authorizes the HTTP connection using this instance's credentials.
-	 * @param httpConn HttpURLConnection to be authenticated
-	 * @param url String URL against which this connection should be authorized.
-	 */
-	public void authenticate(HttpURLConnection httpConn, String url) {
-		String authorization = null;
-		if (hasAccessToken() && isOperationOauth(url)) {
-			authorization = getAccessTokenType() + " " + getAccessToken();
-		} else if (hasApiKey()) {
-			String apiKey = getApiKey() + ":";
-			authorization = "Basic " + DatatypeConverter.printBase64Binary(apiKey.getBytes()).trim();
-		} else if (hasWebsiteCredentials()) {
-			String authStr = getEmail() + ":" + getPassword();
-			authorization = "Basic " + DatatypeConverter.printBase64Binary(authStr.getBytes()).trim();
-		}
-		if (authorization != null) {
-			logger.debug("Authorization: " + authorization);
-			httpConn.setRequestProperty("authorization", authorization);
-		}
-	}
+    private static final Logger logger = LoggerFactory.getLogger(Authentication.class);
+
+    private String email = new String();
+    private String password = new String();
+    private String apiKey = new String();
+    private String accessToken = new String();
+    private String accessTokenType = new String();
+
+    private static final String[] allowedOauthOps = {
+        "account", "signature_request", "reusable_form", "template"
+    };
+
+    public Authentication() {} 
+
+    public Authentication (Authentication clone) 
+            throws HelloSignException {
+        if (clone.hasWebsiteCredentials()) {
+            setWebsiteCredentials(clone.getEmail(), clone.getPassword());
+        }
+        if (clone.hasApiKey()) {
+            setApiKey(clone.getApiKey());
+        }
+        if (clone.hasAccessToken()) {
+            setAccessToken(clone.getAccessToken(), clone.getAccessTokenType());
+        }
+    }
+
+    /**
+     * Sets the email and password to use for authenticating the
+     * client.
+     * @param email String email address
+     * @param password String password
+     * @throws HelloSignException thrown if either the email or password
+     *     are null
+     */
+    public void setWebsiteCredentials(String email, String password) 
+            throws HelloSignException {
+        if (email == null) {
+            throw new HelloSignException("Email cannot be null");
+        }
+        if (password == null) {
+            throw new HelloSignException("Password cannot be null");
+        }
+        this.email = new String(email);
+        this.password = new String(password);
+    }
+
+    /**
+     * Returns the email address for this client.
+     * @return String email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Returns the password for this client.
+     * @return String password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Returns true if an email and password have been set.
+     * @return true, or false if either are empty
+     */
+    public boolean hasWebsiteCredentials() {
+        return !("".equals(email) || "".equals(password));
+    }
+
+    /**
+     * Returns a protected copy of the API key String.
+     * @return String API key
+     */
+    public String getApiKey() {
+        return new String(apiKey);
+    }
+
+    /**
+     * Sets the API key to use for authenticating this client.
+     * @param apiKey String API Key
+     */
+    public void setApiKey(String apiKey) {
+        if (apiKey == null) {
+            return;
+        }
+        this.apiKey = new String(apiKey);
+    }
+
+    /**
+     * Returns true if the API Key has been set.
+     * @return true, or false if the key is empty
+     */
+    public boolean hasApiKey() {
+        return !("".equals(apiKey));
+    }
+
+    /**
+     * Returns a protected copy of the access token.
+     * @return String access token
+     */
+    public String getAccessToken() {
+        return new String(accessToken);
+    }
+
+    /**
+     * Returns a protected copy of the access token type string.
+     * @return String access token type
+     */
+    public String getAccessTokenType() {
+        return new String(accessTokenType);
+    }
+
+    /**
+     * Sets the access token for the HelloSign client authentication.
+     * @param accessToken String
+     * @param tokenType String
+     * @throws HelloSignException 
+     *         if either the accessToken or tokenType are null
+     */
+    public void setAccessToken(String accessToken, String tokenType) 
+            throws HelloSignException {
+        if (accessToken == null) {
+            throw new HelloSignException("Access Token cannot be null");
+        }
+        if (tokenType == null) {
+            throw new HelloSignException("Token Type cannot be null");
+        }
+        this.accessToken = new String(accessToken);
+        this.accessTokenType = new String(tokenType);
+    }
+
+    /**
+     * Returns true if an access token and token type have been provided.
+     * @return true or false if either are not set
+     */
+    public boolean hasAccessToken() {
+        return !("".equals(accessToken) || "".equals(accessTokenType));
+    }
+
+    private boolean isOperationOauth(String url) {
+        for (String op : allowedOauthOps) {
+            if (url.contains(op)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Authorizes the HTTP connection using this instance's credentials.
+     * @param httpConn HttpURLConnection to be authenticated
+     * @param url String URL against which this connection should be authorized.
+     */
+    public void authenticate(HttpURLConnection httpConn, String url) {
+        String authorization = null;
+        if (hasAccessToken() && isOperationOauth(url)) {
+            authorization = getAccessTokenType() + " " + getAccessToken();
+        } else if (hasApiKey()) {
+            String apiKey = getApiKey() + ":";
+            authorization = "Basic " + DatatypeConverter.printBase64Binary(apiKey.getBytes()).trim();
+        } else if (hasWebsiteCredentials()) {
+            String authStr = getEmail() + ":" + getPassword();
+            authorization = "Basic " + DatatypeConverter.printBase64Binary(authStr.getBytes()).trim();
+        }
+        if (authorization != null) {
+            logger.debug("Authorization: " + authorization);
+            httpConn.setRequestProperty("authorization", authorization);
+        }
+    }
 }

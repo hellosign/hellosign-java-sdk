@@ -42,83 +42,83 @@ import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.TemplateList;
 
 public class TemplateFieldsRequestTest extends AbstractHelloSignTest {
-	
-	private static final Logger logger = LoggerFactory.getLogger(TemplateFieldsRequestTest.class);
-	
-	/**
-	 * Prior to executing this request, a template must be created on the HelloSign server:
-	 * 
-	 * 1. Title: NDA Template
-	 * 2. Two documents
-	 * 3. Two signers:
-	 *    1. "Client"
-	 *    2. "Representative"
-	 * 4. Two CC email roles:
-	 *    1. "Client Lawyer"
-	 *    2. "Our Lawyer"
-	 * 5. Two signature fields on the first document.
-	 * 6. Two initial fields on the second document.
-	 * @throws Exception
-	 */
-	@Test
-	public void testSignatureCreateFromTemplateFormFields() throws Exception {
-		if (!isHelloSignAvailable()) {
-			logger.debug("No API access, skipping tests...");
-			return;
-		}
-		
-		// Retrieve the template we created for this test
-		String templateTitle = "NDA Template";
-    	HelloSignClient client = new HelloSignClient(auth);
-    	TemplateList templateList = client.getTemplates();
-    	List<Template> templates = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, templateTitle);
-    	
-    	// If the template isn't found, let's page through the 
-    	// results from the server until we find it
-    	while (templates.size() == 0) {
-    		Integer nextPage = templateList.getPage() + 1;
-    		if (nextPage > templateList.getNumPages()) {
-    			break;
-    		}
-    		templateList = client.getTemplates(nextPage);
-    		templates = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, templateTitle);
-    	}
-//    	assertEquals(1, templates.size());
-    	if (templates.size() == 0) {
-    		logger.debug("\tNo template found, skipping test.");
-    		return;
-    	}
-    	
-    	Template template = templates.get(0);
-    	
-    	// Grab the documents stored in this template
-    	List<Document> templateDocs = template.getDocuments();
-    	if (templateDocs.size() != 2) {
-    		logger.debug("\tTemplate does not have 2 documents, skipping test.");
-    	}
-    	
-    	// Create a new signature request -- it must have 2 documents and 2 signers
-    	SignatureRequest request = new SignatureRequest();
-    	request.setTitle("New NDA");
-    	request.addSigner("jack@example.com", "Jack");
-    	request.addSigner("jill@example.com", "Jill");
-    	request.addFile(getTestFile("nda.docx"), 0);
-    	request.addFile(getTestFile("AppendixA.docx"), 1);
-    	
-    	// 
-    	List<Document> requestDocs = request.getDocuments();
-    	for (int i = 0; i < 2; i++) {
-    		Document rd = requestDocs.get(i);
-    		Document td = templateDocs.get(i);
-    		rd.setFormFields(td.getFormFields());
-    	}
-    	Map<String, Serializable> fields = request.getPostFields();
-    	for (String key : fields.keySet()) {
-    		logger.debug(key + "=" + fields.get(key));
-    	}
-    	assertTrue(areFieldsEqual(getExpectedFields(), fields));
-    	SignatureRequest response = client.sendSignatureRequest(request);
-    	assertNotNull(response);
-    	assertTrue(response.hasId());
-	}
+
+    private static final Logger logger = LoggerFactory.getLogger(TemplateFieldsRequestTest.class);
+
+    /**
+     * Prior to executing this request, a template must be created on the HelloSign server:
+     * 
+     * 1. Title: NDA Template
+     * 2. Two documents
+     * 3. Two signers:
+     *    1. "Client"
+     *    2. "Representative"
+     * 4. Two CC email roles:
+     *    1. "Client Lawyer"
+     *    2. "Our Lawyer"
+     * 5. Two signature fields on the first document.
+     * 6. Two initial fields on the second document.
+     * @throws Exception
+     */
+    @Test
+    public void testSignatureCreateFromTemplateFormFields() throws Exception {
+        if (!isHelloSignAvailable()) {
+            logger.debug("No API access, skipping tests...");
+            return;
+        }
+
+        // Retrieve the template we created for this test
+        String templateTitle = "NDA Template";
+        HelloSignClient client = new HelloSignClient(auth);
+        TemplateList templateList = client.getTemplates();
+        List<Template> templates = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, templateTitle);
+
+        // If the template isn't found, let's page through the 
+        // results from the server until we find it
+        while (templates.size() == 0) {
+            Integer nextPage = templateList.getPage() + 1;
+            if (nextPage > templateList.getNumPages()) {
+                break;
+            }
+            templateList = client.getTemplates(nextPage);
+            templates = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, templateTitle);
+        }
+//        assertEquals(1, templates.size());
+        if (templates.size() == 0) {
+            logger.debug("\tNo template found, skipping test.");
+            return;
+        }
+
+        Template template = templates.get(0);
+
+        // Grab the documents stored in this template
+        List<Document> templateDocs = template.getDocuments();
+        if (templateDocs.size() != 2) {
+            logger.debug("\tTemplate does not have 2 documents, skipping test.");
+        }
+
+        // Create a new signature request -- it must have 2 documents and 2 signers
+        SignatureRequest request = new SignatureRequest();
+        request.setTitle("New NDA");
+        request.addSigner("jack@example.com", "Jack");
+        request.addSigner("jill@example.com", "Jill");
+        request.addFile(getTestFile("nda.docx"), 0);
+        request.addFile(getTestFile("AppendixA.docx"), 1);
+
+        // 
+        List<Document> requestDocs = request.getDocuments();
+        for (int i = 0; i < 2; i++) {
+            Document rd = requestDocs.get(i);
+            Document td = templateDocs.get(i);
+            rd.setFormFields(td.getFormFields());
+        }
+        Map<String, Serializable> fields = request.getPostFields();
+        for (String key : fields.keySet()) {
+            logger.debug(key + "=" + fields.get(key));
+        }
+        assertTrue(areFieldsEqual(getExpectedFields(), fields));
+        SignatureRequest response = client.sendSignatureRequest(request);
+        assertNotNull(response);
+        assertTrue(response.hasId());
+    }
 }

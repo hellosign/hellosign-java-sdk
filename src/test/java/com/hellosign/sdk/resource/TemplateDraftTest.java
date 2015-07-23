@@ -37,43 +37,43 @@ import com.hellosign.sdk.resource.support.types.FieldType;
  */
 public class TemplateDraftTest extends AbstractHelloSignTest {
 
-	@Test
-	public void testTemplateDraftCreate() throws Exception {
-		TemplateDraft t = new TemplateDraft();
-		assertNotNull(t);
-		
-		t = new TemplateDraft(new JSONObject("{}"));
-		assertNotNull(t);
-		assertNull(t.getId());
-		assertNull(t.getEditUrl());
-		assertNull(t.getExpiresAt());
+    @Test
+    public void testTemplateDraftCreate() throws Exception {
+        TemplateDraft t = new TemplateDraft();
+        assertNotNull(t);
 
-		t = new TemplateDraft(new JSONObject("{'template':{'template_id':'1234567890abcdef'}}"));
-		assertNotNull(t);
-		assertNotNull(t.getId());
-		assertNull(t.getEditUrl());
-		assertNull(t.getExpiresAt());
+        t = new TemplateDraft(new JSONObject("{}"));
+        assertNotNull(t);
+        assertNull(t.getId());
+        assertNull(t.getEditUrl());
+        assertNull(t.getExpiresAt());
 
-		t = new TemplateDraft(new JSONObject("{'template':{'template_id':'1234567890abcdef','edit_url':'https://www.google.com/','expires_at':'1234567890'}}"));
-		assertNotNull(t);
-		assertNotNull(t.getId());
-		assertNotNull(t.getEditUrl());
-		assertNotNull(t.getExpiresAt());
-	}
+        t = new TemplateDraft(new JSONObject("{'template':{'template_id':'1234567890abcdef'}}"));
+        assertNotNull(t);
+        assertNotNull(t.getId());
+        assertNull(t.getEditUrl());
+        assertNull(t.getExpiresAt());
 
-	@Test
-	public void testTemplateDraftPostFields() throws Exception {
-		TemplateDraft t = new TemplateDraft();
-		t.setTestMode(true);
-		t.addFile(getTestFile("nda.pdf"));
-		t.addSignerRole("Signer 1");
-		t.addSignerRole("Signer 2");
-		t.addCCRole("CC Role 1");
-		t.setTitle("Title");
-		t.setSubject("Subject");
-		t.setMessage("Message");
-		t.addMergeField("Text", FieldType.text);
-		t.addMergeField("Checkbox", FieldType.checkbox);
-		assertTrue(areFieldsEqual(getExpectedFields(), t.getPostFields()));
-	}
+        t = new TemplateDraft(new JSONObject("{'template':{'template_id':'1234567890abcdef','edit_url':'https://www.google.com/','expires_at':'1234567890'}}"));
+        assertNotNull(t);
+        assertNotNull(t.getId());
+        assertNotNull(t.getEditUrl());
+        assertNotNull(t.getExpiresAt());
+    }
+
+    @Test
+    public void testTemplateDraftPostFields() throws Exception {
+        TemplateDraft t = new TemplateDraft();
+        t.setTestMode(true);
+        t.addFile(getTestFile("nda.pdf"));
+        t.addSignerRole("Signer 1");
+        t.addSignerRole("Signer 2");
+        t.addCCRole("CC Role 1");
+        t.setTitle("Title");
+        t.setSubject("Subject");
+        t.setMessage("Message");
+        t.addMergeField("Text", FieldType.text);
+        t.addMergeField("Checkbox", FieldType.checkbox);
+        assertTrue(areFieldsEqual(getExpectedFields(), t.getPostFields()));
+    }
 }

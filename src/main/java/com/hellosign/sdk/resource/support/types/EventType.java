@@ -25,16 +25,16 @@ package com.hellosign.sdk.resource.support.types;
  */
 
 public enum EventType {
-	signature_request_viewed,
-	signature_request_signed,
-	signature_request_sent,
-	signature_request_all_signed,
-	signature_request_invalid,
-	signature_request_remind,
+    signature_request_viewed,
+    signature_request_signed,
+    signature_request_sent,
+    signature_request_all_signed,
+    signature_request_invalid,
+    signature_request_remind,
   account_confirmed,
-	template_created,
-	template_error,
-	file_error,
-	test,
+    template_created,
+    template_error,
+    file_error,
+    test,
   unknown_error
 }

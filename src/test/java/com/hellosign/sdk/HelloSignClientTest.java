@@ -35,27 +35,27 @@ public class HelloSignClientTest extends AbstractHelloSignTest {
 
     @Test
     public void testAuthWithValidCredentials() {
-    	Account account = null;
+        Account account = null;
         try {
-        	HelloSignClient client = new HelloSignClient(validApiKey);
-        	account = client.getAccount();
+            HelloSignClient client = new HelloSignClient(validApiKey);
+            account = client.getAccount();
         } catch (HelloSignException ex) {
-        	ex.printStackTrace();
-        	fail("Unexpected exception encountered!");
+            ex.printStackTrace();
+            fail("Unexpected exception encountered!");
         }
         assertNotNull(account);
     }
-    
+
     @Test
     public void testAuthWithInvalidCredentials() {
-    	Account account = null;
+        Account account = null;
         try {
-        	HelloSignClient client = new HelloSignClient(invalidUserEmail, invalidUserPass);
-        	account = client.getAccount();
+            HelloSignClient client = new HelloSignClient(invalidUserEmail, invalidUserPass);
+            account = client.getAccount();
         } catch (HelloSignException ex) {
-        	assertNotNull("Expected exception encountered.", ex);
+            assertNotNull("Expected exception encountered.", ex);
         }
         assertNull("No account was returned", account);
     }
-    
+
 }

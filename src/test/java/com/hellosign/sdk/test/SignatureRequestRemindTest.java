@@ -44,32 +44,32 @@ import com.hellosign.sdk.resource.SignatureRequest;
  */
 public class SignatureRequestRemindTest extends AbstractHelloSignTest {
 
-	private static final Logger logger = LoggerFactory.getLogger(SignatureRequestRemindTest.class);
-	
-	@Test
-	public void testSignatureRequestRemind() throws Exception {
-		// Create the signature request
-		SignatureRequest request = new SignatureRequest();
-    	request.setTestMode(true);
-    	request.setTitle("Request");
-    	request.addSigner("chris@hellosign.com", "Chris");
-    	request.addFile(getTestFile("nda.pdf"));
-    	
-		if (isHelloSignAvailable()) {
-			// Just pass the request through the HelloSignClient since we are already
-			// testing the request output for SignatureRequest/TemplateSignatureRequest
-			// in their respective test classes.
-	    	HelloSignClient client = new HelloSignClient(auth);
-	    	SignatureRequest response = (SignatureRequest) client.sendSignatureRequest(request);
-	    	assertNotNull(response);
-	    	assertTrue(response.hasId());
+    private static final Logger logger = LoggerFactory.getLogger(SignatureRequestRemindTest.class);
+
+    @Test
+    public void testSignatureRequestRemind() throws Exception {
+        // Create the signature request
+        SignatureRequest request = new SignatureRequest();
+        request.setTestMode(true);
+        request.setTitle("Request");
+        request.addSigner("chris@hellosign.com", "Chris");
+        request.addFile(getTestFile("nda.pdf"));
+
+        if (isHelloSignAvailable()) {
+            // Just pass the request through the HelloSignClient since we are already
+            // testing the request output for SignatureRequest/TemplateSignatureRequest
+            // in their respective test classes.
+            HelloSignClient client = new HelloSignClient(auth);
+            SignatureRequest response = (SignatureRequest) client.sendSignatureRequest(request);
+            assertNotNull(response);
+            assertTrue(response.hasId());
             String id = response.getId();
 
-	    	// Cancel the signature request
-	    	Thread.sleep(5000);
-	    	SignatureRequest reminderResp = client.requestEmailReminder(response.getId(), "chris@hellosign.com");
-	    	assertNotNull(reminderResp);
-	    	assertTrue(id.equals(reminderResp.getId()));
-		}
-	}
+            // Cancel the signature request
+            Thread.sleep(5000);
+            SignatureRequest reminderResp = client.requestEmailReminder(response.getId(), "chris@hellosign.com");
+            assertNotNull(reminderResp);
+            assertTrue(id.equals(reminderResp.getId()));
+        }
+    }
 }

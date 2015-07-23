@@ -37,7 +37,7 @@ import com.hellosign.sdk.resource.SignatureRequest;
  */
 public class SignatureRequestList extends AbstractResourceList<SignatureRequest> {
 
-	public SignatureRequestList(JSONObject json) throws HelloSignException {
-		super(json, "signature_requests");
-	}
+    public SignatureRequestList(JSONObject json) throws HelloSignException {
+        super(json, "signature_requests");
+    }
 }

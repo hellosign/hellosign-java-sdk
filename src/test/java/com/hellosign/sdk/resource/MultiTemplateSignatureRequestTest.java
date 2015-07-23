@@ -50,64 +50,64 @@ import com.hellosign.sdk.resource.support.TemplateList;
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class MultiTemplateSignatureRequestTest extends AbstractHelloSignTest {
-	
-	private static final Logger logger = LoggerFactory.getLogger(TemplateSignatureRequestTest.class);
 
-	/*
-	@Test
-	public void testMultiTemplateSignatureRequestCreateAndSend() throws HelloSignException {
-		if (!isHelloSignAvailable()) {
-			logger.debug("No API access, skipping tests...");
-			return;
-		}
-    	// Retrieve user's templates
-    	logger.debug("Testing Template list... ");
-    	HelloSignClient client = new HelloSignClient(auth);
-    	
-    	// Create the signature request based on template
-    	TemplateSignatureRequest request = new TemplateSignatureRequest();
-    	request.addTemplateId("c1a5d2dfb74e732c146cb038f9a3ac7d21b1ae0d");
-    	request.addTemplateId("9bcc3e903b2c24b1068ca32c051ab3d6b73707ca", 0);
-    	request.addTemplateId("fa6d13bc5cddb80f2973c0b12a3a066e75471f06");
-    	request.setTestMode(true);
-    	request.setSubject("MultiTemplateTest");
-    	request.setMessage("Glad we could come to an agreement.");
-    	request.setSigner("Tester", "chris+1@hellosign.com", "Chris 1");
-    	request.setCustomFieldValue("Text", "Hello world!");
-    	
-    	logger.debug("Building POST fields... ");
-    	Map<String, Serializable> fields = request.getPostFields();
-    	assertTrue(areFieldsEqual(getExpectedFields(), fields));
-    	logger.debug("\tFields match!");
+    private static final Logger logger = LoggerFactory.getLogger(TemplateSignatureRequestTest.class);
 
-    	// HelloSignClient client = new HelloSignClient(validUserEmail, validUserPass);
-		// response = client.sendTemplateSignatureRequest(request);
-		
-		// The following is for testing purposes only. Don't do this in your code, 
-		// you'll want to use the line above to send your request, much easier!
-	
-		logger.debug("Creating new request...");			
-    	logger.debug("POST " + client.getTemplateSignatureRequestUrl());
-    	HttpPostRequest postRequest = new HttpPostRequest(
-    			client.getTemplateSignatureRequestUrl(), 
-    			fields, auth);
-    	JSONObject jsonResponse = postRequest.getJsonResponse();
-    	assertTrue(areJSONObjectsEqualIgnoreData(getExpectedJSONResponse(), jsonResponse));
-    	
-    	// Convert the JSON response to a SignatureRequest
-    	SignatureRequest response = new SignatureRequest(jsonResponse);
-    	assertNotNull(response);
-    	logger.debug("\tSuccess!");
-		logger.debug("Created signature request with ID: " + response.getId());
+    /*
+    @Test
+    public void testMultiTemplateSignatureRequestCreateAndSend() throws HelloSignException {
+        if (!isHelloSignAvailable()) {
+            logger.debug("No API access, skipping tests...");
+            return;
+        }
+        // Retrieve user's templates
+        logger.debug("Testing Template list... ");
+        HelloSignClient client = new HelloSignClient(auth);
 
-		// Cancel newly created request
-		logger.debug("Cancelling new request...");
-    	String cancelUrl = client.getSignatureRequestCancelUrl() + "/" + response.getId();
-    	logger.debug("POST " + cancelUrl);
-    	postRequest = new HttpPostRequest(cancelUrl, auth);
-    	assertTrue(HttpURLConnection.HTTP_OK == postRequest.getHttpResponseCode());
-    	logger.debug("\tSuccess!");
-	}
+        // Create the signature request based on template
+        TemplateSignatureRequest request = new TemplateSignatureRequest();
+        request.addTemplateId("c1a5d2dfb74e732c146cb038f9a3ac7d21b1ae0d");
+        request.addTemplateId("9bcc3e903b2c24b1068ca32c051ab3d6b73707ca", 0);
+        request.addTemplateId("fa6d13bc5cddb80f2973c0b12a3a066e75471f06");
+        request.setTestMode(true);
+        request.setSubject("MultiTemplateTest");
+        request.setMessage("Glad we could come to an agreement.");
+        request.setSigner("Tester", "chris+1@hellosign.com", "Chris 1");
+        request.setCustomFieldValue("Text", "Hello world!");
+
+        logger.debug("Building POST fields... ");
+        Map<String, Serializable> fields = request.getPostFields();
+        assertTrue(areFieldsEqual(getExpectedFields(), fields));
+        logger.debug("\tFields match!");
+
+        // HelloSignClient client = new HelloSignClient(validUserEmail, validUserPass);
+        // response = client.sendTemplateSignatureRequest(request);
+
+        // The following is for testing purposes only. Don't do this in your code, 
+        // you'll want to use the line above to send your request, much easier!
+
+        logger.debug("Creating new request...");            
+        logger.debug("POST " + client.getTemplateSignatureRequestUrl());
+        HttpPostRequest postRequest = new HttpPostRequest(
+                client.getTemplateSignatureRequestUrl(), 
+                fields, auth);
+        JSONObject jsonResponse = postRequest.getJsonResponse();
+        assertTrue(areJSONObjectsEqualIgnoreData(getExpectedJSONResponse(), jsonResponse));
+
+        // Convert the JSON response to a SignatureRequest
+        SignatureRequest response = new SignatureRequest(jsonResponse);
+        assertNotNull(response);
+        logger.debug("\tSuccess!");
+        logger.debug("Created signature request with ID: " + response.getId());
+
+        // Cancel newly created request
+        logger.debug("Cancelling new request...");
+        String cancelUrl = client.getSignatureRequestCancelUrl() + "/" + response.getId();
+        logger.debug("POST " + cancelUrl);
+        postRequest = new HttpPostRequest(cancelUrl, auth);
+        assertTrue(HttpURLConnection.HTTP_OK == postRequest.getHttpResponseCode());
+        logger.debug("\tSuccess!");
+    }
 */
-	
+
 }

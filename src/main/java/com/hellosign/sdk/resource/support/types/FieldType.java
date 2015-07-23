@@ -31,5 +31,5 @@ package com.hellosign.sdk.resource.support.types;
  *
  */
 public enum FieldType {
-	text, signature, initials, checkbox, date_signed
+    text, signature, initials, checkbox, date_signed
 }

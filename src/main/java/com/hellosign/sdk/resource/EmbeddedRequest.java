@@ -38,145 +38,145 @@ import com.hellosign.sdk.HelloSignException;
  */
 public class EmbeddedRequest extends AbstractRequest {
 
-	public static final String EMBEDDED_CLIENT_ID = "client_id";
+    public static final String EMBEDDED_CLIENT_ID = "client_id";
 
-	private String clientId;
-	private AbstractRequest request;
-	
-	// Hide the default constructor -- we want to force the user to specify a 
-	// request object that this Embedded request will wrap around.
-	@SuppressWarnings("unused")
-	private EmbeddedRequest() {}
-	
-	/**
-	 * Creates an Embedded signature request using the client ID and the 
-	 * AbstractRequest object provided. First, instantiate the request object 
-	 * (either a SignatureRequest or TemplateSignatureRequest) and then 
-	 * create your EmbeddedRequest using that object.
-	 * @param clientId String client ID
-	 * @param request AbstractRequest
-	 */
-	public EmbeddedRequest(String clientId, AbstractRequest request) {
-		setClientId(clientId);
-		setRequest(request);
-	}
+    private String clientId;
+    private AbstractRequest request;
 
-	/**
-	 * Set the client ID of the web app you're using to create this embedded signature
-	 * request. See: http://www.hellosign.com/api/embedded
-	 * @return String client ID
-	 */
-	public String getClientId() {
-		return clientId;
-	}
+    // Hide the default constructor -- we want to force the user to specify a 
+    // request object that this Embedded request will wrap around.
+    @SuppressWarnings("unused")
+    private EmbeddedRequest() {}
 
-	/**
-	 * Set the client ID of the web app you're using to create this embedded signature
-	 * request. See: http://www.hellosign.com/api/embedded
-	 * @param clientId String client ID
-	 */
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
-	}
-	
-	/**
-	 * Get the AbstractRequest associated with this Embedded signature request.
-	 * @return AbstractRequest
-	 */
-	public AbstractRequest getRequest() {
-		return request;
-	}
+    /**
+     * Creates an Embedded signature request using the client ID and the 
+     * AbstractRequest object provided. First, instantiate the request object 
+     * (either a SignatureRequest or TemplateSignatureRequest) and then 
+     * create your EmbeddedRequest using that object.
+     * @param clientId String client ID
+     * @param request AbstractRequest
+     */
+    public EmbeddedRequest(String clientId, AbstractRequest request) {
+        setClientId(clientId);
+        setRequest(request);
+    }
 
-	/**
-	 * Set the AbstractRequest associated with this Embedded signature request.
-	 * @param request AbstractRequest
-	 */
-	public void setRequest(AbstractRequest request) {
-		this.request = request;
-	}
+    /**
+     * Set the client ID of the web app you're using to create this embedded signature
+     * request. See: http://www.hellosign.com/api/embedded
+     * @return String client ID
+     */
+    public String getClientId() {
+        return clientId;
+    }
 
-	public Map<String, Serializable> getPostFields() throws HelloSignException {
-		Map<String, Serializable> map = request.getPostFields();
-		map.put(EMBEDDED_CLIENT_ID, getClientId());
-		return map;
-	}
-	
-	//=========================================================================================
-	// Overrides to pass through to request object
-	//=========================================================================================
+    /**
+     * Set the client ID of the web app you're using to create this embedded signature
+     * request. See: http://www.hellosign.com/api/embedded
+     * @param clientId String client ID
+     */
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
 
-	@Override
-	public String getTitle() {
-		return request.getTitle();
-	}
+    /**
+     * Get the AbstractRequest associated with this Embedded signature request.
+     * @return AbstractRequest
+     */
+    public AbstractRequest getRequest() {
+        return request;
+    }
 
-	@Override
-	public void setTitle(String title) {
-		request.setTitle(title);
-	}
+    /**
+     * Set the AbstractRequest associated with this Embedded signature request.
+     * @param request AbstractRequest
+     */
+    public void setRequest(AbstractRequest request) {
+        this.request = request;
+    }
 
-	@Override
-	public boolean hasTitle() {
-		return request.hasTitle();
-	}
+    public Map<String, Serializable> getPostFields() throws HelloSignException {
+        Map<String, Serializable> map = request.getPostFields();
+        map.put(EMBEDDED_CLIENT_ID, getClientId());
+        return map;
+    }
 
-	@Override
-	public String getSubject() {
-		return request.getSubject();
-	}
+    //=========================================================================================
+    // Overrides to pass through to request object
+    //=========================================================================================
 
-	@Override
-	public void setSubject(String subject) {
-		request.setSubject(subject);
-	}
+    @Override
+    public String getTitle() {
+        return request.getTitle();
+    }
 
-	@Override
-	public boolean hasSubject() {
-		return request.hasSubject();
-	}
+    @Override
+    public void setTitle(String title) {
+        request.setTitle(title);
+    }
 
-	@Override
-	public String getMessage() {
-		return request.getMessage();
-	}
+    @Override
+    public boolean hasTitle() {
+        return request.hasTitle();
+    }
 
-	@Override
-	public void setMessage(String message) {
-		request.setMessage(message);
-	}
+    @Override
+    public String getSubject() {
+        return request.getSubject();
+    }
 
-	@Override
-	public boolean hasMessage() {
-		return request.hasMessage();
-	}
+    @Override
+    public void setSubject(String subject) {
+        request.setSubject(subject);
+    }
 
-	@Override
-	public void setTestMode(boolean testMode) {
-		request.setTestMode(testMode);
-	}
+    @Override
+    public boolean hasSubject() {
+        return request.hasSubject();
+    }
 
-	@Override
-	public boolean isTestMode() {
-		return request.isTestMode();
-	}
+    @Override
+    public String getMessage() {
+        return request.getMessage();
+    }
 
-	@Override
-	public String getRedirectUrl() {
-		return request.getRedirectUrl();
-	}
+    @Override
+    public void setMessage(String message) {
+        request.setMessage(message);
+    }
 
-	@Override
-	public void setRedirectUrl(String url) {
-		request.setRedirectUrl(url);
-	}
+    @Override
+    public boolean hasMessage() {
+        return request.hasMessage();
+    }
 
-	@Override
-	public boolean hasRedirectUrl() {
-		return request.hasRedirectUrl();
-	}
+    @Override
+    public void setTestMode(boolean testMode) {
+        request.setTestMode(testMode);
+    }
 
-	@Override
-	public String getId() {
-		return request.getId();
-	}	
+    @Override
+    public boolean isTestMode() {
+        return request.isTestMode();
+    }
+
+    @Override
+    public String getRedirectUrl() {
+        return request.getRedirectUrl();
+    }
+
+    @Override
+    public void setRedirectUrl(String url) {
+        request.setRedirectUrl(url);
+    }
+
+    @Override
+    public boolean hasRedirectUrl() {
+        return request.hasRedirectUrl();
+    }
+
+    @Override
+    public String getId() {
+        return request.getId();
+    }    
 }

@@ -37,19 +37,19 @@ import com.hellosign.sdk.resource.AbstractResource;
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class TemplateRole extends AbstractResource {
-	
-	public static final String SIGNER_ROLE_NAME = "name";
-	public static final String SIGNER_ROLE_ORDER = "order";
 
-	public TemplateRole(JSONObject json) throws HelloSignException {
-		super(json, null);
-	}
-	
-	public String getRole() {
-		return getString(SIGNER_ROLE_NAME);
-	}
-	
-	public Integer getOrder() {
-		return getInteger(SIGNER_ROLE_ORDER);
-	}
+    public static final String SIGNER_ROLE_NAME = "name";
+    public static final String SIGNER_ROLE_ORDER = "order";
+
+    public TemplateRole(JSONObject json) throws HelloSignException {
+        super(json, null);
+    }
+
+    public String getRole() {
+        return getString(SIGNER_ROLE_NAME);
+    }
+
+    public Integer getOrder() {
+        return getInteger(SIGNER_ROLE_ORDER);
+    }
 }

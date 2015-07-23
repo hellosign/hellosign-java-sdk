@@ -41,31 +41,31 @@ import com.hellosign.sdk.resource.support.types.FieldType;
  */
 public class CustomField extends AbstractResource {
 
-	public static final String CUSTOM_FIELD_NAME = "name";
-	public static final String CUSTOM_FIELD_TYPE = "type";
-	public static final String CUSTOM_FIELD_API_ID = "api_id";
-	
-	public CustomField() {
-		super();
-	}
-	
-	public CustomField(JSONObject json) throws HelloSignException {
-		super(json, null);
-	}
-	
-	public String getName() {
-		return getString(CUSTOM_FIELD_NAME);
-	}
-	public FieldType getType() {
-		return FieldType.valueOf(getString(CUSTOM_FIELD_TYPE));
-	}
-	public String getTypeString() {
-		if (has(CUSTOM_FIELD_TYPE)) {
-			return getType().toString();
-		}
-		return null;
-	}
-	public String getApiId() {
-		return getString(CUSTOM_FIELD_API_ID);
-	}
+    public static final String CUSTOM_FIELD_NAME = "name";
+    public static final String CUSTOM_FIELD_TYPE = "type";
+    public static final String CUSTOM_FIELD_API_ID = "api_id";
+
+    public CustomField() {
+        super();
+    }
+
+    public CustomField(JSONObject json) throws HelloSignException {
+        super(json, null);
+    }
+
+    public String getName() {
+        return getString(CUSTOM_FIELD_NAME);
+    }
+    public FieldType getType() {
+        return FieldType.valueOf(getString(CUSTOM_FIELD_TYPE));
+    }
+    public String getTypeString() {
+        if (has(CUSTOM_FIELD_TYPE)) {
+            return getType().toString();
+        }
+        return null;
+    }
+    public String getApiId() {
+        return getString(CUSTOM_FIELD_API_ID);
+    }
 }
