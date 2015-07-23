@@ -85,17 +85,14 @@ public class HelloSignClient {
 	
 	private static final String API_VERSION = "v3";
 	
-    // We'll set this based on a system property "hellosign.env"
     private String URL_HELLOSIGN;
+
+    // The base URL can be overridden by setting the "hellosign.base.url"
+    // system property.
 	private static final String URL_HELLOSIGN_PRODUCTION = "https://api.hellosign.com";
-    private static final String URL_HELLOSIGN_DEV = "https://www.dev-hellosign.com/apiapp_dev.php";
-    private static final String URL_HELLOSIGN_STAGING = "https://staging.hellosign.com/apiapp_dev.php";
     
-    // We'll set this based on the system property "hellosign.env"
     private String URL_OAUTH_TOKEN;
-    private static final String URL_OAUTH_TOKEN_PRODUCTION = "https://www.hellosign.com/oauth/token";
-    private static final String URL_OAUTH_TOKEN_DEV = "https://www.dev-hellosign.com/webapp_dev.php/oauth/token";
-    private static final String URL_OAUTH_TOKEN_STAGING = "https://staging.hellosign.com/webapp_dev.php/oauth/token";
+    private static final String URL_OAUTH_TOKEN_PRODUCTION = "/oauth/token";
     
     private String URL_API;
     private String URL_ACCOUNT;
@@ -150,15 +147,14 @@ public class HelloSignClient {
     
     private HelloSignClient() {
     	URL_HELLOSIGN = URL_HELLOSIGN_PRODUCTION;
-    	URL_OAUTH_TOKEN = URL_OAUTH_TOKEN_PRODUCTION;
-    	String env = System.getProperty("hellosign.env");
-    	if ("dev".equalsIgnoreCase(env)) {
-    		URL_HELLOSIGN = URL_HELLOSIGN_DEV;
-    		URL_OAUTH_TOKEN = URL_OAUTH_TOKEN_DEV;
-    		disableStrictSSL();
-    	} else if ("staging".equalsIgnoreCase(env)) {
-    		URL_HELLOSIGN = URL_HELLOSIGN_STAGING;
-    		URL_OAUTH_TOKEN = URL_OAUTH_TOKEN_STAGING;
+    	String baseUrl = System.getProperty("hellosign.base.url");
+    	if (baseUrl != null && !"".equals(baseUrl)) {
+    		URL_HELLOSIGN = baseUrl;
+    	}
+    	URL_OAUTH_TOKEN = URL_HELLOSIGN + URL_OAUTH_TOKEN_PRODUCTION;
+    	String disableSslCheck = System.getProperty("hellosign.disable.ssl");
+    	if ("true".equalsIgnoreCase(disableSslCheck)) {
+    	    disableStrictSSL();
     	}
     	initApiEndpoints();
     }
