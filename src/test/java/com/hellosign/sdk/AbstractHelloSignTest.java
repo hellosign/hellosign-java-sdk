@@ -3,7 +3,7 @@ package com.hellosign.sdk;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2014 hellosign.com
+ * Copyright (C) 2015 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -78,34 +78,41 @@ public abstract class AbstractHelloSignTest {
             e.printStackTrace();
         }
 
-        validApiKey = properties.getProperty("valid.apiKey");
-        validUserEmail = properties.getProperty("valid.email");
-        validUserPass = properties.getProperty("valid.pass");
-        validUserEmail2 = properties.getProperty("valid.email.2");
-        teamName = properties.getProperty("team.name");
-        invalidUserEmail = properties.getProperty("invalid.email");
-        invalidUserPass = properties.getProperty("invalid.pass");
-        templateTitle = properties.getProperty("template.title");
-        templateId = properties.getProperty("template.id");
-        clientId = properties.getProperty("client.id");
-        callbackUrl = properties.getProperty("callback.url");
-
-        auth.setApiKey(validApiKey);
-        try {
-            auth.setWebsiteCredentials(validUserEmail, validUserPass);
-        } catch (HelloSignException e) {
-            e.printStackTrace();
+        if (properties != null) {
+            validApiKey = properties.getProperty("valid.apiKey");
+            validUserEmail = properties.getProperty("valid.email");
+            validUserPass = properties.getProperty("valid.pass");
+            validUserEmail2 = properties.getProperty("valid.email.2");
+            teamName = properties.getProperty("team.name");
+            invalidUserEmail = properties.getProperty("invalid.email");
+            invalidUserPass = properties.getProperty("invalid.pass");
+            templateTitle = properties.getProperty("template.title");
+            templateId = properties.getProperty("template.id");
+            clientId = properties.getProperty("client.id");
+            callbackUrl = properties.getProperty("callback.url");
+    
+            auth.setApiKey(validApiKey);
+            try {
+                auth.setWebsiteCredentials(validUserEmail, validUserPass);
+            } catch (HelloSignException e) {
+                e.printStackTrace();
+            }
         }
 
         // Force this to be run against the local test environment
-        System.setProperty("hellosign.env", "dev");
+        System.setProperty("hellosign.base.url", "https://www.dev-hellosign.com/apiapp_dev.php");
+        System.setProperty("hellosign.oauth.base.url", "https://www.dev-hellosign.com/webapp_dev.php/oauth/token");
+        System.setProperty("hellosign.disable.ssl", "true");
+        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
 
         online = false;
-        try {
-            HelloSignClient client = new HelloSignClient(validApiKey);
-            online = client.isOnline();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (!validApiKey.isEmpty()) {
+            try {
+                HelloSignClient client = new HelloSignClient(validApiKey);
+                online = client.isOnline();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -131,6 +138,7 @@ public abstract class AbstractHelloSignTest {
     public static boolean areFieldsEqual(Map<String, Serializable> expectedFields, Map<String, Serializable> actualFields) {
         for (String key : expectedFields.keySet()) {
             if (!actualFields.containsKey(key)) {
+                logger.error("Key '" + key + "' not found in actual fields.");
                 return false;
             }
             String expectedValue = (String) expectedFields.get(key);
@@ -142,6 +150,7 @@ public abstract class AbstractHelloSignTest {
                 continue; // Not sure we can test this unless we compare file names?
             }
             if (!actualValue.toString().equals(expectedValue.toString())) {
+                logger.error("Actual value '" + actualValue.toString() + "' does not equal expected value '" + expectedValue.toString() + "'");
                 return false;
             }
         }

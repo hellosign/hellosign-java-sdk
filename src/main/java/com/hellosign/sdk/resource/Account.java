@@ -3,7 +3,7 @@ package com.hellosign.sdk.resource;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2014 hellosign.com
+ * Copyright (C) 2015 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,11 @@ public class Account extends AbstractResource {
     }
 
     public Account(JSONObject json) throws HelloSignException {
-        super(json, ACCOUNT_KEY);
+        this(json, ACCOUNT_KEY);
+    }
+
+    public Account(JSONObject json, String custom_key) throws HelloSignException {
+        super(json, custom_key);
         quotas = new Quotas(dataObj);
     }
 

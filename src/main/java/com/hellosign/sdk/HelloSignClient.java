@@ -3,7 +3,7 @@ package com.hellosign.sdk;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2014 hellosign.com
+ * Copyright (C) 2015 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,11 +45,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.http.Authentication;
+import com.hellosign.sdk.http.HttpDeleteRequest;
 import com.hellosign.sdk.http.HttpGetRequest;
 import com.hellosign.sdk.http.HttpPostRequest;
+import com.hellosign.sdk.http.HttpPutRequest;
 import com.hellosign.sdk.resource.AbstractRequest;
 import com.hellosign.sdk.resource.AbstractResourceList;
 import com.hellosign.sdk.resource.Account;
+import com.hellosign.sdk.resource.ApiApp;
 import com.hellosign.sdk.resource.EmbeddedRequest;
 import com.hellosign.sdk.resource.EmbeddedResponse;
 import com.hellosign.sdk.resource.SignatureRequest;
@@ -58,6 +61,7 @@ import com.hellosign.sdk.resource.Template;
 import com.hellosign.sdk.resource.TemplateDraft;
 import com.hellosign.sdk.resource.TemplateSignatureRequest;
 import com.hellosign.sdk.resource.UnclaimedDraft;
+import com.hellosign.sdk.resource.support.ApiAppList;
 import com.hellosign.sdk.resource.support.OauthData;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
 import com.hellosign.sdk.resource.support.TemplateList;
@@ -127,6 +131,8 @@ public class HelloSignClient {
     private String URL_UNCLAIMED_DRAFT_CREATE;
     private String URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED;
     private String URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE;
+    private String URL_API_APP;
+    private String URL_API_APP_LIST;
 
     private String URL_PARAM_FILE_TYPE = "file_type";
 
@@ -197,6 +203,8 @@ public class HelloSignClient {
         URL_UNCLAIMED_DRAFT_CREATE = URL_API + "/unclaimed_draft/create";
         URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED = URL_API + "/unclaimed_draft/create_embedded";
         URL_UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE = URL_API + "/unclaimed_draft/create_embedded_with_template";
+        URL_API_APP = URL_API + "/api_app";
+        URL_API_APP_LIST = URL_API_APP + "/list";
     }
 
     /**
@@ -856,6 +864,63 @@ public class HelloSignClient {
         } catch (Exception ex) {
             throw new HelloSignException(ex);
         }
+    }
+
+    /**
+     * Retrieves the API app configuration for the given Client ID.
+     * @param clientId String
+     * @return ApiApp
+     * @throws HelloSignException
+     */
+    public ApiApp getApiApp(String clientId) throws HelloSignException {
+        HttpGetRequest request = new HttpGetRequest(URL_API_APP + "/" + clientId, auth);
+        return new ApiApp(request.getJsonResponse());
+    }
+
+    /**
+     * Retrieves a paged list of API apps for the authenticated account.
+     * @return ApiAppList
+     * @throws HelloSignException
+     */
+    public ApiAppList getApiApps() throws HelloSignException {
+        HttpGetRequest request = new HttpGetRequest(URL_API_APP_LIST, auth);
+        return new ApiAppList(request.getJsonResponse());
+    }
+
+    /**
+     * Creates a new ApiApp using the properties set on the provided ApiApp.
+     * @param app ApiApp
+     * @return ApiApp newly created ApiApp
+     * @throws HelloSignException
+     */
+    public ApiApp createApiApp(ApiApp app) throws HelloSignException {
+        HttpPostRequest request = new HttpPostRequest(URL_API_APP, app.getPostFields(), auth);
+        return new ApiApp(request.getJsonResponse());
+    }
+
+    /**
+     * Attempts to delete the API app with the given client ID.
+     * @param clientId String The Client ID of the app that should be deleted.
+     * @return boolean true if the API app was successfully deleted
+     * @throws HelloSignException
+     */
+    public boolean deleteApiApp(String clientId) throws HelloSignException {
+        HttpDeleteRequest request = new HttpDeleteRequest(URL_API_APP + "/" + clientId, auth);
+        return HttpURLConnection.HTTP_NO_CONTENT == request.getHttpResponseCode();
+    }
+
+    /**
+     * Updates the API app with the given ApiApp object properties.
+     * @param app ApiApp
+     * @return ApiApp updated ApiApp
+     * @throws HelloSignException
+     */
+    public ApiApp updateApiApp(ApiApp app) throws HelloSignException {
+        if (!app.hasClientId()) {
+            throw new HelloSignException("Cannot update an ApiApp without a client ID. Create one first!");
+        }
+        HttpPutRequest request = new HttpPutRequest(URL_API_APP, app.getPostFields(), auth);
+        return new ApiApp(request.getJsonResponse());
     }
 
     /**

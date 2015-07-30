@@ -3,7 +3,7 @@ package com.hellosign.sdk.http;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2014 hellosign.com
+ * Copyright (C) 2015 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -157,6 +157,7 @@ public class HttpGetRequest extends AbstractHttpRequest {
         logger.debug("GET: " + url);
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
+        connection.setRequestProperty("user-agent", USER_AGENT);
         if (auth != null) {
             logger.debug("Authenticating...");
             auth.authenticate(connection, url);

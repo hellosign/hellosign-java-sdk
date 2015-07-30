@@ -3,7 +3,7 @@ package com.hellosign.sdk.http;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2014 hellosign.com
+ * Copyright (C) 2015 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,6 +57,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
     private final String boundary;
     private static final String LINE_FEED = "\r\n";
 
+    protected String method = "POST";
+
     private HttpURLConnection httpConn;
     private OutputStream outputStream;
     private PrintWriter writer;
@@ -106,7 +108,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         try {
             int httpCode = connection.getResponseCode();
             InputStream response = null;
-            if (httpCode == HttpURLConnection.HTTP_OK) {
+            if (httpCode >= 200 && httpCode < 300) {
                 logger.debug("OK!");
                 response = connection.getInputStream();
             } else {
@@ -123,6 +125,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
                 validate(json, httpCode);
                 logger.debug("JSON Response: " + json.toString(2));
             }
+        } catch (HelloSignException e) {
+            throw e;
         } catch (Exception e) {
             throw new HelloSignException(e);
         }
@@ -156,14 +160,18 @@ public class HttpPostRequest extends AbstractHttpRequest {
     }
 
     private HttpURLConnection postQuery() throws HelloSignException {
-        logger.debug("POST: " + url);
+        logger.debug(this.method + ": " + url);
         HttpURLConnection connection;
         try {
             connection = (HttpURLConnection) new URL(url).openConnection();
+            if (!this.method.equals("POST")) {
+                connection.setRequestMethod(method);
+            }
         } catch (Exception e) {
             throw new HelloSignException(e);
         }
         connection.setDoOutput(true); // sets POST method
+
         connection.setRequestProperty("user-agent", USER_AGENT);
         connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
         auth.authenticate(connection, url);

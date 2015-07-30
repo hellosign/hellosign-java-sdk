@@ -3,7 +3,7 @@ package com.hellosign.sdk.resource.support.types;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2014 hellosign.com
+ * Copyright (C) 2015 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,10 @@ public enum EventType {
     signature_request_all_signed,
     signature_request_invalid,
     signature_request_remind,
-  account_confirmed,
+    account_confirmed,
     template_created,
     template_error,
     file_error,
     test,
-  unknown_error
+    unknown_error
 }
