@@ -1,0 +1,5 @@
+name=My Production App
+domain=example.com
+callback_url=https://example.com/hello
+oauth[callback_url]=https://example.com/oauth
+oauth[scopes]=*
