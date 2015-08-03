@@ -157,16 +157,16 @@ public class HelloSignClient {
     private HelloSignClient() {
         URL_HELLOSIGN = URL_API_BASE;
         String baseUrl = System.getProperty("hellosign.base.url");
-        if (!baseUrl.isEmpty()) {
+        if (baseUrl != null && !baseUrl.isEmpty()) {
             URL_HELLOSIGN = baseUrl;
         }
         URL_OAUTH_TOKEN = URL_OAUTH_TOKEN_PRODUCTION;
         String customOauthToken = System.getProperty("hellosign.oauth.base.url");
-        if (!customOauthToken.isEmpty()) {
+        if (customOauthToken != null && !customOauthToken.isEmpty()) {
             URL_OAUTH_TOKEN = customOauthToken;
         }
         String disableSslCheck = System.getProperty("hellosign.disable.ssl");
-        if ("true".equalsIgnoreCase(disableSslCheck)) {
+        if (disableSslCheck != null && "true".equalsIgnoreCase(disableSslCheck)) {
             disableStrictSSL();
         }
         initApiEndpoints();
