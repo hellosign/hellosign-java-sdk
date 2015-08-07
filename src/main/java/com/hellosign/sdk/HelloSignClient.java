@@ -810,7 +810,7 @@ public class HelloSignClient {
     public EmbeddedResponse getEmbeddedSignUrl(String signatureId) 
             throws HelloSignException {
         String url = URL_EMBEDDED_SIGN_URL + "/" + signatureId;
-        HttpPostRequest request = new HttpPostRequest(url, auth);
+        HttpGetRequest request = new HttpGetRequest(url, auth);
         JSONObject json = request.getJsonResponse();
         return new EmbeddedResponse(json);
     }
