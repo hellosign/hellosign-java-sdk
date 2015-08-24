@@ -181,6 +181,9 @@ public class HttpPostRequest extends AbstractHttpRequest {
             while (keys.hasNext()) {
                 String key = keys.next();
                 Serializable val = fields.get(key);
+                if (val == null) {
+                    throw new HelloSignException("POST value for key '" + key + "' is null");
+                }
                 String value;
                 String encodedKey;
                 try {
