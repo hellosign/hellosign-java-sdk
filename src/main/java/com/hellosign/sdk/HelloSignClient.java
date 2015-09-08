@@ -539,7 +539,26 @@ public class HelloSignClient {
      * @throws HelloSignException
      */
     public SignatureRequest getSignatureRequest(String id) throws HelloSignException {
-        HttpGetRequest request = new HttpGetRequest(URL_SIGNATURE_REQUEST + "/" + id, auth);
+        return getSignatureRequest(id, null);
+    }
+
+    /**
+     * Retrieves a Signature Request with the given ID.
+     * @param id String signature ID
+     * @param uxVersion Integer UX version
+     * @return SignatureRequest
+     * @throws HelloSignException
+     */
+    public SignatureRequest getSignatureRequest(String id, Integer uxVersion) throws HelloSignException {
+        HttpGetRequest request = null; 
+        if (uxVersion == null) {
+            request = new HttpGetRequest(URL_SIGNATURE_REQUEST + "/" + id, auth);
+        }
+        else {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put(AbstractRequest.REQUEST_UX_VERSION, Integer.toString(page));
+            request = new HttpGetRequest(URL_SIGNATURE_REQUEST + "/" + id, params, auth);   
+        }
         return new SignatureRequest(request.getJsonResponse());
     }
 
@@ -550,11 +569,8 @@ public class HelloSignClient {
      * @return SignatureRequestList
      * @throws HelloSignException
      */
-    public SignatureRequestList getSignatureRequests() 
-            throws HelloSignException {
-        HttpGetRequest request = new HttpGetRequest(
-                URL_SIGNATURE_REQUEST_LIST, auth);
-        return new SignatureRequestList(request.getJsonResponse());
+    public SignatureRequestList getSignatureRequests() throws HelloSignException {
+        return getSignatureRequests(page, null);
     }
 
     /**
@@ -563,12 +579,32 @@ public class HelloSignClient {
      * @return SignatureRequestList
      * @throws HelloSignException
      */
-    public SignatureRequestList getSignatureRequests(int page) 
-            throws HelloSignException {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put(AbstractResourceList.PAGE, Integer.toString(page));
-        HttpGetRequest request = new HttpGetRequest(
-                URL_SIGNATURE_REQUEST_LIST, params, auth);
+    public SignatureRequestList getSignatureRequests(int page) throws HelloSignException {
+        return getSignatureRequests(page, null);
+    }
+
+    /**
+     * Retrieves a specific page of the current user's signature requests.
+     * @param page int
+     * @param uxVersion Integer
+     * @return SignatureRequestList
+     * @throws HelloSignException
+     */
+    public SignatureRequestList getSignatureRequests(int page, Integer uxVersion) throws HelloSignException {
+        HttpGetRequest request = null;
+        if (page != null || uxVersion != null) {
+            Map<String, String> params = new HashMap<String, String>();
+            if (page != null) {
+                params.put(AbstractResourceList.PAGE, Integer.toString(page));
+            }
+            if (uxVersion != null) {
+                params.put(AbstractRequest.REQUEST_UX_VERSION, Integer.toString(uxVersion));
+            }
+            request = new HttpGetRequest(URL_SIGNATURE_REQUEST_LIST, params, auth);
+        }
+        else {
+            request = new HttpGetRequest(URL_SIGNATURE_REQUEST_LIST, auth);   
+        }
         return new SignatureRequestList(request.getJsonResponse());
     }
 
@@ -578,15 +614,31 @@ public class HelloSignClient {
      * @return SignatureRequest
      * @throws HelloSignException
      */
-    public SignatureRequest sendSignatureRequest(SignatureRequest req) 
-            throws HelloSignException {
+    public SignatureRequest sendSignatureRequest(SignatureRequest req) throws HelloSignException {
+        return sendSignatureRequest(req, null);
+    }
+
+    /**
+     * Sends the provided signature request to HelloSign.
+     * @param req SignatureRequest
+     * @param uxVersion Integer
+     * @return SignatureRequest
+     * @throws HelloSignException
+     */
+    public SignatureRequest sendSignatureRequest(SignatureRequest req, Integer uxVersion) throws HelloSignException {
+        
         if (req.hasId()) {
-            throw new HelloSignException(
-                    "Sending an existing signature request is not supported");        
+            throw new HelloSignException("Sending an existing signature request is not supported");        
         }
-        HttpPostRequest request = new HttpPostRequest(
-                URL_SIGNATURE_REQUEST_SEND, req.getPostFields(), auth);
+        
+        Map<String, String> params = req.getPostFields();
+        if (uxVersion != null) {
+            params.put(AbstractRequest.REQUEST_UX_VERSION, Integer.toString(uxVersion));
+        }
+
+        HttpPostRequest request = new HttpPostRequest(URL_SIGNATURE_REQUEST_SEND, params, auth);
         JSONObject json = request.getJsonResponse();
+        
         return new SignatureRequest(json);
     }
 
@@ -686,12 +738,24 @@ public class HelloSignClient {
      * @return SignatureRequest
      * @throws HelloSignException
      */
-    public SignatureRequest sendTemplateSignatureRequest(TemplateSignatureRequest req) 
-            throws HelloSignException {
-        HttpPostRequest request = new HttpPostRequest(URL_TEMPLATE_SIGNATURE_REQUEST, 
-                req.getPostFields(), auth);
-        JSONObject json = request.getJsonResponse();
-        return new SignatureRequest(json);
+    public SignatureRequest sendTemplateSignatureRequest(TemplateSignatureRequest req) throws HelloSignException {
+        return sendTemplateSignatureRequest(req, null);
+    }
+
+    /**
+     * Creates a new Signature Request based on the template provided. 
+     * @param req TemplateSignatureRequest
+     * @param uxVersion Integer
+     * @return SignatureRequest
+     * @throws HelloSignException
+     */
+    public SignatureRequest sendTemplateSignatureRequest(TemplateSignatureRequest req, Integer uxVersion) throws HelloSignException {
+        Map<String, String> params = req.getPostFields();
+        if (uxVersion != null) {
+            params.put(AbstractRequest.REQUEST_UX_VERSION, uxVersion);
+        }
+        HttpPostRequest request = new HttpPostRequest(URL_TEMPLATE_SIGNATURE_REQUEST, params, auth);
+        return new SignatureRequest(request.getJsonResponse());
     }
 
     /**
@@ -775,11 +839,23 @@ public class HelloSignClient {
      * @return SignatureRequest
      * @throws HelloSignException
      */
-    public AbstractRequest createEmbeddedRequest(EmbeddedRequest embeddedReq) 
-            throws HelloSignException {
+    public AbstractRequest createEmbeddedRequest(EmbeddedRequest embeddedReq) throws HelloSignException {
+        return createEmbeddedRequest(embeddedReq, null);
+    }
+
+    /**
+     * Creates a signature request that can be embedded within your website.
+     * @param embeddedReq EmbeddedRequest
+     * @param uxVersion Integer
+     * @return SignatureRequest
+     * @throws HelloSignException
+     */
+    public AbstractRequest createEmbeddedRequest(EmbeddedRequest embeddedReq, Integer uxVersion) throws HelloSignException {
+        
         String url = URL_SIGNATURE_REQUEST_EMBEDDED;
         Class<?> returnType = SignatureRequest.class;
         AbstractRequest req = embeddedReq.getRequest();
+        
         if (req instanceof TemplateSignatureRequest) {
             url = URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE;
         } else if (req instanceof UnclaimedDraft) {
@@ -790,8 +866,15 @@ public class HelloSignClient {
             }
             returnType = UnclaimedDraft.class;
         }
-        HttpPostRequest request = new HttpPostRequest(url, embeddedReq.getPostFields(), auth);
+
+        Map<String, String> params = embeddedReq.getPostFields();
+        if (uxVersion != null) {
+            params.put(AbstractRequest.REQUEST_UX_VERSION, Integer.toString(uxVersion));
+        }
+
+        HttpPostRequest request = new HttpPostRequest(url, params, auth);
         JSONObject json = request.getJsonResponse();
+
         try {
             Constructor<?> constructor = returnType.getConstructor(JSONObject.class);
             return (AbstractRequest) constructor.newInstance(json);
@@ -957,15 +1040,19 @@ public class HelloSignClient {
     public String getApiUrl() {
         return URL_API;
     }
+
     public String getSignatureRequestUrl() {
         return URL_SIGNATURE_REQUEST;
     }
+    
     public String getSignatureRequestSendUrl() {
         return URL_SIGNATURE_REQUEST_SEND;
     }
+    
     public String getSignatureRequestCancelUrl() {
         return URL_SIGNATURE_REQUEST_CANCEL;
     }
+    
     public String getTemplateSignatureRequestUrl() {
         return URL_TEMPLATE_SIGNATURE_REQUEST;
     }
@@ -973,6 +1060,7 @@ public class HelloSignClient {
     // =======================================================================
     // Static helpers
     // =======================================================================
+    
     private static void disableStrictSSL() {
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {

@@ -56,6 +56,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_USE_PREEXISTING_FIELDS = "use_preexisting_fields";
     public static final String REQUEST_HIDE_TEXT_TAGS = "hide_text_tags";
     public static final String REQUEST_METADATA = "metadata";
+    public static final String REQUEST_UX_VERSION = "ux_version";
 
     private Metadata metadata;
     private List<Document> documents = new ArrayList<Document>();
