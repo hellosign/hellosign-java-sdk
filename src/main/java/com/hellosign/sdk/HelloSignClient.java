@@ -114,6 +114,7 @@ public class HelloSignClient {
     private String URL_SIGNATURE_REQUEST_LIST;
     private String URL_SIGNATURE_REQUEST_SEND;
     private String URL_TEMPLATE;
+    private String URL_TEMPLATE_FILE;
     private String URL_TEMPLATE_LIST;
     private String URL_TEMPLATE_ADD_USER;
     private String URL_TEMPLATE_REMOVE_USER;
@@ -141,6 +142,9 @@ public class HelloSignClient {
 
     public static final String FILES_FILE_NAME = "files";
     public static final String FILES_FILE_EXT = "pdf";
+
+    public static final String TEMPLATE_FILE_NAME = "template";
+    public static final String TEMPLATE_FILE_EXT = "pdf";
 
     public static final String OAUTH_CODE = "code";
     public static final String OAUTH_STATE = "state";
@@ -186,6 +190,7 @@ public class HelloSignClient {
         URL_SIGNATURE_REQUEST_LIST = URL_SIGNATURE_REQUEST + "/list";
         URL_SIGNATURE_REQUEST_SEND = URL_SIGNATURE_REQUEST + "/send";
         URL_TEMPLATE = URL_API + "/template";
+        URL_TEMPLATE_FILE = URL_TEMPLATE + "/files";
         URL_TEMPLATE_LIST = URL_TEMPLATE + "/list";
         URL_TEMPLATE_ADD_USER = URL_TEMPLATE + "/add_user";
         URL_TEMPLATE_REMOVE_USER = URL_TEMPLATE + "/remove_user";
@@ -611,6 +616,20 @@ public class HelloSignClient {
         params.put(AbstractResourceList.PAGE, Integer.toString(page));
         HttpGetRequest request = new HttpGetRequest(URL_TEMPLATE_LIST, params, auth);
         return new TemplateList(request.getJsonResponse());
+    }
+
+
+    /**
+     * Retrieves the PDF file backing the Template specified by
+     * the provided Template ID.
+     * @param templateId String Template ID
+     * @return File PDF file object
+     * @throws HelloSignException
+     */
+    public File getTemplateFile(String templateId) throws HelloSignException {
+        String url = URL_TEMPLATE_FILE + "/" + templateId;
+        HttpGetRequest request = new HttpGetRequest(url, auth);
+        return request.getFileResponse(TEMPLATE_FILE_NAME + "." + TEMPLATE_FILE_EXT);
     }
 
     /**

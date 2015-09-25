@@ -56,11 +56,19 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_USE_PREEXISTING_FIELDS = "use_preexisting_fields";
     public static final String REQUEST_HIDE_TEXT_TAGS = "hide_text_tags";
     public static final String REQUEST_METADATA = "metadata";
+    public static final String REQUEST_UX_VERSION = "ux_version";
+
+    // UX Version 1 = Original, non-responsive signer page is used
+    public static final int UX_VERSION_1 = 1;
+
+    // UX Version 2 = Responsive signer page is displayed to signer(s)
+    public static final int UX_VERSION_2 = 2;
 
     private Metadata metadata;
     private List<Document> documents = new ArrayList<Document>();
     private List<String> fileUrls = new ArrayList<String>();
     private boolean orderMatters = false;
+    private int uxVersion = UX_VERSION_1;
 
     public AbstractRequest() {
         super();
@@ -88,6 +96,10 @@ public abstract class AbstractRequest extends AbstractResource {
             }
         } catch (Exception ex) {
             throw new HelloSignException("Could not extract metadata fields.", ex);
+        }
+        // For now, only send the UX version if it's the non-default (2)
+        if (this.getUxVersion() == UX_VERSION_2) {
+            fields.put(REQUEST_UX_VERSION, UX_VERSION_2);
         }
         return fields;
     }
@@ -312,5 +324,24 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     public void setFileUrls(List<String> fileUrls) {
         this.fileUrls = fileUrls;
+    }
+
+    /**
+     * Set the UX version for this request. This determines the version
+     * of the signer page displayed to signer(s). The default is
+     * UX_VERSION_1 (non-responsive). Use UX_VERSION_2 for the responsive
+     * signer page.
+     * @param uxVersion int
+     */
+    public void setUxVersion(int uxVersion) {
+        this.uxVersion = uxVersion;
+    }
+
+    /**
+     * Return the UX version for this request.
+     * @return int UX version (UX_VERSION_1 or UX_VERSION_2)
+     */
+    public int getUxVersion() {
+        return this.uxVersion;
     }
 }
