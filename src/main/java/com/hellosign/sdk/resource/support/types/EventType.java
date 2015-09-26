@@ -36,5 +36,6 @@ public enum EventType {
     template_error,
     file_error,
     test,
+    callback_test,
     unknown_error
 }
