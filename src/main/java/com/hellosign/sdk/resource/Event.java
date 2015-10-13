@@ -49,6 +49,7 @@ public class Event extends AbstractResource {
     public static final String EVENT_KEY = "event";
     public static final String EVENT_METADATA = "event_metadata";
     public static final String REPORTED_FOR_ACCOUNT_ID = "reported_for_account_id";
+    public static final String REPORTED_FOR_APP_ID = "reported_for_app_id";
     public static final String RELATED_SIGNATURE_ID = "related_signature_id";
     public static final String EVENT_TYPE = "event_type";
     public static final String EVENT_TIME = "event_time";
@@ -107,6 +108,31 @@ public class Event extends AbstractResource {
      */
     public boolean hasAccountId() throws HelloSignException {
         return has(REPORTED_FOR_ACCOUNT_ID);
+    }
+
+    /**
+     * Returns the API app ID for which this event is reported.
+     * @return String
+     * @throws HelloSignException
+     */
+    public String getAppId() throws HelloSignException {
+        JSONObject metadata = (JSONObject) get(EVENT_METADATA);
+        String id = null;
+        try {
+            id = metadata.getString(REPORTED_FOR_APP_ID);
+        } catch (JSONException ex) {
+            throw new HelloSignException(ex);
+        }
+        return id;
+    }
+
+    /**
+     * Returns true if this event has a "reported_for_app_id" field.
+     * @return boolean
+     * @throws HelloSignException
+     */
+    public boolean hasAppId() throws HelloSignException {
+        return has(REPORTED_FOR_APP_ID);
     }
 
     /**
