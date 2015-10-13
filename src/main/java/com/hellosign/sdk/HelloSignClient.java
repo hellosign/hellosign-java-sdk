@@ -557,8 +557,7 @@ public class HelloSignClient {
      */
     public SignatureRequestList getSignatureRequests() 
             throws HelloSignException {
-        HttpGetRequest request = new HttpGetRequest(
-                URL_SIGNATURE_REQUEST_LIST, auth);
+        HttpGetRequest request = new HttpGetRequest(URL_SIGNATURE_REQUEST_LIST, auth);
         return new SignatureRequestList(request.getJsonResponse());
     }
 
@@ -780,11 +779,13 @@ public class HelloSignClient {
      * @throws HelloSignException
      */
     public File getFiles(String requestId, String format) throws HelloSignException {
-        String filesUrl = URL_SIGNATURE_REQUEST_FILES + "/" + requestId;
-        Map<String, String> params = new HashMap<String, String>();
-        params.put(URL_PARAM_FILE_TYPE, format);
-        HttpGetRequest request = new HttpGetRequest(filesUrl, params, auth);
-        String filename = FILES_FILE_NAME + "." + FILES_FILE_EXT;
+        if (format == null || format.isEmpty()) {
+            format = FILES_FILE_EXT;
+        }
+        String filesUrl = URL_SIGNATURE_REQUEST_FILES + "/" + requestId + 
+                "?" + URL_PARAM_FILE_TYPE + "=" + format;
+        HttpGetRequest request = new HttpGetRequest(filesUrl, null, auth);
+        String filename = FILES_FILE_NAME + "." + format;
         return request.getFileResponse(filename);
     }
 
