@@ -2,9 +2,9 @@ package com.hellosign.sdk.resource.support.types;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -32,6 +32,7 @@ public enum EventType {
     signature_request_invalid,
     signature_request_remind,
     signature_request_destroyed,
+    signature_request_canceled,
     account_confirmed,
     template_created,
     template_error,
