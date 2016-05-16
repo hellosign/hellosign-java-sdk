@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.AbstractResource;
 import com.hellosign.sdk.resource.support.types.FieldType;
+import com.hellosign.sdk.resource.support.types.ValidationType;
 
 /**
  * This class represents a HelloSign Form Field object. 
@@ -46,6 +47,8 @@ public class FormField extends AbstractResource {
     private static final String FORM_FIELD_HEIGHT = "height";
     private static final String FORM_FIELD_SIGNER = "signer";
     private static final String FORM_FIELD_REQUIRED = "required";
+    private static final String FORM_FIELD_PAGE = "page";
+    private static final String FORM_FIELD_VALIDATION_TYPE = "validation_type";
 
     public FormField() {
         super();
@@ -119,5 +122,22 @@ public class FormField extends AbstractResource {
     public void setRequired(Boolean required) {
         set(FORM_FIELD_REQUIRED, required);
     }
-
+    public void setPage(Integer page) {
+        set(FORM_FIELD_PAGE, page);
+    }
+    public Integer getPage() {
+        return getInteger(FORM_FIELD_PAGE);
+    }
+    public void setValidationType(ValidationType type) {
+        set(FORM_FIELD_VALIDATION_TYPE, type.toString());
+    }
+    public ValidationType getValidationType() {
+        return ValidationType.valueOf(getString(FORM_FIELD_VALIDATION_TYPE));
+    }
+    public String getValidationTypeString() {
+        if (has(FORM_FIELD_VALIDATION_TYPE)) {
+            return getValidationType().toString();
+        }
+        return null;
+    }
 }
