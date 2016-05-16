@@ -843,7 +843,32 @@ public class HelloSignClient {
      */
     public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId) 
             throws HelloSignException {
+        return getEmbeddedTemplateEditUrl(templateId, false, false);
+    }
+
+    /**
+     * Retrieves the necessary information to edit an embedded template.
+     * @param templateId String ID of the signature request to embed
+     * @param skipSignerRoles true if the edited template should not allow
+     * the user to modify the template's signer roles. Defaults to false.
+     * @param skipSubjectMessage true if the edited template should
+     * not allow the user to modify the template's subject and message.
+     * Defaults to false.
+     * @return EmbeddedResponse
+     * @throws HelloSignException
+     */
+    public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId, boolean skipSignerRoles, boolean skipSubjectMessage)
+            throws HelloSignException {
         String url = this.URL_EMBEDDED_EDIT_URL + "/" + templateId;
+        if (skipSignerRoles || skipSubjectMessage) {
+            url += '?';
+            if (skipSignerRoles) {
+                url += "skip_signer_roles=1";
+            }
+            if (skipSubjectMessage) {
+                url += "skip_subject_message=1";
+            }
+        }
         HttpPostRequest request = new HttpPostRequest(url, auth);
         JSONObject json = request.getJsonResponse();
         return new EmbeddedResponse(json);
