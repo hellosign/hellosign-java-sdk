@@ -41,6 +41,7 @@ import com.hellosign.sdk.HelloSignClient;
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.http.HttpPostRequest;
 import com.hellosign.sdk.resource.SignatureRequest;
+import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
 
 /**
@@ -227,6 +228,25 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
             logger.debug("POST " + client.getSignatureRequestUrl());
             SignatureRequest resp = client.sendSignatureRequest(req);
             assertNotNull(resp);
+            logger.debug("\tSuccess!");
+        }
+    }
+
+    @Test
+    public void testGetSignature() throws HelloSignException {
+        SignatureRequest req = new SignatureRequest();
+        req.setTestMode(true);
+        req.addSigner("abeecher@example.com", "Alice");
+        req.addFile(getTestFile("test_white_text_tags.pdf"));
+        logger.debug("Sending: " + req.toString());
+        if (isHelloSignAvailable()) {
+            HelloSignClient client = new HelloSignClient(auth);
+            logger.debug("Creating new request...");
+            logger.debug("POST " + client.getSignatureRequestUrl());
+            SignatureRequest resp = client.sendSignatureRequest(req);
+            assertNotNull(resp);
+            Signature sig = resp.getSignatureBySigner("abeecher@example.com", "Alice");
+            assertNotNull(sig);
             logger.debug("\tSuccess!");
         }
     }
