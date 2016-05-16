@@ -79,7 +79,7 @@ public class TemplateDraft extends AbstractRequest {
 
     /**
      * Returns the CC roles for this request.
-     * @return List<String>
+     * @return List
      */
     public List<String> getCCRoles() {
         return ccRoles;
@@ -97,7 +97,6 @@ public class TemplateDraft extends AbstractRequest {
     /**
      * Adds the signer role to the template draft.
      * @param signerRole String
-     * @throws HelloSignException 
      */
     public void addSignerRole(String signerRole) {
         signerRoles.add(signerRole);
@@ -105,7 +104,7 @@ public class TemplateDraft extends AbstractRequest {
 
     /**
      * Returns the signer roles specified for this template draft.
-     * @return List<String>
+     * @return List
      */
     public List<String> getSignerRoles() {
         return signerRoles;
@@ -120,7 +119,8 @@ public class TemplateDraft extends AbstractRequest {
      * 
      * @param role String
      * @param order int
-     * @throws HelloSignException 
+     * @throws HelloSignException thrown if there is a problem adding
+     * the signer role.
      */
     public void addSignerRole(String role, int order) 
             throws HelloSignException {
@@ -133,7 +133,7 @@ public class TemplateDraft extends AbstractRequest {
 
     /**
      * Overwrites the current list of signer roles.
-     * @param signerRoles List<String>
+     * @param signerRoles List
      */
     public void setSignerRoles(List<String> signerRoles) {
         this.signerRoles = signerRoles;
@@ -143,6 +143,8 @@ public class TemplateDraft extends AbstractRequest {
      * Removes the signer role.
      * @param signerRole String
      * @return boolean
+     * @throws HelloSignException thrown if there is a problem removing
+     * the signer role.
      */
     public boolean removeSignerRole(String signerRole) throws HelloSignException {
         return signerRoles.remove(signerRole);
@@ -155,6 +157,8 @@ public class TemplateDraft extends AbstractRequest {
      * @param name String name of the merge field that will be displayed to
      * the user and used to key off the custom field when populating the value.
      * @param type FieldType (currently only "text" and "checkbox" are allowed)
+     * @throws HelloSignException thrown if there is a problem adding the
+     * merge field.
      */
     public void addMergeField(String name, FieldType type) throws HelloSignException {
         if (!FieldType.checkbox.equals(type) && !FieldType.text.equals(type)) {
@@ -164,8 +168,8 @@ public class TemplateDraft extends AbstractRequest {
     }
 
     /**
-     * Returns the current map of merge field names->types.
-     * @return Map<String, FieldType>
+     * Returns the current map of merge field names to types.
+     * @return Map
      */
     public Map<String, FieldType> getMergeFields() {
         return mergeFields;
@@ -214,8 +218,9 @@ public class TemplateDraft extends AbstractRequest {
 
     /**
      * Internal method used to retrieve the necessary POST fields.
-     * @return Map<String, Serializable>
-     * @throws HelloSignException
+     * @return Map
+     * @throws HelloSignException thrown if there is a problem serializing
+     * the POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();

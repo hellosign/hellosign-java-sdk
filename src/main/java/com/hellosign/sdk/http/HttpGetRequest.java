@@ -51,21 +51,49 @@ public class HttpGetRequest extends AbstractHttpRequest {
 
     private Map<String, String> parameters = null;
 
+    /**
+     * Constructor
+     * @param url String
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpGetRequest(String url) 
             throws HelloSignException {
         this(url, null, null);
     }
 
+    /**
+     * Constructor
+     * @param url String
+     * @param auth Authentication
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpGetRequest(String url, Authentication auth) 
             throws HelloSignException {
         this(url, null, auth);
     }
 
+    /**
+     * Constructor
+     * @param url String
+     * @param parameters Map
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpGetRequest(String url, Map<String, String> parameters) 
             throws HelloSignException {
         this(url, parameters, null);
     }
 
+    /**
+     * Constructor
+     * @param url String
+     * @param parameters Map
+     * @param auth Authentication
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpGetRequest(String url, Map<String, String> parameters, Authentication auth) 
             throws HelloSignException {
         if (url == null || "".equals(url)) {
@@ -84,7 +112,8 @@ public class HttpGetRequest extends AbstractHttpRequest {
      * Executes the GET request and converts the response to a JSON
      * object. 
      * @return JSONObject
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request.
      */
     public JSONObject getJsonResponse() throws HelloSignException {
         JSONObject json = null;
@@ -111,15 +140,21 @@ public class HttpGetRequest extends AbstractHttpRequest {
      * will be stored as a temporary file with the given filename, but using
      * the File.createTemporaryFile() method. This file will append a 
      * timestamp to the filename.  
-     * @param filename
+     * @param filename String
      * @return File
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem creating the file
      */
     public File getFileResponse(String filename) throws HelloSignException {
         File f = createTemporaryFile(filename);
         return getFile(url, auth, f);
     }
 
+    /**
+     * Helper method to create a temporary file.
+     * @param filename String
+     * @return File
+     * @throws HelloSignException thrown if the file cannot be created
+     */
     private static File createTemporaryFile(String filename) 
             throws HelloSignException {
         String prefix = filename.substring(0, filename.indexOf("."));
@@ -137,6 +172,16 @@ public class HttpGetRequest extends AbstractHttpRequest {
         return f;
     }
 
+    /**
+     * Helper method to execute an HTTP GET request.
+     * @param url String
+     * @param parameters Map<String, String>
+     * @param auth Authentication
+     * @return HttpURLConnection
+     * @throws UnsupportedEncodingException thrown if the encoding is not supported
+     * @throws IOException thrown if there is a problem handling the request
+     * @throws MalformedURLException thrown if the URL is unrecognizable
+     */
     private static HttpURLConnection get(String url,
             Map<String, String> parameters, Authentication auth)
             throws UnsupportedEncodingException, IOException,
@@ -165,6 +210,15 @@ public class HttpGetRequest extends AbstractHttpRequest {
         return connection;
     }
 
+    /**
+     * Helper method to make an HTTP request and return a File object.
+     * @param url String
+     * @param auth Authentication
+     * @param f File that will be written to
+     * @return File
+     * @throws HelloSignException thrown if there is a problem with the
+     * HTTP request or writing to the file
+     */
     private static File getFile(String url, Authentication auth, File f) 
             throws HelloSignException {
         InputStream in = null;

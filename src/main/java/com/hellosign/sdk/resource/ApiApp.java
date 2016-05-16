@@ -68,7 +68,8 @@ public class ApiApp extends AbstractResource {
      * Constructor that instantiates an ApiApp object based
      * on the JSON response from the HelloSign API.
      * @param json JSONObject
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem
+     * parsing the JSONObject
      */
     public ApiApp(JSONObject json) throws HelloSignException {
         super(json, APIAPP_KEY);
@@ -199,7 +200,7 @@ public class ApiApp extends AbstractResource {
 
     /**
      * Set this API app's OAuth scopes.
-     * @param scopes List<ApiAppOauthScopeType>
+     * @param scopes List of ApiAppOauthScopeType
      */
     public void setScopes(Set<ApiAppOauthScopeType> scopes) {
         if (oauth == null) {
@@ -265,8 +266,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Internal method used to retrieve the necessary POST fields to submit the
      * API app to HelloSign.
-     * @return Map<String, Serializable>
-     * @throws HelloSignException
+     * @return Map
+     * @throws HelloSignException thrown if there is a problem serializing the
+     * POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();

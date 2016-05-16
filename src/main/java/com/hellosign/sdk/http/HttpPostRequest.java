@@ -65,21 +65,49 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     private Map<String, Serializable> fields = null;
 
+    /**
+     * Constructor
+     * @param url String
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpPostRequest(String url) 
             throws HelloSignException {
         this(url, null, null);
     }
 
+    /**
+     * Constructor
+     * @param url String
+     * @param auth Authentication
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpPostRequest(String url, Authentication auth) 
             throws HelloSignException {
         this(url, null, auth);
     }
 
+    /**
+     * Constructor
+     * @param url String
+     * @param fields Map
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpPostRequest(String url, Map<String, Serializable> fields) 
             throws HelloSignException {
         this(url, fields, null);
     }
 
+    /**
+     * Constructor
+     * @param url String
+     * @param fields Map
+     * @param auth Authentication
+     * @throws HelloSignException thrown if there is a problem making
+     * the HTTP request or processing the response
+     */
     public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth) 
             throws HelloSignException {
         if (url == null || "".equals(url)) {
@@ -100,7 +128,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      * Performs a POST request to the given URL, using the authentication
      * details and POST fields provided.
      * @return JSONObject
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     * request or processing the result
      */
     public JSONObject getJsonResponse() throws HelloSignException {
         HttpURLConnection connection = post();
@@ -137,7 +166,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      * Performs a field-less POST request to the provided URL using basic auth and
      * returns the HTTP code.
      * @return int HTTP status code
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     * request or processing the result
      */
     public int getHttpResponseCode() throws HelloSignException {
         HttpURLConnection connection = post();
@@ -148,6 +178,13 @@ public class HttpPostRequest extends AbstractHttpRequest {
         }
     }
 
+    /**
+     * Helper method to make an HTTP POST request. Intelligently detects
+     * whether Files have been attached and sends as an multipart form request.
+     * @return HttpUrlConnection
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     * request or processing the result
+     */
     private HttpURLConnection post() throws HelloSignException {
         if (fields != null) {
             for (String key : fields.keySet()) {
@@ -159,6 +196,12 @@ public class HttpPostRequest extends AbstractHttpRequest {
         return postQuery();
     }
 
+    /**
+     * Helper method to make an HTTP POST request.
+     * @return HttpURLConnection
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     * request or processing the result
+     */
     private HttpURLConnection postQuery() throws HelloSignException {
         logger.debug(this.method + ": " + url);
         HttpURLConnection connection;
@@ -213,6 +256,12 @@ public class HttpPostRequest extends AbstractHttpRequest {
         return connection;
     }
 
+    /**
+     * Helper method to make an HTTP POST request with a File.
+     * @return HttpURLConnection
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     * request or processing the result
+     */
     private HttpURLConnection postWithFile() throws HelloSignException {
         try {
             openMultipartPostConnection();

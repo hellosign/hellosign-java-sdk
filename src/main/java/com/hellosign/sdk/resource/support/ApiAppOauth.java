@@ -59,6 +59,8 @@ public class ApiAppOauth extends AbstractResource {
      * Constructor that instantiates an ApiApp OAuth object based
      * on the JSON response from the HelloSign API.
      * @param json JSONObject
+     * @throws HelloSignException thrown if there is a problem updating
+     * the OAuth scopes.
      */
     public ApiAppOauth(JSONObject json) throws HelloSignException {
         super(json, APIAPP_OAUTH_KEY);
@@ -101,7 +103,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Array of OAuth scopes used by the app.
-     * @return List<ApiAppOauthScopeType>
+     * @return List
      */
     public Set<ApiAppOauthScopeType> getScopes() {
        return scopes;
@@ -117,7 +119,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Set this API app's OAuth scopes.
-     * @param scopes List<ApiAppOauthScopeType>
+     * @param scopes List
      */
     public void setScopes(Set<ApiAppOauthScopeType> scopes) {
         this.scopes = scopes;

@@ -236,7 +236,8 @@ public class HelloSignClient {
      *   
      * @param email String email
      * @param password String password
-     * @throws HelloSignException 
+     * @throws HelloSignException thrown if there is a problem setting
+     * the credentials
      */
     public HelloSignClient(String email, String password) 
             throws HelloSignException {
@@ -259,7 +260,8 @@ public class HelloSignClient {
     /**
      * Returns the current user's account information.
      * @return Account
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Account getAccount() throws HelloSignException {
         HttpGetRequest request = new HttpGetRequest(URL_ACCOUNT, auth);
@@ -272,7 +274,8 @@ public class HelloSignClient {
      * limited to the visibility of the currently authenticated user.
      * @param email String email address
      * @return true if the account exists, false otherwise
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public boolean isAccountValid(String email) throws HelloSignException {
         if (email == null) {
@@ -301,7 +304,9 @@ public class HelloSignClient {
     /**
      * Updates the current user's callback URL. 
      * @param callback String URL
-     * @throws HelloSignException 
+     * @return Account
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Account setCallback(String callback) throws HelloSignException {
         Map<String, Serializable> properties = new HashMap<String, Serializable>();
@@ -317,7 +322,8 @@ public class HelloSignClient {
      * authentication, so just performs the basic POST.
      * @param email String New user's email address
      * @return Account New user's account information
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Account createAccount(String email) throws HelloSignException {
         return createAccount(email, null, null);
@@ -332,7 +338,8 @@ public class HelloSignClient {
      * @param email String New user's email address
      * @param password String New user's password
      * @return Account New user's account information
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      * @deprecated as of 3.1.1, replaced by {@link #createAccount(String)}
      */
     public Account createAccount(String email, String password) throws HelloSignException {
@@ -346,7 +353,8 @@ public class HelloSignClient {
      * @param clientId String Client ID
      * @param clientSecret String App secret
      * @return Account New user's account information
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Account createAccount(String email, String clientId, String clientSecret) throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
@@ -369,7 +377,8 @@ public class HelloSignClient {
      * @param clientId String Client ID
      * @param clientSecret String App secret
      * @return Account New user's account information
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      * @deprecated as of 3.1.1, replaced by {@link #createAccount(String, String, String)}
      */
     public Account createAccount(String email, String password, String clientId, String clientSecret) throws HelloSignException {
@@ -395,7 +404,8 @@ public class HelloSignClient {
      * @param clientId String OAuth client ID
      * @param secret String OAuth secret
      * @return OauthData object containing OAuth token details
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public OauthData getOauthData(String code, String clientId, String secret) 
             throws HelloSignException {
@@ -412,7 +422,8 @@ public class HelloSignClient {
      * @param autoSetRequestToken true if the token should be immediately applied to 
      *     this client
      * @return OauthData object containing OAuth token details
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public OauthData getOauthData(
             String code, String clientId, String secret, boolean autoSetRequestToken) 
@@ -438,7 +449,8 @@ public class HelloSignClient {
      * token.
      * @param refreshToken String
      * @return OauthData new OAuthData returned from HelloSign
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public OauthData refreshOauthData(String refreshToken) 
             throws HelloSignException {
@@ -457,7 +469,8 @@ public class HelloSignClient {
     /**
      * Retrieves the Team for the current user account.
      * @return Team
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Team getTeam() throws HelloSignException {
         HttpGetRequest request = new HttpGetRequest(URL_TEAM, auth);
@@ -468,6 +481,8 @@ public class HelloSignClient {
      * Creates a new team for the current user with the given name.
      * @param teamName String team name
      * @return Team
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Team createTeam(String teamName) throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
@@ -480,7 +495,8 @@ public class HelloSignClient {
     /**
      * Destroys the current user's team.
      * @return int HTTP Status
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public int destroyTeam() throws HelloSignException {
         HttpPostRequest request = new HttpPostRequest(URL_TEAM_DESTROY, auth);
@@ -491,7 +507,8 @@ public class HelloSignClient {
      * Updates the current user's team name.
      * @param teamName String team name
      * @return Team 
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Team updateTeamName(String teamName) throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
@@ -505,7 +522,8 @@ public class HelloSignClient {
      * Adds the user to the current user's team.
      * @param idOrEmail String new team member's account ID or email address
      * @return Team
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Team inviteTeamMember(String idOrEmail) throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
@@ -523,7 +541,8 @@ public class HelloSignClient {
      * Removes the team member indicated by the user account ID or email address.
      * @param idOrEmail String removed team member's account ID or email address
      * @return Team
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Team removeTeamMember(String idOrEmail) throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
@@ -541,7 +560,8 @@ public class HelloSignClient {
      * Retrieves a Signature Request with the given ID.
      * @param id String signature ID
      * @return SignatureRequest
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public SignatureRequest getSignatureRequest(String id) throws HelloSignException {
         HttpGetRequest request = new HttpGetRequest(URL_SIGNATURE_REQUEST + "/" + id, auth);
@@ -553,7 +573,8 @@ public class HelloSignClient {
      * a paged query result. The page information can be retrieved on from the ListInfo
      * object on the SignatureRequestList.
      * @return SignatureRequestList
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public SignatureRequestList getSignatureRequests() 
             throws HelloSignException {
@@ -565,7 +586,8 @@ public class HelloSignClient {
      * Retrieves a specific page of the current user's signature requests.
      * @param page int
      * @return SignatureRequestList
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public SignatureRequestList getSignatureRequests(int page) 
             throws HelloSignException {
@@ -580,7 +602,8 @@ public class HelloSignClient {
      * Sends the provided signature request to HelloSign.
      * @param req SignatureRequest
      * @return SignatureRequest
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public SignatureRequest sendSignatureRequest(SignatureRequest req) 
             throws HelloSignException {
@@ -597,7 +620,8 @@ public class HelloSignClient {
     /**
      * Retrieves the templates for the current user account.
      * @return TemplateList
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public TemplateList getTemplates() throws HelloSignException {
         HttpGetRequest request = new HttpGetRequest(URL_TEMPLATE_LIST, auth);
@@ -608,7 +632,8 @@ public class HelloSignClient {
      * Retreives a page of templates for the current user account.
      * @param page int
      * @return TemplateList
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public TemplateList getTemplates(int page) throws HelloSignException {
         Map<String, String> params = new HashMap<String, String>();
@@ -623,7 +648,8 @@ public class HelloSignClient {
      * the provided Template ID.
      * @param templateId String Template ID
      * @return File PDF file object
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public File getTemplateFile(String templateId) throws HelloSignException {
         String url = URL_TEMPLATE_FILE + "/" + templateId;
@@ -635,7 +661,8 @@ public class HelloSignClient {
      * Retrieves a specific Template based on the provided Template ID.
      * @param templateId String Template ID
      * @return Template
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Template getTemplate(String templateId) throws HelloSignException {
         String url = URL_TEMPLATE + "/" + templateId;
@@ -649,7 +676,8 @@ public class HelloSignClient {
      * @param templateId String template ID
      * @param idOrEmail String account ID or email address
      * @return Template
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Template addTemplateUser(String templateId, String idOrEmail) 
             throws HelloSignException {
@@ -682,7 +710,8 @@ public class HelloSignClient {
      * @param templateId String template ID
      * @param idOrEmail String account ID or email address
      * @return Template
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public Template removeTemplateUser(String templateId, String idOrEmail) 
             throws HelloSignException {
@@ -702,7 +731,8 @@ public class HelloSignClient {
      * Creates a new Signature Request based on the template provided. 
      * @param req TemplateSignatureRequest
      * @return SignatureRequest
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public SignatureRequest sendTemplateSignatureRequest(TemplateSignatureRequest req) 
             throws HelloSignException {
@@ -717,7 +747,8 @@ public class HelloSignClient {
      * the signature request from your account. 
      * @param id SignatureRequest id
      * @return HttpStatus code
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public int cancelSignatureRequest(String id) throws HelloSignException {
         String cancelUrl = URL_SIGNATURE_REQUEST_CANCEL + "/" + id;
@@ -735,7 +766,8 @@ public class HelloSignClient {
      * @param requestId String SignatureRequest ID
      * @param email String email
      * @return SignatureRequest The request to be reminded
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public SignatureRequest requestEmailReminder(String requestId, String email) 
             throws HelloSignException {
@@ -751,7 +783,8 @@ public class HelloSignClient {
      * Retrieves the final PDF copy of a signature request, if it exists. 
      * @param requestId String SignatureRequest ID
      * @return File final copy file, or null if it does not yet exist
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      * @deprecated Use getFiles(requestId)
      */
     public File getFinalCopy(String requestId) throws HelloSignException {
@@ -765,7 +798,8 @@ public class HelloSignClient {
      * Retrieves a PDF copy of the files associated with a signature request.
      * @param requestId String signature ID
      * @return File PDF file
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public File getFiles(String requestId) throws HelloSignException {
         return getFiles(requestId, SignatureRequest.SIGREQ_FORMAT_PDF);
@@ -776,7 +810,8 @@ public class HelloSignClient {
      * @param requestId String signature ID
      * @param format String format, see SignatureRequest for available types
      * @return File
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public File getFiles(String requestId, String format) throws HelloSignException {
         if (format == null || format.isEmpty()) {
@@ -793,7 +828,8 @@ public class HelloSignClient {
      * Creates a signature request that can be embedded within your website.
      * @param embeddedReq EmbeddedRequest
      * @return SignatureRequest
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public AbstractRequest createEmbeddedRequest(EmbeddedRequest embeddedReq) 
             throws HelloSignException {
@@ -825,7 +861,8 @@ public class HelloSignClient {
      * request. 
      * @param signatureId String ID of the signature request to embed
      * @return EmbeddedResponse
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public EmbeddedResponse getEmbeddedSignUrl(String signatureId) 
             throws HelloSignException {
@@ -839,7 +876,8 @@ public class HelloSignClient {
      * Retrieves the necessary information to edit an embedded template.
      * @param templateId String ID of the signature request to embed
      * @return EmbeddedResponse
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId) 
             throws HelloSignException {
@@ -855,7 +893,8 @@ public class HelloSignClient {
      * not allow the user to modify the template's subject and message.
      * Defaults to false.
      * @return EmbeddedResponse
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId, boolean skipSignerRoles, boolean skipSubjectMessage)
             throws HelloSignException {
@@ -878,7 +917,8 @@ public class HelloSignClient {
      * Creates an unclaimed draft using the provided request draft object.
      * @param draft UnclaimedDraft
      * @return UnclaimedDraft The created draft
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public UnclaimedDraft createUnclaimedDraft(UnclaimedDraft draft) 
             throws HelloSignException {
@@ -895,7 +935,8 @@ public class HelloSignClient {
      * Creates a template draft that can be used for embedded template creation.
      * @param req EmbeddedRequest
      * @return Template the unclaimed template draft
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public TemplateDraft createEmbeddedTemplateDraft(EmbeddedRequest req)
             throws HelloSignException {
@@ -915,7 +956,8 @@ public class HelloSignClient {
      * Retrieves the API app configuration for the given Client ID.
      * @param clientId String
      * @return ApiApp
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public ApiApp getApiApp(String clientId) throws HelloSignException {
         HttpGetRequest request = new HttpGetRequest(URL_API_APP + "/" + clientId, auth);
@@ -925,7 +967,8 @@ public class HelloSignClient {
     /**
      * Retrieves a paged list of API apps for the authenticated account.
      * @return ApiAppList
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public ApiAppList getApiApps() throws HelloSignException {
         HttpGetRequest request = new HttpGetRequest(URL_API_APP_LIST, auth);
@@ -936,7 +979,8 @@ public class HelloSignClient {
      * Creates a new ApiApp using the properties set on the provided ApiApp.
      * @param app ApiApp
      * @return ApiApp newly created ApiApp
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public ApiApp createApiApp(ApiApp app) throws HelloSignException {
         HttpPostRequest request = new HttpPostRequest(URL_API_APP, app.getPostFields(), auth);
@@ -947,7 +991,8 @@ public class HelloSignClient {
      * Attempts to delete the API app with the given client ID.
      * @param clientId String The Client ID of the app that should be deleted.
      * @return boolean true if the API app was successfully deleted
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public boolean deleteApiApp(String clientId) throws HelloSignException {
         HttpDeleteRequest request = new HttpDeleteRequest(URL_API_APP + "/" + clientId, auth);
@@ -958,7 +1003,8 @@ public class HelloSignClient {
      * Updates the API app with the given ApiApp object properties.
      * @param app ApiApp
      * @return ApiApp updated ApiApp
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there's a problem processing
+     * the HTTP request or the JSON response.
      */
     public ApiApp updateApiApp(ApiApp app) throws HelloSignException {
         if (!app.hasClientId()) {
@@ -991,6 +1037,7 @@ public class HelloSignClient {
      * perform requests.
      * @param accessToken String access token
      * @param tokenType String token type
+     * @throws HelloSignException thrown if there's a problem setting the access token.
      */
     public void setAccessToken(String accessToken, String tokenType) 
             throws HelloSignException {

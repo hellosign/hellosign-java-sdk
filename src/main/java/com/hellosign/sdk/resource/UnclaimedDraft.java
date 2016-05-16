@@ -97,7 +97,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Constructor to provide a way to store the API response JSON information.
      * @param json JSONObject API response object
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing the JSONObject. 
      */
     public UnclaimedDraft(JSONObject json) throws HelloSignException {
         super(json, UNCLAIMED_DRAFT_KEY);
@@ -165,7 +165,8 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Adds a file to the unclaimed draft.
      * @param file File
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem adding
+     * the File.
      */
     public void addFile(File file) throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -178,7 +179,8 @@ public class UnclaimedDraft extends AbstractRequest {
      * Adds a file to the unclaimed draft at the given document order.
      * @param file File
      * @param order int
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem adding
+     * the File.
      */
     public void addFile(File file, int order) throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -189,7 +191,8 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Removes all files from this request.
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem clearing
+     * the Files
      */
     public void clearFiles() throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {

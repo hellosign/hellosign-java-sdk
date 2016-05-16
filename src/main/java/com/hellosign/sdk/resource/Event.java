@@ -63,7 +63,8 @@ public class Event extends AbstractResource {
      * Default constructor. Provide this constructor with the JSONObject
      * created from the API response.
      * @param json JSONObject
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing the
+     * JSONObject.
      */
     public Event(JSONObject json) throws HelloSignException {
         super(json, EVENT_KEY);
@@ -88,7 +89,8 @@ public class Event extends AbstractResource {
     /**
      * Returns the account ID that this event is reporting for.
      * @return String
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSON object.
      */
     public String getAccountId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
@@ -104,7 +106,8 @@ public class Event extends AbstractResource {
     /**
      * Returns true if this event has a "reported_for_account_id" field.
      * @return true or false if it does not have an account ID
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSONObject.
      */
     public boolean hasAccountId() throws HelloSignException {
         return has(REPORTED_FOR_ACCOUNT_ID);
@@ -113,7 +116,8 @@ public class Event extends AbstractResource {
     /**
      * Returns the API app ID for which this event is reported.
      * @return String
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSONObject.
      */
     public String getAppId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
@@ -129,7 +133,8 @@ public class Event extends AbstractResource {
     /**
      * Returns true if this event has a "reported_for_app_id" field.
      * @return boolean
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSONObject.
      */
     public boolean hasAppId() throws HelloSignException {
         return has(REPORTED_FOR_APP_ID);
@@ -146,7 +151,8 @@ public class Event extends AbstractResource {
     /**
      * Returns the signature ID to which this event is associated. 
      * @return String
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSONObject.
      */
     public String getRelatedSignatureId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
@@ -178,7 +184,8 @@ public class Event extends AbstractResource {
      * Returns the associated Signature object with this event, if the
      * event is associated with a Signature Request.
      * @return Signature
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSONObject.
      */
     public Signature getRelatedSignature() throws HelloSignException {
         String id = getRelatedSignatureId();
@@ -261,7 +268,8 @@ public class Event extends AbstractResource {
      * API key.
      * @param apiKey String api key.
      * @return true if the hashes match, false otherwise
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the API key.
      */
     public boolean isValid(String apiKey) throws HelloSignException {
         if (apiKey == null || apiKey == "") {
@@ -280,9 +288,8 @@ public class Event extends AbstractResource {
         } catch (IllegalArgumentException e) {
             throw new HelloSignException("Invalid API Key (" + e.getMessage() + "): " + apiKey);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        	throw new HelloSignException("Unable to process API key", e);
         }
-        return false;
     }
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();

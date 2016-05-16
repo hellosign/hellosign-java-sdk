@@ -204,7 +204,8 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Adds the file to the request. 
      * @param file File
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem attaching
+     * the File to this request.
      */
     public void addFile(File file) throws HelloSignException {
         addFile(file, null);
@@ -220,7 +221,8 @@ public abstract class AbstractRequest extends AbstractResource {
      * 
      * @param file File
      * @param order Integer or null
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem attaching
+     * the File to this request.
      */
     public void addFile(File file, Integer order) throws HelloSignException {
         Document doc = new Document();
@@ -234,8 +236,8 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds a Document to the signature request.
-     * @param doc
-     * @throws HelloSignException
+     * @param doc Document
+     * @throws HelloSignException thrown if null is provided
      */
     public void addDocument(Document doc) throws HelloSignException {
         if (doc == null) {
@@ -246,9 +248,10 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds a Document to the signature request at the specific order. 
-     * @param doc
-     * @param order
-     * @throws HelloSignException
+     * @param doc Document
+     * @param order int
+     * @throws HelloSignException thrown if null is provided or there
+     * is a problem attaching the Document.
      */
     public void addDocument(Document doc, int order) throws HelloSignException {
         if (doc == null) {
@@ -265,7 +268,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * Returns a reference to the list of documents for this request. 
      * Modifying this list will modify the list that will be sent with the
      * request. Useful for more fine-grained modification.
-     * @return List<Document>
+     * @return List
      */
     public List<Document> getDocuments() {
         return documents;
@@ -273,7 +276,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Overwrites this requests document list with the provided document list.
-     * @param docs List<Document>
+     * @param docs List
      */
     public void setDocuments(List<Document> docs) {
         documents = docs;
@@ -312,7 +315,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Return the current file_url list.
-     * @return List<String>
+     * @return List
      */
     public List<String> getFileUrls() {
         return fileUrls;
@@ -320,7 +323,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Overwrite the current file_url list.
-     * @param fileUrls List<String>
+     * @param fileUrls List
      */
     public void setFileUrls(List<String> fileUrls) {
         this.fileUrls = fileUrls;

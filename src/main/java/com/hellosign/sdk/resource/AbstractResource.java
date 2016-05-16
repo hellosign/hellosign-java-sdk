@@ -243,9 +243,9 @@ public abstract class AbstractResource {
     /**
      * Returns the first constructor that has exactly one parameter of the
      * provided paramClass type.
-     * @param clazz Class<?> whose constructors we are checking
-     * @param paramClass Class<?> Parameter class that the constructor should take
-     * @return Constructor<?>
+     * @param clazz Class whose constructors we are checking
+     * @param paramClass Class Parameter class that the constructor should take
+     * @return Constructor
      */
     protected Constructor<?> getConstructor(Class<?> clazz, Class<?> paramClass) {
         for (Constructor<?> c : clazz.getConstructors()) {

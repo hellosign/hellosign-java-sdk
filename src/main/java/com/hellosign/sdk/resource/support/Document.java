@@ -59,7 +59,7 @@ public class Document extends AbstractResource {
 
     /**
      * Returns the form fields for this document.
-     * @return List<FormField>
+     * @return List
      */
     public List<FormField> getFormFields() {
         return getList(FormField.class, DOCUMENT_FORM_FIELDS);
@@ -68,8 +68,9 @@ public class Document extends AbstractResource {
     /**
      * Overwrites the form fields for this document. This is useful 
      * when manually migrating form fields from a template.
-     * @param formFields 
-     * @throws HelloSignException 
+     * @param formFields List
+     * @throws HelloSignException thrown if there is a problem adding
+     * the FormFields to this Document.
      */
     public void setFormFields(List<FormField> formFields) throws HelloSignException {
         clearList(DOCUMENT_FORM_FIELDS);
@@ -81,7 +82,8 @@ public class Document extends AbstractResource {
     /**
      * Adds the form field to this document.
      * @param formField FormField
-     * @throws HelloSignException 
+     * @throws HelloSignException thrown if there is a problem adding
+     * the FormFields to this Document.
      */
     public void addFormField(FormField formField) throws HelloSignException {
         if (!has(DOCUMENT_FORM_FIELDS)) {
@@ -92,7 +94,7 @@ public class Document extends AbstractResource {
 
     /**
      * Returns the custom fields for this document. 
-     * @return List<CustomField>
+     * @return List
      */
     public List<CustomField> getCustomFields() {
         return getList(CustomField.class, DOCUMENT_CUSTOM_FIELDS);

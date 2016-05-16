@@ -85,7 +85,7 @@ public class Template extends AbstractResource {
     /**
      * Returns a list of SignerRoles. If they are ordered, the list is returned
      * in order.
-     * @return List<SignerRole>
+     * @return List
      */
     public List<TemplateRole> getSignerRoles() {
         List<TemplateRole> masterList = getList(TemplateRole.class, TEMPLATE_SIGNER_ROLES);

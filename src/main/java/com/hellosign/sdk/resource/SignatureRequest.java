@@ -101,7 +101,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns the CC email addresses for this request.
-     * @return List<String>
+     * @return List
      */
     public List<String> getCCs() {
         return getList(String.class, SIGREQ_CCS);
@@ -117,7 +117,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns a list of signatures for this request.
-     * @return List<Signature>
+     * @return List
      */
     public List<Signature> getSignatures() {
         return getList(Signature.class, "signatures");
@@ -150,7 +150,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Adds the signer to the list of signers for this request.
      * @param signer Signer
-     * @throws HelloSignException 
+     * @throws HelloSignException thrown if there is a problem adding the signer.
      */
     public void addSigner(Signer signer) throws HelloSignException {
         signers.add(signer);
@@ -160,7 +160,7 @@ public class SignatureRequest extends AbstractRequest {
      * Adds the signer to the list of signers for this request.
      * @param email String
      * @param name String
-     * @throws HelloSignException 
+     * @throws HelloSignException thrown if there is a problem adding the signer.
      */
     public void addSigner(String email, String name) throws HelloSignException {
         signers.add(new Signer(email, name));
@@ -176,7 +176,7 @@ public class SignatureRequest extends AbstractRequest {
      * @param email String
      * @param name String
      * @param order int
-     * @throws HelloSignException 
+     * @throws HelloSignException thrown if there is a problem adding the signer.
      */
     public void addSigner(String email, String name, int order) 
             throws HelloSignException {
@@ -191,7 +191,7 @@ public class SignatureRequest extends AbstractRequest {
      * Returns a reference to the signers list. This can be modified and 
      * re-added to the request using setSigners(). Useful for more explicit 
      * modification.
-     * @return List<Signer>
+     * @return List
      */
     public List<Signer> getSigners() {
         return signers;
@@ -200,7 +200,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Overwrites the current list of signers for this request with the
      * given list.
-     * @param signers List<Signer>
+     * @param signers List
      */
     public void setSigners(List<Signer> signers) {
         this.signers = signers;
@@ -210,7 +210,7 @@ public class SignatureRequest extends AbstractRequest {
      * Removes the signer from the list. If that user does not exist,
      * this will throw a HelloSignException.
      * @param email String
-     * @throws HelloSignException
+     * @throws HelloSignException thrown if there is a problem removing the signer.
      */
     public void removeSigner(String email) throws HelloSignException {
         if (email == null) {
@@ -248,8 +248,9 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Internal method used to retrieve the necessary POST fields to submit the
      * signature request. 
-     * @return Map<String, Serializable>
-     * @throws HelloSignException
+     * @return Map
+     * @throws HelloSignException thrown if there is a problem serializing the
+     * POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();

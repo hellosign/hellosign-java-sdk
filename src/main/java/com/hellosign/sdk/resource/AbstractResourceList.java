@@ -100,8 +100,8 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
 
     /**
      * Returns the current page of results for this list object.
-     * @return List<E>
-     * @throws HelloSignException
+     * @return List
+     * @throws HelloSignException thrown if the list cannot be generated
      */
     public List<E> getCurrentPageList() 
             throws HelloSignException {
@@ -112,7 +112,8 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
      * Filters the current page of results by the given column and value. 
      * @param columnName String column name to filter by
      * @param filterValue Serializable matching value
-     * @return List<E> results
+     * @return List results
+     * @throws HelloSignException thrown if the column name is invalid
      */
     public List<E> filterCurrentPageBy(String columnName, Serializable filterValue) 
             throws HelloSignException {
