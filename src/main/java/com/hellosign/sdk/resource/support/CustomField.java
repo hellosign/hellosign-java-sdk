@@ -1,5 +1,7 @@
 package com.hellosign.sdk.resource.support;
 
+import org.json.JSONException;
+
 /**
  * The MIT License (MIT)
  * 
@@ -41,9 +43,12 @@ import com.hellosign.sdk.resource.support.types.FieldType;
  */
 public class CustomField extends AbstractResource {
 
-    public static final String CUSTOM_FIELD_NAME = "name";
-    public static final String CUSTOM_FIELD_TYPE = "type";
-    public static final String CUSTOM_FIELD_API_ID = "api_id";
+    public static final String CUSTOM_FIELD_NAME     = "name";
+    public static final String CUSTOM_FIELD_TYPE     = "type";
+    public static final String CUSTOM_FIELD_API_ID   = "api_id";
+    public static final String CUSTOM_FIELD_VALUE    = "value";
+    public static final String CUSTOM_FIELD_EDITOR   = "editor";
+    public static final String CUSTOM_FIELD_REQUIRED = "required";
 
     public CustomField() {
         super();
@@ -56,6 +61,13 @@ public class CustomField extends AbstractResource {
     public String getName() {
         return getString(CUSTOM_FIELD_NAME);
     }
+    /**
+     * Set the name of this custom field.
+     * @param name String
+     */
+    public void setName(String name) {
+        set(CUSTOM_FIELD_NAME, name);
+    }
     public FieldType getType() {
         return FieldType.valueOf(getString(CUSTOM_FIELD_TYPE));
     }
@@ -65,7 +77,51 @@ public class CustomField extends AbstractResource {
         }
         return null;
     }
+    /**
+     * Set the type for this custom field.
+     * @param type FieldType
+     */
+    public void setType(FieldType type) {
+        set(CUSTOM_FIELD_TYPE, type.toString());
+    }
+    public String getValue() {
+        return getString(CUSTOM_FIELD_VALUE);
+    }
+    /**
+     * Set the value for this field.
+     * @param value String
+     */
+    public void setValue(String value) {
+        set(CUSTOM_FIELD_VALUE, value);
+    }
     public String getApiId() {
         return getString(CUSTOM_FIELD_API_ID);
+    }
+    /**
+     * Set the API ID for this custom field.
+     * @param apiId String
+     */
+    public void setApiId(String apiId) {
+        set(CUSTOM_FIELD_API_ID, apiId);
+    }
+    public String getEditor() {
+        return getString(CUSTOM_FIELD_EDITOR);
+    }
+    /**
+     * Specify what signer role may edit this field.
+     * @param editor String
+     */
+    public void setEditor(String editor) {
+        set(CUSTOM_FIELD_EDITOR, editor);
+    }
+    public Boolean isRequired() {
+        return getBoolean(CUSTOM_FIELD_REQUIRED);
+    }
+    /**
+     * Specify whether this field is required.
+     * @param isRequired Boolean
+     */
+    public void setIsRequired(Boolean isRequired) {
+        set(CUSTOM_FIELD_REQUIRED, isRequired);
     }
 }

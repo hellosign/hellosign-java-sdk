@@ -25,11 +25,15 @@ package com.hellosign.sdk.resource;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.CustomField;
 import com.hellosign.sdk.resource.support.Signer;
 
 /**
@@ -57,7 +61,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
     // fields are stored, so we can support this association. 
     private Map<String, Signer> signers = new HashMap<String, Signer>();    
     private Map<String, String> ccs = new HashMap<String, String>();
-    private Map<String, String> customFields = new HashMap<String, String>();
+    private List<CustomField> customFields = new ArrayList<CustomField>();
 
     public TemplateSignatureRequest() {
         super();
@@ -170,12 +174,24 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
+     * Add the custom field to this request. This is useful for specifying
+     * a pre-filled value and/or a field editor.
+     * @param field CustomField
+     */
+    public void addCustomField(CustomField field) {
+        customFields.add(field);
+    }
+
+    /**
      * Adds the value to fill in for a custom field with the given field name. 
      * @param fieldName String field name to be filled in
      * @param value String value
      */
     public void setCustomFieldValue(String fieldName, String value) {
-        customFields.put(fieldName, value);
+        CustomField f = new CustomField();
+        f.setName(fieldName);
+        f.setValue(value);
+        customFields.add(f);
     }
 
     /**
@@ -184,6 +200,18 @@ public class TemplateSignatureRequest extends AbstractRequest {
      * @return Map
      */
     public Map<String, String> getCustomFields() {
+        Map<String, String> fields = new HashMap<String, String>();
+        for (CustomField f : customFields) {
+            fields.put(f.getName(), f.getValue());
+        }
+        return fields;
+    }
+
+    /**
+     * Returns a list of CustomField objects for this template.
+     * @return List of CustomFields
+     */
+    public List<CustomField> getCustomFieldsList() {
         return customFields;
     }
 
@@ -193,14 +221,20 @@ public class TemplateSignatureRequest extends AbstractRequest {
      * @param fields Map
      */
     public void setCustomFields(Map<String, String> fields) {
-        customFields = fields;
+        clearCustomFields();
+        for (String key : fields.keySet()) {
+            CustomField f = new CustomField();
+            f.setName(key);
+            f.setValue(fields.get(key));
+            customFields.add(f);
+        }
     }
 
     /**
      * Clears the current custom fields for this request.
      */
     public void clearCustomFields() {
-        customFields = new HashMap<String, String>();
+        customFields = new ArrayList<CustomField>();
     }
 
     /**
@@ -320,11 +354,12 @@ public class TemplateSignatureRequest extends AbstractRequest {
                         + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]", 
                         ccz.get(role));
             }
-            Map<String, String> customFields = getCustomFields();
-            for (String fieldName : customFields.keySet()) {
-                fields.put(TEMPLATE_CUSTOM_FIELDS 
-                        + "[" + fieldName + "]", 
-                        customFields.get(fieldName));
+            if (customFields.size() > 0) {
+                JSONArray array = new JSONArray();
+                for (CustomField f : customFields) {
+                    array.put(f.getJSONObject());
+                }
+                fields.put(TEMPLATE_CUSTOM_FIELDS, array.toString());
             }
             if (isTestMode()) {
                 fields.put(REQUEST_TEST_MODE, true);
