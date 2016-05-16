@@ -81,8 +81,9 @@ public abstract class AbstractResource {
         try {
             if (value instanceof Date) {
                 dataObj.put(key, ((Date) value).getTime());
+            } else {
+                dataObj.put(key, value);
             }
-            dataObj.put(key, value);
         } catch (JSONException e) {
             e.printStackTrace();
         }
