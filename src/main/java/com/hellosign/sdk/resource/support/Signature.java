@@ -40,15 +40,15 @@ import com.hellosign.sdk.resource.support.types.SignatureStatus;
  */
 public class Signature extends AbstractResource {
 
-    private static final String SIGNATURE_KEY = "signature";
-    private static final String SIGNATURE_ID = "signature_id";
-    private static final String SIGNER_EMAIL_ADDRESS = "signer_email_address";
-    private static final String SIGNER_NAME = "signer_name";
-    private static final String SIGNER_ORDER = "order";
-    private static final String SIGNER_STATUS_CODE = "status_code";
-    private static final String SIGNER_SIGNED_AT = "signed_at";
-    private static final String SIGNER_LAST_VIEWED_AT = "last_viewed_at";
-    private static final String SIGNER_LAST_REMINDED_AT = "last_reminded_at";
+    public static final String SIGNATURE_KEY = "signature";
+    public static final String SIGNATURE_ID = "signature_id";
+    public static final String SIGNER_EMAIL_ADDRESS = "signer_email_address";
+    public static final String SIGNER_NAME = "signer_name";
+    public static final String SIGNER_ORDER = "order";
+    public static final String SIGNER_STATUS_CODE = "status_code";
+    public static final String SIGNER_SIGNED_AT = "signed_at";
+    public static final String SIGNER_LAST_VIEWED_AT = "last_viewed_at";
+    public static final String SIGNER_LAST_REMINDED_AT = "last_reminded_at";
 
     public Signature() {
         super();

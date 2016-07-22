@@ -63,6 +63,7 @@ import com.hellosign.sdk.resource.TemplateSignatureRequest;
 import com.hellosign.sdk.resource.UnclaimedDraft;
 import com.hellosign.sdk.resource.support.ApiAppList;
 import com.hellosign.sdk.resource.support.OauthData;
+import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
 import com.hellosign.sdk.resource.support.TemplateList;
 
@@ -125,6 +126,7 @@ public class HelloSignClient {
     private String URL_SIGNATURE_REQUEST_REMIND;
     private String URL_SIGNATURE_REQUEST_FINAL_COPY;
     private String URL_SIGNATURE_REQUEST_FILES;
+    private String URL_SIGNATURE_REQUEST_UPDATE;
     private String URL_SIGNATURE_REQUEST_EMBEDDED;
     private String URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE;
     private String URL_EMBEDDED_SIGN_URL;
@@ -201,6 +203,7 @@ public class HelloSignClient {
         URL_SIGNATURE_REQUEST_REMIND = URL_SIGNATURE_REQUEST + "/remind";
         URL_SIGNATURE_REQUEST_FINAL_COPY = URL_SIGNATURE_REQUEST + "/final_copy";
         URL_SIGNATURE_REQUEST_FILES = URL_SIGNATURE_REQUEST + "/files";
+        URL_SIGNATURE_REQUEST_UPDATE = URL_SIGNATURE_REQUEST + "/update";
         URL_SIGNATURE_REQUEST_EMBEDDED = URL_SIGNATURE_REQUEST + "/create_embedded";
         URL_SIGNATURE_REQUEST_EMBEDDED_TEMPLATE = URL_SIGNATURE_REQUEST + "/create_embedded_with_template";
         URL_EMBEDDED_SIGN_URL = URL_API + "/embedded/sign_url";
@@ -613,6 +616,34 @@ public class HelloSignClient {
         }
         HttpPostRequest request = new HttpPostRequest(
                 URL_SIGNATURE_REQUEST_SEND, req.getPostFields(), auth);
+        JSONObject json = request.getJsonResponse();
+        return new SignatureRequest(json);
+    }
+
+    /**
+     * Update a signer's email address.
+     * 
+     * This method requires the ID of the siganture request that has already
+     * been sent, as well as the signature_id that represents the signer that
+     * should be updated. The ema
+     * @param signature_request_id String ID of the signature request that has
+     * already been sent and needs to be updated.
+     * @param signature_id String ID of the signer that needs to be updated.
+     * @param new_email_address String email address that the signer should be
+     * changed to
+     * @return SignatureRequest The updated request data
+     * @throws HelloSignException thrown if there's a problem processing the
+     * HTTP request or the JSON response.
+     */
+    public SignatureRequest updateSignatureRequest(
+            String signature_request_id,
+            String signature_id,
+            String new_email_address) throws HelloSignException {
+        String url = this.URL_SIGNATURE_REQUEST_UPDATE + "/" + signature_request_id;
+        Map<String, Serializable> fields = new HashMap<String, Serializable>();
+        fields.put(Signature.SIGNATURE_ID, signature_id);
+        fields.put(SignatureRequest.SIGREQ_SIGNER_EMAIL, new_email_address);
+        HttpPostRequest request = new HttpPostRequest(url, fields, auth);
         JSONObject json = request.getJsonResponse();
         return new SignatureRequest(json);
     }

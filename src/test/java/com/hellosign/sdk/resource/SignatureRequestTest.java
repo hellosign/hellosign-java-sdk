@@ -41,8 +41,11 @@ import com.hellosign.sdk.HelloSignClient;
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.http.HttpPostRequest;
 import com.hellosign.sdk.resource.SignatureRequest;
+import com.hellosign.sdk.resource.support.Document;
+import com.hellosign.sdk.resource.support.FormField;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
+import com.hellosign.sdk.resource.support.types.FieldType;
 
 /**
  * Exercises the Signature Request capability.
@@ -248,6 +251,42 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
             Signature sig = resp.getSignatureBySigner("abeecher@example.com", "Alice");
             assertNotNull(sig);
             logger.debug("\tSuccess!");
+        }
+    }
+    
+    @Test
+    public void testUpdateSignature() throws HelloSignException {
+        if (isHelloSignAvailable()) {
+            String goodName = "Jill";
+            String badEmail = "llij@hellosign.com";
+            String goodEmail = "jill@hellosign.com";
+            // Create the signature request
+            SignatureRequest request = new SignatureRequest();
+            request.setTestMode(true);
+            request.addSigner(badEmail, goodName);
+            Document doc = new Document();
+            doc.setFile(getTestFile("nda.pdf"));
+            FormField signature_field = new FormField();
+            signature_field.setType(FieldType.signature);
+            signature_field.setSigner(1);
+            signature_field.setX(200);
+            signature_field.setY(200);
+            signature_field.setWidth(300);
+            signature_field.setHeight(80);
+            signature_field.setPage(1);
+            doc.addFormField(signature_field);
+            request.addDocument(doc);
+            HelloSignClient client = new HelloSignClient(auth);
+            SignatureRequest sentRequest = client.sendSignatureRequest(request);
+            assertNotNull(sentRequest);
+            assertTrue(sentRequest.getSignatures().get(0).getEmail().equals(badEmail));
+            Signature badSigner = sentRequest.getSignature(badEmail, goodName);
+            SignatureRequest updatedRequest = client.updateSignatureRequest(
+                sentRequest.getId(), 
+                badSigner.getId(), 
+                goodEmail);
+            assertNotNull(updatedRequest);
+            assertTrue(updatedRequest.getSignatures().get(0).getEmail().equals(goodEmail));
         }
     }
 }

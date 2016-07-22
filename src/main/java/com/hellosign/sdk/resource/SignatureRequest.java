@@ -231,6 +231,7 @@ public class SignatureRequest extends AbstractRequest {
      * @param email String
      * @param name String
      * @return Signature, if found on this request, or null
+     * @deprecated Use getSignature(email, name)
      */
     public Signature getSignatureBySigner(String email, String name) {
         if (email == null || name == null) {
