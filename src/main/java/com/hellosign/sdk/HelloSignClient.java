@@ -603,17 +603,14 @@ public class HelloSignClient {
 
     /**
      * Sends the provided signature request to HelloSign.
-     * @param req SignatureRequest
+     * @param req AbstractRequest Use a SignatureRequest (or EmbeddedRequest
+     * to include a client_id)
      * @return SignatureRequest
      * @throws HelloSignException thrown if there's a problem processing
      * the HTTP request or the JSON response.
      */
-    public SignatureRequest sendSignatureRequest(SignatureRequest req) 
+    public SignatureRequest sendSignatureRequest(AbstractRequest req) 
             throws HelloSignException {
-        if (req.hasId()) {
-            throw new HelloSignException(
-                    "Sending an existing signature request is not supported");        
-        }
         HttpPostRequest request = new HttpPostRequest(
                 URL_SIGNATURE_REQUEST_SEND, req.getPostFields(), auth);
         JSONObject json = request.getJsonResponse();

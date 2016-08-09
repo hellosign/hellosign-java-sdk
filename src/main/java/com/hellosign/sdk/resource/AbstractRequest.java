@@ -81,7 +81,7 @@ public abstract class AbstractRequest extends AbstractResource {
         metadata = new Metadata(dataObj);
     }
 
-    protected Map<String, Serializable> getPostFields() throws HelloSignException {
+    public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
         try {
             Metadata metadata = getMetadata();
