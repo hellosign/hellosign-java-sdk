@@ -289,4 +289,14 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
             assertTrue(updatedRequest.getSignatures().get(0).getEmail().equals(goodEmail));
         }
     }
+    
+    @Test
+    public void testSignatureRequestClientId() throws HelloSignException {
+        String clientid = "TEST";
+        SignatureRequest req = new SignatureRequest();
+        req.setClientId(clientid);
+        Map<String, Serializable> fields = req.getPostFields();
+        String reqclientid = (String) fields.get(AbstractRequest.REQUEST_CLIENT_ID);
+        assertTrue(clientid.equals(reqclientid));
+    }
 }
