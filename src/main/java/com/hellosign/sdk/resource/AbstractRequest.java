@@ -57,6 +57,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_HIDE_TEXT_TAGS = "hide_text_tags";
     public static final String REQUEST_METADATA = "metadata";
     public static final String REQUEST_UX_VERSION = "ux_version";
+    public static final String REQUEST_CLIENT_ID = "client_id";
 
     // UX Version 1 = Original, non-responsive signer page is used
     public static final int UX_VERSION_1 = 1;
@@ -69,6 +70,7 @@ public abstract class AbstractRequest extends AbstractResource {
     private List<String> fileUrls = new ArrayList<String>();
     private boolean orderMatters = false;
     private int uxVersion = UX_VERSION_1;
+    private String clientId = null;
 
     public AbstractRequest() {
         super();
@@ -100,6 +102,9 @@ public abstract class AbstractRequest extends AbstractResource {
         // For now, only send the UX version if it's the non-default (2)
         if (this.getUxVersion() == UX_VERSION_2) {
             fields.put(REQUEST_UX_VERSION, UX_VERSION_2);
+        }
+        if (clientId != null && !"".equals(clientId)) {
+            fields.put(REQUEST_CLIENT_ID, clientId);
         }
         return fields;
     }
@@ -346,5 +351,25 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     public int getUxVersion() {
         return this.uxVersion;
+    }
+
+    /**
+     * Associates this request with an API app.
+     * @param clientId String client ID of the API app.
+     */
+    public void setClientId(String clientId) throws HelloSignException {
+        if (clientId == null) {
+            throw new HelloSignException("Client ID cannot be null");
+        }
+        this.clientId = clientId.trim();
+    }
+
+    /**
+     * The API app client ID that has been associated with
+     * this signature request.
+     * @return String client ID
+     */
+    public String getClientId() {
+        return clientId;
     }
 }
