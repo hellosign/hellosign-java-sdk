@@ -52,6 +52,7 @@ public class ApiApp extends AbstractResource {
     public static final String APIAPP_IS_APPROVED = "is_approved";
     public static final String APIAPP_NAME = "name";
     public static final String APIAPP_OWNER_ACCOUNT = "owner_account";
+    public static final String APIAPP_CUSTOM_LOGO = "custom_logo_file";
     
     private ApiAppOauth oauth = null;
     private Account owner_account = null;
@@ -274,16 +275,16 @@ public class ApiApp extends AbstractResource {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
         try {
             if (hasName()) {
-                fields.put("name", getName());
+                fields.put(APIAPP_NAME, getName());
             }
             if (hasDomain()) {
-                fields.put("domain", getDomain());
+                fields.put(APIAPP_DOMAIN, getDomain());
             }
             if (hasCallbackUrl()) {
                 fields.put(APIAPP_CALLBACK_URL, getCallbackUrl());
             }
             if (custom_logo != null && custom_logo.exists()) {
-                fields.put("custom_logo_file", custom_logo);
+                fields.put(APIAPP_CUSTOM_LOGO, custom_logo);
             }
             ApiAppOauth oauth = getOauthInfo();
             if (oauth != null) {
