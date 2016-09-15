@@ -206,7 +206,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         logger.debug(this.method + ": " + url);
         HttpURLConnection connection;
         try {
-            connection = (HttpURLConnection) new URL(url).openConnection();
+            connection = getConnection(url);
             if (!this.method.equals("POST")) {
                 connection.setRequestMethod(method);
             }

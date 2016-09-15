@@ -31,7 +31,6 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -200,7 +199,7 @@ public class HttpGetRequest extends AbstractHttpRequest {
             }
         }
         logger.debug("GET: " + url);
-        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        HttpURLConnection connection = getConnection(url);
         connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
         connection.setRequestProperty("user-agent", USER_AGENT);
         if (auth != null) {
