@@ -1,7 +1,6 @@
 package com.hellosign.sdk.http;
 
 import java.net.HttpURLConnection;
-import java.net.URL;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,7 @@ public class HttpDeleteRequest extends AbstractHttpRequest {
     public int getHttpResponseCode() throws HelloSignException {
         try {
             logger.debug("DELETE: " + url);
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            HttpURLConnection connection = getConnection(url);
             connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
             connection.setRequestProperty("user-agent", USER_AGENT);
             if (auth != null) {

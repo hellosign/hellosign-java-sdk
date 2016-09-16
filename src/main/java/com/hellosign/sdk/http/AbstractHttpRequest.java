@@ -27,6 +27,11 @@ package com.hellosign.sdk.http;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -82,5 +87,38 @@ public abstract class AbstractHttpRequest {
                 throw new HelloSignException(ex);
             }
         }
+    }
+
+    /**
+     * Creates an HTTP connection.
+     *
+     * Optionally checks for proxy parameters and creates a proxied connection
+     * using the system properties: 
+     *   "hellosign.proxy.url" - the URL of the HTTP proxy
+     *   "hellosign.proxy.port" - the port of the HTTP proxy
+     *
+     * @param url String URL to connect to
+     * @return HttpUrlConnection the (proxied) connection to the URL
+     * @throws MalformedURLException thrown if the URL is invalid
+     * @throws IOException thrown if IO cannot be established with the URL
+     */
+    protected static HttpURLConnection getConnection(String url) throws MalformedURLException, IOException {
+        HttpURLConnection conn = null;
+        Proxy proxy = null;
+        String proxyUrlStr = System.getProperty("hellosign.proxy.url");
+        String proxyPortStr = System.getProperty("hellosign.proxy.port");
+        Integer proxyPort = 80; // Default to port 80
+        if (proxyPortStr != null) {
+            proxyPort = Integer.parseInt(proxyPortStr);
+        }
+        if (proxyUrlStr != null) {
+            proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrlStr, proxyPort));
+        }
+        if (proxy == null) {
+            conn = (HttpURLConnection) new URL(url).openConnection(); 
+        } else {
+            conn = (HttpURLConnection) new URL(url).openConnection(proxy);
+        }
+        return conn;
     }
 }
