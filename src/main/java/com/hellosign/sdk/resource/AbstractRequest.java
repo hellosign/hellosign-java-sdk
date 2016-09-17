@@ -356,6 +356,7 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Associates this request with an API app.
      * @param clientId String client ID of the API app.
+     * @throws HelloSignException thrown if clientId is null
      */
     public void setClientId(String clientId) throws HelloSignException {
         if (clientId == null) {
