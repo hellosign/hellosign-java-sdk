@@ -57,10 +57,9 @@ public class AccountTest extends AbstractHelloSignTest {
         // We only want to test account creation against a local test environment
         if (isHelloSignAvailable()) {
             String testEmail = "test-" + System.currentTimeMillis() + "@test.com";
-            String testPassword = "password";
             HelloSignClient client = new HelloSignClient(validApiKey);
             try {
-                Account account = client.createAccount(testEmail, testPassword);
+                Account account = client.createAccount(testEmail);
                 assertNotNull(account);
                 assertTrue(account.hasId());
             } catch (HelloSignException ex) {

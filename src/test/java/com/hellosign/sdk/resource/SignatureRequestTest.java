@@ -27,7 +27,6 @@ package com.hellosign.sdk.resource;
 import static org.junit.Assert.*;
 
 import java.io.Serializable;
-import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Map;
 
@@ -248,7 +247,7 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
             logger.debug("POST " + client.getSignatureRequestUrl());
             SignatureRequest resp = client.sendSignatureRequest(req);
             assertNotNull(resp);
-            Signature sig = resp.getSignatureBySigner("abeecher@example.com", "Alice");
+            Signature sig = resp.getSignature("abeecher@example.com", "Alice");
             assertNotNull(sig);
             logger.debug("\tSuccess!");
         }
