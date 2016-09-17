@@ -7,7 +7,7 @@ Use the `hellosign-java-sdk` to get your Java app connected to HelloSign's API i
 
 ## Installing
 
-The SDK is built and deployed to the [Central Maven repository](http://search.maven.org/#browse%7C-564959052). Add it to your Maven project by including the following `<dependency>` in your `pom.xml`:
+The SDK is built and deployed to the [Central Maven repository](https://repo1.maven.org/maven2/com/hellosign/hellosign-java-sdk/). Add it to your Maven project by including the following `<dependency>` in your `pom.xml`:
 
 ```xml
 <dependency>
