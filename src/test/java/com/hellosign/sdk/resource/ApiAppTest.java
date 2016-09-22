@@ -34,6 +34,7 @@ import org.junit.Test;
 
 import com.hellosign.sdk.AbstractHelloSignTest;
 import com.hellosign.sdk.resource.support.ApiAppOauth;
+import com.hellosign.sdk.resource.support.WhiteLabelingOptions;
 import com.hellosign.sdk.resource.support.types.ApiAppOauthScopeType;
 
 /**
@@ -57,7 +58,7 @@ public class ApiAppTest extends AbstractHelloSignTest {
         assertEquals(app.getCallbackUrl(), "http://example.com/hello");
         assertEquals(app.getClientId(), "0dd3b823a682527788c4e40cb7b6f7e9");
         DateFormat format = DateFormat.getDateInstance();
-        assertEquals(format.format(app.getCreatedAt()), "Jul 6, 2015");
+        assertEquals(format.format(app.getCreatedAt()), "06-Jul-2015");
         assertEquals(app.getDomain(), "example.com");
         assertEquals(app.isApproved(), true);
         assertEquals(app.getName(), "My Production App");
@@ -72,6 +73,77 @@ public class ApiAppTest extends AbstractHelloSignTest {
         assertEquals(owner.getEmail(), "john@example.com");
     }
 
+    private String getShiftedColor(String color) {
+        int c = Integer.parseInt(color.substring(1), 16);
+        if (c - 20 >= 0) {
+            c -= 20;
+        } else {
+            c += 20;
+        }
+        String str = String.format("%06x", c);
+        return "#" + str;
+    }
+
+    @Test
+    public void testApiAppWithWhiteLabelingOptions() throws Exception {
+        JSONObject apiapp = new JSONObject(getTestFileAsString("apiAppWithWhiteLabeling.txt"));
+        ApiApp app = new ApiApp(apiapp);
+        assertNotNull(app);
+        WhiteLabelingOptions oldOptions = app.getWhiteLabelingOptions();
+
+        String shiftedColor = getShiftedColor(oldOptions.getHeaderBackgroundColor());
+        app.setHeaderBackgroundColor(shiftedColor);
+        assertEquals(app.getHeaderBackgroundColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getPageBackgroundColor());
+        app.setPageBackgroundColor(shiftedColor);
+        assertEquals(app.getPageBackgroundColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getLinkColor());
+        app.setLinkColor(shiftedColor);
+        assertEquals(app.getLinkColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getPrimaryButtonColor());
+        app.setPrimaryButtonColor(shiftedColor);
+        assertEquals(app.getPrimaryButtonColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getPrimaryButtonHoverColor());
+        app.setPrimaryButtonHoverColor(shiftedColor);
+        assertEquals(app.getPrimaryButtonHoverColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getPrimaryButtonTextColor());
+        app.setPrimaryButtonTextColor(shiftedColor);
+        assertEquals(app.getPrimaryButtonTextColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getPrimaryButtonTextHoverColor());
+        app.setPrimaryButtonTextHoverColor(shiftedColor);
+        assertEquals(app.getPrimaryButtonTextHoverColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getSecondaryButtonColor());
+        app.setSecondaryButtonColor(shiftedColor);
+        assertEquals(app.getSecondaryButtonColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getSecondaryButtonHoverColor());
+        app.setSecondaryButtonHoverColor(shiftedColor);
+        assertEquals(app.getSecondaryButtonHoverColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getSecondaryButtonTextColor());
+        app.setSecondaryButtonTextColor(shiftedColor);
+        assertEquals(app.getSecondaryButtonTextColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getSecondaryButtonTextHoverColor());
+        app.setSecondaryButtonTextHoverColor(shiftedColor);
+        assertEquals(app.getSecondaryButtonTextHoverColor(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getTextColor1());
+        app.setTextColor1(shiftedColor);
+        assertEquals(app.getTextColor1(), shiftedColor);
+
+        shiftedColor = getShiftedColor(oldOptions.getTextColor2());
+        app.setTextColor2(shiftedColor);
+        assertEquals(app.getTextColor2(), shiftedColor);
+    }
+
     @Test
     public void testApiAppPostFields() throws Exception {
         ApiApp app = new ApiApp();
@@ -81,6 +153,19 @@ public class ApiAppTest extends AbstractHelloSignTest {
         app.setOAuthCallbackUrl("https://example.com/oauth");
         app.addScope(ApiAppOauthScopeType.basic_account_info);
         app.addScope(ApiAppOauthScopeType.request_signature);
+        app.setHeaderBackgroundColor("#FFFFFF");
+        app.setPageBackgroundColor("#FFFFFF");
+        app.setLinkColor("#FFFFFF");
+        app.setPrimaryButtonColor("#FFFFFF");
+        app.setPrimaryButtonHoverColor("#FFFFFF");
+        app.setPrimaryButtonTextColor("#FFFFFF");
+        app.setPrimaryButtonTextHoverColor("#FFFFFF");
+        app.setSecondaryButtonColor("#FFFFFF");
+        app.setSecondaryButtonHoverColor("#FFFFFF");
+        app.setSecondaryButtonTextColor("#FFFFFF");
+        app.setSecondaryButtonTextHoverColor("#FFFFFF");
+        app.setTextColor1("#FFFFFF");
+        app.setTextColor2("#FFFFFF");
         assertTrue(areFieldsEqual(getExpectedFields(), app.getPostFields()));
     }
 }

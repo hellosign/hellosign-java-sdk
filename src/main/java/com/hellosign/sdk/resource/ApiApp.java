@@ -31,10 +31,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.ApiAppOauth;
+import com.hellosign.sdk.resource.support.WhiteLabelingOptions;
 import com.hellosign.sdk.resource.support.types.ApiAppOauthScopeType;
 
 /**
@@ -57,6 +59,7 @@ public class ApiApp extends AbstractResource {
     private ApiAppOauth oauth = null;
     private Account owner_account = null;
     private File custom_logo = null;
+    private WhiteLabelingOptions white_labeling_options = null;
 
     /**
      * Default constructor.
@@ -77,6 +80,16 @@ public class ApiApp extends AbstractResource {
         owner_account = new Account(dataObj, APIAPP_OWNER_ACCOUNT);
         if (dataObj.has(ApiAppOauth.APIAPP_OAUTH_KEY)) {
             oauth = new ApiAppOauth(dataObj);
+        }
+        if (dataObj.has(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY)) {
+            white_labeling_options = new WhiteLabelingOptions(dataObj);
+            try {
+                // Re-save the JSON Object back to the parent object, since
+                // we are currently returning this as a string
+                dataObj.put(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY, white_labeling_options.dataObj);
+            } catch (JSONException e) {
+                throw new HelloSignException("Unable to process white labeling options");
+            }
         }
     }
 
@@ -301,9 +314,328 @@ public class ApiApp extends AbstractResource {
                     fields.put("oauth[scopes]", scopeStr);
                 }
             }
+            if (white_labeling_options != null) {
+                fields.put(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY, white_labeling_options.toString(0));
+            }
         } catch (Exception e) {
             throw new HelloSignException(e);
         }
         return fields;
+    }
+
+    /**
+     * Overrides all white labeling options for this API app.
+     * @param options WhiteLabelingOptions
+     */
+    public void setWhiteLabelingOptions(WhiteLabelingOptions options) {
+        white_labeling_options = options;
+    }
+
+    /**
+     * Returns the current white labeling options for this API app.
+     * @return WhiteLabelingOptions
+     */
+    public WhiteLabelingOptions getWhiteLabelingOptions() {
+        return white_labeling_options;
+    }
+    
+
+    /**
+     * Get the signer page background color.
+     * @return String hex color code
+     */
+    public String getPageBackgroundColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getPageBackgroundColor();
+    }
+
+    /**
+     * Set the signer page background color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setPageBackgroundColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setPageBackgroundColor(color);
+    }
+
+    /**
+     * Get the signer page header background color.
+     * @return String hex color code
+     */
+    public String getHeaderBackgroundColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getHeaderBackgroundColor();
+    }
+
+    /**
+     * Set the signer page header background color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setHeaderBackgroundColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setHeaderBackgroundColor(color);
+    }
+
+    /**
+     * Get the signer page text 1 color.
+     * @return String hex color code
+     */
+    public String getTextColor1() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getTextColor1();
+    }
+
+    /**
+     * Set the signer page text 1 color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setTextColor1(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setTextColor1(color);
+    }
+
+    /**
+     * Get the signer page text 2 color.
+     * @return String hex color code
+     */
+    public String getTextColor2() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getTextColor2();
+    }
+
+    /**
+     * Set the signer page text 2 color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setTextColor2(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setTextColor2(color);
+    }
+
+    /**
+     * Get the signer page link color.
+     * @return String hex color code
+     */
+    public String getLinkColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getLinkColor();
+    }
+
+    /**
+     * Set the signer page link color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setLinkColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setLinkColor(color);
+    }
+
+    /**
+     * Get the signer page primary button color.
+     * @return String hex color code
+     */
+    public String getPrimaryButtonColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getPrimaryButtonColor();
+    }
+
+    /**
+     * Set the signer page primary button color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setPrimaryButtonColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setPrimaryButtonColor(color);
+    }
+
+    /**
+     * Get the signer page primary button text color.
+     * @return String hex color code
+     */
+    public String getPrimaryButtonTextColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getPrimaryButtonTextColor();
+    }
+
+    /**
+     * Set the signer page primary button text color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setPrimaryButtonTextColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setPrimaryButtonTextColor(color);
+    }
+
+    /**
+     * Get the signer page primary button hover color.
+     * @return String hex color code
+     */
+    public String getPrimaryButtonHoverColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getPrimaryButtonHoverColor();
+    }
+
+    /**
+     * Set the signer page primary button hover color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setPrimaryButtonHoverColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setPrimaryButtonHoverColor(color);
+    }
+
+    /**
+     * Get the signer page primary button text hover color.
+     * @return String hex color code
+     */
+    public String getPrimaryButtonTextHoverColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getPrimaryButtonTextHoverColor();
+    }
+
+    /**
+     * Set the signer page primary button text hover color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setPrimaryButtonTextHoverColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setPrimaryButtonTextHoverColor(color);
+    }
+
+    /**
+     * Get the signer page secondary button color.
+     * @return String hex color code
+     */
+    public String getSecondaryButtonColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getSecondaryButtonColor();
+    }
+
+    /**
+     * Set the signer page secondary button color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setSecondaryButtonColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setSecondaryButtonColor(color);
+    }
+
+    /**
+     * Get the signer page secondary button text color.
+     * @return String hex color code
+     */
+    public String getSecondaryButtonTextColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getSecondaryButtonTextColor();
+    }
+
+    /**
+     * Set the signer page secondary button text color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setSecondaryButtonTextColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setSecondaryButtonTextColor(color);
+    }
+
+    /**
+     * Get the signer page secondary button hover color.
+     * @return String hex color code
+     */
+    public String getSecondaryButtonHoverColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getSecondaryButtonHoverColor();
+    }
+
+    /**
+     * Set the signer page secondary button hover color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setSecondaryButtonHoverColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setSecondaryButtonHoverColor(color);
+    }
+
+    /**
+     * Get the signer page secondary button text hover color.
+     * @return String hex color code
+     */
+    public String getSecondaryButtonTextHoverColor() {
+        if (white_labeling_options == null) {
+            return null;
+        }
+        return white_labeling_options.getSecondaryButtonTextHoverColor();
+    }
+
+    /**
+     * Set the signer page secondary button text hover color.
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex string
+     */
+    public void setSecondaryButtonTextHoverColor(String color) throws HelloSignException {
+        if (white_labeling_options == null) {
+            white_labeling_options = new WhiteLabelingOptions();
+        }
+        white_labeling_options.setSecondaryButtonTextHoverColor(color);
     }
 }

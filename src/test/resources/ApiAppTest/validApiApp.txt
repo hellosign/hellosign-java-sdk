@@ -17,6 +17,7 @@
         "owner_account": {
             "account_id": "dc5deeb9e10b044c591ef2475aafad1d1d3bd888",
             "email_address": "john@example.com"
-        }
+        },
+        "white_labeling_options": null
     }
 }

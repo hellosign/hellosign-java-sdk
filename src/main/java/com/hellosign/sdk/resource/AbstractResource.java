@@ -55,8 +55,17 @@ public abstract class AbstractResource {
             throws HelloSignException {
         try {
             dataObj = json;
-            if (json.has(optionalKey)) {
-                dataObj = json.getJSONObject(optionalKey);
+            if (json.has(optionalKey) && !json.isNull(optionalKey)) {
+                Object obj = json.get(optionalKey);
+                if (obj instanceof JSONObject) {
+                    dataObj = (JSONObject) obj;
+                } else if (obj instanceof String) {
+                    // This is to handle the case where we're returning a
+                    // stringified JSON object (and should handle strings OK too.
+                    dataObj = new JSONObject((String) obj);
+                } else {
+                    throw new HelloSignException("Cannot convert response to JSONObject: " + obj);
+                }
             }
             if (json.has("warnings")) {
                 JSONArray ws = json.getJSONArray("warnings");
@@ -282,9 +291,17 @@ public abstract class AbstractResource {
     }
 
     public String toString() {
+        return toString(2);
+    }
+
+    public String toString(int spacesToIndent) {
         String retStr = null;
         try {
-            retStr = dataObj.toString(2);
+            if (spacesToIndent > 0) {
+                retStr = dataObj.toString(spacesToIndent);
+            } else {
+                retStr = dataObj.toString();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
