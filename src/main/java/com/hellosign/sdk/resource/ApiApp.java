@@ -78,10 +78,10 @@ public class ApiApp extends AbstractResource {
     public ApiApp(JSONObject json) throws HelloSignException {
         super(json, APIAPP_KEY);
         owner_account = new Account(dataObj, APIAPP_OWNER_ACCOUNT);
-        if (dataObj.has(ApiAppOauth.APIAPP_OAUTH_KEY)) {
+        if (dataObj.has(ApiAppOauth.APIAPP_OAUTH_KEY) && !dataObj.isNull(ApiAppOauth.APIAPP_OAUTH_KEY)) {
             oauth = new ApiAppOauth(dataObj);
         }
-        if (dataObj.has(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY)) {
+        if (dataObj.has(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY) && !dataObj.isNull(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY)) {
             white_labeling_options = new WhiteLabelingOptions(dataObj);
             try {
                 // Re-save the JSON Object back to the parent object, since
