@@ -102,7 +102,7 @@ public abstract class AbstractHttpRequest {
      * @throws MalformedURLException thrown if the URL is invalid
      * @throws IOException thrown if IO cannot be established with the URL
      */
-    protected static HttpURLConnection getConnection(String url) throws MalformedURLException, IOException {
+    public static HttpURLConnection getConnection(String url) throws MalformedURLException, IOException {
         HttpURLConnection conn = null;
         Proxy proxy = null;
         String proxyUrlStr = System.getProperty("hellosign.proxy.url");

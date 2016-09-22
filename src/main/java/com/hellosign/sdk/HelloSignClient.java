@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
@@ -44,6 +43,7 @@ import javax.net.ssl.X509TrustManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.hellosign.sdk.http.AbstractHttpRequest;
 import com.hellosign.sdk.http.Authentication;
 import com.hellosign.sdk.http.HttpDeleteRequest;
 import com.hellosign.sdk.http.HttpGetRequest;
@@ -1054,7 +1054,7 @@ public class HelloSignClient {
     public boolean isOnline() {
         HttpURLConnection connection = null;
         try {
-            connection = (HttpURLConnection) new URL(URL_API).openConnection();
+            connection = AbstractHttpRequest.getConnection(URL_API);
             connection.setRequestMethod("OPTIONS");
             return HttpURLConnection.HTTP_OK == connection.getResponseCode();
         } catch (Exception ex) {

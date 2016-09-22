@@ -34,7 +34,6 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Iterator;
@@ -284,8 +283,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     private void openMultipartPostConnection()
             throws IOException {
-        URL url = new URL(this.url);
-        httpConn = (HttpURLConnection) url.openConnection();
+        httpConn = getConnection(this.url);
         httpConn.setUseCaches(false);
         httpConn.setDoOutput(true); // indicates POST method
         httpConn.setDoInput(true);
