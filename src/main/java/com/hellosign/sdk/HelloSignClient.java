@@ -1041,7 +1041,7 @@ public class HelloSignClient {
         if (!app.hasClientId()) {
             throw new HelloSignException("Cannot update an ApiApp without a client ID. Create one first!");
         }
-        HttpPutRequest request = new HttpPutRequest(URL_API_APP, app.getPostFields(), auth);
+        HttpPutRequest request = new HttpPutRequest(URL_API_APP + "/" + app.getClientId(), app.getPostFields(), auth);
         return new ApiApp(request.getJsonResponse());
     }
 
