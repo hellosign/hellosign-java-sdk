@@ -49,6 +49,7 @@ public class Signature extends AbstractResource {
     public static final String SIGNER_SIGNED_AT = "signed_at";
     public static final String SIGNER_LAST_VIEWED_AT = "last_viewed_at";
     public static final String SIGNER_LAST_REMINDED_AT = "last_reminded_at";
+    public static final String SIGNER_DECLINE_REASON = "decline_reason";
 
     public Signature() {
         super();
@@ -93,5 +94,11 @@ public class Signature extends AbstractResource {
     }
     public Date getLastReminded() {
         return getDate(SIGNER_LAST_REMINDED_AT);
-    }    
+    }
+    public String getDeclineReason() {
+        if (has(SIGNER_DECLINE_REASON)) {
+            return getString(SIGNER_DECLINE_REASON);
+        }
+        return null;
+    }
 }
