@@ -64,6 +64,7 @@ public class SignatureRequest extends AbstractRequest {
     public static final String SIGREQ_FILES_URL = "files_url";
     public static final String SIGREQ_SIGNING_URL = "signing_url";
     public static final String SIGREQ_DETAILS_URL = "details_url";
+    public static final String SIGREQ_IS_DECLINED = "is_declined";
 
     public static final String SIGREQ_FORMAT_ZIP = "zip";
     public static final String SIGREQ_FORMAT_PDF = "pdf";
@@ -364,5 +365,11 @@ public class SignatureRequest extends AbstractRequest {
     }
     public String getDetailsUrl() {
         return getString(SIGREQ_DETAILS_URL);
+    }
+    public boolean isDeclined() {
+        if (has(SIGREQ_IS_DECLINED)) {
+            return getBoolean(SIGREQ_IS_DECLINED);
+        }
+        return false;
     }
 }

@@ -298,4 +298,21 @@ public class SignatureRequestTest extends AbstractHelloSignTest {
         String reqclientid = (String) fields.get(AbstractRequest.REQUEST_CLIENT_ID);
         assertTrue(clientid.equals(reqclientid));
     }
+
+    @Test
+    public void testSignatureRequestDecline() throws HelloSignException {
+        SignatureRequest req = new SignatureRequest();
+        req.setIsDeclinable(true);
+        assertTrue(req.getIsDeclinable());
+        Map<String, Serializable> fields = req.getPostFields();
+        String allow_decline = (String) fields.get(AbstractRequest.REQUEST_ALLOW_DECLINE);
+        assertTrue("1".equals(allow_decline));
+        req.setIsDeclinable(false);
+        assertTrue(!req.getIsDeclinable());
+        fields = req.getPostFields();
+        allow_decline = (String) fields.get(AbstractRequest.REQUEST_ALLOW_DECLINE);
+        assertTrue("0".equals(allow_decline));
+        req.setIsDeclinable(null);
+        assertNull(req.getIsDeclinable());
+    }
 }
