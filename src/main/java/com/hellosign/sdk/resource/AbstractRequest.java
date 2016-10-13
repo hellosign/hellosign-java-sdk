@@ -58,6 +58,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_METADATA = "metadata";
     public static final String REQUEST_UX_VERSION = "ux_version";
     public static final String REQUEST_CLIENT_ID = "client_id";
+    public static final String REQUEST_ALLOW_DECLINE = "allow_decline";
 
     // UX Version 1 = Original, non-responsive signer page is used
     public static final int UX_VERSION_1 = 1;
@@ -71,6 +72,11 @@ public abstract class AbstractRequest extends AbstractResource {
     private boolean orderMatters = false;
     private int uxVersion = UX_VERSION_1;
     private String clientId = null;
+
+    // Indicates whether we should provide the 'allow_decline' parameter
+    // with this request. Using a Boolean instead of a boolean to allow
+    // for a null state, which indicates we'll leave the parameter off.
+    private Boolean isDeclinable = null;
 
     public AbstractRequest() {
         super();
@@ -105,6 +111,9 @@ public abstract class AbstractRequest extends AbstractResource {
         }
         if (clientId != null && !"".equals(clientId)) {
             fields.put(REQUEST_CLIENT_ID, clientId);
+        }
+        if (isDeclinable != null) {
+            fields.put(REQUEST_ALLOW_DECLINE, (isDeclinable ? "1" : "0"));
         }
         return fields;
     }
@@ -372,5 +381,23 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     public String getClientId() {
         return clientId;
+    }
+
+    /**
+     * Designate this request as declinable by signers.
+     * @param isDeclinable true if declinable, false otherwise
+     *        (null if the parameter should be left off)
+     */
+    public void setIsDeclinable(Boolean isDeclinable) {
+        this.isDeclinable = isDeclinable;
+    }
+
+    /**
+     * Retrieve the flag that designates whether this
+     * request is declinable by signers.
+     * @return Boolean or null if the flag has not been set
+     */
+    public Boolean getIsDeclinable() {
+        return this.isDeclinable;
     }
 }
