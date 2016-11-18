@@ -40,5 +40,7 @@ public enum EventType {
     file_error,
     test,
     callback_test,
-    unknown_error
+    unknown_error,
+    sign_url_invalid,
+    signature_request_email_bounce
 }
