@@ -128,8 +128,10 @@ public class HttpGetRequest extends AbstractHttpRequest {
             String response = convertStreamToString(is);
             json = new JSONObject(response);
             validate(json, httpCode);
-        } catch (Exception ex) {
-            throw new HelloSignException(ex);
+        } catch (HelloSignException e) {            
+            throw e;
+        } catch (Exception e) {
+            throw new HelloSignException(e);
         }
         return json;
     }
