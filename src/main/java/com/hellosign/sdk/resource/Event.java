@@ -54,6 +54,7 @@ public class Event extends AbstractResource {
     public static final String EVENT_TYPE = "event_type";
     public static final String EVENT_TIME = "event_time";
     public static final String EVENT_HASH = "event_hash";
+    public static final String EVENT_MESSAGE = "event_message";
 
     public static final String HASH_ALGORITHM = "HmacSHA256";
 
@@ -146,6 +147,23 @@ public class Event extends AbstractResource {
      */
     public Date getEventDate() {
         return getDate(EVENT_TIME);
+    }
+    
+    /**
+     * Returns the message if any from the event
+     * @return String
+     * @throws HelloSignException thrown if there is a problem parsing
+     * the backing JSONObject. 
+     */
+    public String getEventMessage() throws HelloSignException{
+        JSONObject metadata = (JSONObject) get(EVENT_METADATA);
+        String eventMessage = null;
+        try {
+            eventMessage = metadata.getString(EVENT_MESSAGE);
+        } catch (JSONException ex) {
+            throw new HelloSignException(ex);
+        }
+        return eventMessage;
     }
 
     /**
