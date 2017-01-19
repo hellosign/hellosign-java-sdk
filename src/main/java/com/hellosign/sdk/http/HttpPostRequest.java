@@ -27,7 +27,6 @@ package com.hellosign.sdk.http;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -39,7 +38,6 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,67 +122,14 @@ public class HttpPostRequest extends AbstractHttpRequest {
     }
 
     /**
-     * Performs a POST request to the given URL, using the authentication
-     * details and POST fields provided.
-     * @return JSONObject
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
-     */
-    public JSONObject getJsonResponse() throws HelloSignException {
-        HttpURLConnection connection = post();
-        JSONObject json = null;
-        try {
-            int httpCode = connection.getResponseCode();
-            InputStream response = null;
-            if (httpCode >= 200 && httpCode < 300) {
-                logger.debug("OK!");
-                response = connection.getInputStream();
-            } else {
-                logger.error("Error! HTTP Code = " + httpCode);
-                response = connection.getErrorStream();
-            }
-            String responseStr = "";
-            if (response == null) {
-                logger.error("Unable to parse JSON from empty response!");
-            } else {
-                responseStr = convertStreamToString(response);
-                logger.debug("String Response: " + responseStr);
-                json = new JSONObject(responseStr);
-                validate(json, httpCode);
-                logger.debug("JSON Response: " + json.toString(2));
-            }
-        } catch (HelloSignException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new HelloSignException(e);
-        }
-        return json;
-    }
-
-    /**
-     * Performs a field-less POST request to the provided URL using basic auth and
-     * returns the HTTP code.
-     * @return int HTTP status code
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
-     */
-    public int getHttpResponseCode() throws HelloSignException {
-        HttpURLConnection connection = post();
-        try {
-            return connection.getResponseCode();
-        } catch (Exception ex) {
-            throw new HelloSignException(ex.getMessage());
-        }
-    }
-
-    /**
      * Helper method to make an HTTP POST request. Intelligently detects
      * whether Files have been attached and sends as an multipart form request.
      * @return HttpUrlConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
      * request or processing the result
      */
-    private HttpURLConnection post() throws HelloSignException {
+    @Override
+    protected HttpURLConnection getConnection() throws HelloSignException {
         if (fields != null) {
             for (String key : fields.keySet()) {
                 if (fields.get(key) instanceof File) {
@@ -205,7 +150,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         logger.debug(this.method + ": " + url);
         HttpURLConnection connection;
         try {
-            connection = getConnection(url);
+            connection = getProxiedConnection(url);
             if (!this.method.equals("POST")) {
                 connection.setRequestMethod(method);
             }
@@ -283,7 +228,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     private void openMultipartPostConnection()
             throws IOException {
-        httpConn = getConnection(this.url);
+        httpConn = getProxiedConnection(this.url);
         httpConn.setUseCaches(false);
         httpConn.setDoOutput(true); // indicates POST method
         httpConn.setDoInput(true);

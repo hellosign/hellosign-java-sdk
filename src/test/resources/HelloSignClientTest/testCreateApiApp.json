@@ -1,0 +1,16 @@
+{
+    "api_app": {
+        "client_id": "034fb51064187cf28e4aad1c2533ad8f",
+        "created_at": 1484852250,
+        "name": "Java API App",
+        "domain": "example.com",
+        "callback_url": "http:\/\/www.example.com",
+        "owner_account": {
+            "account_id": "130f22673b2365ef0fbf9632cfb94eab",
+            "email_address": "chris@hellosign.com"
+        },
+        "is_approved": false,
+        "oauth": null,
+        "white_labeling_options": null
+    }
+}

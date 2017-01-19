@@ -49,6 +49,7 @@ public class Account extends AbstractResource {
     public static final String ACCOUNT_PASSWORD = "password";
 
     private Quotas quotas;
+    private OauthData oauthData;
 
     public Account() {
         super();
@@ -120,12 +121,16 @@ public class Account extends AbstractResource {
     public boolean hasRoleCode() {
         return has(ACCOUNT_ROLE_CODE);
     }
-
-    public OauthData getOauthData() throws HelloSignException {
-        return new OauthData((JSONObject) get(OAUTH_DATA));
-    }
-
+    
     public Quotas getQuotas() {
         return quotas;
     }
+
+    public OauthData getOauthData() throws HelloSignException {
+        return oauthData;
+    }
+
+	public void setOauthData(OauthData data) {
+		oauthData = data;
+	}
 }

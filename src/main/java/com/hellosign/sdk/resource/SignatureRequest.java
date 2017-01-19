@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.CustomField;
 import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.FormField;
 import com.hellosign.sdk.resource.support.ResponseData;
@@ -65,6 +66,7 @@ public class SignatureRequest extends AbstractRequest {
     public static final String SIGREQ_SIGNING_URL = "signing_url";
     public static final String SIGREQ_DETAILS_URL = "details_url";
     public static final String SIGREQ_IS_DECLINED = "is_declined";
+    public static final String SIGREQ_CUSTOM_FIELDS = "custom_fields";
 
     public static final String SIGREQ_FORMAT_ZIP = "zip";
     public static final String SIGREQ_FORMAT_PDF = "pdf";
@@ -371,5 +373,14 @@ public class SignatureRequest extends AbstractRequest {
             return getBoolean(SIGREQ_IS_DECLINED);
         }
         return false;
+    }
+
+    /**
+     * Gets the custom fields associated with this request,
+     * set when sending the request from a template.
+     * @return List<CustomField>
+     */
+    public List<CustomField> getCustomFields() {
+    	return getList(CustomField.class, SIGREQ_CUSTOM_FIELDS);
     }
 }

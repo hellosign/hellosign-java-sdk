@@ -49,6 +49,15 @@ public class CustomField extends AbstractResource {
     public static final String CUSTOM_FIELD_VALUE    = "value";
     public static final String CUSTOM_FIELD_EDITOR   = "editor";
     public static final String CUSTOM_FIELD_REQUIRED = "required";
+    public static final String CUSTOM_FIELD_X        = "x";
+    public static final String CUSTOM_FIELD_Y        = "y";
+    public static final String CUSTOM_FIELD_WIDTH    = "width";
+    public static final String CUSTOM_FIELD_HEIGHT   = "height";
+
+    // Estimates for character length
+    public static final String CUSTOM_FIELD_AVG_TEXT_LENGTH = "avg_text_length";
+    public static final String CUSTOM_FIELD_NUM_LINES = "num_lines";
+    public static final String CUSTOM_FIELD_NUM_CHARS_PER_LINE = "num_chars_per_line";
 
     public CustomField() {
         super();
@@ -123,5 +132,77 @@ public class CustomField extends AbstractResource {
      */
     public void setIsRequired(Boolean isRequired) {
         set(CUSTOM_FIELD_REQUIRED, isRequired);
+    }
+
+    /**
+     * Returns the x coordinate for this field.
+     * @return Integer or null if not set
+     */
+    public Integer getX() {
+    	return getInteger(CUSTOM_FIELD_X);
+    }
+    
+    /**
+     * Returns the y coordinate for this field.
+     * @return Integer or null if not set
+     */
+    public Integer getY() {
+    	return getInteger(CUSTOM_FIELD_Y);
+    }
+
+    /**
+     * Returns the pixel width of this field.
+     * @return Integer or null if not set
+     */
+    public Integer getWidth() {
+    	return getInteger(CUSTOM_FIELD_WIDTH);
+    }
+
+    /**
+     * Returns the pixel height of this field.
+     * @return Integer or null if not set
+     */
+    public Integer getHeight() {
+    	return getInteger(CUSTOM_FIELD_HEIGHT);
+    }
+
+    /**
+     * Once processed with a position, height, and width, HelloSign will
+     * estimate the number of lines a custom field can contain, along with
+     * the number of characters per line. This method will return the
+     * estimated average number of lines of text this field can hold. 
+     * @return Integer or null if not set
+     */
+    public Integer getEstimatedTextLines() {
+    	if (!dataObj.has(CUSTOM_FIELD_AVG_TEXT_LENGTH)) {
+    		return null;
+    	}
+    	Integer numLines = null;
+    	try {
+			JSONObject obj = dataObj.getJSONObject(CUSTOM_FIELD_AVG_TEXT_LENGTH);
+			numLines = obj.getInt(CUSTOM_FIELD_NUM_LINES);
+		} catch (JSONException e) {
+		}
+    	return numLines;
+    }
+
+    /**
+     * Once processed with a position, height, and width, HelloSign will
+     * estimate the number of lines a custom field can contain, along with
+     * the number of characters per line. This method will return the
+     * estimated average number of characters per line this field can hold. 
+     * @return Integer or null if not set
+     */
+    public Integer getEstimatedCharsPerLine() {
+    	if (!dataObj.has(CUSTOM_FIELD_AVG_TEXT_LENGTH)) {
+    		return null;
+    	}
+    	Integer numLines = null;
+    	try {
+			JSONObject obj = dataObj.getJSONObject(CUSTOM_FIELD_AVG_TEXT_LENGTH);
+			numLines = obj.getInt(CUSTOM_FIELD_NUM_CHARS_PER_LINE);
+		} catch (JSONException e) {
+		}
+    	return numLines;
     }
 }

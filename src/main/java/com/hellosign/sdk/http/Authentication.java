@@ -57,7 +57,7 @@ public class Authentication {
 
     public Authentication() {} 
 
-    public Authentication (Authentication clone) 
+    public Authentication(Authentication clone) 
             throws HelloSignException {
         if (clone.hasWebsiteCredentials()) {
             setWebsiteCredentials(clone.getEmail(), clone.getPassword());

@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "chris+a@hellosign.comd is not a signer",
+        "error_name": "bad_request"
+    }
+}

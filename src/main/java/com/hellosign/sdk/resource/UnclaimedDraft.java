@@ -26,6 +26,7 @@ package com.hellosign.sdk.resource;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -56,6 +57,8 @@ public class UnclaimedDraft extends AbstractRequest {
     public static final String UNCLAIMED_DRAFT_REQUESTER_EMAIL = "requester_email_address";
     public static final String UNCLAIMED_DRAFT_IS_FOR_EMBEDDED_SIGNING = "is_for_embedded_signing";
     public static final String UNCLAIMED_DRAFT_SIGNATURE_REQUEST_ID = "signature_request_id";
+    public static final String UNCLAIMED_DRAFT_EXPIRES_AT = "expires_at";
+    public static final String UNCLAIMED_DRAFT_TEST_MODE = "test_mode";
 
     private UnclaimedDraftType type;
 
@@ -309,6 +312,9 @@ public class UnclaimedDraft extends AbstractRequest {
 
     @Override
     public boolean isTestMode() {
+    	if (request == null) {
+    		return getBoolean(UNCLAIMED_DRAFT_TEST_MODE);
+    	}
         return request.isTestMode();
     }
 
@@ -330,5 +336,9 @@ public class UnclaimedDraft extends AbstractRequest {
     @Override
     public String getId() {
         return request.getId();
+    }
+
+    public Date getExpiresAt() {
+        return getDate(UNCLAIMED_DRAFT_EXPIRES_AT);
     }
 }

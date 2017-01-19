@@ -1,8 +1,0 @@
-template_ids[0]=*
-subject=Purchase Order
-message=Glad we could come to an agreement.
-signers[Client][name]=George
-signers[Client][email_address]=george@example.com
-ccs[Accounting][email_address]=accounting@hellosign.com
-custom_fields[Cost]=$20,000
-test_mode=true

@@ -1,5 +1,7 @@
 package com.hellosign.sdk.http;
 
+import java.io.File;
+
 /**
  * The MIT License (MIT)
  * 
@@ -32,18 +34,30 @@ import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Properties;
 import java.util.Scanner;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hellosign.sdk.HelloSignException;
 
 public abstract class AbstractHttpRequest {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AbstractHttpRequest.class);
 
     public final static String DEFAULT_ENCODING = "UTF-8";
     public final static String USER_AGENT = createUserAgent();
+
+    // Request variables
+    protected String url;
+    protected Authentication auth;
+
+    // Response variables
+    protected Integer lastHttpStatusCode;
+    protected InputStream lastResponseStream;
 
     private static String createUserAgent() {
         String filename = "config.properties";
@@ -65,28 +79,55 @@ public abstract class AbstractHttpRequest {
         return "hellosign-java-sdk/" + version;
     }
 
-    protected String url;
-    protected Authentication auth;
-
-    public static String convertStreamToString(InputStream in) {
-        Scanner s = new Scanner(in);
-        s.useDelimiter("\\A");
-        String result = (s.hasNext()) ? s.next() : "";
-        s.close();
-        return result;
+    /**
+     * Executes this HTTP request and preserves the response stream and
+     * HTTP response code for processing.
+     * 
+     * @throws HelloSignException Thrown if there is an error while making
+     * the HTTP request to the HelloSign API.
+     */
+    public void execute() throws HelloSignException {
+    	HttpURLConnection connection = getConnection();
+    	try {
+	    	// Execute the request and save the HTTP status code
+	    	lastHttpStatusCode = connection.getResponseCode();
+	
+			// Save the stream object for processing
+	        if (lastHttpStatusCode >= 200 && lastHttpStatusCode < 300) {
+	            logger.debug("OK!");
+	            lastResponseStream = connection.getInputStream();
+	        } else {
+	            logger.error("Error! HTTP Code = " + lastHttpStatusCode);
+	            lastResponseStream = connection.getErrorStream();
+	        }
+    	} catch (Exception ex) {
+    		throw new HelloSignException(ex);
+    	}
     }
 
-    protected static void validate(JSONObject json, int code) throws HelloSignException {
-        if (json.has("error")) {
-            try {
-                JSONObject error = json.getJSONObject("error");
-                String message = error.getString("error_msg");
-                String type = error.getString("error_name");
-                throw new HelloSignException(message, code, type);
-            } catch (JSONException ex) {
-                throw new HelloSignException(ex);
-            }
+    /**
+     * Returns the last HTTP response code.
+     * @return Integer response code
+     */
+    public Integer getResponseCode() {
+    	return lastHttpStatusCode;
+    }
+
+    /**
+     * Returns the last response stream as a string.
+     * @return String
+     */
+    public String getResponseBody() {
+        String responseStr = "";
+        if (lastResponseStream == null) {
+            logger.error("Unable to parse JSON from empty response!");
+        } else {
+        	Scanner s = new Scanner(lastResponseStream);
+            s.useDelimiter("\\A");
+            responseStr = (s.hasNext()) ? s.next() : "";
+            s.close();
         }
+        return responseStr;
     }
 
     /**
@@ -102,7 +143,7 @@ public abstract class AbstractHttpRequest {
      * @throws MalformedURLException thrown if the URL is invalid
      * @throws IOException thrown if IO cannot be established with the URL
      */
-    public static HttpURLConnection getConnection(String url) throws MalformedURLException, IOException {
+    protected static HttpURLConnection getProxiedConnection(String url) throws MalformedURLException, IOException {
         HttpURLConnection conn = null;
         Proxy proxy = null;
         String proxyUrlStr = System.getProperty("hellosign.proxy.url");
@@ -120,5 +161,30 @@ public abstract class AbstractHttpRequest {
             conn = (HttpURLConnection) new URL(url).openConnection(proxy);
         }
         return conn;
+    }
+
+    /**
+     * The method class will create the appropriate connection with
+     * an endpoint, parameters, etc.
+     * @return HttpURLConnection
+     * @throws HelloSignException
+     */
+    abstract protected HttpURLConnection getConnection() throws HelloSignException;
+
+    /**
+     * Write the last response to a file.
+     * @param f File
+     * @return long bytes written
+     * @throws HelloSignException Thrown if an exception occurs during
+     * the copy of the response stream to the given file.
+     */
+    public long getResponseAsFile(File f) throws HelloSignException {
+    	long bytesWritten = 0;
+    	try {
+			bytesWritten = Files.copy(lastResponseStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		} catch (Exception e) {
+			throw new HelloSignException(e);
+		}
+    	return bytesWritten;
     }
 }

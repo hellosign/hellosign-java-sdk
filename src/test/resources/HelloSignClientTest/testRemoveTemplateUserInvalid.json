@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "You cannot remove the template owner",
+        "error_name": "forbidden"
+    }
+}
