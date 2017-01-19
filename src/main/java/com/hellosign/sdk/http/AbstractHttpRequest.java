@@ -167,7 +167,7 @@ public abstract class AbstractHttpRequest {
      * The method class will create the appropriate connection with
      * an endpoint, parameters, etc.
      * @return HttpURLConnection
-     * @throws HelloSignException
+     * @throws HelloSignException Thrown if a connection cannot be created
      */
     abstract protected HttpURLConnection getConnection() throws HelloSignException;
 

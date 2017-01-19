@@ -604,10 +604,10 @@ public class HelloSignClient {
      * This method requires the ID of the siganture request that has already
      * been sent, as well as the signature_id that represents the signer that
      * should be updated. The ema
-     * @param signature_request_id String ID of the signature request that has
+     * @param signatureRequestId String ID of the signature request that has
      * already been sent and needs to be updated.
-     * @param signature_id String ID of the signer that needs to be updated.
-     * @param new_email_address String email address that the signer should be
+     * @param signatureId String ID of the signer that needs to be updated.
+     * @param newEmailAddress String email address that the signer should be
      * changed to
      * @return SignatureRequest The updated request data
      * @throws HelloSignException thrown if there's a problem processing the

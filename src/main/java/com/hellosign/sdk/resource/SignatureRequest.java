@@ -378,7 +378,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Gets the custom fields associated with this request,
      * set when sending the request from a template.
-     * @return List<CustomField>
+     * @return List CustomFields
      */
     public List<CustomField> getCustomFields() {
     	return getList(CustomField.class, SIGREQ_CUSTOM_FIELDS);
