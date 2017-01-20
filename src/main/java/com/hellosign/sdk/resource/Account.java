@@ -121,7 +121,7 @@ public class Account extends AbstractResource {
     public boolean hasRoleCode() {
         return has(ACCOUNT_ROLE_CODE);
     }
-    
+
     public Quotas getQuotas() {
         return quotas;
     }
@@ -130,7 +130,7 @@ public class Account extends AbstractResource {
         return oauthData;
     }
 
-	public void setOauthData(OauthData data) {
-		oauthData = data;
-	}
+    public void setOauthData(OauthData data) {
+        oauthData = data;
+    }
 }

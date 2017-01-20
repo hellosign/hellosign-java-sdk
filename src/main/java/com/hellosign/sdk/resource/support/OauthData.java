@@ -44,12 +44,15 @@ public class OauthData extends AbstractResource {
     public String getAccessToken() {
         return getString(OAUTH_ACCESS_TOKEN);
     }
+
     public String getTokenType() {
         return getString(OAUTH_TOKEN_TYPE);
     }
+
     public String getRefreshToken() {
         return getString(OAUTH_REFRESH_TOKEN);
     }
+
     public Integer getExpiresIn() {
         return getInteger(OAUTH_EXPIRES_IN);
     }

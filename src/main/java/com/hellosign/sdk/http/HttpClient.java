@@ -49,18 +49,20 @@ import com.hellosign.sdk.HelloSignException;
 
 /**
  * Abstracts HTTP requests.
+ * 
  * @author cpaul
  */
 public class HttpClient {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpClient.class);
-    
+
     private Authentication auth;
     private Map<String, String> getParams;
     private Map<String, Serializable> postFields;
     private AbstractHttpRequest request;
-    
-    // TODO: Could this contain a request factory that doles out an AbstractHttpRequest? 
+
+    // TODO: Could this contain a request factory that doles out an
+    // AbstractHttpRequest?
 
     public HttpClient() {
         String disableSslCheck = System.getProperty("hellosign.disable.ssl");
@@ -102,42 +104,52 @@ public class HttpClient {
 
     /**
      * Returns the response to the last HTTP request as a string.
+     * 
      * @return String or null if the request has not been created
      */
     public String getLastResponse() {
-    	if (request == null) {
-    		return null;
-    	}
-    	return request.getResponseBody();
+        if (request == null) {
+            return null;
+        }
+        return request.getResponseBody();
     }
 
     /**
      * Returns the HTTP status code for the last request.
+     * 
      * @return Integer or null if the request has not been created
      */
     public Integer getLastResponseCode() {
-    	if (request == null) {
-    		return null;
-    	}
-    	return request.getResponseCode();
+        if (request == null) {
+            return null;
+        }
+        return request.getResponseCode();
     }
 
     /**
      * Returns the last HTTP request body as a file.
-     * @param f File that should contain the response
+     * 
+     * @param f
+     *            File that should contain the response
      * @return long bytes written
-     * @throws HelloSignException thrown if there is a problem
-     * writing to the file or reading the response stream
+     * @throws HelloSignException
+     *             thrown if there is a problem writing to the file or reading
+     *             the response stream
      */
     public long getLastResponseAsFile(File f) throws HelloSignException {
-    	return request.getResponseAsFile(f);
+        return request.getResponseAsFile(f);
     }
 
     /**
-     * Inspects the JSONObject response for errors and throws an exception if found.
-     * @param json JSONObject response
-     * @param code HTTP response code
-     * @throws HelloSignException thrown if an error is reported from the API call
+     * Inspects the JSONObject response for errors and throws an exception if
+     * found.
+     * 
+     * @param json
+     *            JSONObject response
+     * @param code
+     *            HTTP response code
+     * @throws HelloSignException
+     *             thrown if an error is reported from the API call
      */
     private void validate(JSONObject json) throws HelloSignException {
         if (json.has("error")) {
@@ -156,26 +168,26 @@ public class HttpClient {
      * Clears the client after a request has successfully completed.
      */
     private void reset() {
-    	this.auth = null;
-    	this.getParams = null;
-    	this.postFields = null;
+        this.auth = null;
+        this.getParams = null;
+        this.postFields = null;
         this.request = null;
     }
 
     /**
      * Executes the request and returns the response as a JSONObject.
+     * 
      * @return JSONObject response
-     * @throws HelloSignException thrown if there is a problem
-     * executing the request
+     * @throws HelloSignException
+     *             thrown if there is a problem executing the request
      */
-    public JSONObject asJson() throws HelloSignException
-    {
+    public JSONObject asJson() throws HelloSignException {
         JSONObject json = null;
         try {
-			json = new JSONObject(getLastResponse());
-		} catch (JSONException e) {
-			throw new HelloSignException(e);
-		}
+            json = new JSONObject(getLastResponse());
+        } catch (JSONException e) {
+            throw new HelloSignException(e);
+        }
         validate(json);
         reset();
         return json;
@@ -183,30 +195,34 @@ public class HttpClient {
 
     /**
      * Executes the request and returns the response as a File.
-     * @param fileName String name of destination file
+     * 
+     * @param fileName
+     *            String name of destination file
      * @return File response
-     * @throws HelloSignException thrown if there is a problem
-     * executing the request
+     * @throws HelloSignException
+     *             thrown if there is a problem executing the request
      */
-    public File asFile(String fileName) throws HelloSignException
-    {
-    	Integer lastResponseCode = getLastResponseCode();
-    	if (lastResponseCode != null && lastResponseCode != HttpURLConnection.HTTP_OK) {
-    		this.asJson(); // Will validate response
-    	}
+    public File asFile(String fileName) throws HelloSignException {
+        Integer lastResponseCode = getLastResponseCode();
+        if (lastResponseCode != null && lastResponseCode != HttpURLConnection.HTTP_OK) {
+            this.asJson(); // Will validate response
+        }
         File f = createTemporaryFile(fileName);
-		if (getLastResponseAsFile(f) == 0) {
-			logger.warn("No bytes written to file: " + fileName);
-		}
+        if (getLastResponseAsFile(f) == 0) {
+            logger.warn("No bytes written to file: " + fileName);
+        }
         reset();
         return f;
     }
 
     /**
      * Helper method to create a temporary file.
-     * @param filename String
+     * 
+     * @param filename
+     *            String
      * @return File temporary file handle
-     * @throws HelloSignException thrown if the file cannot be created
+     * @throws HelloSignException
+     *             thrown if the file cannot be created
      */
     private File createTemporaryFile(String filename) throws HelloSignException {
         String prefix = filename.substring(0, filename.indexOf("."));
@@ -225,27 +241,31 @@ public class HttpClient {
 
     /**
      * Executes the request and returns the HTTP response code.
+     * 
      * @return int HTTP response code
-     * @throws HelloSignException thrown if no request has been performed
+     * @throws HelloSignException
+     *             thrown if no request has been performed
      */
-    public int asHttpCode() throws HelloSignException
-    {
+    public int asHttpCode() throws HelloSignException {
         Integer code = getLastResponseCode();
         if (code == null) {
-        	throw new HelloSignException("No request performed");
+            throw new HelloSignException("No request performed");
         }
         if (code >= 200 && code < 300) {
-        	reset();
-        	return code;
+            reset();
+            return code;
         }
         throw new HelloSignException("HTTP Code " + code);
     }
 
     /**
      * Initializes a GET request to the given URL.
-     * @param url String url
+     * 
+     * @param url
+     *            String url
      * @return HttpClient
-     * @throws HelloSignException thrown if the url is invalid
+     * @throws HelloSignException
+     *             thrown if the url is invalid
      */
     public HttpClient get(String url) throws HelloSignException {
         if (postFields != null) {
@@ -258,9 +278,12 @@ public class HttpClient {
 
     /**
      * Initializes a POST request to the given URL.
-     * @param url String url
+     * 
+     * @param url
+     *            String url
      * @return HttpClient
-     * @throws HelloSignException thrown if the url is invalid
+     * @throws HelloSignException
+     *             thrown if the url is invalid
      */
     public HttpClient post(String url) throws HelloSignException {
         if (getParams != null) {
@@ -273,9 +296,12 @@ public class HttpClient {
 
     /**
      * Initializes a DELETE request to the given URL.
-     * @param url String url
+     * 
+     * @param url
+     *            String url
      * @return HttpClient
-     * @throws HelloSignException thrown if the url is invalid
+     * @throws HelloSignException
+     *             thrown if the url is invalid
      */
     public HttpClient delete(String url) throws HelloSignException {
         request = new HttpDeleteRequest(url, auth);
@@ -285,9 +311,12 @@ public class HttpClient {
 
     /**
      * Makes a PUT request to the given URL
-     * @param url String url
+     * 
+     * @param url
+     *            String url
      * @return HttpClient
-     * @throws HelloSignException thrown if the url is invalid
+     * @throws HelloSignException
+     *             thrown if the url is invalid
      */
     public HttpClient put(String url) throws HelloSignException {
         request = new HttpPutRequest(url, postFields, auth);
@@ -297,19 +326,22 @@ public class HttpClient {
 
     /**
      * Makes an OPTIONS request to the given URL
-     * @param url String URL
+     * 
+     * @param url
+     *            String URL
      * @return HttpClient
-     * @throws HelloSignException thrown if the URL is invalid
+     * @throws HelloSignException
+     *             thrown if the URL is invalid
      */
     public HttpClient options(String url) throws HelloSignException {
-    	request = new HttpOptionsRequest(url);
-    	request.execute();
-    	return this;
+        request = new HttpOptionsRequest(url);
+        request.execute();
+        return this;
     }
 
     /**
-     * Helper method that allows this client to ignore SSL certificates
-     * when making API requests.
+     * Helper method that allows this client to ignore SSL certificates when
+     * making API requests.
      */
     private void disableStrictSSL() {
         // Create a trust manager that does not validate certificate chains
@@ -318,12 +350,10 @@ public class HttpClient {
                 return new X509Certificate[0];
             }
 
-            public void checkClientTrusted(X509Certificate[] certs,
-                    String authType) {
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
             }
 
-            public void checkServerTrusted(X509Certificate[] certs,
-                    String authType) {
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
             }
         } };
 
@@ -338,8 +368,7 @@ public class HttpClient {
         try {
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, trustAllCerts, new SecureRandom());
-            HttpsURLConnection
-                    .setDefaultSSLSocketFactory(sc.getSocketFactory());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
             HttpsURLConnection.setDefaultHostnameVerifier(hv);
         } catch (Exception e) {
         }

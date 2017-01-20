@@ -41,8 +41,8 @@ import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.Signer;
 
 /**
- * Represents a HelloSign signature request. This object is used to both 
- * submit a request and to represent the request object returned from the server.
+ * Represents a HelloSign signature request. This object is used to both submit
+ * a request and to represent the request object returned from the server.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
@@ -94,8 +94,9 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns true if this request has an ID. Useful if checking to see if 
-     * this request is for submission or is the result of a call to HelloSign.
+     * Returns true if this request has an ID. Useful if checking to see if this
+     * request is for submission or is the result of a call to HelloSign.
+     * 
      * @return true if the request has an ID, false otherwise
      */
     public boolean hasId() {
@@ -104,6 +105,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns the CC email addresses for this request.
+     * 
      * @return List
      */
     public List<String> getCCs() {
@@ -112,7 +114,9 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Adds a CC'd email address to this request.
-     * @param email String email address
+     * 
+     * @param email
+     *            String email address
      */
     public void addCC(String email) {
         add(SIGREQ_CCS, email);
@@ -120,6 +124,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns a list of signatures for this request.
+     * 
      * @return List
      */
     public List<Signature> getSignatures() {
@@ -127,15 +132,18 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns the signature for the given email/name combination, or 
-     * null if not found on this request.
-     * @param email String email address
-     * @param name String name
+     * Returns the signature for the given email/name combination, or null if
+     * not found on this request.
+     * 
+     * @param email
+     *            String email address
+     * @param name
+     *            String name
      * @return Signature or null if not found
-     * @throws HelloSignException if the email or name are empty
+     * @throws HelloSignException
+     *             if the email or name are empty
      */
-    public Signature getSignature(String email, String name) 
-            throws HelloSignException {
+    public Signature getSignature(String email, String name) throws HelloSignException {
         if (email == null || "".equals(email)) {
             throw new HelloSignException("Email address cannot be empty");
         }
@@ -152,8 +160,11 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Adds the signer to the list of signers for this request.
-     * @param signer Signer
-     * @throws HelloSignException thrown if there is a problem adding the signer.
+     * 
+     * @param signer
+     *            Signer
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the signer.
      */
     public void addSigner(Signer signer) throws HelloSignException {
         signers.add(signer);
@@ -161,28 +172,35 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Adds the signer to the list of signers for this request.
-     * @param email String
-     * @param name String
-     * @throws HelloSignException thrown if there is a problem adding the signer.
+     * 
+     * @param email
+     *            String
+     * @param name
+     *            String
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the signer.
      */
     public void addSigner(String email, String name) throws HelloSignException {
         signers.add(new Signer(email, name));
     }
 
     /**
-     * Adds the signer with the given order to the list of signers for 
-     * this request. NOTE: The order refers to the 1-base index, not 0-base.
-     * This is to reflect the indexing used by the HelloSign API. 
-     * This means that adding an item at order 1 will place it in the 0th
-     * index of the list (it will be the first item).
+     * Adds the signer with the given order to the list of signers for this
+     * request. NOTE: The order refers to the 1-base index, not 0-base. This is
+     * to reflect the indexing used by the HelloSign API. This means that adding
+     * an item at order 1 will place it in the 0th index of the list (it will be
+     * the first item).
      * 
-     * @param email String
-     * @param name String
-     * @param order int
-     * @throws HelloSignException thrown if there is a problem adding the signer.
+     * @param email
+     *            String
+     * @param name
+     *            String
+     * @param order
+     *            int
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the signer.
      */
-    public void addSigner(String email, String name, int order) 
-            throws HelloSignException {
+    public void addSigner(String email, String name, int order) throws HelloSignException {
         try {
             signers.add((order - 1), new Signer(email, name));
         } catch (Exception ex) {
@@ -191,9 +209,10 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns a reference to the signers list. This can be modified and 
-     * re-added to the request using setSigners(). Useful for more explicit 
+     * Returns a reference to the signers list. This can be modified and
+     * re-added to the request using setSigners(). Useful for more explicit
      * modification.
+     * 
      * @return List
      */
     public List<Signer> getSigners() {
@@ -201,19 +220,24 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Overwrites the current list of signers for this request with the
-     * given list.
-     * @param signers List
+     * Overwrites the current list of signers for this request with the given
+     * list.
+     * 
+     * @param signers
+     *            List
      */
     public void setSigners(List<Signer> signers) {
         this.signers = signers;
     }
 
     /**
-     * Removes the signer from the list. If that user does not exist,
-     * this will throw a HelloSignException.
-     * @param email String
-     * @throws HelloSignException thrown if there is a problem removing the signer.
+     * Removes the signer from the list. If that user does not exist, this will
+     * throw a HelloSignException.
+     * 
+     * @param email
+     *            String
+     * @throws HelloSignException
+     *             thrown if there is a problem removing the signer.
      */
     public void removeSigner(String email) throws HelloSignException {
         if (email == null) {
@@ -227,12 +251,15 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Utility method that allows you to search for a Signature object 
-     * on this request by email and name. It requires both because neither
-     * alone is enough to guarantee uniqueness (some requests can have 
-     * multiple signers using the same email address or name).
-     * @param email String
-     * @param name String
+     * Utility method that allows you to search for a Signature object on this
+     * request by email and name. It requires both because neither alone is
+     * enough to guarantee uniqueness (some requests can have multiple signers
+     * using the same email address or name).
+     * 
+     * @param email
+     *            String
+     * @param name
+     *            String
      * @return Signature, if found on this request, or null
      * @deprecated Use getSignature(email, name)
      */
@@ -241,8 +268,7 @@ public class SignatureRequest extends AbstractRequest {
             return null;
         }
         for (Signature s : getSignatures()) {
-            if (name.equalsIgnoreCase(s.getName()) && 
-                email.equalsIgnoreCase(s.getEmail())) {
+            if (name.equalsIgnoreCase(s.getName()) && email.equalsIgnoreCase(s.getEmail())) {
                 return s;
             }
         }
@@ -251,10 +277,11 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Internal method used to retrieve the necessary POST fields to submit the
-     * signature request. 
+     * signature request.
+     * 
      * @return Map
-     * @throws HelloSignException thrown if there is a problem serializing the
-     * POST fields.
+     * @throws HelloSignException
+     *             thrown if there is a problem serializing the POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();
@@ -272,21 +299,18 @@ public class SignatureRequest extends AbstractRequest {
             for (int i = 0; i < signerz.size(); i++) {
                 Signer s = signerz.get(i);
 
-                // The signers are being ID'd starting at 1, instead of zero. 
-                // This is because the API generates signer IDs for templates starting at 1.
+                // The signers are being ID'd starting at 1, instead of zero.
+                // This is because the API generates signer IDs for templates
+                // starting at 1.
                 // Let's keep this consistent with the API for now.
 
-                fields.put(SIGREQ_SIGNERS + 
-                        "[" + (i + 1) + "][" + SIGREQ_SIGNER_EMAIL + "]", s.getEmail());
-                fields.put(SIGREQ_SIGNERS + 
-                        "[" + (i + 1) + "][" + SIGREQ_SIGNER_NAME + "]", s.getNameOrRole());
+                fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_EMAIL + "]", s.getEmail());
+                fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_NAME + "]", s.getNameOrRole());
                 if (getOrderMatters()) {
-                    fields.put(SIGREQ_SIGNERS + 
-                            "[" + (i + 1) + "][" + SIGREQ_SIGNER_ORDER + "]", i);
+                    fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_ORDER + "]", i);
                 }
-                if(s.getAccessCode() != null) {
-                    fields.put(SIGREQ_SIGNERS + 
-                            "[" + (i + 1) + "][" + SIGREQ_SIGNER_PIN + "]", s.getAccessCode());
+                if (s.getAccessCode() != null) {
+                    fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_PIN + "]", s.getAccessCode());
                 }
             }
             List<String> ccz = getCCs();
@@ -294,7 +318,8 @@ public class SignatureRequest extends AbstractRequest {
                 String cc = ccz.get(i);
                 fields.put(SIGREQ_CCS + "[" + (i + 1) + "]", cc);
             }
-            JSONArray reqFormFields = new JSONArray(); // Main array for the request
+            JSONArray reqFormFields = new JSONArray(); // Main array for the
+                                                       // request
             boolean hasFormFields = false;
             List<Document> docs = getDocuments();
             for (int i = 0; i < docs.size(); i++) {
@@ -315,7 +340,7 @@ public class SignatureRequest extends AbstractRequest {
                 fields.put(SIGREQ_FORM_FIELDS, reqFormFields.toString());
             }
             if (isTestMode()) {
-                fields.put(REQUEST_TEST_MODE, true);    
+                fields.put(REQUEST_TEST_MODE, true);
             }
             if (hasRedirectUrl()) {
                 fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
@@ -327,27 +352,29 @@ public class SignatureRequest extends AbstractRequest {
                 fields.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
             }
         } catch (Exception ex) {
-            throw new HelloSignException(
-                    "Could not extract form fields from SignatureRequest.", ex);
+            throw new HelloSignException("Could not extract form fields from SignatureRequest.", ex);
         }
         return fields;
     }
 
     /**
-     * Returns the HelloSign-designated signature status, indicating
-     * whether all signers have signed the document.  
-     * @return true, if all signers have signed the document, false
-     * otherwise.
+     * Returns the HelloSign-designated signature status, indicating whether all
+     * signers have signed the document.
+     * 
+     * @return true, if all signers have signed the document, false otherwise.
      */
     public boolean isComplete() {
         return getBoolean(SIGREQ_IS_COMPLETE);
     }
+
     public boolean hasError() {
         return getBoolean(SIGREQ_HAS_ERROR);
     }
+
     public List<ResponseData> getResponseData() {
         return getList(ResponseData.class, SIGREQ_RESPONSE_DATA);
     }
+
     /**
      * @deprecated use getFilesUrl()
      * @return String URL
@@ -355,19 +382,24 @@ public class SignatureRequest extends AbstractRequest {
     public String getFinalCopyUrl() {
         return getString(SIGREQ_FINAL_COPY_URL);
     }
+
     /**
      * Returns the API URL to retrieve the PDF copy of this signature request.
+     * 
      * @return String URL
      */
     public String getFilesUrl() {
         return getString(SIGREQ_FILES_URL);
     }
+
     public String getSigningUrl() {
         return getString(SIGREQ_SIGNING_URL);
     }
+
     public String getDetailsUrl() {
         return getString(SIGREQ_DETAILS_URL);
     }
+
     public boolean isDeclined() {
         if (has(SIGREQ_IS_DECLINED)) {
             return getBoolean(SIGREQ_IS_DECLINED);
@@ -376,11 +408,12 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Gets the custom fields associated with this request,
-     * set when sending the request from a template.
+     * Gets the custom fields associated with this request, set when sending the
+     * request from a template.
+     * 
      * @return List CustomFields
      */
     public List<CustomField> getCustomFields() {
-    	return getList(CustomField.class, SIGREQ_CUSTOM_FIELDS);
+        return getList(CustomField.class, SIGREQ_CUSTOM_FIELDS);
     }
 }

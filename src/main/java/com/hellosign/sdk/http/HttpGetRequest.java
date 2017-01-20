@@ -43,48 +43,60 @@ public class HttpGetRequest extends AbstractHttpRequest {
 
     /**
      * Constructor
-     * @param url String
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * 
+     * @param url
+     *            String
+     * @throws HelloSignException
+     *             thrown if there is a problem making the HTTP request or
+     *             processing the response
      */
-    public HttpGetRequest(String url) 
-            throws HelloSignException {
+    public HttpGetRequest(String url) throws HelloSignException {
         this(url, null, null);
     }
 
     /**
      * Constructor
-     * @param url String
-     * @param auth Authentication
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * 
+     * @param url
+     *            String
+     * @param auth
+     *            Authentication
+     * @throws HelloSignException
+     *             thrown if there is a problem making the HTTP request or
+     *             processing the response
      */
-    public HttpGetRequest(String url, Authentication auth) 
-            throws HelloSignException {
+    public HttpGetRequest(String url, Authentication auth) throws HelloSignException {
         this(url, null, auth);
     }
 
     /**
      * Constructor
-     * @param url String
-     * @param parameters Map
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * 
+     * @param url
+     *            String
+     * @param parameters
+     *            Map
+     * @throws HelloSignException
+     *             thrown if there is a problem making the HTTP request or
+     *             processing the response
      */
-    public HttpGetRequest(String url, Map<String, String> parameters) 
-            throws HelloSignException {
+    public HttpGetRequest(String url, Map<String, String> parameters) throws HelloSignException {
         this(url, parameters, null);
     }
 
     /**
      * Constructor
-     * @param url String
-     * @param parameters Map
-     * @param auth Authentication
-     * @throws HelloSignException thrown the URL is empty
+     * 
+     * @param url
+     *            String
+     * @param parameters
+     *            Map
+     * @param auth
+     *            Authentication
+     * @throws HelloSignException
+     *             thrown the URL is empty
      */
-    public HttpGetRequest(String url, Map<String, String> parameters, Authentication auth) 
-            throws HelloSignException {
+    public HttpGetRequest(String url, Map<String, String> parameters, Authentication auth) throws HelloSignException {
         if (url == null || "".equals(url)) {
             throw new HelloSignException("URL cannot be null or empty");
         }
@@ -109,9 +121,10 @@ public class HttpGetRequest extends AbstractHttpRequest {
             while (keys.hasNext()) {
                 String key = keys.next();
                 try {
-                	url += URLEncoder.encode(key, DEFAULT_ENCODING) + "=" + URLEncoder.encode(parameters.get(key), DEFAULT_ENCODING);
+                    url += URLEncoder.encode(key, DEFAULT_ENCODING) + "="
+                            + URLEncoder.encode(parameters.get(key), DEFAULT_ENCODING);
                 } catch (UnsupportedEncodingException ex) {
-                	throw new HelloSignException(ex);
+                    throw new HelloSignException(ex);
                 }
                 if (keys.hasNext()) {
                     url += "&";
@@ -120,11 +133,11 @@ public class HttpGetRequest extends AbstractHttpRequest {
         }
         logger.debug("GET: " + url);
         HttpURLConnection connection;
-		try {
-			connection = getProxiedConnection(url);
-		} catch (Exception e) {
-			throw new HelloSignException(e);
-		}
+        try {
+            connection = getProxiedConnection(url);
+        } catch (Exception e) {
+            throw new HelloSignException(e);
+        }
         connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
         connection.setRequestProperty("user-agent", USER_AGENT);
         if (auth != null) {

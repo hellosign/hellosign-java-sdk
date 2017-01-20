@@ -37,30 +37,37 @@ public class Signer {
     String email;
     String accessCode;
 
-    public Signer() {}
+    public Signer() {
+    }
 
     public Signer(String email, String nameOrRole) throws HelloSignException {
         setEmail(email);
         setNameOrRole(nameOrRole);
     }
+
     public String getNameOrRole() {
         return nameOrRole;
     }
+
     public void setNameOrRole(String name) {
         this.nameOrRole = name;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) throws HelloSignException {
         if (!email.contains("@")) {
             throw new HelloSignException("Invalid email address: " + email);
         }
         this.email = email;
     }
+
     public void setAccessCode(String accessCode) {
         this.accessCode = accessCode;
     }
+
     public String getAccessCode() {
         return accessCode;
     }

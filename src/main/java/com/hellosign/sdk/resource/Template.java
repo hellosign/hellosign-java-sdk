@@ -56,7 +56,8 @@ public class Template extends AbstractResource {
 
     public Template() {
         super();
-    }    
+    }
+
     public Template(JSONObject json) throws HelloSignException {
         super(json, TEMPLATE_KEY);
     }
@@ -64,27 +65,35 @@ public class Template extends AbstractResource {
     public String getId() {
         return getString(TEMPLATE_ID);
     }
+
     public boolean hasId() {
         return has(TEMPLATE_ID);
     }
+
     public String getTitle() {
         return getString(TEMPLATE_TITLE);
     }
+
     public boolean hasTitle() {
         return has(TEMPLATE_TITLE);
     }
+
     public String getMessage() {
         return getString(TEMPLATE_MESSAGE);
     }
+
     public boolean hasMessage() {
         return has(TEMPLATE_MESSAGE);
     }
+
     public List<Document> getDocuments() {
         return getList(Document.class, TEMPLATE_DOCUMENTS);
     }
+
     /**
      * Returns a list of SignerRoles. If they are ordered, the list is returned
      * in order.
+     * 
      * @return List
      */
     public List<TemplateRole> getSignerRoles() {
@@ -101,18 +110,23 @@ public class Template extends AbstractResource {
         }
         return sortedList;
     }
+
     public List<TemplateRole> getCCRoles() {
         return getList(TemplateRole.class, TEMPLATE_CC_ROLES);
     }
+
     public List<Account> getAccounts() {
         return getList(Account.class, TEMPLATE_ACCOUNTS);
     }
+
     public boolean canEdit() {
         return getBoolean(TEMPLATE_CAN_EDIT);
     }
+
     public boolean isCreator() {
         return getBoolean(TEMPLATE_IS_CREATOR);
     }
+
     public List<CustomField> getCustomFields() {
         return getList(CustomField.class, TEMPLATE_CUSTOM_FIELDS);
     }
@@ -120,6 +134,7 @@ public class Template extends AbstractResource {
     /**
      * Returns true if this template was created on a site other than
      * hellosign.com.
+     * 
      * @return boolean
      */
     public boolean isEmbedded() {

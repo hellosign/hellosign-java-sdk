@@ -30,9 +30,9 @@ import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.AbstractResource;
 
 /**
- * Resource class that represents a signer or CC role for a Template.
- * ("order" won't matter for the CC role, but we'll use this to 
- * represent it for now anyway).
+ * Resource class that represents a signer or CC role for a Template. ("order"
+ * won't matter for the CC role, but we'll use this to represent it for now
+ * anyway).
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */

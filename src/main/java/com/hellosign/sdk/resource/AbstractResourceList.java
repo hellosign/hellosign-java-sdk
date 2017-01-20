@@ -63,6 +63,7 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
             return null;
         }
     }
+
     public Integer getNumPages() {
         try {
             return listInfo.getInt(NUM_PAGES);
@@ -71,6 +72,7 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
             return null;
         }
     }
+
     public Integer getNumResults() {
         try {
             return listInfo.getInt(NUM_RESULTS);
@@ -79,6 +81,7 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
             return null;
         }
     }
+
     public Integer getPageSize() {
         try {
             return listInfo.getInt(PAGE_SIZE);
@@ -87,6 +90,7 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
             return null;
         }
     }
+
     public Iterator<E> iterator() {
         List<E> list = null;
         try {
@@ -100,25 +104,28 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
 
     /**
      * Returns the current page of results for this list object.
+     * 
      * @return List
-     * @throws HelloSignException thrown if the list cannot be generated
+     * @throws HelloSignException
+     *             thrown if the list cannot be generated
      */
-    public List<E> getCurrentPageList() 
-            throws HelloSignException {
+    public List<E> getCurrentPageList() throws HelloSignException {
         return filterCurrentPageBy(null, null);
     }
 
     /**
-     * Filters the current page of results by the given column and value. 
-     * @param columnName String column name to filter by
-     * @param filterValue Serializable matching value
+     * Filters the current page of results by the given column and value.
+     * 
+     * @param columnName
+     *            String column name to filter by
+     * @param filterValue
+     *            Serializable matching value
      * @return List results
-     * @throws HelloSignException thrown if the column name is invalid
+     * @throws HelloSignException
+     *             thrown if the column name is invalid
      */
-    public List<E> filterCurrentPageBy(String columnName, Serializable filterValue) 
-            throws HelloSignException {
-        ParameterizedType genericSuperclass = (ParameterizedType) getClass()
-                .getGenericSuperclass();
+    public List<E> filterCurrentPageBy(String columnName, Serializable filterValue) throws HelloSignException {
+        ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
         @SuppressWarnings("unchecked")
         Class<E> clazz = (Class<E>) genericSuperclass.getActualTypeArguments()[0];
         return getList(clazz, listKey, filterValue, columnName);

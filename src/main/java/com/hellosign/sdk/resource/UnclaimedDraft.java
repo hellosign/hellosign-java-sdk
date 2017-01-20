@@ -35,15 +35,16 @@ import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 
 /**
- * Represents an unclaimed draft response and request. 
+ * Represents an unclaimed draft response and request.
  * 
  * The UnclaimedDraft object essentially "wraps" a SignatureRequest. There are
  * two types of unclaimed drafts that can be created:
  * <ol>
- * <li>"send_document" - simply creates a claimable file. Use the <code>addFile(File)</code>
- * and <code>addFile(File, int)</code> methods to add files to be claimed.</li>
- * <li>"request_signature" - creates a claimable signature request. If this type is 
- * chosen, the signers name(s) and email address(es) are not optional.</li>
+ * <li>"send_document" - simply creates a claimable file. Use the
+ * <code>addFile(File)</code> and <code>addFile(File, int)</code> methods to add
+ * files to be claimed.</li>
+ * <li>"request_signature" - creates a claimable signature request. If this type
+ * is chosen, the signers name(s) and email address(es) are not optional.</li>
  * </ol>
  * 
  * @author "Chris Paul (chris@hellosign.com)"
@@ -67,7 +68,7 @@ public class UnclaimedDraft extends AbstractRequest {
     private AbstractRequest request;
 
     /**
-     * Default constructor. This will instantiate the unclaimed draft with a 
+     * Default constructor. This will instantiate the unclaimed draft with a
      * SignatureRequest and the UnclaimedDraftType.send_document.
      */
     public UnclaimedDraft() {
@@ -75,19 +76,24 @@ public class UnclaimedDraft extends AbstractRequest {
     }
 
     /**
-     * Creates an unclaimed draft with the provided AbstractRequest, and defaults
-     * the type to <code>UnclaimedDraftType.send_document</code>.
-     * @param request AbstractRequest
+     * Creates an unclaimed draft with the provided AbstractRequest, and
+     * defaults the type to <code>UnclaimedDraftType.send_document</code>.
+     * 
+     * @param request
+     *            AbstractRequest
      */
     public UnclaimedDraft(AbstractRequest request) {
         this(request, null);
     }
 
     /**
-     * Creates an unclaimed draft with the provided AbstractRequest and 
+     * Creates an unclaimed draft with the provided AbstractRequest and
      * UnclaimedDraftType.
-     * @param request AbstractRequest
-     * @param type UnclaimedDraftType
+     * 
+     * @param request
+     *            AbstractRequest
+     * @param type
+     *            UnclaimedDraftType
      */
     public UnclaimedDraft(AbstractRequest request, UnclaimedDraftType type) {
         setRequest(request);
@@ -99,8 +105,11 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Constructor to provide a way to store the API response JSON information.
-     * @param json JSONObject API response object
-     * @throws HelloSignException thrown if there is a problem parsing the JSONObject. 
+     * 
+     * @param json
+     *            JSONObject API response object
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the JSONObject.
      */
     public UnclaimedDraft(JSONObject json) throws HelloSignException {
         super(json, UNCLAIMED_DRAFT_KEY);
@@ -109,7 +118,9 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Sets the unclaimed draft type. Use the public enum:
      * UnclaimedDraft.UNCLAIMED_DRAFT_TYPE.
-     * @param type UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
+     * 
+     * @param type
+     *            UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
      */
     public void setType(UnclaimedDraftType type) {
         this.type = type;
@@ -117,6 +128,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Gets the string value of the unclaimed draft type.
+     * 
      * @return String
      */
     public String getTypeString() {
@@ -125,6 +137,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Gets the unclaimed draft type.
+     * 
      * @return UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
      */
     public UnclaimedDraftType getType() {
@@ -134,7 +147,9 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Sets the associated request object from which this unclaimed draft will
      * be created.
-     * @param request AbstractRequest
+     * 
+     * @param request
+     *            AbstractRequest
      */
     public void setRequest(AbstractRequest request) {
         this.request = request;
@@ -143,6 +158,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Gets the associated request object. Currently this will always be a
      * SignatureRequest.
+     * 
      * @return AbstractRequest
      */
     public AbstractRequest getRequest() {
@@ -151,6 +167,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Gets the claim URL if the draft has been created.
+     * 
      * @return String claim URL
      */
     public String getClaimUrl() {
@@ -159,6 +176,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Returns true if the draft has been created and a claim URL exists.
+     * 
      * @return true or false, if not set
      */
     public boolean hasClaimUrl() {
@@ -167,9 +185,11 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Adds a file to the unclaimed draft.
-     * @param file File
-     * @throws HelloSignException thrown if there is a problem adding
-     * the File.
+     * 
+     * @param file
+     *            File
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the File.
      */
     public void addFile(File file) throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -180,10 +200,13 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Adds a file to the unclaimed draft at the given document order.
-     * @param file File
-     * @param order int
-     * @throws HelloSignException thrown if there is a problem adding
-     * the File.
+     * 
+     * @param file
+     *            File
+     * @param order
+     *            int
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the File.
      */
     public void addFile(File file, int order) throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -194,8 +217,9 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Removes all files from this request.
-     * @throws HelloSignException thrown if there is a problem clearing
-     * the Files
+     * 
+     * @throws HelloSignException
+     *             thrown if there is a problem clearing the Files
      */
     public void clearFiles() throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -206,7 +230,8 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Returns true if this Unclaimed Draft is to be embedded.
-     * @return true if this Unclaimed Draft is to be embedded, false otherwise 
+     * 
+     * @return true if this Unclaimed Draft is to be embedded, false otherwise
      */
     public boolean isForEmbeddedSigning() {
         return isForEmbeddedSigning;
@@ -214,7 +239,9 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Sets whether this Unclaimed Draft is to be embedded.
-     * @param b boolean
+     * 
+     * @param b
+     *            boolean
      */
     public void setIsForEmbeddedSigning(boolean b) {
         isForEmbeddedSigning = b;
@@ -253,9 +280,11 @@ public class UnclaimedDraft extends AbstractRequest {
     public String getRequesterEmail() {
         return getString(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
     }
+
     public boolean hasRequesterEmail() {
         return has(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
     }
+
     public void setRequesterEmail(String email) {
         set(UNCLAIMED_DRAFT_REQUESTER_EMAIL, email);
     }
@@ -312,9 +341,9 @@ public class UnclaimedDraft extends AbstractRequest {
 
     @Override
     public boolean isTestMode() {
-    	if (request == null) {
-    		return getBoolean(UNCLAIMED_DRAFT_TEST_MODE);
-    	}
+        if (request == null) {
+            return getBoolean(UNCLAIMED_DRAFT_TEST_MODE);
+        }
         return request.isTestMode();
     }
 

@@ -45,8 +45,8 @@ import org.slf4j.LoggerFactory;
 import com.hellosign.sdk.HelloSignException;
 
 public abstract class AbstractHttpRequest {
-	
-	private static final Logger logger = LoggerFactory.getLogger(AbstractHttpRequest.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(AbstractHttpRequest.class);
 
     public final static String DEFAULT_ENCODING = "UTF-8";
     public final static String USER_AGENT = createUserAgent();
@@ -80,41 +80,44 @@ public abstract class AbstractHttpRequest {
     }
 
     /**
-     * Executes this HTTP request and preserves the response stream and
-     * HTTP response code for processing.
+     * Executes this HTTP request and preserves the response stream and HTTP
+     * response code for processing.
      * 
-     * @throws HelloSignException Thrown if there is an error while making
-     * the HTTP request to the HelloSign API.
+     * @throws HelloSignException
+     *             Thrown if there is an error while making the HTTP request to
+     *             the HelloSign API.
      */
     public void execute() throws HelloSignException {
-    	HttpURLConnection connection = getConnection();
-    	try {
-	    	// Execute the request and save the HTTP status code
-	    	lastHttpStatusCode = connection.getResponseCode();
-	
-			// Save the stream object for processing
-	        if (lastHttpStatusCode >= 200 && lastHttpStatusCode < 300) {
-	            logger.debug("OK!");
-	            lastResponseStream = connection.getInputStream();
-	        } else {
-	            logger.error("Error! HTTP Code = " + lastHttpStatusCode);
-	            lastResponseStream = connection.getErrorStream();
-	        }
-    	} catch (Exception ex) {
-    		throw new HelloSignException(ex);
-    	}
+        HttpURLConnection connection = getConnection();
+        try {
+            // Execute the request and save the HTTP status code
+            lastHttpStatusCode = connection.getResponseCode();
+
+            // Save the stream object for processing
+            if (lastHttpStatusCode >= 200 && lastHttpStatusCode < 300) {
+                logger.debug("OK!");
+                lastResponseStream = connection.getInputStream();
+            } else {
+                logger.error("Error! HTTP Code = " + lastHttpStatusCode);
+                lastResponseStream = connection.getErrorStream();
+            }
+        } catch (Exception ex) {
+            throw new HelloSignException(ex);
+        }
     }
 
     /**
      * Returns the last HTTP response code.
+     * 
      * @return Integer response code
      */
     public Integer getResponseCode() {
-    	return lastHttpStatusCode;
+        return lastHttpStatusCode;
     }
 
     /**
      * Returns the last response stream as a string.
+     * 
      * @return String
      */
     public String getResponseBody() {
@@ -122,7 +125,7 @@ public abstract class AbstractHttpRequest {
         if (lastResponseStream == null) {
             logger.error("Unable to parse JSON from empty response!");
         } else {
-        	Scanner s = new Scanner(lastResponseStream);
+            Scanner s = new Scanner(lastResponseStream);
             s.useDelimiter("\\A");
             responseStr = (s.hasNext()) ? s.next() : "";
             s.close();
@@ -134,14 +137,16 @@ public abstract class AbstractHttpRequest {
      * Creates an HTTP connection.
      *
      * Optionally checks for proxy parameters and creates a proxied connection
-     * using the system properties: 
-     *   "hellosign.proxy.url" - the URL of the HTTP proxy
-     *   "hellosign.proxy.port" - the port of the HTTP proxy
+     * using the system properties: "hellosign.proxy.url" - the URL of the HTTP
+     * proxy "hellosign.proxy.port" - the port of the HTTP proxy
      *
-     * @param url String URL to connect to
+     * @param url
+     *            String URL to connect to
      * @return HttpUrlConnection the (proxied) connection to the URL
-     * @throws MalformedURLException thrown if the URL is invalid
-     * @throws IOException thrown if IO cannot be established with the URL
+     * @throws MalformedURLException
+     *             thrown if the URL is invalid
+     * @throws IOException
+     *             thrown if IO cannot be established with the URL
      */
     protected static HttpURLConnection getProxiedConnection(String url) throws MalformedURLException, IOException {
         HttpURLConnection conn = null;
@@ -156,7 +161,7 @@ public abstract class AbstractHttpRequest {
             proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrlStr, proxyPort));
         }
         if (proxy == null) {
-            conn = (HttpURLConnection) new URL(url).openConnection(); 
+            conn = (HttpURLConnection) new URL(url).openConnection();
         } else {
             conn = (HttpURLConnection) new URL(url).openConnection(proxy);
         }
@@ -164,27 +169,32 @@ public abstract class AbstractHttpRequest {
     }
 
     /**
-     * The method class will create the appropriate connection with
-     * an endpoint, parameters, etc.
+     * The method class will create the appropriate connection with an endpoint,
+     * parameters, etc.
+     * 
      * @return HttpURLConnection
-     * @throws HelloSignException Thrown if a connection cannot be created
+     * @throws HelloSignException
+     *             Thrown if a connection cannot be created
      */
     abstract protected HttpURLConnection getConnection() throws HelloSignException;
 
     /**
      * Write the last response to a file.
-     * @param f File
+     * 
+     * @param f
+     *            File
      * @return long bytes written
-     * @throws HelloSignException Thrown if an exception occurs during
-     * the copy of the response stream to the given file.
+     * @throws HelloSignException
+     *             Thrown if an exception occurs during the copy of the response
+     *             stream to the given file.
      */
     public long getResponseAsFile(File f) throws HelloSignException {
-    	long bytesWritten = 0;
-    	try {
-			bytesWritten = Files.copy(lastResponseStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		} catch (Exception e) {
-			throw new HelloSignException(e);
-		}
-    	return bytesWritten;
+        long bytesWritten = 0;
+        try {
+            bytesWritten = Files.copy(lastResponseStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            throw new HelloSignException(e);
+        }
+        return bytesWritten;
     }
 }

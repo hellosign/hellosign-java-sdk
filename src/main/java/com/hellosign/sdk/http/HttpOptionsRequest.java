@@ -7,12 +7,12 @@ import com.hellosign.sdk.HelloSignException;
 public class HttpOptionsRequest extends AbstractHttpRequest {
 
     public HttpOptionsRequest(String url) {
-    	this.url = url;
+        this.url = url;
     }
 
-	@Override
-	protected HttpURLConnection getConnection() throws HelloSignException {
-		HttpURLConnection connection = null;
+    @Override
+    protected HttpURLConnection getConnection() throws HelloSignException {
+        HttpURLConnection connection = null;
         try {
             connection = getProxiedConnection(url);
             connection.setRequestMethod("OPTIONS");
@@ -20,5 +20,5 @@ public class HttpOptionsRequest extends AbstractHttpRequest {
             throw new HelloSignException(ex);
         }
         return connection;
-	}
+    }
 }

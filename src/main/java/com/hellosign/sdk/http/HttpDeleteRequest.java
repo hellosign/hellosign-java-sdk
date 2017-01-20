@@ -20,22 +20,22 @@ public class HttpDeleteRequest extends AbstractHttpRequest {
         }
     }
 
-	@Override
-	protected HttpURLConnection getConnection() throws HelloSignException {
-		HttpURLConnection connection;
-		try {
-			connection = getProxiedConnection(url);
-	        connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
-	        connection.setRequestProperty("user-agent", USER_AGENT);
-	        if (auth != null) {
-	            auth.authenticate(connection, url);
-	        }
-	        connection.setDoOutput(true);
-	        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-	        connection.setRequestMethod("DELETE");
-		} catch (Exception ex) {
-			throw new HelloSignException(ex);
-		}
-		return connection;
-	}
+    @Override
+    protected HttpURLConnection getConnection() throws HelloSignException {
+        HttpURLConnection connection;
+        try {
+            connection = getProxiedConnection(url);
+            connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
+            connection.setRequestProperty("user-agent", USER_AGENT);
+            if (auth != null) {
+                auth.authenticate(connection, url);
+            }
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestMethod("DELETE");
+        } catch (Exception ex) {
+            throw new HelloSignException(ex);
+        }
+        return connection;
+    }
 }

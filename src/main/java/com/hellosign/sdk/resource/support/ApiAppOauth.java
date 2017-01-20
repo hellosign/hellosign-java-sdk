@@ -56,11 +56,13 @@ public class ApiAppOauth extends AbstractResource {
     }
 
     /**
-     * Constructor that instantiates an ApiApp OAuth object based
-     * on the JSON response from the HelloSign API.
-     * @param json JSONObject
-     * @throws HelloSignException thrown if there is a problem updating
-     * the OAuth scopes.
+     * Constructor that instantiates an ApiApp OAuth object based on the JSON
+     * response from the HelloSign API.
+     * 
+     * @param json
+     *            JSONObject
+     * @throws HelloSignException
+     *             thrown if there is a problem updating the OAuth scopes.
      */
     public ApiAppOauth(JSONObject json) throws HelloSignException {
         super(json, APIAPP_OAUTH_KEY);
@@ -79,6 +81,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * The app's OAuth callback URL.
+     * 
      * @return String callback URL or null
      */
     public String getCallbackUrl() {
@@ -87,6 +90,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * True if the OAuth callback is set.
+     * 
      * @return Boolean
      */
     public Boolean hasCallbackUrl() {
@@ -95,6 +99,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * The app's OAuth secret.
+     * 
      * @return String or null
      */
     public String getSecret() {
@@ -103,15 +108,18 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Array of OAuth scopes used by the app.
+     * 
      * @return List
      */
     public Set<ApiAppOauthScopeType> getScopes() {
-       return scopes;
+        return scopes;
     }
 
     /**
      * Set this API app OAuth callback.
-     * @param url String
+     * 
+     * @param url
+     *            String
      */
     public void setCallbackUrl(String url) {
         set(APIAPP_OAUTH_CALLBACK_URL, url);
@@ -119,16 +127,20 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Set this API app's OAuth scopes.
-     * @param scopes List
+     * 
+     * @param scopes
+     *            List
      */
     public void setScopes(Set<ApiAppOauthScopeType> scopes) {
         this.scopes = scopes;
     }
 
     /**
-     * Add a scope to this API App's OAuth scope list.
-     * Duplicates will be ignored.
-     * @param scope ApiAppOauthScopeType
+     * Add a scope to this API App's OAuth scope list. Duplicates will be
+     * ignored.
+     * 
+     * @param scope
+     *            ApiAppOauthScopeType
      */
     public void addScope(ApiAppOauthScopeType scope) {
         this.scopes.add(scope);
@@ -143,7 +155,9 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Remove the specified OAuth scope from this API App.
-     * @param scope ApiAppOauthScopeType
+     * 
+     * @param scope
+     *            ApiAppOauthScopeType
      */
     public void removeScope(ApiAppOauthScopeType scope) {
         this.scopes.remove(scope);

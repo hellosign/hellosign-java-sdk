@@ -39,8 +39,8 @@ import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.types.EventType;
 
 /**
- * This is a utility class for assisting with the development of callback 
- * services to respond to HelloSign events. 
+ * This is a utility class for assisting with the development of callback
+ * services to respond to HelloSign events.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
@@ -61,11 +61,13 @@ public class Event extends AbstractResource {
     private AbstractResource resource;
 
     /**
-     * Default constructor. Provide this constructor with the JSONObject
-     * created from the API response.
-     * @param json JSONObject
-     * @throws HelloSignException thrown if there is a problem parsing the
-     * JSONObject.
+     * Default constructor. Provide this constructor with the JSONObject created
+     * from the API response.
+     * 
+     * @param json
+     *            JSONObject
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the JSONObject.
      */
     public Event(JSONObject json) throws HelloSignException {
         super(json, EVENT_KEY);
@@ -89,9 +91,10 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the account ID that this event is reporting for.
+     * 
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSON object.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSON object.
      */
     public String getAccountId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
@@ -106,9 +109,10 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this event has a "reported_for_account_id" field.
+     * 
      * @return true or false if it does not have an account ID
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSONObject.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSONObject.
      */
     public boolean hasAccountId() throws HelloSignException {
         return has(REPORTED_FOR_ACCOUNT_ID);
@@ -116,9 +120,10 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the API app ID for which this event is reported.
+     * 
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSONObject.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSONObject.
      */
     public String getAppId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
@@ -133,9 +138,10 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this event has a "reported_for_app_id" field.
+     * 
      * @return boolean
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSONObject.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSONObject.
      */
     public boolean hasAppId() throws HelloSignException {
         return has(REPORTED_FOR_APP_ID);
@@ -143,19 +149,21 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the event time as a Java Date object.
+     * 
      * @return Date
      */
     public Date getEventDate() {
         return getDate(EVENT_TIME);
     }
-    
+
     /**
      * Returns the message if any from the event
+     * 
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSONObject. 
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSONObject.
      */
-    public String getEventMessage() throws HelloSignException{
+    public String getEventMessage() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
         String eventMessage = null;
         try {
@@ -167,10 +175,11 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Returns the signature ID to which this event is associated. 
+     * Returns the signature ID to which this event is associated.
+     * 
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSONObject.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSONObject.
      */
     public String getRelatedSignatureId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
@@ -187,7 +196,8 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Utility method to determine if this event has a related signature ID. 
+     * Utility method to determine if this event has a related signature ID.
+     * 
      * @return true if this field exists and is set, false otherwise
      */
     public boolean hasRelatedSignatureId() {
@@ -199,11 +209,12 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Returns the associated Signature object with this event, if the
-     * event is associated with a Signature Request.
+     * Returns the associated Signature object with this event, if the event is
+     * associated with a Signature Request.
+     * 
      * @return Signature
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the backing JSONObject.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the backing JSONObject.
      */
     public Signature getRelatedSignature() throws HelloSignException {
         String id = getRelatedSignatureId();
@@ -221,6 +232,7 @@ public class Event extends AbstractResource {
     /**
      * Returns a reference to the SignatureRequest that is attached to the
      * Event.
+     * 
      * @return SignatureRequest
      */
     public SignatureRequest getSignatureRequest() {
@@ -232,6 +244,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this Event is associated with a Signature Request.
+     * 
      * @return boolean
      */
     public boolean hasSignatureRequest() {
@@ -240,6 +253,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns a reference to the Template that is attached to the Event.
+     * 
      * @return Template
      */
     public Template getTemplate() {
@@ -251,6 +265,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this event is associated with a Template.
+     * 
      * @return boolean
      */
     public boolean hasTemplate() {
@@ -259,6 +274,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the EventType for this event.
+     * 
      * @return EventType enum
      */
     public EventType getType() {
@@ -267,6 +283,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the event type String.
+     * 
      * @return String event type
      */
     public String getTypeString() {
@@ -275,6 +292,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the unique hash string identifying this event.
+     * 
      * @return String hash
      */
     public String getHash() {
@@ -282,12 +300,14 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Returns true if the event hash matches the computed hash using the provided
-     * API key.
-     * @param apiKey String api key.
+     * Returns true if the event hash matches the computed hash using the
+     * provided API key.
+     * 
+     * @param apiKey
+     *            String api key.
      * @return true if the hashes match, false otherwise
-     * @throws HelloSignException thrown if there is a problem parsing
-     * the API key.
+     * @throws HelloSignException
+     *             thrown if there is a problem parsing the API key.
      */
     public boolean isValid(String apiKey) throws HelloSignException {
         if (apiKey == null || apiKey == "") {
@@ -306,7 +326,7 @@ public class Event extends AbstractResource {
         } catch (IllegalArgumentException e) {
             throw new HelloSignException("Invalid API Key (" + e.getMessage() + "): " + apiKey);
         } catch (NoSuchAlgorithmException e) {
-        	throw new HelloSignException("Unable to process API key", e);
+            throw new HelloSignException("Unable to process API key", e);
         }
     }
 

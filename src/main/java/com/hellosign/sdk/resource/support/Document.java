@@ -33,11 +33,13 @@ import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.AbstractResource;
 
 /**
- * Represents a document and its associated (optional) form fields and custom fields.
+ * Represents a document and its associated (optional) form fields and custom
+ * fields.
  * 
- * It is also populated based on the API response. This response typically contains
- * the file name and index of the document within the signature request. 
- *  
+ * It is also populated based on the API response. This response typically
+ * contains the file name and index of the document within the signature
+ * request.
+ * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Document extends AbstractResource {
@@ -59,6 +61,7 @@ public class Document extends AbstractResource {
 
     /**
      * Returns the form fields for this document.
+     * 
      * @return List
      */
     public List<FormField> getFormFields() {
@@ -66,11 +69,14 @@ public class Document extends AbstractResource {
     }
 
     /**
-     * Overwrites the form fields for this document. This is useful 
-     * when manually migrating form fields from a template.
-     * @param formFields List
-     * @throws HelloSignException thrown if there is a problem adding
-     * the FormFields to this Document.
+     * Overwrites the form fields for this document. This is useful when
+     * manually migrating form fields from a template.
+     * 
+     * @param formFields
+     *            List
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the FormFields to this
+     *             Document.
      */
     public void setFormFields(List<FormField> formFields) throws HelloSignException {
         clearList(DOCUMENT_FORM_FIELDS);
@@ -81,9 +87,12 @@ public class Document extends AbstractResource {
 
     /**
      * Adds the form field to this document.
-     * @param formField FormField
-     * @throws HelloSignException thrown if there is a problem adding
-     * the FormFields to this Document.
+     * 
+     * @param formField
+     *            FormField
+     * @throws HelloSignException
+     *             thrown if there is a problem adding the FormFields to this
+     *             Document.
      */
     public void addFormField(FormField formField) throws HelloSignException {
         if (!has(DOCUMENT_FORM_FIELDS)) {
@@ -93,7 +102,8 @@ public class Document extends AbstractResource {
     }
 
     /**
-     * Returns the custom fields for this document. 
+     * Returns the custom fields for this document.
+     * 
      * @return List
      */
     public List<CustomField> getCustomFields() {
@@ -102,6 +112,7 @@ public class Document extends AbstractResource {
 
     /**
      * Returns the File associated with this document.
+     * 
      * @return File, or null if it hasn't been set
      */
     public File getFile() {
@@ -110,7 +121,9 @@ public class Document extends AbstractResource {
 
     /**
      * Sets the file associated with this document.
-     * @param file File
+     * 
+     * @param file
+     *            File
      */
     public void setFile(File file) {
         this.file = file;

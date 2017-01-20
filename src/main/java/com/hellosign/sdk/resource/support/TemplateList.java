@@ -31,7 +31,7 @@ import com.hellosign.sdk.resource.AbstractResourceList;
 import com.hellosign.sdk.resource.Template;
 
 /**
- * Represents a paged list of HelloSign Templates (a.k.a., ReusableForms). 
+ * Represents a paged list of HelloSign Templates (a.k.a., ReusableForms).
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
