@@ -151,6 +151,22 @@ public class CustomField extends AbstractResource {
     }
 
     /**
+     * Returns the x coordinate for this field.
+     * @param x int pixel coordinate
+     */
+    public void setX(int x) {
+    	set(CUSTOM_FIELD_X, x);
+    }
+    
+    /**
+     * Set the y coordinate for this field.
+     * @param y int pixel coordinate
+     */
+    public void setY(int y) {
+    	set(CUSTOM_FIELD_Y, y);
+    }
+
+    /**
      * Returns the pixel width of this field.
      * @return Integer or null if not set
      */
@@ -159,11 +175,27 @@ public class CustomField extends AbstractResource {
     }
 
     /**
+     * Sets the pixel height for this field.
+     * @param int pixel height
+     */
+    public void setWidth(int width) {
+    	set(CUSTOM_FIELD_WIDTH, width);
+    }
+
+    /**
      * Returns the pixel height of this field.
      * @return Integer or null if not set
      */
     public Integer getHeight() {
     	return getInteger(CUSTOM_FIELD_HEIGHT);
+    }
+
+    /**
+     * Sets the pixel height for this field.
+     * @param int pixel height
+     */
+    public void setHeight(int height) {
+    	set(CUSTOM_FIELD_HEIGHT, height);
     }
 
     /**
