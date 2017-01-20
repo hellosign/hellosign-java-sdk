@@ -1,13 +1,11 @@
-# HelloSign Java SDK
+# HelloSign Java SDK 
+[![Build Status](https://travis-ci.org/HelloFax/hellosign-java-sdk.svg?branch=master)](https://travis-ci.org/HelloFax/hellosign-java-sdk) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/) [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.hellosign/hellosign-java-sdk/badge.svg)](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk/)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/)
-[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.hellosign/hellosign-java-sdk/badge.svg)](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk/)
-
-Use the `hellosign-java-sdk` to get your Java app connected to HelloSign's API in minutes.
+Get your Java app connected to HelloSign's API in jiffy.
 
 ## Installing
 
-The SDK is built and deployed to the [Central Maven repository](https://repo1.maven.org/maven2/com/hellosign/hellosign-java-sdk/). Add it to your Maven project by including the following `<dependency>` in your `pom.xml`:
+SDK releases are published to Maven's [Central repository](https://repo1.maven.org/maven2/com/hellosign/hellosign-java-sdk/):
 
 ```xml
 <dependency>
@@ -18,24 +16,22 @@ The SDK is built and deployed to the [Central Maven repository](https://repo1.ma
 </dependency>
 ```
 
-> NOTE: It is compiled with and targeted for Java 7 and depends on the [SL4J 1.7.5](http://www.slf4j.org/) and JSON v20090211 libraries. If your project already includes these, use the JAR without dependencies by removing the `<classifier>` element in the example above.
-
 Alternatively, you can build the JAR yourself:
 
-    mvn clean package -DskipTests
+    mvn clean package
 
-Locate the JAR file in the `target` directory and place it on your project classpath.
+Place `target/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
 
 ## Usage
 
-All HelloSign API requests are made using the `HelloSignClient`. This class must be initialized with your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api).
+First initialize an instance of the `HelloSignClient` with your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api):
+
 ```java
 HelloSignClient client = new HelloSignClient(apiKey);
 ```
-The following examples assume the client has been initialized this way.
 
 ### Create a Signature Request
-Construct a `SignatureRequest` object and populate it with request details. When you provide this object to the `HelloSignClient.sendSignatureRequest()` method, an HTTP request will be made and the method will return a `SignatureRequest` object. Use this object to read details about the new signature request.
+
 ```java
 SignatureRequest request = new SignatureRequest();
 request.setSubject("NDA");
@@ -45,11 +41,9 @@ request.addFile(new File("nda.pdf"));
 
 SignatureRequest response = client.sendSignatureRequest(request);
 System.out.println(response.toString());
-// Prints the JSON response to the console
 ```
 
 ### Retrieve Templates
-The HelloSign API provides paged lists of templates and signature requests (`client.getSignatureRequests()`). These lists are represented as objects that can be iterated upon:
 
 ```java
 TemplateList templateList = client.getTemplates();
@@ -58,7 +52,7 @@ for (Template template : templateList) {
 }
 ```
 
-The paged list can also be filtered by a particular parameter and value:
+Or filter the paged list:
 
 ```java
 TemplateList templateList = client.getTemplates();
@@ -69,17 +63,16 @@ for (Template template : filteredList) {
 ```
 
 ### Create a Signature Request from a Template
-Using a `template` object retrieved from the API, create a signature request with it:
+
 ```java
 TemplateSignatureRequest request = new TemplateSignatureRequest();
-request.setTemplateId(template.getId());
+request.setTemplateId(templateId);
 request.setSigner("Client", "george@example.com", "George");
 request.setCC("Accounting", "accounting@hellosign.com");
 request.addCustomFieldValue("Cost", "$20,000");
 
 SignatureRequest response = client.sendTemplateSignatureRequest(request);
 System.out.println(response.toString());
-// Prints the JSON response to the console
 ```
 
 ### Checking the Status of a Signature Request
@@ -97,11 +90,8 @@ if (response.isComplete()) {
 
 ## Reference
 
-The complete JavaDoc is kindly hosted at [javadoc.io](http://www.javadoc.io/):
-http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk
-
-<!-- We've also built a sample J2EE application that demonstrates how to use the SDK for creating requests, working with embedded flows, and handling callback events:
-https://www.github.com/cmpaul/jellosign -->
+* [API Reference](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk)
+* [Sample JSP web application](https://www.github.com/cmpaul/jellosign)
 
 ## License
 
