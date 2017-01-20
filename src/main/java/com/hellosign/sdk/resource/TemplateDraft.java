@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -91,8 +91,7 @@ public class TemplateDraft extends AbstractRequest {
      * Adds a named role for a CC recipient that must be specified when the
      * template is used.
      * 
-     * @param ccRole
-     *            String
+     * @param ccRole String
      */
     public void addCCRole(String ccRole) {
         ccRoles.add(ccRole);
@@ -101,8 +100,7 @@ public class TemplateDraft extends AbstractRequest {
     /**
      * Adds the signer role to the template draft.
      * 
-     * @param signerRole
-     *            String
+     * @param signerRole String
      */
     public void addSignerRole(String signerRole) {
         signerRoles.add(signerRole);
@@ -124,12 +122,10 @@ public class TemplateDraft extends AbstractRequest {
      * an item at order 1 will place it in the 0th index of the list (it will be
      * the first item).
      * 
-     * @param role
-     *            String
-     * @param order
-     *            int
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the signer role.
+     * @param role String
+     * @param order int
+     * @throws HelloSignException thrown if there is a problem adding the signer
+     *         role.
      */
     public void addSignerRole(String role, int order) throws HelloSignException {
         try {
@@ -142,8 +138,7 @@ public class TemplateDraft extends AbstractRequest {
     /**
      * Overwrites the current list of signer roles.
      * 
-     * @param signerRoles
-     *            List
+     * @param signerRoles List
      */
     public void setSignerRoles(List<String> signerRoles) {
         this.signerRoles = signerRoles;
@@ -152,11 +147,10 @@ public class TemplateDraft extends AbstractRequest {
     /**
      * Removes the signer role.
      * 
-     * @param signerRole
-     *            String
+     * @param signerRole String
      * @return boolean
-     * @throws HelloSignException
-     *             thrown if there is a problem removing the signer role.
+     * @throws HelloSignException thrown if there is a problem removing the
+     *         signer role.
      */
     public boolean removeSignerRole(String signerRole) throws HelloSignException {
         return signerRoles.remove(signerRole);
@@ -167,14 +161,12 @@ public class TemplateDraft extends AbstractRequest {
      * can pre-populate whenever the *finished* template is used to send a
      * signature request.
      * 
-     * @param name
-     *            String name of the merge field that will be displayed to the
-     *            user and used to key off the custom field when populating the
-     *            value.
-     * @param type
-     *            FieldType (currently only "text" and "checkbox" are allowed)
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the merge field.
+     * @param name String name of the merge field that will be displayed to the
+     *        user and used to key off the custom field when populating the
+     *        value.
+     * @param type FieldType (currently only "text" and "checkbox" are allowed)
+     * @throws HelloSignException thrown if there is a problem adding the merge
+     *         field.
      */
     public void addMergeField(String name, FieldType type) throws HelloSignException {
         if (!FieldType.checkbox.equals(type) && !FieldType.text.equals(type)) {
@@ -241,8 +233,8 @@ public class TemplateDraft extends AbstractRequest {
      * Internal method used to retrieve the necessary POST fields.
      * 
      * @return Map
-     * @throws HelloSignException
-     *             thrown if there is a problem serializing the POST fields.
+     * @throws HelloSignException thrown if there is a problem serializing the
+     *         POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();

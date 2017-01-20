@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -79,8 +79,7 @@ public class UnclaimedDraft extends AbstractRequest {
      * Creates an unclaimed draft with the provided AbstractRequest, and
      * defaults the type to <code>UnclaimedDraftType.send_document</code>.
      * 
-     * @param request
-     *            AbstractRequest
+     * @param request AbstractRequest
      */
     public UnclaimedDraft(AbstractRequest request) {
         this(request, null);
@@ -90,10 +89,8 @@ public class UnclaimedDraft extends AbstractRequest {
      * Creates an unclaimed draft with the provided AbstractRequest and
      * UnclaimedDraftType.
      * 
-     * @param request
-     *            AbstractRequest
-     * @param type
-     *            UnclaimedDraftType
+     * @param request AbstractRequest
+     * @param type UnclaimedDraftType
      */
     public UnclaimedDraft(AbstractRequest request, UnclaimedDraftType type) {
         setRequest(request);
@@ -106,10 +103,9 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Constructor to provide a way to store the API response JSON information.
      * 
-     * @param json
-     *            JSONObject API response object
-     * @throws HelloSignException
-     *             thrown if there is a problem parsing the JSONObject.
+     * @param json JSONObject API response object
+     * @throws HelloSignException thrown if there is a problem parsing the
+     *         JSONObject.
      */
     public UnclaimedDraft(JSONObject json) throws HelloSignException {
         super(json, UNCLAIMED_DRAFT_KEY);
@@ -119,8 +115,7 @@ public class UnclaimedDraft extends AbstractRequest {
      * Sets the unclaimed draft type. Use the public enum:
      * UnclaimedDraft.UNCLAIMED_DRAFT_TYPE.
      * 
-     * @param type
-     *            UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
+     * @param type UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
      */
     public void setType(UnclaimedDraftType type) {
         this.type = type;
@@ -148,8 +143,7 @@ public class UnclaimedDraft extends AbstractRequest {
      * Sets the associated request object from which this unclaimed draft will
      * be created.
      * 
-     * @param request
-     *            AbstractRequest
+     * @param request AbstractRequest
      */
     public void setRequest(AbstractRequest request) {
         this.request = request;
@@ -186,10 +180,8 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Adds a file to the unclaimed draft.
      * 
-     * @param file
-     *            File
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the File.
+     * @param file File
+     * @throws HelloSignException thrown if there is a problem adding the File.
      */
     public void addFile(File file) throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -201,12 +193,9 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Adds a file to the unclaimed draft at the given document order.
      * 
-     * @param file
-     *            File
-     * @param order
-     *            int
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the File.
+     * @param file File
+     * @param order int
+     * @throws HelloSignException thrown if there is a problem adding the File.
      */
     public void addFile(File file, int order) throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -218,8 +207,8 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Removes all files from this request.
      * 
-     * @throws HelloSignException
-     *             thrown if there is a problem clearing the Files
+     * @throws HelloSignException thrown if there is a problem clearing the
+     *         Files
      */
     public void clearFiles() throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -240,8 +229,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Sets whether this Unclaimed Draft is to be embedded.
      * 
-     * @param b
-     *            boolean
+     * @param b boolean
      */
     public void setIsForEmbeddedSigning(boolean b) {
         isForEmbeddedSigning = b;

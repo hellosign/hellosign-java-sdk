@@ -14,8 +14,8 @@ import org.json.JSONException;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -74,8 +74,7 @@ public class CustomField extends AbstractResource {
     /**
      * Set the name of this custom field.
      * 
-     * @param name
-     *            String
+     * @param name String
      */
     public void setName(String name) {
         set(CUSTOM_FIELD_NAME, name);
@@ -95,8 +94,7 @@ public class CustomField extends AbstractResource {
     /**
      * Set the type for this custom field.
      * 
-     * @param type
-     *            FieldType
+     * @param type FieldType
      */
     public void setType(FieldType type) {
         set(CUSTOM_FIELD_TYPE, type.toString());
@@ -109,8 +107,7 @@ public class CustomField extends AbstractResource {
     /**
      * Set the value for this field.
      * 
-     * @param value
-     *            String
+     * @param value String
      */
     public void setValue(String value) {
         set(CUSTOM_FIELD_VALUE, value);
@@ -123,8 +120,7 @@ public class CustomField extends AbstractResource {
     /**
      * Set the API ID for this custom field.
      * 
-     * @param apiId
-     *            String
+     * @param apiId String
      */
     public void setApiId(String apiId) {
         set(CUSTOM_FIELD_API_ID, apiId);
@@ -137,8 +133,7 @@ public class CustomField extends AbstractResource {
     /**
      * Specify what signer role may edit this field.
      * 
-     * @param editor
-     *            String
+     * @param editor String
      */
     public void setEditor(String editor) {
         set(CUSTOM_FIELD_EDITOR, editor);
@@ -151,8 +146,7 @@ public class CustomField extends AbstractResource {
     /**
      * Specify whether this field is required.
      * 
-     * @param isRequired
-     *            Boolean
+     * @param isRequired Boolean
      */
     public void setIsRequired(Boolean isRequired) {
         set(CUSTOM_FIELD_REQUIRED, isRequired);
@@ -179,8 +173,7 @@ public class CustomField extends AbstractResource {
     /**
      * Returns the x coordinate for this field.
      * 
-     * @param x
-     *            int pixel coordinate
+     * @param x int pixel coordinate
      */
     public void setX(int x) {
         set(CUSTOM_FIELD_X, x);
@@ -189,8 +182,7 @@ public class CustomField extends AbstractResource {
     /**
      * Set the y coordinate for this field.
      * 
-     * @param y
-     *            int pixel coordinate
+     * @param y int pixel coordinate
      */
     public void setY(int y) {
         set(CUSTOM_FIELD_Y, y);
@@ -208,8 +200,7 @@ public class CustomField extends AbstractResource {
     /**
      * Sets the pixel height for this field.
      * 
-     * @param int
-     *            pixel height
+     * @param int pixel height
      */
     public void setWidth(int width) {
         set(CUSTOM_FIELD_WIDTH, width);
@@ -227,8 +218,7 @@ public class CustomField extends AbstractResource {
     /**
      * Sets the pixel height for this field.
      * 
-     * @param int
-     *            pixel height
+     * @param int pixel height
      */
     public void setHeight(int height) {
         set(CUSTOM_FIELD_HEIGHT, height);

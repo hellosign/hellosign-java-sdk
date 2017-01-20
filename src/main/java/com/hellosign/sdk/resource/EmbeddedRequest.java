@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -55,10 +55,8 @@ public class EmbeddedRequest extends AbstractRequest {
      * (either a SignatureRequest or TemplateSignatureRequest) and then create
      * your EmbeddedRequest using that object.
      * 
-     * @param clientId
-     *            String client ID
-     * @param request
-     *            AbstractRequest
+     * @param clientId String client ID
+     * @param request AbstractRequest
      */
     public EmbeddedRequest(String clientId, AbstractRequest request) {
         setClientId(clientId);
@@ -79,8 +77,7 @@ public class EmbeddedRequest extends AbstractRequest {
      * Set the client ID of the web app you're using to create this embedded
      * signature request. See: http://www.hellosign.com/api/embedded
      * 
-     * @param clientId
-     *            String client ID
+     * @param clientId String client ID
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
@@ -98,8 +95,7 @@ public class EmbeddedRequest extends AbstractRequest {
     /**
      * Set the AbstractRequest associated with this Embedded signature request.
      * 
-     * @param request
-     *            AbstractRequest
+     * @param request AbstractRequest
      */
     public void setRequest(AbstractRequest request) {
         this.request = request;

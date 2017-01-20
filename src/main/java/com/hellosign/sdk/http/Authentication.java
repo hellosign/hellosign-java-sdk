@@ -12,8 +12,8 @@ package com.hellosign.sdk.http;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -71,12 +71,10 @@ public class Authentication {
     /**
      * Sets the email and password to use for authenticating the client.
      * 
-     * @param email
-     *            String email address
-     * @param password
-     *            String password
-     * @throws HelloSignException
-     *             thrown if either the email or password are null
+     * @param email String email address
+     * @param password String password
+     * @throws HelloSignException thrown if either the email or password are
+     *         null
      */
     public void setWebsiteCredentials(String email, String password) throws HelloSignException {
         if (email == null) {
@@ -128,8 +126,7 @@ public class Authentication {
     /**
      * Sets the API key to use for authenticating this client.
      * 
-     * @param apiKey
-     *            String API Key
+     * @param apiKey String API Key
      */
     public void setApiKey(String apiKey) {
         if (apiKey == null) {
@@ -168,12 +165,10 @@ public class Authentication {
     /**
      * Sets the access token for the HelloSign client authentication.
      * 
-     * @param accessToken
-     *            String
-     * @param tokenType
-     *            String
-     * @throws HelloSignException
-     *             if either the accessToken or tokenType are null
+     * @param accessToken String
+     * @param tokenType String
+     * @throws HelloSignException if either the accessToken or tokenType are
+     *         null
      */
     public void setAccessToken(String accessToken, String tokenType) throws HelloSignException {
         if (accessToken == null) {
@@ -207,10 +202,8 @@ public class Authentication {
     /**
      * Authorizes the HTTP connection using this instance's credentials.
      * 
-     * @param httpConn
-     *            HttpURLConnection to be authenticated
-     * @param url
-     *            String URL against which this connection should be authorized.
+     * @param httpConn HttpURLConnection to be authenticated
+     * @param url String URL against which this connection should be authorized.
      */
     public void authenticate(HttpURLConnection httpConn, String url) {
         String authorization = null;

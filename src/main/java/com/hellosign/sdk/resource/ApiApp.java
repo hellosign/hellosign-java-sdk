@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -72,10 +72,9 @@ public class ApiApp extends AbstractResource {
      * Constructor that instantiates an ApiApp object based on the JSON response
      * from the HelloSign API.
      * 
-     * @param json
-     *            JSONObject
-     * @throws HelloSignException
-     *             thrown if there is a problem parsing the JSONObject
+     * @param json JSONObject
+     * @throws HelloSignException thrown if there is a problem parsing the
+     *         JSONObject
      */
     public ApiApp(JSONObject json) throws HelloSignException {
         super(json, APIAPP_KEY);
@@ -117,8 +116,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the callback URL for this API app's events.
      * 
-     * @param url
-     *            String
+     * @param url String
      */
     public void setCallbackUrl(String url) {
         set(APIAPP_CALLBACK_URL, url);
@@ -172,8 +170,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Set this API app's domain.
      * 
-     * @param domain
-     *            String
+     * @param domain String
      */
     public void setDomain(String domain) {
         set(APIAPP_DOMAIN, domain);
@@ -209,8 +206,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Set this API app's name.
      * 
-     * @param name
-     *            String
+     * @param name String
      */
     public void setName(String name) {
         set(APIAPP_NAME, name);
@@ -235,8 +231,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Set this API app's OAuth scopes.
      * 
-     * @param scopes
-     *            List of ApiAppOauthScopeType
+     * @param scopes List of ApiAppOauthScopeType
      */
     public void setScopes(Set<ApiAppOauthScopeType> scopes) {
         if (oauth == null) {
@@ -249,8 +244,7 @@ public class ApiApp extends AbstractResource {
      * Add a scope to this API App's OAuth scope list. Duplicates will be
      * ignored.
      * 
-     * @param scope
-     *            ApiAppOauthScopeType
+     * @param scope ApiAppOauthScopeType
      */
     public void addScope(ApiAppOauthScopeType scope) {
         if (oauth == null) {
@@ -272,8 +266,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Remove the specified OAuth scope from this API App.
      * 
-     * @param scope
-     *            ApiAppOauthScopeType
+     * @param scope ApiAppOauthScopeType
      */
     public void removeScope(ApiAppOauthScopeType scope) {
         if (oauth == null) {
@@ -297,8 +290,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Add a custom logo image to this API app.
      * 
-     * @param f
-     *            File
+     * @param f File
      */
     public void setCustomLogo(File f) {
         custom_logo = f;
@@ -309,8 +301,8 @@ public class ApiApp extends AbstractResource {
      * API app to HelloSign.
      * 
      * @return Map
-     * @throws HelloSignException
-     *             thrown if there is a problem serializing the POST fields.
+     * @throws HelloSignException thrown if there is a problem serializing the
+     *         POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
@@ -354,8 +346,7 @@ public class ApiApp extends AbstractResource {
     /**
      * Overrides all white labeling options for this API app.
      * 
-     * @param options
-     *            WhiteLabelingOptions
+     * @param options WhiteLabelingOptions
      */
     public void setWhiteLabelingOptions(WhiteLabelingOptions options) {
         white_labeling_options = options;
@@ -385,10 +376,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page background color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPageBackgroundColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -412,10 +402,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page header background color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setHeaderBackgroundColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -439,10 +428,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page text 1 color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setTextColor1(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -466,10 +454,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page text 2 color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setTextColor2(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -493,10 +480,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page link color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setLinkColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -520,10 +506,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page primary button color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -547,10 +532,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page primary button text color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonTextColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -574,10 +558,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page primary button hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonHoverColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -601,10 +584,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page primary button text hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonTextHoverColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -628,10 +610,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page secondary button color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -655,10 +636,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page secondary button text color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonTextColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -682,10 +662,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page secondary button hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonHoverColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {
@@ -709,10 +688,9 @@ public class ApiApp extends AbstractResource {
     /**
      * Set the signer page secondary button text hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonTextHoverColor(String color) throws HelloSignException {
         if (white_labeling_options == null) {

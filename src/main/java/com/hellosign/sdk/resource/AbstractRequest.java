@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -228,11 +228,9 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Adds the file to the request.
      * 
-     * @param file
-     *            File
-     * @throws HelloSignException
-     *             thrown if there is a problem attaching the File to this
-     *             request.
+     * @param file File
+     * @throws HelloSignException thrown if there is a problem attaching the
+     *         File to this request.
      */
     public void addFile(File file) throws HelloSignException {
         addFile(file, null);
@@ -246,13 +244,10 @@ public abstract class AbstractRequest extends AbstractResource {
      * 
      * If order is null, the document is appended to the end of the file list.
      * 
-     * @param file
-     *            File
-     * @param order
-     *            Integer or null
-     * @throws HelloSignException
-     *             thrown if there is a problem attaching the File to this
-     *             request.
+     * @param file File
+     * @param order Integer or null
+     * @throws HelloSignException thrown if there is a problem attaching the
+     *         File to this request.
      */
     public void addFile(File file, Integer order) throws HelloSignException {
         Document doc = new Document();
@@ -267,10 +262,8 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Adds a Document to the signature request.
      * 
-     * @param doc
-     *            Document
-     * @throws HelloSignException
-     *             thrown if null is provided
+     * @param doc Document
+     * @throws HelloSignException thrown if null is provided
      */
     public void addDocument(Document doc) throws HelloSignException {
         if (doc == null) {
@@ -282,13 +275,10 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Adds a Document to the signature request at the specific order.
      * 
-     * @param doc
-     *            Document
-     * @param order
-     *            int
-     * @throws HelloSignException
-     *             thrown if null is provided or there is a problem attaching
-     *             the Document.
+     * @param doc Document
+     * @param order int
+     * @throws HelloSignException thrown if null is provided or there is a
+     *         problem attaching the Document.
      */
     public void addDocument(Document doc, int order) throws HelloSignException {
         if (doc == null) {
@@ -315,8 +305,7 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Overwrites this requests document list with the provided document list.
      * 
-     * @param docs
-     *            List
+     * @param docs List
      */
     public void setDocuments(List<Document> docs) {
         documents = docs;
@@ -332,8 +321,7 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Determines whether the order of the signers list is to be enforced.
      * 
-     * @param b
-     *            true if the order matters, false otherwise
+     * @param b true if the order matters, false otherwise
      */
     public void setOrderMatters(boolean b) {
         orderMatters = b;
@@ -351,8 +339,7 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Add a file_url to this request.
      * 
-     * @param url
-     *            String
+     * @param url String
      */
     public void addFileUrl(String url) {
         fileUrls.add(url);
@@ -370,8 +357,7 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Overwrite the current file_url list.
      * 
-     * @param fileUrls
-     *            List
+     * @param fileUrls List
      */
     public void setFileUrls(List<String> fileUrls) {
         this.fileUrls = fileUrls;
@@ -382,8 +368,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * signer page displayed to signer(s). The default is UX_VERSION_1
      * (non-responsive). Use UX_VERSION_2 for the responsive signer page.
      * 
-     * @param uxVersion
-     *            int
+     * @param uxVersion int
      */
     public void setUxVersion(int uxVersion) {
         this.uxVersion = uxVersion;
@@ -401,10 +386,8 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Associates this request with an API app.
      * 
-     * @param clientId
-     *            String client ID of the API app.
-     * @throws HelloSignException
-     *             thrown if clientId is null
+     * @param clientId String client ID of the API app.
+     * @throws HelloSignException thrown if clientId is null
      */
     public void setClientId(String clientId) throws HelloSignException {
         if (clientId == null) {
@@ -426,9 +409,8 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Designate this request as declinable by signers.
      * 
-     * @param isDeclinable
-     *            true if declinable, false otherwise (null if the parameter
-     *            should be left off)
+     * @param isDeclinable true if declinable, false otherwise (null if the
+     *        parameter should be left off)
      */
     public void setIsDeclinable(Boolean isDeclinable) {
         this.isDeclinable = isDeclinable;

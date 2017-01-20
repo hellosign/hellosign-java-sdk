@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -115,8 +115,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Adds a CC'd email address to this request.
      * 
-     * @param email
-     *            String email address
+     * @param email String email address
      */
     public void addCC(String email) {
         add(SIGREQ_CCS, email);
@@ -135,13 +134,10 @@ public class SignatureRequest extends AbstractRequest {
      * Returns the signature for the given email/name combination, or null if
      * not found on this request.
      * 
-     * @param email
-     *            String email address
-     * @param name
-     *            String name
+     * @param email String email address
+     * @param name String name
      * @return Signature or null if not found
-     * @throws HelloSignException
-     *             if the email or name are empty
+     * @throws HelloSignException if the email or name are empty
      */
     public Signature getSignature(String email, String name) throws HelloSignException {
         if (email == null || "".equals(email)) {
@@ -161,10 +157,9 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Adds the signer to the list of signers for this request.
      * 
-     * @param signer
-     *            Signer
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the signer.
+     * @param signer Signer
+     * @throws HelloSignException thrown if there is a problem adding the
+     *         signer.
      */
     public void addSigner(Signer signer) throws HelloSignException {
         signers.add(signer);
@@ -173,12 +168,10 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Adds the signer to the list of signers for this request.
      * 
-     * @param email
-     *            String
-     * @param name
-     *            String
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the signer.
+     * @param email String
+     * @param name String
+     * @throws HelloSignException thrown if there is a problem adding the
+     *         signer.
      */
     public void addSigner(String email, String name) throws HelloSignException {
         signers.add(new Signer(email, name));
@@ -191,14 +184,11 @@ public class SignatureRequest extends AbstractRequest {
      * an item at order 1 will place it in the 0th index of the list (it will be
      * the first item).
      * 
-     * @param email
-     *            String
-     * @param name
-     *            String
-     * @param order
-     *            int
-     * @throws HelloSignException
-     *             thrown if there is a problem adding the signer.
+     * @param email String
+     * @param name String
+     * @param order int
+     * @throws HelloSignException thrown if there is a problem adding the
+     *         signer.
      */
     public void addSigner(String email, String name, int order) throws HelloSignException {
         try {
@@ -223,8 +213,7 @@ public class SignatureRequest extends AbstractRequest {
      * Overwrites the current list of signers for this request with the given
      * list.
      * 
-     * @param signers
-     *            List
+     * @param signers List
      */
     public void setSigners(List<Signer> signers) {
         this.signers = signers;
@@ -234,10 +223,9 @@ public class SignatureRequest extends AbstractRequest {
      * Removes the signer from the list. If that user does not exist, this will
      * throw a HelloSignException.
      * 
-     * @param email
-     *            String
-     * @throws HelloSignException
-     *             thrown if there is a problem removing the signer.
+     * @param email String
+     * @throws HelloSignException thrown if there is a problem removing the
+     *         signer.
      */
     public void removeSigner(String email) throws HelloSignException {
         if (email == null) {
@@ -256,10 +244,8 @@ public class SignatureRequest extends AbstractRequest {
      * enough to guarantee uniqueness (some requests can have multiple signers
      * using the same email address or name).
      * 
-     * @param email
-     *            String
-     * @param name
-     *            String
+     * @param email String
+     * @param name String
      * @return Signature, if found on this request, or null
      * @deprecated Use getSignature(email, name)
      */
@@ -280,8 +266,8 @@ public class SignatureRequest extends AbstractRequest {
      * signature request.
      * 
      * @return Map
-     * @throws HelloSignException
-     *             thrown if there is a problem serializing the POST fields.
+     * @throws HelloSignException thrown if there is a problem serializing the
+     *         POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();

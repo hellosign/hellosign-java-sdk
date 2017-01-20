@@ -14,8 +14,8 @@ import java.io.File;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -83,9 +83,8 @@ public abstract class AbstractHttpRequest {
      * Executes this HTTP request and preserves the response stream and HTTP
      * response code for processing.
      * 
-     * @throws HelloSignException
-     *             Thrown if there is an error while making the HTTP request to
-     *             the HelloSign API.
+     * @throws HelloSignException Thrown if there is an error while making the
+     *         HTTP request to the HelloSign API.
      */
     public void execute() throws HelloSignException {
         HttpURLConnection connection = getConnection();
@@ -140,13 +139,10 @@ public abstract class AbstractHttpRequest {
      * using the system properties: "hellosign.proxy.url" - the URL of the HTTP
      * proxy "hellosign.proxy.port" - the port of the HTTP proxy
      *
-     * @param url
-     *            String URL to connect to
+     * @param url String URL to connect to
      * @return HttpUrlConnection the (proxied) connection to the URL
-     * @throws MalformedURLException
-     *             thrown if the URL is invalid
-     * @throws IOException
-     *             thrown if IO cannot be established with the URL
+     * @throws MalformedURLException thrown if the URL is invalid
+     * @throws IOException thrown if IO cannot be established with the URL
      */
     protected static HttpURLConnection getProxiedConnection(String url) throws MalformedURLException, IOException {
         HttpURLConnection conn = null;
@@ -173,20 +169,17 @@ public abstract class AbstractHttpRequest {
      * parameters, etc.
      * 
      * @return HttpURLConnection
-     * @throws HelloSignException
-     *             Thrown if a connection cannot be created
+     * @throws HelloSignException Thrown if a connection cannot be created
      */
     abstract protected HttpURLConnection getConnection() throws HelloSignException;
 
     /**
      * Write the last response to a file.
      * 
-     * @param f
-     *            File
+     * @param f File
      * @return long bytes written
-     * @throws HelloSignException
-     *             Thrown if an exception occurs during the copy of the response
-     *             stream to the given file.
+     * @throws HelloSignException Thrown if an exception occurs during the copy
+     *         of the response stream to the given file.
      */
     public long getResponseAsFile(File f) throws HelloSignException {
         long bytesWritten = 0;

@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -31,10 +31,14 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hellosign.sdk.HelloSignException;
 
 public abstract class AbstractResourceList<E> extends AbstractResource implements Iterable<E> {
+
+    private static final Logger logger = LoggerFactory.getLogger(AbstractResourceList.class);
 
     public static final String LIST_INFO = "list_info";
     public static final String PAGE = "page";
@@ -56,58 +60,46 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
     }
 
     public Integer getPage() {
-        try {
-            return listInfo.getInt(PAGE);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return getListData(PAGE);
     }
 
     public Integer getNumPages() {
-        try {
-            return listInfo.getInt(NUM_PAGES);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return getListData(NUM_PAGES);
     }
 
     public Integer getNumResults() {
-        try {
-            return listInfo.getInt(NUM_RESULTS);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return getListData(NUM_RESULTS);
     }
 
     public Integer getPageSize() {
+        return getListData(PAGE_SIZE);
+    }
+
+    private Integer getListData(String key) {
+        Integer val = null;
         try {
-            return listInfo.getInt(PAGE_SIZE);
+            val = listInfo.getInt(key);
         } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
+            logger.error("Unable to retrieve list data for key " + key + ": " + e.getMessage(), e);
         }
+        return val;
     }
 
     public Iterator<E> iterator() {
-        List<E> list = null;
+        Iterator<E> iter = null;
         try {
-            list = getCurrentPageList();
+            iter = getCurrentPageList().iterator();
         } catch (HelloSignException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
-        return list.iterator();
+        return iter;
     }
 
     /**
      * Returns the current page of results for this list object.
      * 
      * @return List
-     * @throws HelloSignException
-     *             thrown if the list cannot be generated
+     * @throws HelloSignException thrown if the list cannot be generated
      */
     public List<E> getCurrentPageList() throws HelloSignException {
         return filterCurrentPageBy(null, null);
@@ -116,13 +108,10 @@ public abstract class AbstractResourceList<E> extends AbstractResource implement
     /**
      * Filters the current page of results by the given column and value.
      * 
-     * @param columnName
-     *            String column name to filter by
-     * @param filterValue
-     *            Serializable matching value
+     * @param columnName String column name to filter by
+     * @param filterValue Serializable matching value
      * @return List results
-     * @throws HelloSignException
-     *             thrown if the column name is invalid
+     * @throws HelloSignException thrown if the column name is invalid
      */
     public List<E> filterCurrentPageBy(String columnName, Serializable filterValue) throws HelloSignException {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();

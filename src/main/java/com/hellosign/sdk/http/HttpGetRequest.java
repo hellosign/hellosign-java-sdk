@@ -12,8 +12,8 @@ package com.hellosign.sdk.http;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -44,11 +44,9 @@ public class HttpGetRequest extends AbstractHttpRequest {
     /**
      * Constructor
      * 
-     * @param url
-     *            String
-     * @throws HelloSignException
-     *             thrown if there is a problem making the HTTP request or
-     *             processing the response
+     * @param url String
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
     public HttpGetRequest(String url) throws HelloSignException {
         this(url, null, null);
@@ -57,13 +55,10 @@ public class HttpGetRequest extends AbstractHttpRequest {
     /**
      * Constructor
      * 
-     * @param url
-     *            String
-     * @param auth
-     *            Authentication
-     * @throws HelloSignException
-     *             thrown if there is a problem making the HTTP request or
-     *             processing the response
+     * @param url String
+     * @param auth Authentication
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
     public HttpGetRequest(String url, Authentication auth) throws HelloSignException {
         this(url, null, auth);
@@ -72,13 +67,10 @@ public class HttpGetRequest extends AbstractHttpRequest {
     /**
      * Constructor
      * 
-     * @param url
-     *            String
-     * @param parameters
-     *            Map
-     * @throws HelloSignException
-     *             thrown if there is a problem making the HTTP request or
-     *             processing the response
+     * @param url String
+     * @param parameters Map
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
     public HttpGetRequest(String url, Map<String, String> parameters) throws HelloSignException {
         this(url, parameters, null);
@@ -87,14 +79,10 @@ public class HttpGetRequest extends AbstractHttpRequest {
     /**
      * Constructor
      * 
-     * @param url
-     *            String
-     * @param parameters
-     *            Map
-     * @param auth
-     *            Authentication
-     * @throws HelloSignException
-     *             thrown the URL is empty
+     * @param url String
+     * @param parameters Map
+     * @param auth Authentication
+     * @throws HelloSignException thrown the URL is empty
      */
     public HttpGetRequest(String url, Map<String, String> parameters, Authentication auth) throws HelloSignException {
         if (url == null || "".equals(url)) {

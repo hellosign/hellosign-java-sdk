@@ -43,8 +43,7 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Validate hex with regular expression
      * 
-     * @param hex
-     *            string for validation
+     * @param hex string for validation
      * @return true valid hex, false invalid hex
      */
     public boolean validateColor(final String hex) {
@@ -55,12 +54,10 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Helper method to validate and set a color.
      * 
-     * @param key
-     *            String key
-     * @param color
-     *            String color hex code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param key String key
+     * @param color String color hex code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     private void setColor(String key, String color) throws HelloSignException {
         if (!validateColor(color)) {
@@ -81,10 +78,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page background color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPageBackgroundColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_PAGE_BACKGROUND_COLOR, color);
@@ -102,10 +98,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page header background color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setHeaderBackgroundColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_HEADER_BACKGROUND_COLOR, color);
@@ -123,10 +118,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page text 1 color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setTextColor1(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_TEXT_COLOR_1, color);
@@ -144,10 +138,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page text 2 color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setTextColor2(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_TEXT_COLOR_2, color);
@@ -165,10 +158,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page link color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setLinkColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_LINK_COLOR, color);
@@ -186,10 +178,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page primary button color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR, color);
@@ -207,10 +198,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page primary button text color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonTextColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR, color);
@@ -228,10 +218,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page primary button hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonHoverColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER, color);
@@ -249,10 +238,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page primary button text hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setPrimaryButtonTextHoverColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER, color);
@@ -270,10 +258,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page secondary button color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR, color);
@@ -291,10 +278,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page secondary button text color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonTextColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR, color);
@@ -312,10 +298,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page secondary button hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonHoverColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER, color);
@@ -333,10 +318,9 @@ public class WhiteLabelingOptions extends AbstractResource {
     /**
      * Set the signer page secondary button text hover color.
      * 
-     * @param color
-     *            String hex color code
-     * @throws HelloSignException
-     *             thrown if the color string is an invalid hex string
+     * @param color String hex color code
+     * @throws HelloSignException thrown if the color string is an invalid hex
+     *         string
      */
     public void setSecondaryButtonTextHoverColor(String color) throws HelloSignException {
         setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER, color);

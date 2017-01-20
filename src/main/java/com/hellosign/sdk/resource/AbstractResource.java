@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -251,10 +251,8 @@ public abstract class AbstractResource {
      * Returns the first constructor that has exactly one parameter of the
      * provided paramClass type.
      * 
-     * @param clazz
-     *            Class whose constructors we are checking
-     * @param paramClass
-     *            Class Parameter class that the constructor should take
+     * @param clazz Class whose constructors we are checking
+     * @param paramClass Class Parameter class that the constructor should take
      * @return Constructor
      */
     protected Constructor<?> getConstructor(Class<?> clazz, Class<?> paramClass) {
