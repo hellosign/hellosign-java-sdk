@@ -224,7 +224,7 @@ public class CustomField extends AbstractResource {
     /**
      * Sets the pixel height for this field.
      * 
-     * @param int pixel height
+     * @param width int pixel height
      */
     public void setWidth(int width) {
         set(CUSTOM_FIELD_WIDTH, width);
@@ -242,7 +242,7 @@ public class CustomField extends AbstractResource {
     /**
      * Sets the pixel height for this field.
      * 
-     * @param int pixel height
+     * @param height int pixel height
      */
     public void setHeight(int height) {
         set(CUSTOM_FIELD_HEIGHT, height);
