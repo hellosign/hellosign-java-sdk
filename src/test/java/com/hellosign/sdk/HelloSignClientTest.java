@@ -48,7 +48,7 @@ import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 /**
  * The MIT License (MIT)
  * 
- * Copyright (C) 2015 hellosign.com
+ * Copyright (C) 2017 hellosign.com
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -111,6 +111,10 @@ public class HelloSignClientTest {
 		return result;
 	}
 
+	protected void mockResponseCode(int code) {
+	    doReturn(code).when(spy).getLastResponseCode();
+	}
+
 	@After
 	public void tearDown() {
 		spy = null;
@@ -127,7 +131,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testCreateAccountExisting() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+		mockResponseCode(400);
 		client.createAccount("chris@hellosign.com");
 	}
 
@@ -210,7 +214,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testSetAccountCallbackInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		String callbackUrl = "foo";
 		client.setCallback(callbackUrl);
 	}
@@ -223,7 +227,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetTeamInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+		mockResponseCode(404);
 		client.getTeam();
 	}
 
@@ -237,7 +241,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testCreateTeamInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		client.createTeam("foo");
 	}
 
@@ -257,7 +261,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testInviteTeamMemberInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		client.inviteTeamMember("foo");
 	}
 
@@ -272,7 +276,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testRemoveTeamMemberInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.removeTeamMember("foo");
 	}
 
@@ -286,19 +290,19 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testUpdateTeamNameInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.updateTeamName("foo");
 	}
 
 	@Test
 	public void testDestroyTeam() throws Exception {
-		doReturn(200).when(spy).getLastResponseCode();
+	    mockResponseCode(200);
 		client.destroyTeam();
 	}
 
 	@Test(expected = HelloSignException.class)
 	public void testDestroyTeamInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.destroyTeam();
 	}
 
@@ -312,7 +316,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetSignatureRequestInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.getSignatureRequest("foo");
 	}
 
@@ -327,7 +331,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetSignatureRequestsInvalid() throws Exception {
-		doReturn(401).when(spy).getLastResponseCode();
+	    mockResponseCode(401);
 		client.getSignatureRequests();
 	}
 
@@ -367,7 +371,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testSendSignatureRequestInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		SignatureRequest req = new SignatureRequest();
 		req.setTestMode(true);
 		client.sendSignatureRequest(req);
@@ -388,7 +392,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testUpdateSignatureRequestInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		String id = "84f8767b525611511ed24e5eaacee537589a30be";
 		String signatureId = "e477e554af09555eea762d1c204d9f3d";
 		String newEmailAddress = "nightman@hotmail.com";
@@ -407,7 +411,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetTemplatesInvalid() throws Exception {
-		doReturn(401).when(spy).getLastResponseCode();
+	    mockResponseCode(401);
 		client.getTemplates();
 	}
 
@@ -440,7 +444,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetTemplateFileInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.getTemplateFile("foo");
 	}
 
@@ -493,7 +497,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetTemplateInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.getTemplateFile("foo");
 	}
 
@@ -514,19 +518,19 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testAddTemplateUserInvalid() throws Exception {
-		doReturn(403).when(spy).getLastResponseCode();
+	    mockResponseCode(403);
 		client.addTemplateUser("foo", "bar");
 	}
 
 	@Test
 	public void testDeleteTemplate() throws Exception {
-		doReturn(200).when(spy).getLastResponseCode();
+	    mockResponseCode(200);
 		client.deleteTemplate("foo");
 	}
 
 	@Test(expected = HelloSignException.class)
 	public void testDeleteTemplateInvalid() throws Exception {
-		doReturn(401).when(spy).getLastResponseCode();
+	    mockResponseCode(401);
 		client.deleteTemplate("foo");
 	}
 
@@ -547,7 +551,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testRemoveTemplateUserInvalid() throws Exception {
-		doReturn(403).when(spy).getLastResponseCode();
+	    mockResponseCode(403);
 		String templateId = "475c0a43282985bb0fc02c995bfce6df2840a6f5";
 		String email = "chris@hellosign.com";
 		client.removeTemplateUser(templateId, email);
@@ -581,7 +585,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testSendTemplateSignatureRequestInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		SignatureRequest req = new SignatureRequest();
 		req.addFileUrl("http://www.example.com");
 		client.sendSignatureRequest(req);
@@ -589,13 +593,13 @@ public class HelloSignClientTest {
 
 	@Test
 	public void testCancelSignatureRequest() throws Exception {
-		doReturn(200).when(spy).getLastResponseCode();
+	    mockResponseCode(200);
 		assertTrue(client.cancelSignatureRequest("9cc3d5819959419abee4dbff2073d497e7c0a962"));
 	}
 
 	@Test(expected = HelloSignException.class)
 	public void testCancelSignatureRequestInvalid() throws Exception {
-		doReturn(410).when(spy).getLastResponseCode();
+	    mockResponseCode(410);
 		client.cancelSignatureRequest("foo");
 	}
 
@@ -609,7 +613,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testRequestEmailReminderInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		String id = "89d1f4f831ff1bbaf707c398881d98bff447c64e";
 		client.requestEmailReminder(id, "chris+a@hellosign.comd");
 	}
@@ -629,7 +633,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetFilesInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.getFiles("foo");
 	}
 
@@ -649,7 +653,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testCreateApiAppInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		ApiApp app = new ApiApp();
 		app.setName("Java API App");
 		client.createApiApp(app);
@@ -663,7 +667,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetApiAppInvalid() throws Exception {
-		doReturn(401).when(spy).getLastResponseCode();
+	    mockResponseCode(401);
 		client.getApiApp("034fb51064187cf28e4aad1c2533ad8f");
 	}
 
@@ -685,7 +689,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetApiAppsInvalid() throws Exception {
-		doReturn(401).when(spy).getLastResponseCode();
+	    mockResponseCode(401);
 		client.getApiApps();
 	}
 
@@ -705,7 +709,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testCreateEmbeddedRequestInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		EmbeddedRequest embeddedReq = new EmbeddedRequest("clientId", new SignatureRequest());
 		client.createEmbeddedRequest(embeddedReq);
 	}
@@ -720,7 +724,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetEmbeddedSignUrlInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		client.getEmbeddedSignUrl("foo");
 	}
 
@@ -741,7 +745,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testCreateUnclaimedDraftInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		client.createUnclaimedDraft(new UnclaimedDraft());
 	}
 
@@ -781,7 +785,7 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testGetEmbeddedTemplateEditUrlInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		client.getEmbeddedTemplateEditUrl("foo");
 	}
 
@@ -800,19 +804,19 @@ public class HelloSignClientTest {
 
 	@Test(expected = HelloSignException.class)
 	public void testUpdateApiAppInvalid() throws Exception {
-		doReturn(400).when(spy).getLastResponseCode();
+	    mockResponseCode(400);
 		client.updateApiApp(new ApiApp());
 	}
 
 	@Test
 	public void testDeleteApiApp() throws Exception {
-		doReturn(204).when(spy).getLastResponseCode();
+	    mockResponseCode(204);
 		assertTrue(client.deleteApiApp("034fb51064187cf28e4aad1c2533ad8f"));
 	}
 
 	@Test(expected = HelloSignException.class)
 	public void testDeleteApiAppInvalid() throws Exception {
-		doReturn(404).when(spy).getLastResponseCode();
+	    mockResponseCode(404);
 		assertFalse(client.deleteApiApp("foo"));
 	}
 }
