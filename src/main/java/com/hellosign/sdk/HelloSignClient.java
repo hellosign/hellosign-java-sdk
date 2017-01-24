@@ -68,7 +68,7 @@ public class HelloSignClient {
 
     public static final String DEFAULT_ENCODING = "UTF-8";
     public static final String DEFAULT_BASE_API_URL = "https://api.hellosign.com/v3";
-    public static final String DEFAULT_OAUTH_TOKEN_URL = "https://app.hellosign.com/oauth/token";
+    public static final String DEFAULT_OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
 
     public static final String ACCOUNT_URI = "/account";
     public static final String VALIDATE_ACCOUNT_URI = "/account/validate";
