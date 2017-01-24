@@ -68,7 +68,7 @@ public class HelloSignClient {
 
     public static final String DEFAULT_ENCODING = "UTF-8";
     public static final String DEFAULT_BASE_API_URL = "https://api.hellosign.com/v3";
-    public static final String DEFAULT_OAUTH_TOKEN_URL = "https://www.hellosign.com/oauth/token";
+    public static final String DEFAULT_OAUTH_TOKEN_URL = "https://app.hellosign.com/oauth/token";
 
     public static final String ACCOUNT_URI = "/account";
     public static final String VALIDATE_ACCOUNT_URI = "/account/validate";
@@ -135,14 +135,13 @@ public class HelloSignClient {
     private String OAUTH_TOKEN_URL;
 
     /**
-     * Default constructor that allows the injection of an HttpClient.
-     * 
-     * In most cases, you should use the constructor that accepts your API key:
+     * Default constructor for injection of dependencies (testing).
      * 
      * @see #HelloSignClient(String)
      */
-    public HelloSignClient() {
-        setHttpClient(new HttpClient());
+    protected HelloSignClient(HttpClient client, Authentication auth) {
+        this.httpClient = client;
+        this.auth = auth;
 
         // Set overrides if present
         BASE_URI = DEFAULT_BASE_API_URL;
@@ -168,69 +167,18 @@ public class HelloSignClient {
      *      Settings</a>
      */
     public HelloSignClient(String apiKey) throws HelloSignException {
-        this();
-        Authentication a = new Authentication();
-        a.setApiKey(apiKey);
-        setAuth(a);
+        this(new HttpClient(), new Authentication(apiKey));
+        auth.setApiKey(apiKey);
     }
 
     /**
-     * Creates a new HelloSign client using your website account's email address
-     * and password.
-     * 
-     * @param email String email
-     * @param password String password
-     * @throws HelloSignException thrown if there is a problem setting the
-     *         credentials
-     * @deprecated Use {@link #HelloSignClient(String)} instead.
-     */
-    public HelloSignClient(String email, String password) throws HelloSignException {
-        this();
-        Authentication a = new Authentication();
-        a.setWebsiteCredentials(email, password);
-        setAuth(a);
-    }
-
-    /**
-     * Create a client with the provided authentication object.
-     * 
-     * @param auth HelloSignAuthentication
-     * @throws HelloSignException thrown if the HelloSignAuthentication
-     *         parameters are invalid or null
-     */
-    public HelloSignClient(Authentication auth) throws HelloSignException {
-        this();
-        setAuth(auth);
-    }
-
-    /**
-     * Stores the Authentication that should be used for HTTP requests against
-     * the HelloSign API.
-     * 
-     * @param auth Authentication
-     * @throws HelloSignException thrown if there's a problem initializing the
-     *         authentication credentials
-     */
-    public void setAuth(Authentication auth) throws HelloSignException {
-        this.auth = new Authentication(auth);
-    }
-
-    /**
-     * Retrieves the authentication details being used by this client.
+     * Retrieves the authentication details being used by this client. Used for
+     * testing purposes.
      * 
      * @return Authentication
      */
-    public Authentication getAuth() {
+    protected Authentication getAuth() {
         return auth;
-    }
-
-    /**
-     * Set the HttpClient that should be used for HTTP requests.
-     * 
-     * @param client HttpClient
-     */
-    public void setHttpClient(HttpClient client) {
-        httpClient = client;
     }
 
     /**
@@ -250,24 +198,23 @@ public class HelloSignClient {
      * 
      * @param email String email address
      * @return true if the account exists, false otherwise
+     * @throws HelloSignException Thrown if there's a problem communicating with
+     *         the HelloSign API.
      */
-    public boolean isAccountValid(String email) {
-        boolean isValid = false;
-        if (email != null && !email.isEmpty()) {
-            try {
-                Account account = new Account(
-                        httpClient.withAuth(auth).withPostField(Account.ACCOUNT_EMAIL_ADDRESS, email)
-                                .post(BASE_URI + VALIDATE_ACCOUNT_URI).asJson());
-                isValid = (account.hasEmail() && email.equalsIgnoreCase(account.getEmail()));
-            } catch (HelloSignException ex) {
-                // Ignore
-            }
+    public boolean isAccountValid(String email) throws HelloSignException {
+        if (email == null || email.isEmpty()) {
+            return false;
         }
-        return isValid;
+        Account account = new Account(httpClient.withAuth(auth).withPostField(Account.ACCOUNT_EMAIL_ADDRESS, email)
+                .post(BASE_URI + VALIDATE_ACCOUNT_URI).asJson());
+        return (account.hasEmail() && email.equalsIgnoreCase(account.getEmail()));
     }
 
     /**
-     * Updates the current user's callback URL.
+     * Update your account callback URL.
+     * 
+     * This URL is used to notify you of any signature request events that occur
+     * when your account is a party -- e.g., sender or signer/recipient.
      * 
      * @param callback String URL
      * @return Account
@@ -292,24 +239,6 @@ public class HelloSignClient {
      */
     public Account createAccount(String email) throws HelloSignException {
         return createAccount(email, null, null);
-    }
-
-    /**
-     * Creates a new HelloSign account. The user will still need to validate
-     * their email address to complete the creation process.
-     * 
-     * Note: This request does not require authentication, so just performs the
-     * basic POST.
-     * 
-     * @param email String New user's email address
-     * @param password String New user's password
-     * @return Account New user's account information
-     * @throws HelloSignException thrown if there's a problem processing the
-     *         HTTP request or the JSON response.
-     * @deprecated as of 3.1.1, replaced by {@link #createAccount(String)}
-     */
-    public Account createAccount(String email, String password) throws HelloSignException {
-        return createAccount(email, password, null, null);
     }
 
     /**
@@ -339,68 +268,6 @@ public class HelloSignClient {
         Account account = new Account(response);
         account.setOauthData(data);
         return account;
-    }
-
-    /**
-     * Creates a new HelloSign account and provides OAuth app credentials to
-     * automatically generate an OAuth token with the user Account response.
-     * 
-     * @param email String New user's email address
-     * @param password String New user's password (NOTE: WILL BE IGNORED BY THE
-     *        API)
-     * @param clientId String Client ID
-     * @param clientSecret String App secret
-     * @return Account New user's account information
-     * @throws HelloSignException thrown if there's a problem processing the
-     *         HTTP request or the JSON response.
-     * @deprecated as of 3.1.1, replaced by
-     *             {@link #createAccount(String, String, String)}
-     */
-    public Account createAccount(String email, String password, String clientId, String clientSecret)
-            throws HelloSignException {
-        return createAccount(email, clientId, clientSecret);
-    }
-
-    /**
-     * Performs an OAuth request and returns the necessary data for authorizing
-     * an API application.
-     * 
-     * @param code String OAuth code
-     * @param clientId String OAuth client ID
-     * @param secret String OAuth secret
-     * @return OauthData object containing OAuth token details
-     * @throws HelloSignException thrown if there's a problem processing the
-     *         HTTP request or the JSON response.
-     * @deprecated Use
-     *             {@link #getOauthData(String, String, String, String, boolean)}
-     */
-    public OauthData getOauthData(String code, String clientId, String secret) throws HelloSignException {
-        return getOauthData(code, clientId, secret, "demo", false);
-    }
-
-    /**
-     * Performs an OAuth request and returns the necessary data for authorizing
-     * an API application, and will automatically set the access token and code
-     * for making authenticated requests with this client.
-     * 
-     * NOTE: This method does not provide a state parameter and is deprecated.
-     * Please update your references to this method as it will be removed in a
-     * future release.
-     * 
-     * @param code String OAuth code
-     * @param clientId String OAuth client ID
-     * @param secret String OAuth secret
-     * @param autoSetRequestToken true if the token should be immediately
-     *        applied to this client
-     * @return OauthData object containing OAuth token details
-     * @throws HelloSignException thrown if there's a problem processing the
-     *         HTTP request or the JSON response.
-     * @deprecated Use
-     *             {@link #getOauthData(String, String, String, String, boolean)}
-     */
-    public OauthData getOauthData(String code, String clientId, String secret, boolean autoSetRequestToken)
-            throws HelloSignException {
-        return getOauthData(code, clientId, secret, "demo", autoSetRequestToken);
     }
 
     /**

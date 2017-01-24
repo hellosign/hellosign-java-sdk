@@ -20,6 +20,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 
+import com.hellosign.sdk.http.Authentication;
 import com.hellosign.sdk.http.HttpClient;
 import com.hellosign.sdk.resource.AbstractRequest;
 import com.hellosign.sdk.resource.Account;
@@ -82,8 +83,7 @@ public class HelloSignClientTest {
 	@Before
 	public void setup() throws Exception {
 		spy = spy(new HttpClient());
-		client = new HelloSignClient("testapikey");
-		client.setHttpClient(spy);
+		client = new HelloSignClient(spy, new Authentication("testapikey"));
 
 		// Don't actually make HTTP requests
 		doReturn(spy).when(spy).post(any(String.class));
