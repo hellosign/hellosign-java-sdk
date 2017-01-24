@@ -136,7 +136,8 @@ public class HelloSignClient {
 
     /**
      * Default constructor for injection of dependencies (testing).
-     * 
+     * @param client HttpClient
+     * @param auth Authentication 
      * @see #HelloSignClient(String)
      */
     protected HelloSignClient(HttpClient client, Authentication auth) {
