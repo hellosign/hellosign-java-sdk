@@ -51,6 +51,8 @@ public class Authentication {
 
     private static final String[] allowedOauthOps = { "account", "signature_request", "reusable_form", "template" };
 
+    public Authentication() {}
+
     public Authentication(String apiKey) {
         this.apiKey = apiKey;
     }

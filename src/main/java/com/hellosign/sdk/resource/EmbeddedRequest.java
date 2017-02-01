@@ -65,7 +65,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     /**
      * Set the client ID of the web app you're using to create this embedded
-     * signature request. See: http://www.hellosign.com/api/embedded
+     * signature request. See: http://app.hellosign.com/api/embedded
      * 
      * @return String client ID
      */
@@ -75,7 +75,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     /**
      * Set the client ID of the web app you're using to create this embedded
-     * signature request. See: http://www.hellosign.com/api/embedded
+     * signature request. See: http://app.hellosign.com/api/embedded
      * 
      * @param clientId String client ID
      */

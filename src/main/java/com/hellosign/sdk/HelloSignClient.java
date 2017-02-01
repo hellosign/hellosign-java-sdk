@@ -164,12 +164,31 @@ public class HelloSignClient {
      * @throws HelloSignException thrown if there's a problem setting the
      *         credentials
      * @see <a href=
-     *      "https://www.hellosign.com/home/myAccount/current_tab/api">Account
+     *      "https://app.hellosign.com/home/myAccount/current_tab/api">Account
      *      Settings</a>
      */
     public HelloSignClient(String apiKey) throws HelloSignException {
         this(new HttpClient(), new Authentication(apiKey));
         auth.setApiKey(apiKey);
+    }
+
+    /**
+     * Creates a new HelloSign client using then given Authentication object.
+     * 
+     * @param auth Authentication used primarily for setting OAuth token/secret
+     * @throws HelloSignException thrown if there's a problem setting the credentials
+     */
+    public HelloSignClient(Authentication auth) throws HelloSignException {
+        this(new HttpClient(), auth);
+    }
+
+    /**
+     * Allows overriding of the authentication mechanism. Used
+     * mainly for setting an OAuth token/secret.
+     * @param auth
+     */
+    public void setAuthentication(Authentication auth) {
+        this.auth = auth;
     }
 
     /**
