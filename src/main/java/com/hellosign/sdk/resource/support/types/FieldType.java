@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource.support.types;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,9 @@ package com.hellosign.sdk.resource.support.types;
  */
 
 /**
- * Enumeration of allowable field types. These are used in
- * the ResponseData and FormField objects.
+ * Enumeration of allowable field types. These are used in the ResponseData and
+ * FormField objects.
+ * 
  * @author "Chris Paul (chris@hellosign.com)"
  *
  */

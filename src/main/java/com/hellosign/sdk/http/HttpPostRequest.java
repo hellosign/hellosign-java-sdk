@@ -12,8 +12,8 @@ package com.hellosign.sdk.http;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,7 +27,6 @@ package com.hellosign.sdk.http;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -39,7 +38,6 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,48 +64,49 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Constructor
+     * 
      * @param url String
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
-    public HttpPostRequest(String url) 
-            throws HelloSignException {
+    public HttpPostRequest(String url) throws HelloSignException {
         this(url, null, null);
     }
 
     /**
      * Constructor
+     * 
      * @param url String
      * @param auth Authentication
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
-    public HttpPostRequest(String url, Authentication auth) 
-            throws HelloSignException {
+    public HttpPostRequest(String url, Authentication auth) throws HelloSignException {
         this(url, null, auth);
     }
 
     /**
      * Constructor
+     * 
      * @param url String
      * @param fields Map
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
-    public HttpPostRequest(String url, Map<String, Serializable> fields) 
-            throws HelloSignException {
+    public HttpPostRequest(String url, Map<String, Serializable> fields) throws HelloSignException {
         this(url, fields, null);
     }
 
     /**
      * Constructor
+     * 
      * @param url String
      * @param fields Map
      * @param auth Authentication
-     * @throws HelloSignException thrown if there is a problem making
-     * the HTTP request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP
+     *         request or processing the response
      */
-    public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth) 
+    public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth)
             throws HelloSignException {
         if (url == null || "".equals(url)) {
             throw new HelloSignException("URL cannot be null or empty");
@@ -124,67 +123,15 @@ public class HttpPostRequest extends AbstractHttpRequest {
     }
 
     /**
-     * Performs a POST request to the given URL, using the authentication
-     * details and POST fields provided.
-     * @return JSONObject
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
-     */
-    public JSONObject getJsonResponse() throws HelloSignException {
-        HttpURLConnection connection = post();
-        JSONObject json = null;
-        try {
-            int httpCode = connection.getResponseCode();
-            InputStream response = null;
-            if (httpCode >= 200 && httpCode < 300) {
-                logger.debug("OK!");
-                response = connection.getInputStream();
-            } else {
-                logger.error("Error! HTTP Code = " + httpCode);
-                response = connection.getErrorStream();
-            }
-            String responseStr = "";
-            if (response == null) {
-                logger.error("Unable to parse JSON from empty response!");
-            } else {
-                responseStr = convertStreamToString(response);
-                logger.debug("String Response: " + responseStr);
-                json = new JSONObject(responseStr);
-                validate(json, httpCode);
-                logger.debug("JSON Response: " + json.toString(2));
-            }
-        } catch (HelloSignException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new HelloSignException(e);
-        }
-        return json;
-    }
-
-    /**
-     * Performs a field-less POST request to the provided URL using basic auth and
-     * returns the HTTP code.
-     * @return int HTTP status code
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
-     */
-    public int getHttpResponseCode() throws HelloSignException {
-        HttpURLConnection connection = post();
-        try {
-            return connection.getResponseCode();
-        } catch (Exception ex) {
-            throw new HelloSignException(ex.getMessage());
-        }
-    }
-
-    /**
-     * Helper method to make an HTTP POST request. Intelligently detects
-     * whether Files have been attached and sends as an multipart form request.
+     * Helper method to make an HTTP POST request. Intelligently detects whether
+     * Files have been attached and sends as an multipart form request.
+     * 
      * @return HttpUrlConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
+     *         request or processing the result
      */
-    private HttpURLConnection post() throws HelloSignException {
+    @Override
+    protected HttpURLConnection getConnection() throws HelloSignException {
         if (fields != null) {
             for (String key : fields.keySet()) {
                 if (fields.get(key) instanceof File) {
@@ -197,15 +144,16 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Helper method to make an HTTP POST request.
+     * 
      * @return HttpURLConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
+     *         request or processing the result
      */
     private HttpURLConnection postQuery() throws HelloSignException {
         logger.debug(this.method + ": " + url);
         HttpURLConnection connection;
         try {
-            connection = getConnection(url);
+            connection = getProxiedConnection(url);
             if (!this.method.equals("POST")) {
                 connection.setRequestMethod(method);
             }
@@ -244,9 +192,12 @@ public class HttpPostRequest extends AbstractHttpRequest {
         try {
             OutputStream output = connection.getOutputStream();
             try {
-                 output.write(sb.toString().getBytes(DEFAULT_ENCODING));
+                output.write(sb.toString().getBytes(DEFAULT_ENCODING));
             } finally {
-                 try { output.close(); } catch (IOException logOrIgnore) {}
+                try {
+                    output.close();
+                } catch (IOException logOrIgnore) {
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -257,9 +208,10 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Helper method to make an HTTP POST request with a File.
+     * 
      * @return HttpURLConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
-     * request or processing the result
+     *         request or processing the result
      */
     private HttpURLConnection postWithFile() throws HelloSignException {
         try {
@@ -268,7 +220,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
                 for (String key : fields.keySet()) {
                     Serializable val = fields.get(key);
                     if (val instanceof File) {
-                        addFilePart(key, (File) val); 
+                        addFilePart(key, (File) val);
                     } else {
                         addFormField(key, val.toString());
                     }
@@ -281,44 +233,35 @@ public class HttpPostRequest extends AbstractHttpRequest {
         }
     }
 
-    private void openMultipartPostConnection()
-            throws IOException {
-        httpConn = getConnection(this.url);
+    private void openMultipartPostConnection() throws IOException {
+        httpConn = getProxiedConnection(this.url);
         httpConn.setUseCaches(false);
         httpConn.setDoOutput(true); // indicates POST method
         httpConn.setDoInput(true);
-        httpConn.setRequestProperty("Content-Type",
-                "multipart/form-data; boundary=" + boundary);
+        httpConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
         httpConn.setRequestProperty("User-Agent", USER_AGENT);
         if (auth != null) {
             auth.authenticate(httpConn, this.url);
         }
         outputStream = httpConn.getOutputStream();
-        writer = new PrintWriter(new OutputStreamWriter(outputStream, DEFAULT_ENCODING),
-                true);
+        writer = new PrintWriter(new OutputStreamWriter(outputStream, DEFAULT_ENCODING), true);
     }
 
     private void addFormField(String name, String value) {
         write("--" + boundary).write(LINE_FEED);
-        write("Content-Disposition: form-data; name=\"" + name + "\"")
-            .write(LINE_FEED);
-        write("Content-Type: text/plain; charset=" + DEFAULT_ENCODING)
-            .write(LINE_FEED);
+        write("Content-Disposition: form-data; name=\"" + name + "\"").write(LINE_FEED);
+        write("Content-Type: text/plain; charset=" + DEFAULT_ENCODING).write(LINE_FEED);
         write(LINE_FEED);
         write(value).append(LINE_FEED);
         writer.flush();
     }
 
-    private void addFilePart(String fieldName, File uploadFile)
-            throws IOException {
+    private void addFilePart(String fieldName, File uploadFile) throws IOException {
         String fileName = uploadFile.getName();
         write("--" + boundary).write(LINE_FEED);
-        write("Content-Disposition: form-data; name=\"" + fieldName
-                + "\"; filename=\"" + fileName + "\"")
+        write("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName + "\"")
                 .write(LINE_FEED);
-        write("Content-Type: "
-                + URLConnection.guessContentTypeFromName(fileName))
-                .write(LINE_FEED);
+        write("Content-Type: " + URLConnection.guessContentTypeFromName(fileName)).write(LINE_FEED);
         write("Content-Transfer-Encoding: binary").write(LINE_FEED);
         write(LINE_FEED);
         writer.flush();

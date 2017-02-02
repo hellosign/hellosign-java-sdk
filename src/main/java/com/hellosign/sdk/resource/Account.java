@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -49,6 +49,7 @@ public class Account extends AbstractResource {
     public static final String ACCOUNT_PASSWORD = "password";
 
     private Quotas quotas;
+    private OauthData oauthData;
 
     public Account() {
         super();
@@ -121,11 +122,15 @@ public class Account extends AbstractResource {
         return has(ACCOUNT_ROLE_CODE);
     }
 
-    public OauthData getOauthData() throws HelloSignException {
-        return new OauthData((JSONObject) get(OAUTH_DATA));
-    }
-
     public Quotas getQuotas() {
         return quotas;
+    }
+
+    public OauthData getOauthData() throws HelloSignException {
+        return oauthData;
+    }
+
+    public void setOauthData(OauthData data) {
+        oauthData = data;
     }
 }

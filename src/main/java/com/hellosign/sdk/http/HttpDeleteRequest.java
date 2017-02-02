@@ -2,21 +2,16 @@ package com.hellosign.sdk.http;
 
 import java.net.HttpURLConnection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.hellosign.sdk.HelloSignException;
 
 public class HttpDeleteRequest extends AbstractHttpRequest {
-
-    private static final Logger logger = LoggerFactory.getLogger(HttpDeleteRequest.class);
 
     public HttpDeleteRequest(String url) throws HelloSignException {
         this(url, null);
     }
 
     public HttpDeleteRequest(String url, Authentication auth) throws HelloSignException {
-        if (url == null || "".equals(url)) {
+        if (url == null || url.isEmpty()) {
             throw new HelloSignException("URL cannot be null or empty");
         }
         this.url = url;
@@ -25,23 +20,22 @@ public class HttpDeleteRequest extends AbstractHttpRequest {
         }
     }
 
-    public int getHttpResponseCode() throws HelloSignException {
+    @Override
+    protected HttpURLConnection getConnection() throws HelloSignException {
+        HttpURLConnection connection;
         try {
-            logger.debug("DELETE: " + url);
-            HttpURLConnection connection = getConnection(url);
+            connection = getProxiedConnection(url);
             connection.setRequestProperty("Accept-Charset", DEFAULT_ENCODING);
             connection.setRequestProperty("user-agent", USER_AGENT);
             if (auth != null) {
-                logger.debug("Authenticating...");
                 auth.authenticate(connection, url);
             }
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setRequestMethod("DELETE");
-            connection.connect();
-            return connection.getResponseCode();
-        } catch (Exception e) {
-            throw new HelloSignException(e);
+        } catch (Exception ex) {
+            throw new HelloSignException(ex);
         }
+        return connection;
     }
 }

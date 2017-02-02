@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "Must specify an email_address for each signer",
+        "error_name": "bad_request"
+    }
+}

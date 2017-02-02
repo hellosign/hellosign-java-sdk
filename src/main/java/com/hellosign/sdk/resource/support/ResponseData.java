@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource.support;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -31,8 +31,8 @@ import com.hellosign.sdk.resource.AbstractResource;
 import com.hellosign.sdk.resource.support.types.FieldType;
 
 /**
- * This class represents the "response_data" portion of 
- * SignatureRequest objects.
+ * This class represents the "response_data" portion of SignatureRequest
+ * objects.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
@@ -55,36 +55,46 @@ public class ResponseData extends AbstractResource {
     public String getSignatureId() {
         return getString(RESPONSE_DATA_SIGNATURE_ID);
     }
+
     public void setSignatureId(String signatureId) {
         set(RESPONSE_DATA_SIGNATURE_ID, signatureId);
     }
+
     public String getName() {
         return getString(RESPONSE_DATA_NAME);
     }
+
     public void setName(String name) {
         set(RESPONSE_DATA_NAME, name);
     }
+
     public Object getValue() {
         return get(RESPONSE_DATA_VALUE);
     }
+
     public void setValue(Object value) {
         set(RESPONSE_DATA_VALUE, value);
     }
+
     public FieldType getType() {
         return FieldType.valueOf(getString(RESPONSE_DATA_TYPE));
     }
+
     public void setType(FieldType type) {
         set(RESPONSE_DATA_TYPE, type.toString());
     }
+
     public String getTypeString() {
         if (has(RESPONSE_DATA_TYPE)) {
             return getType().toString();
         }
         return null;
     }
+
     public String getApiId() {
         return getString(RESPONSE_DATA_API_ID);
     }
+
     public void setApiId(String apiId) {
         set(RESPONSE_DATA_API_ID, apiId);
     }

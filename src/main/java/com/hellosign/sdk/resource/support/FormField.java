@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource.support;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,26 +27,16 @@ package com.hellosign.sdk.resource.support;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
-import com.hellosign.sdk.resource.AbstractResource;
-import com.hellosign.sdk.resource.support.types.FieldType;
 import com.hellosign.sdk.resource.support.types.ValidationType;
 
 /**
- * This class represents a HelloSign Form Field object. 
+ * This class represents a HelloSign Form Field object.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
-public class FormField extends AbstractResource {
+public class FormField extends CustomField {
 
-    private static final String FORM_FIELD_API_ID = "api_id";
-    private static final String FORM_FIELD_NAME = "name";
-    private static final String FORM_FIELD_TYPE = "type";
-    private static final String FORM_FIELD_X = "x";
-    private static final String FORM_FIELD_Y = "y";
-    private static final String FORM_FIELD_WIDTH = "width";
-    private static final String FORM_FIELD_HEIGHT = "height";
     private static final String FORM_FIELD_SIGNER = "signer";
-    private static final String FORM_FIELD_REQUIRED = "required";
     private static final String FORM_FIELD_PAGE = "page";
     private static final String FORM_FIELD_VALIDATION_TYPE = "validation_type";
 
@@ -55,89 +45,84 @@ public class FormField extends AbstractResource {
     }
 
     public FormField(JSONObject json) throws HelloSignException {
-        super(json, null);
+        super(json);
     }
 
-    public String getApiId() {
-        return getString(FORM_FIELD_API_ID);
-    }
-    public void setApiId(String apiId) {
-        set(FORM_FIELD_API_ID, apiId);
-    }
-
-    public String getName() {
-        return getString(FORM_FIELD_NAME);
-    }
-    public void setName(String name) {
-        set(FORM_FIELD_NAME, name);
-    }
-    public boolean hasName() {
-        return has(FORM_FIELD_NAME);
-    }
-    public FieldType getType() {
-        return FieldType.valueOf(getString(FORM_FIELD_TYPE));
-    }
-    public void setType(FieldType type) {
-        set(FORM_FIELD_TYPE, type.toString());
-    }
-    public String getTypeString() {
-        if (has(FORM_FIELD_TYPE)) {
-            return getType().toString();
-        }
-        return null;
-    }
-    public Integer getX() {
-        return getInteger(FORM_FIELD_X);
-    }
-    public void setX(Integer x) {
-        set(FORM_FIELD_X, x);
-    }
-    public Integer getY() {
-        return getInteger(FORM_FIELD_Y);
-    }
-    public void setY(Integer y) {
-        set(FORM_FIELD_Y, y);
-    }
-    public Integer getWidth() {
-        return getInteger(FORM_FIELD_WIDTH);
-    }
-    public void setWidth(Integer width) {
-        set(FORM_FIELD_WIDTH, width);
-    }
-    public Integer getHeight() {
-        return getInteger(FORM_FIELD_HEIGHT);
-    }
-    public void setHeight(Integer height) {
-        set(FORM_FIELD_HEIGHT, height);
-    }
+    /**
+     * Returns the signer index for this form field.
+     * 
+     * @return Integer signer index or null if not set
+     */
     public Integer getSigner() {
         return getInteger(FORM_FIELD_SIGNER);
     }
+
+    /**
+     * Set the signer index that should complete this form field.
+     * 
+     * @param signer Integer index
+     */
     public void setSigner(Integer signer) {
         set(FORM_FIELD_SIGNER, signer);
     }
-    public Boolean getRequired() {
-        return getBoolean(FORM_FIELD_REQUIRED);
-    }
-    public void setRequired(Boolean required) {
-        set(FORM_FIELD_REQUIRED, required);
-    }
+
+    /**
+     * Set the page number for this component. The (x, y) coordinates will be
+     * relative to the top left corner of that page.
+     * 
+     * @param page Integer page number
+     */
     public void setPage(Integer page) {
         set(FORM_FIELD_PAGE, page);
     }
+
+    /**
+     * Returns the page number this component is on.
+     * 
+     * @return Integer page number, or null if not set
+     */
     public Integer getPage() {
         return getInteger(FORM_FIELD_PAGE);
     }
+
+    /**
+     * Set the validation rule for this field. This will force the signer to
+     * enter data that conforms to the validation rule.
+     * 
+     * @param type ValidationType
+     */
     public void setValidationType(ValidationType type) {
         set(FORM_FIELD_VALIDATION_TYPE, type.toString());
     }
+
+    /**
+     * Return the validation rule being used for this field
+     * 
+     * @return ValidationType validation type, null if not set
+     */
     public ValidationType getValidationType() {
         return ValidationType.valueOf(getString(FORM_FIELD_VALIDATION_TYPE));
     }
+
+    /**
+     * Return the validation rule being used for this field as a string
+     * 
+     * @return String validation type, null if not set
+     */
     public String getValidationTypeString() {
         if (has(FORM_FIELD_VALIDATION_TYPE)) {
             return getValidationType().toString();
         }
         return null;
+    }
+
+    /**
+     * Set this field as required.
+     * 
+     * @param isRequired boolean true if field is required by signer
+     * @deprecated Use {@link #setIsRequired(Boolean)}
+     */
+    public void setRequired(boolean isRequired) {
+        setIsRequired(isRequired);
     }
 }

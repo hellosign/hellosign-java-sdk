@@ -1,5 +1,0 @@
-message=Message!
-title=TITLE!
-subject=Subject!
-file[1]=*
-type=send_document

@@ -1,6 +1,0 @@
-name=My Production App
-domain=example.com
-callback_url=https://example.com/hello
-oauth[callback_url]=https://example.com/oauth
-oauth[scopes]=*
-white_labeling_options={"text_color2":"#FFFFFF","text_color1":"#FFFFFF","secondary_button_text_color_hover":"#FFFFFF","primary_button_color_hover":"#FFFFFF","page_background_color":"#FFFFFF","header_background_color":"#FFFFFF","link_color":"#FFFFFF","primary_button_text_color":"#FFFFFF","secondary_button_color_hover":"#FFFFFF","primary_button_text_color_hover":"#FFFFFF","primary_button_color":"#FFFFFF","secondary_button_color":"#FFFFFF","secondary_button_text_color":"#FFFFFF"}

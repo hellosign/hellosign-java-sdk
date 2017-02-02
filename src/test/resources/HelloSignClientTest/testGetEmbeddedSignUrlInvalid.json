@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "Signature not found",
+        "error_name": "bad_request"
+    }
+}

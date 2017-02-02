@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "Invalid url for callback_url : foo",
+        "error_name": "bad_request"
+    }
+}

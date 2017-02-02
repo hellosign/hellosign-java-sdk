@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "Unauthorized api key",
+        "error_name": "unauthorized"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "error": {
+        "error_msg": "Unauthorized API usage. Ask your team admin to make you a developer on the Team page.",
+        "error_name": "unauthorized"
+    }
+}

@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource.support;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -56,11 +56,12 @@ public class ApiAppOauth extends AbstractResource {
     }
 
     /**
-     * Constructor that instantiates an ApiApp OAuth object based
-     * on the JSON response from the HelloSign API.
+     * Constructor that instantiates an ApiApp OAuth object based on the JSON
+     * response from the HelloSign API.
+     * 
      * @param json JSONObject
-     * @throws HelloSignException thrown if there is a problem updating
-     * the OAuth scopes.
+     * @throws HelloSignException thrown if there is a problem updating the
+     *         OAuth scopes.
      */
     public ApiAppOauth(JSONObject json) throws HelloSignException {
         super(json, APIAPP_OAUTH_KEY);
@@ -79,6 +80,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * The app's OAuth callback URL.
+     * 
      * @return String callback URL or null
      */
     public String getCallbackUrl() {
@@ -87,6 +89,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * True if the OAuth callback is set.
+     * 
      * @return Boolean
      */
     public Boolean hasCallbackUrl() {
@@ -95,6 +98,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * The app's OAuth secret.
+     * 
      * @return String or null
      */
     public String getSecret() {
@@ -103,14 +107,16 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Array of OAuth scopes used by the app.
+     * 
      * @return List
      */
     public Set<ApiAppOauthScopeType> getScopes() {
-       return scopes;
+        return scopes;
     }
 
     /**
      * Set this API app OAuth callback.
+     * 
      * @param url String
      */
     public void setCallbackUrl(String url) {
@@ -119,6 +125,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Set this API app's OAuth scopes.
+     * 
      * @param scopes List
      */
     public void setScopes(Set<ApiAppOauthScopeType> scopes) {
@@ -126,8 +133,9 @@ public class ApiAppOauth extends AbstractResource {
     }
 
     /**
-     * Add a scope to this API App's OAuth scope list.
-     * Duplicates will be ignored.
+     * Add a scope to this API App's OAuth scope list. Duplicates will be
+     * ignored.
+     * 
      * @param scope ApiAppOauthScopeType
      */
     public void addScope(ApiAppOauthScopeType scope) {
@@ -143,6 +151,7 @@ public class ApiAppOauth extends AbstractResource {
 
     /**
      * Remove the specified OAuth scope from this API App.
+     * 
      * @param scope ApiAppOauthScopeType
      */
     public void removeScope(ApiAppOauthScopeType scope) {

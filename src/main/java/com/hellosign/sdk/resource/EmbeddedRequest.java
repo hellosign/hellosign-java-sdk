@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -30,8 +30,8 @@ import java.util.Map;
 import com.hellosign.sdk.HelloSignException;
 
 /**
- * Represents an Embedded signature request (either standard or templated). 
- * An embedded request is one that can be signed from either within HelloSign or 
+ * Represents an Embedded signature request (either standard or templated). An
+ * embedded request is one that can be signed from either within HelloSign or
  * from within an iFrame on your website.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
@@ -43,16 +43,18 @@ public class EmbeddedRequest extends AbstractRequest {
     private String clientId;
     private AbstractRequest request;
 
-    // Hide the default constructor -- we want to force the user to specify a 
+    // Hide the default constructor -- we want to force the user to specify a
     // request object that this Embedded request will wrap around.
     @SuppressWarnings("unused")
-    private EmbeddedRequest() {}
+    private EmbeddedRequest() {
+    }
 
     /**
-     * Creates an Embedded signature request using the client ID and the 
-     * AbstractRequest object provided. First, instantiate the request object 
-     * (either a SignatureRequest or TemplateSignatureRequest) and then 
-     * create your EmbeddedRequest using that object.
+     * Creates an Embedded signature request using the client ID and the
+     * AbstractRequest object provided. First, instantiate the request object
+     * (either a SignatureRequest or TemplateSignatureRequest) and then create
+     * your EmbeddedRequest using that object.
+     * 
      * @param clientId String client ID
      * @param request AbstractRequest
      */
@@ -62,8 +64,9 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     /**
-     * Set the client ID of the web app you're using to create this embedded signature
-     * request. See: http://www.hellosign.com/api/embedded
+     * Set the client ID of the web app you're using to create this embedded
+     * signature request. See: http://app.hellosign.com/api/embedded
+     * 
      * @return String client ID
      */
     public String getClientId() {
@@ -71,8 +74,9 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     /**
-     * Set the client ID of the web app you're using to create this embedded signature
-     * request. See: http://www.hellosign.com/api/embedded
+     * Set the client ID of the web app you're using to create this embedded
+     * signature request. See: http://app.hellosign.com/api/embedded
+     * 
      * @param clientId String client ID
      */
     public void setClientId(String clientId) {
@@ -81,6 +85,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     /**
      * Get the AbstractRequest associated with this Embedded signature request.
+     * 
      * @return AbstractRequest
      */
     public AbstractRequest getRequest() {
@@ -89,6 +94,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     /**
      * Set the AbstractRequest associated with this Embedded signature request.
+     * 
      * @param request AbstractRequest
      */
     public void setRequest(AbstractRequest request) {
@@ -101,9 +107,9 @@ public class EmbeddedRequest extends AbstractRequest {
         return map;
     }
 
-    //=========================================================================================
+    // =========================================================================================
     // Overrides to pass through to request object
-    //=========================================================================================
+    // =========================================================================================
 
     @Override
     public String getTitle() {
@@ -178,5 +184,5 @@ public class EmbeddedRequest extends AbstractRequest {
     @Override
     public String getId() {
         return request.getId();
-    }    
+    }
 }

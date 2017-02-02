@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -51,8 +51,7 @@ public abstract class AbstractResource {
         dataObj = new JSONObject();
     }
 
-    protected AbstractResource(JSONObject json, String optionalKey) 
-            throws HelloSignException {
+    protected AbstractResource(JSONObject json, String optionalKey) throws HelloSignException {
         try {
             dataObj = json;
             if (json.has(optionalKey) && !json.isNull(optionalKey)) {
@@ -61,7 +60,8 @@ public abstract class AbstractResource {
                     dataObj = (JSONObject) obj;
                 } else if (obj instanceof String) {
                     // This is to handle the case where we're returning a
-                    // stringified JSON object (and should handle strings OK too.
+                    // stringified JSON object (and should handle strings OK
+                    // too.
                     dataObj = new JSONObject((String) obj);
                 } else {
                     throw new HelloSignException("Cannot convert response to JSONObject: " + obj);
@@ -183,15 +183,15 @@ public abstract class AbstractResource {
                 if (array.length() == 0) {
                     return returnList;
                 }
-                Constructor<?> constructor = 
-                        getConstructor(clazz, array.get(0).getClass());
+                Constructor<?> constructor = getConstructor(clazz, array.get(0).getClass());
                 if (constructor == null) {
                     return returnList;
                 }
                 for (int i = 0; i < array.length(); i++) {
                     Object obj = array.get(i);
-                    // Suppress the warning for the cast, since we checked in getConstructor()
-                    @SuppressWarnings("unchecked") 
+                    // Suppress the warning for the cast, since we checked in
+                    // getConstructor()
+                    @SuppressWarnings("unchecked")
                     T newItem = (T) constructor.newInstance(obj);
                     if (newItem != null) {
                         if (filterColumnName == null && filterValue == null) {
@@ -208,9 +208,7 @@ public abstract class AbstractResource {
                                     }
                                 }
                             }
-                        } else if (filterValue != null &&
-                                filterValue instanceof String &&
-                                newItem instanceof String) {
+                        } else if (filterValue != null && filterValue instanceof String && newItem instanceof String) {
                             // If we have a filter value, but no column name,
                             // test for String equality
                             if (filterValue.equals(newItem)) {
@@ -252,6 +250,7 @@ public abstract class AbstractResource {
     /**
      * Returns the first constructor that has exactly one parameter of the
      * provided paramClass type.
+     * 
      * @param clazz Class whose constructors we are checking
      * @param paramClass Class Parameter class that the constructor should take
      * @return Constructor

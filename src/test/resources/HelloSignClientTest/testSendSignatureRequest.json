@@ -1,0 +1,41 @@
+{
+    "signature_request": {
+        "signature_request_id": "84f8767b525611511ed24e5eaacee537589a30be",
+        "test_mode": true,
+        "title": "From the Mare",
+        "original_title": "From the Mare",
+        "subject": "From the Mare",
+        "message": "Pls sign",
+        "metadata": {
+        },
+        "is_complete": false,
+        "is_declined": false,
+        "has_error": false,
+        "custom_fields": [
+        ],
+        "response_data": [
+        ],
+        "signing_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/sign\/84f8767b525611511ed24e5eaacee537589a30be",
+        "signing_redirect_url": null,
+        "final_copy_uri": "\/v3\/signature_request\/final_copy\/84f8767b525611511ed24e5eaacee537589a30be",
+        "files_url": "https:\/\/api.dev-hellosign.com\/apiapp_dev.php\/v3\/signature_request\/files\/84f8767b525611511ed24e5eaacee537589a30be",
+        "details_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/home\/manage?guid=84f8767b525611511ed24e5eaacee537589a30be",
+        "requester_email_address": "chris@hellosign.com",
+        "signatures": [
+            {
+                "signature_id": "e477e554af09555eea762d1c204d9f3d",
+                "has_pin": false,
+                "signer_email_address": "charlie@hotmail.com",
+                "signer_name": "Charlie Day",
+                "order": null,
+                "status_code": "awaiting_signature",
+                "signed_at": null,
+                "last_viewed_at": null,
+                "last_reminded_at": null,
+                "error": null
+            }
+        ],
+        "cc_email_addresses": [
+        ]
+    }
+}

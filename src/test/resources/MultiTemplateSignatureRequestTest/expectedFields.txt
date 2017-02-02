@@ -1,9 +1,0 @@
-template_ids[0]=*
-template_ids[1]=*
-template_ids[2]=*
-subject=MultiTemplateTest
-message=Glad we could come to an agreement.
-signers[Tester][name]=Chris 1
-signers[Tester][email_address]=chris+1@hellosign.com
-custom_fields[Text]=Hello world!
-test_mode=true

@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -37,11 +37,11 @@ import com.hellosign.sdk.resource.support.CustomField;
 import com.hellosign.sdk.resource.support.Signer;
 
 /**
- * Represents a HelloSign signature request based on one or more Templates. 
+ * Represents a HelloSign signature request based on one or more Templates.
  * 
- * Unlike the SignatureRequest, this object is only used to submit
- * the request. A successfully submitted TemplateSignatureRequest will
- * return a SignatureRequest object from the server.
+ * Unlike the SignatureRequest, this object is only used to submit the request.
+ * A successfully submitted TemplateSignatureRequest will return a
+ * SignatureRequest object from the server.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
@@ -57,9 +57,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     // Signers, CC email addresses and custom fields are required
     // to have an associated role. We'll manage these in a Map,
-    // as opposed to storing them on the JSON object like other 
-    // fields are stored, so we can support this association. 
-    private Map<String, Signer> signers = new HashMap<String, Signer>();    
+    // as opposed to storing them on the JSON object like other
+    // fields are stored, so we can support this association.
+    private Map<String, Signer> signers = new HashMap<String, Signer>();
     private Map<String, String> ccs = new HashMap<String, String>();
     private List<CustomField> customFields = new ArrayList<CustomField>();
 
@@ -69,8 +69,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Convenience constructor that accepts a single Template.
+     * 
      * @param template Template
-     * @throws HelloSignException thrown if there is a problem adding the template ID.
+     * @throws HelloSignException thrown if there is a problem adding the
+     *         template ID.
      */
     public TemplateSignatureRequest(Template template) throws HelloSignException {
         this();
@@ -79,8 +81,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Convenience constructor that accepts a list of Templates.
+     * 
      * @param templates List
-     * @throws HelloSignException thrown if there is a problem adding the template ID.
+     * @throws HelloSignException thrown if there is a problem adding the
+     *         template ID.
      */
     public TemplateSignatureRequest(List<Template> templates) throws HelloSignException {
         this();
@@ -90,8 +94,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns a reference to the map of current roles 
-     * to CC email addresses.
+     * Returns a reference to the map of current roles to CC email addresses.
+     * 
      * @return Map
      */
     public Map<String, String> getCCs() {
@@ -100,6 +104,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Overwrites the map of roles to CC email addresses.
+     * 
      * @param newCCs Map
      */
     public void setCCs(Map<String, String> newCCs) {
@@ -108,6 +113,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Sets the CC email address for the provided role.
+     * 
      * @param role String
      * @param email String
      */
@@ -124,20 +130,22 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Adds the signer to the list of signers for this request.
+     * 
      * @param role String
      * @param email String
      * @param name String
-     * @throws HelloSignException thrown if there is a problem
-     * setting the signer.
+     * @throws HelloSignException thrown if there is a problem setting the
+     *         signer.
      */
     public void setSigner(String role, String email, String name) throws HelloSignException {
         signers.put(role, new Signer(email, name));
     }
 
     /**
-     * Returns a reference to the signers list. This can be modified and 
-     * re-added to the request using setSigners(). Useful for more explicit 
+     * Returns a reference to the signers list. This can be modified and
+     * re-added to the request using setSigners(). Useful for more explicit
      * modification.
+     * 
      * @return List
      */
     public Map<String, Signer> getSigners() {
@@ -145,8 +153,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Overwrites the current list of signers for this request with the
-     * given list.
+     * Overwrites the current list of signers for this request with the given
+     * list.
+     * 
      * @param signers List
      */
     public void setSigners(Map<String, Signer> signers) {
@@ -154,13 +163,13 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Removes signer(s) from this request by email address. 
-     * If more than one signer is listed by the given email, it
-     * will remove all instances of that signer. If no user 
-     * is listed by the given email, nothing will happen.
+     * Removes signer(s) from this request by email address. If more than one
+     * signer is listed by the given email, it will remove all instances of that
+     * signer. If no user is listed by the given email, nothing will happen.
+     * 
      * @param email String
-     * @throws HelloSignException if there is a problem removing
-     * the signer by email.
+     * @throws HelloSignException if there is a problem removing the signer by
+     *         email.
      */
     public void removeSignerByEmail(String email) throws HelloSignException {
         if (email == null) {
@@ -174,8 +183,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Add the custom field to this request. This is useful for specifying
-     * a pre-filled value and/or a field editor.
+     * Add the custom field to this request. This is useful for specifying a
+     * pre-filled value and/or a field editor.
+     * 
      * @param field CustomField
      */
     public void addCustomField(CustomField field) {
@@ -183,7 +193,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Adds the value to fill in for a custom field with the given field name. 
+     * Adds the value to fill in for a custom field with the given field name.
+     * 
      * @param fieldName String field name to be filled in
      * @param value String value
      */
@@ -195,8 +206,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns the map of custom fields for the template. 
-     * This is a map of String field names to String field values.
+     * Returns the map of custom fields for the template. This is a map of
+     * String field names to String field values.
+     * 
      * @return Map
      */
     public Map<String, String> getCustomFields() {
@@ -209,6 +221,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Returns a list of CustomField objects for this template.
+     * 
      * @return List of CustomFields
      */
     public List<CustomField> getCustomFieldsList() {
@@ -216,8 +229,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Overwrites the current map of custom fields to the provided map.
-     * This is a map of String field names to String field values.
+     * Overwrites the current map of custom fields to the provided map. This is
+     * a map of String field names to String field values.
+     * 
      * @param fields Map
      */
     public void setCustomFields(Map<String, String> fields) {
@@ -238,7 +252,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Set the template ID of the template that should be used with this request.
+     * Set the template ID of the template that should be used with this
+     * request.
+     * 
      * @param id String
      * @throws HelloSignException thrown if the template ID cannot be added.
      */
@@ -249,9 +265,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Get the template ID that will be used with this request.
-     * @return String 
+     * 
+     * @return String
      * @throws HelloSignException thrown if there is a problem parsing the
-     * backing JSON object.
+     *         backing JSON object.
      */
     public String getTemplateId() throws HelloSignException {
         List<String> templateIds = getTemplateIds();
@@ -263,9 +280,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Adds the template ID to be used in this request.
+     * 
      * @param id String
      * @throws HelloSignException thrown if there is a problem parsing the
-     * backing JSON object.
+     *         backing JSON object.
      */
     public void addTemplateId(String id) throws HelloSignException {
         addTemplateId(id, null);
@@ -273,10 +291,11 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Add the template ID to be used at the specified index.
+     * 
      * @param id String
      * @param index Integer
-     * @throws HelloSignException thrown if therer is a problem adding the
-     * given template ID.
+     * @throws HelloSignException thrown if therer is a problem adding the given
+     *         template ID.
      */
     public void addTemplateId(String id, Integer index) throws HelloSignException {
         List<String> currentList = getList(String.class, TEMPLATE_IDS);
@@ -306,6 +325,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Get the list of template IDs that are used for this request.
+     * 
      * @return List
      */
     public List<String> getTemplateIds() {
@@ -314,10 +334,11 @@ public class TemplateSignatureRequest extends AbstractRequest {
 
     /**
      * Internal method used to retrieve the necessary POST fields to submit the
-     * signature request. 
+     * signature request.
+     * 
      * @return Map
-     * @throws HelloSignException thrown if there is a problem parsing the
-     * POST fields.
+     * @throws HelloSignException thrown if there is a problem parsing the POST
+     *         fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();
@@ -330,12 +351,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
             Map<String, Signer> signerz = getSigners();
             for (String role : signerz.keySet()) {
                 Signer s = signerz.get(role);
-                fields.put(TEMPLATE_SIGNERS 
-                        + "[" + role + "][" + TEMPLATE_SIGNERS_EMAIL + "]", 
-                        s.getEmail());
-                fields.put(TEMPLATE_SIGNERS 
-                        + "[" + role + "][" + TEMPLATE_SIGNERS_NAME + "]", 
-                        s.getNameOrRole());
+                fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_EMAIL + "]", s.getEmail());
+                fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_NAME + "]", s.getNameOrRole());
             }
 
             // Optional fields
@@ -343,16 +360,14 @@ public class TemplateSignatureRequest extends AbstractRequest {
                 fields.put(REQUEST_TITLE, getTitle());
             }
             if (hasSubject()) {
-                fields.put(REQUEST_SUBJECT, getSubject());    
+                fields.put(REQUEST_SUBJECT, getSubject());
             }
             if (hasMessage()) {
-                fields.put(REQUEST_MESSAGE, getMessage());    
+                fields.put(REQUEST_MESSAGE, getMessage());
             }
             Map<String, String> ccz = getCCs();
             for (String role : ccz.keySet()) {
-                fields.put(TEMPLATE_CCS 
-                        + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]", 
-                        ccz.get(role));
+                fields.put(TEMPLATE_CCS + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]", ccz.get(role));
             }
             if (customFields.size() > 0) {
                 JSONArray array = new JSONArray();
@@ -365,8 +380,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
                 fields.put(REQUEST_TEST_MODE, true);
             }
         } catch (Exception ex) {
-            throw new HelloSignException(
-                    "Could not extract form fields from TemplateSignatureRequest.", ex);
+            throw new HelloSignException("Could not extract form fields from TemplateSignatureRequest.", ex);
         }
         return fields;
     }
@@ -387,6 +401,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
     public boolean hasUseTextTags() {
         return false;
     }
+
     /**
      * Not implemented for templates.
      */
@@ -394,11 +409,14 @@ public class TemplateSignatureRequest extends AbstractRequest {
     public Boolean isUsingTextTags() {
         return null;
     }
+
     /**
      * Not implemented for templates.
      */
     @Override
-    public void setUseTextTags(boolean useTextTags) {}
+    public void setUseTextTags(boolean useTextTags) {
+    }
+
     /**
      * Not implemented for templates.
      */
@@ -406,6 +424,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
     public boolean hasHideTextTags() {
         return false;
     }
+
     /**
      * Not implemented for templates.
      */
@@ -413,9 +432,11 @@ public class TemplateSignatureRequest extends AbstractRequest {
     public Boolean isHidingTextTags() {
         return null;
     }
+
     /**
      * Not implemented for templates.
      */
     @Override
-    public void setHideTextTags(boolean hideTextTags) {}
+    public void setHideTextTags(boolean hideTextTags) {
+    }
 }

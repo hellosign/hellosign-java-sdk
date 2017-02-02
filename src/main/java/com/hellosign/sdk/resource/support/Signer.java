@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource.support;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -37,30 +37,37 @@ public class Signer {
     String email;
     String accessCode;
 
-    public Signer() {}
+    public Signer() {
+    }
 
     public Signer(String email, String nameOrRole) throws HelloSignException {
         setEmail(email);
         setNameOrRole(nameOrRole);
     }
+
     public String getNameOrRole() {
         return nameOrRole;
     }
+
     public void setNameOrRole(String name) {
         this.nameOrRole = name;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) throws HelloSignException {
         if (!email.contains("@")) {
             throw new HelloSignException("Invalid email address: " + email);
         }
         this.email = email;
     }
+
     public void setAccessCode(String accessCode) {
         this.accessCode = accessCode;
     }
+
     public String getAccessCode() {
         return accessCode;
     }

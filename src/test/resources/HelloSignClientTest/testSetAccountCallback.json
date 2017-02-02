@@ -1,0 +1,15 @@
+{
+    "account": {
+        "account_id": "03c924e08c8aa6b0b2b8119c00fb3581c3a29ed2",
+        "email_address": "chris@hellosign.com",
+        "is_paid_hs": true,
+        "is_paid_hf": false,
+        "quotas": {
+            "templates_left": 10,
+            "documents_left": null,
+            "api_signature_requests_left": 0
+        },
+        "callback_url": "https:\/\/www.example.com",
+        "role_code": null
+    }
+}

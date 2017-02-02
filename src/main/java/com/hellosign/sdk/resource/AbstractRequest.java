@@ -12,8 +12,8 @@ package com.hellosign.sdk.resource;
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -39,9 +39,8 @@ import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.Metadata;
 
 /**
- * Requests to HelloSign will have common fields such as a 
- * request title, subject, and message. This class centralizes
- * those fields. 
+ * Requests to HelloSign will have common fields such as a request title,
+ * subject, and message. This class centralizes those fields.
  * 
  * @author "Chris Paul (chris@hellosign.com)"
  */
@@ -83,8 +82,7 @@ public abstract class AbstractRequest extends AbstractResource {
         metadata = new Metadata();
     }
 
-    public AbstractRequest(JSONObject json, String optionalKey) 
-            throws HelloSignException {
+    public AbstractRequest(JSONObject json, String optionalKey) throws HelloSignException {
         super(json, optionalKey);
         metadata = new Metadata(dataObj);
     }
@@ -135,6 +133,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public String getSubject() {
         return getString(REQUEST_SUBJECT);
     }
+
     public void setSubject(String subject) {
         set(REQUEST_SUBJECT, subject);
     }
@@ -149,7 +148,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     public void setMessage(String message) {
         set(REQUEST_MESSAGE, message);
-    }    
+    }
 
     public boolean hasMessage() {
         return has(REQUEST_MESSAGE);
@@ -181,62 +180,74 @@ public abstract class AbstractRequest extends AbstractResource {
     public boolean hasUseTextTags() {
         return has(REQUEST_USE_TEXT_TAGS);
     }
+
     public Boolean isUsingTextTags() {
         return getBoolean(REQUEST_USE_TEXT_TAGS);
     }
+
     public void setUseTextTags(boolean useTextTags) {
         set(REQUEST_USE_TEXT_TAGS, useTextTags);
     }
+
     public boolean hasHideTextTags() {
         return has(REQUEST_HIDE_TEXT_TAGS);
     }
+
     public Boolean isHidingTextTags() {
         return getBoolean(REQUEST_HIDE_TEXT_TAGS);
     }
+
     public void setHideTextTags(boolean hideTextTags) {
         set(REQUEST_HIDE_TEXT_TAGS, hideTextTags);
     }
+
     public boolean hasUsePreexistingFields() {
         return has(REQUEST_USE_PREEXISTING_FIELDS);
     }
+
     public Boolean isUsingPreexistingFields() {
         return getBoolean(REQUEST_USE_PREEXISTING_FIELDS);
     }
+
     public void setUsePreexistingFields(boolean usePreexistingFields) {
         set(REQUEST_USE_PREEXISTING_FIELDS, usePreexistingFields);
     }
+
     public Metadata getMetadata() {
         return metadata;
     }
+
     public void addMetadata(String key, String value) {
         metadata.set(key, value);
     }
+
     public String getMetadata(String key) {
         return metadata.get(key);
     }
 
     /**
-     * Adds the file to the request. 
+     * Adds the file to the request.
+     * 
      * @param file File
-     * @throws HelloSignException thrown if there is a problem attaching
-     * the File to this request.
+     * @throws HelloSignException thrown if there is a problem attaching the
+     *         File to this request.
      */
     public void addFile(File file) throws HelloSignException {
         addFile(file, null);
     }
 
     /**
-     * Adds the file to the request in the given order. 
+     * Adds the file to the request in the given order.
      * 
-     * The order should be a 0-based index into the file list. 
-     * Therefore, the first item of the file list is 0, and so forth.
+     * The order should be a 0-based index into the file list. Therefore, the
+     * first item of the file list is 0, and so forth.
      * 
      * If order is null, the document is appended to the end of the file list.
      * 
      * @param file File
      * @param order Integer or null
-     * @throws HelloSignException thrown if there is a problem attaching
-     * the File to this request.
+     * @throws HelloSignException thrown if there is a problem attaching the
+     *         File to this request.
      */
     public void addFile(File file, Integer order) throws HelloSignException {
         Document doc = new Document();
@@ -250,6 +261,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds a Document to the signature request.
+     * 
      * @param doc Document
      * @throws HelloSignException thrown if null is provided
      */
@@ -261,11 +273,12 @@ public abstract class AbstractRequest extends AbstractResource {
     }
 
     /**
-     * Adds a Document to the signature request at the specific order. 
+     * Adds a Document to the signature request at the specific order.
+     * 
      * @param doc Document
      * @param order int
-     * @throws HelloSignException thrown if null is provided or there
-     * is a problem attaching the Document.
+     * @throws HelloSignException thrown if null is provided or there is a
+     *         problem attaching the Document.
      */
     public void addDocument(Document doc, int order) throws HelloSignException {
         if (doc == null) {
@@ -279,9 +292,10 @@ public abstract class AbstractRequest extends AbstractResource {
     }
 
     /**
-     * Returns a reference to the list of documents for this request. 
-     * Modifying this list will modify the list that will be sent with the
-     * request. Useful for more fine-grained modification.
+     * Returns a reference to the list of documents for this request. Modifying
+     * this list will modify the list that will be sent with the request. Useful
+     * for more fine-grained modification.
+     * 
      * @return List
      */
     public List<Document> getDocuments() {
@@ -290,6 +304,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Overwrites this requests document list with the provided document list.
+     * 
      * @param docs List
      */
     public void setDocuments(List<Document> docs) {
@@ -305,6 +320,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Determines whether the order of the signers list is to be enforced.
+     * 
      * @param b true if the order matters, false otherwise
      */
     public void setOrderMatters(boolean b) {
@@ -313,6 +329,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * A flag that determines whether order of the signers list is enforced.
+     * 
      * @return true if the order matters, false otherwise
      */
     public boolean getOrderMatters() {
@@ -321,6 +338,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Add a file_url to this request.
+     * 
      * @param url String
      */
     public void addFileUrl(String url) {
@@ -329,6 +347,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Return the current file_url list.
+     * 
      * @return List
      */
     public List<String> getFileUrls() {
@@ -337,6 +356,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Overwrite the current file_url list.
+     * 
      * @param fileUrls List
      */
     public void setFileUrls(List<String> fileUrls) {
@@ -344,10 +364,10 @@ public abstract class AbstractRequest extends AbstractResource {
     }
 
     /**
-     * Set the UX version for this request. This determines the version
-     * of the signer page displayed to signer(s). The default is
-     * UX_VERSION_1 (non-responsive). Use UX_VERSION_2 for the responsive
-     * signer page.
+     * Set the UX version for this request. This determines the version of the
+     * signer page displayed to signer(s). The default is UX_VERSION_1
+     * (non-responsive). Use UX_VERSION_2 for the responsive signer page.
+     * 
      * @param uxVersion int
      */
     public void setUxVersion(int uxVersion) {
@@ -356,6 +376,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Return the UX version for this request.
+     * 
      * @return int UX version (UX_VERSION_1 or UX_VERSION_2)
      */
     public int getUxVersion() {
@@ -364,6 +385,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Associates this request with an API app.
+     * 
      * @param clientId String client ID of the API app.
      * @throws HelloSignException thrown if clientId is null
      */
@@ -375,8 +397,9 @@ public abstract class AbstractRequest extends AbstractResource {
     }
 
     /**
-     * The API app client ID that has been associated with
-     * this signature request.
+     * The API app client ID that has been associated with this signature
+     * request.
+     * 
      * @return String client ID
      */
     public String getClientId() {
@@ -385,16 +408,18 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Designate this request as declinable by signers.
-     * @param isDeclinable true if declinable, false otherwise
-     *        (null if the parameter should be left off)
+     * 
+     * @param isDeclinable true if declinable, false otherwise (null if the
+     *        parameter should be left off)
      */
     public void setIsDeclinable(Boolean isDeclinable) {
         this.isDeclinable = isDeclinable;
     }
 
     /**
-     * Retrieve the flag that designates whether this
-     * request is declinable by signers.
+     * Retrieve the flag that designates whether this request is declinable by
+     * signers.
+     * 
      * @return Boolean or null if the flag has not been set
      */
     public Boolean getIsDeclinable() {
