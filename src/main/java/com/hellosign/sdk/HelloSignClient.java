@@ -27,7 +27,10 @@ package com.hellosign.sdk;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.net.HttpURLConnection;
+import java.util.List;
+import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +53,7 @@ import com.hellosign.sdk.resource.support.OauthData;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
 import com.hellosign.sdk.resource.support.TemplateList;
+import com.hellosign.sdk.resource.support.types.FieldType;
 
 /**
  * You'll need the HelloSignClient to do just about everything, from creating
@@ -123,6 +127,8 @@ public class HelloSignClient {
     public static final String CLIENT_ID = "client_id";
     public static final String EMBEDDED_TEMPLATE_SKIP_SIGNER_ROLES = "skip_signer_roles";
     public static final String EMBEDDED_TEMPLATE_SKIP_SUBJECT_MESSAGE = "skip_subject_message";
+    public static final String EMBEDDED_TEMPLATE_MERGE_FIELDS = "merge_fields";
+    public static final String EMBEDDED_TEMPLATE_CC_ROLES = "cc_roles";
 
     private Authentication auth;
     private HttpClient httpClient;
@@ -832,11 +838,53 @@ public class HelloSignClient {
      */
     public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId, boolean skipSignerRoles,
             boolean skipSubjectMessage, boolean testMode) throws HelloSignException {
+        return getEmbeddedTemplateEditUrl(templateId, skipSignerRoles, skipSubjectMessage, false, null, null);
+    }
+    
+    /**
+     * Big kahuna method for editing an embedded template. This method allows
+     * the updating of merge fields and CC roles (both optional parameters).
+     * 
+     * @param templateId String ID of the signature request to embed
+     * @param skipSignerRoles true if the edited template should not allow the
+     *        user to modify the template's signer roles. Defaults to false.
+     * @param skipSubjectMessage true if the edited template should not allow
+     *        the user to modify the template's subject and message. Defaults to
+     *        false.
+     * @param testMode true if this request is a test request. Useful for
+     *        editing locked templates.
+     * @param mergeFields These will overwrite the current merge fields for the
+     *        embedded template. To remove all merge fields, pass in an empty Map.
+     * @param ccRoles These will overwrite the current CC Roles for the embedded
+     *        template. To remove all CC roles, pass in an empty List.
+     * @return EmbeddedResponse
+     * @throws HelloSignException thrown if there's a problem processing the
+     *         HTTP request or the JSON response.
+     */
+    public EmbeddedResponse getEmbeddedTemplateEditUrl(String templateId, boolean skipSignerRoles,
+            boolean skipSubjectMessage, boolean testMode, Map<String, FieldType> mergeFields, List<String> ccRoles)
+            throws HelloSignException {
         String url = BASE_URI + EMBEDDED_EDIT_URL_URI + "/" + templateId;
-        return new EmbeddedResponse(
-                httpClient.withAuth(auth).withPostField(EMBEDDED_TEMPLATE_SKIP_SIGNER_ROLES, skipSignerRoles)
-                        .withPostField(EMBEDDED_TEMPLATE_SKIP_SUBJECT_MESSAGE, skipSubjectMessage)
-                        .withPostField(AbstractRequest.REQUEST_TEST_MODE, testMode).post(url).asJson());
+        HttpClient client = httpClient.withAuth(auth)
+                .withPostField(EMBEDDED_TEMPLATE_SKIP_SIGNER_ROLES, skipSignerRoles)
+                .withPostField(EMBEDDED_TEMPLATE_SKIP_SUBJECT_MESSAGE, skipSubjectMessage)
+                .withPostField(AbstractRequest.REQUEST_TEST_MODE, testMode);
+        String mergeFieldsStr = TemplateDraft.serializeMergeFields(mergeFields);
+        if (mergeFieldsStr != null) {
+            client = client.withPostField(EMBEDDED_TEMPLATE_MERGE_FIELDS, mergeFieldsStr);
+        }
+        if (ccRoles != null) {
+            if (ccRoles.isEmpty()) {
+                // Per documentation: https://app.hellosign.com/api/reference#get_embedded_template_edit_url
+                client = client.withPostField(EMBEDDED_TEMPLATE_CC_ROLES + "[0]", "");
+            } else {
+                for (int i = 0; i < ccRoles.size(); i++) {
+                    String cc = ccRoles.get(i);
+                    client = client.withPostField(EMBEDDED_TEMPLATE_CC_ROLES + "[" + (i + 1) + "]", cc);
+                }
+            }
+        }
+        return new EmbeddedResponse(client.post(url).asJson());
     }
 
     /**
