@@ -233,7 +233,7 @@ public class TemplateDraft extends AbstractRequest {
     /**
      * Helper method to convert a Java Map into the JSON string required
      * by the HelloSign API.
-     * @param mergeFields Map<String, FieldType>
+     * @param mergeFields Map
      * @return String
      * @throws HelloSignException Thrown if there's a problem parsing JSONObjects
      */

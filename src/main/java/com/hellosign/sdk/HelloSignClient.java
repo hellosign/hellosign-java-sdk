@@ -192,7 +192,7 @@ public class HelloSignClient {
     /**
      * Allows overriding of the authentication mechanism. Used
      * mainly for setting an OAuth token/secret.
-     * @param auth
+     * @param auth Authentication used for setting the auth method for this client
      */
     public void setAuthentication(Authentication auth) {
         this.auth = auth;
