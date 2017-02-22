@@ -34,20 +34,24 @@ import com.hellosign.sdk.resource.AbstractResource;
 
 public class WhiteLabelingOptions extends AbstractResource {
 
-    public static final String WHITE_LABLELING_OPTIONS_KEY = "white_labeling_options";
-    public static final String WHITE_LABLELING_OPTIONS_PAGE_BACKGROUND_COLOR = "page_background_color";
-    public static final String WHITE_LABLELING_OPTIONS_HEADER_BACKGROUND_COLOR = "header_background_color";
-    public static final String WHITE_LABLELING_OPTIONS_TEXT_COLOR_1 = "text_color1";
-    public static final String WHITE_LABLELING_OPTIONS_TEXT_COLOR_2 = "text_color2";
-    public static final String WHITE_LABLELING_OPTIONS_LINK_COLOR = "link_color";
-    public static final String WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR = "primary_button_color";
-    public static final String WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR = "primary_button_text_color";
-    public static final String WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER = "primary_button_color_hover";
-    public static final String WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER = "primary_button_text_color_hover";
-    public static final String WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR = "secondary_button_color";
-    public static final String WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR = "secondary_button_text_color";
-    public static final String WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER = "secondary_button_color_hover";
-    public static final String WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER = "secondary_button_text_color_hover";
+    public static final String WHITE_LABELING_OPTIONS_KEY = "white_labeling_options";
+    public static final String WHITE_LABELING_OPTIONS_PAGE_BACKGROUND_COLOR = "page_background_color";
+    public static final String WHITE_LABELING_OPTIONS_HEADER_BACKGROUND_COLOR = "header_background_color";
+    public static final String WHITE_LABELING_OPTIONS_TEXT_COLOR_1 = "text_color1";
+    public static final String WHITE_LABELING_OPTIONS_TEXT_COLOR_2 = "text_color2";
+    public static final String WHITE_LABELING_OPTIONS_LINK_COLOR = "link_color";
+    public static final String WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_COLOR = "primary_button_color";
+    public static final String WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR = "primary_button_text_color";
+    public static final String WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER = "primary_button_color_hover";
+    public static final String WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER = "primary_button_text_color_hover";
+    public static final String WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_COLOR = "secondary_button_color";
+    public static final String WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR = "secondary_button_text_color";
+    public static final String WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER = "secondary_button_color_hover";
+    public static final String WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER = "secondary_button_text_color_hover";
+    public static final String WHITE_LABELING_OPTIONS_LEGAL_VERSION = "legal_version";
+
+    public static final String LEGAL_VERSION_1 = "terms1"; // signer agrees "to be legally bound to the HelloSign Terms of Service."
+    public static final String LEGAL_VERSION_2 = "terms2"; // signer agrees "to the eSignature Terms of Service."
 
     private static Pattern pattern;
     private Matcher matcher;
@@ -61,7 +65,7 @@ public class WhiteLabelingOptions extends AbstractResource {
     }
 
     public WhiteLabelingOptions(JSONObject json) throws HelloSignException {
-        super(json, WHITE_LABLELING_OPTIONS_KEY);
+        super(json, WHITE_LABELING_OPTIONS_KEY);
     }
 
     /**
@@ -96,7 +100,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getPageBackgroundColor() {
-        return getString(WHITE_LABLELING_OPTIONS_PAGE_BACKGROUND_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_PAGE_BACKGROUND_COLOR);
     }
 
     /**
@@ -107,7 +111,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setPageBackgroundColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_PAGE_BACKGROUND_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_PAGE_BACKGROUND_COLOR, color);
     }
 
     /**
@@ -116,7 +120,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getHeaderBackgroundColor() {
-        return getString(WHITE_LABLELING_OPTIONS_HEADER_BACKGROUND_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_HEADER_BACKGROUND_COLOR);
     }
 
     /**
@@ -127,7 +131,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setHeaderBackgroundColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_HEADER_BACKGROUND_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_HEADER_BACKGROUND_COLOR, color);
     }
 
     /**
@@ -136,7 +140,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getTextColor1() {
-        return getString(WHITE_LABLELING_OPTIONS_TEXT_COLOR_1);
+        return getString(WHITE_LABELING_OPTIONS_TEXT_COLOR_1);
     }
 
     /**
@@ -147,7 +151,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setTextColor1(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_TEXT_COLOR_1, color);
+        setColor(WHITE_LABELING_OPTIONS_TEXT_COLOR_1, color);
     }
 
     /**
@@ -156,7 +160,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getTextColor2() {
-        return getString(WHITE_LABLELING_OPTIONS_TEXT_COLOR_2);
+        return getString(WHITE_LABELING_OPTIONS_TEXT_COLOR_2);
     }
 
     /**
@@ -167,7 +171,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setTextColor2(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_TEXT_COLOR_2, color);
+        setColor(WHITE_LABELING_OPTIONS_TEXT_COLOR_2, color);
     }
 
     /**
@@ -176,7 +180,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getLinkColor() {
-        return getString(WHITE_LABLELING_OPTIONS_LINK_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_LINK_COLOR);
     }
 
     /**
@@ -187,7 +191,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setLinkColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_LINK_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_LINK_COLOR, color);
     }
 
     /**
@@ -196,7 +200,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getPrimaryButtonColor() {
-        return getString(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_COLOR);
     }
 
     /**
@@ -207,7 +211,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setPrimaryButtonColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_COLOR, color);
     }
 
     /**
@@ -216,7 +220,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getPrimaryButtonTextColor() {
-        return getString(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR);
     }
 
     /**
@@ -227,7 +231,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setPrimaryButtonTextColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR, color);
     }
 
     /**
@@ -236,7 +240,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getPrimaryButtonHoverColor() {
-        return getString(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER);
+        return getString(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER);
     }
 
     /**
@@ -247,7 +251,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setPrimaryButtonHoverColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER, color);
+        setColor(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_COLOR_HOVER, color);
     }
 
     /**
@@ -256,7 +260,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getPrimaryButtonTextHoverColor() {
-        return getString(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER);
+        return getString(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER);
     }
 
     /**
@@ -267,7 +271,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setPrimaryButtonTextHoverColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER, color);
+        setColor(WHITE_LABELING_OPTIONS_PRIMARY_BUTTON_TEXT_COLOR_HOVER, color);
     }
 
     /**
@@ -276,7 +280,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getSecondaryButtonColor() {
-        return getString(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_COLOR);
     }
 
     /**
@@ -287,7 +291,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setSecondaryButtonColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_COLOR, color);
     }
 
     /**
@@ -296,7 +300,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getSecondaryButtonTextColor() {
-        return getString(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR);
+        return getString(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR);
     }
 
     /**
@@ -307,7 +311,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setSecondaryButtonTextColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR, color);
+        setColor(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR, color);
     }
 
     /**
@@ -316,7 +320,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getSecondaryButtonHoverColor() {
-        return getString(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER);
+        return getString(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER);
     }
 
     /**
@@ -327,7 +331,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setSecondaryButtonHoverColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER, color);
+        setColor(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_COLOR_HOVER, color);
     }
 
     /**
@@ -336,7 +340,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return String hex color code
      */
     public String getSecondaryButtonTextHoverColor() {
-        return getString(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER);
+        return getString(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER);
     }
 
     /**
@@ -347,7 +351,14 @@ public class WhiteLabelingOptions extends AbstractResource {
      *         string
      */
     public void setSecondaryButtonTextHoverColor(String color) throws HelloSignException {
-        setColor(WHITE_LABLELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER, color);
+        setColor(WHITE_LABELING_OPTIONS_SECONDARY_BUTTON_TEXT_COLOR_HOVER, color);
     }
 
+    /**
+     * Set the legal terms version.
+     * @param version String use constants LEGAL_VERSION_1 or LEGAL_VERSION_2
+     */
+    public void setLegalVersion(String version) {
+        set(WHITE_LABELING_OPTIONS_LEGAL_VERSION, version);
+    }
 }
