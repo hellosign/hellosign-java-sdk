@@ -200,8 +200,10 @@ public class HttpClient {
      */
     public JSONObject asJson() throws HelloSignException {
         JSONObject json = null;
+        String response = getLastResponse();
+        logger.debug("Response body: " + response);
         try {
-            json = new JSONObject(getLastResponse());
+            json = new JSONObject(response);
         } catch (JSONException e) {
             throw new HelloSignException(e);
         }
