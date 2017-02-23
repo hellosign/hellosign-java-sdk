@@ -623,6 +623,8 @@ public class HelloSignClient {
      * @param clientId String optional ID of the app which is generating this
      *        new template. Set to null if not used.
      * @return String ID of the template to be created
+     * @throws HelloSignException thrown if there is a problem processing the
+     *         HTTP request
      */
     public String updateTemplateFiles(String existingTemplateId, TemplateDraft newTemplate, String clientId)
             throws HelloSignException {
@@ -856,7 +858,7 @@ public class HelloSignClient {
      * @param mergeFields These will overwrite the current merge fields for the
      *        embedded template. To remove all merge fields, pass in an empty Map.
      * @param ccRoles These will overwrite the current CC Roles for the embedded
-     *        template. To remove all CC roles, pass in an empty List.
+     *        template. To remove all CC roles, pass in null or an empty List.
      * @return EmbeddedResponse
      * @throws HelloSignException thrown if there's a problem processing the
      *         HTTP request or the JSON response.
@@ -873,15 +875,13 @@ public class HelloSignClient {
         if (mergeFieldsStr != null) {
             client = client.withPostField(EMBEDDED_TEMPLATE_MERGE_FIELDS, mergeFieldsStr);
         }
-        if (ccRoles != null) {
-            if (ccRoles.isEmpty()) {
-                // Per documentation: https://app.hellosign.com/api/reference#get_embedded_template_edit_url
-                client = client.withPostField(EMBEDDED_TEMPLATE_CC_ROLES + "[0]", "");
-            } else {
-                for (int i = 0; i < ccRoles.size(); i++) {
-                    String cc = ccRoles.get(i);
-                    client = client.withPostField(EMBEDDED_TEMPLATE_CC_ROLES + "[" + (i + 1) + "]", cc);
-                }
+        if (ccRoles == null || ccRoles.isEmpty()) {
+            // Per documentation: https://app.hellosign.com/api/reference#get_embedded_template_edit_url
+            client = client.withPostField(EMBEDDED_TEMPLATE_CC_ROLES + "[0]", "");
+        } else {
+            for (int i = 0; i < ccRoles.size(); i++) {
+                String cc = ccRoles.get(i);
+                client = client.withPostField(EMBEDDED_TEMPLATE_CC_ROLES + "[" + i + "]", cc);
             }
         }
         return new EmbeddedResponse(client.post(url).asJson());

@@ -278,29 +278,22 @@ public class TemplateDraft extends AbstractRequest {
             List<String> signerRoles = getSignerRoles();
             for (int i = 0; i < signerRoles.size(); i++) {
                 String s = signerRoles.get(i);
-
-                // The signers are being ID'd starting at 1, instead of zero.
-                // This is because the API generates signer IDs for templates
-                // starting at 1.
-                // Let's keep this consistent with the API for now.
-
-                fields.put("signer_roles[" + (i + 1) + "][name]", s);
-
+                fields.put("signer_roles[" + i + "][name]", s);
                 if (getOrderMatters()) {
-                    fields.put("signer_roles[" + (i + 1) + "][order]", i);
+                    fields.put("signer_roles[" + i + "][order]", i);
                 }
             }
 
             List<String> ccRoles = getCCRoles();
             for (int i = 0; i < ccRoles.size(); i++) {
                 String cc = ccRoles.get(i);
-                fields.put("cc_roles[" + (i + 1) + "]", cc);
+                fields.put("cc_roles[" + i + "]", cc);
             }
 
             List<Document> docs = getDocuments();
             for (int i = 0; i < docs.size(); i++) {
                 Document d = docs.get(i);
-                fields.put("file[" + (i + 1) + "]", d.getFile());
+                fields.put("file[" + i + "]", d.getFile());
             }
 
             List<String> fileUrls = getFileUrls();
