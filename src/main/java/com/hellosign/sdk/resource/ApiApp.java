@@ -82,13 +82,13 @@ public class ApiApp extends AbstractResource {
         if (dataObj.has(ApiAppOauth.APIAPP_OAUTH_KEY) && !dataObj.isNull(ApiAppOauth.APIAPP_OAUTH_KEY)) {
             oauth = new ApiAppOauth(dataObj);
         }
-        if (dataObj.has(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY)
-                && !dataObj.isNull(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY)) {
+        if (dataObj.has(WhiteLabelingOptions.WHITE_LABELING_OPTIONS_KEY)
+                && !dataObj.isNull(WhiteLabelingOptions.WHITE_LABELING_OPTIONS_KEY)) {
             white_labeling_options = new WhiteLabelingOptions(dataObj);
             try {
                 // Re-save the JSON Object back to the parent object, since
                 // we are currently returning this as a string
-                dataObj.put(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY, white_labeling_options.dataObj);
+                dataObj.put(WhiteLabelingOptions.WHITE_LABELING_OPTIONS_KEY, white_labeling_options.dataObj);
             } catch (JSONException e) {
                 throw new HelloSignException("Unable to process white labeling options");
             }
@@ -335,7 +335,7 @@ public class ApiApp extends AbstractResource {
                 }
             }
             if (white_labeling_options != null) {
-                fields.put(WhiteLabelingOptions.WHITE_LABLELING_OPTIONS_KEY, white_labeling_options.toString(0));
+                fields.put(WhiteLabelingOptions.WHITE_LABELING_OPTIONS_KEY, white_labeling_options.toString(0));
             }
         } catch (Exception e) {
             throw new HelloSignException(e);
