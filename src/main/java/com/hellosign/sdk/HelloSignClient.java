@@ -612,8 +612,8 @@ public class HelloSignClient {
      *        overlay data (signatures, text fields, etc.) will be retrieved.
      * @param newTemplate TemplateDraft that holds the data and documents which
      *        will be used as the basis for the new template. The following
-     *        fields can be set in this request: - files / file_urls - subject -
-     *        message - test_mode
+     *        fields can be set in this request: files or file_urls, subject,
+     *        message, and test_mode.
      * @param clientId String optional ID of the app which is generating this
      *        new template. Set to null if not used.
      * @return String ID of the template to be created
