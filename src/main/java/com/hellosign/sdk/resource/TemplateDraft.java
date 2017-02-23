@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
@@ -230,6 +231,32 @@ public class TemplateDraft extends AbstractRequest {
     }
 
     /**
+     * Helper method to convert a Java Map into the JSON string required
+     * by the HelloSign API.
+     * @param mergeFields Map
+     * @return String
+     * @throws HelloSignException Thrown if there's a problem parsing JSONObjects
+     */
+    public static String serializeMergeFields(Map<String, FieldType> mergeFields) throws HelloSignException {
+        if (mergeFields != null) {
+            JSONArray mergeFieldArray = new JSONArray();
+            for (String key : mergeFields.keySet()) {
+                FieldType type = mergeFields.get(key);
+                JSONObject mergeFieldObj = new JSONObject();
+                try {
+                    mergeFieldObj.put("name", key);
+                    mergeFieldObj.put("type", type.toString());
+                } catch (JSONException e) {
+                    throw new HelloSignException(e);
+                }
+                mergeFieldArray.put(mergeFieldObj);
+            }
+            return mergeFieldArray.toString();
+        }
+        return null;
+    }
+
+    /**
      * Internal method used to retrieve the necessary POST fields.
      * 
      * @return Map
@@ -251,29 +278,22 @@ public class TemplateDraft extends AbstractRequest {
             List<String> signerRoles = getSignerRoles();
             for (int i = 0; i < signerRoles.size(); i++) {
                 String s = signerRoles.get(i);
-
-                // The signers are being ID'd starting at 1, instead of zero.
-                // This is because the API generates signer IDs for templates
-                // starting at 1.
-                // Let's keep this consistent with the API for now.
-
-                fields.put("signer_roles[" + (i + 1) + "][name]", s);
-
+                fields.put("signer_roles[" + i + "][name]", s);
                 if (getOrderMatters()) {
-                    fields.put("signer_roles[" + (i + 1) + "][order]", i);
+                    fields.put("signer_roles[" + i + "][order]", i);
                 }
             }
 
             List<String> ccRoles = getCCRoles();
             for (int i = 0; i < ccRoles.size(); i++) {
                 String cc = ccRoles.get(i);
-                fields.put("cc_roles[" + (i + 1) + "]", cc);
+                fields.put("cc_roles[" + i + "]", cc);
             }
 
             List<Document> docs = getDocuments();
             for (int i = 0; i < docs.size(); i++) {
                 Document d = docs.get(i);
-                fields.put("file[" + (i + 1) + "]", d.getFile());
+                fields.put("file[" + i + "]", d.getFile());
             }
 
             List<String> fileUrls = getFileUrls();
@@ -281,17 +301,9 @@ public class TemplateDraft extends AbstractRequest {
                 fields.put("file_url[" + i + "]", fileUrls.get(i));
             }
 
-            Map<String, FieldType> mergeFields = getMergeFields();
-            if (mergeFields.size() > 0) {
-                JSONArray mergeFieldArray = new JSONArray();
-                for (String key : mergeFields.keySet()) {
-                    FieldType type = mergeFields.get(key);
-                    JSONObject mergeFieldObj = new JSONObject();
-                    mergeFieldObj.put("name", key);
-                    mergeFieldObj.put("type", type.toString());
-                    mergeFieldArray.put(mergeFieldObj);
-                }
-                fields.put("merge_fields", mergeFieldArray.toString());
+            String mergeFieldStr = TemplateDraft.serializeMergeFields(getMergeFields());
+            if (mergeFieldStr != null) {
+                fields.put("merge_fields", mergeFieldStr);
             }
 
             if (hasUsePreexistingFields()) {

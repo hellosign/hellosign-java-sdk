@@ -284,25 +284,19 @@ public class SignatureRequest extends AbstractRequest {
             List<Signer> signerz = getSigners();
             for (int i = 0; i < signerz.size(); i++) {
                 Signer s = signerz.get(i);
-
-                // The signers are being ID'd starting at 1, instead of zero.
-                // This is because the API generates signer IDs for templates
-                // starting at 1.
-                // Let's keep this consistent with the API for now.
-
-                fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_EMAIL + "]", s.getEmail());
-                fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_NAME + "]", s.getNameOrRole());
+                fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_EMAIL + "]", s.getEmail());
+                fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_NAME + "]", s.getNameOrRole());
                 if (getOrderMatters()) {
-                    fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_ORDER + "]", i);
+                    fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_ORDER + "]", i);
                 }
                 if (s.getAccessCode() != null) {
-                    fields.put(SIGREQ_SIGNERS + "[" + (i + 1) + "][" + SIGREQ_SIGNER_PIN + "]", s.getAccessCode());
+                    fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_PIN + "]", s.getAccessCode());
                 }
             }
             List<String> ccz = getCCs();
             for (int i = 0; i < ccz.size(); i++) {
                 String cc = ccz.get(i);
-                fields.put(SIGREQ_CCS + "[" + (i + 1) + "]", cc);
+                fields.put(SIGREQ_CCS + "[" + i + "]", cc);
             }
             JSONArray reqFormFields = new JSONArray(); // Main array for the
                                                        // request
@@ -310,7 +304,7 @@ public class SignatureRequest extends AbstractRequest {
             List<Document> docs = getDocuments();
             for (int i = 0; i < docs.size(); i++) {
                 Document d = docs.get(i);
-                fields.put(SIGREQ_FILES + "[" + (i + 1) + "]", d.getFile());
+                fields.put(SIGREQ_FILES + "[" + i + "]", d.getFile());
                 JSONArray docFormFields = new JSONArray();
                 for (FormField ff : d.getFormFields()) {
                     hasFormFields = true;
