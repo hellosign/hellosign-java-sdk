@@ -87,6 +87,7 @@ public class HelloSignClient {
     public static final String TEMPLATE_ADD_USER_URI = "/template/add_user";
     public static final String TEMPLATE_REMOVE_USER_URI = "/template/remove_user";
     public static final String TEMPLATE_DELETE_URI = "/template/delete";
+    public static final String TEMPLATE_UPDATE_FILES_URI = "/template/update_files";
     public static final String TEMPLATE_CREATE_EMBEDDED_DRAFT_URI = "/template/create_embedded_draft";
     public static final String TEMPLATE_SIGNATURE_REQUEST_URI = "/signature_request/send_with_template";
     public static final String SIGNATURE_REQUEST_CANCEL_URI = "/signature_request/cancel";
@@ -598,6 +599,34 @@ public class HelloSignClient {
     public boolean deleteTemplate(String templateId) throws HelloSignException {
         String url = BASE_URI + TEMPLATE_DELETE_URI + "/" + templateId;
         return HttpURLConnection.HTTP_OK == httpClient.withAuth(auth).post(url).asHttpCode();
+    }
+
+    /**
+     * Replaces the backing documents for the given template with the given
+     * files.
+     * 
+     * Note that certain rules apply to this endpoint:
+     * https://app.hellosign.com/api/reference#update_template_files
+     * 
+     * @param existingTemplateId String ID of the template from which the
+     *        overlay data (signatures, text fields, etc.) will be retrieved.
+     * @param newTemplate TemplateDraft that holds the data and documents which
+     *        will be used as the basis for the new template. The following
+     *        fields can be set in this request: - files / file_urls - subject -
+     *        message - test_mode
+     * @param clientId String optional ID of the app which is generating this
+     *        new template. Set to null if not used.
+     * @return String ID of the template to be created
+     */
+    public String updateTemplateFiles(String existingTemplateId, TemplateDraft newTemplate, String clientId)
+            throws HelloSignException {
+        String url = BASE_URI + TEMPLATE_UPDATE_FILES_URI + "/" + existingTemplateId;
+        HttpClient client = httpClient.withAuth(auth).withPostFields(newTemplate.getPostFields());
+        if (clientId != null) {
+            client = client.withPostField(EmbeddedRequest.EMBEDDED_CLIENT_ID, clientId);
+        }
+        Template t = new Template(client.post(url).asJson());
+        return t.getId();
     }
 
     /**

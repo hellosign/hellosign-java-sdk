@@ -320,7 +320,7 @@ public class SignatureRequest extends AbstractRequest {
             }
             List<String> fileUrls = getFileUrls();
             for (int i = 0; i < fileUrls.size(); i++) {
-                fields.put("file_url[" + (i + 1) + "]", fileUrls.get(i));
+                fields.put("file_url[" + i + "]", fileUrls.get(i));
             }
             if (hasFormFields) {
                 fields.put(SIGREQ_FORM_FIELDS, reqFormFields.toString());

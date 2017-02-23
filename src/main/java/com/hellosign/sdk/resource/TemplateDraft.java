@@ -278,7 +278,7 @@ public class TemplateDraft extends AbstractRequest {
 
             List<String> fileUrls = getFileUrls();
             for (int i = 0; i < fileUrls.size(); i++) {
-                fields.put("file_url[" + (i + 1) + "]", fileUrls.get(i));
+                fields.put("file_url[" + i + "]", fileUrls.get(i));
             }
 
             Map<String, FieldType> mergeFields = getMergeFields();
