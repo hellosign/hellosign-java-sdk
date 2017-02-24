@@ -746,18 +746,10 @@ public class HelloSignClient {
     }
 
     public String getFilesUrl(String requestId) throws HelloSignException {
-        return getFilesUrl(requestId, SignatureRequest.SIGREQ_FORMAT_PDF);
-    }
-
-    public String getFilesUrl(String requestId, String format) throws HelloSignException {
-        if (format == null || format.isEmpty()) {
-            format = FILES_FILE_EXT;
-        }
-
         String fileUrl = null;
         String url = BASE_URI + SIGNATURE_REQUEST_FILES_URI + "/" + requestId;
 
-        HttpClient httpClient = this.httpClient.withAuth(auth).withGetParam(PARAM_FILE_TYPE_URI, format).withGetParam(PARAM_TEMPLATE_GET_URL, "1").get(url);
+        HttpClient httpClient = this.httpClient.withAuth(auth).withGetParam(PARAM_TEMPLATE_GET_URL, "1").get(url);
 
         if (httpClient.getLastResponseCode() == 404) {
             throw new HelloSignException(String.format("Could not find request with id=%s", requestId));
