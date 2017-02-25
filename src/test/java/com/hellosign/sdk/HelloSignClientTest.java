@@ -71,7 +71,6 @@ import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
  */
 
 public class HelloSignClientTest {
-    public static final String SIGNATURE_REQUEST_ID = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
     // TODO: Make convenience method to mock response code
 
@@ -641,13 +640,13 @@ public class HelloSignClientTest {
     @Test(expected = HelloSignException.class)
     public void testGetFilesUrlInvalid() throws Exception {
         mockResponseCode(404);
-        client.getFilesUrl(SIGNATURE_REQUEST_ID);
+        client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967");
     }
 
     @Test
     public void testGetFilesUrl() throws Exception {
         mockResponseCode(200);
-        String filesUrl = client.getFilesUrl(SIGNATURE_REQUEST_ID);
+        String filesUrl = client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967");
         assertEquals("https://www.example.com/request/files/url/here", filesUrl);
     }
 
