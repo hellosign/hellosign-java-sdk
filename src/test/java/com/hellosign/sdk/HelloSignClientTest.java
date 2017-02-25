@@ -646,7 +646,7 @@ public class HelloSignClientTest {
     @Test
     public void testGetFilesUrl() throws Exception {
         mockResponseCode(200);
-        String filesUrl = client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967");
+        String filesUrl = client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967").getFileUrl();
         assertEquals("https://www.example.com/request/files/url/here", filesUrl);
     }
 
