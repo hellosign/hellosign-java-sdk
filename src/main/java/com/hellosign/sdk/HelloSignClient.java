@@ -30,7 +30,6 @@ import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,6 +41,7 @@ import com.hellosign.sdk.resource.Account;
 import com.hellosign.sdk.resource.ApiApp;
 import com.hellosign.sdk.resource.EmbeddedRequest;
 import com.hellosign.sdk.resource.EmbeddedResponse;
+import com.hellosign.sdk.resource.FileUrlResponse;
 import com.hellosign.sdk.resource.SignatureRequest;
 import com.hellosign.sdk.resource.Team;
 import com.hellosign.sdk.resource.Template;
@@ -110,7 +110,7 @@ public class HelloSignClient {
     public static final String API_APP_LIST_URI = "/api_app/list";
 
     public static final String PARAM_FILE_TYPE_URI = "file_type";
-    public static final String PARAM_TEMPLATE_GET_URL = "get_url";
+    public static final String PARAM_GET_URL = "get_url";
     public static final String FINAL_COPY_FILE_NAME = "final-copy";
     public static final String FINAL_COPY_FILE_EXT = "pdf";
     public static final String FILES_FILE_NAME = "files";
@@ -552,7 +552,7 @@ public class HelloSignClient {
     public String getTemplateFileUrl(String templateId) throws HelloSignException {
         String fileUrl = null;
         String url = BASE_URI + TEMPLATE_FILE_URI + "/" + templateId;
-        JSONObject response = httpClient.withAuth(auth).withGetParam(PARAM_TEMPLATE_GET_URL, "1").get(url).asJson();
+        JSONObject response = httpClient.withAuth(auth).withGetParam(PARAM_GET_URL, "1").get(url).asJson();
         if (response.has("file_url")) {
             try {
                 fileUrl = response.getString("file_url");
@@ -731,7 +731,7 @@ public class HelloSignClient {
     /**
      * Retrieves the file associated with a signature request.
      * 
-     * @param requestId String signature ID
+     * @param requestId String signature request ID
      * @param format String format, see SignatureRequest for available types
      * @return File
      * @throws HelloSignException thrown if there's a problem processing the
@@ -744,6 +744,27 @@ public class HelloSignClient {
         String url = BASE_URI + SIGNATURE_REQUEST_FILES_URI + "/" + requestId;
         String fileName = FILES_FILE_NAME + "." + format;
         return httpClient.withAuth(auth).withGetParam(PARAM_FILE_TYPE_URI, format).get(url).asFile(fileName);
+    }
+
+    /**
+     * Retrieves a URL for a file associated with a signature request.
+     *
+     * @param requestId String signature request ID
+     * @return {@link FileUrlResponse}
+     * @throws HelloSignException thrown if there's a problem processing the
+     *         HTTP request or the JSON response.
+     * @see <a href="https://app.hellosign.com/api/reference#get_files">https://app.hellosign.com/api/reference#get_files</a>
+     */
+    public FileUrlResponse getFilesUrl(String requestId) throws HelloSignException {
+        String url = BASE_URI + SIGNATURE_REQUEST_FILES_URI + "/" + requestId;
+
+        HttpClient httpClient = this.httpClient.withAuth(auth).withGetParam(PARAM_GET_URL, "1").get(url);
+
+        if (httpClient.getLastResponseCode() == 404) {
+            throw new HelloSignException(String.format("Could not find request with id=%s", requestId));
+        }
+
+        return new FileUrlResponse(httpClient.asJson());
     }
 
     /**

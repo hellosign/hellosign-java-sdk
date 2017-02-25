@@ -637,6 +637,19 @@ public class HelloSignClientTest {
         client.getFiles("foo");
     }
 
+    @Test(expected = HelloSignException.class)
+    public void testGetFilesUrlInvalid() throws Exception {
+        mockResponseCode(404);
+        client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967");
+    }
+
+    @Test
+    public void testGetFilesUrl() throws Exception {
+        mockResponseCode(200);
+        String filesUrl = client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967").getFileUrl();
+        assertEquals("https://www.example.com/request/files/url/here", filesUrl);
+    }
+
     @Test
     public void testCreateApiApp() throws Exception {
         ApiApp app = new ApiApp();
