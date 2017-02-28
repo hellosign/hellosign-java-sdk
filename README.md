@@ -51,15 +51,14 @@ Document doc = new Document();
 doc.setFile(new File("/path/to/myfile.pdf")));
 
 FormField textField = new FormField();
+textField.setType(FieldType.text);
+textField.setName("First Name"); // Displayed to the signer as the "Field Label"
+textField.setValidationType(ValidationType.letters_only);
 textField.setSigner(0); // Signer indexes are zero-based
-textField.setApiId("textfield_1");
 textField.setHeight(25);
 textField.setWidth(300);
-textField.setName("First Name");
-textField.setPage(1);
 textField.setIsRequired(true);
-textField.setType(FieldType.text);
-textField.setValidationType(ValidationType.letters_only);
+textField.setPage(1); // 1-based indexing, relative to the document
 textField.setX(100);
 textField.setY(100);
 
