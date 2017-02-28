@@ -24,13 +24,13 @@ Place `target/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
 
 ## Usage
 
-First initialize an instance of the `HelloSignClient` with your [API key](https://www.hellosign.com/home/myAccount/current_tab/integrations#api):
+First initialize an instance of the `HelloSignClient` with your [API key](https://app.hellosign.com/home/myAccount/current_tab/integrations#api):
 
 ```java
 HelloSignClient client = new HelloSignClient(apiKey);
 ```
 
-### Create a Signature Request
+### Send a Signature Request
 
 ```java
 SignatureRequest request = new SignatureRequest();
@@ -41,6 +41,30 @@ request.addFile(new File("nda.pdf"));
 
 SignatureRequest response = client.sendSignatureRequest(request);
 System.out.println(response.toString());
+```
+
+### Add Signer Fields to a Signature Request
+
+```java
+SignatureRequest request = new SignatureRequest();
+Document doc = new Document();
+doc.setFile(new File("/path/to/myfile.pdf")));
+
+FormField textField = new FormField();
+textField.setSigner(0); // Signer indexes are zero-based
+textField.setApiId("textfield_1");
+textField.setHeight(25);
+textField.setWidth(300);
+textField.setName("First Name");
+textField.setPage(1);
+textField.setIsRequired(true);
+textField.setType(FieldType.text);
+textField.setValidationType(ValidationType.letters_only);
+textField.setX(100);
+textField.setY(100);
+
+doc.addFormField(textField);
+request.addDocument(doc);
 ```
 
 ### Retrieve Templates
@@ -62,7 +86,7 @@ for (Template template : filteredList) {
 }
 ```
 
-### Create a Signature Request from a Template
+### Send a Templated Signature Request
 
 ```java
 TemplateSignatureRequest request = new TemplateSignatureRequest();
@@ -75,7 +99,9 @@ SignatureRequest response = client.sendTemplateSignatureRequest(request);
 System.out.println(response.toString());
 ```
 
-### Checking the Status of a Signature Request
+### Check Signature Request Status
+
+While we encourage you to take advantage of our [callback functionality](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough), you can also retrieve the status of a specific request:
 
 ``` java
 SignatureRequest response = client.getSignatureRequest(signatureRequestId);
@@ -90,7 +116,8 @@ if (response.isComplete()) {
 
 ## Reference
 
-* [API Reference](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk)
+* [JavaDoc API Reference](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk)
+* [API Documentation](https://app.hellosign.com/api/reference)
 * [Sample JSP web application](https://www.github.com/cmpaul/jellosign)
 
 ## License
