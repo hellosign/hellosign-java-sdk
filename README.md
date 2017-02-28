@@ -117,7 +117,7 @@ if (response.isComplete()) {
 ## Reference
 
 * [JavaDoc API Reference](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk)
-* [API Documentation](https://app.hellosign.com/api/reference)
+* [HelloSign API Documentation](https://app.hellosign.com/api/reference)
 * [Sample JSP web application](https://www.github.com/cmpaul/jellosign)
 
 ## License
