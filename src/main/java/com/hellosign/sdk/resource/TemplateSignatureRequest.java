@@ -195,13 +195,13 @@ public class TemplateSignatureRequest extends AbstractRequest {
     /**
      * Adds the value to fill in for a custom field with the given field name.
      * 
-     * @param fieldName String name (or "Field Label") of the custom field
+     * @param fieldNameOrApiId String name (or "Field Label") of the custom field
      *        to be filled in. The "api_id" can also be used instead of the name.
      * @param value String value
      */
-    public void setCustomFieldValue(String fieldName, String value) {
+    public void setCustomFieldValue(String fieldNameOrApiId, String value) {
         CustomField f = new CustomField();
-        f.setName(fieldName);
+        f.setName(fieldNameOrApiId);
         f.setValue(value);
         customFields.add(f);
     }
