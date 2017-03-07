@@ -33,6 +33,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.Signature;
@@ -45,6 +47,8 @@ import com.hellosign.sdk.resource.support.types.EventType;
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Event extends AbstractResource {
+
+    private static final Logger logger = LoggerFactory.getLogger(Event.class);
 
     public static final String EVENT_KEY = "event";
     public static final String EVENT_METADATA = "event_metadata";
@@ -70,21 +74,17 @@ public class Event extends AbstractResource {
      */
     public Event(JSONObject json) throws HelloSignException {
         super(json, EVENT_KEY);
-        if (EventType.test.equals(getType())) {
-            return;
-        }
-        if (json.has(SignatureRequest.SIGREQ_KEY)) {
-            try {
+        try {
+            if (EventType.test.equals(getType())) {
+                return;
+            }
+            if (json.has(SignatureRequest.SIGREQ_KEY)) {
                 resource = new SignatureRequest(json.getJSONObject(SignatureRequest.SIGREQ_KEY));
-            } catch (JSONException ex) {
-                throw new HelloSignException(ex);
-            }
-        } else if (json.has(Template.TEMPLATE_KEY)) {
-            try {
+            } else if (json.has(Template.TEMPLATE_KEY)) {
                 resource = new Template(json.getJSONObject(Template.TEMPLATE_KEY));
-            } catch (JSONException ex) {
-                throw new HelloSignException(ex);
             }
+        } catch (JSONException ex) {
+            throw new HelloSignException(ex);
         }
     }
 
@@ -277,7 +277,14 @@ public class Event extends AbstractResource {
      * @return EventType enum
      */
     public EventType getType() {
-        return EventType.valueOf(getTypeString());
+        String typeStr = getTypeString();
+        EventType type = null;
+        try {
+            type = EventType.valueOf(typeStr);
+        } catch (Exception ex) {
+            logger.warn("Unexpected type: " + typeStr);
+        }
+        return type;
     }
 
     /**
