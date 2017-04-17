@@ -238,22 +238,22 @@ public class TemplateDraft extends AbstractRequest {
      * @throws HelloSignException Thrown if there's a problem parsing JSONObjects
      */
     public static String serializeMergeFields(Map<String, FieldType> mergeFields) throws HelloSignException {
-        if (mergeFields != null) {
-            JSONArray mergeFieldArray = new JSONArray();
-            for (String key : mergeFields.keySet()) {
-                FieldType type = mergeFields.get(key);
-                JSONObject mergeFieldObj = new JSONObject();
-                try {
-                    mergeFieldObj.put("name", key);
-                    mergeFieldObj.put("type", type.toString());
-                } catch (JSONException e) {
-                    throw new HelloSignException(e);
-                }
-                mergeFieldArray.put(mergeFieldObj);
-            }
-            return mergeFieldArray.toString();
+        if (mergeFields == null || mergeFields.isEmpty()) {
+            return null;
         }
-        return null;
+        JSONArray mergeFieldArray = new JSONArray();
+        for (String key : mergeFields.keySet()) {
+            FieldType type = mergeFields.get(key);
+            JSONObject mergeFieldObj = new JSONObject();
+            try {
+                mergeFieldObj.put("name", key);
+                mergeFieldObj.put("type", type.toString());
+            } catch (JSONException e) {
+                throw new HelloSignException(e);
+            }
+            mergeFieldArray.put(mergeFieldObj);
+        }
+        return mergeFieldArray.toString();
     }
 
     /**
