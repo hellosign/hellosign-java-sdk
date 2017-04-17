@@ -1012,17 +1012,12 @@ public class HelloSignClient {
      *         otherwise.
      * @throws HelloSignException thrown if there's a problem processing the
      *         HTTP request or response.
+     * @deprecated This function was previously for internal testing use only
+     *         and is no longer operational. This will be removed in the next
+     *         minor version of the SDK.
      */
     public boolean isOnline() throws HelloSignException {
-        boolean isOnline = false;
-        try {
-            isOnline = (httpClient.options(BASE_URI).asHttpCode() == HttpURLConnection.HTTP_OK);
-        } catch (HelloSignException ex) {
-            throw ex;
-        } catch (Exception ex) {
-            throw new HelloSignException(ex);
-        }
-        return isOnline;
+        return true;
     }
 
     /**
