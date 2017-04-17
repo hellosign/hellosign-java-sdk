@@ -58,7 +58,7 @@ public class FormField extends CustomField {
      * @param x int x coordinate location of this field in pixels
      * @param y int y coordinate location of this field in pixels
      * @param height int height of this field in pixels
-     * @param width int height of this field in pixels
+     * @param width int width of this field in pixels
      * @param page int page number of the document in which this field will be placed (1-based index)
      */
     public FormField(FieldType type, String name, int signer, int x, int y, int height, int width, int page) {
