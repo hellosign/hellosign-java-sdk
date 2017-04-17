@@ -27,6 +27,7 @@ package com.hellosign.sdk.resource.support;
 import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.types.FieldType;
 import com.hellosign.sdk.resource.support.types.ValidationType;
 
 /**
@@ -46,6 +47,29 @@ public class FormField extends CustomField {
 
     public FormField(JSONObject json) throws HelloSignException {
         super(json);
+    }
+
+    /**
+     * Constructor to be used when creating a new FormField object.
+     * 
+     * @param type FormField type
+     * @param name String Field Label that will be displayed to the signer
+     * @param signer int index of the signer that should complete this field (0-based index)
+     * @param x int x coordinate location of this field in pixels
+     * @param y int y coordinate location of this field in pixels
+     * @param height int height of this field in pixels
+     * @param width int width of this field in pixels
+     * @param page int page number of the document in which this field will be placed (1-based index)
+     */
+    public FormField(FieldType type, String name, int signer, int x, int y, int height, int width, int page) {
+        setType(type);
+        setName(name);
+        setSigner(signer);
+        setX(x);
+        setY(y);
+        setHeight(height);
+        setWidth(width);
+        setPage(page);
     }
 
     /**
