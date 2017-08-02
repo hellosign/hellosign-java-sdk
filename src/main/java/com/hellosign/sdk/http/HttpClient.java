@@ -206,9 +206,10 @@ public class HttpClient {
             json = new JSONObject(response);
         } catch (JSONException e) {
             throw new HelloSignException(e);
+        } finally {
+            reset();
         }
         validate(json);
-        reset();
         return json;
     }
 
@@ -222,14 +223,20 @@ public class HttpClient {
      */
     public File asFile(String fileName) throws HelloSignException {
         Integer lastResponseCode = getLastResponseCode();
-        if (lastResponseCode != null && lastResponseCode != HttpURLConnection.HTTP_OK) {
-            this.asJson(); // Will validate response
+        File f = null;
+        try {
+            if (lastResponseCode != null && lastResponseCode != HttpURLConnection.HTTP_OK) {
+                this.asJson(); // Will validate response
+            }
+            f = createTemporaryFile(fileName);
+            if (getLastResponseAsFile(f) == 0) {
+                logger.warn("No bytes written to file: " + fileName);
+            }
+        } catch (HelloSignException ex) {
+            throw ex;
+        } finally {
+            reset();
         }
-        File f = createTemporaryFile(fileName);
-        if (getLastResponseAsFile(f) == 0) {
-            logger.warn("No bytes written to file: " + fileName);
-        }
-        reset();
         return f;
     }
 
