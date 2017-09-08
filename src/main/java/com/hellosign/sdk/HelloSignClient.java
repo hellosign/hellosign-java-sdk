@@ -1002,7 +1002,7 @@ public class HelloSignClient {
             throw new HelloSignException("Cannot update an ApiApp without a client ID. Create one first!");
         }
         String url = BASE_URI + API_APP_URI + "/" + app.getClientId();
-        return new ApiApp(httpClient.withAuth(auth).withPostFields(app.getPostFields()).put(url).asJson());
+        return new ApiApp(httpClient.withAuth(auth).withPostFields(app.getPostFields()).post(url).asJson());
     }
 
     /**
