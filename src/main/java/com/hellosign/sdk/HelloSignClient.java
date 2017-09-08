@@ -985,7 +985,7 @@ public class HelloSignClient {
      *         HTTP request or the JSON response.
      */
     public boolean deleteApiApp(String clientId) throws HelloSignException {
-        String url = API_APP_URI + "/" + clientId;
+        String url = BASE_URI + API_APP_URI + "/" + clientId;
         return HttpURLConnection.HTTP_NO_CONTENT == httpClient.withAuth(auth).delete(url).asHttpCode();
     }
 
