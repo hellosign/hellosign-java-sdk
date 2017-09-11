@@ -985,7 +985,7 @@ public class HelloSignClient {
      *         HTTP request or the JSON response.
      */
     public boolean deleteApiApp(String clientId) throws HelloSignException {
-        String url = API_APP_URI + "/" + clientId;
+        String url = BASE_URI + API_APP_URI + "/" + clientId;
         return HttpURLConnection.HTTP_NO_CONTENT == httpClient.withAuth(auth).delete(url).asHttpCode();
     }
 
@@ -1001,8 +1001,8 @@ public class HelloSignClient {
         if (!app.hasClientId()) {
             throw new HelloSignException("Cannot update an ApiApp without a client ID. Create one first!");
         }
-        String url = API_APP_URI + "/" + app.getClientId();
-        return new ApiApp(httpClient.withAuth(auth).withPostFields(app.getPostFields()).put(url).asJson());
+        String url = BASE_URI + API_APP_URI + "/" + app.getClientId();
+        return new ApiApp(httpClient.withAuth(auth).withPostFields(app.getPostFields()).post(url).asJson());
     }
 
     /**
