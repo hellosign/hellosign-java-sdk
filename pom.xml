@@ -5,7 +5,7 @@
     <groupId>com.hellosign</groupId>
     <artifactId>hellosign-java-sdk</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.7</version>
+    <version>4.0.6</version>
     <name>HelloSign Java SDK</name>
     <url>https://github.com/HelloFax/hellosign-java-sdk</url>
     <properties>
