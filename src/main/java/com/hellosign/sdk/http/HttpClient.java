@@ -2,9 +2,9 @@ package com.hellosign.sdk.http;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2017 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -33,9 +33,9 @@ import java.util.HashMap;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2016 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -73,7 +73,7 @@ import com.hellosign.sdk.HelloSignException;
 
 /**
  * Abstracts HTTP requests.
- * 
+ *
  * @author cpaul
  */
 public class HttpClient {
@@ -125,7 +125,7 @@ public class HttpClient {
 
     /**
      * Returns the response to the last HTTP request as a string.
-     * 
+     *
      * @return String or null if the request has not been created
      */
     public String getLastResponse() {
@@ -137,7 +137,7 @@ public class HttpClient {
 
     /**
      * Returns the HTTP status code for the last request.
-     * 
+     *
      * @return Integer or null if the request has not been created
      */
     public Integer getLastResponseCode() {
@@ -149,7 +149,7 @@ public class HttpClient {
 
     /**
      * Returns the last HTTP request body as a file.
-     * 
+     *
      * @param f File that should contain the response
      * @return long bytes written
      * @throws HelloSignException thrown if there is a problem writing to the
@@ -162,7 +162,7 @@ public class HttpClient {
     /**
      * Inspects the JSONObject response for errors and throws an exception if
      * found.
-     * 
+     *
      * @param json JSONObject response
      * @param code HTTP response code
      * @throws HelloSignException thrown if an error is reported from the API
@@ -193,7 +193,7 @@ public class HttpClient {
 
     /**
      * Executes the request and returns the response as a JSONObject.
-     * 
+     *
      * @return JSONObject response
      * @throws HelloSignException thrown if there is a problem executing the
      *         request
@@ -204,18 +204,20 @@ public class HttpClient {
         logger.debug("Response body: " + response);
         try {
             json = new JSONObject(response);
+            validate(json);
+        } catch (HelloSignException e) {
+            throw e;
         } catch (JSONException e) {
             throw new HelloSignException(e);
         } finally {
             reset();
         }
-        validate(json);
         return json;
     }
 
     /**
      * Executes the request and returns the response as a File.
-     * 
+     *
      * @param fileName String name of destination file
      * @return File response
      * @throws HelloSignException thrown if there is a problem executing the
@@ -242,7 +244,7 @@ public class HttpClient {
 
     /**
      * Helper method to create a temporary file.
-     * 
+     *
      * @param filename String
      * @return File temporary file handle
      * @throws HelloSignException thrown if the file cannot be created
@@ -264,7 +266,7 @@ public class HttpClient {
 
     /**
      * Executes the request and returns the HTTP response code.
-     * 
+     *
      * @return int HTTP response code
      * @throws HelloSignException thrown if no request has been performed
      */
@@ -282,7 +284,7 @@ public class HttpClient {
 
     /**
      * Initializes a GET request to the given URL.
-     * 
+     *
      * @param url String url
      * @return HttpClient
      * @throws HelloSignException thrown if the url is invalid
@@ -298,7 +300,7 @@ public class HttpClient {
 
     /**
      * Initializes a POST request to the given URL.
-     * 
+     *
      * @param url String url
      * @return HttpClient
      * @throws HelloSignException thrown if the url is invalid
@@ -314,7 +316,7 @@ public class HttpClient {
 
     /**
      * Initializes a DELETE request to the given URL.
-     * 
+     *
      * @param url String url
      * @return HttpClient
      * @throws HelloSignException thrown if the url is invalid
@@ -327,7 +329,7 @@ public class HttpClient {
 
     /**
      * Makes a PUT request to the given URL
-     * 
+     *
      * @param url String url
      * @return HttpClient
      * @throws HelloSignException thrown if the url is invalid
@@ -340,7 +342,7 @@ public class HttpClient {
 
     /**
      * Makes an OPTIONS request to the given URL
-     * 
+     *
      * @param url String URL
      * @return HttpClient
      * @throws HelloSignException thrown if the URL is invalid
