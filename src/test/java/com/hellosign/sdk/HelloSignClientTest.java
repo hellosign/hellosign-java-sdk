@@ -597,10 +597,16 @@ public class HelloSignClientTest {
         assertTrue(client.cancelSignatureRequest("9cc3d5819959419abee4dbff2073d497e7c0a962"));
     }
 
-    @Test(expected = HelloSignException.class)
+    @Test
     public void testCancelSignatureRequestInvalid() throws Exception {
         mockResponseCode(410);
-        client.cancelSignatureRequest("foo");
+        try {
+            client.cancelSignatureRequest("foo");
+            fail("Expected HelloSignException");
+        } catch (HelloSignException e) {
+            assertEquals("HTTP Code 410", e.getMessage());
+            assertEquals(410, (int) e.getHttpCode());
+        }
     }
 
     @Test

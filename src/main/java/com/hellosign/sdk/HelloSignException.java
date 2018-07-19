@@ -50,6 +50,10 @@ public class HelloSignException extends Exception {
         super(message, e);
     }
 
+    public HelloSignException(String message, Integer httpCode) {
+        this(message, httpCode, null, null);
+    }
+
     public HelloSignException(String message, Integer httpCode, String type) {
         this(message, httpCode, type, null);
     }
