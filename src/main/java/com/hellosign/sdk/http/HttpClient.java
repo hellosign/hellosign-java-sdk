@@ -279,7 +279,7 @@ public class HttpClient {
             reset();
             return code;
         }
-        throw new HelloSignException("HTTP Code " + code);
+        throw new HelloSignException("HTTP Code " + code, code);
     }
 
     /**
