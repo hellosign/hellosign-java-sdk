@@ -1,0 +1,77 @@
+{
+  "list_info": {
+    "page": 1,
+    "num_pages": 1,
+    "num_results": 1,
+    "page_size": 20
+  },
+  "templates": [
+    {
+      "template_id": "6773f5cb6d191248366695ddca468751a3f9578f",
+      "reusable_form_id": "6773f5cb6d191248366695ddca468751a3f9578f",
+      "title": "Test Template",
+      "message": "",
+      "is_creator": true,
+      "is_embedded": false,
+      "can_edit": true,
+      "metadata": {},
+      "is_locked": false,
+      "signer_roles": [
+        {
+          "name": "Client",
+          "order": null
+        }
+      ],
+      "cc_roles": [],
+      "documents": [
+        {
+          "index": 0,
+          "name": "Test - No tags - 1 page.pdf",
+          "field_groups": [],
+          "custom_fields": [],
+          "form_fields": [
+            {
+              "name": "",
+              "type": "signature",
+              "signer": "1",
+              "x": 609,
+              "y": 131,
+              "width": 120,
+              "height": 30,
+              "required": true,
+              "api_id": "df80de_9",
+              "group": null
+            }
+          ]
+        }
+      ],
+      "custom_fields": [],
+      "named_form_fields": [
+        {
+          "name": "",
+          "type": "signature",
+          "signer": "1",
+          "x": 609,
+          "y": 131,
+          "width": 120,
+          "height": 30,
+          "required": true,
+          "api_id": "df80de_9",
+          "group": null
+        }
+      ],
+      "accounts": [
+        {
+          "account_id": "13dd6e424c6d7b6d5fb325f1da907aef968e9fc4",
+          "email_address": "john.spaetzel@hellosign.com",
+          "is_locked": false,
+          "is_paid_hs": true,
+          "is_paid_hf": true,
+          "quotas": {
+            "fax_pages_left": 1010
+          }
+        }
+      ]
+    }
+  ]
+}
