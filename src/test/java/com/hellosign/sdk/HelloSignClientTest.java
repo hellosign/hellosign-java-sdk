@@ -884,18 +884,4 @@ public class HelloSignClientTest {
         mockResponseCode(404);
         client.updateTemplateFiles("0000000000000000000000000000000000000000", new TemplateDraft(), null);
     }
-
-    @Test
-    public void testSignatureRequestWithClientId() throws Exception {
-        String subject = "Signature Request Subject";
-        String message = "Signature Request Message";
-        SignatureRequest req = new SignatureRequest();
-        req.setTestMode(true);
-        req.addSigner("john.spaetzel@hellosign.com", "John Spaetzel");
-        req.addFileUrl("http://www.orimi.com/pdf-test.pdf");
-        req.setSubject(subject);
-        req.setMessage(message);
-        req.setClientId("someclientId");
-        SignatureRequest sentReq = client.sendSignatureRequest(req);
-    }
 }
