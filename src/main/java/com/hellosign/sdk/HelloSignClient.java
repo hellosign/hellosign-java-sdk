@@ -462,6 +462,22 @@ public class HelloSignClient {
     }
 
     /**
+     * Retrieves a specific page of the current user's signature requests.
+     *
+     * @param page int
+     * @param pageSize int Must be between 1 and 100.
+     * @return SignatureRequestList
+     * @throws HelloSignException thrown if there's a problem processing the
+     *         HTTP request or the JSON response.
+     */
+    public SignatureRequestList getSignatureRequests(int page, int pageSize) throws HelloSignException {
+        return new SignatureRequestList(
+                httpClient.withAuth(auth).withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
+                        .withGetParam(AbstractResourceList.PAGE_SIZE, Integer.toString(pageSize))
+                        .get(BASE_URI + SIGNATURE_REQUEST_LIST_URI).asJson());
+    }
+
+    /**
      * Sends the provided signature request to HelloSign.
      * 
      * @param req SignatureRequest
@@ -512,7 +528,7 @@ public class HelloSignClient {
     }
 
     /**
-     * Retreives a page of templates for the current user account.
+     * Retrieves a page of templates for the current user account.
      * 
      * @param page int
      * @return TemplateList
@@ -522,6 +538,21 @@ public class HelloSignClient {
     public TemplateList getTemplates(int page) throws HelloSignException {
         return new TemplateList(
                 httpClient.withAuth(auth).withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
+                        .get(BASE_URI + TEMPLATE_LIST_URI).asJson());
+    }
+
+    /**
+     * Retrieves a page of templates with a specific pageSize
+     * @param page int
+     * @param pageSize int Must be between 1 and 100.
+     * @return TemplateList
+     * @throws HelloSignException thrown if there's a problem processing the
+     *      HTTP request or the JSON response.
+     */
+    public TemplateList getTemplates(int page, int pageSize) throws  HelloSignException {
+        return new TemplateList(
+                httpClient.withAuth(auth).withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
+                        .withGetParam(AbstractResourceList.PAGE_SIZE, Integer.toString(pageSize))
                         .get(BASE_URI + TEMPLATE_LIST_URI).asJson());
     }
 

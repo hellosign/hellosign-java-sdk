@@ -7,3 +7,5 @@ web.properties
 .project
 .classpath
 src/test/webapp
+.idea/
+*.iml

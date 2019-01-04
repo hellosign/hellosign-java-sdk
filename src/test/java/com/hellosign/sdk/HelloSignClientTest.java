@@ -351,6 +351,21 @@ public class HelloSignClientTest {
     }
 
     @Test
+    public void testGetSignatureRequestsPageSize() throws Exception {
+        SignatureRequestList list = client.getSignatureRequests(1, 20);
+        for (SignatureRequest s : list) {
+            assertNotNull(s);
+            assertNotNull(s.getId());
+        }
+    }
+
+    @Test
+    public void testGetSignatureRequestsPageSizeInvalid() throws Exception {
+        SignatureRequestList list = client.getSignatureRequests(200);
+        assertFalse(list.iterator().hasNext());
+    }
+
+    @Test
     public void testSendSignatureRequest() throws Exception {
         String subject = "From the Mare";
         String message = "Pls sign";
@@ -430,6 +445,26 @@ public class HelloSignClientTest {
         TemplateList templates = client.getTemplates(10);
         assertNotNull(templates);
         assertFalse(templates.iterator().hasNext());
+    }
+
+    @Test
+    public void testGetTemplatePageSize() throws Exception {
+        TemplateList templates = client.getTemplates(1, 20);
+        assertNotNull(templates);
+        for (Template t : templates) {
+            assertNotNull(t);
+            assertTrue(t.hasId());
+        }
+    }
+
+    @Test
+    public void testGetTemplatePageSizeInvalid() throws Exception {
+        TemplateList templates = client.getTemplates(1, 200);
+        assertNotNull(templates);
+        for (Template t : templates) {
+            assertNotNull(t);
+            assertTrue(t.hasId());
+        }
     }
 
     @Test
@@ -848,5 +883,19 @@ public class HelloSignClientTest {
     public void testTemplateFilesUpdateInvalid() throws Exception {
         mockResponseCode(404);
         client.updateTemplateFiles("0000000000000000000000000000000000000000", new TemplateDraft(), null);
+    }
+
+    @Test
+    public void testSignatureRequestWithClientId() throws Exception {
+        String subject = "Signature Request Subject";
+        String message = "Signature Request Message";
+        SignatureRequest req = new SignatureRequest();
+        req.setTestMode(true);
+        req.addSigner("john.spaetzel@hellosign.com", "John Spaetzel");
+        req.addFileUrl("http://www.orimi.com/pdf-test.pdf");
+        req.setSubject(subject);
+        req.setMessage(message);
+        req.setClientId("someclientId");
+        SignatureRequest sentReq = client.sendSignatureRequest(req);
     }
 }
