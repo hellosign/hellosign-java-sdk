@@ -361,7 +361,7 @@ public class HelloSignClientTest {
 
     @Test
     public void testGetSignatureRequestsPageSizeInvalid() throws Exception {
-        SignatureRequestList list = client.getSignatureRequests(200);
+        SignatureRequestList list = client.getSignatureRequests(1, 200);
         assertFalse(list.iterator().hasNext());
     }
 
