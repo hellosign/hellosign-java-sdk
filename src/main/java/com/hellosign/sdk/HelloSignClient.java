@@ -549,7 +549,7 @@ public class HelloSignClient {
      * @throws HelloSignException thrown if there's a problem processing the
      *      HTTP request or the JSON response.
      */
-    public TemplateList getTemplates(int page, int pageSize) throws  HelloSignException {
+    public TemplateList getTemplates(int page, int pageSize) throws HelloSignException {
         return new TemplateList(
                 httpClient.withAuth(auth).withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
                         .withGetParam(AbstractResourceList.PAGE_SIZE, Integer.toString(pageSize))
