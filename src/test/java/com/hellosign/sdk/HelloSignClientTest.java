@@ -351,6 +351,21 @@ public class HelloSignClientTest {
     }
 
     @Test
+    public void testGetSignatureRequestsPageSize() throws Exception {
+        SignatureRequestList list = client.getSignatureRequests(1, 20);
+        for (SignatureRequest s : list) {
+            assertNotNull(s);
+            assertNotNull(s.getId());
+        }
+    }
+
+    @Test
+    public void testGetSignatureRequestsPageSizeInvalid() throws Exception {
+        SignatureRequestList list = client.getSignatureRequests(1, 200);
+        assertFalse(list.iterator().hasNext());
+    }
+
+    @Test
     public void testSendSignatureRequest() throws Exception {
         String subject = "From the Mare";
         String message = "Pls sign";
@@ -430,6 +445,26 @@ public class HelloSignClientTest {
         TemplateList templates = client.getTemplates(10);
         assertNotNull(templates);
         assertFalse(templates.iterator().hasNext());
+    }
+
+    @Test
+    public void testGetTemplatePageSize() throws Exception {
+        TemplateList templates = client.getTemplates(1, 20);
+        assertNotNull(templates);
+        for (Template t : templates) {
+            assertNotNull(t);
+            assertTrue(t.hasId());
+        }
+    }
+
+    @Test
+    public void testGetTemplatePageSizeInvalid() throws Exception {
+        TemplateList templates = client.getTemplates(1, 200);
+        assertNotNull(templates);
+        for (Template t : templates) {
+            assertNotNull(t);
+            assertTrue(t.hasId());
+        }
     }
 
     @Test
