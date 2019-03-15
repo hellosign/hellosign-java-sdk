@@ -1,5 +1,5 @@
 # HelloSign Java SDK 
-[![Build Status](https://travis-ci.org/HelloFax/hellosign-java-sdk.svg?branch=v3)](https://travis-ci.org/HelloFax/hellosign-java-sdk) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/) [![Javadocs](http://javadoc.io/badge/com.hellosign/hellosign-java-sdk.svg)](http://javadoc.io/doc/com.hellosign/hellosign-java-sdk)
+[![Build Status](https://travis-ci.org/hellosign/hellosign-java-sdk.svg?branch=v3)](https://travis-ci.org/hellosign/hellosign-java-sdk) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/) [![Javadocs](http://javadoc.io/badge/com.hellosign/hellosign-java-sdk.svg)](http://javadoc.io/doc/com.hellosign/hellosign-java-sdk)
 
 Get your Java app connected to HelloSign's API in jiffy.
 
