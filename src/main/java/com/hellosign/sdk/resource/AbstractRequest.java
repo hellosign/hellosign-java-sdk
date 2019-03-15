@@ -429,9 +429,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public Boolean getIsDeclinable() {
         return this.isDeclinable;
     }
-
-
-
+    
     public boolean hasAllowReassign() {
         return has(REQUEST_ALLOW_REASSIGN);
     }
