@@ -5,9 +5,9 @@
     <groupId>com.hellosign</groupId>
     <artifactId>hellosign-java-sdk</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.11</version>
+    <version>4.0.12</version>
     <name>HelloSign Java SDK</name>
-    <url>https://github.com/HelloFax/hellosign-java-sdk</url>
+    <url>https://github.com/hellosign/hellosign-java-sdk</url>
     <properties>
         <user.name>HelloSign API Support (apisupport@hellosign.com)</user.name>
         <slf4jVersion>1.7.22</slf4jVersion>
@@ -189,9 +189,9 @@
         <url>https://www.hellosign.com/</url>
     </organization>
     <scm>
-        <url>https://github.com/HelloFax/hellosign-java-sdk</url>
-        <developerConnection>scm:git:git@github.com:HelloFax/hellosign-java-sdk.git</developerConnection>
-        <connection>scm:git:git://github.com/HelloFax/hellosign-java-sdk.git</connection>
+        <url>https://github.com/hellosign/hellosign-java-sdk</url>
+        <developerConnection>scm:git:git@github.com:hellosign/hellosign-java-sdk.git</developerConnection>
+        <connection>scm:git:git://github.com/hellosign/hellosign-java-sdk.git</connection>
     </scm>
     <licenses>
         <license>

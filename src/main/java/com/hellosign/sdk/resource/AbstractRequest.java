@@ -58,6 +58,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_UX_VERSION = "ux_version";
     public static final String REQUEST_CLIENT_ID = "client_id";
     public static final String REQUEST_ALLOW_DECLINE = "allow_decline";
+    public static final String REQUEST_ALLOW_REASSIGN = "allow_reassign";
 
     // UX Version 1 = Original, non-responsive signer page is used
     public static final int UX_VERSION_1 = 1;
@@ -112,6 +113,9 @@ public abstract class AbstractRequest extends AbstractResource {
         }
         if (isDeclinable != null) {
             fields.put(REQUEST_ALLOW_DECLINE, (isDeclinable ? "1" : "0"));
+        }
+        if (hasAllowReassign()) {
+            fields.put(REQUEST_ALLOW_REASSIGN, isAllowReassign());
         }
         return fields;
     }
@@ -424,5 +428,20 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     public Boolean getIsDeclinable() {
         return this.isDeclinable;
+    }
+    
+    public boolean hasAllowReassign() {
+        return has(REQUEST_ALLOW_REASSIGN);
+    }
+
+    public boolean isAllowReassign() {
+        if (has(REQUEST_ALLOW_REASSIGN)) {
+            return getBoolean(REQUEST_ALLOW_REASSIGN);
+        }
+        return false;
+    }
+
+    public void setAllowReassign(boolean b) {
+        set(REQUEST_ALLOW_REASSIGN, b);
     }
 }
