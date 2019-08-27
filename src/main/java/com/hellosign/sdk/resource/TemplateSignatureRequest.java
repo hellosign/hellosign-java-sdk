@@ -53,7 +53,6 @@ public class TemplateSignatureRequest extends AbstractRequest {
     private static final String TEMPLATE_SIGNERS_NAME = "name";
     private static final String TEMPLATE_CCS = "ccs";
     private static final String TEMPLATE_CCS_EMAIL = "email_address";
-    private static final String TEMPLATE_CUSTOM_FIELDS = "custom_fields";
 
     // Signers, CC email addresses and custom fields are required
     // to have an associated role. We'll manage these in a Map,
@@ -378,7 +377,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
                 for (CustomField f : customFields) {
                     array.put(f.getJSONObject());
                 }
-                fields.put(TEMPLATE_CUSTOM_FIELDS, array.toString());
+                fields.put(REQUEST_CUSTOM_FIELDS, array.toString());
             }
             if (isTestMode()) {
                 fields.put(REQUEST_TEST_MODE, true);

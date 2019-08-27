@@ -25,9 +25,15 @@ package com.hellosign.sdk.resource;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.CustomField;
+import org.json.JSONArray;
 
 /**
  * Represents an Embedded signature request (either standard or templated). An
@@ -42,6 +48,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     private String clientId;
     private AbstractRequest request;
+    private List<CustomField> customFields = new ArrayList<CustomField>();
 
     // Hide the default constructor -- we want to force the user to specify a
     // request object that this Embedded request will wrap around.
@@ -101,10 +108,83 @@ public class EmbeddedRequest extends AbstractRequest {
         this.request = request;
     }
 
+    /**
+     * Add the custom field to this request. This is useful for specifying a
+     * pre-filled value and/or a field editor.
+     *
+     * @param field CustomField
+     */
+    public void addCustomField(CustomField field) {
+        customFields.add(field);
+    }
+
+    /**
+     * Add the custom fields to this request. This is useful for specifying a
+     * pre-filled value and/or a field editor.
+     *
+     * @param fields CustomField
+     */
+    public void addCustomFields(Collection<CustomField> fields) {
+        customFields.addAll(fields);
+    }
+
+    /**
+     * Adds the value to fill in for a custom field with the given field name.
+     *
+     * @param fieldNameOrApiId String name (or "Field Label") of the custom field
+     *        to be filled in. The "api_id" can also be used instead of the name.
+     * @param value String value
+     */
+    public void setCustomFieldValue(String fieldNameOrApiId, String value) {
+        CustomField f = new CustomField();
+        f.setName(fieldNameOrApiId);
+        f.setValue(value);
+        customFields.add(f);
+    }
+
+    /**
+     * Returns the map of custom fields for the template. This is a map of
+     * String field names to String field values.
+     *
+     * @return Map
+     */
+    public Map<String, String> getCustomFields() {
+        Map<String, String> fields = new HashMap<String, String>();
+        for (CustomField f : customFields) {
+            fields.put(f.getName(), f.getValue());
+        }
+        return fields;
+    }
+
+    /**
+     * Returns a list of CustomField objects for this template.
+     *
+     * @return List of CustomFields
+     */
+    public List<CustomField> getCustomFieldsList() {
+        return customFields;
+    }
+
+    /**
+     * Clears the current custom fields for this request.
+     */
+    public void clearCustomFields() {
+        customFields = new ArrayList<CustomField>();
+    }
+
     public Map<String, Serializable> getPostFields() throws HelloSignException {
-        Map<String, Serializable> map = request.getPostFields();
-        map.put(EMBEDDED_CLIENT_ID, getClientId());
-        return map;
+        Map<String, Serializable> fields = request.getPostFields();
+        fields.put(EMBEDDED_CLIENT_ID, getClientId());
+
+        if (customFields.size() > 0) {
+            JSONArray array = new JSONArray();
+            for (CustomField f : customFields) {
+                array.put(f.getJSONObject());
+            }
+            fields.put(REQUEST_CUSTOM_FIELDS, array.toString());
+        }
+
+        return fields;
     }
 
     // =========================================================================================

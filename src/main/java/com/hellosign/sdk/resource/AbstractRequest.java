@@ -59,6 +59,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_CLIENT_ID = "client_id";
     public static final String REQUEST_ALLOW_DECLINE = "allow_decline";
     public static final String REQUEST_ALLOW_REASSIGN = "allow_reassign";
+    public static final String REQUEST_CUSTOM_FIELDS = "custom_fields";
 
     // UX Version 1 = Original, non-responsive signer page is used
     public static final int UX_VERSION_1 = 1;
