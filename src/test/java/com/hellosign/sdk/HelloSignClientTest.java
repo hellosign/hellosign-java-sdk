@@ -1,24 +1,14 @@
 package com.hellosign.sdk;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
-import static org.mockito.ArgumentMatchers.*;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
-import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
 
 import com.hellosign.sdk.http.Authentication;
 import com.hellosign.sdk.http.HttpClient;
@@ -45,6 +35,19 @@ import com.hellosign.sdk.resource.support.TemplateRole;
 import com.hellosign.sdk.resource.support.WhiteLabelingOptions;
 import com.hellosign.sdk.resource.support.types.FieldType;
 import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import org.json.JSONObject;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
 
 /**
  * The MIT License (MIT)
@@ -611,10 +614,10 @@ public class HelloSignClientTest {
         req.setCustomFields(fields);
         SignatureRequest sentReq = client.sendTemplateSignatureRequest(req);
         assertNotNull(sentReq);
-        assertTrue(title.equals(sentReq.getTitle()));
-        assertTrue(message.equals(sentReq.getMessage()));
+        assertEquals(title, sentReq.getTitle());
+        assertEquals(message, sentReq.getMessage());
         for (CustomField cf : sentReq.getCustomFields()) {
-            assertTrue(fields.get(cf.getName()).equals(cf.getValue()));
+            assertEquals(fields.get(cf.getName()), cf.getValue());
         }
     }
 
@@ -755,10 +758,19 @@ public class HelloSignClientTest {
         req.setTestMode(true);
         req.addMetadata("test_key", "test_value");
         EmbeddedRequest embeddedReq = new EmbeddedRequest("034fb51064187cf28e4aad1c2533ad8f", req);
+        Map<String, String> fields = new HashMap<>();
+        fields.put("Field A", "Hello");
+        fields.put("Field B", "World!");
+        fields.put("Checkbox A", "true");
+        fields.put("Checkbox B", "false");
+        req.setCustomFields(fields);
         AbstractRequest newReq = client.createEmbeddedRequest(embeddedReq);
         assertNotNull(newReq);
         assertNotNull(newReq.getId());
-        assertTrue(req.getMetadata("test_key").equals(newReq.getMetadata("test_key")));
+        assertEquals(req.getMetadata("test_key"), newReq.getMetadata("test_key"));
+        for (CustomField cf : newReq.getCustomFields()) {
+            assertEquals(fields.get(cf.getName()), cf.getValue());
+        }
     }
 
     @Test(expected = HelloSignException.class)
