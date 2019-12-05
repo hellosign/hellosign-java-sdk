@@ -24,6 +24,7 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
+import com.hellosign.sdk.resource.support.CustomField;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -318,4 +319,47 @@ public class TemplateDraft extends AbstractRequest {
         }
         return fields;
     }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public void addCustomField(CustomField field) { }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public void setCustomFieldValue(String fieldNameOrApiId, String value) { }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public Map<String, String> getCustomFieldsMap() { return null; }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public List<CustomField> getCustomFields() { return null; }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public List<CustomField> getCustomFieldsList() { return null; }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public void setCustomFields(Map<String, String> fields) { }
+
+    /**
+     * Not implemented for Template Drafts
+     */
+    @Override
+    public void clearCustomFields() { }
+
 }

@@ -2,9 +2,9 @@ package com.hellosign.sdk.resource;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -24,6 +24,10 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
+import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.CustomField;
+import com.hellosign.sdk.resource.support.Document;
+import com.hellosign.sdk.resource.support.Metadata;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,17 +35,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.hellosign.sdk.HelloSignException;
-import com.hellosign.sdk.resource.support.Document;
-import com.hellosign.sdk.resource.support.Metadata;
 
 /**
  * Requests to HelloSign will have common fields such as a request title,
  * subject, and message. This class centralizes those fields.
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public abstract class AbstractRequest extends AbstractResource {
@@ -59,6 +59,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final String REQUEST_CLIENT_ID = "client_id";
     public static final String REQUEST_ALLOW_DECLINE = "allow_decline";
     public static final String REQUEST_ALLOW_REASSIGN = "allow_reassign";
+    public static final String REQUEST_CUSTOM_FIELDS = "custom_fields";
 
     // UX Version 1 = Original, non-responsive signer page is used
     public static final int UX_VERSION_1 = 1;
@@ -67,6 +68,7 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final int UX_VERSION_2 = 2;
 
     private Metadata metadata;
+    private List<CustomField> customFields = new ArrayList<CustomField>();
     private List<Document> documents = new ArrayList<Document>();
     private List<String> fileUrls = new ArrayList<String>();
     private boolean orderMatters = false;
@@ -88,7 +90,7 @@ public abstract class AbstractRequest extends AbstractResource {
         metadata = new Metadata(dataObj);
     }
 
-    protected Map<String, Serializable> getPostFields() throws HelloSignException {
+    public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = new HashMap<String, Serializable>();
         try {
             Metadata metadata = getMetadata();
@@ -116,6 +118,13 @@ public abstract class AbstractRequest extends AbstractResource {
         }
         if (hasAllowReassign()) {
             fields.put(REQUEST_ALLOW_REASSIGN, isAllowReassign());
+        }
+        if (customFields.size() > 0) {
+            JSONArray array = new JSONArray();
+            for (CustomField f : customFields) {
+                array.put(f.getJSONObject());
+            }
+            fields.put(REQUEST_CUSTOM_FIELDS, array.toString());
         }
         return fields;
     }
@@ -231,7 +240,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds the file to the request.
-     * 
+     *
      * @param file File
      * @throws HelloSignException thrown if there is a problem attaching the
      *         File to this request.
@@ -242,12 +251,12 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds the file to the request in the given order.
-     * 
+     *
      * The order should be a 0-based index into the file list. Therefore, the
      * first item of the file list is 0, and so forth.
-     * 
+     *
      * If order is null, the document is appended to the end of the file list.
-     * 
+     *
      * @param file File
      * @param order Integer or null
      * @throws HelloSignException thrown if there is a problem attaching the
@@ -265,7 +274,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds a Document to the signature request.
-     * 
+     *
      * @param doc Document
      * @throws HelloSignException thrown if null is provided
      */
@@ -278,7 +287,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Adds a Document to the signature request at the specific order.
-     * 
+     *
      * @param doc Document
      * @param order int
      * @throws HelloSignException thrown if null is provided or there is a
@@ -299,7 +308,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * Returns a reference to the list of documents for this request. Modifying
      * this list will modify the list that will be sent with the request. Useful
      * for more fine-grained modification.
-     * 
+     *
      * @return List
      */
     public List<Document> getDocuments() {
@@ -308,7 +317,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Overwrites this requests document list with the provided document list.
-     * 
+     *
      * @param docs List
      */
     public void setDocuments(List<Document> docs) {
@@ -324,7 +333,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Determines whether the order of the signers list is to be enforced.
-     * 
+     *
      * @param b true if the order matters, false otherwise
      */
     public void setOrderMatters(boolean b) {
@@ -333,7 +342,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * A flag that determines whether order of the signers list is enforced.
-     * 
+     *
      * @return true if the order matters, false otherwise
      */
     public boolean getOrderMatters() {
@@ -342,7 +351,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Add a file_url to this request.
-     * 
+     *
      * @param url String
      */
     public void addFileUrl(String url) {
@@ -351,7 +360,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Return the current file_url list.
-     * 
+     *
      * @return List
      */
     public List<String> getFileUrls() {
@@ -360,7 +369,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Overwrite the current file_url list.
-     * 
+     *
      * @param fileUrls List
      */
     public void setFileUrls(List<String> fileUrls) {
@@ -371,7 +380,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * Set the UX version for this request. This determines the version of the
      * signer page displayed to signer(s). The default is UX_VERSION_1
      * (non-responsive). Use UX_VERSION_2 for the responsive signer page.
-     * 
+     *
      * @param uxVersion int
      */
     public void setUxVersion(int uxVersion) {
@@ -380,7 +389,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Return the UX version for this request.
-     * 
+     *
      * @return int UX version (UX_VERSION_1 or UX_VERSION_2)
      */
     public int getUxVersion() {
@@ -389,7 +398,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Associates this request with an API app.
-     * 
+     *
      * @param clientId String client ID of the API app.
      * @throws HelloSignException thrown if clientId is null
      */
@@ -403,7 +412,7 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * The API app client ID that has been associated with this signature
      * request.
-     * 
+     *
      * @return String client ID
      */
     public String getClientId() {
@@ -412,7 +421,7 @@ public abstract class AbstractRequest extends AbstractResource {
 
     /**
      * Designate this request as declinable by signers.
-     * 
+     *
      * @param isDeclinable true if declinable, false otherwise (null if the
      *        parameter should be left off)
      */
@@ -423,13 +432,13 @@ public abstract class AbstractRequest extends AbstractResource {
     /**
      * Retrieve the flag that designates whether this request is declinable by
      * signers.
-     * 
+     *
      * @return Boolean or null if the flag has not been set
      */
     public Boolean getIsDeclinable() {
         return this.isDeclinable;
     }
-    
+
     public boolean hasAllowReassign() {
         return has(REQUEST_ALLOW_REASSIGN);
     }
@@ -443,5 +452,86 @@ public abstract class AbstractRequest extends AbstractResource {
 
     public void setAllowReassign(boolean b) {
         set(REQUEST_ALLOW_REASSIGN, b);
+    }
+
+    /**
+     * Add the custom field to this request. This is useful for specifying a
+     * pre-filled value and/or a field editor.
+     *
+     * @param field CustomField
+     */
+    public void addCustomField(CustomField field) {
+        customFields.add(field);
+    }
+
+    /**
+     * Adds the value to fill in for a custom field with the given field name.
+     *
+     * @param fieldNameOrApiId String name (or "Field Label") of the custom field
+     *        to be filled in. The "api_id" can also be used instead of the name.
+     * @param value String value
+     */
+    public void setCustomFieldValue(String fieldNameOrApiId, String value) {
+        CustomField f = new CustomField();
+        f.setName(fieldNameOrApiId);
+        f.setValue(value);
+        customFields.add(f);
+    }
+
+    /**
+     * Returns the map of custom fields for the request. This is a map of
+     * String field names to String field values.
+     *
+     * @return Map
+     */
+    public Map<String, String> getCustomFieldsMap() {
+        Map<String, String> fields = new HashMap<String, String>();
+        for (CustomField f : customFields) {
+            fields.put(f.getName(), f.getValue());
+        }
+        return fields;
+    }
+
+    /**
+     * Gets the custom fields associated with this request, set when sending the
+     * request.
+     *
+     * @return List CustomFields
+     */
+    public List<CustomField> getCustomFields() {
+        return customFields;
+    }
+
+    /**
+     * Returns a list of CustomField objects for this request.
+     * @deprecated Use {@link AbstractRequest#getCustomFields()} instead.
+     *
+     * @return List of CustomFields
+     */
+    public List<CustomField> getCustomFieldsList() {
+        return this.getCustomFields();
+    }
+
+    /**
+     * Overwrites the current map of custom fields to the provided map. This is
+     * a map of String field names to String field values.
+     *
+     * @param fields Map
+     */
+    public void setCustomFields(Map<String, String> fields) {
+        clearCustomFields();
+        for (String key : fields.keySet()) {
+            CustomField f = new CustomField();
+            f.setName(key);
+            f.setValue(fields.get(key));
+            customFields.add(f);
+        }
+    }
+
+    /**
+     * Clears the current custom fields for this request.
+     */
+    public void clearCustomFields() {
+        customFields = new ArrayList<CustomField>();
     }
 }

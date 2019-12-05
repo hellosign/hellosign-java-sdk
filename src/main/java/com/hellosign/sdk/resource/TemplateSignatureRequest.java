@@ -24,17 +24,12 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
+import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Signer;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONArray;
-
-import com.hellosign.sdk.HelloSignException;
-import com.hellosign.sdk.resource.support.CustomField;
-import com.hellosign.sdk.resource.support.Signer;
 
 /**
  * Represents a HelloSign signature request based on one or more Templates.
@@ -53,7 +48,6 @@ public class TemplateSignatureRequest extends AbstractRequest {
     private static final String TEMPLATE_SIGNERS_NAME = "name";
     private static final String TEMPLATE_CCS = "ccs";
     private static final String TEMPLATE_CCS_EMAIL = "email_address";
-    private static final String TEMPLATE_CUSTOM_FIELDS = "custom_fields";
 
     // Signers, CC email addresses and custom fields are required
     // to have an associated role. We'll manage these in a Map,
@@ -61,7 +55,6 @@ public class TemplateSignatureRequest extends AbstractRequest {
     // fields are stored, so we can support this association.
     private Map<String, Signer> signers = new HashMap<String, Signer>();
     private Map<String, String> ccs = new HashMap<String, String>();
-    private List<CustomField> customFields = new ArrayList<CustomField>();
 
     public TemplateSignatureRequest() {
         super();
@@ -180,76 +173,6 @@ public class TemplateSignatureRequest extends AbstractRequest {
                 signers.remove(i);
             }
         }
-    }
-
-    /**
-     * Add the custom field to this request. This is useful for specifying a
-     * pre-filled value and/or a field editor.
-     *
-     * @param field CustomField
-     */
-    public void addCustomField(CustomField field) {
-        customFields.add(field);
-    }
-
-    /**
-     * Adds the value to fill in for a custom field with the given field name.
-     *
-     * @param fieldNameOrApiId String name (or "Field Label") of the custom field
-     *        to be filled in. The "api_id" can also be used instead of the name.
-     * @param value String value
-     */
-    public void setCustomFieldValue(String fieldNameOrApiId, String value) {
-        CustomField f = new CustomField();
-        f.setName(fieldNameOrApiId);
-        f.setValue(value);
-        customFields.add(f);
-    }
-
-    /**
-     * Returns the map of custom fields for the template. This is a map of
-     * String field names to String field values.
-     *
-     * @return Map
-     */
-    public Map<String, String> getCustomFields() {
-        Map<String, String> fields = new HashMap<String, String>();
-        for (CustomField f : customFields) {
-            fields.put(f.getName(), f.getValue());
-        }
-        return fields;
-    }
-
-    /**
-     * Returns a list of CustomField objects for this template.
-     *
-     * @return List of CustomFields
-     */
-    public List<CustomField> getCustomFieldsList() {
-        return customFields;
-    }
-
-    /**
-     * Overwrites the current map of custom fields to the provided map. This is
-     * a map of String field names to String field values.
-     *
-     * @param fields Map
-     */
-    public void setCustomFields(Map<String, String> fields) {
-        clearCustomFields();
-        for (String key : fields.keySet()) {
-            CustomField f = new CustomField();
-            f.setName(key);
-            f.setValue(fields.get(key));
-            customFields.add(f);
-        }
-    }
-
-    /**
-     * Clears the current custom fields for this request.
-     */
-    public void clearCustomFields() {
-        customFields = new ArrayList<CustomField>();
     }
 
     /**
@@ -372,13 +295,6 @@ public class TemplateSignatureRequest extends AbstractRequest {
             Map<String, String> ccz = getCCs();
             for (String role : ccz.keySet()) {
                 fields.put(TEMPLATE_CCS + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]", ccz.get(role));
-            }
-            if (customFields.size() > 0) {
-                JSONArray array = new JSONArray();
-                for (CustomField f : customFields) {
-                    array.put(f.getJSONObject());
-                }
-                fields.put(TEMPLATE_CUSTOM_FIELDS, array.toString());
             }
             if (isTestMode()) {
                 fields.put(REQUEST_TEST_MODE, true);
