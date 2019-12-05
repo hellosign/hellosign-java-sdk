@@ -24,7 +24,9 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
+import com.hellosign.sdk.resource.support.CustomField;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 import com.hellosign.sdk.HelloSignException;
@@ -50,11 +52,10 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     /**
-     * Creates an Embedded signature request using the client ID and the
-     * AbstractRequest object provided. First, instantiate the request object
-     * (either a SignatureRequest or TemplateSignatureRequest) and then create
-     * your EmbeddedRequest using that object.
-     * 
+     * Creates an Embedded signature request using the client ID and the AbstractRequest object
+     * provided. First, instantiate the request object (either a SignatureRequest or
+     * TemplateSignatureRequest) and then create your EmbeddedRequest using that object.
+     *
      * @param clientId String client ID
      * @param request AbstractRequest
      */
@@ -64,9 +65,9 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     /**
-     * Set the client ID of the web app you're using to create this embedded
-     * signature request. See: http://app.hellosign.com/api/embedded
-     * 
+     * Set the client ID of the web app you're using to create this embedded signature request. See:
+     * http://app.hellosign.com/api/embedded
+     *
      * @return String client ID
      */
     public String getClientId() {
@@ -74,9 +75,9 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     /**
-     * Set the client ID of the web app you're using to create this embedded
-     * signature request. See: http://app.hellosign.com/api/embedded
-     * 
+     * Set the client ID of the web app you're using to create this embedded signature request. See:
+     * http://app.hellosign.com/api/embedded
+     *
      * @param clientId String client ID
      */
     public void setClientId(String clientId) {
@@ -85,7 +86,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     /**
      * Get the AbstractRequest associated with this Embedded signature request.
-     * 
+     *
      * @return AbstractRequest
      */
     public AbstractRequest getRequest() {
@@ -94,7 +95,7 @@ public class EmbeddedRequest extends AbstractRequest {
 
     /**
      * Set the AbstractRequest associated with this Embedded signature request.
-     * 
+     *
      * @param request AbstractRequest
      */
     public void setRequest(AbstractRequest request) {
@@ -184,5 +185,35 @@ public class EmbeddedRequest extends AbstractRequest {
     @Override
     public String getId() {
         return request.getId();
+    }
+
+    @Override
+    public void addCustomField(CustomField field) {
+        this.request.addCustomField(field);
+    }
+
+    @Override
+    public void setCustomFieldValue(String fieldNameOrApiId, String value) {
+        this.request.setCustomFieldValue(fieldNameOrApiId, value);
+    }
+
+    @Override
+    public List<CustomField> getCustomFields() {
+        return request.getCustomFields();
+    }
+
+    @Override
+    public Map<String, String> getCustomFieldsMap() {
+        return request.getCustomFieldsMap();
+    }
+
+    @Override
+    public void setCustomFields(Map<String, String> fields) {
+        request.setCustomFields(fields);
+    }
+
+    @Override
+    public void clearCustomFields() {
+        request.clearCustomFields();
     }
 }

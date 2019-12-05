@@ -24,9 +24,11 @@ package com.hellosign.sdk.resource;
  * SOFTWARE.
  */
 
+import com.hellosign.sdk.resource.support.CustomField;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -353,6 +355,37 @@ public class UnclaimedDraft extends AbstractRequest {
     @Override
     public String getId() {
         return request.getId();
+    }
+
+
+    @Override
+    public void addCustomField(CustomField field) {
+        this.request.addCustomField(field);
+    }
+
+    @Override
+    public void setCustomFieldValue(String fieldNameOrApiId, String value) {
+        this.request.setCustomFieldValue(fieldNameOrApiId, value);
+    }
+
+    @Override
+    public List<CustomField> getCustomFields() {
+        return request.getCustomFields();
+    }
+
+    @Override
+    public Map<String, String> getCustomFieldsMap() {
+        return request.getCustomFieldsMap();
+    }
+
+    @Override
+    public void setCustomFields(Map<String, String> fields) {
+        request.setCustomFields(fields);
+    }
+
+    @Override
+    public void clearCustomFields() {
+        request.clearCustomFields();
     }
 
     public Date getExpiresAt() {

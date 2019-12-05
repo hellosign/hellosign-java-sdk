@@ -763,7 +763,7 @@ public class HelloSignClientTest {
         fields.put("Field B", "World!");
         fields.put("Checkbox A", "true");
         fields.put("Checkbox B", "false");
-        req.setCustomFields(fields);
+        embeddedReq.setCustomFields(fields);
         AbstractRequest newReq = client.createEmbeddedRequest(embeddedReq);
         assertNotNull(newReq);
         assertNotNull(newReq.getId());
