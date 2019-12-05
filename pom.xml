@@ -1,4 +1,5 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
   http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -75,7 +76,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
+                        <version>1.6</version>
                         <configuration>
                             <useAgent>true</useAgent>
                         </configuration>
@@ -92,7 +93,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.7</version>
+                        <version>1.6.8</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -109,7 +110,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -122,7 +123,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -134,6 +135,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -148,14 +150,15 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <source>8</source>
-              <target>8</target>
-            </configuration>
-          </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <reporting>
@@ -163,14 +166,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>3.1.1</version>
                 <configuration>
                     <outputDirectory>${basedir}/src/test/webapp/javadoc</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
     </reporting>
-    <description>Use the HelloSign Java SDK to connect your Java app to HelloSign's service in microseconds!</description>
+    <description>Use the HelloSign Java SDK to connect your Java app to HelloSign's service in
+        microseconds!
+    </description>
     <organization>
         <name>HelloSign</name>
         <url>https://www.hellosign.com/</url>
@@ -189,19 +194,18 @@
     </licenses>
     <developers>
         <developer>
-            <id>chris-hellosign</id>
-            <name>Chris Paul</name>
-            <email>chris@hellosign.com</email>
+            <id>jspaetzel</id>
+            <name>John Spaetzel</name>
+            <email>john.spaetzel@hellosign.com</email>
             <url>https://www.hellosign.com</url>
             <organization>HelloSign</organization>
             <organizationUrl>https://www.hellosign.com</organizationUrl>
             <roles>
-                <role>architect</role>
                 <role>developer</role>
             </roles>
             <timezone>America/Los_Angeles</timezone>
             <properties>
-                <picUrl>https://www.gravatar.com/avatar/7970e197406612872f6895a71a803f08</picUrl>
+                <picUrl>https://www.gravatar.com/avatar/ccf00de89ec54577fb9fd612358a9808</picUrl>
             </properties>
         </developer>
     </developers>
