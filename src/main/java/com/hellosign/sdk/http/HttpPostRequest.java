@@ -2,28 +2,26 @@ package com.hellosign.sdk.http;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import com.hellosign.sdk.HelloSignException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -37,11 +35,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.hellosign.sdk.HelloSignException;
 
 /**
  * This utility class provides an abstraction layer for sending multipart HTTP
@@ -64,7 +59,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Constructor
-     * 
+     *
      * @param url String
      * @throws HelloSignException thrown if there is a problem making the HTTP
      *         request or processing the response
@@ -75,7 +70,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Constructor
-     * 
+     *
      * @param url String
      * @param auth Authentication
      * @throws HelloSignException thrown if there is a problem making the HTTP
@@ -87,7 +82,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Constructor
-     * 
+     *
      * @param url String
      * @param fields Map
      * @throws HelloSignException thrown if there is a problem making the HTTP
@@ -99,7 +94,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Constructor
-     * 
+     *
      * @param url String
      * @param fields Map
      * @param auth Authentication
@@ -107,7 +102,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
      *         request or processing the response
      */
     public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth)
-            throws HelloSignException {
+        throws HelloSignException {
         if (url == null || "".equals(url)) {
             throw new HelloSignException("URL cannot be null or empty");
         }
@@ -125,7 +120,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
     /**
      * Helper method to make an HTTP POST request. Intelligently detects whether
      * Files have been attached and sends as an multipart form request.
-     * 
+     *
      * @return HttpUrlConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
      *         request or processing the result
@@ -144,7 +139,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Helper method to make an HTTP POST request.
-     * 
+     *
      * @return HttpURLConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
      *         request or processing the result
@@ -208,7 +203,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
     /**
      * Helper method to make an HTTP POST request with a File.
-     * 
+     *
      * @return HttpURLConnection
      * @throws HelloSignException thrown if there is a problem making the HTTP
      *         request or processing the result
@@ -259,8 +254,9 @@ public class HttpPostRequest extends AbstractHttpRequest {
     private void addFilePart(String fieldName, File uploadFile) throws IOException {
         String fileName = uploadFile.getName();
         write("--" + boundary).write(LINE_FEED);
-        write("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName + "\"")
-                .write(LINE_FEED);
+        write("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName
+            + "\"")
+            .write(LINE_FEED);
         write("Content-Type: " + URLConnection.guessContentTypeFromName(fileName)).write(LINE_FEED);
         write("Content-Transfer-Encoding: binary").write(LINE_FEED);
         write(LINE_FEED);

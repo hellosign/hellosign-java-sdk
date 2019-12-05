@@ -2,39 +2,34 @@ package com.hellosign.sdk.resource.support;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-import java.util.Date;
-
-import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.AbstractResource;
 import com.hellosign.sdk.resource.support.types.SignatureStatus;
+import java.util.Date;
+import org.json.JSONObject;
 
 /**
  * Contains information related to a signature / signer.
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Signature extends AbstractResource {
@@ -60,7 +55,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the ID of the signer.
-     * 
+     *
      * @return String ID
      */
     public String getId() {
@@ -69,7 +64,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns true if this signature object has a signature ID.
-     * 
+     *
      * @return boolean
      */
     public boolean hasId() {
@@ -78,7 +73,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the email address of the signer.
-     * 
+     *
      * @return String email address
      */
     public String getEmail() {
@@ -87,7 +82,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns true if this signature object has an email address.
-     * 
+     *
      * @return boolean
      */
     public boolean hasEmail() {
@@ -96,7 +91,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the name of the signer.
-     * 
+     *
      * @return String signer name
      */
     public String getName() {
@@ -105,7 +100,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns true if this signature object has a name
-     * 
+     *
      * @return boolean
      */
     public boolean hasName() {
@@ -114,7 +109,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the order of this signer.
-     * 
+     *
      * @return Integer signer order
      */
     public Integer getOrder() {
@@ -123,7 +118,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the status of this signature/signer.
-     * 
+     *
      * @return SignatureStatus status
      */
     public SignatureStatus getStatus() {
@@ -132,7 +127,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the status in string format.
-     * 
+     *
      * @return String status
      */
     public String getStatusString() {
@@ -141,7 +136,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the date the signer signed the request.
-     * 
+     *
      * @return Date date the signer signed
      */
     public Date getDateSigned() {
@@ -150,7 +145,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the date the signer last viewed the request.
-     * 
+     *
      * @return Date date the signer last viewed
      */
     public Date getLastViewed() {
@@ -159,7 +154,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the date at which the last reminder was sent to this signer.
-     * 
+     *
      * @return Date date the last reminder was sent
      */
     public Date getLastReminded() {
@@ -168,7 +163,7 @@ public class Signature extends AbstractResource {
 
     /**
      * Returns the reason the signer declined this request.
-     * 
+     *
      * @return string or null if the request does not have a decline_reason
      */
     public String getDeclineReason() {

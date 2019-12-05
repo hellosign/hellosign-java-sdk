@@ -2,67 +2,59 @@ package com.hellosign.sdk.resource.support;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2017 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-import org.json.JSONException;
-
-/**
- * The MIT License (MIT)
- * 
- * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.AbstractResource;
 import com.hellosign.sdk.resource.support.types.FieldType;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (C) 2015 hellosign.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
 /**
  * This class represents a HelloSign Custom Field. This is a field that is set
  * up during the creation of the signature request or template and contains
  * information that must be filled in by the requester, prior to sending.
- * 
+ *
  * Right now, this is only applicable to text fields.
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class CustomField extends AbstractResource {
@@ -97,7 +89,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Set the name of this custom field.
-     * 
+     *
      * @param name String
      */
     public void setName(String name) {
@@ -117,7 +109,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Set the type for this custom field.
-     * 
+     *
      * @param type FieldType
      */
     public void setType(FieldType type) {
@@ -130,7 +122,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Set the value for this field.
-     * 
+     *
      * @param value String
      */
     public void setValue(String value) {
@@ -143,7 +135,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Set the API ID for this custom field.
-     * 
+     *
      * @param apiId String
      */
     public void setApiId(String apiId) {
@@ -156,7 +148,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Specify what signer role may edit this field.
-     * 
+     *
      * @param editor String
      */
     public void setEditor(String editor) {
@@ -169,7 +161,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Specify whether this field is required.
-     * 
+     *
      * @param isRequired Boolean
      */
     public void setIsRequired(Boolean isRequired) {
@@ -178,7 +170,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Returns the x coordinate for this field.
-     * 
+     *
      * @return Integer or null if not set
      */
     public Integer getX() {
@@ -187,7 +179,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Returns the y coordinate for this field.
-     * 
+     *
      * @return Integer or null if not set
      */
     public Integer getY() {
@@ -196,7 +188,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Returns the x coordinate for this field.
-     * 
+     *
      * @param x int pixel coordinate
      */
     public void setX(int x) {
@@ -205,7 +197,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Set the y coordinate for this field.
-     * 
+     *
      * @param y int pixel coordinate
      */
     public void setY(int y) {
@@ -214,7 +206,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Returns the pixel width of this field.
-     * 
+     *
      * @return Integer or null if not set
      */
     public Integer getWidth() {
@@ -223,7 +215,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Sets the pixel height for this field.
-     * 
+     *
      * @param width int pixel height
      */
     public void setWidth(int width) {
@@ -232,7 +224,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Returns the pixel height of this field.
-     * 
+     *
      * @return Integer or null if not set
      */
     public Integer getHeight() {
@@ -241,7 +233,7 @@ public class CustomField extends AbstractResource {
 
     /**
      * Sets the pixel height for this field.
-     * 
+     *
      * @param height int pixel height
      */
     public void setHeight(int height) {
@@ -253,7 +245,7 @@ public class CustomField extends AbstractResource {
      * estimate the number of lines a custom field can contain, along with the
      * number of characters per line. This method will return the estimated
      * average number of lines of text this field can hold.
-     * 
+     *
      * @return Integer or null if not set
      */
     public Integer getEstimatedTextLines() {
@@ -274,7 +266,7 @@ public class CustomField extends AbstractResource {
      * estimate the number of lines a custom field can contain, along with the
      * number of characters per line. This method will return the estimated
      * average number of characters per line this field can hold.
-     * 
+     *
      * @return Integer or null if not set
      */
     public Integer getEstimatedCharsPerLine() {

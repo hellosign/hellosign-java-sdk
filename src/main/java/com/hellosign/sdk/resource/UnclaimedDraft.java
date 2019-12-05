@@ -2,43 +2,38 @@ package com.hellosign.sdk.resource;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.CustomField;
+import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONObject;
-
-import com.hellosign.sdk.HelloSignException;
-import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 
 /**
  * Represents an unclaimed draft response and request.
- * 
+ *
  * The UnclaimedDraft object essentially "wraps" a SignatureRequest. There are
  * two types of unclaimed drafts that can be created:
  * <ol>
@@ -48,7 +43,7 @@ import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
  * <li>"request_signature" - creates a claimable signature request. If this type
  * is chosen, the signers name(s) and email address(es) are not optional.</li>
  * </ol>
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  *
  */
@@ -80,7 +75,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Creates an unclaimed draft with the provided AbstractRequest, and
      * defaults the type to <code>UnclaimedDraftType.send_document</code>.
-     * 
+     *
      * @param request AbstractRequest
      */
     public UnclaimedDraft(AbstractRequest request) {
@@ -90,7 +85,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Creates an unclaimed draft with the provided AbstractRequest and
      * UnclaimedDraftType.
-     * 
+     *
      * @param request AbstractRequest
      * @param type UnclaimedDraftType
      */
@@ -104,7 +99,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Constructor to provide a way to store the API response JSON information.
-     * 
+     *
      * @param json JSONObject API response object
      * @throws HelloSignException thrown if there is a problem parsing the
      *         JSONObject.
@@ -116,7 +111,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Sets the unclaimed draft type. Use the public enum:
      * UnclaimedDraft.UNCLAIMED_DRAFT_TYPE.
-     * 
+     *
      * @param type UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
      */
     public void setType(UnclaimedDraftType type) {
@@ -125,7 +120,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Gets the string value of the unclaimed draft type.
-     * 
+     *
      * @return String
      */
     public String getTypeString() {
@@ -134,7 +129,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Gets the unclaimed draft type.
-     * 
+     *
      * @return UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
      */
     public UnclaimedDraftType getType() {
@@ -144,7 +139,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Sets the associated request object from which this unclaimed draft will
      * be created.
-     * 
+     *
      * @param request AbstractRequest
      */
     public void setRequest(AbstractRequest request) {
@@ -154,7 +149,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Gets the associated request object. Currently this will always be a
      * SignatureRequest.
-     * 
+     *
      * @return AbstractRequest
      */
     public AbstractRequest getRequest() {
@@ -163,7 +158,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Gets the claim URL if the draft has been created.
-     * 
+     *
      * @return String claim URL
      */
     public String getClaimUrl() {
@@ -172,7 +167,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Returns true if the draft has been created and a claim URL exists.
-     * 
+     *
      * @return true or false, if not set
      */
     public boolean hasClaimUrl() {
@@ -181,7 +176,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Adds a file to the unclaimed draft.
-     * 
+     *
      * @param file File
      * @throws HelloSignException thrown if there is a problem adding the File.
      */
@@ -194,7 +189,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Adds a file to the unclaimed draft at the given document order.
-     * 
+     *
      * @param file File
      * @param order int
      * @throws HelloSignException thrown if there is a problem adding the File.
@@ -208,7 +203,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Removes all files from this request.
-     * 
+     *
      * @throws HelloSignException thrown if there is a problem clearing the
      *         Files
      */
@@ -221,7 +216,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Returns true if this Unclaimed Draft is to be embedded.
-     * 
+     *
      * @return true if this Unclaimed Draft is to be embedded, false otherwise
      */
     public boolean isForEmbeddedSigning() {
@@ -230,7 +225,7 @@ public class UnclaimedDraft extends AbstractRequest {
 
     /**
      * Sets whether this Unclaimed Draft is to be embedded.
-     * 
+     *
      * @param b boolean
      */
     public void setIsForEmbeddedSigning(boolean b) {

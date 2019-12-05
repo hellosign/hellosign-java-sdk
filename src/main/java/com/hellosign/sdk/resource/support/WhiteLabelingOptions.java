@@ -2,35 +2,30 @@ package com.hellosign.sdk.resource.support;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2017 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.AbstractResource;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.json.JSONObject;
 
 public class WhiteLabelingOptions extends AbstractResource {
 
@@ -70,7 +65,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Validate hex with regular expression
-     * 
+     *
      * @param hex string for validation
      * @return true valid hex, false invalid hex
      */
@@ -81,7 +76,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Helper method to validate and set a color.
-     * 
+     *
      * @param key String key
      * @param color String color hex code
      * @throws HelloSignException thrown if the color string is an invalid hex
@@ -96,7 +91,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page background color.
-     * 
+     *
      * @return String hex color code
      */
     public String getPageBackgroundColor() {
@@ -105,7 +100,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page background color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -116,7 +111,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page header background color.
-     * 
+     *
      * @return String hex color code
      */
     public String getHeaderBackgroundColor() {
@@ -125,7 +120,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page header background color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -136,7 +131,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page text 1 color.
-     * 
+     *
      * @return String hex color code
      */
     public String getTextColor1() {
@@ -145,7 +140,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page text 1 color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -156,7 +151,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page text 2 color.
-     * 
+     *
      * @return String hex color code
      */
     public String getTextColor2() {
@@ -165,7 +160,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page text 2 color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -176,7 +171,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page link color.
-     * 
+     *
      * @return String hex color code
      */
     public String getLinkColor() {
@@ -185,7 +180,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page link color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -196,7 +191,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page primary button color.
-     * 
+     *
      * @return String hex color code
      */
     public String getPrimaryButtonColor() {
@@ -205,7 +200,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page primary button color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -216,7 +211,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page primary button text color.
-     * 
+     *
      * @return String hex color code
      */
     public String getPrimaryButtonTextColor() {
@@ -225,7 +220,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page primary button text color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -236,7 +231,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page primary button hover color.
-     * 
+     *
      * @return String hex color code
      */
     public String getPrimaryButtonHoverColor() {
@@ -245,7 +240,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page primary button hover color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -256,7 +251,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page primary button text hover color.
-     * 
+     *
      * @return String hex color code
      */
     public String getPrimaryButtonTextHoverColor() {
@@ -265,7 +260,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page primary button text hover color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -276,7 +271,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page secondary button color.
-     * 
+     *
      * @return String hex color code
      */
     public String getSecondaryButtonColor() {
@@ -285,7 +280,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page secondary button color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -296,7 +291,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page secondary button text color.
-     * 
+     *
      * @return String hex color code
      */
     public String getSecondaryButtonTextColor() {
@@ -305,7 +300,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page secondary button text color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -316,7 +311,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page secondary button hover color.
-     * 
+     *
      * @return String hex color code
      */
     public String getSecondaryButtonHoverColor() {
@@ -325,7 +320,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page secondary button hover color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string
@@ -336,7 +331,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Get the signer page secondary button text hover color.
-     * 
+     *
      * @return String hex color code
      */
     public String getSecondaryButtonTextHoverColor() {
@@ -345,7 +340,7 @@ public class WhiteLabelingOptions extends AbstractResource {
 
     /**
      * Set the signer page secondary button text hover color.
-     * 
+     *
      * @param color String hex color code
      * @throws HelloSignException thrown if the color string is an invalid hex
      *         string

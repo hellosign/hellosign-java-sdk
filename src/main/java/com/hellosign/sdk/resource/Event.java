@@ -2,48 +2,42 @@ package com.hellosign.sdk.resource;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Signature;
+import com.hellosign.sdk.resource.support.types.EventType;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hellosign.sdk.HelloSignException;
-import com.hellosign.sdk.resource.support.Signature;
-import com.hellosign.sdk.resource.support.types.EventType;
-
 /**
  * This is a utility class for assisting with the development of callback
  * services to respond to HelloSign events.
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Event extends AbstractResource {
@@ -67,7 +61,7 @@ public class Event extends AbstractResource {
     /**
      * Default constructor. Provide this constructor with the JSONObject created
      * from the API response.
-     * 
+     *
      * @param json JSONObject
      * @throws HelloSignException thrown if there is a problem parsing the
      *         JSONObject.
@@ -90,7 +84,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the account ID that this event is reporting for.
-     * 
+     *
      * @return String
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSON object.
@@ -108,7 +102,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this event has a "reported_for_account_id" field.
-     * 
+     *
      * @return true or false if it does not have an account ID
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSONObject.
@@ -119,7 +113,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the API app ID for which this event is reported.
-     * 
+     *
      * @return String
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSONObject.
@@ -137,7 +131,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this event has a "reported_for_app_id" field.
-     * 
+     *
      * @return boolean
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSONObject.
@@ -148,7 +142,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the event time as a Java Date object.
-     * 
+     *
      * @return Date
      */
     public Date getEventDate() {
@@ -157,7 +151,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the message if any from the event
-     * 
+     *
      * @return String
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSONObject.
@@ -175,7 +169,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the signature ID to which this event is associated.
-     * 
+     *
      * @return String
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSONObject.
@@ -196,7 +190,7 @@ public class Event extends AbstractResource {
 
     /**
      * Utility method to determine if this event has a related signature ID.
-     * 
+     *
      * @return true if this field exists and is set, false otherwise
      */
     public boolean hasRelatedSignatureId() {
@@ -210,7 +204,7 @@ public class Event extends AbstractResource {
     /**
      * Returns the associated Signature object with this event, if the event is
      * associated with a Signature Request.
-     * 
+     *
      * @return Signature
      * @throws HelloSignException thrown if there is a problem parsing the
      *         backing JSONObject.
@@ -231,7 +225,7 @@ public class Event extends AbstractResource {
     /**
      * Returns a reference to the SignatureRequest that is attached to the
      * Event.
-     * 
+     *
      * @return SignatureRequest
      */
     public SignatureRequest getSignatureRequest() {
@@ -243,7 +237,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this Event is associated with a Signature Request.
-     * 
+     *
      * @return boolean
      */
     public boolean hasSignatureRequest() {
@@ -252,7 +246,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns a reference to the Template that is attached to the Event.
-     * 
+     *
      * @return Template
      */
     public Template getTemplate() {
@@ -264,7 +258,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns true if this event is associated with a Template.
-     * 
+     *
      * @return boolean
      */
     public boolean hasTemplate() {
@@ -273,7 +267,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the EventType for this event.
-     * 
+     *
      * @return EventType enum
      */
     public EventType getType() {
@@ -289,7 +283,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the event type String.
-     * 
+     *
      * @return String event type
      */
     public String getTypeString() {
@@ -298,7 +292,7 @@ public class Event extends AbstractResource {
 
     /**
      * Returns the unique hash string identifying this event.
-     * 
+     *
      * @return String hash
      */
     public String getHash() {
@@ -308,7 +302,7 @@ public class Event extends AbstractResource {
     /**
      * Returns true if the event hash matches the computed hash using the
      * provided API key.
-     * 
+     *
      * @param apiKey String api key.
      * @return true if the hashes match, false otherwise
      * @throws HelloSignException thrown if there is a problem parsing the API

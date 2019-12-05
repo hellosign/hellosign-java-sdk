@@ -1,8 +1,7 @@
 package com.hellosign.sdk.http;
 
-import java.net.HttpURLConnection;
-
 import com.hellosign.sdk.HelloSignException;
+import java.net.HttpURLConnection;
 
 public class HttpDeleteRequest extends AbstractHttpRequest {
 

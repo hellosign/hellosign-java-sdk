@@ -2,26 +2,23 @@ package com.hellosign.sdk.resource;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 import com.hellosign.sdk.HelloSignException;
@@ -40,7 +37,7 @@ import org.json.JSONObject;
 /**
  * Represents a HelloSign signature request. This object is used to both submit
  * a request and to represent the request object returned from the server.
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class SignatureRequest extends AbstractRequest {
@@ -92,7 +89,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Returns true if this request has an ID. Useful if checking to see if this
      * request is for submission or is the result of a call to HelloSign.
-     * 
+     *
      * @return true if the request has an ID, false otherwise
      */
     public boolean hasId() {
@@ -101,7 +98,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns the CC email addresses for this request.
-     * 
+     *
      * @return List
      */
     public List<String> getCCs() {
@@ -110,7 +107,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Adds a CC'd email address to this request.
-     * 
+     *
      * @param email String email address
      */
     public void addCC(String email) {
@@ -119,7 +116,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns a list of signatures for this request.
-     * 
+     *
      * @return List
      */
     public List<Signature> getSignatures() {
@@ -129,7 +126,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Returns the signature for the given email/name combination, or null if
      * not found on this request.
-     * 
+     *
      * @param email String email address
      * @param name String name
      * @return Signature or null if not found
@@ -152,7 +149,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Adds the signer to the list of signers for this request.
-     * 
+     *
      * @param signer Signer
      * @throws HelloSignException thrown if there is a problem adding the
      *         signer.
@@ -163,7 +160,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Adds the signer to the list of signers for this request.
-     * 
+     *
      * @param email String
      * @param name String
      * @throws HelloSignException thrown if there is a problem adding the
@@ -179,7 +176,7 @@ public class SignatureRequest extends AbstractRequest {
      * to reflect the indexing used by the HelloSign API. This means that adding
      * an item at order 1 will place it in the 0th index of the list (it will be
      * the first item).
-     * 
+     *
      * @param email String
      * @param name String
      * @param order int
@@ -198,7 +195,7 @@ public class SignatureRequest extends AbstractRequest {
      * Returns a reference to the signers list. This can be modified and
      * re-added to the request using setSigners(). Useful for more explicit
      * modification.
-     * 
+     *
      * @return List
      */
     public List<Signer> getSigners() {
@@ -208,7 +205,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Overwrites the current list of signers for this request with the given
      * list.
-     * 
+     *
      * @param signers List
      */
     public void setSigners(List<Signer> signers) {
@@ -218,7 +215,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Removes the signer from the list. If that user does not exist, this will
      * throw a HelloSignException.
-     * 
+     *
      * @param email String
      * @throws HelloSignException thrown if there is a problem removing the
      *         signer.
@@ -239,7 +236,7 @@ public class SignatureRequest extends AbstractRequest {
      * request by email and name. It requires both because neither alone is
      * enough to guarantee uniqueness (some requests can have multiple signers
      * using the same email address or name).
-     * 
+     *
      * @param email String
      * @param name String
      * @return Signature, if found on this request, or null
@@ -260,7 +257,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Internal method used to retrieve the necessary POST fields to submit the
      * signature request.
-     * 
+     *
      * @return Map
      * @throws HelloSignException thrown if there is a problem serializing the
      *         POST fields.
@@ -280,13 +277,16 @@ public class SignatureRequest extends AbstractRequest {
             List<Signer> signerz = getSigners();
             for (int i = 0; i < signerz.size(); i++) {
                 Signer s = signerz.get(i);
-                fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_EMAIL + "]", s.getEmail());
-                fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_NAME + "]", s.getNameOrRole());
+                fields
+                    .put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_EMAIL + "]", s.getEmail());
+                fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_NAME + "]",
+                    s.getNameOrRole());
                 if (getOrderMatters()) {
                     fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_ORDER + "]", i);
                 }
                 if (s.getAccessCode() != null) {
-                    fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_PIN + "]", s.getAccessCode());
+                    fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_PIN + "]",
+                        s.getAccessCode());
                 }
             }
             List<String> ccz = getCCs();
@@ -295,7 +295,7 @@ public class SignatureRequest extends AbstractRequest {
                 fields.put(SIGREQ_CCS + "[" + i + "]", cc);
             }
             JSONArray reqFormFields = new JSONArray(); // Main array for the
-                                                       // request
+            // request
             boolean hasFormFields = false;
             List<Document> docs = getDocuments();
             for (int i = 0; i < docs.size(); i++) {
@@ -328,7 +328,8 @@ public class SignatureRequest extends AbstractRequest {
                 fields.put(REQUEST_HIDE_TEXT_TAGS, isHidingTextTags());
             }
         } catch (Exception ex) {
-            throw new HelloSignException("Could not extract form fields from SignatureRequest.", ex);
+            throw new HelloSignException("Could not extract form fields from SignatureRequest.",
+                ex);
         }
         return fields;
     }
@@ -336,7 +337,7 @@ public class SignatureRequest extends AbstractRequest {
     /**
      * Returns the HelloSign-designated signature status, indicating whether all
      * signers have signed the document.
-     * 
+     *
      * @return true, if all signers have signed the document, false otherwise.
      */
     public boolean isComplete() {
@@ -361,7 +362,7 @@ public class SignatureRequest extends AbstractRequest {
 
     /**
      * Returns the API URL to retrieve the PDF copy of this signature request.
-     * 
+     *
      * @return String URL
      */
     public String getFilesUrl() {

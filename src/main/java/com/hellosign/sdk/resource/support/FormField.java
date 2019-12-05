@@ -2,37 +2,33 @@ package com.hellosign.sdk.resource.support;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2015 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-import org.json.JSONObject;
 
 import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.types.FieldType;
 import com.hellosign.sdk.resource.support.types.ValidationType;
+import org.json.JSONObject;
 
 /**
  * This class represents a HelloSign Form Field object.
- * 
+ *
  * @author "Chris Paul (chris@hellosign.com)"
  */
 public class FormField extends CustomField {
@@ -51,7 +47,7 @@ public class FormField extends CustomField {
 
     /**
      * Constructor to be used when creating a new FormField object.
-     * 
+     *
      * @param type FormField type
      * @param name String Field Label that will be displayed to the signer
      * @param signer int index of the signer that should complete this field (0-based index)
@@ -61,7 +57,8 @@ public class FormField extends CustomField {
      * @param width int width of this field in pixels
      * @param page int page number of the document in which this field will be placed (1-based index)
      */
-    public FormField(FieldType type, String name, int signer, int x, int y, int height, int width, int page) {
+    public FormField(FieldType type, String name, int signer, int x, int y, int height, int width,
+        int page) {
         setType(type);
         setName(name);
         setSigner(signer);
@@ -74,7 +71,7 @@ public class FormField extends CustomField {
 
     /**
      * Returns the signer index for this form field.
-     * 
+     *
      * @return Integer signer index or null if not set
      */
     public Integer getSigner() {
@@ -83,7 +80,7 @@ public class FormField extends CustomField {
 
     /**
      * Set the signer index that should complete this form field.
-     * 
+     *
      * @param signer Integer index
      */
     public void setSigner(Integer signer) {
@@ -93,7 +90,7 @@ public class FormField extends CustomField {
     /**
      * Set the page number for this component. The (x, y) coordinates will be
      * relative to the top left corner of that page.
-     * 
+     *
      * @param page Integer page number
      */
     public void setPage(Integer page) {
@@ -102,7 +99,7 @@ public class FormField extends CustomField {
 
     /**
      * Returns the page number this component is on.
-     * 
+     *
      * @return Integer page number, or null if not set
      */
     public Integer getPage() {
@@ -112,7 +109,7 @@ public class FormField extends CustomField {
     /**
      * Set the validation rule for this field. This will force the signer to
      * enter data that conforms to the validation rule.
-     * 
+     *
      * @param type ValidationType
      */
     public void setValidationType(ValidationType type) {
@@ -121,7 +118,7 @@ public class FormField extends CustomField {
 
     /**
      * Return the validation rule being used for this field
-     * 
+     *
      * @return ValidationType validation type, null if not set
      */
     public ValidationType getValidationType() {
@@ -130,7 +127,7 @@ public class FormField extends CustomField {
 
     /**
      * Return the validation rule being used for this field as a string
-     * 
+     *
      * @return String validation type, null if not set
      */
     public String getValidationTypeString() {
@@ -142,7 +139,7 @@ public class FormField extends CustomField {
 
     /**
      * Set this field as required.
-     * 
+     *
      * @param isRequired boolean true if field is required by signer
      * @deprecated Use {@link #setIsRequired(Boolean)}
      */

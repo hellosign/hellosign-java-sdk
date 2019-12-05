@@ -51,26 +51,23 @@ import org.junit.rules.TestName;
 
 /**
  * The MIT License (MIT)
- * 
+ *
  * Copyright (C) 2017 hellosign.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 public class HelloSignClientTest {
@@ -103,7 +100,7 @@ public class HelloSignClientTest {
     protected String getTestFileAsString(String name) throws FileNotFoundException {
         String result = null;
         String url = System.getProperty("file.separator") + this.getClass().getSimpleName()
-                + System.getProperty("file.separator") + name;
+            + System.getProperty("file.separator") + name;
         URL resource = this.getClass().getResource(url);
         if (resource != null) {
             Scanner s = new Scanner(new File(resource.getFile()));
@@ -400,7 +397,8 @@ public class HelloSignClientTest {
         String id = "5fd97d3b6a2ac509b7837891d8c804e29cc35636";
         String signatureId = "c390fac7bb23c2b48e6314272ec9db17";
         String newEmailAddress = "barack@obama.com";
-        SignatureRequest updatedReq = client.updateSignatureRequest(id, signatureId, newEmailAddress);
+        SignatureRequest updatedReq = client
+            .updateSignatureRequest(id, signatureId, newEmailAddress);
         assertNotNull(updatedReq);
         assertTrue(id.equals(updatedReq.getId()));
         Signature sig = updatedReq.getSignature(newEmailAddress, "Barack");
@@ -690,7 +688,8 @@ public class HelloSignClientTest {
     @Test
     public void testGetFilesUrl() throws Exception {
         mockResponseCode(200);
-        String filesUrl = client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967").getFileUrl();
+        String filesUrl = client.getFilesUrl("fa5c8a0b0f492d768749333ad6fcc214c111e967")
+            .getFileUrl();
         assertEquals("https://www.example.com/request/files/url/here", filesUrl);
     }
 
@@ -827,7 +826,8 @@ public class HelloSignClientTest {
         draft.addMergeField("Full Name", FieldType.text);
         draft.addMergeField("Is registered?", FieldType.checkbox);
         draft.addMetadata("test_key", "test_value");
-        EmbeddedRequest embeddedReq = new EmbeddedRequest("034fb51064187cf28e4aad1c2533ad8f", draft);
+        EmbeddedRequest embeddedReq = new EmbeddedRequest("034fb51064187cf28e4aad1c2533ad8f",
+            draft);
         TemplateDraft response = client.createEmbeddedTemplateDraft(embeddedReq);
         assertNotNull(response);
         assertNotNull(response.getId());
@@ -867,7 +867,7 @@ public class HelloSignClientTest {
         ApiApp updatedApp = client.updateApiApp(app);
         assertNotNull(updatedApp);
         assertTrue(app.getWhiteLabelingOptions().getPrimaryButtonColor()
-                .equalsIgnoreCase(updatedApp.getWhiteLabelingOptions().getPrimaryButtonColor()));
+            .equalsIgnoreCase(updatedApp.getWhiteLabelingOptions().getPrimaryButtonColor()));
     }
 
     @Test(expected = HelloSignException.class)
@@ -900,6 +900,7 @@ public class HelloSignClientTest {
     @Test(expected = HelloSignException.class)
     public void testTemplateFilesUpdateInvalid() throws Exception {
         mockResponseCode(404);
-        client.updateTemplateFiles("0000000000000000000000000000000000000000", new TemplateDraft(), null);
+        client.updateTemplateFiles("0000000000000000000000000000000000000000", new TemplateDraft(),
+            null);
     }
 }

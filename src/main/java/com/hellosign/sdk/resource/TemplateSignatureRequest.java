@@ -5,23 +5,20 @@ package com.hellosign.sdk.resource;
  *
  * Copyright (C) 2015 hellosign.com
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 import com.hellosign.sdk.HelloSignException;
@@ -228,7 +225,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
         } else if (index < 0) {
             throw new HelloSignException("index cannot be negative");
         } else if (index > currentList.size()) {
-            throw new HelloSignException("index is greater than template ID list size: " + currentList.size());
+            throw new HelloSignException(
+                "index is greater than template ID list size: " + currentList.size());
         }
         if (index == currentList.size()) {
             add(TEMPLATE_IDS, id); // Just append the item
@@ -275,8 +273,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
             Map<String, Signer> signerz = getSigners();
             for (String role : signerz.keySet()) {
                 Signer s = signerz.get(role);
-                fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_EMAIL + "]", s.getEmail());
-                fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_NAME + "]", s.getNameOrRole());
+                fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_EMAIL + "]",
+                    s.getEmail());
+                fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_NAME + "]",
+                    s.getNameOrRole());
             }
 
             // Optional fields
@@ -294,13 +294,15 @@ public class TemplateSignatureRequest extends AbstractRequest {
             }
             Map<String, String> ccz = getCCs();
             for (String role : ccz.keySet()) {
-                fields.put(TEMPLATE_CCS + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]", ccz.get(role));
+                fields.put(TEMPLATE_CCS + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]",
+                    ccz.get(role));
             }
             if (isTestMode()) {
                 fields.put(REQUEST_TEST_MODE, true);
             }
         } catch (Exception ex) {
-            throw new HelloSignException("Could not extract form fields from TemplateSignatureRequest.", ex);
+            throw new HelloSignException(
+                "Could not extract form fields from TemplateSignatureRequest.", ex);
         }
         return fields;
     }
