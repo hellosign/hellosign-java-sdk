@@ -483,7 +483,7 @@ public class HelloSignClientTest {
                 assertNotNull(cf.getWidth());
                 assertNotNull(cf.getHeight());
                 assertNotNull(cf.isRequired());
-                if (cf.getType().equals(FieldType.text)) {
+                if (cf.getType().equals(FieldType.TEXT)) {
                     assertNotNull(cf.getEstimatedTextLines());
                     assertNotNull(cf.getEstimatedCharsPerLine());
                 }
@@ -498,7 +498,7 @@ public class HelloSignClientTest {
                 assertNotNull(ff.getHeight());
                 assertNotNull(ff.isRequired());
                 assertNotNull(ff.getSigner());
-                if (ff.getType().equals(FieldType.text)) {
+                if (ff.getType().equals(FieldType.TEXT)) {
                     assertNotNull(ff.getEstimatedTextLines());
                     assertNotNull(ff.getEstimatedCharsPerLine());
                 }
@@ -802,8 +802,8 @@ public class HelloSignClientTest {
         draft.addSignerRole("Role B", 2);
         draft.addCCRole("Lawyer");
         draft.addCCRole("Manager");
-        draft.addMergeField("Full Name", FieldType.text);
-        draft.addMergeField("Is registered?", FieldType.checkbox);
+        draft.addMergeField("Full Name", FieldType.TEXT);
+        draft.addMergeField("Is registered?", FieldType.CHECKBOX);
         draft.addMetadata("test_key", "test_value");
         EmbeddedRequest embeddedReq = new EmbeddedRequest("034fb51064187cf28e4aad1c2533ad8f",
             draft);

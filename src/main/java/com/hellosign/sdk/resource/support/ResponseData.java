@@ -52,7 +52,7 @@ public class ResponseData extends AbstractResource {
     }
 
     public FieldType getType() {
-        return FieldType.valueOf(getString(RESPONSE_DATA_TYPE));
+        return FieldType.getEnum(getString(RESPONSE_DATA_TYPE));
     }
 
     public void setType(FieldType type) {
