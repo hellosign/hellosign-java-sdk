@@ -6,7 +6,7 @@
     <groupId>com.hellosign</groupId>
     <artifactId>hellosign-java-sdk</artifactId>
     <packaging>jar</packaging>
-    <version>4.1.0</version>
+    <version>4.2.0</version>
     <name>HelloSign Java SDK</name>
     <url>https://github.com/hellosign/hellosign-java-sdk</url>
     <properties>
