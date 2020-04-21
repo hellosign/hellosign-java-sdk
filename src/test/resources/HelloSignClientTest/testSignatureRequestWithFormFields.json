@@ -1,0 +1,73 @@
+{
+  "signature_request": {
+    "signature_request_id": "b1f2d21f496b510fc2cc0da0b4d0af7c1687d370",
+    "test_mode": true,
+    "title": "NDA with Acme Co.",
+    "original_title": "The NDA we talked about",
+    "subject": "The NDA we talked about",
+    "message": "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
+    "metadata": {},
+    "created_at": 1587430723,
+    "is_complete": false,
+    "is_declined": false,
+    "has_error": false,
+    "custom_fields": [
+      {
+        "name": "Name",
+        "type": "text",
+        "required": true,
+        "api_id": "text_e5e36acbe",
+        "editor": null,
+        "value": null
+      },
+      {
+        "name": "Business",
+        "type": "text",
+        "required": true,
+        "api_id": "text_merge_e5e36acbe",
+        "editor": 0,
+        "value": "This text is merged!?"
+      },
+      {
+        "name": "Tax Class",
+        "type": "checkbox",
+        "required": true,
+        "api_id": "checkbox_merge_e5e36acbe",
+        "editor": 0,
+        "value": true
+      },
+      {
+        "name": "Tax Class",
+        "type": "checkbox",
+        "required": true,
+        "api_id": "checkbox_e5e36acbe",
+        "editor": null,
+        "value": false
+      }
+    ],
+    "response_data": [],
+    "signing_url": "https://app.hellosign.com/sign/b1f2d21f496b510fc2cc0da0b4d0af7c1687d370",
+    "signing_redirect_url": null,
+    "final_copy_uri": "/v3/signature_request/final_copy/b1f2d21f496b510fc2cc0da0b4d0af7c1687d370",
+    "files_url": "https://api.hellosign.com/v3/signature_request/files/b1f2d21f496b510fc2cc0da0b4d0af7c1687d370",
+    "details_url": "https://app.hellosign.com/home/manage?guid=b1f2d21f496b510fc2cc0da0b4d0af7c1687d370",
+    "requester_email_address": "johnspaetzel@dropbox.com",
+    "signatures": [
+      {
+        "signature_id": "c27d6bf39e0b222abfba400b40a3ba53",
+        "has_pin": false,
+        "signer_email_address": "jack@example.com",
+        "signer_name": "Jack",
+        "signer_role": null,
+        "order": null,
+        "status_code": "awaiting_signature",
+        "signed_at": null,
+        "last_viewed_at": null,
+        "last_reminded_at": null,
+        "error": null
+      }
+    ],
+    "cc_email_addresses": [],
+    "template_ids": null
+  }
+}

@@ -55,7 +55,7 @@ public class CustomField extends AbstractResource {
     }
 
     public FieldType getType() {
-        return FieldType.valueOf(getString(CUSTOM_FIELD_TYPE));
+        return FieldType.getEnum(getString(CUSTOM_FIELD_TYPE));
     }
 
     public String getTypeString() {

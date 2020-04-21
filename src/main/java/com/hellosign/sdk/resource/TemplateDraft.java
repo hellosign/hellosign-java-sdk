@@ -5,10 +5,15 @@ import com.hellosign.sdk.resource.support.CustomField;
 import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.types.FieldType;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -145,9 +150,19 @@ public class TemplateDraft extends AbstractRequest {
      *         field.
      */
     public void addMergeField(String name, FieldType type) throws HelloSignException {
-        if (!FieldType.checkbox.equals(type) && !FieldType.text.equals(type)) {
+        List<FieldType> mergeableFieldTypes = Arrays.asList(
+            FieldType.CHECKBOX,
+            FieldType.TEXT
+        );
+
+        if (!mergeableFieldTypes.contains(type)) {
+            List<String> asStrings = mergeableFieldTypes
+                .stream()
+                .map(Enum::toString)
+                .collect(Collectors.toList());
             throw new HelloSignException(
-                "Only 'text' or 'checkbox' types allowed for merge fields.");
+                String.format("Only %s types allowed for merge fields.", String.join(",", asStrings))
+            );
         }
         mergeFields.put(name, type);
     }

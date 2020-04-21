@@ -7,8 +7,6 @@ import org.json.JSONObject;
 
 /**
  * This class represents a HelloSign Form Field object.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class FormField extends CustomField {
 
@@ -34,7 +32,8 @@ public class FormField extends CustomField {
      * @param y int y coordinate location of this field in pixels
      * @param height int height of this field in pixels
      * @param width int width of this field in pixels
-     * @param page int page number of the document in which this field will be placed (1-based index)
+     * @param page int page number of the document in which this field will be placed (1-based
+     * index)
      */
     public FormField(FieldType type, String name, int signer, int x, int y, int height, int width,
         int page) {
@@ -67,8 +66,8 @@ public class FormField extends CustomField {
     }
 
     /**
-     * Set the page number for this component. The (x, y) coordinates will be
-     * relative to the top left corner of that page.
+     * Set the page number for this component. The (x, y) coordinates will be relative to the top
+     * left corner of that page.
      *
      * @param page Integer page number
      */
@@ -86,8 +85,8 @@ public class FormField extends CustomField {
     }
 
     /**
-     * Set the validation rule for this field. This will force the signer to
-     * enter data that conforms to the validation rule.
+     * Set the validation rule for this field. This will force the signer to enter data that
+     * conforms to the validation rule.
      *
      * @param type ValidationType
      */
@@ -124,5 +123,10 @@ public class FormField extends CustomField {
      */
     public void setRequired(boolean isRequired) {
         setIsRequired(isRequired);
+    }
+
+    @Override
+    public void setValue(String value) {
+        throw new UnsupportedOperationException("Setting value is not allowed for form fields, see custom fields.");
     }
 }
