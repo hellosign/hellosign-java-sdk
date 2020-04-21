@@ -902,7 +902,7 @@ public class HelloSignClientTest {
 
         Document nda = new Document();
 
-        File file = this.getTestFixture("NDA.pdf");
+        File file = this.getTestFixture("W9.pdf");
         nda.setFile(file);
 
         FormField text = new FormField();
