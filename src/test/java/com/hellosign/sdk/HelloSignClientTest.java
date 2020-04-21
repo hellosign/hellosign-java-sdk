@@ -90,6 +90,13 @@ public class HelloSignClientTest {
         return result;
     }
 
+    protected File getTestFixture(String name) throws FileNotFoundException {
+        String path = System.getProperty("file.separator") + this.getClass().getSimpleName()
+            + System.getProperty("file.separator") + "Fixtures" + System.getProperty("file.separator") + name;
+        URL resource = this.getClass().getResource(path);
+        return new File(resource.getFile());
+    }
+
     protected void mockResponseCode(int code) {
         doReturn(code).when(spy).getLastResponseCode();
     }
@@ -483,7 +490,7 @@ public class HelloSignClientTest {
                 assertNotNull(cf.getWidth());
                 assertNotNull(cf.getHeight());
                 assertNotNull(cf.isRequired());
-                if (cf.getType().equals(FieldType.text)) {
+                if (cf.getType().equals(FieldType.TEXT)) {
                     assertNotNull(cf.getEstimatedTextLines());
                     assertNotNull(cf.getEstimatedCharsPerLine());
                 }
@@ -498,7 +505,7 @@ public class HelloSignClientTest {
                 assertNotNull(ff.getHeight());
                 assertNotNull(ff.isRequired());
                 assertNotNull(ff.getSigner());
-                if (ff.getType().equals(FieldType.text)) {
+                if (ff.getType().equals(FieldType.TEXT)) {
                     assertNotNull(ff.getEstimatedTextLines());
                     assertNotNull(ff.getEstimatedCharsPerLine());
                 }
@@ -802,8 +809,8 @@ public class HelloSignClientTest {
         draft.addSignerRole("Role B", 2);
         draft.addCCRole("Lawyer");
         draft.addCCRole("Manager");
-        draft.addMergeField("Full Name", FieldType.text);
-        draft.addMergeField("Is registered?", FieldType.checkbox);
+        draft.addMergeField("Full Name", FieldType.TEXT);
+        draft.addMergeField("Is registered?", FieldType.CHECKBOX);
         draft.addMetadata("test_key", "test_value");
         EmbeddedRequest embeddedReq = new EmbeddedRequest("034fb51064187cf28e4aad1c2533ad8f",
             draft);
@@ -881,5 +888,108 @@ public class HelloSignClientTest {
         mockResponseCode(404);
         client.updateTemplateFiles("0000000000000000000000000000000000000000", new TemplateDraft(),
             null);
+    }
+
+    @Test
+    public void testSignatureRequestWithFormFields()
+        throws HelloSignException, FileNotFoundException {
+        SignatureRequest request = new SignatureRequest();
+        request.setTitle("NDA with Acme Co.");
+        request.setSubject("The NDA we talked about");
+        request.setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        request.addSigner("jack@example.com", "Jack");
+        request.setTestMode(true);
+
+        Document nda = new Document();
+
+        File file = this.getTestFixture("W9.pdf");
+        nda.setFile(file);
+
+        FormField text = new FormField();
+        text.setApiId("text_e5e36acbe");
+        text.setName("Name");
+        text.setType(FieldType.TEXT);
+        text.setX(71);
+        text.setY(94);
+        text.setWidth(200);
+        text.setHeight(12);
+        text.setIsRequired(true);
+        text.setSigner(0);
+        text.setPage(1);
+        nda.addFormField(text);
+
+        FormField mergeText = new FormField();
+        mergeText.setApiId("text_merge_e5e36acbe");
+        mergeText.setName("Business");
+        mergeText.setType(FieldType.TEXT_MERGE);
+        mergeText.setX(70);
+        mergeText.setY(118);
+        mergeText.setWidth(200);
+        mergeText.setHeight(12);
+        mergeText.setIsRequired(true);
+        mergeText.setSigner(0);
+        mergeText.setPage(1);
+        nda.addFormField(mergeText);
+
+        FormField mergeCheckbox = new FormField();
+        mergeCheckbox.setApiId("checkbox_merge_e5e36acbe");
+        mergeCheckbox.setName("Tax Class");
+        mergeCheckbox.setType(FieldType.CHECKBOX_MERGE);
+        mergeCheckbox.setX(65);
+        mergeCheckbox.setY(145);
+        mergeCheckbox.setWidth(9);
+        mergeCheckbox.setHeight(9);
+        mergeCheckbox.setIsRequired(true);
+        mergeCheckbox.setSigner(0);
+        mergeCheckbox.setPage(1);
+        nda.addFormField(mergeCheckbox);
+
+        FormField checkbox = new FormField();
+        checkbox.setApiId("checkbox_e5e36acbe");
+        checkbox.setName("Tax Class");
+        checkbox.setType(FieldType.CHECKBOX);
+        checkbox.setX(185);
+        checkbox.setY(145);
+        checkbox.setWidth(9);
+        checkbox.setHeight(9);
+        checkbox.setIsRequired(true);
+        checkbox.setSigner(0);
+        checkbox.setPage(1);
+        nda.addFormField(checkbox);
+
+        FormField signature = new FormField();
+        signature.setApiId("signature_e5e36acbe");
+        signature.setName("Sig");
+        signature.setType(FieldType.SIGNATURE);
+        signature.setX(130);
+        signature.setY(520);
+        signature.setWidth(100);
+        signature.setHeight(16);
+        signature.setIsRequired(true);
+        signature.setSigner(0);
+        signature.setPage(1);
+        nda.addFormField(signature);
+
+        FormField dateSigned = new FormField();
+        dateSigned.setApiId("date_e5e36acbe");
+        dateSigned.setName("Date");
+        dateSigned.setType(FieldType.DATE_SIGNED);
+        dateSigned.setX(410);
+        dateSigned.setY(520);
+        dateSigned.setWidth(100);
+        dateSigned.setHeight(16);
+        dateSigned.setIsRequired(true);
+        dateSigned.setSigner(0);
+        dateSigned.setPage(1);
+        nda.addFormField(dateSigned);
+
+        request.addDocument(nda);
+
+        Map<String, String> fields = new HashMap<>();
+        fields.put("checkbox_merge_e5e36acbe", "true");
+        fields.put("text_merge_e5e36acbe", "This text is merged!?");
+        request.setCustomFields(fields);
+
+        SignatureRequest newRequest = client.sendSignatureRequest(request);
     }
 }
