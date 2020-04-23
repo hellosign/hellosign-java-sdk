@@ -39,14 +39,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.TestName;
 
 public class HelloSignClientTest {
@@ -991,5 +989,28 @@ public class HelloSignClientTest {
         request.setCustomFields(fields);
 
         SignatureRequest newRequest = client.sendSignatureRequest(request);
+        List<CustomField> customFields= newRequest.getCustomFields();
+        Assert.assertEquals(customFields.size(),4);
+
+        CustomField customField0 = customFields.get(0);
+        CustomField customField1 = customFields.get(1);
+        CustomField customField2 = customFields.get(2);
+        CustomField customField3 = customFields.get(3);
+
+        // Assert CustomField Object for  Name , Type
+        Assert.assertEquals(customField0.getName(),"Name");
+        Assert.assertEquals(customField0.getType(),FieldType.TEXT);
+
+        // Assert CustomField Object for  Name , Type
+        Assert.assertEquals(customField1.getName(),"Business");
+        Assert.assertEquals(customField1.getType(),FieldType.TEXT);
+
+        // Assert CustomField Object for  Name , Type
+        Assert.assertEquals(customField2.getName(),"Tax Class");
+        Assert.assertEquals(customField2.getType(),FieldType.CHECKBOX);
+
+        // Assert CustomField Object for  Name , Type
+        Assert.assertEquals(customField3.getName(),"Tax Class");
+        Assert.assertEquals(customField3.getType(),FieldType.CHECKBOX);
     }
 }
