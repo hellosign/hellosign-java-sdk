@@ -30,6 +30,7 @@ import com.hellosign.sdk.resource.support.FormField;
 import com.hellosign.sdk.resource.support.OauthData;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
+import com.hellosign.sdk.resource.support.Signer;
 import com.hellosign.sdk.resource.support.TemplateList;
 import com.hellosign.sdk.resource.support.TemplateRole;
 import com.hellosign.sdk.resource.support.WhiteLabelingOptions;
@@ -1012,5 +1013,15 @@ public class HelloSignClientTest {
         // Assert CustomField Object for  Name , Type
         Assert.assertEquals(customField3.getName(),"Tax Class");
         Assert.assertEquals(customField3.getType(),FieldType.CHECKBOX);
+    }
+
+    @Test
+    public void testRemovingSignersByEmail() throws HelloSignException {
+        TemplateSignatureRequest request = new TemplateSignatureRequest();
+        request.setSigner("role", "john@example.com", "John");
+        request.removeSignerByEmail("john@example.com");
+        Map<String, Signer> signers = request.getSigners();
+        var set = signers.entrySet();
+        Assert.assertEquals(0, set.size());
     }
 }
