@@ -13,3 +13,4 @@ gradle.properties
 .gradle/
 build/
 bin/
+.vscode/
