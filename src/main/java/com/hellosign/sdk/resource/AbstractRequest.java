@@ -475,7 +475,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * @return List CustomFields
      */
     public List<CustomField> getCustomFields() {
-        return customFields;
+        return getList(CustomField.class, "custom_fields");
     }
 
     /**
@@ -486,7 +486,7 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     @Deprecated
     public List<CustomField> getCustomFieldsList() {
-        return this.getCustomFields();
+        return getList(CustomField.class, "custom_fields");
     }
 
     /**
