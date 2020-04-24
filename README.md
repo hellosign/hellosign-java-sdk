@@ -12,15 +12,31 @@ SDK releases are published to Maven's [Central repository](https://repo1.maven.o
   <groupId>com.hellosign</groupId>
   <artifactId>hellosign-java-sdk</artifactId>
   <version>RELEASE</version>
-  <classifier>jar-with-dependencies</classifier>
 </dependency>
+```
+
+Releases can also be consumed using other build tools that support Maven Central. 
+
+Gradle for example:
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.hellosign', name: 'hellosign-java-sdk', version:'RELEASE'
+}
 ```
 
 Alternatively, you can build the JAR yourself:
 
-    gradle jar
+    ./gradlew jar
 
-Place `target/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
+or a fatJar with all dependencies if you'd like:
+
+    ./gradlew fatJar
+
+Place `build/libs/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
 
 ## Usage
 
