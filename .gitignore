@@ -9,7 +9,6 @@ web.properties
 src/test/webapp
 .idea/
 *.iml
-gradle.properties
 .gradle/
 build/
 bin/
