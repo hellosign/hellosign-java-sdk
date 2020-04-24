@@ -12,3 +12,4 @@ src/test/webapp
 gradle.properties
 .gradle/
 build/
+bin/
