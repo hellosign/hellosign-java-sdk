@@ -121,6 +121,7 @@ public class FormField extends CustomField {
      * @param isRequired boolean true if field is required by signer
      * @deprecated Use {@link #setIsRequired(Boolean)}
      */
+    @Deprecated
     public void setRequired(boolean isRequired) {
         setIsRequired(isRequired);
     }

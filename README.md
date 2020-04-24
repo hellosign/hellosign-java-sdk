@@ -18,7 +18,7 @@ SDK releases are published to Maven's [Central repository](https://repo1.maven.o
 
 Alternatively, you can build the JAR yourself:
 
-    mvn clean package
+    gradle jar
 
 Place `target/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
 

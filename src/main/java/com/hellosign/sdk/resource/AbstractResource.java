@@ -75,7 +75,7 @@ public abstract class AbstractResource {
     protected String getString(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return dataObj.getString(key);
+                return dataObj.get(key).toString();
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;

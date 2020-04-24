@@ -221,6 +221,7 @@ public class SignatureRequest extends AbstractRequest {
      * @return Signature, if found on this request, or null
      * @deprecated Use getSignature(email, name)
      */
+    @Deprecated
     public Signature getSignatureBySigner(String email, String name) {
         if (email == null || name == null) {
             return null;
@@ -335,6 +336,7 @@ public class SignatureRequest extends AbstractRequest {
      * @deprecated use getFilesUrl()
      * @return String URL
      */
+    @Deprecated
     public String getFinalCopyUrl() {
         return getString(SIGREQ_FINAL_COPY_URL);
     }
