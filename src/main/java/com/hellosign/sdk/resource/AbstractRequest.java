@@ -72,7 +72,6 @@ public abstract class AbstractRequest extends AbstractResource {
             Metadata metadata = getMetadata();
             if (metadata != null) {
                 JSONObject mj = metadata.getJSONObject();
-                @SuppressWarnings("unchecked")
                 Iterator<String> keys = (Iterator<String>) mj.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();
