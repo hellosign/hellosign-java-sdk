@@ -2,7 +2,7 @@ package com.hellosign.sdk.http;
 
 import com.hellosign.sdk.HelloSignException;
 import java.net.HttpURLConnection;
-import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -140,8 +140,8 @@ public class Authentication {
         } else if (hasApiKey()) {
             logger.debug("Using API Key to authenticate");
             String apiKey = getApiKey() + ":";
-            authorization =
-                "Basic " + DatatypeConverter.printBase64Binary(apiKey.getBytes()).trim();
+            authorization = "Basic " + Base64.getEncoder().encodeToString(apiKey.getBytes()).trim();
+
         }
         if (authorization != null) {
             logger.debug("Authorization: " + authorization);
