@@ -11,5 +11,4 @@ src/test/webapp
 *.iml
 gradle.properties
 .gradle/
-gradle/
 build/
