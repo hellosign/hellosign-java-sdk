@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Represents a HelloSign signature request based on one or more Templates.
@@ -144,9 +145,10 @@ public class TemplateSignatureRequest extends AbstractRequest {
         if (email == null) {
             return;
         }
-        for (int i = 0; i < signers.size(); i++) {
-            if (email.equalsIgnoreCase(signers.get(i).getEmail())) {
-                signers.remove(i);
+        var signerSet = signers.entrySet();
+        for (Entry<String,Signer> entry : signerSet) {
+            if (email.equalsIgnoreCase(entry.getValue().getEmail())) {
+                signers.remove(entry.getKey());
             }
         }
     }

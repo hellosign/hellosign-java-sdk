@@ -744,6 +744,7 @@ public class HelloSignClient {
      *         HTTP request or the JSON response.
      * @deprecated Use {{@link #getFiles(String)}
      */
+    @Deprecated
     public File getFinalCopy(String requestId) throws HelloSignException {
         String url = BASE_URI + SIGNATURE_REQUEST_FINAL_COPY_URI + "/" + requestId;
         String filename = FINAL_COPY_FILE_NAME + "." + FINAL_COPY_FILE_EXT;
@@ -1064,6 +1065,7 @@ public class HelloSignClient {
      *         and is no longer operational. This will be removed in the next
      *         minor version of the SDK.
      */
+    @Deprecated
     public boolean isOnline() throws HelloSignException {
         return true;
     }

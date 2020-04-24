@@ -75,7 +75,7 @@ public abstract class AbstractResource {
     protected String getString(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return dataObj.getString(key);
+                return dataObj.get(key).toString();
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -87,7 +87,7 @@ public abstract class AbstractResource {
     protected Boolean getBoolean(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return new Boolean(dataObj.getBoolean(key));
+                return Boolean.valueOf(dataObj.getBoolean(key));
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -99,7 +99,7 @@ public abstract class AbstractResource {
     protected Integer getInteger(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return new Integer(dataObj.getInt(key));
+                return Integer.valueOf(dataObj.getInt(key));
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -136,7 +136,7 @@ public abstract class AbstractResource {
     protected Long getLong(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return new Long(dataObj.getLong(key));
+                return Long.valueOf(dataObj.getLong(key));
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;

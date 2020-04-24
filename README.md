@@ -12,15 +12,31 @@ SDK releases are published to Maven's [Central repository](https://repo1.maven.o
   <groupId>com.hellosign</groupId>
   <artifactId>hellosign-java-sdk</artifactId>
   <version>RELEASE</version>
-  <classifier>jar-with-dependencies</classifier>
 </dependency>
+```
+
+Releases can also be consumed using other build tools that support Maven Central. 
+
+Gradle for example:
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.hellosign', name: 'hellosign-java-sdk', version:'RELEASE'
+}
 ```
 
 Alternatively, you can build the JAR yourself:
 
-    mvn clean package
+    ./gradlew jar
 
-Place `target/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
+or a fatJar with all dependencies if you'd like:
+
+    ./gradlew fatJar
+
+Place `build/libs/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
 
 ## Usage
 
@@ -51,7 +67,7 @@ Document doc = new Document();
 doc.setFile(new File("/path/to/myfile.pdf")));
 
 FormField textField = new FormField();
-textField.setType(FieldType.text);
+textField.setType(FieldType.TEXT);
 textField.setName("First Name"); // Displayed to the signer as the "Field Label"
 textField.setValidationType(ValidationType.letters_only);
 textField.setSigner(0); // Signer indexes are zero-based
@@ -124,7 +140,7 @@ if (response.isComplete()) {
 ```
 The MIT License (MIT)
 
-Copyright (C) 2019 hellosign.com
+Copyright (C) 2020 hellosign.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
