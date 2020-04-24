@@ -67,7 +67,7 @@ Document doc = new Document();
 doc.setFile(new File("/path/to/myfile.pdf")));
 
 FormField textField = new FormField();
-textField.setType(FieldType.text);
+textField.setType(FieldType.TEXT);
 textField.setName("First Name"); // Displayed to the signer as the "Field Label"
 textField.setValidationType(ValidationType.letters_only);
 textField.setSigner(0); // Signer indexes are zero-based
