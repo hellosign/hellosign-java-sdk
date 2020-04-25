@@ -52,6 +52,10 @@ public abstract class AbstractResource {
         }
     }
 
+    protected static boolean hasString(String s) {
+        return s != null && !s.equals("");
+    }
+
     public JSONObject getJSONObject() {
         return dataObj;
     }
@@ -223,8 +227,8 @@ public abstract class AbstractResource {
     }
 
     /**
-     * Returns the first constructor that has exactly one parameter of the
-     * provided paramClass type.
+     * Returns the first constructor that has exactly one parameter of the provided paramClass
+     * type.
      *
      * @param clazz Class whose constructors we are checking
      * @param paramClass Class Parameter class that the constructor should take
@@ -258,10 +262,6 @@ public abstract class AbstractResource {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    protected static boolean hasString(String s) {
-        return s != null && !s.equals("");
     }
 
     public String toString() {

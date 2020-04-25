@@ -7,23 +7,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class provides convenience methods for handling authentication
- * information for a HelloSignClient instance. We usually only want to use one
- * of these methods, but don't necessarily want to have to pass around all of
- * the information in method parameters.
+ * This class provides convenience methods for handling authentication information for a
+ * HelloSignClient instance. We usually only want to use one of these methods, but don't necessarily
+ * want to have to pass around all of the information in method parameters.
  *
  * @author Chris Paul (chris@hellosign.com)
  */
 public class Authentication {
 
     private static final Logger logger = LoggerFactory.getLogger(Authentication.class);
-
+    private static final String[] allowedOauthOps = {"account", "signature_request",
+        "reusable_form", "template"};
     private String apiKey = "";
     private String accessToken = "";
     private String accessTokenType = "";
-
-    private static final String[] allowedOauthOps = {"account", "signature_request",
-        "reusable_form", "template"};
 
     public Authentication() {
     }
@@ -94,8 +91,7 @@ public class Authentication {
      *
      * @param accessToken String
      * @param tokenType String
-     * @throws HelloSignException if either the accessToken or tokenType are
-     *         null
+     * @throws HelloSignException if either the accessToken or tokenType are null
      */
     public void setAccessToken(String accessToken, String tokenType) throws HelloSignException {
         if (accessToken == null) {

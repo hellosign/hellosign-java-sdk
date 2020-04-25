@@ -1,85 +1,85 @@
 {
-    "signature_request": {
-        "signature_request_id": "9cc3d5819959419abee4dbff2073d497e7c0a962",
-        "test_mode": false,
-        "title": "Java SDK request",
-        "original_title": "Template for the Java SDK",
-        "subject": "Template for the Java SDK",
-        "message": "Pls to be signing kthx",
-        "metadata": {
-        },
-        "is_complete": false,
-        "is_declined": false,
-        "has_error": false,
-        "custom_fields": [
-            {
-                "name": "Field A",
-                "type": "text",
-                "required": null,
-                "api_id": "66ee91_10",
-                "editor": null,
-                "value": "Hello"
-            },
-            {
-                "name": "Checkbox A",
-                "type": "checkbox",
-                "required": null,
-                "api_id": "66ee91_12",
-                "editor": null,
-                "value": true
-            },
-            {
-                "name": "Field B",
-                "type": "text",
-                "required": null,
-                "api_id": "66ee91_11",
-                "editor": null,
-                "value": "World!"
-            },
-            {
-                "name": "Checkbox B",
-                "type": "checkbox",
-                "required": null,
-                "api_id": "66ee91_13",
-                "editor": null,
-                "value": false
-            }
-        ],
-        "response_data": [
-        ],
-        "signing_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/sign\/9cc3d5819959419abee4dbff2073d497e7c0a962",
-        "signing_redirect_url": null,
-        "final_copy_uri": "\/v3\/signature_request\/final_copy\/9cc3d5819959419abee4dbff2073d497e7c0a962",
-        "files_url": "https:\/\/api.dev-hellosign.com\/apiapp_dev.php\/v3\/signature_request\/files\/9cc3d5819959419abee4dbff2073d497e7c0a962",
-        "details_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/home\/manage?guid=9cc3d5819959419abee4dbff2073d497e7c0a962",
-        "requester_email_address": "apidemos@hellosign.com",
-        "signatures": [
-            {
-                "signature_id": "130f22673b2365ef0fbf9632cfb94eab",
-                "has_pin": false,
-                "signer_email_address": "chris+a@hellosign.com",
-                "signer_name": "Chris A",
-                "order": null,
-                "status_code": "awaiting_signature",
-                "signed_at": null,
-                "last_viewed_at": null,
-                "last_reminded_at": null,
-                "error": null
-            },
-            {
-                "signature_id": "2a646fef3eef9329e917ae9d2ae080e3",
-                "has_pin": false,
-                "signer_email_address": "chris+b@hellosign.com",
-                "signer_name": "Chris B",
-                "order": null,
-                "status_code": "awaiting_signature",
-                "signed_at": null,
-                "last_viewed_at": null,
-                "last_reminded_at": null,
-                "error": null
-            }
-        ],
-        "cc_email_addresses": [
-        ]
-    }
+  "signature_request": {
+    "signature_request_id": "9cc3d5819959419abee4dbff2073d497e7c0a962",
+    "test_mode": false,
+    "title": "Java SDK request",
+    "original_title": "Template for the Java SDK",
+    "subject": "Template for the Java SDK",
+    "message": "Pls to be signing kthx",
+    "metadata": {
+    },
+    "is_complete": false,
+    "is_declined": false,
+    "has_error": false,
+    "custom_fields": [
+      {
+        "name": "Field A",
+        "type": "text",
+        "required": null,
+        "api_id": "66ee91_10",
+        "editor": null,
+        "value": "Hello"
+      },
+      {
+        "name": "Checkbox A",
+        "type": "checkbox",
+        "required": null,
+        "api_id": "66ee91_12",
+        "editor": null,
+        "value": true
+      },
+      {
+        "name": "Field B",
+        "type": "text",
+        "required": null,
+        "api_id": "66ee91_11",
+        "editor": null,
+        "value": "World!"
+      },
+      {
+        "name": "Checkbox B",
+        "type": "checkbox",
+        "required": null,
+        "api_id": "66ee91_13",
+        "editor": null,
+        "value": false
+      }
+    ],
+    "response_data": [
+    ],
+    "signing_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/sign\/9cc3d5819959419abee4dbff2073d497e7c0a962",
+    "signing_redirect_url": null,
+    "final_copy_uri": "\/v3\/signature_request\/final_copy\/9cc3d5819959419abee4dbff2073d497e7c0a962",
+    "files_url": "https:\/\/api.dev-hellosign.com\/apiapp_dev.php\/v3\/signature_request\/files\/9cc3d5819959419abee4dbff2073d497e7c0a962",
+    "details_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/home\/manage?guid=9cc3d5819959419abee4dbff2073d497e7c0a962",
+    "requester_email_address": "apidemos@hellosign.com",
+    "signatures": [
+      {
+        "signature_id": "130f22673b2365ef0fbf9632cfb94eab",
+        "has_pin": false,
+        "signer_email_address": "chris+a@hellosign.com",
+        "signer_name": "Chris A",
+        "order": null,
+        "status_code": "awaiting_signature",
+        "signed_at": null,
+        "last_viewed_at": null,
+        "last_reminded_at": null,
+        "error": null
+      },
+      {
+        "signature_id": "2a646fef3eef9329e917ae9d2ae080e3",
+        "has_pin": false,
+        "signer_email_address": "chris+b@hellosign.com",
+        "signer_name": "Chris B",
+        "order": null,
+        "status_code": "awaiting_signature",
+        "signed_at": null,
+        "last_viewed_at": null,
+        "last_reminded_at": null,
+        "error": null
+      }
+    ],
+    "cc_email_addresses": [
+    ]
+  }
 }

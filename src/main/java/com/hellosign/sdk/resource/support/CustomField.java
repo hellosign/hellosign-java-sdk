@@ -7,9 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * This class represents a HelloSign Custom Field. This is a field that is set
- * up during the creation of the signature request or template and contains
- * information that must be filled in by the requester, prior to sending.
+ * This class represents a HelloSign Custom Field. This is a field that is set up during the
+ * creation of the signature request or template and contains information that must be filled in by
+ * the requester, prior to sending.
  *
  * Right now, this is only applicable to text fields.
  *
@@ -58,13 +58,6 @@ public class CustomField extends AbstractResource {
         return FieldType.getEnum(getString(CUSTOM_FIELD_TYPE));
     }
 
-    public String getTypeString() {
-        if (has(CUSTOM_FIELD_TYPE)) {
-            return getType().toString();
-        }
-        return null;
-    }
-
     /**
      * Set the type for this custom field.
      *
@@ -72,6 +65,13 @@ public class CustomField extends AbstractResource {
      */
     public void setType(FieldType type) {
         set(CUSTOM_FIELD_TYPE, type.toString());
+    }
+
+    public String getTypeString() {
+        if (has(CUSTOM_FIELD_TYPE)) {
+            return getType().toString();
+        }
+        return null;
     }
 
     public String getValue() {
@@ -136,21 +136,21 @@ public class CustomField extends AbstractResource {
     }
 
     /**
-     * Returns the y coordinate for this field.
-     *
-     * @return Integer or null if not set
-     */
-    public Integer getY() {
-        return getInteger(CUSTOM_FIELD_Y);
-    }
-
-    /**
      * Returns the x coordinate for this field.
      *
      * @param x int pixel coordinate
      */
     public void setX(int x) {
         set(CUSTOM_FIELD_X, x);
+    }
+
+    /**
+     * Returns the y coordinate for this field.
+     *
+     * @return Integer or null if not set
+     */
+    public Integer getY() {
+        return getInteger(CUSTOM_FIELD_Y);
     }
 
     /**
@@ -199,10 +199,9 @@ public class CustomField extends AbstractResource {
     }
 
     /**
-     * Once processed with a position, height, and width, HelloSign will
-     * estimate the number of lines a custom field can contain, along with the
-     * number of characters per line. This method will return the estimated
-     * average number of lines of text this field can hold.
+     * Once processed with a position, height, and width, HelloSign will estimate the number of
+     * lines a custom field can contain, along with the number of characters per line. This method
+     * will return the estimated average number of lines of text this field can hold.
      *
      * @return Integer or null if not set
      */
@@ -220,10 +219,9 @@ public class CustomField extends AbstractResource {
     }
 
     /**
-     * Once processed with a position, height, and width, HelloSign will
-     * estimate the number of lines a custom field can contain, along with the
-     * number of characters per line. This method will return the estimated
-     * average number of characters per line this field can hold.
+     * Once processed with a position, height, and width, HelloSign will estimate the number of
+     * lines a custom field can contain, along with the number of characters per line. This method
+     * will return the estimated average number of characters per line this field can hold.
      *
      * @return Integer or null if not set
      */

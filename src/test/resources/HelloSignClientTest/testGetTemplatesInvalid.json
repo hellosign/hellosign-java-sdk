@@ -1,1 +1,6 @@
-{"error":{"error_msg":"Your API access has been revoked. Please contact apisupport@hellosign.com.","error_name":"unauthorized"}}
+{
+  "error": {
+    "error_msg": "Your API access has been revoked. Please contact apisupport@hellosign.com.",
+    "error_name": "unauthorized"
+  }
+}

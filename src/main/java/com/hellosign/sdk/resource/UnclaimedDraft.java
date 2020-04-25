@@ -13,8 +13,8 @@ import org.json.JSONObject;
 /**
  * Represents an unclaimed draft response and request.
  *
- * The UnclaimedDraft object essentially "wraps" a SignatureRequest. There are
- * two types of unclaimed drafts that can be created:
+ * The UnclaimedDraft object essentially "wraps" a SignatureRequest. There are two types of
+ * unclaimed drafts that can be created:
  * <ol>
  * <li>"send_document" - simply creates a claimable file. Use the
  * <code>addFile(File)</code> and <code>addFile(File, int)</code> methods to add
@@ -24,7 +24,6 @@ import org.json.JSONObject;
  * </ol>
  *
  * @author "Chris Paul (chris@hellosign.com)"
- *
  */
 public class UnclaimedDraft extends AbstractRequest {
 
@@ -44,16 +43,16 @@ public class UnclaimedDraft extends AbstractRequest {
     private AbstractRequest request;
 
     /**
-     * Default constructor. This will instantiate the unclaimed draft with a
-     * SignatureRequest and the UnclaimedDraftType.send_document.
+     * Default constructor. This will instantiate the unclaimed draft with a SignatureRequest and
+     * the UnclaimedDraftType.send_document.
      */
     public UnclaimedDraft() {
         this(new SignatureRequest());
     }
 
     /**
-     * Creates an unclaimed draft with the provided AbstractRequest, and
-     * defaults the type to <code>UnclaimedDraftType.send_document</code>.
+     * Creates an unclaimed draft with the provided AbstractRequest, and defaults the type to
+     * <code>UnclaimedDraftType.send_document</code>.
      *
      * @param request AbstractRequest
      */
@@ -62,8 +61,7 @@ public class UnclaimedDraft extends AbstractRequest {
     }
 
     /**
-     * Creates an unclaimed draft with the provided AbstractRequest and
-     * UnclaimedDraftType.
+     * Creates an unclaimed draft with the provided AbstractRequest and UnclaimedDraftType.
      *
      * @param request AbstractRequest
      * @param type UnclaimedDraftType
@@ -80,21 +78,10 @@ public class UnclaimedDraft extends AbstractRequest {
      * Constructor to provide a way to store the API response JSON information.
      *
      * @param json JSONObject API response object
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         JSONObject.
+     * @throws HelloSignException thrown if there is a problem parsing the JSONObject.
      */
     public UnclaimedDraft(JSONObject json) throws HelloSignException {
         super(json, UNCLAIMED_DRAFT_KEY);
-    }
-
-    /**
-     * Sets the unclaimed draft type. Use the public enum:
-     * UnclaimedDraft.UNCLAIMED_DRAFT_TYPE.
-     *
-     * @param type UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
-     */
-    public void setType(UnclaimedDraftType type) {
-        this.type = type;
     }
 
     /**
@@ -116,23 +103,30 @@ public class UnclaimedDraft extends AbstractRequest {
     }
 
     /**
-     * Sets the associated request object from which this unclaimed draft will
-     * be created.
+     * Sets the unclaimed draft type. Use the public enum: UnclaimedDraft.UNCLAIMED_DRAFT_TYPE.
      *
-     * @param request AbstractRequest
+     * @param type UnclaimedDraft.UNCLAIMED_DRAFT_TYPE
      */
-    public void setRequest(AbstractRequest request) {
-        this.request = request;
+    public void setType(UnclaimedDraftType type) {
+        this.type = type;
     }
 
     /**
-     * Gets the associated request object. Currently this will always be a
-     * SignatureRequest.
+     * Gets the associated request object. Currently this will always be a SignatureRequest.
      *
      * @return AbstractRequest
      */
     public AbstractRequest getRequest() {
         return request;
+    }
+
+    /**
+     * Sets the associated request object from which this unclaimed draft will be created.
+     *
+     * @param request AbstractRequest
+     */
+    public void setRequest(AbstractRequest request) {
+        this.request = request;
     }
 
     /**
@@ -183,8 +177,7 @@ public class UnclaimedDraft extends AbstractRequest {
     /**
      * Removes all files from this request.
      *
-     * @throws HelloSignException thrown if there is a problem clearing the
-     *         Files
+     * @throws HelloSignException thrown if there is a problem clearing the Files
      */
     public void clearFiles() throws HelloSignException {
         if (!(request instanceof SignatureRequest)) {
@@ -245,12 +238,12 @@ public class UnclaimedDraft extends AbstractRequest {
         return getString(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
     }
 
-    public boolean hasRequesterEmail() {
-        return has(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
-    }
-
     public void setRequesterEmail(String email) {
         set(UNCLAIMED_DRAFT_REQUESTER_EMAIL, email);
+    }
+
+    public boolean hasRequesterEmail() {
+        return has(UNCLAIMED_DRAFT_REQUESTER_EMAIL);
     }
 
     @Override
@@ -299,16 +292,16 @@ public class UnclaimedDraft extends AbstractRequest {
     }
 
     @Override
-    public void setTestMode(boolean testMode) {
-        request.setTestMode(testMode);
-    }
-
-    @Override
     public boolean isTestMode() {
         if (request == null) {
             return getBoolean(UNCLAIMED_DRAFT_TEST_MODE);
         }
         return request.isTestMode();
+    }
+
+    @Override
+    public void setTestMode(boolean testMode) {
+        request.setTestMode(testMode);
     }
 
     @Override
@@ -348,13 +341,13 @@ public class UnclaimedDraft extends AbstractRequest {
     }
 
     @Override
-    public Map<String, String> getCustomFieldsMap() {
-        return request.getCustomFieldsMap();
+    public void setCustomFields(Map<String, String> fields) {
+        request.setCustomFields(fields);
     }
 
     @Override
-    public void setCustomFields(Map<String, String> fields) {
-        request.setCustomFields(fields);
+    public Map<String, String> getCustomFieldsMap() {
+        return request.getCustomFieldsMap();
     }
 
     @Override

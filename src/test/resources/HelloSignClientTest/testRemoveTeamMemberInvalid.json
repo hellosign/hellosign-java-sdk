@@ -1,6 +1,6 @@
 {
-    "error": {
-        "error_msg": "email_address not valid: foo",
-        "error_name": "bad_request"
-    }
+  "error": {
+    "error_msg": "email_address not valid: foo",
+    "error_name": "bad_request"
+  }
 }

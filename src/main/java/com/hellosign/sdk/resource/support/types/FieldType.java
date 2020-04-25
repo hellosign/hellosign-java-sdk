@@ -20,16 +20,17 @@ public enum FieldType {
         this.value = value;
     }
 
+    public static FieldType getEnum(String string) {
+        for (FieldType type : values()) {
+            if (type.value.equals(string)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
     @Override
     public String toString() {
         return this.value;
-    }
-
-    public static FieldType getEnum(String string) {
-        for(FieldType type : values())
-            if(type.value.equals(string)) {
-                return type;
-            }
-        throw new IllegalArgumentException();
     }
 }

@@ -12,14 +12,12 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractResourceList<E> extends AbstractResource implements Iterable<E> {
 
-    private static final Logger logger = LoggerFactory.getLogger(AbstractResourceList.class);
-
     public static final String LIST_INFO = "list_info";
     public static final String PAGE = "page";
     public static final String NUM_PAGES = "num_pages";
     public static final String NUM_RESULTS = "num_results";
     public static final String PAGE_SIZE = "page_size";
-
+    private static final Logger logger = LoggerFactory.getLogger(AbstractResourceList.class);
     private JSONObject listInfo;
     private String listKey;
 

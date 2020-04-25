@@ -19,8 +19,8 @@ public class HttpGetRequest extends AbstractHttpRequest {
      * Constructor
      *
      * @param url String
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpGetRequest(String url) throws HelloSignException {
         this(url, null, null);
@@ -31,8 +31,8 @@ public class HttpGetRequest extends AbstractHttpRequest {
      *
      * @param url String
      * @param auth Authentication
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpGetRequest(String url, Authentication auth) throws HelloSignException {
         this(url, null, auth);
@@ -43,8 +43,8 @@ public class HttpGetRequest extends AbstractHttpRequest {
      *
      * @param url String
      * @param parameters Map
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpGetRequest(String url, Map<String, String> parameters) throws HelloSignException {
         this(url, parameters, null);

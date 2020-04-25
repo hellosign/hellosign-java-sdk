@@ -6,8 +6,7 @@ import com.hellosign.sdk.resource.support.types.FieldType;
 import org.json.JSONObject;
 
 /**
- * This class represents the "response_data" portion of SignatureRequest
- * objects.
+ * This class represents the "response_data" portion of SignatureRequest objects.
  *
  * @author "Chris Paul (chris@hellosign.com)"
  */

@@ -40,11 +40,11 @@ public class Signer {
         this.email = email;
     }
 
-    public void setAccessCode(String accessCode) {
-        this.accessCode = accessCode;
-    }
-
     public String getAccessCode() {
         return accessCode;
+    }
+
+    public void setAccessCode(String accessCode) {
+        this.accessCode = accessCode;
     }
 }

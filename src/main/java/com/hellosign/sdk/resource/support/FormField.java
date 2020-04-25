@@ -66,6 +66,15 @@ public class FormField extends CustomField {
     }
 
     /**
+     * Returns the page number this component is on.
+     *
+     * @return Integer page number, or null if not set
+     */
+    public Integer getPage() {
+        return getInteger(FORM_FIELD_PAGE);
+    }
+
+    /**
      * Set the page number for this component. The (x, y) coordinates will be relative to the top
      * left corner of that page.
      *
@@ -76,12 +85,12 @@ public class FormField extends CustomField {
     }
 
     /**
-     * Returns the page number this component is on.
+     * Return the validation rule being used for this field
      *
-     * @return Integer page number, or null if not set
+     * @return ValidationType validation type, null if not set
      */
-    public Integer getPage() {
-        return getInteger(FORM_FIELD_PAGE);
+    public ValidationType getValidationType() {
+        return ValidationType.valueOf(getString(FORM_FIELD_VALIDATION_TYPE));
     }
 
     /**
@@ -92,15 +101,6 @@ public class FormField extends CustomField {
      */
     public void setValidationType(ValidationType type) {
         set(FORM_FIELD_VALIDATION_TYPE, type.toString());
-    }
-
-    /**
-     * Return the validation rule being used for this field
-     *
-     * @return ValidationType validation type, null if not set
-     */
-    public ValidationType getValidationType() {
-        return ValidationType.valueOf(getString(FORM_FIELD_VALIDATION_TYPE));
     }
 
     /**
@@ -128,6 +128,7 @@ public class FormField extends CustomField {
 
     @Override
     public void setValue(String value) {
-        throw new UnsupportedOperationException("Setting value is not allowed for form fields, see custom fields.");
+        throw new UnsupportedOperationException(
+            "Setting value is not allowed for form fields, see custom fields.");
     }
 }

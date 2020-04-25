@@ -96,7 +96,8 @@ public class HelloSignClientTest {
 
     protected File getTestFixture(String name) {
         String path = System.getProperty("file.separator") + this.getClass().getSimpleName()
-            + System.getProperty("file.separator") + "Fixtures" + System.getProperty("file.separator") + name;
+            + System.getProperty("file.separator") + "Fixtures" + System
+            .getProperty("file.separator") + name;
         URL resource = this.getClass().getResource(path);
         return new File(resource.getFile());
     }
@@ -900,7 +901,8 @@ public class HelloSignClientTest {
         SignatureRequest request = new SignatureRequest();
         request.setTitle("NDA with Acme Co.");
         request.setSubject("The NDA we talked about");
-        request.setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        request.setMessage(
+            "Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
         request.addSigner("jack@example.com", "Jack");
         request.setTestMode(true);
 
@@ -995,7 +997,7 @@ public class HelloSignClientTest {
         request.setCustomFields(fields);
 
         SignatureRequest newRequest = client.sendSignatureRequest(request);
-        List<CustomField> customFields= newRequest.getCustomFields();
+        List<CustomField> customFields = newRequest.getCustomFields();
         Assert.assertEquals(4, customFields.size());
 
         CustomField customField0 = customFields.get(0);

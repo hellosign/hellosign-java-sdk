@@ -99,20 +99,18 @@ public class HttpClient {
      *
      * @param f File that should contain the response
      * @return long bytes written
-     * @throws HelloSignException thrown if there is a problem writing to the
-     *         file or reading the response stream
+     * @throws HelloSignException thrown if there is a problem writing to the file or reading the
+     * response stream
      */
     public long getLastResponseAsFile(File f) throws HelloSignException {
         return request.getResponseAsFile(f);
     }
 
     /**
-     * Inspects the JSONObject response for errors and throws an exception if
-     * found.
+     * Inspects the JSONObject response for errors and throws an exception if found.
      *
      * @param json JSONObject response
-     * @throws HelloSignException thrown if an error is reported from the API
-     *         call
+     * @throws HelloSignException thrown if an error is reported from the API call
      */
     private void validate(JSONObject json) throws HelloSignException {
         if (json.has("error")) {
@@ -141,8 +139,7 @@ public class HttpClient {
      * Executes the request and returns the response as a JSONObject.
      *
      * @return JSONObject response
-     * @throws HelloSignException thrown if there is a problem executing the
-     *         request
+     * @throws HelloSignException thrown if there is a problem executing the request
      */
     public JSONObject asJson() throws HelloSignException {
         JSONObject json;
@@ -166,8 +163,7 @@ public class HttpClient {
      *
      * @param fileName String name of destination file
      * @return File response
-     * @throws HelloSignException thrown if there is a problem executing the
-     *         request
+     * @throws HelloSignException thrown if there is a problem executing the request
      */
     public File asFile(String fileName) throws HelloSignException {
         Integer lastResponseCode = getLastResponseCode();
@@ -300,8 +296,7 @@ public class HttpClient {
     }
 
     /**
-     * Helper method that allows this client to ignore SSL certificates when
-     * making API requests.
+     * Helper method that allows this client to ignore SSL certificates when making API requests.
      */
     private void disableStrictSSL() {
         // Create a trust manager that does not validate certificate chains

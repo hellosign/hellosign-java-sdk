@@ -65,8 +65,7 @@ public class Template extends AbstractResource {
     }
 
     /**
-     * Returns a list of SignerRoles. If they are ordered, the list is returned
-     * in order.
+     * Returns a list of SignerRoles. If they are ordered, the list is returned in order.
      *
      * @return List
      */
@@ -106,8 +105,7 @@ public class Template extends AbstractResource {
     }
 
     /**
-     * Returns true if this template was created on a site other than
-     * hellosign.com.
+     * Returns true if this template was created on a site other than hellosign.com.
      *
      * @return boolean
      */
