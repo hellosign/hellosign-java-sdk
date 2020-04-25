@@ -170,7 +170,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
      */
     public String getTemplateId() {
         List<String> templateIds = getTemplateIds();
-        if (templateIds.size() == 0) {
+        if (templateIds.isEmpty()) {
             return null;
         }
         return templateIds.get(0);
@@ -248,7 +248,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
                 fields.put(TEMPLATE_IDS + "[" + i + "]", templateIds.get(i));
             }
             Map<String, Signer> signerz = getSigners();
-            for (String role : signerz.keySet()) {
+            for (Entry<String, Signer> entry : signerz.entrySet()) {
+                var role = entry.getKey();
                 Signer s = signerz.get(role);
                 fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_EMAIL + "]",
                     s.getEmail());
@@ -270,7 +271,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
                 fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
             }
             Map<String, String> ccz = getCCs();
-            for (String role : ccz.keySet()) {
+            for (Entry<String, String> entry : ccz.entrySet()) {
+                var role = entry.getKey();
                 fields.put(TEMPLATE_CCS + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]",
                     ccz.get(role));
             }

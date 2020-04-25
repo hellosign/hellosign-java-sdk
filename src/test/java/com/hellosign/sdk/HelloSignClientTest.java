@@ -94,7 +94,7 @@ public class HelloSignClientTest {
         return result;
     }
 
-    protected File getTestFixture(String name) throws FileNotFoundException {
+    protected File getTestFixture(String name) {
         String path = System.getProperty("file.separator") + this.getClass().getSimpleName()
             + System.getProperty("file.separator") + "Fixtures" + System.getProperty("file.separator") + name;
         URL resource = this.getClass().getResource(path);

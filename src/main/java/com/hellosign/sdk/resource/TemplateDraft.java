@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -229,12 +230,11 @@ public class TemplateDraft extends AbstractRequest {
             return null;
         }
         JSONArray mergeFieldArray = new JSONArray();
-        for (String key : mergeFields.keySet()) {
-            FieldType type = mergeFields.get(key);
+        for (Entry<String, FieldType> entry : mergeFields.entrySet()) {
             JSONObject mergeFieldObj = new JSONObject();
             try {
-                mergeFieldObj.put("name", key);
-                mergeFieldObj.put("type", type.toString());
+                mergeFieldObj.put("name", entry.getKey());
+                mergeFieldObj.put("type", entry.getValue().toString());
             } catch (JSONException e) {
                 throw new HelloSignException(e);
             }

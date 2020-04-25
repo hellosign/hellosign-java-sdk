@@ -21,8 +21,8 @@ public abstract class AbstractHttpRequest {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractHttpRequest.class);
 
-    public final static String DEFAULT_ENCODING = "UTF-8";
-    public final static String USER_AGENT = createUserAgent();
+    public static final String DEFAULT_ENCODING = "UTF-8";
+    public static final String USER_AGENT = createUserAgent();
 
     // Request variables
     protected String url;
@@ -145,7 +145,7 @@ public abstract class AbstractHttpRequest {
      * @return HttpURLConnection
      * @throws HelloSignException Thrown if a connection cannot be created
      */
-    abstract protected HttpURLConnection getConnection() throws HelloSignException;
+    protected abstract HttpURLConnection getConnection() throws HelloSignException;
 
     /**
      * Write the last response to a file.

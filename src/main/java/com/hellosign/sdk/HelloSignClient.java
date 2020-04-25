@@ -789,15 +789,15 @@ public class HelloSignClient {
     public FileUrlResponse getFilesUrl(String requestId) throws HelloSignException {
         String url = BASE_URI + SIGNATURE_REQUEST_FILES_URI + "/" + requestId;
 
-        HttpClient httpClient = this.httpClient.withAuth(auth).withGetParam(PARAM_GET_URL, "1")
+        HttpClient client = this.httpClient.withAuth(auth).withGetParam(PARAM_GET_URL, "1")
             .get(url);
 
-        if (httpClient.getLastResponseCode() == 404) {
+        if (client.getLastResponseCode() == 404) {
             throw new HelloSignException(
                 String.format("Could not find request with id=%s", requestId));
         }
 
-        return new FileUrlResponse(httpClient.asJson());
+        return new FileUrlResponse(client.asJson());
     }
 
     /**

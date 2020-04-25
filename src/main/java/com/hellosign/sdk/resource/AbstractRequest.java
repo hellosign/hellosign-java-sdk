@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -44,9 +45,9 @@ public abstract class AbstractRequest extends AbstractResource {
     public static final int UX_VERSION_2 = 2;
 
     private Metadata metadata;
-    private List<CustomField> customFields = new ArrayList<CustomField>();
-    private List<Document> documents = new ArrayList<Document>();
-    private List<String> fileUrls = new ArrayList<String>();
+    private List<CustomField> customFields = new ArrayList<>();
+    private List<Document> documents = new ArrayList<>();
+    private List<String> fileUrls = new ArrayList<>();
     private boolean orderMatters = false;
     private int uxVersion = UX_VERSION_1;
     private String clientId = null;
@@ -67,12 +68,12 @@ public abstract class AbstractRequest extends AbstractResource {
     }
 
     public Map<String, Serializable> getPostFields() throws HelloSignException {
-        Map<String, Serializable> fields = new HashMap<String, Serializable>();
+        Map<String, Serializable> fields = new HashMap<>();
         try {
             Metadata metadata = getMetadata();
             if (metadata != null) {
                 JSONObject mj = metadata.getJSONObject();
-                Iterator<String> keys = (Iterator<String>) mj.keys();
+                Iterator<String> keys = mj.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();
                     fields.put(REQUEST_METADATA + "[" + key + "]", mj.getString(key));
@@ -94,7 +95,7 @@ public abstract class AbstractRequest extends AbstractResource {
         if (hasAllowReassign()) {
             fields.put(REQUEST_ALLOW_REASSIGN, isAllowReassign());
         }
-        if (customFields.size() > 0) {
+        if (!customFields.isEmpty()) {
             JSONArray array = new JSONArray();
             for (CustomField f : customFields) {
                 array.put(f.getJSONObject());
@@ -303,7 +304,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * Remove all documents from this request.
      */
     public void clearDocuments() {
-        documents = new ArrayList<Document>();
+        documents = new ArrayList<>();
     }
 
     /**
@@ -460,7 +461,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * @return Map
      */
     public Map<String, String> getCustomFieldsMap() {
-        Map<String, String> fields = new HashMap<String, String>();
+        Map<String, String> fields = new HashMap<>();
         for (CustomField f : customFields) {
             fields.put(f.getName(), f.getValue());
         }
@@ -474,7 +475,7 @@ public abstract class AbstractRequest extends AbstractResource {
      * @return List CustomFields
      */
     public List<CustomField> getCustomFields() {
-        return getList(CustomField.class, "custom_fields");
+        return getList(CustomField.class, REQUEST_CUSTOM_FIELDS);
     }
 
     /**
@@ -485,7 +486,7 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     @Deprecated
     public List<CustomField> getCustomFieldsList() {
-        return getList(CustomField.class, "custom_fields");
+        return getList(CustomField.class, REQUEST_CUSTOM_FIELDS);
     }
 
     /**
@@ -496,10 +497,10 @@ public abstract class AbstractRequest extends AbstractResource {
      */
     public void setCustomFields(Map<String, String> fields) {
         clearCustomFields();
-        for (String key : fields.keySet()) {
+        for (Entry<String, String> entry : fields.entrySet()) {
             CustomField f = new CustomField();
-            f.setName(key);
-            f.setValue(fields.get(key));
+            f.setName(entry.getKey());
+            f.setValue(entry.getValue());
             customFields.add(f);
         }
     }
@@ -508,6 +509,6 @@ public abstract class AbstractRequest extends AbstractResource {
      * Clears the current custom fields for this request.
      */
     public void clearCustomFields() {
-        customFields = new ArrayList<CustomField>();
+        customFields = new ArrayList<>();
     }
 }

@@ -72,7 +72,7 @@ public class Template extends AbstractResource {
      */
     public List<TemplateRole> getSignerRoles() {
         List<TemplateRole> masterList = getList(TemplateRole.class, TEMPLATE_SIGNER_ROLES);
-        if (masterList == null || masterList.size() == 0) {
+        if (masterList == null || masterList.isEmpty()) {
             return masterList;
         }
         if (masterList.get(0).getOrder() == null) {

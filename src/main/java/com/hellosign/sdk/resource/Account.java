@@ -34,8 +34,8 @@ public class Account extends AbstractResource {
         this(json, ACCOUNT_KEY);
     }
 
-    public Account(JSONObject json, String custom_key) throws HelloSignException {
-        super(json, custom_key);
+    public Account(JSONObject json, String customKey) throws HelloSignException {
+        super(json, customKey);
         quotas = new Quotas(dataObj);
     }
 

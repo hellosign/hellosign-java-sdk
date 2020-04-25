@@ -214,7 +214,7 @@ public class Event extends AbstractResource {
      * @return boolean
      */
     public boolean hasSignatureRequest() {
-        return resource != null && resource instanceof SignatureRequest;
+        return resource instanceof SignatureRequest;
     }
 
     /**
@@ -235,7 +235,7 @@ public class Event extends AbstractResource {
      * @return boolean
      */
     public boolean hasTemplate() {
-        return resource != null && resource instanceof Template;
+        return resource instanceof Template;
     }
 
     /**
@@ -300,7 +300,7 @@ public class Event extends AbstractResource {
         }
     }
 
-    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    protected final static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
     private static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];

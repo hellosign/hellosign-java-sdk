@@ -301,7 +301,7 @@ public class ApiApp extends AbstractResource {
                     fields.put("oauth[callback_url]", oauth.getCallbackUrl());
                 }
                 Set<ApiAppOauthScopeType> scopes = oauth.getScopes();
-                if (scopes.size() > 0) {
+                if (!scopes.isEmpty()) {
                     String scopeStr = "";
                     for (ApiAppOauthScopeType type : scopes) {
                         scopeStr += type.toString() + ",";
