@@ -4,8 +4,6 @@ import com.hellosign.sdk.HelloSignException;
 
 /**
  * Class that stores signer information for a signature request.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Signer {
 
@@ -40,11 +38,11 @@ public class Signer {
         this.email = email;
     }
 
-    public void setAccessCode(String accessCode) {
-        this.accessCode = accessCode;
-    }
-
     public String getAccessCode() {
         return accessCode;
+    }
+
+    public void setAccessCode(String accessCode) {
+        this.accessCode = accessCode;
     }
 }

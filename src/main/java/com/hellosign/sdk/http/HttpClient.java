@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import org.json.JSONException;
@@ -35,7 +34,7 @@ public class HttpClient {
 
     public HttpClient() {
         String disableSslCheck = System.getProperty("hellosign.disable.ssl");
-        if (disableSslCheck != null && "true".equalsIgnoreCase(disableSslCheck)) {
+        if ("true".equalsIgnoreCase(disableSslCheck)) {
             disableStrictSSL();
         }
     }
@@ -47,7 +46,7 @@ public class HttpClient {
 
     public HttpClient withGetParam(String key, String value) {
         if (getParams == null) {
-            getParams = new HashMap<String, String>();
+            getParams = new HashMap<>();
         }
         getParams.put(key, value);
         return this;
@@ -60,7 +59,7 @@ public class HttpClient {
 
     public HttpClient withPostField(String key, Serializable value) {
         if (postFields == null) {
-            postFields = new HashMap<String, Serializable>();
+            postFields = new HashMap<>();
         }
         postFields.put(key, value);
         return this;
@@ -100,21 +99,18 @@ public class HttpClient {
      *
      * @param f File that should contain the response
      * @return long bytes written
-     * @throws HelloSignException thrown if there is a problem writing to the
-     *         file or reading the response stream
+     * @throws HelloSignException thrown if there is a problem writing to the file or reading the
+     * response stream
      */
     public long getLastResponseAsFile(File f) throws HelloSignException {
         return request.getResponseAsFile(f);
     }
 
     /**
-     * Inspects the JSONObject response for errors and throws an exception if
-     * found.
+     * Inspects the JSONObject response for errors and throws an exception if found.
      *
      * @param json JSONObject response
-     * @param code HTTP response code
-     * @throws HelloSignException thrown if an error is reported from the API
-     *         call
+     * @throws HelloSignException thrown if an error is reported from the API call
      */
     private void validate(JSONObject json) throws HelloSignException {
         if (json.has("error")) {
@@ -143,11 +139,10 @@ public class HttpClient {
      * Executes the request and returns the response as a JSONObject.
      *
      * @return JSONObject response
-     * @throws HelloSignException thrown if there is a problem executing the
-     *         request
+     * @throws HelloSignException thrown if there is a problem executing the request
      */
     public JSONObject asJson() throws HelloSignException {
-        JSONObject json = null;
+        JSONObject json;
         String response = getLastResponse();
         logger.debug("Response body: " + response);
         try {
@@ -168,12 +163,11 @@ public class HttpClient {
      *
      * @param fileName String name of destination file
      * @return File response
-     * @throws HelloSignException thrown if there is a problem executing the
-     *         request
+     * @throws HelloSignException thrown if there is a problem executing the request
      */
     public File asFile(String fileName) throws HelloSignException {
         Integer lastResponseCode = getLastResponseCode();
-        File f = null;
+        File f;
         try {
             if (lastResponseCode != null && lastResponseCode != HttpURLConnection.HTTP_OK) {
                 this.asJson(); // Will validate response
@@ -199,11 +193,11 @@ public class HttpClient {
      */
     private File createTemporaryFile(String filename) throws HelloSignException {
         String prefix = filename.substring(0, filename.indexOf("."));
-        String postfix = filename.substring(filename.indexOf(".") + 1, filename.length());
-        if (prefix == null || postfix == null) {
+        String postfix = filename.substring(filename.indexOf(".") + 1);
+        if (prefix.isBlank() || postfix.isBlank()) {
             throw new HelloSignException("Invalid file name: " + prefix + "." + postfix);
         }
-        File f = null;
+        File f;
         try {
             f = File.createTempFile(prefix, "." + postfix);
         } catch (Exception ex) {
@@ -302,8 +296,7 @@ public class HttpClient {
     }
 
     /**
-     * Helper method that allows this client to ignore SSL certificates when
-     * making API requests.
+     * Helper method that allows this client to ignore SSL certificates when making API requests.
      */
     private void disableStrictSSL() {
         // Create a trust manager that does not validate certificate chains
@@ -320,11 +313,7 @@ public class HttpClient {
         }};
 
         // Ignore differences between given hostname and certificate hostname
-        HostnameVerifier hv = new HostnameVerifier() {
-            public boolean verify(String hostname, SSLSession session) {
-                return true;
-            }
-        };
+        HostnameVerifier hv = (hostname, session) -> true;
 
         // Install the all-trusting trust manager
         try {

@@ -18,16 +18,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This utility class provides an abstraction layer for sending multipart HTTP
- * POST requests to a web server.
+ * This utility class provides an abstraction layer for sending multipart HTTP POST requests to a
+ * web server.
  */
 public class HttpPostRequest extends AbstractHttpRequest {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpPostRequest.class);
-
-    private final String boundary;
     private static final String LINE_FEED = "\r\n";
-
+    private final String boundary;
     protected String method = "POST";
 
     private HttpURLConnection httpConn;
@@ -40,8 +38,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      * Constructor
      *
      * @param url String
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpPostRequest(String url) throws HelloSignException {
         this(url, null, null);
@@ -52,8 +50,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      *
      * @param url String
      * @param auth Authentication
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpPostRequest(String url, Authentication auth) throws HelloSignException {
         this(url, null, auth);
@@ -64,8 +62,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      *
      * @param url String
      * @param fields Map
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpPostRequest(String url, Map<String, Serializable> fields) throws HelloSignException {
         this(url, fields, null);
@@ -77,8 +75,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      * @param url String
      * @param fields Map
      * @param auth Authentication
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the response
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the response
      */
     public HttpPostRequest(String url, Map<String, Serializable> fields, Authentication auth)
         throws HelloSignException {
@@ -97,12 +95,12 @@ public class HttpPostRequest extends AbstractHttpRequest {
     }
 
     /**
-     * Helper method to make an HTTP POST request. Intelligently detects whether
-     * Files have been attached and sends as an multipart form request.
+     * Helper method to make an HTTP POST request. Intelligently detects whether Files have been
+     * attached and sends as an multipart form request.
      *
      * @return HttpUrlConnection
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the result
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the result
      */
     @Override
     protected HttpURLConnection getConnection() throws HelloSignException {
@@ -120,8 +118,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      * Helper method to make an HTTP POST request.
      *
      * @return HttpURLConnection
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the result
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the result
      */
     private HttpURLConnection postQuery() throws HelloSignException {
         logger.debug(this.method + ": " + url);
@@ -139,7 +137,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         connection.setRequestProperty("user-agent", USER_AGENT);
         connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
         auth.authenticate(connection, url);
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         if (fields != null) {
             Iterator<String> keys = fields.keySet().iterator();
             while (keys.hasNext()) {
@@ -157,21 +155,15 @@ public class HttpPostRequest extends AbstractHttpRequest {
                     throw new HelloSignException(e);
                 }
                 logger.debug("\t" + key + " = " + val.toString());
-                sb.append(encodedKey + "=" + value);
+                sb.append(encodedKey).append("=").append(value);
                 if (keys.hasNext()) {
                     sb.append("&");
                 }
             }
         }
         try {
-            OutputStream output = connection.getOutputStream();
-            try {
+            try (OutputStream output = connection.getOutputStream()) {
                 output.write(sb.toString().getBytes(DEFAULT_ENCODING));
-            } finally {
-                try {
-                    output.close();
-                } catch (IOException logOrIgnore) {
-                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -184,8 +176,8 @@ public class HttpPostRequest extends AbstractHttpRequest {
      * Helper method to make an HTTP POST request with a File.
      *
      * @return HttpURLConnection
-     * @throws HelloSignException thrown if there is a problem making the HTTP
-     *         request or processing the result
+     * @throws HelloSignException thrown if there is a problem making the HTTP request or processing
+     * the result
      */
     private HttpURLConnection postWithFile() throws HelloSignException {
         try {
@@ -243,7 +235,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
         FileInputStream inputStream = new FileInputStream(uploadFile);
         byte[] buffer = new byte[4096];
-        int bytesRead = -1;
+        int bytesRead;
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
             logger.debug("  " + bytesRead + " bytes written...");
@@ -255,7 +247,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         writer.flush();
     }
 
-    private HttpURLConnection finish() throws IOException {
+    private HttpURLConnection finish() {
         writer.flush();
         write("--" + boundary + "--").write(LINE_FEED);
         writer.close();

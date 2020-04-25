@@ -14,10 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * Represents a HelloSign signature request. This object is used to both submit
- * a request and to represent the request object returned from the server.
- *
- * @author "Chris Paul (chris@hellosign.com)"
+ * Represents a HelloSign signature request. This object is used to both submit a request and to
+ * represent the request object returned from the server.
  */
 public class SignatureRequest extends AbstractRequest {
 
@@ -66,8 +64,8 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns true if this request has an ID. Useful if checking to see if this
-     * request is for submission or is the result of a call to HelloSign.
+     * Returns true if this request has an ID. Useful if checking to see if this request is for
+     * submission or is the result of a call to HelloSign.
      *
      * @return true if the request has an ID, false otherwise
      */
@@ -103,8 +101,8 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns the signature for the given email/name combination, or null if
-     * not found on this request.
+     * Returns the signature for the given email/name combination, or null if not found on this
+     * request.
      *
      * @param email String email address
      * @param name String name
@@ -130,10 +128,8 @@ public class SignatureRequest extends AbstractRequest {
      * Adds the signer to the list of signers for this request.
      *
      * @param signer Signer
-     * @throws HelloSignException thrown if there is a problem adding the
-     *         signer.
      */
-    public void addSigner(Signer signer) throws HelloSignException {
+    public void addSigner(Signer signer) {
         signers.add(signer);
     }
 
@@ -142,25 +138,22 @@ public class SignatureRequest extends AbstractRequest {
      *
      * @param email String
      * @param name String
-     * @throws HelloSignException thrown if there is a problem adding the
-     *         signer.
+     * @throws HelloSignException thrown if there is a problem adding the signer.
      */
     public void addSigner(String email, String name) throws HelloSignException {
         signers.add(new Signer(email, name));
     }
 
     /**
-     * Adds the signer with the given order to the list of signers for this
-     * request. NOTE: The order refers to the 1-base index, not 0-base. This is
-     * to reflect the indexing used by the HelloSign API. This means that adding
-     * an item at order 1 will place it in the 0th index of the list (it will be
-     * the first item).
+     * Adds the signer with the given order to the list of signers for this request. NOTE: The order
+     * refers to the 1-base index, not 0-base. This is to reflect the indexing used by the HelloSign
+     * API. This means that adding an item at order 1 will place it in the 0th index of the list (it
+     * will be the first item).
      *
      * @param email String
      * @param name String
      * @param order int
-     * @throws HelloSignException thrown if there is a problem adding the
-     *         signer.
+     * @throws HelloSignException thrown if there is a problem adding the signer.
      */
     public void addSigner(String email, String name, int order) throws HelloSignException {
         try {
@@ -171,9 +164,8 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns a reference to the signers list. This can be modified and
-     * re-added to the request using setSigners(). Useful for more explicit
-     * modification.
+     * Returns a reference to the signers list. This can be modified and re-added to the request
+     * using setSigners(). Useful for more explicit modification.
      *
      * @return List
      */
@@ -182,8 +174,7 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Overwrites the current list of signers for this request with the given
-     * list.
+     * Overwrites the current list of signers for this request with the given list.
      *
      * @param signers List
      */
@@ -192,12 +183,11 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Removes the signer from the list. If that user does not exist, this will
-     * throw a HelloSignException.
+     * Removes the signer from the list. If that user does not exist, this will throw a
+     * HelloSignException.
      *
      * @param email String
-     * @throws HelloSignException thrown if there is a problem removing the
-     *         signer.
+     * @throws HelloSignException thrown if there is a problem removing the signer.
      */
     public void removeSigner(String email) throws HelloSignException {
         if (email == null) {
@@ -211,10 +201,9 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Utility method that allows you to search for a Signature object on this
-     * request by email and name. It requires both because neither alone is
-     * enough to guarantee uniqueness (some requests can have multiple signers
-     * using the same email address or name).
+     * Utility method that allows you to search for a Signature object on this request by email and
+     * name. It requires both because neither alone is enough to guarantee uniqueness (some requests
+     * can have multiple signers using the same email address or name).
      *
      * @param email String
      * @param name String
@@ -235,12 +224,10 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Internal method used to retrieve the necessary POST fields to submit the
-     * signature request.
+     * Internal method used to retrieve the necessary POST fields to submit the signature request.
      *
      * @return Map
-     * @throws HelloSignException thrown if there is a problem serializing the
-     *         POST fields.
+     * @throws HelloSignException thrown if there is a problem serializing the POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
         Map<String, Serializable> fields = super.getPostFields();
@@ -315,8 +302,8 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * Returns the HelloSign-designated signature status, indicating whether all
-     * signers have signed the document.
+     * Returns the HelloSign-designated signature status, indicating whether all signers have signed
+     * the document.
      *
      * @return true, if all signers have signed the document, false otherwise.
      */
@@ -333,8 +320,8 @@ public class SignatureRequest extends AbstractRequest {
     }
 
     /**
-     * @deprecated use getFilesUrl()
      * @return String URL
+     * @deprecated use getFilesUrl()
      */
     @Deprecated
     public String getFinalCopyUrl() {

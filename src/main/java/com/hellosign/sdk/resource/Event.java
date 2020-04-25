@@ -14,14 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This is a utility class for assisting with the development of callback
- * services to respond to HelloSign events.
- *
- * @author "Chris Paul (chris@hellosign.com)"
+ * This is a utility class for assisting with the development of callback services to respond to
+ * HelloSign events.
  */
 public class Event extends AbstractResource {
-
-    private static final Logger logger = LoggerFactory.getLogger(Event.class);
 
     public static final String EVENT_KEY = "event";
     public static final String EVENT_METADATA = "event_metadata";
@@ -32,18 +28,17 @@ public class Event extends AbstractResource {
     public static final String EVENT_TIME = "event_time";
     public static final String EVENT_HASH = "event_hash";
     public static final String EVENT_MESSAGE = "event_message";
-
     public static final String HASH_ALGORITHM = "HmacSHA256";
-
+    protected final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    private static final Logger logger = LoggerFactory.getLogger(Event.class);
     private AbstractResource resource;
 
     /**
-     * Default constructor. Provide this constructor with the JSONObject created
-     * from the API response.
+     * Default constructor. Provide this constructor with the JSONObject created from the API
+     * response.
      *
      * @param json JSONObject
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         JSONObject.
+     * @throws HelloSignException thrown if there is a problem parsing the JSONObject.
      */
     public Event(JSONObject json) throws HelloSignException {
         super(json, EVENT_KEY);
@@ -61,16 +56,25 @@ public class Event extends AbstractResource {
         }
     }
 
+    private static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+
     /**
      * Returns the account ID that this event is reporting for.
      *
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSON object.
+     * @throws HelloSignException thrown if there is a problem parsing the backing JSON object.
      */
     public String getAccountId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
-        String id = null;
+        String id;
         try {
             id = metadata.getString(REPORTED_FOR_ACCOUNT_ID);
         } catch (JSONException ex) {
@@ -83,10 +87,8 @@ public class Event extends AbstractResource {
      * Returns true if this event has a "reported_for_account_id" field.
      *
      * @return true or false if it does not have an account ID
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
      */
-    public boolean hasAccountId() throws HelloSignException {
+    public boolean hasAccountId() {
         return has(REPORTED_FOR_ACCOUNT_ID);
     }
 
@@ -94,12 +96,11 @@ public class Event extends AbstractResource {
      * Returns the API app ID for which this event is reported.
      *
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
+     * @throws HelloSignException thrown if there is a problem parsing the backing JSONObject.
      */
     public String getAppId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
-        String id = null;
+        String id;
         try {
             id = metadata.getString(REPORTED_FOR_APP_ID);
         } catch (JSONException ex) {
@@ -112,10 +113,8 @@ public class Event extends AbstractResource {
      * Returns true if this event has a "reported_for_app_id" field.
      *
      * @return boolean
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
      */
-    public boolean hasAppId() throws HelloSignException {
+    public boolean hasAppId() {
         return has(REPORTED_FOR_APP_ID);
     }
 
@@ -132,12 +131,11 @@ public class Event extends AbstractResource {
      * Returns the message if any from the event
      *
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
+     * @throws HelloSignException thrown if there is a problem parsing the backing JSONObject.
      */
     public String getEventMessage() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
-        String eventMessage = null;
+        String eventMessage;
         try {
             eventMessage = metadata.getString(EVENT_MESSAGE);
         } catch (JSONException ex) {
@@ -150,10 +148,8 @@ public class Event extends AbstractResource {
      * Returns the signature ID to which this event is associated.
      *
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
      */
-    public String getRelatedSignatureId() throws HelloSignException {
+    public String getRelatedSignatureId() {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
         if (metadata == null) {
             return null;
@@ -181,12 +177,11 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Returns the associated Signature object with this event, if the event is
-     * associated with a Signature Request.
+     * Returns the associated Signature object with this event, if the event is associated with a
+     * Signature Request.
      *
      * @return Signature
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
+     * @throws HelloSignException thrown if there is a problem parsing the backing JSONObject.
      */
     public Signature getRelatedSignature() throws HelloSignException {
         String id = getRelatedSignatureId();
@@ -202,8 +197,7 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Returns a reference to the SignatureRequest that is attached to the
-     * Event.
+     * Returns a reference to the SignatureRequest that is attached to the Event.
      *
      * @return SignatureRequest
      */
@@ -220,7 +214,7 @@ public class Event extends AbstractResource {
      * @return boolean
      */
     public boolean hasSignatureRequest() {
-        return resource != null && resource instanceof SignatureRequest;
+        return resource instanceof SignatureRequest;
     }
 
     /**
@@ -241,7 +235,7 @@ public class Event extends AbstractResource {
      * @return boolean
      */
     public boolean hasTemplate() {
-        return resource != null && resource instanceof Template;
+        return resource instanceof Template;
     }
 
     /**
@@ -279,16 +273,14 @@ public class Event extends AbstractResource {
     }
 
     /**
-     * Returns true if the event hash matches the computed hash using the
-     * provided API key.
+     * Returns true if the event hash matches the computed hash using the provided API key.
      *
      * @param apiKey String api key.
      * @return true if the hashes match, false otherwise
-     * @throws HelloSignException thrown if there is a problem parsing the API
-     *         key.
+     * @throws HelloSignException thrown if there is a problem parsing the API key.
      */
     public boolean isValid(String apiKey) throws HelloSignException {
-        if (apiKey == null || apiKey == "") {
+        if (apiKey == null || apiKey.equals("")) {
             return false;
         }
         try {
@@ -299,25 +291,11 @@ public class Event extends AbstractResource {
             String computedHash = bytesToHex(sha256HMAC.doFinal(data.getBytes()));
             String providedHash = getString(EVENT_HASH);
             return computedHash.equalsIgnoreCase(providedHash);
-        } catch (InvalidKeyException e) {
-            throw new HelloSignException("Invalid API Key (" + e.getMessage() + "): " + apiKey);
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidKeyException | IllegalArgumentException e) {
             throw new HelloSignException("Invalid API Key (" + e.getMessage() + "): " + apiKey);
         } catch (NoSuchAlgorithmException e) {
             throw new HelloSignException("Unable to process API key", e);
         }
-    }
-
-    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
-
-    private static String bytesToHex(byte[] bytes) {
-        char[] hexChars = new char[bytes.length * 2];
-        for (int j = 0; j < bytes.length; j++) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = hexArray[v >>> 4];
-            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-        }
-        return new String(hexChars);
     }
 
     /**

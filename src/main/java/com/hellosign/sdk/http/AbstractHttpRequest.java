@@ -19,11 +19,9 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractHttpRequest {
 
+    public static final String DEFAULT_ENCODING = "UTF-8";
+    public static final String USER_AGENT = createUserAgent();
     private static final Logger logger = LoggerFactory.getLogger(AbstractHttpRequest.class);
-
-    public final static String DEFAULT_ENCODING = "UTF-8";
-    public final static String USER_AGENT = createUserAgent();
-
     // Request variables
     protected String url;
     protected Authentication auth;
@@ -53,11 +51,44 @@ public abstract class AbstractHttpRequest {
     }
 
     /**
-     * Executes this HTTP request and preserves the response stream and HTTP
-     * response code for processing.
+     * Creates an HTTP connection.
      *
-     * @throws HelloSignException Thrown if there is an error while making the
-     *         HTTP request to the HelloSign API.
+     * Optionally checks for proxy parameters and creates a proxied connection using the system
+     * properties: "hellosign.proxy.url" - the URL of the HTTP proxy "hellosign.proxy.port" - the
+     * port of the HTTP proxy
+     *
+     * @param url String URL to connect to
+     * @return HttpUrlConnection the (proxied) connection to the URL
+     * @throws MalformedURLException thrown if the URL is invalid
+     * @throws IOException thrown if IO cannot be established with the URL
+     */
+    protected static HttpURLConnection getProxiedConnection(String url)
+        throws MalformedURLException, IOException {
+        HttpURLConnection conn;
+        Proxy proxy = null;
+        String proxyUrlStr = System.getProperty("hellosign.proxy.url");
+        String proxyPortStr = System.getProperty("hellosign.proxy.port");
+        int proxyPort = 80; // Default to port 80
+        if (proxyPortStr != null) {
+            proxyPort = Integer.parseInt(proxyPortStr);
+        }
+        if (proxyUrlStr != null) {
+            proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrlStr, proxyPort));
+        }
+        if (proxy == null) {
+            conn = (HttpURLConnection) new URL(url).openConnection();
+        } else {
+            conn = (HttpURLConnection) new URL(url).openConnection(proxy);
+        }
+        return conn;
+    }
+
+    /**
+     * Executes this HTTP request and preserves the response stream and HTTP response code for
+     * processing.
+     *
+     * @throws HelloSignException Thrown if there is an error while making the HTTP request to the
+     * HelloSign API.
      */
     public void execute() throws HelloSignException {
         HttpURLConnection connection = getConnection();
@@ -106,57 +137,23 @@ public abstract class AbstractHttpRequest {
     }
 
     /**
-     * Creates an HTTP connection.
-     *
-     * Optionally checks for proxy parameters and creates a proxied connection
-     * using the system properties: "hellosign.proxy.url" - the URL of the HTTP
-     * proxy "hellosign.proxy.port" - the port of the HTTP proxy
-     *
-     * @param url String URL to connect to
-     * @return HttpUrlConnection the (proxied) connection to the URL
-     * @throws MalformedURLException thrown if the URL is invalid
-     * @throws IOException thrown if IO cannot be established with the URL
-     */
-    protected static HttpURLConnection getProxiedConnection(String url)
-        throws MalformedURLException, IOException {
-        HttpURLConnection conn = null;
-        Proxy proxy = null;
-        String proxyUrlStr = System.getProperty("hellosign.proxy.url");
-        String proxyPortStr = System.getProperty("hellosign.proxy.port");
-        Integer proxyPort = 80; // Default to port 80
-        if (proxyPortStr != null) {
-            proxyPort = Integer.parseInt(proxyPortStr);
-        }
-        if (proxyUrlStr != null) {
-            proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrlStr, proxyPort));
-        }
-        if (proxy == null) {
-            conn = (HttpURLConnection) new URL(url).openConnection();
-        } else {
-            conn = (HttpURLConnection) new URL(url).openConnection(proxy);
-        }
-        return conn;
-    }
-
-    /**
-     * The method class will create the appropriate connection with an endpoint,
-     * parameters, etc.
+     * The method class will create the appropriate connection with an endpoint, parameters, etc.
      *
      * @return HttpURLConnection
      * @throws HelloSignException Thrown if a connection cannot be created
      */
-    abstract protected HttpURLConnection getConnection() throws HelloSignException;
+    protected abstract HttpURLConnection getConnection() throws HelloSignException;
 
     /**
      * Write the last response to a file.
      *
      * @param f File
      * @return long bytes written
-     * @throws HelloSignException Thrown if an exception occurs during the copy
-     *         of the response stream to the given file.
+     * @throws HelloSignException Thrown if an exception occurs during the copy of the response
+     * stream to the given file.
      */
     public long getResponseAsFile(File f) throws HelloSignException {
-        long bytesWritten = 0;
+        long bytesWritten;
         try {
             bytesWritten = Files
                 .copy(lastResponseStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING);

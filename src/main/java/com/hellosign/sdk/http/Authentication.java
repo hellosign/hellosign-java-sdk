@@ -7,23 +7,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class provides convenience methods for handling authentication
- * information for a HelloSignClient instance. We usually only want to use one
- * of these methods, but don't necessarily want to have to pass around all of
- * the information in method parameters.
- *
- * @author Chris Paul (chris@hellosign.com)
+ * This class provides convenience methods for handling authentication information for a
+ * HelloSignClient instance. We usually only want to use one of these methods, but don't necessarily
+ * want to have to pass around all of the information in method parameters.
  */
 public class Authentication {
 
     private static final Logger logger = LoggerFactory.getLogger(Authentication.class);
-
-    private String apiKey = new String();
-    private String accessToken = new String();
-    private String accessTokenType = new String();
-
     private static final String[] allowedOauthOps = {"account", "signature_request",
         "reusable_form", "template"};
+    private String apiKey = "";
+    private String accessToken = "";
+    private String accessTokenType = "";
 
     public Authentication() {
     }
@@ -47,7 +42,7 @@ public class Authentication {
      * @return String API key
      */
     public String getApiKey() {
-        return new String(apiKey);
+        return apiKey;
     }
 
     /**
@@ -59,7 +54,7 @@ public class Authentication {
         if (apiKey == null) {
             return;
         }
-        this.apiKey = new String(apiKey);
+        this.apiKey = apiKey;
     }
 
     /**
@@ -77,7 +72,7 @@ public class Authentication {
      * @return String access token
      */
     public String getAccessToken() {
-        return new String(accessToken);
+        return accessToken;
     }
 
     /**
@@ -86,7 +81,7 @@ public class Authentication {
      * @return String access token type
      */
     public String getAccessTokenType() {
-        return new String(accessTokenType);
+        return accessTokenType;
     }
 
     /**
@@ -94,8 +89,7 @@ public class Authentication {
      *
      * @param accessToken String
      * @param tokenType String
-     * @throws HelloSignException if either the accessToken or tokenType are
-     *         null
+     * @throws HelloSignException if either the accessToken or tokenType are null
      */
     public void setAccessToken(String accessToken, String tokenType) throws HelloSignException {
         if (accessToken == null) {
@@ -104,8 +98,8 @@ public class Authentication {
         if (tokenType == null) {
             throw new HelloSignException("Token Type cannot be null");
         }
-        this.accessToken = new String(accessToken);
-        this.accessTokenType = new String(tokenType);
+        this.accessToken = accessToken;
+        this.accessTokenType = tokenType;
     }
 
     /**

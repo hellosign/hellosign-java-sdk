@@ -10,8 +10,6 @@ import org.json.JSONObject;
 
 /**
  * An object describing an API app's OAuth properties.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class ApiAppOauth extends AbstractResource {
 
@@ -20,7 +18,7 @@ public class ApiAppOauth extends AbstractResource {
     public static final String APIAPP_OAUTH_SCOPES = "scopes";
     public static final String APIAPP_OAUTH_SECRET = "secret";
 
-    private Set<ApiAppOauthScopeType> scopes = new HashSet<ApiAppOauthScopeType>();
+    private Set<ApiAppOauthScopeType> scopes = new HashSet<>();
 
     /**
      * Default constructor.
@@ -30,12 +28,11 @@ public class ApiAppOauth extends AbstractResource {
     }
 
     /**
-     * Constructor that instantiates an ApiApp OAuth object based on the JSON
-     * response from the HelloSign API.
+     * Constructor that instantiates an ApiApp OAuth object based on the JSON response from the
+     * HelloSign API.
      *
      * @param json JSONObject
-     * @throws HelloSignException thrown if there is a problem updating the
-     *         OAuth scopes.
+     * @throws HelloSignException thrown if there is a problem updating the OAuth scopes.
      */
     public ApiAppOauth(JSONObject json) throws HelloSignException {
         super(json, APIAPP_OAUTH_KEY);
@@ -59,6 +56,15 @@ public class ApiAppOauth extends AbstractResource {
      */
     public String getCallbackUrl() {
         return getString(APIAPP_OAUTH_CALLBACK_URL);
+    }
+
+    /**
+     * Set this API app OAuth callback.
+     *
+     * @param url String
+     */
+    public void setCallbackUrl(String url) {
+        set(APIAPP_OAUTH_CALLBACK_URL, url);
     }
 
     /**
@@ -89,15 +95,6 @@ public class ApiAppOauth extends AbstractResource {
     }
 
     /**
-     * Set this API app OAuth callback.
-     *
-     * @param url String
-     */
-    public void setCallbackUrl(String url) {
-        set(APIAPP_OAUTH_CALLBACK_URL, url);
-    }
-
-    /**
      * Set this API app's OAuth scopes.
      *
      * @param scopes List
@@ -107,8 +104,7 @@ public class ApiAppOauth extends AbstractResource {
     }
 
     /**
-     * Add a scope to this API App's OAuth scope list. Duplicates will be
-     * ignored.
+     * Add a scope to this API App's OAuth scope list. Duplicates will be ignored.
      *
      * @param scope ApiAppOauthScopeType
      */
@@ -120,7 +116,7 @@ public class ApiAppOauth extends AbstractResource {
      * Clear all OAuth scopes for this API App.
      */
     public void clearScopes() {
-        this.scopes = new HashSet<ApiAppOauthScopeType>();
+        this.scopes = new HashSet<>();
     }
 
     /**

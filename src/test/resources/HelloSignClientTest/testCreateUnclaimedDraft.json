@@ -1,9 +1,9 @@
 {
-    "unclaimed_draft": {
-        "claim_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/send\/resendDocs?cached_params_token=f113aad1bdc9c2fc17b8fa7519a801de",
-        "signing_redirect_url": null,
-        "test_mode": false,
-        "expires_at": 1484860691,
-        "signature_request_id": "f35cc8b959e9e6fc41367604f165058dc5e6acf5"
-    }
+  "unclaimed_draft": {
+    "claim_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/send\/resendDocs?cached_params_token=f113aad1bdc9c2fc17b8fa7519a801de",
+    "signing_redirect_url": null,
+    "test_mode": false,
+    "expires_at": 1484860691,
+    "signature_request_id": "f35cc8b959e9e6fc41367604f165058dc5e6acf5"
+  }
 }

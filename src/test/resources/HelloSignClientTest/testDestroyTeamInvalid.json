@@ -1,6 +1,6 @@
 {
-    "error": {
-        "error_msg": "No team to delete",
-        "error_name": "bad_request"
-    }
+  "error": {
+    "error_msg": "No team to delete",
+    "error_name": "bad_request"
+  }
 }

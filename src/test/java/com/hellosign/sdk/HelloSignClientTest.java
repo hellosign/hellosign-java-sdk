@@ -2,6 +2,7 @@ package com.hellosign.sdk;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -45,7 +46,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 
 public class HelloSignClientTest {
@@ -89,9 +94,10 @@ public class HelloSignClientTest {
         return result;
     }
 
-    protected File getTestFixture(String name) throws FileNotFoundException {
+    protected File getTestFixture(String name) {
         String path = System.getProperty("file.separator") + this.getClass().getSimpleName()
-            + System.getProperty("file.separator") + "Fixtures" + System.getProperty("file.separator") + name;
+            + System.getProperty("file.separator") + "Fixtures" + System
+            .getProperty("file.separator") + name;
         URL resource = this.getClass().getResource(path);
         return new File(resource.getFile());
     }
@@ -111,7 +117,7 @@ public class HelloSignClientTest {
         String email = "newuser@hellosign.com";
         Account account = client.createAccount(email);
         assertNotNull(account);
-        assertTrue(email.equals(account.getEmail()));
+        assertEquals(email, account.getEmail());
     }
 
     @Test(expected = HelloSignException.class)
@@ -125,15 +131,15 @@ public class HelloSignClientTest {
         String email = "newuser1@hellosign.com";
         Account account = client.createAccount(email);
         assertNotNull(account);
-        assertTrue(email.equals(account.getEmail()));
+        assertEquals(email, account.getEmail());
         OauthData data = account.getOauthData();
         assertNotNull(data);
         assertNotNull(data.getAccessToken());
-        assertTrue(!data.getAccessToken().isEmpty());
+        assertFalse(data.getAccessToken().isEmpty());
         assertNotNull(data.getTokenType());
-        assertTrue(!data.getTokenType().isEmpty());
+        assertFalse(data.getTokenType().isEmpty());
         assertNotNull(data.getRefreshToken());
-        assertTrue(!data.getRefreshToken().isEmpty());
+        assertFalse(data.getRefreshToken().isEmpty());
         assertTrue(data.getExpiresIn() > 0);
     }
 
@@ -146,13 +152,13 @@ public class HelloSignClientTest {
         OauthData data = client.getOauthData(code, clientId, secret, state, false);
         assertNotNull(data);
         assertNotNull(data.getAccessToken());
-        assertTrue(!data.getAccessToken().isEmpty());
+        assertFalse(data.getAccessToken().isEmpty());
         assertNotNull(data.getExpiresIn());
         assertTrue(data.getExpiresIn() > 0);
         assertNotNull(data.getRefreshToken());
-        assertTrue(!data.getRefreshToken().isEmpty());
+        assertFalse(data.getRefreshToken().isEmpty());
         assertNotNull(data.getTokenType());
-        assertTrue(!data.getTokenType().isEmpty());
+        assertFalse(data.getTokenType().isEmpty());
 
         // Confirm that NOT auto-saving the access token works
         assertTrue(client.getAuth().getAccessToken().isEmpty());
@@ -160,8 +166,8 @@ public class HelloSignClientTest {
 
         // Confirm that auto-saving the access token works
         client.getOauthData(code, clientId, secret, state, true);
-        assertTrue(!client.getAuth().getAccessToken().isEmpty());
-        assertTrue(!client.getAuth().getAccessTokenType().isEmpty());
+        assertFalse(client.getAuth().getAccessToken().isEmpty());
+        assertFalse(client.getAuth().getAccessTokenType().isEmpty());
     }
 
     @Test
@@ -194,7 +200,7 @@ public class HelloSignClientTest {
         String callbackUrl = "https://www.example.com";
         Account account = client.setCallback(callbackUrl);
         assertNotNull(account);
-        assertTrue(callbackUrl.equals(account.getCallbackUrl()));
+        assertEquals(callbackUrl, account.getCallbackUrl());
     }
 
     @Test(expected = HelloSignException.class)
@@ -221,7 +227,7 @@ public class HelloSignClientTest {
         String teamName = "Team Echevaria";
         Team newTeam = client.createTeam(teamName);
         assertNotNull(newTeam);
-        assertTrue(teamName.equals(newTeam.getName()));
+        assertEquals(teamName, newTeam.getName());
     }
 
     @Test(expected = HelloSignException.class)
@@ -255,7 +261,7 @@ public class HelloSignClientTest {
         String email = "chris+1@hellosign.com";
         Team team = client.removeTeamMember(email);
         for (Account a : team.getAccounts()) {
-            assertFalse(email.equals(a.getEmail()));
+            assertNotEquals(email, a.getEmail());
         }
     }
 
@@ -270,7 +276,7 @@ public class HelloSignClientTest {
         String name = "Team America";
         Team team = client.updateTeamName(name);
         assertNotNull(team);
-        assertTrue(name.equals(team.getName()));
+        assertEquals(name, team.getName());
     }
 
     @Test(expected = HelloSignException.class)
@@ -296,7 +302,7 @@ public class HelloSignClientTest {
         String id = "5fd97d3b6a2ac509b7837891d8c804e29cc35636";
         SignatureRequest request = client.getSignatureRequest(id);
         assertNotNull(request);
-        assertTrue(id.equals(request.getId()));
+        assertEquals(id, request.getId());
     }
 
     @Test(expected = HelloSignException.class)
@@ -364,8 +370,8 @@ public class HelloSignClientTest {
         assertNotNull(sentReq);
         assertTrue(sentReq.hasId());
         assertNotNull(sentReq.getSignature("charlie@hotmail.com", "Charlie Day"));
-        assertTrue(subject.equals(sentReq.getSubject()));
-        assertTrue(message.equals(sentReq.getMessage()));
+        assertEquals(subject, sentReq.getSubject());
+        assertEquals(message, sentReq.getMessage());
         assertTrue(req.isTestMode());
     }
 
@@ -385,10 +391,10 @@ public class HelloSignClientTest {
         SignatureRequest updatedReq = client
             .updateSignatureRequest(id, signatureId, newEmailAddress);
         assertNotNull(updatedReq);
-        assertTrue(id.equals(updatedReq.getId()));
+        assertEquals(id, updatedReq.getId());
         Signature sig = updatedReq.getSignature(newEmailAddress, "Barack");
         assertNotNull(sig);
-        assertTrue(signatureId.equals(sig.getId()));
+        assertEquals(signatureId, sig.getId());
     }
 
     @Test(expected = HelloSignException.class)
@@ -474,7 +480,7 @@ public class HelloSignClientTest {
         String templateId = "475c0a43282985bb0fc02c995bfce6df2840a6f5";
         Template template = client.getTemplate(templateId);
         assertNotNull(template);
-        assertTrue(templateId.equals(template.getId()));
+        assertEquals(templateId, template.getId());
         for (TemplateRole s : template.getSignerRoles()) {
             assertNotNull(s.getRole());
         }
@@ -635,7 +641,7 @@ public class HelloSignClientTest {
         String id = "89d1f4f831ff1bbaf707c398881d98bff447c64e";
         SignatureRequest req = client.requestEmailReminder(id, "chris+a@hellosign.com");
         assertNotNull(req);
-        assertTrue(id.equals(req.getId()));
+        assertEquals(id, req.getId());
     }
 
     @Test(expected = HelloSignException.class)
@@ -687,9 +693,9 @@ public class HelloSignClientTest {
         ApiApp createdApp = client.createApiApp(app);
         assertNotNull(createdApp);
         assertNotNull(createdApp.getClientId());
-        assertTrue(app.getName().equals(createdApp.getName()));
-        assertTrue(app.getDomain().equals(createdApp.getDomain()));
-        assertTrue(app.getCallbackUrl().equals(createdApp.getCallbackUrl()));
+        assertEquals(app.getName(), createdApp.getName());
+        assertEquals(app.getDomain(), createdApp.getDomain());
+        assertEquals(app.getCallbackUrl(), createdApp.getCallbackUrl());
     }
 
     @Test(expected = HelloSignException.class)
@@ -895,7 +901,8 @@ public class HelloSignClientTest {
         SignatureRequest request = new SignatureRequest();
         request.setTitle("NDA with Acme Co.");
         request.setSubject("The NDA we talked about");
-        request.setMessage("Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
+        request.setMessage(
+            "Please sign this NDA and then we can discuss more. Let me know if you have any questions.");
         request.addSigner("jack@example.com", "Jack");
         request.setTestMode(true);
 
@@ -990,8 +997,8 @@ public class HelloSignClientTest {
         request.setCustomFields(fields);
 
         SignatureRequest newRequest = client.sendSignatureRequest(request);
-        List<CustomField> customFields= newRequest.getCustomFields();
-        Assert.assertEquals(customFields.size(),4);
+        List<CustomField> customFields = newRequest.getCustomFields();
+        Assert.assertEquals(4, customFields.size());
 
         CustomField customField0 = customFields.get(0);
         CustomField customField1 = customFields.get(1);
@@ -999,20 +1006,20 @@ public class HelloSignClientTest {
         CustomField customField3 = customFields.get(3);
 
         // Assert CustomField Object for  Name , Type
-        Assert.assertEquals(customField0.getName(),"Name");
-        Assert.assertEquals(customField0.getType(),FieldType.TEXT);
+        Assert.assertEquals("Name", customField0.getName());
+        Assert.assertEquals(FieldType.TEXT, customField0.getType());
 
         // Assert CustomField Object for  Name , Type
-        Assert.assertEquals(customField1.getName(),"Business");
-        Assert.assertEquals(customField1.getType(),FieldType.TEXT);
+        Assert.assertEquals("Business", customField1.getName());
+        Assert.assertEquals(FieldType.TEXT, customField1.getType());
 
         // Assert CustomField Object for  Name , Type
-        Assert.assertEquals(customField2.getName(),"Tax Class");
-        Assert.assertEquals(customField2.getType(),FieldType.CHECKBOX);
+        Assert.assertEquals("Tax Class", customField2.getName());
+        Assert.assertEquals(FieldType.CHECKBOX, customField2.getType());
 
         // Assert CustomField Object for  Name , Type
-        Assert.assertEquals(customField3.getName(),"Tax Class");
-        Assert.assertEquals(customField3.getType(),FieldType.CHECKBOX);
+        Assert.assertEquals("Tax Class", customField3.getName());
+        Assert.assertEquals(FieldType.CHECKBOX, customField3.getType());
     }
 
     @Test

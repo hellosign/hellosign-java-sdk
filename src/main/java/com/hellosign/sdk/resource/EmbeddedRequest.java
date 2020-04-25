@@ -7,11 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents an Embedded signature request (either standard or templated). An
- * embedded request is one that can be signed from either within HelloSign or
- * from within an iFrame on your website.
- *
- * @author "Chris Paul (chris@hellosign.com)"
+ * Represents an Embedded signature request (either standard or templated). An embedded request is
+ * one that can be signed from either within HelloSign or from within an iFrame on your website.
  */
 public class EmbeddedRequest extends AbstractRequest {
 
@@ -133,13 +130,13 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     @Override
-    public void setTestMode(boolean testMode) {
-        request.setTestMode(testMode);
+    public boolean isTestMode() {
+        return request.isTestMode();
     }
 
     @Override
-    public boolean isTestMode() {
-        return request.isTestMode();
+    public void setTestMode(boolean testMode) {
+        request.setTestMode(testMode);
     }
 
     @Override
@@ -178,13 +175,13 @@ public class EmbeddedRequest extends AbstractRequest {
     }
 
     @Override
-    public Map<String, String> getCustomFieldsMap() {
-        return request.getCustomFieldsMap();
+    public void setCustomFields(Map<String, String> fields) {
+        request.setCustomFields(fields);
     }
 
     @Override
-    public void setCustomFields(Map<String, String> fields) {
-        request.setCustomFields(fields);
+    public Map<String, String> getCustomFieldsMap() {
+        return request.getCustomFieldsMap();
     }
 
     @Override

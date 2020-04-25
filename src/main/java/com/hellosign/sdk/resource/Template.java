@@ -10,8 +10,6 @@ import org.json.JSONObject;
 
 /**
  * POJO that represents a HelloSign Template resource.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Template extends AbstractResource {
 
@@ -65,20 +63,19 @@ public class Template extends AbstractResource {
     }
 
     /**
-     * Returns a list of SignerRoles. If they are ordered, the list is returned
-     * in order.
+     * Returns a list of SignerRoles. If they are ordered, the list is returned in order.
      *
      * @return List
      */
     public List<TemplateRole> getSignerRoles() {
         List<TemplateRole> masterList = getList(TemplateRole.class, TEMPLATE_SIGNER_ROLES);
-        if (masterList == null || masterList.size() == 0) {
+        if (masterList == null || masterList.isEmpty()) {
             return masterList;
         }
         if (masterList.get(0).getOrder() == null) {
             return masterList;
         }
-        List<TemplateRole> sortedList = new ArrayList<TemplateRole>(masterList.size());
+        List<TemplateRole> sortedList = new ArrayList<>(masterList.size());
         for (TemplateRole r : masterList) {
             sortedList.add(r.getOrder(), r);
         }
@@ -106,8 +103,7 @@ public class Template extends AbstractResource {
     }
 
     /**
-     * Returns true if this template was created on a site other than
-     * hellosign.com.
+     * Returns true if this template was created on a site other than hellosign.com.
      *
      * @return boolean
      */

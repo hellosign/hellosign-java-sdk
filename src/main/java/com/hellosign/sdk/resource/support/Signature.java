@@ -8,8 +8,6 @@ import org.json.JSONObject;
 
 /**
  * Contains information related to a signature / signer.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Signature extends AbstractResource {
 

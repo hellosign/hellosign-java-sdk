@@ -1,10 +1,10 @@
 {
-    "list_info": {
-        "page": 10,
-        "num_pages": 1,
-        "num_results": 2,
-        "page_size": 20
-    },
-    "templates": [
-    ]
+  "list_info": {
+    "page": 10,
+    "num_pages": 1,
+    "num_results": 2,
+    "page_size": 20
+  },
+  "templates": [
+  ]
 }

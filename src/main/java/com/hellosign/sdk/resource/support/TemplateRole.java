@@ -5,11 +5,8 @@ import com.hellosign.sdk.resource.AbstractResource;
 import org.json.JSONObject;
 
 /**
- * Resource class that represents a signer or CC role for a Template. ("order"
- * won't matter for the CC role, but we'll use this to represent it for now
- * anyway).
- *
- * @author "Chris Paul (chris@hellosign.com)"
+ * Resource class that represents a signer or CC role for a Template. ("order" won't matter for the
+ * CC role, but we'll use this to represent it for now anyway).
  */
 public class TemplateRole extends AbstractResource {
 

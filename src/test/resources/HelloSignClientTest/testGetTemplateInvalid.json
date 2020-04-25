@@ -1,6 +1,6 @@
 {
-    "error": {
-        "error_msg": "Template does not exist",
-        "error_name": "not_found"
-    }
+  "error": {
+    "error_msg": "Template does not exist",
+    "error_name": "not_found"
+  }
 }

@@ -1,15 +1,15 @@
 {
-    "account": {
-        "account_id": "112e889f8607aec37c0fcd863b0ec26da7cbc269",
-        "email_address": "chris@hellosign.com",
-        "is_paid_hs": true,
-        "is_paid_hf": false,
-        "quotas": {
-            "templates_left": 14,
-            "documents_left": null,
-            "api_signature_requests_left": 450
-        },
-        "callback_url": null,
-        "role_code": "a"
-    }
+  "account": {
+    "account_id": "112e889f8607aec37c0fcd863b0ec26da7cbc269",
+    "email_address": "chris@hellosign.com",
+    "is_paid_hs": true,
+    "is_paid_hf": false,
+    "quotas": {
+      "templates_left": 14,
+      "documents_left": null,
+      "api_signature_requests_left": 450
+    },
+    "callback_url": null,
+    "role_code": "a"
+  }
 }

@@ -8,8 +8,6 @@ import org.json.JSONObject;
 
 /**
  * Stores HelloSign Account information.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Account extends AbstractResource {
 
@@ -34,8 +32,8 @@ public class Account extends AbstractResource {
         this(json, ACCOUNT_KEY);
     }
 
-    public Account(JSONObject json, String custom_key) throws HelloSignException {
-        super(json, custom_key);
+    public Account(JSONObject json, String customKey) throws HelloSignException {
+        super(json, customKey);
         quotas = new Quotas(dataObj);
     }
 
@@ -101,7 +99,7 @@ public class Account extends AbstractResource {
         return quotas;
     }
 
-    public OauthData getOauthData() throws HelloSignException {
+    public OauthData getOauthData() {
         return oauthData;
     }
 

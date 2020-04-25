@@ -1,253 +1,253 @@
 {
-    "template": {
-        "template_id": "475c0a43282985bb0fc02c995bfce6df2840a6f5",
-        "title": "Photo Release API Demo",
-        "message": null,
-        "is_creator": true,
-        "is_embedded": false,
-        "can_edit": true,
-        "metadata": {
-        },
-        "is_locked": false,
-        "signer_roles": [
-            {
-                "name": "subject",
-                "order": null
-            }
-        ],
-        "cc_roles": [
-        ],
-        "documents": [
-            {
-                "index": null,
-                "name": "Photo Release API Demo.pdf",
-                "custom_fields": [
-                    {
-                        "name": "organization_name",
-                        "type": "text",
-                        "signer": null,
-                        "x": 181,
-                        "y": 125,
-                        "width": 261,
-                        "height": 64,
-                        "required": false,
-                        "api_id": "496cb9_10",
-                        "avg_text_length": {
-                            "num_lines": 3,
-                            "num_chars_per_line": 69
-                        }
-                    },
-                    {
-                        "name": "shoot_type",
-                        "type": "text",
-                        "signer": null,
-                        "x": 235,
-                        "y": 222,
-                        "width": 242,
-                        "height": 16,
-                        "required": false,
-                        "api_id": "496cb9_9",
-                        "avg_text_length": {
-                            "num_lines": 1,
-                            "num_chars_per_line": 64
-                        }
-                    },
-                    {
-                        "name": "location",
-                        "type": "text",
-                        "signer": null,
-                        "x": 235,
-                        "y": 256,
-                        "width": 242,
-                        "height": 16,
-                        "required": false,
-                        "api_id": "496cb9_11",
-                        "avg_text_length": {
-                            "num_lines": 1,
-                            "num_chars_per_line": 64
-                        }
-                    }
-                ],
-                "form_fields": [
-                    {
-                        "name": "",
-                        "type": "signature",
-                        "signer": "1",
-                        "x": 180,
-                        "y": 466,
-                        "width": 229,
-                        "height": 50,
-                        "required": true,
-                        "api_id": "496cb9_14"
-                    },
-                    {
-                        "name": "",
-                        "type": "date_signed",
-                        "signer": "1",
-                        "x": 430,
-                        "y": 500,
-                        "width": 105,
-                        "height": 16,
-                        "required": true,
-                        "api_id": "496cb9_15"
-                    },
-                    {
-                        "name": "",
-                        "type": "text",
-                        "signer": "1",
-                        "x": 180,
-                        "y": 556,
-                        "width": 242,
-                        "height": 16,
-                        "required": true,
-                        "api_id": "496cb9_16",
-                        "avg_text_length": {
-                            "num_lines": 1,
-                            "num_chars_per_line": 64
-                        }
-                    },
-                    {
-                        "name": "",
-                        "type": "text",
-                        "signer": "1",
-                        "x": 180,
-                        "y": 599,
-                        "width": 245,
-                        "height": 32,
-                        "required": false,
-                        "api_id": "496cb9_17",
-                        "avg_text_length": {
-                            "num_lines": 2,
-                            "num_chars_per_line": 65
-                        }
-                    }
-                ]
-            }
-        ],
+  "template": {
+    "template_id": "475c0a43282985bb0fc02c995bfce6df2840a6f5",
+    "title": "Photo Release API Demo",
+    "message": null,
+    "is_creator": true,
+    "is_embedded": false,
+    "can_edit": true,
+    "metadata": {
+    },
+    "is_locked": false,
+    "signer_roles": [
+      {
+        "name": "subject",
+        "order": null
+      }
+    ],
+    "cc_roles": [
+    ],
+    "documents": [
+      {
+        "index": null,
+        "name": "Photo Release API Demo.pdf",
         "custom_fields": [
-            {
-                "name": "organization_name",
-                "type": "text",
-                "signer": null,
-                "x": 181,
-                "y": 125,
-                "width": 261,
-                "height": 64,
-                "required": false,
-                "api_id": "496cb9_10",
-                "avg_text_length": {
-                    "num_lines": 3,
-                    "num_chars_per_line": 69
-                }
-            },
-            {
-                "name": "shoot_type",
-                "type": "text",
-                "signer": null,
-                "x": 235,
-                "y": 222,
-                "width": 242,
-                "height": 16,
-                "required": false,
-                "api_id": "496cb9_9",
-                "avg_text_length": {
-                    "num_lines": 1,
-                    "num_chars_per_line": 64
-                }
-            },
-            {
-                "name": "location",
-                "type": "text",
-                "signer": null,
-                "x": 235,
-                "y": 256,
-                "width": 242,
-                "height": 16,
-                "required": false,
-                "api_id": "496cb9_11",
-                "avg_text_length": {
-                    "num_lines": 1,
-                    "num_chars_per_line": 64
-                }
+          {
+            "name": "organization_name",
+            "type": "text",
+            "signer": null,
+            "x": 181,
+            "y": 125,
+            "width": 261,
+            "height": 64,
+            "required": false,
+            "api_id": "496cb9_10",
+            "avg_text_length": {
+              "num_lines": 3,
+              "num_chars_per_line": 69
             }
+          },
+          {
+            "name": "shoot_type",
+            "type": "text",
+            "signer": null,
+            "x": 235,
+            "y": 222,
+            "width": 242,
+            "height": 16,
+            "required": false,
+            "api_id": "496cb9_9",
+            "avg_text_length": {
+              "num_lines": 1,
+              "num_chars_per_line": 64
+            }
+          },
+          {
+            "name": "location",
+            "type": "text",
+            "signer": null,
+            "x": 235,
+            "y": 256,
+            "width": 242,
+            "height": 16,
+            "required": false,
+            "api_id": "496cb9_11",
+            "avg_text_length": {
+              "num_lines": 1,
+              "num_chars_per_line": 64
+            }
+          }
         ],
-        "named_form_fields": [
-            {
-                "name": "",
-                "type": "signature",
-                "signer": "1",
-                "x": 180,
-                "y": 466,
-                "width": 229,
-                "height": 50,
-                "required": true,
-                "api_id": "496cb9_14"
-            },
-            {
-                "name": "",
-                "type": "date_signed",
-                "signer": "1",
-                "x": 430,
-                "y": 500,
-                "width": 105,
-                "height": 16,
-                "required": true,
-                "api_id": "496cb9_15"
-            },
-            {
-                "name": "",
-                "type": "text",
-                "signer": "1",
-                "x": 180,
-                "y": 556,
-                "width": 242,
-                "height": 16,
-                "required": true,
-                "api_id": "496cb9_16",
-                "avg_text_length": {
-                    "num_lines": 1,
-                    "num_chars_per_line": 64
-                }
-            },
-            {
-                "name": "",
-                "type": "text",
-                "signer": "1",
-                "x": 180,
-                "y": 599,
-                "width": 245,
-                "height": 32,
-                "required": false,
-                "api_id": "496cb9_17",
-                "avg_text_length": {
-                    "num_lines": 2,
-                    "num_chars_per_line": 65
-                }
+        "form_fields": [
+          {
+            "name": "",
+            "type": "signature",
+            "signer": "1",
+            "x": 180,
+            "y": 466,
+            "width": 229,
+            "height": 50,
+            "required": true,
+            "api_id": "496cb9_14"
+          },
+          {
+            "name": "",
+            "type": "date_signed",
+            "signer": "1",
+            "x": 430,
+            "y": 500,
+            "width": 105,
+            "height": 16,
+            "required": true,
+            "api_id": "496cb9_15"
+          },
+          {
+            "name": "",
+            "type": "text",
+            "signer": "1",
+            "x": 180,
+            "y": 556,
+            "width": 242,
+            "height": 16,
+            "required": true,
+            "api_id": "496cb9_16",
+            "avg_text_length": {
+              "num_lines": 1,
+              "num_chars_per_line": 64
             }
-        ],
-        "accounts": [
-            {
-                "account_id": "4c11be57290b2d39e830ed139cb15ad81d4200a3",
-                "email_address": "chris@hellosign.com",
-                "is_paid_hs": true,
-                "is_paid_hf": false,
-                "quotas": {
-                    "templates_left": null,
-                    "documents_left": null,
-                    "api_signature_requests_left": null
-                }
-            },
-            {
-                "account_id": "e5709a9ada36160e7b5bbbf7385c69028a1492af",
-                "email_address": "chris+1@hellosign.com",
-                "is_paid_hs": true,
-                "is_paid_hf": false,
-                "quotas": {
-                    "templates_left": null,
-                    "documents_left": null,
-                    "api_signature_requests_left": 0
-                }
+          },
+          {
+            "name": "",
+            "type": "text",
+            "signer": "1",
+            "x": 180,
+            "y": 599,
+            "width": 245,
+            "height": 32,
+            "required": false,
+            "api_id": "496cb9_17",
+            "avg_text_length": {
+              "num_lines": 2,
+              "num_chars_per_line": 65
             }
+          }
         ]
-    }
+      }
+    ],
+    "custom_fields": [
+      {
+        "name": "organization_name",
+        "type": "text",
+        "signer": null,
+        "x": 181,
+        "y": 125,
+        "width": 261,
+        "height": 64,
+        "required": false,
+        "api_id": "496cb9_10",
+        "avg_text_length": {
+          "num_lines": 3,
+          "num_chars_per_line": 69
+        }
+      },
+      {
+        "name": "shoot_type",
+        "type": "text",
+        "signer": null,
+        "x": 235,
+        "y": 222,
+        "width": 242,
+        "height": 16,
+        "required": false,
+        "api_id": "496cb9_9",
+        "avg_text_length": {
+          "num_lines": 1,
+          "num_chars_per_line": 64
+        }
+      },
+      {
+        "name": "location",
+        "type": "text",
+        "signer": null,
+        "x": 235,
+        "y": 256,
+        "width": 242,
+        "height": 16,
+        "required": false,
+        "api_id": "496cb9_11",
+        "avg_text_length": {
+          "num_lines": 1,
+          "num_chars_per_line": 64
+        }
+      }
+    ],
+    "named_form_fields": [
+      {
+        "name": "",
+        "type": "signature",
+        "signer": "1",
+        "x": 180,
+        "y": 466,
+        "width": 229,
+        "height": 50,
+        "required": true,
+        "api_id": "496cb9_14"
+      },
+      {
+        "name": "",
+        "type": "date_signed",
+        "signer": "1",
+        "x": 430,
+        "y": 500,
+        "width": 105,
+        "height": 16,
+        "required": true,
+        "api_id": "496cb9_15"
+      },
+      {
+        "name": "",
+        "type": "text",
+        "signer": "1",
+        "x": 180,
+        "y": 556,
+        "width": 242,
+        "height": 16,
+        "required": true,
+        "api_id": "496cb9_16",
+        "avg_text_length": {
+          "num_lines": 1,
+          "num_chars_per_line": 64
+        }
+      },
+      {
+        "name": "",
+        "type": "text",
+        "signer": "1",
+        "x": 180,
+        "y": 599,
+        "width": 245,
+        "height": 32,
+        "required": false,
+        "api_id": "496cb9_17",
+        "avg_text_length": {
+          "num_lines": 2,
+          "num_chars_per_line": 65
+        }
+      }
+    ],
+    "accounts": [
+      {
+        "account_id": "4c11be57290b2d39e830ed139cb15ad81d4200a3",
+        "email_address": "chris@hellosign.com",
+        "is_paid_hs": true,
+        "is_paid_hf": false,
+        "quotas": {
+          "templates_left": null,
+          "documents_left": null,
+          "api_signature_requests_left": null
+        }
+      },
+      {
+        "account_id": "e5709a9ada36160e7b5bbbf7385c69028a1492af",
+        "email_address": "chris+1@hellosign.com",
+        "is_paid_hs": true,
+        "is_paid_hf": false,
+        "quotas": {
+          "templates_left": null,
+          "documents_left": null,
+          "api_signature_requests_left": 0
+        }
+      }
+    ]
+  }
 }

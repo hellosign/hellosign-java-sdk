@@ -7,14 +7,10 @@ import java.util.List;
 import org.json.JSONObject;
 
 /**
- * Represents a document and its associated (optional) form fields and custom
- * fields.
+ * Represents a document and its associated (optional) form fields and custom fields.
  *
- * It is also populated based on the API response. This response typically
- * contains the file name and index of the document within the signature
- * request.
- *
- * @author "Chris Paul (chris@hellosign.com)"
+ * It is also populated based on the API response. This response typically contains the file name
+ * and index of the document within the signature request.
  */
 public class Document extends AbstractResource {
 
@@ -43,12 +39,12 @@ public class Document extends AbstractResource {
     }
 
     /**
-     * Overwrites the form fields for this document. This is useful when
-     * manually migrating form fields from a template.
+     * Overwrites the form fields for this document. This is useful when manually migrating form
+     * fields from a template.
      *
      * @param formFields List
-     * @throws HelloSignException thrown if there is a problem adding the
-     *         FormFields to this Document.
+     * @throws HelloSignException thrown if there is a problem adding the FormFields to this
+     * Document.
      */
     public void setFormFields(List<FormField> formFields) throws HelloSignException {
         clearList(DOCUMENT_FORM_FIELDS);
@@ -61,8 +57,8 @@ public class Document extends AbstractResource {
      * Adds the form field to this document.
      *
      * @param formField FormField
-     * @throws HelloSignException thrown if there is a problem adding the
-     *         FormFields to this Document.
+     * @throws HelloSignException thrown if there is a problem adding the FormFields to this
+     * Document.
      */
     public void addFormField(FormField formField) throws HelloSignException {
         if (!has(DOCUMENT_FORM_FIELDS)) {

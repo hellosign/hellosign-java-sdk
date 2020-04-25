@@ -7,8 +7,6 @@ import org.json.JSONObject;
 
 /**
  * Represents a paged list of HelloSign Templates (a.k.a., ReusableForms).
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class TemplateList extends AbstractResourceList<Template> {
 

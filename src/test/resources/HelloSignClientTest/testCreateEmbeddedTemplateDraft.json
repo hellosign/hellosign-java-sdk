@@ -1,7 +1,7 @@
 {
-    "template": {
-        "template_id": "066421c4086334caac0433802fb64cbcfd408302",
-        "edit_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/editor\/embeddedTemplate?token=d9147eb82f775da1ed1434ff36bb7a67&root_snapshot_guids%5B0%5D=ad7f6650e89812e837f4234025a80eae5bb5c34e&snapshot_access_guids%5B0%5D=18d4237d&guid=066421c4086334caac0433802fb64cbcfd408302",
-        "expires_at": 1484861480
-    }
+  "template": {
+    "template_id": "066421c4086334caac0433802fb64cbcfd408302",
+    "edit_url": "https:\/\/www.dev-hellosign.com\/webapp_dev.php\/editor\/embeddedTemplate?token=d9147eb82f775da1ed1434ff36bb7a67&root_snapshot_guids%5B0%5D=ad7f6650e89812e837f4234025a80eae5bb5c34e&snapshot_access_guids%5B0%5D=18d4237d&guid=066421c4086334caac0433802fb64cbcfd408302",
+    "expires_at": 1484861480
+  }
 }
