@@ -18,8 +18,6 @@ import org.json.JSONObject;
 
 /**
  * Represents a HelloSign template draft.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class TemplateDraft extends AbstractRequest {
 

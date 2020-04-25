@@ -10,8 +10,6 @@ import org.json.JSONObject;
 
 /**
  * An object describing an API app's OAuth properties.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class ApiAppOauth extends AbstractResource {
 

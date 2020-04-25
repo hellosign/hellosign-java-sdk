@@ -4,8 +4,6 @@ import com.hellosign.sdk.HelloSignException;
 
 /**
  * Class that stores signer information for a signature request.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Signer {
 

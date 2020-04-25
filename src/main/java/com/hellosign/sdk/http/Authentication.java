@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
  * This class provides convenience methods for handling authentication information for a
  * HelloSignClient instance. We usually only want to use one of these methods, but don't necessarily
  * want to have to pass around all of the information in method parameters.
- *
- * @author Chris Paul (chris@hellosign.com)
  */
 public class Authentication {
 

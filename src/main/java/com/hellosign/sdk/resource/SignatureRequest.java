@@ -16,8 +16,6 @@ import org.json.JSONObject;
 /**
  * Represents a HelloSign signature request. This object is used to both submit a request and to
  * represent the request object returned from the server.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class SignatureRequest extends AbstractRequest {
 

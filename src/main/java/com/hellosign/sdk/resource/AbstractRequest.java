@@ -18,8 +18,6 @@ import org.json.JSONObject;
 /**
  * Requests to HelloSign will have common fields such as a request title, subject, and message. This
  * class centralizes those fields.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public abstract class AbstractRequest extends AbstractResource {
 

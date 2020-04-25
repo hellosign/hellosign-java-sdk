@@ -15,8 +15,6 @@ import org.json.JSONObject;
 
 /**
  * Contains information about an API App
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class ApiApp extends AbstractResource {
 

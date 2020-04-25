@@ -39,8 +39,6 @@ import org.json.JSONObject;
  *
  * Then, use the client to perform your requests. The client uses java.net.HttpURLConnection to
  * perform its HTTP requests.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class HelloSignClient {
 

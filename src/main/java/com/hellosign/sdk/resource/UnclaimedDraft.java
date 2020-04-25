@@ -22,8 +22,6 @@ import org.json.JSONObject;
  * <li>"request_signature" - creates a claimable signature request. If this type
  * is chosen, the signers name(s) and email address(es) are not optional.</li>
  * </ol>
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class UnclaimedDraft extends AbstractRequest {
 

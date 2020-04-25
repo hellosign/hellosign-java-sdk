@@ -7,8 +7,6 @@ import org.json.JSONObject;
 
 /**
  * Represents a paged list of SignatureRequests returned from HelloSign.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class SignatureRequestList extends AbstractResourceList<SignatureRequest> {
 

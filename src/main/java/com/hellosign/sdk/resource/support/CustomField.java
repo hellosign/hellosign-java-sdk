@@ -12,8 +12,6 @@ import org.json.JSONObject;
  * the requester, prior to sending.
  *
  * Right now, this is only applicable to text fields.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class CustomField extends AbstractResource {
 

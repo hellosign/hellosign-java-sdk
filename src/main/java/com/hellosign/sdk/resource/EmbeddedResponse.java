@@ -6,8 +6,6 @@ import org.json.JSONObject;
 
 /**
  * Class to hold an embedded signature request response.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class EmbeddedResponse extends AbstractResource {
 

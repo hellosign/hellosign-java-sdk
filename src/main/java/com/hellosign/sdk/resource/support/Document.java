@@ -11,8 +11,6 @@ import org.json.JSONObject;
  *
  * It is also populated based on the API response. This response typically contains the file name
  * and index of the document within the signature request.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Document extends AbstractResource {
 

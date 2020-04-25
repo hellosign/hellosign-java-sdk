@@ -13,8 +13,6 @@ import org.json.JSONObject;
 
 /**
  * A nice place to put code that is common to all HelloSign resource classes.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public abstract class AbstractResource {
 

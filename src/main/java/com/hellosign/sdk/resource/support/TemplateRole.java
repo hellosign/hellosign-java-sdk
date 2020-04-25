@@ -7,8 +7,6 @@ import org.json.JSONObject;
 /**
  * Resource class that represents a signer or CC role for a Template. ("order" won't matter for the
  * CC role, but we'll use this to represent it for now anyway).
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class TemplateRole extends AbstractResource {
 

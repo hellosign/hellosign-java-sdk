@@ -9,8 +9,6 @@ import java.util.Map;
 /**
  * Represents an Embedded signature request (either standard or templated). An embedded request is
  * one that can be signed from either within HelloSign or from within an iFrame on your website.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class EmbeddedRequest extends AbstractRequest {
 

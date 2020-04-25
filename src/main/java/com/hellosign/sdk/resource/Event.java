@@ -16,8 +16,6 @@ import org.slf4j.LoggerFactory;
 /**
  * This is a utility class for assisting with the development of callback services to respond to
  * HelloSign events.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Event extends AbstractResource {
 

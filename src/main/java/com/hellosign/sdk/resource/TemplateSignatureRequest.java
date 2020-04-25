@@ -13,8 +13,6 @@ import java.util.Map.Entry;
  *
  * Unlike the SignatureRequest, this object is only used to submit the request. A successfully
  * submitted TemplateSignatureRequest will return a SignatureRequest object from the server.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class TemplateSignatureRequest extends AbstractRequest {
 

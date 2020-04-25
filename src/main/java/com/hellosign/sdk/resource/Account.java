@@ -8,8 +8,6 @@ import org.json.JSONObject;
 
 /**
  * Stores HelloSign Account information.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Account extends AbstractResource {
 

@@ -10,8 +10,6 @@ import org.json.JSONObject;
 
 /**
  * POJO that represents a HelloSign Template resource.
- *
- * @author "Chris Paul (chris@hellosign.com)"
  */
 public class Template extends AbstractResource {
 
