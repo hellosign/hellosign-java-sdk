@@ -78,7 +78,7 @@ public class Template extends AbstractResource {
         if (masterList.get(0).getOrder() == null) {
             return masterList;
         }
-        List<TemplateRole> sortedList = new ArrayList<TemplateRole>(masterList.size());
+        List<TemplateRole> sortedList = new ArrayList<>(masterList.size());
         for (TemplateRole r : masterList) {
             sortedList.add(r.getOrder(), r);
         }

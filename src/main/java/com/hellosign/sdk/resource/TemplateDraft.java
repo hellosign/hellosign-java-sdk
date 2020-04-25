@@ -27,9 +27,9 @@ public class TemplateDraft extends AbstractRequest {
     public static final String TEMPLATE_EDIT_URL = "edit_url";
     public static final String TEMPLATE_EXPIRES_AT = "expires_at";
 
-    private List<String> ccRoles = new ArrayList<String>();
-    private List<String> signerRoles = new ArrayList<String>();
-    private Map<String, FieldType> mergeFields = new HashMap<String, FieldType>();
+    private List<String> ccRoles = new ArrayList<>();
+    private List<String> signerRoles = new ArrayList<>();
+    private Map<String, FieldType> mergeFields = new HashMap<>();
 
     public TemplateDraft() {
         super();
@@ -127,10 +127,8 @@ public class TemplateDraft extends AbstractRequest {
      *
      * @param signerRole String
      * @return boolean
-     * @throws HelloSignException thrown if there is a problem removing the
-     *         signer role.
      */
-    public boolean removeSignerRole(String signerRole) throws HelloSignException {
+    public boolean removeSignerRole(String signerRole) {
         return signerRoles.remove(signerRole);
     }
 
@@ -177,7 +175,7 @@ public class TemplateDraft extends AbstractRequest {
      * Clears the current merge field map.
      */
     public void clearMergeFields() {
-        mergeFields = new HashMap<String, FieldType>();
+        mergeFields = new HashMap<>();
     }
 
     /**

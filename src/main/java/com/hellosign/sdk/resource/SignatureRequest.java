@@ -130,10 +130,8 @@ public class SignatureRequest extends AbstractRequest {
      * Adds the signer to the list of signers for this request.
      *
      * @param signer Signer
-     * @throws HelloSignException thrown if there is a problem adding the
-     *         signer.
      */
-    public void addSigner(Signer signer) throws HelloSignException {
+    public void addSigner(Signer signer) {
         signers.add(signer);
     }
 

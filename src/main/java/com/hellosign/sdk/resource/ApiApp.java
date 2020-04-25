@@ -281,7 +281,7 @@ public class ApiApp extends AbstractResource {
      *         POST fields.
      */
     public Map<String, Serializable> getPostFields() throws HelloSignException {
-        Map<String, Serializable> fields = new HashMap<String, Serializable>();
+        Map<String, Serializable> fields = new HashMap<>();
         try {
             if (hasName()) {
                 fields.put(APIAPP_NAME, getName());

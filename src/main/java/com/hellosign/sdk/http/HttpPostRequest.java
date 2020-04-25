@@ -139,7 +139,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         connection.setRequestProperty("user-agent", USER_AGENT);
         connection.setRequestProperty("accept-encoding", DEFAULT_ENCODING);
         auth.authenticate(connection, url);
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         if (fields != null) {
             Iterator<String> keys = fields.keySet().iterator();
             while (keys.hasNext()) {
@@ -157,21 +157,15 @@ public class HttpPostRequest extends AbstractHttpRequest {
                     throw new HelloSignException(e);
                 }
                 logger.debug("\t" + key + " = " + val.toString());
-                sb.append(encodedKey + "=" + value);
+                sb.append(encodedKey).append("=").append(value);
                 if (keys.hasNext()) {
                     sb.append("&");
                 }
             }
         }
         try {
-            OutputStream output = connection.getOutputStream();
-            try {
+            try (OutputStream output = connection.getOutputStream()) {
                 output.write(sb.toString().getBytes(DEFAULT_ENCODING));
-            } finally {
-                try {
-                    output.close();
-                } catch (IOException logOrIgnore) {
-                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -243,7 +237,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
 
         FileInputStream inputStream = new FileInputStream(uploadFile);
         byte[] buffer = new byte[4096];
-        int bytesRead = -1;
+        int bytesRead;
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
             logger.debug("  " + bytesRead + " bytes written...");
@@ -255,7 +249,7 @@ public class HttpPostRequest extends AbstractHttpRequest {
         writer.flush();
     }
 
-    private HttpURLConnection finish() throws IOException {
+    private HttpURLConnection finish() {
         writer.flush();
         write("--" + boundary + "--").write(LINE_FEED);
         writer.close();

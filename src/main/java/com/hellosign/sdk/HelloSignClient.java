@@ -142,13 +142,11 @@ public class HelloSignClient {
      * Creates a new HelloSign client using your API key.
      *
      * @param apiKey String API key
-     * @throws HelloSignException thrown if there's a problem setting the
-     *         credentials
      * @see <a href=
      *      "https://app.hellosign.com/home/myAccount/current_tab/api">Account
      *      Settings</a>
      */
-    public HelloSignClient(String apiKey) throws HelloSignException {
+    public HelloSignClient(String apiKey) {
         this(new HttpClient(), new Authentication(apiKey));
         auth.setApiKey(apiKey);
     }
@@ -157,9 +155,8 @@ public class HelloSignClient {
      * Creates a new HelloSign client using then given Authentication object.
      *
      * @param auth Authentication used primarily for setting OAuth token/secret
-     * @throws HelloSignException thrown if there's a problem setting the credentials
      */
-    public HelloSignClient(Authentication auth) throws HelloSignException {
+    public HelloSignClient(Authentication auth) {
         this(new HttpClient(), auth);
     }
 
@@ -298,7 +295,7 @@ public class HelloSignClient {
             .withPostField(OAUTH_GRANT_TYPE, OAUTH_GRANT_TYPE_AUTHORIZE_CODE)
             .withPostField(CLIENT_SECRET, secret)
             .post(OAUTH_TOKEN_URL).asJson());
-        if (data != null && autoSetRequestToken) {
+        if (autoSetRequestToken) {
             setAccessToken(data.getAccessToken(), data.getTokenType());
         }
         return data;
@@ -317,9 +314,7 @@ public class HelloSignClient {
             httpClient.withAuth(auth)
                 .withPostField(OAUTH_GRANT_TYPE, OAUTH_GRANT_TYPE_REFRESH_TOKEN)
                 .withPostField(OAUTH_REFRESH_TOKEN, refreshToken).post(OAUTH_TOKEN_URL).asJson());
-        if (data != null) {
-            setAccessToken(data.getAccessToken(), data.getTokenType());
-        }
+        setAccessToken(data.getAccessToken(), data.getTokenType());
         return data;
     }
 
@@ -1052,22 +1047,6 @@ public class HelloSignClient {
         String url = BASE_URI + API_APP_URI + "/" + app.getClientId();
         return new ApiApp(
             httpClient.withAuth(auth).withPostFields(app.getPostFields()).post(url).asJson());
-    }
-
-    /**
-     * Performs an OPTIONS call to the HelloSign API to see if it's online.
-     *
-     * @return true if HelloSign is available and the client is online, false
-     *         otherwise.
-     * @throws HelloSignException thrown if there's a problem processing the
-     *         HTTP request or response.
-     * @deprecated This function was previously for internal testing use only
-     *         and is no longer operational. This will be removed in the next
-     *         minor version of the SDK.
-     */
-    @Deprecated
-    public boolean isOnline() throws HelloSignException {
-        return true;
     }
 
     /**

@@ -163,7 +163,7 @@ public class UnclaimedDraft extends AbstractRequest {
         if (!(request instanceof SignatureRequest)) {
             throw new HelloSignException("Cannot add files to this unclaimed draft");
         }
-        ((SignatureRequest) request).addFile(file);
+        request.addFile(file);
     }
 
     /**
@@ -177,7 +177,7 @@ public class UnclaimedDraft extends AbstractRequest {
         if (!(request instanceof SignatureRequest)) {
             throw new HelloSignException("Cannot add files to this unclaimed draft");
         }
-        ((SignatureRequest) request).addFile(file, order);
+        request.addFile(file, order);
     }
 
     /**
@@ -190,7 +190,7 @@ public class UnclaimedDraft extends AbstractRequest {
         if (!(request instanceof SignatureRequest)) {
             throw new HelloSignException("Cannot add files to this unclaimed draft");
         }
-        ((SignatureRequest) request).clearDocuments();
+        request.clearDocuments();
     }
 
     /**

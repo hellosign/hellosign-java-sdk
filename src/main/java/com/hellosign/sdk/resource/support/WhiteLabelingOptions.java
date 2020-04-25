@@ -28,7 +28,6 @@ public class WhiteLabelingOptions extends AbstractResource {
     public static final String LEGAL_VERSION_2 = "terms2"; // signer agrees "to the eSignature Terms of Service."
 
     private static Pattern pattern;
-    private Matcher matcher;
     private static final String HEX_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
 
     static {
@@ -49,7 +48,7 @@ public class WhiteLabelingOptions extends AbstractResource {
      * @return true valid hex, false invalid hex
      */
     public boolean validateColor(final String hex) {
-        matcher = pattern.matcher(hex);
+        Matcher matcher = pattern.matcher(hex);
         return matcher.matches();
     }
 

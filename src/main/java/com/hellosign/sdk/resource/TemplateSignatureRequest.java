@@ -30,8 +30,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
     // to have an associated role. We'll manage these in a Map,
     // as opposed to storing them on the JSON object like other
     // fields are stored, so we can support this association.
-    private Map<String, Signer> signers = new HashMap<String, Signer>();
-    private Map<String, String> ccs = new HashMap<String, String>();
+    private Map<String, Signer> signers = new HashMap<>();
+    private Map<String, String> ccs = new HashMap<>();
 
     public TemplateSignatureRequest() {
         super();
@@ -95,7 +95,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
      * Clears the list of current CC email addresses.
      */
     public void clearCCs() {
-        ccs = new HashMap<String, String>();
+        ccs = new HashMap<>();
     }
 
     /**
@@ -138,10 +138,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
      * signer. If no user is listed by the given email, nothing will happen.
      *
      * @param email String
-     * @throws HelloSignException if there is a problem removing the signer by
-     *         email.
      */
-    public void removeSignerByEmail(String email) throws HelloSignException {
+    public void removeSignerByEmail(String email) {
         if (email == null) {
             return;
         }
@@ -169,10 +167,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
      * Get the template ID that will be used with this request.
      *
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSON object.
      */
-    public String getTemplateId() throws HelloSignException {
+    public String getTemplateId() {
         List<String> templateIds = getTemplateIds();
         if (templateIds.size() == 0) {
             return null;
@@ -293,8 +289,8 @@ public class TemplateSignatureRequest extends AbstractRequest {
         return null;
     }
 
-    /**
-     * Override the following, since templates do not have text tags.
+    /*
+      Override the following, since templates do not have text tags.
      */
 
     /**

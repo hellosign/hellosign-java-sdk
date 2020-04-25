@@ -19,7 +19,7 @@ import org.json.JSONObject;
 public abstract class AbstractResource {
 
     protected JSONObject dataObj;
-    protected List<Warning> warnings = new ArrayList<Warning>();
+    protected List<Warning> warnings = new ArrayList<>();
 
     protected AbstractResource() {
         dataObj = new JSONObject();
@@ -87,7 +87,7 @@ public abstract class AbstractResource {
     protected Boolean getBoolean(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return Boolean.valueOf(dataObj.getBoolean(key));
+                return dataObj.getBoolean(key);
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -99,7 +99,7 @@ public abstract class AbstractResource {
     protected Integer getInteger(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return Integer.valueOf(dataObj.getInt(key));
+                return dataObj.getInt(key);
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -136,7 +136,7 @@ public abstract class AbstractResource {
     protected Long getLong(String key) {
         if (dataObj.has(key) && !dataObj.isNull(key)) {
             try {
-                return Long.valueOf(dataObj.getLong(key));
+                return dataObj.getLong(key);
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -151,7 +151,7 @@ public abstract class AbstractResource {
 
     protected <T> List<T> getList(Class<T> clazz, String key, Serializable filterValue,
         String filterColumnName) {
-        List<T> returnList = new ArrayList<T>();
+        List<T> returnList = new ArrayList<>();
         if (dataObj.has(key)) {
             try {
                 JSONArray array = dataObj.getJSONArray(key);
@@ -168,34 +168,32 @@ public abstract class AbstractResource {
                     // getConstructor()
                     @SuppressWarnings("unchecked")
                     T newItem = (T) constructor.newInstance(obj);
-                    if (newItem != null) {
-                        if (filterColumnName == null && filterValue == null) {
-                            // If we have no filter, add the item
-                            returnList.add(newItem);
-                        } else if (filterColumnName != null && filterValue != null) {
-                            // If we have a filter, test for column and value
-                            if (obj instanceof JSONObject) {
-                                JSONObject testObj = (JSONObject) obj;
-                                if (testObj.has(filterColumnName)) {
-                                    Object columnObj = testObj.get(filterColumnName);
-                                    if (filterValue.equals(columnObj)) {
-                                        returnList.add(newItem);
-                                    }
+                    if (filterColumnName == null && filterValue == null) {
+                        // If we have no filter, add the item
+                        returnList.add(newItem);
+                    } else if (filterColumnName != null && filterValue != null) {
+                        // If we have a filter, test for column and value
+                        if (obj instanceof JSONObject) {
+                            JSONObject testObj = (JSONObject) obj;
+                            if (testObj.has(filterColumnName)) {
+                                Object columnObj = testObj.get(filterColumnName);
+                                if (filterValue.equals(columnObj)) {
+                                    returnList.add(newItem);
                                 }
                             }
-                        } else if (filterValue != null && filterValue instanceof String
-                            && newItem instanceof String) {
-                            // If we have a filter value, but no column name,
-                            // test for String equality
-                            if (filterValue.equals(newItem)) {
-                                returnList.add(newItem);
-                            }
+                        }
+                    } else if (filterValue instanceof String
+                        && newItem instanceof String) {
+                        // If we have a filter value, but no column name,
+                        // test for String equality
+                        if (filterValue.equals(newItem)) {
+                            returnList.add(newItem);
                         }
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                return new ArrayList<T>();
+                return new ArrayList<>();
             }
         }
         return returnList;
@@ -247,7 +245,7 @@ public abstract class AbstractResource {
 
     protected <T> void add(String key, T item) {
         try {
-            JSONArray array = null;
+            JSONArray array;
             if (dataObj.has(key)) {
                 array = dataObj.getJSONArray(key);
             } else {
@@ -263,7 +261,7 @@ public abstract class AbstractResource {
     }
 
     protected static boolean hasString(String s) {
-        return s != null && s != "";
+        return s != null && !s.equals("");
     }
 
     public String toString() {

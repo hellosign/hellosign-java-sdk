@@ -11,7 +11,7 @@ public class HttpOptionsRequest extends AbstractHttpRequest {
 
     @Override
     protected HttpURLConnection getConnection() throws HelloSignException {
-        HttpURLConnection connection = null;
+        HttpURLConnection connection;
         try {
             connection = getProxiedConnection(url);
             connection.setRequestMethod("OPTIONS");

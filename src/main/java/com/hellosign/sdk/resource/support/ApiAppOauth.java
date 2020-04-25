@@ -20,7 +20,7 @@ public class ApiAppOauth extends AbstractResource {
     public static final String APIAPP_OAUTH_SCOPES = "scopes";
     public static final String APIAPP_OAUTH_SECRET = "secret";
 
-    private Set<ApiAppOauthScopeType> scopes = new HashSet<ApiAppOauthScopeType>();
+    private Set<ApiAppOauthScopeType> scopes = new HashSet<>();
 
     /**
      * Default constructor.
@@ -120,7 +120,7 @@ public class ApiAppOauth extends AbstractResource {
      * Clear all OAuth scopes for this API App.
      */
     public void clearScopes() {
-        this.scopes = new HashSet<ApiAppOauthScopeType>();
+        this.scopes = new HashSet<>();
     }
 
     /**

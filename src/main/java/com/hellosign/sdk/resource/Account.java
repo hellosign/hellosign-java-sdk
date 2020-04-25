@@ -101,7 +101,7 @@ public class Account extends AbstractResource {
         return quotas;
     }
 
-    public OauthData getOauthData() throws HelloSignException {
+    public OauthData getOauthData() {
         return oauthData;
     }
 

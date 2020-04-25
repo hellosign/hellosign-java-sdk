@@ -214,7 +214,7 @@ public class CustomField extends AbstractResource {
         try {
             JSONObject obj = dataObj.getJSONObject(CUSTOM_FIELD_AVG_TEXT_LENGTH);
             numLines = obj.getInt(CUSTOM_FIELD_NUM_LINES);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
         }
         return numLines;
     }
@@ -235,7 +235,7 @@ public class CustomField extends AbstractResource {
         try {
             JSONObject obj = dataObj.getJSONObject(CUSTOM_FIELD_AVG_TEXT_LENGTH);
             numLines = obj.getInt(CUSTOM_FIELD_NUM_CHARS_PER_LINE);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
         }
         return numLines;
     }

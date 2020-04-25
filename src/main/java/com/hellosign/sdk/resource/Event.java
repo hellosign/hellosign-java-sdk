@@ -70,7 +70,7 @@ public class Event extends AbstractResource {
      */
     public String getAccountId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
-        String id = null;
+        String id;
         try {
             id = metadata.getString(REPORTED_FOR_ACCOUNT_ID);
         } catch (JSONException ex) {
@@ -83,10 +83,8 @@ public class Event extends AbstractResource {
      * Returns true if this event has a "reported_for_account_id" field.
      *
      * @return true or false if it does not have an account ID
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
      */
-    public boolean hasAccountId() throws HelloSignException {
+    public boolean hasAccountId() {
         return has(REPORTED_FOR_ACCOUNT_ID);
     }
 
@@ -99,7 +97,7 @@ public class Event extends AbstractResource {
      */
     public String getAppId() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
-        String id = null;
+        String id;
         try {
             id = metadata.getString(REPORTED_FOR_APP_ID);
         } catch (JSONException ex) {
@@ -112,10 +110,8 @@ public class Event extends AbstractResource {
      * Returns true if this event has a "reported_for_app_id" field.
      *
      * @return boolean
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
      */
-    public boolean hasAppId() throws HelloSignException {
+    public boolean hasAppId() {
         return has(REPORTED_FOR_APP_ID);
     }
 
@@ -137,7 +133,7 @@ public class Event extends AbstractResource {
      */
     public String getEventMessage() throws HelloSignException {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
-        String eventMessage = null;
+        String eventMessage;
         try {
             eventMessage = metadata.getString(EVENT_MESSAGE);
         } catch (JSONException ex) {
@@ -150,10 +146,8 @@ public class Event extends AbstractResource {
      * Returns the signature ID to which this event is associated.
      *
      * @return String
-     * @throws HelloSignException thrown if there is a problem parsing the
-     *         backing JSONObject.
      */
-    public String getRelatedSignatureId() throws HelloSignException {
+    public String getRelatedSignatureId() {
         JSONObject metadata = (JSONObject) get(EVENT_METADATA);
         if (metadata == null) {
             return null;
@@ -288,7 +282,7 @@ public class Event extends AbstractResource {
      *         key.
      */
     public boolean isValid(String apiKey) throws HelloSignException {
-        if (apiKey == null || apiKey == "") {
+        if (apiKey == null || apiKey.equals("")) {
             return false;
         }
         try {
@@ -299,9 +293,7 @@ public class Event extends AbstractResource {
             String computedHash = bytesToHex(sha256HMAC.doFinal(data.getBytes()));
             String providedHash = getString(EVENT_HASH);
             return computedHash.equalsIgnoreCase(providedHash);
-        } catch (InvalidKeyException e) {
-            throw new HelloSignException("Invalid API Key (" + e.getMessage() + "): " + apiKey);
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidKeyException | IllegalArgumentException e) {
             throw new HelloSignException("Invalid API Key (" + e.getMessage() + "): " + apiKey);
         } catch (NoSuchAlgorithmException e) {
             throw new HelloSignException("Unable to process API key", e);

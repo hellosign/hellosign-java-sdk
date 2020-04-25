@@ -119,11 +119,11 @@ public abstract class AbstractHttpRequest {
      */
     protected static HttpURLConnection getProxiedConnection(String url)
         throws MalformedURLException, IOException {
-        HttpURLConnection conn = null;
+        HttpURLConnection conn;
         Proxy proxy = null;
         String proxyUrlStr = System.getProperty("hellosign.proxy.url");
         String proxyPortStr = System.getProperty("hellosign.proxy.port");
-        Integer proxyPort = 80; // Default to port 80
+        int proxyPort = 80; // Default to port 80
         if (proxyPortStr != null) {
             proxyPort = Integer.parseInt(proxyPortStr);
         }
@@ -156,7 +156,7 @@ public abstract class AbstractHttpRequest {
      *         of the response stream to the given file.
      */
     public long getResponseAsFile(File f) throws HelloSignException {
-        long bytesWritten = 0;
+        long bytesWritten;
         try {
             bytesWritten = Files
                 .copy(lastResponseStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
