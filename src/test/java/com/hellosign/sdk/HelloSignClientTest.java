@@ -45,7 +45,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 
 public class HelloSignClientTest {
