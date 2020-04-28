@@ -1,6 +1,6 @@
-package com.hellosign.sdk.resource.support.types;
+package com.hellosign.sdk.resource.support.types
 
-public enum SignatureStatus {
+enum class SignatureStatus {
     success,
     on_hold,
     signed,

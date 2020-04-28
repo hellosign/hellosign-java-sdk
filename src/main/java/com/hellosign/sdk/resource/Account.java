@@ -82,13 +82,7 @@ public class Account extends AbstractResource {
     }
 
     public RoleType getRoleCode() throws HelloSignException {
-        String code = getString(ACCOUNT_ROLE_CODE);
-        for (RoleType type : RoleType.values()) {
-            if (type.toString().equalsIgnoreCase(code)) {
-                return type;
-            }
-        }
-        throw new HelloSignException("Unknown role code: " + code);
+        return RoleType.getEnum(ACCOUNT_ROLE_CODE);
     }
 
     public boolean hasRoleCode() {
