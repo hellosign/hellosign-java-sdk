@@ -1,0 +1,59 @@
+{
+  "signature_request":{
+    "signature_request_id":"3cb8286f6ee3770aa7c5670e035362e62245f129",
+    "test_mode":true,
+    "title":"pdf-test",
+    "original_title":"pdf-test",
+    "subject":null,
+    "message":null,
+    "metadata":{
+      "test_key":"test_value"
+    },
+    "created_at":1589207125,
+    "attachments":[
+      {
+        "id":"92376dfb14fb3698faf17592ce731368295f8140",
+        "signer":1,
+        "name":"License",
+        "instructions":"Pl provide copy of license.",
+        "required":true,
+        "uploaded_at":null
+      }
+    ],
+    "is_complete":false,
+    "is_declined":false,
+    "has_error":false,
+    "custom_fields":[
+
+    ],
+    "response_data":[
+
+    ],
+    "signing_url":null,
+    "signing_redirect_url":null,
+    "final_copy_uri":"\/v3\/signature_request\/final_copy\/3cb8286f6ee3770aa7c5670e035362e62245f129",
+    "files_url":"https:\/\/api.hellosign.com\/v3\/signature_request\/files\/3cb8286f6ee3770aa7c5670e035362e62245f129",
+    "details_url":"https:\/\/app.hellosign.com\/home\/manage?guid=3cb8286f6ee3770aa7c5670e035362e62245f129",
+    "requester_email_address":"vaibhavij+prd@hellosign.com",
+    "signatures":[
+      {
+        "signature_id":"5bfaf1af15b13f7f3fe57361e78577fd",
+        "has_pin":false,
+        "signer_email_address":"vaibhavij+stg@hellosign.com",
+        "signer_name":"Chris",
+        "signer_role":null,
+        "order":null,
+        "status_code":"awaiting_signature",
+        "signed_at":null,
+        "last_viewed_at":null,
+        "last_reminded_at":null,
+        "error":null
+      }
+    ],
+    "cc_email_addresses":[
+
+    ],
+    "template_ids":null,
+    "client_id":"82d8101db9a2147f8e07244f9ca030a6"
+  }
+}

@@ -1,6 +1,7 @@
 package com.hellosign.sdk.resource;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Attachment;
 import com.hellosign.sdk.resource.support.CustomField;
 import com.hellosign.sdk.resource.support.Document;
 import com.hellosign.sdk.resource.support.types.FieldType;
@@ -25,6 +26,11 @@ public class TemplateDraft extends AbstractRequest {
     public static final String TEMPLATE_DRAFT_ID = "template_id";
     public static final String TEMPLATE_EDIT_URL = "edit_url";
     public static final String TEMPLATE_EXPIRES_AT = "expires_at";
+    public static final String SIGREQ_ATTACHMENTS = "attachments";
+    public static final String SIGREQ_ATTACHMENTS_NAME = "name";
+    public static final String SIGREQ_ATTACHMENTS_INSTRUCTIONS = "instructions";
+    public static final String SIGREQ_ATTACHMENTS_INDEX = "signer_index";
+    public static final String SIGREQ_ATTACHMENTS_REQUIRED = "required";
 
     private List<String> ccRoles = new ArrayList<>();
     private List<String> signerRoles = new ArrayList<>();
@@ -36,6 +42,21 @@ public class TemplateDraft extends AbstractRequest {
 
     public TemplateDraft(JSONObject json) throws HelloSignException {
         super(json, TEMPLATE_DRAFT_KEY);
+    }
+
+    // List of Attachment
+    private List<Attachment> attachments = new ArrayList<>();
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    /**
+     * Set List of Attachments to the request.
+     * @param attachments
+     */
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     /**
@@ -259,6 +280,14 @@ public class TemplateDraft extends AbstractRequest {
                 if (getOrderMatters()) {
                     fields.put("signer_roles[" + i + "][order]", i);
                 }
+            }
+            List<Attachment> attachmentList = getAttachments();
+            for(int i=0; i<attachmentList.size(); i++){
+                Attachment attachment = attachmentList.get(i);
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_NAME + "]", attachment.getName());
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_INSTRUCTIONS + "]", attachment.getInstructions());
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_INDEX + "]", attachment.getSigner_index());
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_REQUIRED+ "]",attachment.isRequired());
             }
 
             List<String> ccRoles = getCCRoles();
