@@ -1,0 +1,79 @@
+{
+  "signature_request":{
+    "signature_request_id":"12d7f30ac9a6330c8d84a3787c18416f02ed9aae",
+    "test_mode":true,
+    "title":"From Vaibhavi",
+    "original_title":"From Vaibhavi",
+    "subject":"From Vaibhavi",
+    "message":"Pls sign",
+    "metadata":{
+
+    },
+    "created_at":1589207028,
+    "attachments":[
+      {
+        "id":"da7632a961a30094fcd99c5bea027251bead6a63",
+        "signer":1,
+        "name":"License",
+        "instructions":"Pl provide copy of license.",
+        "required":true,
+        "uploaded_at":null
+      },
+      {
+        "id":"c07a33a556d45a529982b6364ab43a55049c9338",
+        "signer":2,
+        "name":"California Id",
+        "instructions":"Pl provide copy of California Id.",
+        "required":true,
+        "uploaded_at":null
+      }
+    ],
+    "is_complete":false,
+    "is_declined":false,
+    "has_error":false,
+    "custom_fields":[
+
+    ],
+    "response_data":[
+
+    ],
+    "signing_url":"https:\/\/app.hellosign.com\/sign\/12d7f30ac9a6330c8d84a3787c18416f02ed9aae",
+    "signing_redirect_url":null,
+    "final_copy_uri":"\/v3\/signature_request\/final_copy\/12d7f30ac9a6330c8d84a3787c18416f02ed9aae",
+    "files_url":"https:\/\/api.hellosign.com\/v3\/signature_request\/files\/12d7f30ac9a6330c8d84a3787c18416f02ed9aae",
+    "details_url":"https:\/\/app.hellosign.com\/home\/manage?guid=12d7f30ac9a6330c8d84a3787c18416f02ed9aae",
+    "requester_email_address":"vaibhavij+prd@hellosign.com",
+    "signatures":[
+      {
+        "signature_id":"0d7c0800db99166fcca56e6d377a57e3",
+        "has_pin":false,
+        "signer_email_address":"vaibhavij+stg@hellosign.com",
+        "signer_name":"Vaibhavi Joshi",
+        "signer_role":null,
+        "order":null,
+        "status_code":"awaiting_signature",
+        "signed_at":null,
+        "last_viewed_at":null,
+        "last_reminded_at":null,
+        "error":null
+      },
+      {
+        "signature_id":"7700d62c37eb5be7726df518a5de50db",
+        "has_pin":false,
+        "signer_email_address":"vaibhavij+stg1@hellosign.com",
+        "signer_name":"Vaibhavi",
+        "signer_role":null,
+        "order":null,
+        "status_code":"awaiting_signature",
+        "signed_at":null,
+        "last_viewed_at":null,
+        "last_reminded_at":null,
+        "error":null
+      }
+    ],
+    "cc_email_addresses":[
+
+    ],
+    "template_ids":null
+  }
+}

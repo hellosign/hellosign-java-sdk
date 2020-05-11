@@ -35,6 +35,7 @@ import com.hellosign.sdk.resource.support.Signer;
 import com.hellosign.sdk.resource.support.TemplateList;
 import com.hellosign.sdk.resource.support.TemplateRole;
 import com.hellosign.sdk.resource.support.WhiteLabelingOptions;
+import com.hellosign.sdk.resource.support.Attachment;
 import com.hellosign.sdk.resource.support.types.FieldType;
 import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 import java.io.File;
@@ -45,6 +46,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.Arrays;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Assert;
@@ -374,6 +377,87 @@ public class HelloSignClientTest {
         assertEquals(message, sentReq.getMessage());
         assertTrue(req.isTestMode());
     }
+
+    @Test
+    public void testSendSignatureRequestWithAttachment() throws Exception {
+        String subject = "From Vaibhavi";
+        String message = "Pls sign";
+        SignatureRequest req = new SignatureRequest();
+        req.setTestMode(true);
+        req.addSigner("vaibhavij+stg@hellosign.com", "Vaibhavi Joshi");
+        req.addSigner("vaibhavij+stg1@hellosign.com","Vaibhavi");
+        req.addFileUrl("http://www.orimi.com/pdf-test.pdf");
+        req.setSubject(subject);
+        req.setMessage(message);
+        Attachment attachment1 = new Attachment("License","Pl provide copy of license.",0,true);
+        Attachment attachment2 = new Attachment("California Id","Pl provide copy of California Id.",1,true);
+        req.setAttachments(Arrays.asList(attachment1,attachment2));
+        System.out.println(req);
+        SignatureRequest sentReq = client.sendSignatureRequest(req);
+
+        assertNotNull(sentReq);
+        assertTrue(sentReq.hasId());
+        assertNotNull(sentReq.getSignature("vaibhavij+stg@hellosign.com", "Vaibhavi Joshi"));
+        assertEquals(subject, sentReq.getSubject());
+        assertEquals(message, sentReq.getMessage());
+        assertTrue(req.isTestMode());
+
+        //sentReq.getResponseData().
+        JSONObject responseObject = sentReq.getJSONObject();
+        JSONArray attachmentsObject = responseObject.getJSONArray("attachments");
+        JSONObject attachmentObj1 = (JSONObject) attachmentsObject.get(0);
+        JSONObject attachmentObj2 = (JSONObject) attachmentsObject.get(1);
+
+        // Assert on Signer 1 attachment.
+        Assert.assertTrue(attachmentObj1.get("name").equals("License"));
+        Assert.assertTrue(attachmentObj1.get("instructions").equals("Pl provide copy of license."));
+        Assert.assertTrue(attachmentObj1.get("signer").equals(1));
+        Assert.assertTrue(attachmentObj1.get("required").equals(true));
+
+        // Assert on Signer 2 attachment.
+        Assert.assertTrue(attachmentObj2.get("name").equals("California Id"));
+        Assert.assertTrue(attachmentObj2.get("instructions").equals("Pl provide copy of California Id."));
+        Assert.assertTrue(attachmentObj2.get("signer").equals(2));
+        Assert.assertTrue(attachmentObj2.get("required").equals(true));
+    }
+
+
+    @Test
+    public void testCreateEmbeddedRequestWithAttachment() throws Exception {
+        SignatureRequest req = new SignatureRequest();
+        req.addFileUrl("http://www.orimi.com/pdf-test.pdf");
+        req.addSigner("vaibhavij+stg@hellosign.com", "Chris");
+        req.setTestMode(true);
+        req.addMetadata("test_key", "test_value");
+        Attachment attachment1 = new Attachment("License","Pl provide copy of license.",0,true);
+        req.setAttachments(Arrays.asList(attachment1));
+        EmbeddedRequest embeddedReq = new EmbeddedRequest("82d8101db9a2147f8e07244f9ca030a6", req);
+        Map<String, String> fields = new HashMap<>();
+        fields.put("Field A", "Hello");
+        fields.put("Field B", "World!");
+        fields.put("Checkbox A", "true");
+        fields.put("Checkbox B", "false");
+        embeddedReq.setCustomFields(fields);
+        AbstractRequest newReq = client.createEmbeddedRequest(embeddedReq);
+        assertNotNull(newReq);
+        assertNotNull(newReq.getId());
+        assertEquals(req.getMetadata("test_key"), newReq.getMetadata("test_key"));
+        for (CustomField cf : newReq.getCustomFields()) {
+            assertEquals(fields.get(cf.getName()), cf.getValue());
+        }
+        //sentReq.getResponseData().
+        JSONObject responseObject = newReq.getJSONObject();
+        JSONArray attachmentsObject = responseObject.getJSONArray("attachments");
+        JSONObject attachmentObj1 = (JSONObject) attachmentsObject.get(0);
+
+        // Assert on Signer 1 attachment.
+        Assert.assertTrue(attachmentObj1.get("name").equals("License"));
+        Assert.assertTrue(attachmentObj1.get("instructions").equals("Pl provide copy of license."));
+        Assert.assertTrue(attachmentObj1.get("signer").equals(1));
+        Assert.assertTrue(attachmentObj1.get("required").equals(true));
+
+    }
+
 
     @Test(expected = HelloSignException.class)
     public void testSendSignatureRequestInvalid() throws Exception {

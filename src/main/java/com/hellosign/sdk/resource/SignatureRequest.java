@@ -6,6 +6,7 @@ import com.hellosign.sdk.resource.support.FormField;
 import com.hellosign.sdk.resource.support.ResponseData;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.Signer;
+import com.hellosign.sdk.resource.support.Attachment;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +38,32 @@ public class SignatureRequest extends AbstractRequest {
     public static final String SIGREQ_SIGNING_URL = "signing_url";
     public static final String SIGREQ_DETAILS_URL = "details_url";
     public static final String SIGREQ_IS_DECLINED = "is_declined";
+    public static final String SIGREQ_ATTACHMENTS = "attachments";
+    public static final String SIGREQ_ATTACHMENTS_NAME = "name";
+    public static final String SIGREQ_ATTACHMENTS_INSTRUCTIONS = "instructions";
+    public static final String SIGREQ_ATTACHMENTS_INDEX = "signer_index";
+    public static final String SIGREQ_ATTACHMENTS_REQUIRED = "required";
+
 
     public static final String SIGREQ_FORMAT_ZIP = "zip";
     public static final String SIGREQ_FORMAT_PDF = "pdf";
 
     // Fields specific to request
     private List<Signer> signers = new ArrayList<Signer>();
+
+    private List<Attachment> attachments = new ArrayList<>();
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public List<Attachment> getAttachmentsInResponse(){
+        return getList(Attachment.class, SIGREQ_ATTACHMENTS);
+    }
+
+    public void setAttachments(List<Attachment> attachments){
+        this.attachments = attachments;
+    }
 
     public SignatureRequest() {
         super();
@@ -255,6 +276,14 @@ public class SignatureRequest extends AbstractRequest {
                     fields.put(SIGREQ_SIGNERS + "[" + i + "][" + SIGREQ_SIGNER_PIN + "]",
                         s.getAccessCode());
                 }
+            }
+            List<Attachment> attachmentList = getAttachments();
+            for(int i=0; i<attachmentList.size(); i++){
+                Attachment attachment = attachmentList.get(i);
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_NAME + "]", attachment.getName());
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_INSTRUCTIONS + "]", attachment.getInstructions());
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_INDEX + "]", attachment.getSigner_index());
+                fields.put(SIGREQ_ATTACHMENTS + "[" + i + "][" + SIGREQ_ATTACHMENTS_REQUIRED+ "]",attachment.isRequired());
             }
             List<String> ccz = getCCs();
             for (int i = 0; i < ccz.size(); i++) {
