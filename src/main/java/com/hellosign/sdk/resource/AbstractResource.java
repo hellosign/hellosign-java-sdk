@@ -4,6 +4,7 @@ import com.hellosign.sdk.HelloSignException;
 import com.hellosign.sdk.resource.support.Warning;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -149,6 +150,32 @@ public abstract class AbstractResource {
 
     protected <T> List<T> getList(Class<T> clazz, String key) {
         return getList(clazz, key, null, null);
+    }
+
+    /**
+     * Get Type castable object.
+     * @param Class
+     * @param obj
+     * @param key
+     * @param <T>
+     * @return
+     */
+    protected <T> Object getObject(Class<T> Class, Object obj, String key){
+
+        Constructor<?> constructor = getConstructor(Class, obj.getClass());
+
+        @SuppressWarnings("unchecked")
+        T newItem = null;
+        try {
+            newItem = (T) constructor.newInstance(dataObj.get(key));
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return newItem;
     }
 
     protected <T> List<T> getList(Class<T> clazz, String key, Serializable filterValue,
