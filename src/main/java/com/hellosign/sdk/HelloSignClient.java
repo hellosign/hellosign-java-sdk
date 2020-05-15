@@ -6,6 +6,7 @@ import com.hellosign.sdk.resource.AbstractRequest;
 import com.hellosign.sdk.resource.AbstractResourceList;
 import com.hellosign.sdk.resource.Account;
 import com.hellosign.sdk.resource.ApiApp;
+import com.hellosign.sdk.resource.BulkSendJobById;
 import com.hellosign.sdk.resource.EmbeddedRequest;
 import com.hellosign.sdk.resource.EmbeddedResponse;
 import com.hellosign.sdk.resource.FileUrlResponse;
@@ -20,6 +21,7 @@ import com.hellosign.sdk.resource.support.OauthData;
 import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.SignatureRequestList;
 import com.hellosign.sdk.resource.support.TemplateList;
+import com.hellosign.sdk.resource.support.types.BulkSendJobsList;
 import com.hellosign.sdk.resource.support.types.FieldType;
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -80,6 +82,8 @@ public class HelloSignClient {
     public static final String UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_URI = "/unclaimed_draft/create_embedded_with_template";
     public static final String API_APP_URI = "/api_app";
     public static final String API_APP_LIST_URI = "/api_app/list";
+    public static final String BULK_SEND_JOBS_LIST = "/bulk_send_job/list";
+    public static final String BULK_SEND_JOBS = "/bulk_send_job/";
 
     public static final String PARAM_FILE_TYPE_URI = "file_type";
     public static final String PARAM_GET_URL = "get_url";
@@ -1036,5 +1040,60 @@ public class HelloSignClient {
      */
     public void setAccessToken(String accessToken, String tokenType) throws HelloSignException {
         auth.setAccessToken(accessToken, tokenType);
+    }
+
+    /**
+     * Returns a list of BulkSendJob that you can access.
+     *
+     * @return bulkSendJobsList
+     * @throws HelloSignException thrown if there's a problem processing the HTTP request or the
+     * JSON response.
+     */
+    public BulkSendJobsList getBulkSendJobList() throws HelloSignException {
+        return new BulkSendJobsList(httpClient.withAuth(auth).get(BASE_URI + BULK_SEND_JOBS_LIST).asJson());
+    }
+
+    /**
+     * Retrieves a specific page number of the BulkSendJob List.
+     *
+     * @param page int
+     * @return BulkSendJobsList
+     * @throws HelloSignException thrown if there's a problem processing the HTTP request or the
+     * JSON response.
+     */
+    public BulkSendJobsList getBulkSendJobList(int page) throws HelloSignException {
+        return new BulkSendJobsList(
+            httpClient.withAuth(auth)
+                .withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
+                .get(BASE_URI + BULK_SEND_JOBS_LIST).asJson());
+    }
+
+    /**
+     * Retrieves a specific page number of the BulkSendJob List, with Number of objects to be returned per page.
+     * Must be between 1 and 100. Default is 20.
+     *
+     * @param page int
+     * @param pageSize int Must be between 1 and 100.
+     * @return BulkSendJobsList
+     * @throws HelloSignException thrown if there's a problem processing the HTTP request or the
+     * JSON response.
+     */
+    public BulkSendJobsList getBulkSendJobList(int page, int pageSize) throws HelloSignException {
+        return new BulkSendJobsList(
+            httpClient.withAuth(auth)
+                .withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
+                .withGetParam(AbstractResourceList.PAGE_SIZE, Integer.toString(pageSize))
+                .get(BASE_URI + BULK_SEND_JOBS_LIST).asJson());
+    }
+
+    /**
+     * Returns the status of the BulkSendJob and its SignatureRequests specified by the bulk_send_job_id parameter.
+     * @param bulk_send_job_id
+     * @return
+     * @throws HelloSignException
+     */
+    public BulkSendJobById getBulkSendByJobId(String bulk_send_job_id) throws HelloSignException{
+        String url =  BASE_URI + BULK_SEND_JOBS + "/" + bulk_send_job_id;
+        return new BulkSendJobById(httpClient.withAuth(auth).get(url).asJson());
     }
 }

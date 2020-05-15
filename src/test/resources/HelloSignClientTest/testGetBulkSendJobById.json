@@ -1,0 +1,116 @@
+{
+  "bulk_send_job":{
+    "bulk_send_job_id":"eb05b91f81570b2558b4f343a98a91386da3a848",
+    "total":2,
+    "is_creator":true,
+    "created_at":1589489947
+  },
+  "list_info":{
+    "page":1,
+    "num_pages":1,
+    "num_results":2,
+    "page_size":20
+  },
+  "signature_requests":[
+    {
+      "signature_request_id":"9abf3a388188314702370cde71a079863b3fb4ed",
+      "test_mode":true,
+      "title":"Template test",
+      "original_title":"Template test",
+      "subject":"Template test",
+      "message":null,
+      "metadata":{
+
+      },
+      "created_at":1589489948,
+      "is_complete":false,
+      "is_declined":false,
+      "has_error":false,
+      "custom_fields":[
+
+      ],
+      "response_data":[
+
+      ],
+      "signing_url":null,
+      "signing_redirect_url":null,
+      "final_copy_uri":"\/v3\/signature_request\/final_copy\/9abf3a388188314702370cde71a079863b3fb4ed",
+      "files_url":"https:\/\/api.hellosign.com\/v3\/signature_request\/files\/9abf3a388188314702370cde71a079863b3fb4ed",
+      "details_url":"https:\/\/app.hellosign.com\/home\/manage?guid=9abf3a388188314702370cde71a079863b3fb4ed",
+      "requester_email_address":"vaibhavij+prd@hellosign.com",
+      "signatures":[
+        {
+          "signature_id":"e06de6b129912e107ba24d02669030e9",
+          "has_pin":false,
+          "signer_email_address":"vaibhavij@hellosign.com",
+          "signer_name":"George",
+          "signer_role":"Client",
+          "order":null,
+          "status_code":"awaiting_signature",
+          "signed_at":null,
+          "last_viewed_at":null,
+          "last_reminded_at":null,
+          "error":null
+        }
+      ],
+      "cc_email_addresses":[
+
+      ],
+      "bulk_send_job_id":"eb05b91f81570b2558b4f343a98a91386da3a848",
+      "template_ids":[
+        "32e5d305ae6f5a6f9efa15bc5e6ac162dfd6038f"
+      ],
+      "client_id":"82d8101db9a2147f8e07244f9ca030a6"
+    },
+    {
+      "signature_request_id":"10e41847e17f4f4b423d64048b53de79a0295792",
+      "test_mode":true,
+      "title":"Template test",
+      "original_title":"Template test",
+      "subject":"Template test",
+      "message":null,
+      "metadata":{
+
+      },
+      "created_at":1589489948,
+      "is_complete":false,
+      "is_declined":false,
+      "has_error":false,
+      "custom_fields":[
+
+      ],
+      "response_data":[
+
+      ],
+      "signing_url":null,
+      "signing_redirect_url":null,
+      "final_copy_uri":"\/v3\/signature_request\/final_copy\/10e41847e17f4f4b423d64048b53de79a0295792",
+      "files_url":"https:\/\/api.hellosign.com\/v3\/signature_request\/files\/10e41847e17f4f4b423d64048b53de79a0295792",
+      "details_url":"https:\/\/app.hellosign.com\/home\/manage?guid=10e41847e17f4f4b423d64048b53de79a0295792",
+      "requester_email_address":"vaibhavij+prd@hellosign.com",
+      "signatures":[
+        {
+          "signature_id":"0143111fc7ed28f562cfa64af09e1400",
+          "has_pin":false,
+          "signer_email_address":"joshi.vaibhavi@yahoo.com",
+          "signer_name":"Mary",
+          "signer_role":"Client",
+          "order":null,
+          "status_code":"awaiting_signature",
+          "signed_at":null,
+          "last_viewed_at":null,
+          "last_reminded_at":null,
+          "error":null
+        }
+      ],
+      "cc_email_addresses":[
+
+      ],
+      "bulk_send_job_id":"eb05b91f81570b2558b4f343a98a91386da3a848",
+      "template_ids":[
+        "32e5d305ae6f5a6f9efa15bc5e6ac162dfd6038f"
+      ],
+      "client_id":"82d8101db9a2147f8e07244f9ca030a6"
+    }
+  ]
+}
