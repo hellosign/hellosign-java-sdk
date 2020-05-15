@@ -1115,4 +1115,14 @@ public class HelloSignClientTest {
         var set = signers.entrySet();
         Assert.assertEquals(0, set.size());
     }
+
+    /**
+     * Test to verify Remove your access to a completed signature request.
+     * @throws Exception
+     */
+    @Test
+    public void testRemoveSignatureRequestAccess() throws Exception {
+        mockResponseCode(200);
+        assertTrue(client.removeSignatureRequestAccess("44cf71a0238811c846f49483014f534cfd8caba6"));
+    }
 }

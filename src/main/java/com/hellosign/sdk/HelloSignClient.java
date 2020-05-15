@@ -80,6 +80,8 @@ public class HelloSignClient {
     public static final String UNCLAIMED_DRAFT_CREATE_EMBEDDED_WITH_TEMPLATE_URI = "/unclaimed_draft/create_embedded_with_template";
     public static final String API_APP_URI = "/api_app";
     public static final String API_APP_LIST_URI = "/api_app/list";
+    public static final String SIGNATURE_REQUEST_REMOVE_URI = "/signature_request/remove";
+
 
     public static final String PARAM_FILE_TYPE_URI = "file_type";
     public static final String PARAM_GET_URL = "get_url";
@@ -1037,4 +1039,21 @@ public class HelloSignClient {
     public void setAccessToken(String accessToken, String tokenType) throws HelloSignException {
         auth.setAccessToken(accessToken, tokenType);
     }
+
+    /**
+     * Removes your access to a completed signature request. This action is not reversible.
+     *
+     * The signature request must be fully executed by all parties (signed or declined to sign).
+     * Other parties will continue to maintain access to the completed signature request document(s).
+     *
+     * @param signature_request_id SignatureRequest id
+     * @return boolean true if successful
+     * @throws HelloSignException thrown if there's a problem processing the HTTP request or the
+     * JSON response.
+     */
+    public boolean removeSignatureRequestAccess(String signature_request_id) throws HelloSignException {
+        String url = BASE_URI + SIGNATURE_REQUEST_REMOVE_URI + "/" + signature_request_id;
+        return HttpURLConnection.HTTP_OK == httpClient.withAuth(auth).post(url).asHttpCode();
+    }
+
 }
