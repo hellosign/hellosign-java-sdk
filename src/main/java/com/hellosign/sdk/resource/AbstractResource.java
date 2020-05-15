@@ -154,10 +154,10 @@ public abstract class AbstractResource {
 
     /**
      * Get Type castable object.
-     * @param Class
-     * @param obj
-     * @param key
-     * @param <T>
+     * @param Class Pass Class type to be type casted.
+     * @param obj  Provide Object needs to be type casted.
+     * @param key Key for Object.
+     * @param <T> Object
      * @return
      */
     protected <T> Object getObject(Class<T> Class, Object obj, String key){

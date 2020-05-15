@@ -1054,7 +1054,7 @@ public class HelloSignClient {
     }
 
     /**
-     * Retrieves a specific page page number of the BulkSendJob List.
+     * Retrieves a specific page number of the BulkSendJob List.
      *
      * @param page int
      * @return BulkSendJobsList
@@ -1069,7 +1069,7 @@ public class HelloSignClient {
     }
 
     /**
-     * Retrieves a specific page page number of the BulkSendJob List, with Number of objects to be returned per page.
+     * Retrieves a specific page number of the BulkSendJob List, with Number of objects to be returned per page.
      * Must be between 1 and 100. Default is 20.
      *
      * @param page int

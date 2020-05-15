@@ -21,7 +21,7 @@ public class BulkSendJobById extends AbstractResource {
     }
 
     public BulkSendJobById(JSONObject json) throws HelloSignException{
-        super(json,BULKSENDBYJOBID );
+        super(json,BULKSENDBYJOBID);
     }
 
     /**
