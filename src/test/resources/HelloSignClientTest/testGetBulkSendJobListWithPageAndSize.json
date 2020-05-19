@@ -1,0 +1,28 @@
+{
+  "list_info":{
+    "page":1,
+    "num_pages":1,
+    "num_results":3,
+    "page_size":15
+  },
+  "bulk_send_jobs":[
+    {
+      "bulk_send_job_id":"eb05b91f81570b2558b4f343a98a91386da3a848",
+      "total":2,
+      "is_creator":true,
+      "created_at":1589489947
+    },
+    {
+      "bulk_send_job_id":"8e53607daf5f7617804482cf7b6cdfcdb20ba13b",
+      "total":2,
+      "is_creator":true,
+      "created_at":1589489946
+    },
+    {
+      "bulk_send_job_id":"2a1e6ed683e0261fae4744233e8f248919db1560",
+      "total":2,
+      "is_creator":true,
+      "created_at":1589489937
+    }
+  ]
+}

@@ -16,6 +16,8 @@ import com.hellosign.sdk.http.HttpClient;
 import com.hellosign.sdk.resource.AbstractRequest;
 import com.hellosign.sdk.resource.Account;
 import com.hellosign.sdk.resource.ApiApp;
+import com.hellosign.sdk.resource.BulkSendJobs;
+import com.hellosign.sdk.resource.BulkSendJobById;
 import com.hellosign.sdk.resource.EmbeddedRequest;
 import com.hellosign.sdk.resource.EmbeddedResponse;
 import com.hellosign.sdk.resource.SignatureRequest;
@@ -36,6 +38,7 @@ import com.hellosign.sdk.resource.support.TemplateList;
 import com.hellosign.sdk.resource.support.TemplateRole;
 import com.hellosign.sdk.resource.support.WhiteLabelingOptions;
 import com.hellosign.sdk.resource.support.Attachment;
+import com.hellosign.sdk.resource.support.types.BulkSendJobsList;
 import com.hellosign.sdk.resource.support.types.FieldType;
 import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 import java.io.File;
@@ -1116,6 +1119,88 @@ public class HelloSignClientTest {
         Assert.assertEquals(0, set.size());
     }
 
+    /**
+     * Test for Get bulk send job list.
+     * @throws Exception
+     */
+    @Test
+    public void testGetBulkSendJobList() throws Exception {
+        BulkSendJobsList bulkSendJobList = client.getBulkSendJobList();
+        Assert.assertEquals(bulkSendJobList.getPage().toString(), "1");
+        Assert.assertEquals(bulkSendJobList.getNumPages().toString(), "1");
+        Assert.assertEquals(bulkSendJobList.getNumResults().toString(), "3");
+        Assert.assertEquals(bulkSendJobList.getPageSize().toString(), "20");
+
+        for(BulkSendJobs bulkSendJob : bulkSendJobList){
+            assertNotNull(bulkSendJob.getBulkSendJobId());
+            Assert.assertEquals(bulkSendJob.getBulkSendJobTotal().toString(),"2");
+            Assert.assertEquals(bulkSendJob.getBulkSendJobIsCreator(), true);
+            assertNotNull(bulkSendJob.getBulkSendJobCreatedAt());
+        }
+    }
+
+    /**
+     * Test for Get bulk send job list with Page.
+     * @throws Exception
+     */
+    @Test
+    public void testGetBulkSendJobListWithPage() throws Exception {
+        BulkSendJobsList bulkSendJobList = client.getBulkSendJobList(1);
+        Assert.assertEquals(bulkSendJobList.getPage().toString(), "1");
+        Assert.assertEquals(bulkSendJobList.getNumPages().toString(), "1");
+        Assert.assertEquals(bulkSendJobList.getNumResults().toString(), "3");
+        Assert.assertEquals(bulkSendJobList.getPageSize().toString(), "20");
+
+        for(BulkSendJobs bulkSendJob : bulkSendJobList){
+            assertNotNull(bulkSendJob.getBulkSendJobId());
+            Assert.assertEquals(bulkSendJob.getBulkSendJobTotal().toString(),"2");
+            Assert.assertEquals(bulkSendJob.getBulkSendJobIsCreator(), true);
+            assertNotNull(bulkSendJob.getBulkSendJobCreatedAt());
+        }
+    }
+
+    /**
+     * Test for Get bulk send job list with Page and Page size.
+     * @throws Exception
+     */
+    @Test
+    public void testGetBulkSendJobListWithPageAndSize() throws Exception {
+        BulkSendJobsList bulkSendJobList = client.getBulkSendJobList(1,15);
+        Assert.assertEquals(bulkSendJobList.getPage().toString(), "1");
+        Assert.assertEquals(bulkSendJobList.getNumPages().toString(), "1");
+        Assert.assertEquals(bulkSendJobList.getNumResults().toString(), "3");
+        Assert.assertEquals(bulkSendJobList.getPageSize().toString(), "15");
+
+        for(BulkSendJobs bulkSendJob : bulkSendJobList){
+            assertNotNull(bulkSendJob.getBulkSendJobId());
+            Assert.assertEquals(bulkSendJob.getBulkSendJobTotal().toString(),"2");
+            Assert.assertEquals(bulkSendJob.getBulkSendJobIsCreator(), true);
+            assertNotNull(bulkSendJob.getBulkSendJobCreatedAt());
+        }
+    }
+
+    /**
+     * Test for Get bulk send job by id.
+     * @throws Exception
+     */
+    @Test
+    public void testGetBulkSendJobById() throws Exception {
+        String testBulkSendJobId = "eb05b91f81570b2558b4f343a98a91386da3a848";
+        String testSignatureRequestId = "9abf3a388188314702370cde71a079863b3fb4ed";
+        BulkSendJobById bulkSendJobId = client.getBulkSendByJobId(testBulkSendJobId);
+
+        assertNotNull(bulkSendJobId);
+        assertNotNull(bulkSendJobId.getListInfo());
+        assertNotNull(bulkSendJobId.getBulkSendJob());
+        assertNotNull(bulkSendJobId.getSignatureRequests());
+
+        BulkSendJobs bulkSendJob = bulkSendJobId.getBulkSendJob();
+        Assert.assertEquals(bulkSendJob.getBulkSendJobId(), testBulkSendJobId);
+
+        List<SignatureRequest> signatureRequests = bulkSendJobId.getSignatureRequests();
+        Assert.assertEquals(signatureRequests.get(0).getId(), testSignatureRequestId);
+    }
+  
     /**
      * Test to verify Remove your access to a completed signature request.
      * @throws Exception
