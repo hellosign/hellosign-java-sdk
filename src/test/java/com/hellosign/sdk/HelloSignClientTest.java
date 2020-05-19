@@ -1179,7 +1179,6 @@ public class HelloSignClientTest {
         }
     }
 
-
     /**
      * Test for Get bulk send job by id.
      * @throws Exception
@@ -1200,5 +1199,15 @@ public class HelloSignClientTest {
 
         List<SignatureRequest> signatureRequests = bulkSendJobId.getSignatureRequests();
         Assert.assertEquals(signatureRequests.get(0).getId(), testSignatureRequestId);
+    }
+  
+    /**
+     * Test to verify Remove your access to a completed signature request.
+     * @throws Exception
+     */
+    @Test
+    public void testRemoveSignatureRequestAccess() throws Exception {
+        mockResponseCode(200);
+        assertTrue(client.removeSignatureRequestAccess("44cf71a0238811c846f49483014f534cfd8caba6"));
     }
 }
