@@ -1097,6 +1097,8 @@ public class HelloSignClient {
         String url =  BASE_URI + BULK_SEND_JOBS + "/" + bulk_send_job_id;
         return new BulkSendJobById(httpClient.withAuth(auth).get(url).asJson());
     }
+
+    /**
      * Removes your access to a completed signature request. This action is not reversible.
      *
      * The signature request must be fully executed by all parties (signed or declined to sign).
