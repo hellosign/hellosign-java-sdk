@@ -88,6 +88,7 @@ public class HelloSignClient {
 
     public static final String PARAM_FILE_TYPE_URI = "file_type";
     public static final String PARAM_GET_URL = "get_url";
+    public static final String PARAM_QUERY = "query";
     public static final String FINAL_COPY_FILE_NAME = "final-copy";
     public static final String FINAL_COPY_FILE_EXT = "pdf";
     public static final String FILES_FILE_NAME = "files";
@@ -458,6 +459,26 @@ public class HelloSignClient {
             httpClient.withAuth(auth)
                 .withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
                 .withGetParam(AbstractResourceList.PAGE_SIZE, Integer.toString(pageSize))
+                .get(BASE_URI + SIGNATURE_REQUEST_LIST_URI).asJson());
+    }
+
+    /**
+     * Retrieves a specific page of the current user's signature requests.
+     *
+     * @param page int
+     * @param pageSize int Must be between 1 and 100.
+     * @param query String that includes search terms and/or fields to be used to filter the SignatureRequest objects.
+     * @return SignatureRequestList
+     * @throws HelloSignException thrown if there's a problem processing the HTTP request or the
+     * JSON response.
+     */
+    public SignatureRequestList getSignatureRequests(int page, int pageSize, String query)
+        throws HelloSignException {
+        return new SignatureRequestList(
+            httpClient.withAuth(auth)
+                .withGetParam(AbstractResourceList.PAGE, Integer.toString(page))
+                .withGetParam(AbstractResourceList.PAGE_SIZE, Integer.toString(pageSize))
+                .withGetParam(PARAM_QUERY, query)
                 .get(BASE_URI + SIGNATURE_REQUEST_LIST_URI).asJson());
     }
 
