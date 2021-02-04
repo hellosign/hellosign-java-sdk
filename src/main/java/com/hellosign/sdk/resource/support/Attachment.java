@@ -1,5 +1,7 @@
 package com.hellosign.sdk.resource.support;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Attachment {
     String name;
     String instructions;
@@ -34,7 +36,7 @@ public class Attachment {
     }
 
     public void setInstructions(String instructions) {
-        if(!instructions.isBlank()){
+        if(!StringUtils.isBlank(instructions)){
             this.instructions = instructions;
         }
     }
@@ -73,7 +75,7 @@ public class Attachment {
     }
 
     public void setName(String name) {
-        if(!name.isBlank()){
+        if(!StringUtils.isBlank(name)){
             this.name = name;
         }
     }

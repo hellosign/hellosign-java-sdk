@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Represents a HelloSign signature request based on one or more Templates.
@@ -135,7 +136,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
         if (email == null) {
             return;
         }
-        var signerSet = signers.entrySet();
+        Set<Entry<String, Signer>> signerSet = signers.entrySet();
         for (Entry<String, Signer> entry : signerSet) {
             if (email.equalsIgnoreCase(entry.getValue().getEmail())) {
                 signers.remove(entry.getKey());
@@ -236,7 +237,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
             }
             Map<String, Signer> signerz = getSigners();
             for (Entry<String, Signer> entry : signerz.entrySet()) {
-                var role = entry.getKey();
+                String role = entry.getKey();
                 Signer s = signerz.get(role);
                 fields.put(TEMPLATE_SIGNERS + "[" + role + "][" + TEMPLATE_SIGNERS_EMAIL + "]",
                     s.getEmail());
@@ -259,7 +260,7 @@ public class TemplateSignatureRequest extends AbstractRequest {
             }
             Map<String, String> ccz = getCCs();
             for (Entry<String, String> entry : ccz.entrySet()) {
-                var role = entry.getKey();
+                String role = entry.getKey();
                 fields.put(TEMPLATE_CCS + "[" + role + "][" + TEMPLATE_CCS_EMAIL + "]",
                     ccz.get(role));
             }

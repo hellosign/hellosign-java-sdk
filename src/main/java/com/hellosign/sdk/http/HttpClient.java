@@ -13,6 +13,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -194,7 +195,7 @@ public class HttpClient {
     private File createTemporaryFile(String filename) throws HelloSignException {
         String prefix = filename.substring(0, filename.indexOf("."));
         String postfix = filename.substring(filename.indexOf(".") + 1);
-        if (prefix.isBlank() || postfix.isBlank()) {
+        if (StringUtils.isBlank(prefix) || StringUtils.isBlank(postfix)) {
             throw new HelloSignException("Invalid file name: " + prefix + "." + postfix);
         }
         File f;
