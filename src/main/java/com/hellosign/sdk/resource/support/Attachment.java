@@ -29,7 +29,6 @@ public class Attachment {
 
     /**
      * Get Instruction for signer.
-     * @return
      */
     public String getInstructions() {
         return instructions;
@@ -49,7 +48,6 @@ public class Attachment {
      * Provide signer_index, in accordance to the order, signer is added.
      * Example : first signer : signer_index = 0
      *           second signer : signer_index = 1
-     * @param signer_index
      */
     public void setSigner_index(int signer_index) {
             this.signer_index= signer_index;

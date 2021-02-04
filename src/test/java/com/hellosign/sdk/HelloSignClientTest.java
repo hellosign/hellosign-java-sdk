@@ -1123,7 +1123,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job list.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobList() throws Exception {
@@ -1143,7 +1142,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job list with Page.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobListWithPage() throws Exception {
@@ -1163,7 +1161,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job list with Page and Page size.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobListWithPageAndSize() throws Exception {
@@ -1183,7 +1180,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job by id.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobById() throws Exception {
@@ -1205,7 +1201,6 @@ public class HelloSignClientTest {
   
     /**
      * Test to verify Remove your access to a completed signature request.
-     * @throws Exception
      */
     @Test
     public void testRemoveSignatureRequestAccess() throws Exception {

@@ -158,7 +158,6 @@ public abstract class AbstractResource {
      * @param obj  Provide Object needs to be type casted.
      * @param key Key for Object.
      * @param <T> Object
-     * @return
      */
     protected <T> Object getObject(Class<T> Class, Object obj, String key){
 

@@ -53,7 +53,6 @@ public class TemplateDraft extends AbstractRequest {
 
     /**
      * Set List of Attachments to the request.
-     * @param attachments
      */
     public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
