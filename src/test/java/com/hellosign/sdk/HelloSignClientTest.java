@@ -47,7 +47,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.Arrays;
 import org.json.JSONArray;
@@ -1115,13 +1117,12 @@ public class HelloSignClientTest {
         request.setSigner("role", "john@example.com", "John");
         request.removeSignerByEmail("john@example.com");
         Map<String, Signer> signers = request.getSigners();
-        var set = signers.entrySet();
+        Set<Entry<String, Signer>> set = signers.entrySet();
         Assert.assertEquals(0, set.size());
     }
 
     /**
      * Test for Get bulk send job list.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobList() throws Exception {
@@ -1141,7 +1142,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job list with Page.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobListWithPage() throws Exception {
@@ -1161,7 +1161,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job list with Page and Page size.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobListWithPageAndSize() throws Exception {
@@ -1181,7 +1180,6 @@ public class HelloSignClientTest {
 
     /**
      * Test for Get bulk send job by id.
-     * @throws Exception
      */
     @Test
     public void testGetBulkSendJobById() throws Exception {
@@ -1203,7 +1201,6 @@ public class HelloSignClientTest {
   
     /**
      * Test to verify Remove your access to a completed signature request.
-     * @throws Exception
      */
     @Test
     public void testRemoveSignatureRequestAccess() throws Exception {

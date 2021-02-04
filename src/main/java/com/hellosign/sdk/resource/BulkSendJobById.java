@@ -26,16 +26,13 @@ public class BulkSendJobById extends AbstractResource {
 
     /**
      * Get bulk_send_job Object.
-     * @return
-     * @throws Exception
      */
-    public  BulkSendJobs getBulkSendJob() throws Exception{
+    public  BulkSendJobs getBulkSendJob() throws Exception {
         return (BulkSendJobs) getObject(BulkSendJobs.class, dataObj.get(BULKSENDJOB), BULKSENDJOB);
     }
 
     /**
      * Get list_info Object.
-     * @return
      */
     public Object getListInfo() {
         return getJSONObject().get(LIST_INFO);
@@ -43,7 +40,6 @@ public class BulkSendJobById extends AbstractResource {
 
     /**
      * Get List of signature_requests.
-     * @return
      */
     public List<SignatureRequest> getSignatureRequests(){
         return getList(SignatureRequest.class, SIGNATURE_REQUESTS);

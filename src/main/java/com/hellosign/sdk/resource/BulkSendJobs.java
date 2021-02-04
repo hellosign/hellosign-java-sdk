@@ -23,7 +23,6 @@ public class BulkSendJobs extends AbstractResource {
 
     /**
      * Get Bulk send job id.
-     * @return
      */
     public String getBulkSendJobId() {
         return getString(BULKSENDJOB_ID);
@@ -31,7 +30,6 @@ public class BulkSendJobs extends AbstractResource {
 
     /**
      * Get Bulk send job total.
-     * @return
      */
     public String getBulkSendJobTotal() {
         return getString(BULKSENDJOB_TOTAL);
@@ -39,7 +37,6 @@ public class BulkSendJobs extends AbstractResource {
 
     /**
      * Get Bulk send job is Creator.
-     * @return
      */
     public Boolean getBulkSendJobIsCreator() {
         return getBoolean(BULKSENDJOB_ISCREATOR);
@@ -47,7 +44,6 @@ public class BulkSendJobs extends AbstractResource {
 
     /**
      * Get Bulk send job created at.
-     * @return
      */
     public Date getBulkSendJobCreatedAt() {
         return getDate(BULKSENDJOB_CREATEDAT);

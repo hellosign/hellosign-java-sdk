@@ -1,5 +1,7 @@
 package com.hellosign.sdk.resource.support;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Attachment {
     String name;
     String instructions;
@@ -27,14 +29,13 @@ public class Attachment {
 
     /**
      * Get Instruction for signer.
-     * @return
      */
     public String getInstructions() {
         return instructions;
     }
 
     public void setInstructions(String instructions) {
-        if(!instructions.isBlank()){
+        if(!StringUtils.isBlank(instructions)){
             this.instructions = instructions;
         }
     }
@@ -47,7 +48,6 @@ public class Attachment {
      * Provide signer_index, in accordance to the order, signer is added.
      * Example : first signer : signer_index = 0
      *           second signer : signer_index = 1
-     * @param signer_index
      */
     public void setSigner_index(int signer_index) {
             this.signer_index= signer_index;
@@ -73,7 +73,7 @@ public class Attachment {
     }
 
     public void setName(String name) {
-        if(!name.isBlank()){
+        if(!StringUtils.isBlank(name)){
             this.name = name;
         }
     }
