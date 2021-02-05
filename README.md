@@ -3,6 +3,8 @@
 
 Get your Java app connected to HelloSign's API in jiffy.
 
+To build this project you'll need JDK 9+ but the release artifacts support JRE 8+.
+
 ## Installing
 
 SDK releases are published to Maven's [Central repository](https://repo1.maven.org/maven2/com/hellosign/hellosign-java-sdk/):
