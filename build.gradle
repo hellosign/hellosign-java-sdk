@@ -4,6 +4,7 @@ apply plugin: 'signing'
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
+    options.compilerArgs.addAll(['--release', '8']) // for java 8 cross-compilation
 }
 
 task javadocJar(type: Jar) {
