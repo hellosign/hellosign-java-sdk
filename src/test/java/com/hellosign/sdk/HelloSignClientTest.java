@@ -102,14 +102,6 @@ public class HelloSignClientTest {
         return result;
     }
 
-    protected File getTestFixture(String name) {
-        String path = System.getProperty("file.separator") + this.getClass().getSimpleName()
-            + System.getProperty("file.separator") + "Fixtures" + System
-            .getProperty("file.separator") + name;
-        URL resource = this.getClass().getResource(path);
-        return new File(resource.getFile());
-    }
-
     protected void mockResponseCode(int code) {
         doReturn(code).when(spy).getLastResponseCode();
     }
@@ -997,7 +989,7 @@ public class HelloSignClientTest {
 
         Document nda = new Document();
 
-        File file = this.getTestFixture("W9.pdf");
+        File file = TestUtils.getTestFixture(getClass(), "W9.pdf");
         nda.setFile(file);
 
         FormField text = new FormField();
