@@ -1,7 +1,11 @@
 package com.hellosign.sdk.resource;
 
 import com.hellosign.sdk.HelloSignException;
+import com.hellosign.sdk.resource.support.Document;
+import com.hellosign.sdk.resource.support.FormField;
 import com.hellosign.sdk.resource.support.Signer;
+import org.json.JSONArray;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +27,9 @@ public class TemplateSignatureRequest extends AbstractRequest {
     private static final String TEMPLATE_SIGNERS_NAME = "name";
     private static final String TEMPLATE_CCS = "ccs";
     private static final String TEMPLATE_CCS_EMAIL = "email_address";
+    private static final String TEMPLATE_APPENDED_FILE = "file";
+    private static final String TEMPLATE_APPENDED_FILE_URL = "file_url";
+
 
     // Signers, CC email addresses and custom fields are required
     // to have an associated role. We'll manage these in a Map,
@@ -255,6 +262,17 @@ public class TemplateSignatureRequest extends AbstractRequest {
             if (hasMessage()) {
                 fields.put(REQUEST_MESSAGE, getMessage());
             }
+
+            List<Document> docs = getDocuments();
+            for (int i = 0; i < docs.size(); i++) {
+                Document d = docs.get(i);
+                fields.put(TEMPLATE_APPENDED_FILE + "[" + i + "]", d.getFile());
+            }
+            List<String> fileUrls = getFileUrls();
+            for (int i = 0; i < fileUrls.size(); i++) {
+                fields.put(TEMPLATE_APPENDED_FILE_URL + "[" + i + "]", fileUrls.get(i));
+            }
+
             if (hasRedirectUrl()) {
                 fields.put(REQUEST_REDIRECT_URL, getRedirectUrl());
             }
