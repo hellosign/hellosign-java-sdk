@@ -1207,6 +1207,7 @@ public class HelloSignClientTest {
     @Test
     public void userAgent() {
         final String userAgent = AbstractHttpRequest.USER_AGENT;
+        System.out.println("User Agent: " + userAgent);
         assertTrue(String.format("User Agent was %s", userAgent), !userAgent.contains("project.version"));
     }
 }
