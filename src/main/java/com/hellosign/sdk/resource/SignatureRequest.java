@@ -8,6 +8,7 @@ import com.hellosign.sdk.resource.support.Signature;
 import com.hellosign.sdk.resource.support.Signer;
 import com.hellosign.sdk.resource.support.Attachment;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ public class SignatureRequest extends AbstractRequest {
 
     public static final String SIGREQ_KEY = "signature_request";
     public static final String SIGREQ_ID = "signature_request_id";
+    public static final String SIGREQ_CREATED_AT = "created_at";
     public static final String SIGREQ_SIGNERS = "signers";
     public static final String SIGREQ_SIGNER_EMAIL = "email_address";
     public static final String SIGREQ_SIGNER_NAME = "name";
@@ -92,6 +94,20 @@ public class SignatureRequest extends AbstractRequest {
      */
     public boolean hasId() {
         return has(SIGREQ_ID);
+    }
+
+    /**
+     * Returns the {@code Instant} that this request was created.
+     * @return Instant the request was created or null if not created yet
+     */
+    public Instant getCreatedAt() {
+        Long value = getLong(SIGREQ_CREATED_AT);
+        if (value != null) {
+            return Instant.ofEpochSecond(value);
+        }
+        else {
+            return null;
+        }
     }
 
     /**
