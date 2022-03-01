@@ -1,0 +1,14 @@
+{
+  "default": {
+    "client_id": "37dee8d8440c66d54cfa05d92c160882",
+    "file": [
+      "pdf-sample.pdf"
+    ],
+    "file_url": [
+      "https://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf"
+    ],
+    "message": "For your approval",
+    "subject": "Please sign this document",
+    "test_mode": true
+  }
+}

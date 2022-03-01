@@ -1,6 +1,0 @@
-{
-  "error": {
-    "error_msg": "Must specify domain",
-    "error_name": "bad_request"
-  }
-}

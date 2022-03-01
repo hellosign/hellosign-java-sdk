@@ -1,6 +1,0 @@
-{
-  "error": {
-    "error_msg": "Account already exists.",
-    "error_name": "bad_request"
-  }
-}

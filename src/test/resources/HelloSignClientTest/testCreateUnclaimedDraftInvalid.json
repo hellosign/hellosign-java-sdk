@@ -1,6 +1,0 @@
-{
-  "error": {
-    "error_msg": "Must specify file(s) to be sent.",
-    "error_name": "bad_request"
-  }
-}

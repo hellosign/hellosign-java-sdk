@@ -1,6 +1,0 @@
-{
-  "error": {
-    "error_msg": "No signers given",
-    "error_name": "bad_request"
-  }
-}

@@ -1,0 +1,14 @@
+
+
+# SubFormFieldsPerDocumentCheckboxMerge
+
+This class extends `SubFormFieldsPerDocumentBase`.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+| `type`<sup>*_required_</sup> | ```String``` |  A checkbox field that has default value set by the api. Use the `SubFormFieldsPerDocumentCheckboxMerge` class.  |  |
+
+
+

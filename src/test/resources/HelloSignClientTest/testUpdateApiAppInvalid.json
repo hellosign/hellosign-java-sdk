@@ -1,6 +1,0 @@
-{
-  "error": {
-    "error_msg": "[{\"error_type\":\"invalid_contrast_ratio\",\"element_name\":\"primary_button_text_color and primary_button_color\"},{\"error_type\":\"invalid_contrast_ratio\",\"element_name\":\"primary_button_text_color_hover and primary_button_color_hover\"}]",
-    "error_name": "bad_request"
-  }
-}

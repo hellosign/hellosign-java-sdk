@@ -1,164 +1,418 @@
-# HelloSign Java SDK 
-[![Build Status](https://travis-ci.org/hellosign/hellosign-java-sdk.svg?branch=v3)](https://travis-ci.org/hellosign/hellosign-java-sdk) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/) [![Javadocs](http://javadoc.io/badge/com.hellosign/hellosign-java-sdk.svg)](http://javadoc.io/doc/com.hellosign/hellosign-java-sdk)
+# openapi-java-client
 
-Get your Java app connected to HelloSign's API in jiffy.
+HelloSign v3 API
 
-To build this project you'll need JDK 9+ but the release artifacts support JRE 8+.
 
-## Installing
+## ⚠ This package is not yet ready for production use ⚠
 
-SDK releases are published to Maven's [Central repository](https://repo1.maven.org/maven2/com/hellosign/hellosign-java-sdk/):
+We are working hard on getting this package ready, but it is not there, yet!
+
+You should think twice before using package on anything critical.
+
+The interfaces may change without warning. Backwards compatibility is not yet
+guaranteed nor implied!
+
+## Contributing
+
+### Submodule
+
+This repo uses the [hellosign/openapi](https://github.com/hellosign/openapi) repo
+as a submodule for its OAS source. When you first clone this repo you must also
+instantiate the submodule by running the following:
+
+```shell
+git submodule init
+git submodule update
+```
+
+### Changes to the OAS
+
+You must make OAS changes in the `oas/openapi.yaml` file within the
+[hellosign/openapi](https://github.com/hellosign/openapi) submodule.
+
+### Changes to the SDK code
+
+You must make SDK code changes in the mustache file within the `templates`
+directory that corresponds to the file you want updated.
+
+We use [OpenAPI Generator](https://openapi-generator.tech/) to automatically
+generate this SDK from the OAS, using the template files.
+
+### Building
+
+You must have `docker` (or `podman` linked to `docker`) installed. Highly
+recommended to use
+[rootless docker](https://docs.docker.com/engine/security/rootless/).
+
+Run the following and everything is done for you:
+
+```shell
+./build
+```
+
+*Attention*: Any changes you have made to the SDK code that you have not made
+to the OAS file and/or the mustache template files _will be lost_ when you run
+this command.
+
+### Maven users
+
+Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>com.hellosign</groupId>
-  <artifactId>hellosign-java-sdk</artifactId>
-  <version>RELEASE</version>
+  <groupId>org.openapitools</groupId>
+  <artifactId>openapi-java-client</artifactId>
+  <version>3.0.0</version>
+  <scope>compile</scope>
 </dependency>
 ```
 
-Releases can also be consumed using other build tools that support Maven Central. 
+### Gradle users
 
-Gradle for example:
+Add this dependency to your project's build file:
+
 ```groovy
-repositories {
-    mavenCentral()
-}
+  repositories {
+    mavenCentral()     // Needed if the 'openapi-java-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'openapi-java-client' jar has been published to the local maven repo.
+  }
 
-dependencies {
-    compile group: 'com.hellosign', name: 'hellosign-java-sdk', version:'RELEASE'
-}
+  dependencies {
+     implementation "org.openapitools:openapi-java-client:3.0.0"
+  }
 ```
 
-Alternatively, you can build the JAR yourself:
+### Others
 
-    ./gradlew jar
+At first generate the JAR by executing:
 
-or a fatJar with all dependencies if you'd like:
+```shell
+mvn clean package
+```
 
-    ./gradlew fatJar
+Then manually install the following JARs:
 
-Place `build/libs/hellosign-java-sdk-<VERSION>.jar` on your project classpath.
+- `target/openapi-java-client-3.0.0.jar`
+- `target/lib/*.jar`
 
-## Usage
+## Getting Started
 
-First initialize an instance of the `HelloSignClient` with your [API key](https://app.hellosign.com/home/myAccount/current_tab/integrations#api):
+Please follow the [installation](#installation) instruction and execute the following Java code:
+
 
 ```java
-HelloSignClient client = new HelloSignClient(apiKey);
-```
+import org.hellosign.openapi.ApiClient;
+import org.hellosign.openapi.ApiException;
+import org.hellosign.openapi.Configuration;
+import org.hellosign.openapi.api.*;
+import org.hellosign.openapi.auth.HttpBasicAuth;
+import org.hellosign.openapi.auth.HttpBearerAuth;
+import org.hellosign.openapi.model.*;
 
-### Send a Signature Request
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
 
-```java
-SignatureRequest request = new SignatureRequest();
-request.setSubject("NDA");
-request.setMessage("Hi Jack, Please sign this NDA and let's discuss.");
-request.addSigner("jack@example.com", "Jack");
-request.addFile(new File("nda.pdf"));
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
 
-SignatureRequest response = client.sendSignatureRequest(request);
-System.out.println(response.toString());
-```
+        // or, configure Bearer (JWT) authorization: oauth2
+/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
 
-### Add Signer Fields to a Signature Request
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
 
-```java
-SignatureRequest request = new SignatureRequest();
-Document doc = new Document();
-doc.setFile(new File("/path/to/myfile.pdf")));
+        AccountApi api = new AccountApi(defaultClient);
 
-FormField textField = new FormField();
-textField.setType(FieldType.TEXT);
-textField.setName("First Name"); // Displayed to the signer as the "Field Label"
-textField.setValidationType(ValidationType.letters_only);
-textField.setSigner(0); // Signer indexes are zero-based
-textField.setHeight(25);
-textField.setWidth(300);
-textField.setIsRequired(true);
-textField.setPage(1); // 1-based indexing, relative to the document
-textField.setX(100);
-textField.setY(100);
+        AccountCreateRequest data = new AccountCreateRequest()
+            .emailAddress("newuser@hellosign.com");
 
-doc.addFormField(textField);
-request.addDocument(doc);
-```
-
-### Retrieve Templates
-
-```java
-TemplateList templateList = client.getTemplates();
-for (Template template : templateList) {
-    System.out.println(template.getTitle());
-}
-```
-
-Or filter the paged list:
-
-```java
-TemplateList templateList = client.getTemplates();
-List<Template> filteredList = templateList.filterCurrentPageBy(Template.TEMPLATE_TITLE, "W-2 Template");
-for (Template template : filteredList) {
-    System.out.println(template.getTitle());
-}
-```
-
-### Send a Templated Signature Request
-
-```java
-TemplateSignatureRequest request = new TemplateSignatureRequest();
-request.setTemplateId(templateId);
-request.setSigner("Client", "george@example.com", "George");
-request.setCC("Accounting", "accounting@hellosign.com");
-request.addCustomFieldValue("Cost", "$20,000");
-
-SignatureRequest response = client.sendTemplateSignatureRequest(request);
-System.out.println(response.toString());
-```
-
-### Check Signature Request Status
-
-While we encourage you to take advantage of our [callback functionality](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough), you can also retrieve the status of a specific request:
-
-``` java
-SignatureRequest response = client.getSignatureRequest(signatureRequestId);
-if (response.isComplete()) {
-    System.out.println("All signers have signed this request.");
-} else {
-    for (Signature signature : response.getSignatures()) {
-        System.out.println(signature.getStatusString());
+        try {
+            AccountCreateResponse result = api.accountCreate(data);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountApi#accountCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
     }
 }
-```
-
-## Reference
-
-* [JavaDoc API Reference](http://www.javadoc.io/doc/com.hellosign/hellosign-java-sdk)
-* [HelloSign API Documentation](https://app.hellosign.com/api/reference)
-* [Sample JSP web application](https://www.github.com/cmpaul/jellosign)
-
-## License
 
 ```
-The MIT License (MIT)
 
-Copyright (C) 2020 hellosign.com
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+  ## Using a Proxy
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+  To add a HTTP proxy for the API client, use `ClientConfig`:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+  ```java
+  
+    import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+    import org.glassfish.jersey.client.ClientConfig;
+    import org.glassfish.jersey.client.ClientProperties;
+    import org.hellosign.openapi.*;
+    import org.hellosign.openapi.api.AccountApi;
+
+    ...
+
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    ClientConfig clientConfig = defaultClient.getClientConfig();
+    clientConfig.connectorProvider(new ApacheConnectorProvider());
+    clientConfig.property(ClientProperties.PROXY_URI, "http://proxy_url_here");
+    clientConfig.property(ClientProperties.PROXY_USERNAME, "proxy_username");
+    clientConfig.property(ClientProperties.PROXY_PASSWORD, "proxy_password");
+    defaultClient.setClientConfig(clientConfig);
+
+    AccountApi apiInstance = new AccountApi(defaultClient);
+  
+  ```
+
+
+## Documentation for API Endpoints
+
+All URIs are relative to *https://api.hellosign.com/v3*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+*AccountApi* | [**accountCreate**](docs/AccountApi.md#accountCreate) | **POST** /account/create | Signs up for a new HelloSign Account.
+*AccountApi* | [**accountGet**](docs/AccountApi.md#accountGet) | **GET** /account | Returns your Account settings.
+*AccountApi* | [**accountUpdate**](docs/AccountApi.md#accountUpdate) | **PUT** /account | Updates your Account&#39;s settings.
+*AccountApi* | [**accountVerify**](docs/AccountApi.md#accountVerify) | **POST** /account/verify | Verify whether a HelloSign Account exists.
+*ApiAppApi* | [**apiAppCreate**](docs/ApiAppApi.md#apiAppCreate) | **POST** /api_app | Creates a new API App.
+*ApiAppApi* | [**apiAppDelete**](docs/ApiAppApi.md#apiAppDelete) | **DELETE** /api_app/{client_id} | Deletes an API App.
+*ApiAppApi* | [**apiAppGet**](docs/ApiAppApi.md#apiAppGet) | **GET** /api_app/{client_id} | Gets an API App.
+*ApiAppApi* | [**apiAppList**](docs/ApiAppApi.md#apiAppList) | **GET** /api_app/list | Lists your API Apps.
+*ApiAppApi* | [**apiAppUpdate**](docs/ApiAppApi.md#apiAppUpdate) | **PUT** /api_app/{client_id} | Updates an existing API App.
+*BulkSendJobApi* | [**bulkSendJobGet**](docs/BulkSendJobApi.md#bulkSendJobGet) | **GET** /bulk_send_job/{bulk_send_job_id} | Gets a BulkSendJob that includes all SignatureRequests it has sent.
+*BulkSendJobApi* | [**bulkSendJobList**](docs/BulkSendJobApi.md#bulkSendJobList) | **GET** /bulk_send_job/list | Lists the BulkSendJob that you have access to.
+*EmbeddedApi* | [**embeddedEditUrl**](docs/EmbeddedApi.md#embeddedEditUrl) | **POST** /embedded/edit_url/{template_id} | Retrieves an embedded template object.
+*EmbeddedApi* | [**embeddedSignUrl**](docs/EmbeddedApi.md#embeddedSignUrl) | **GET** /embedded/sign_url/{signature_id} | Retrieves an embedded signing object.
+*OAuthApi* | [**oauthTokenGenerate**](docs/OAuthApi.md#oauthTokenGenerate) | **POST** /oauth/token | OAuth Token Generate
+*OAuthApi* | [**oauthTokenRefresh**](docs/OAuthApi.md#oauthTokenRefresh) | **POST** /oauth/token?refresh | OAuth Token Refresh
+*ReportApi* | [**reportCreate**](docs/ReportApi.md#reportCreate) | **POST** /report/create | Creates one or more report(s).
+*SignatureRequestApi* | [**signatureRequestBulkCreateEmbeddedWithTemplate**](docs/SignatureRequestApi.md#signatureRequestBulkCreateEmbeddedWithTemplate) | **POST** /signature_request/bulk_create_embedded_with_template | Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s) to be signed in an embedded window.
+*SignatureRequestApi* | [**signatureRequestBulkSendWithTemplate**](docs/SignatureRequestApi.md#signatureRequestBulkSendWithTemplate) | **POST** /signature_request/bulk_send_with_template | Creates BulkSendJob which sends SignatureRequests in bulk based off of the provided Template(s).
+*SignatureRequestApi* | [**signatureRequestCancel**](docs/SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancels an incomplete SignatureRequest.
+*SignatureRequestApi* | [**signatureRequestCreateEmbedded**](docs/SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Creates a new SignatureRequest to be signed in an embedded window.
+*SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](docs/SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Creates and sends a new SignatureRequest based off of the provided Template(s).
+*SignatureRequestApi* | [**signatureRequestFiles**](docs/SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Obtain a copy of the current documents.
+*SignatureRequestApi* | [**signatureRequestGet**](docs/SignatureRequestApi.md#signatureRequestGet) | **GET** /signature_request/{signature_request_id} | Gets a SignatureRequest that includes the current status for each signer.
+*SignatureRequestApi* | [**signatureRequestList**](docs/SignatureRequestApi.md#signatureRequestList) | **GET** /signature_request/list | Lists the SignatureRequests (both inbound and outbound) that you have access to.
+*SignatureRequestApi* | [**signatureRequestReleaseHold**](docs/SignatureRequestApi.md#signatureRequestReleaseHold) | **POST** /signature_request/release_hold/{signature_request_id} | Releases a SignatureRequest from hold.
+*SignatureRequestApi* | [**signatureRequestRemind**](docs/SignatureRequestApi.md#signatureRequestRemind) | **POST** /signature_request/remind/{signature_request_id} | Sends an email to the signer reminding them to sign the signature request.
+*SignatureRequestApi* | [**signatureRequestRemove**](docs/SignatureRequestApi.md#signatureRequestRemove) | **POST** /signature_request/remove/{signature_request_id} | Remove access to a completed SignatureRequest.
+*SignatureRequestApi* | [**signatureRequestSend**](docs/SignatureRequestApi.md#signatureRequestSend) | **POST** /signature_request/send | Creates and sends a new SignatureRequest with the submitted documents.
+*SignatureRequestApi* | [**signatureRequestSendWithTemplate**](docs/SignatureRequestApi.md#signatureRequestSendWithTemplate) | **POST** /signature_request/send_with_template | Creates and sends a new SignatureRequest based off of one or more Templates.
+*SignatureRequestApi* | [**signatureRequestUpdate**](docs/SignatureRequestApi.md#signatureRequestUpdate) | **POST** /signature_request/update/{signature_request_id} | Update an email address on a signature request.
+*TeamApi* | [**teamAddMember**](docs/TeamApi.md#teamAddMember) | **PUT** /team/add_member | Adds or invites a user to your Team.
+*TeamApi* | [**teamCreate**](docs/TeamApi.md#teamCreate) | **POST** /team/create | Creates a new Team.
+*TeamApi* | [**teamDelete**](docs/TeamApi.md#teamDelete) | **DELETE** /team/destroy | Deletes your Team.
+*TeamApi* | [**teamGet**](docs/TeamApi.md#teamGet) | **GET** /team | Gets your Team and a list of its members.
+*TeamApi* | [**teamRemoveMember**](docs/TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Removes a user from your Team.
+*TeamApi* | [**teamUpdate**](docs/TeamApi.md#teamUpdate) | **PUT** /team | Updates a Team&#39;s name.
+*TemplateApi* | [**templateAddUser**](docs/TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Gives the specified Account access to the specified Template.
+*TemplateApi* | [**templateCreateEmbeddedDraft**](docs/TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Creates an embedded template draft for further editing.
+*TemplateApi* | [**templateDelete**](docs/TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Deletes the specified template.
+*TemplateApi* | [**templateFiles**](docs/TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Obtain a copy of a template&#39;s original files.
+*TemplateApi* | [**templateGet**](docs/TemplateApi.md#templateGet) | **GET** /template/{template_id} | Gets a Template which includes a list of Accounts that can access it.
+*TemplateApi* | [**templateList**](docs/TemplateApi.md#templateList) | **GET** /template/list | Lists your Templates.
+*TemplateApi* | [**templateRemoveUser**](docs/TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Removes the specified Account&#39;s access to the specified Template.
+*TemplateApi* | [**templateUpdateFiles**](docs/TemplateApi.md#templateUpdateFiles) | **POST** /template/update_files/{template_id} | Overlays a new file with the overlay of an existing template.
+*UnclaimedDraftApi* | [**unclaimedDraftCreate**](docs/UnclaimedDraftApi.md#unclaimedDraftCreate) | **POST** /unclaimed_draft/create | Creates a new Draft that can be claimed using the claim URL.
+*UnclaimedDraftApi* | [**unclaimedDraftCreateEmbedded**](docs/UnclaimedDraftApi.md#unclaimedDraftCreateEmbedded) | **POST** /unclaimed_draft/create_embedded | Creates a new Draft that will be claimed for use in an embedded iFrame.
+*UnclaimedDraftApi* | [**unclaimedDraftCreateEmbeddedWithTemplate**](docs/UnclaimedDraftApi.md#unclaimedDraftCreateEmbeddedWithTemplate) | **POST** /unclaimed_draft/create_embedded_with_template | Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+*UnclaimedDraftApi* | [**unclaimedDraftEditAndResend**](docs/UnclaimedDraftApi.md#unclaimedDraftEditAndResend) | **POST** /unclaimed_draft/edit_and_resend/{signature_request_id} | Creates a new signature request from an embedded request that can be edited prior to being sent.
+
+
+## Documentation for Models
+
+ - [AccountCreateRequest](docs/AccountCreateRequest.md)
+ - [AccountCreateResponse](docs/AccountCreateResponse.md)
+ - [AccountGetResponse](docs/AccountGetResponse.md)
+ - [AccountResponse](docs/AccountResponse.md)
+ - [AccountResponseQuotas](docs/AccountResponseQuotas.md)
+ - [AccountUpdateRequest](docs/AccountUpdateRequest.md)
+ - [AccountVerifyRequest](docs/AccountVerifyRequest.md)
+ - [AccountVerifyResponse](docs/AccountVerifyResponse.md)
+ - [AccountVerifyResponseAccount](docs/AccountVerifyResponseAccount.md)
+ - [ApiAppCreateRequest](docs/ApiAppCreateRequest.md)
+ - [ApiAppGetResponse](docs/ApiAppGetResponse.md)
+ - [ApiAppListResponse](docs/ApiAppListResponse.md)
+ - [ApiAppResponse](docs/ApiAppResponse.md)
+ - [ApiAppResponseOAuth](docs/ApiAppResponseOAuth.md)
+ - [ApiAppResponseOptions](docs/ApiAppResponseOptions.md)
+ - [ApiAppResponseOwnerAccount](docs/ApiAppResponseOwnerAccount.md)
+ - [ApiAppResponseWhiteLabelingOptions](docs/ApiAppResponseWhiteLabelingOptions.md)
+ - [ApiAppUpdateRequest](docs/ApiAppUpdateRequest.md)
+ - [BulkSendJobGetResponse](docs/BulkSendJobGetResponse.md)
+ - [BulkSendJobGetResponseSignatureRequests](docs/BulkSendJobGetResponseSignatureRequests.md)
+ - [BulkSendJobListResponse](docs/BulkSendJobListResponse.md)
+ - [BulkSendJobResponse](docs/BulkSendJobResponse.md)
+ - [BulkSendJobSendResponse](docs/BulkSendJobSendResponse.md)
+ - [EmbeddedEditUrlRequest](docs/EmbeddedEditUrlRequest.md)
+ - [EmbeddedEditUrlResponse](docs/EmbeddedEditUrlResponse.md)
+ - [EmbeddedEditUrlResponseEmbedded](docs/EmbeddedEditUrlResponseEmbedded.md)
+ - [EmbeddedSignUrlResponse](docs/EmbeddedSignUrlResponse.md)
+ - [EmbeddedSignUrlResponseEmbedded](docs/EmbeddedSignUrlResponseEmbedded.md)
+ - [ErrorResponse](docs/ErrorResponse.md)
+ - [EventCallbackAccountRequest](docs/EventCallbackAccountRequest.md)
+ - [EventCallbackAccountRequestPayload](docs/EventCallbackAccountRequestPayload.md)
+ - [EventCallbackApiAppRequest](docs/EventCallbackApiAppRequest.md)
+ - [EventCallbackApiAppRequestPayload](docs/EventCallbackApiAppRequestPayload.md)
+ - [EventCallbackRequestEvent](docs/EventCallbackRequestEvent.md)
+ - [EventCallbackRequestEventMetadata](docs/EventCallbackRequestEventMetadata.md)
+ - [FileResponse](docs/FileResponse.md)
+ - [ListInfoResponse](docs/ListInfoResponse.md)
+ - [OAuthTokenGenerateRequest](docs/OAuthTokenGenerateRequest.md)
+ - [OAuthTokenRefreshRequest](docs/OAuthTokenRefreshRequest.md)
+ - [OAuthTokenResponse](docs/OAuthTokenResponse.md)
+ - [ReportCreateRequest](docs/ReportCreateRequest.md)
+ - [ReportCreateResponse](docs/ReportCreateResponse.md)
+ - [ReportResponse](docs/ReportResponse.md)
+ - [SignatureRequestBulkCreateEmbeddedWithTemplateRequest](docs/SignatureRequestBulkCreateEmbeddedWithTemplateRequest.md)
+ - [SignatureRequestBulkSendWithTemplateRequest](docs/SignatureRequestBulkSendWithTemplateRequest.md)
+ - [SignatureRequestCreateEmbeddedRequest](docs/SignatureRequestCreateEmbeddedRequest.md)
+ - [SignatureRequestCreateEmbeddedWithTemplateRequest](docs/SignatureRequestCreateEmbeddedWithTemplateRequest.md)
+ - [SignatureRequestGetResponse](docs/SignatureRequestGetResponse.md)
+ - [SignatureRequestListResponse](docs/SignatureRequestListResponse.md)
+ - [SignatureRequestRemindRequest](docs/SignatureRequestRemindRequest.md)
+ - [SignatureRequestResponse](docs/SignatureRequestResponse.md)
+ - [SignatureRequestResponseCustomField](docs/SignatureRequestResponseCustomField.md)
+ - [SignatureRequestResponseData](docs/SignatureRequestResponseData.md)
+ - [SignatureRequestResponseSignatures](docs/SignatureRequestResponseSignatures.md)
+ - [SignatureRequestSendRequest](docs/SignatureRequestSendRequest.md)
+ - [SignatureRequestSendWithTemplateRequest](docs/SignatureRequestSendWithTemplateRequest.md)
+ - [SignatureRequestUpdateRequest](docs/SignatureRequestUpdateRequest.md)
+ - [SubAttachment](docs/SubAttachment.md)
+ - [SubBulkSignerList](docs/SubBulkSignerList.md)
+ - [SubBulkSignerListCustomField](docs/SubBulkSignerListCustomField.md)
+ - [SubBulkSignerListSigner](docs/SubBulkSignerListSigner.md)
+ - [SubCC](docs/SubCC.md)
+ - [SubCustomField](docs/SubCustomField.md)
+ - [SubEditorOptions](docs/SubEditorOptions.md)
+ - [SubFieldOptions](docs/SubFieldOptions.md)
+ - [SubFormFieldGroup](docs/SubFormFieldGroup.md)
+ - [SubFormFieldRule](docs/SubFormFieldRule.md)
+ - [SubFormFieldRuleAction](docs/SubFormFieldRuleAction.md)
+ - [SubFormFieldRuleTrigger](docs/SubFormFieldRuleTrigger.md)
+ - [SubFormFieldsPerDocumentBase](docs/SubFormFieldsPerDocumentBase.md)
+ - [SubFormFieldsPerDocumentCheckbox](docs/SubFormFieldsPerDocumentCheckbox.md)
+ - [SubFormFieldsPerDocumentCheckboxMerge](docs/SubFormFieldsPerDocumentCheckboxMerge.md)
+ - [SubFormFieldsPerDocumentDateSigned](docs/SubFormFieldsPerDocumentDateSigned.md)
+ - [SubFormFieldsPerDocumentDropdown](docs/SubFormFieldsPerDocumentDropdown.md)
+ - [SubFormFieldsPerDocumentHyperlink](docs/SubFormFieldsPerDocumentHyperlink.md)
+ - [SubFormFieldsPerDocumentInitials](docs/SubFormFieldsPerDocumentInitials.md)
+ - [SubFormFieldsPerDocumentRadio](docs/SubFormFieldsPerDocumentRadio.md)
+ - [SubFormFieldsPerDocumentSignature](docs/SubFormFieldsPerDocumentSignature.md)
+ - [SubFormFieldsPerDocumentText](docs/SubFormFieldsPerDocumentText.md)
+ - [SubFormFieldsPerDocumentTextMerge](docs/SubFormFieldsPerDocumentTextMerge.md)
+ - [SubFormFieldsPerDocumentTypeEnum](docs/SubFormFieldsPerDocumentTypeEnum.md)
+ - [SubMergeField](docs/SubMergeField.md)
+ - [SubOAuth](docs/SubOAuth.md)
+ - [SubOptions](docs/SubOptions.md)
+ - [SubSignatureRequestEmbeddedSigner](docs/SubSignatureRequestEmbeddedSigner.md)
+ - [SubSignatureRequestEmbeddedTemplateSigner](docs/SubSignatureRequestEmbeddedTemplateSigner.md)
+ - [SubSignatureRequestSigner](docs/SubSignatureRequestSigner.md)
+ - [SubSignatureRequestTemplateSigner](docs/SubSignatureRequestTemplateSigner.md)
+ - [SubSigningOptions](docs/SubSigningOptions.md)
+ - [SubTemplateRole](docs/SubTemplateRole.md)
+ - [SubUnclaimedDraftEmbeddedSigner](docs/SubUnclaimedDraftEmbeddedSigner.md)
+ - [SubUnclaimedDraftEmbeddedTemplateSigner](docs/SubUnclaimedDraftEmbeddedTemplateSigner.md)
+ - [SubUnclaimedDraftSigner](docs/SubUnclaimedDraftSigner.md)
+ - [SubWhiteLabelingOptions](docs/SubWhiteLabelingOptions.md)
+ - [TeamAddMemberRequest](docs/TeamAddMemberRequest.md)
+ - [TeamCreateRequest](docs/TeamCreateRequest.md)
+ - [TeamGetResponse](docs/TeamGetResponse.md)
+ - [TeamRemoveMemberRequest](docs/TeamRemoveMemberRequest.md)
+ - [TeamResponse](docs/TeamResponse.md)
+ - [TeamUpdateRequest](docs/TeamUpdateRequest.md)
+ - [TemplateAddUserRequest](docs/TemplateAddUserRequest.md)
+ - [TemplateCreateEmbeddedDraftRequest](docs/TemplateCreateEmbeddedDraftRequest.md)
+ - [TemplateCreateEmbeddedDraftResponse](docs/TemplateCreateEmbeddedDraftResponse.md)
+ - [TemplateCreateEmbeddedDraftResponseTemplate](docs/TemplateCreateEmbeddedDraftResponseTemplate.md)
+ - [TemplateEditResponse](docs/TemplateEditResponse.md)
+ - [TemplateGetResponse](docs/TemplateGetResponse.md)
+ - [TemplateListResponse](docs/TemplateListResponse.md)
+ - [TemplateRemoveUserRequest](docs/TemplateRemoveUserRequest.md)
+ - [TemplateResponse](docs/TemplateResponse.md)
+ - [TemplateResponseAccount](docs/TemplateResponseAccount.md)
+ - [TemplateResponseAccountQuota](docs/TemplateResponseAccountQuota.md)
+ - [TemplateResponseCCRole](docs/TemplateResponseCCRole.md)
+ - [TemplateResponseCustomField](docs/TemplateResponseCustomField.md)
+ - [TemplateResponseDocument](docs/TemplateResponseDocument.md)
+ - [TemplateResponseDocumentCustomField](docs/TemplateResponseDocumentCustomField.md)
+ - [TemplateResponseDocumentCustomFieldAvgTextLength](docs/TemplateResponseDocumentCustomFieldAvgTextLength.md)
+ - [TemplateResponseDocumentFieldGroup](docs/TemplateResponseDocumentFieldGroup.md)
+ - [TemplateResponseDocumentFormField](docs/TemplateResponseDocumentFormField.md)
+ - [TemplateResponseSignerRole](docs/TemplateResponseSignerRole.md)
+ - [TemplateUpdateFilesRequest](docs/TemplateUpdateFilesRequest.md)
+ - [TemplateUpdateFilesResponse](docs/TemplateUpdateFilesResponse.md)
+ - [TemplateUpdateFilesResponseTemplate](docs/TemplateUpdateFilesResponseTemplate.md)
+ - [UnclaimedDraftCreateEmbeddedRequest](docs/UnclaimedDraftCreateEmbeddedRequest.md)
+ - [UnclaimedDraftCreateEmbeddedWithTemplateRequest](docs/UnclaimedDraftCreateEmbeddedWithTemplateRequest.md)
+ - [UnclaimedDraftCreateRequest](docs/UnclaimedDraftCreateRequest.md)
+ - [UnclaimedDraftCreateResponse](docs/UnclaimedDraftCreateResponse.md)
+ - [UnclaimedDraftEditAndResendRequest](docs/UnclaimedDraftEditAndResendRequest.md)
+ - [UnclaimedDraftResponse](docs/UnclaimedDraftResponse.md)
+ - [WarningResponse](docs/WarningResponse.md)
+
+
+## Documentation for Authorization
+
+Authentication schemes defined for the API:
+### api_key
+
+
+- **Type**: HTTP basic authentication
+
+### oauth2
+
+
+- **Type**: HTTP basic authentication
+
+
+## Recommendation
+
+It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
+
+## Author
+
+apisupport@hellosign.com
+
+
+## About this package
+
+This Java package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+
+- API version: `3.0.0`
+    - Package version: `3.0.0`
+- Build package: `org.openapitools.codegen.languages.JavaClientCodegen`
+
+
+# Working on this SDK
+
+This section includes documentation about how to generate the SDK in case you want to make a contribution.
+
+## Building the SDK with Docker
+
+Run `./build`
+
+## Installation / Deployment
+
+To install the API client library to your local Maven repository, simply execute:
+
+```shell
+mvn clean install
 ```
+
+To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
+
+```shell
+mvn clean deploy
+```
+
+Refer to the [OSSRH Guide](http://central.sonatype.org/pages/ossrh-guide.html) for more information.

@@ -1,0 +1,20 @@
+generatorName: java
+additionalProperties:
+  library: jersey2
+  openApiNullable: false
+  java8: true
+  invokerPackage: org.hellosign.openapi
+  apiPackage: org.hellosign.openapi.api
+  modelPackage: org.hellosign.openapi.model
+  developerEmail: apisupport@hellosign.com
+  developerName: HelloSign API Team
+  developerOrganizationUrl: https://hellosign.com
+  hideGenerationTimestamp: true
+  sortModelPropertiesByRequiredFlag: true
+files:
+  EventCallbackHelper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: src/main/java/org/hellosign/openapi/EventCallbackHelper.java
+globalProperties:
+  apiTests: false
+  modelTests: false

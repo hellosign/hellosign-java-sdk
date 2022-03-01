@@ -1,6 +1,0 @@
-{
-  "error": {
-    "error_msg": "Could not update, none exists.",
-    "error_name": "bad_request"
-  }
-}
