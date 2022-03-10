@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.TextNode;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.FileInputStream;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -53,7 +54,7 @@ public class FixtureTest {
 
         ObjectMapper mapper = JSON.getDefault().getMapper();
         for (String fixtureName : fixtures) {
-            JsonNode fixture = mapper.readTree(getClass().getClassLoader().getResourceAsStream("fixtures/" + fixtureName + ".json"));
+            JsonNode fixture = mapper.readTree(new FileInputStream("oas/test_fixtures/" + fixtureName + ".json"));
 
             for (JsonNode expected : fixture) {
                 String data = expected.toString();

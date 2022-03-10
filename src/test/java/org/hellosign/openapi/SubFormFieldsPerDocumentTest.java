@@ -6,6 +6,7 @@ import org.hellosign.openapi.model.SubFormFieldsPerDocumentBase;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class SubFormFieldsPerDocumentTest {
     @Test
     public void testSubFormFieldsPerDocumentBase() throws Exception {
         ObjectMapper mapper = JSON.getDefault().getMapper();
-        JsonNode content = mapper.readTree(getClass().getClassLoader().getResourceAsStream("fixtures/SubFormFieldsPerDocument.json"));
+        JsonNode content = mapper.readTree(new FileInputStream("oas/test_fixtures//SubFormFieldsPerDocument.json"));
         Iterator<Map.Entry<String, JsonNode>> fields = content.fields();
         while (fields.hasNext()) {
             Map.Entry<String, JsonNode> kv = fields.next();
