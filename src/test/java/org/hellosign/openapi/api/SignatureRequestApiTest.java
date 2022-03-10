@@ -262,7 +262,7 @@ public class SignatureRequestApiTest {
 
     @Test
     public void signatureRequestSendNoFileForcesApplicationJsonTest() throws Exception {
-        SignatureRequestSendRequest request = TestHelper.getFixtureData(SignatureRequestSendRequest.class, "no_file");
+        SignatureRequestSendRequest request = TestHelper.getFixtureData(SignatureRequestSendRequest.class, "with_file_url");
         SignatureRequestGetResponse expected = TestHelper.getFixtureData(SignatureRequestGetResponse.class, "default");
         ApiClient apiClient = TestHelper.setUpMock(200, expected);
         SignatureRequestApi api = new SignatureRequestApi(apiClient);
