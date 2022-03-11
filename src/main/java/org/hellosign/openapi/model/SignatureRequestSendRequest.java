@@ -60,6 +60,7 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestSendRequest.JSON_PROPERTY_FORM_FIELD_RULES,
     SignatureRequestSendRequest.JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT,
     SignatureRequestSendRequest.JSON_PROPERTY_HIDE_TEXT_TAGS,
+    SignatureRequestSendRequest.JSON_PROPERTY_IS_QUALIFIED_SIGNATURE,
     SignatureRequestSendRequest.JSON_PROPERTY_MESSAGE,
     SignatureRequestSendRequest.JSON_PROPERTY_METADATA,
     SignatureRequestSendRequest.JSON_PROPERTY_SIGNING_OPTIONS,
@@ -112,6 +113,9 @@ public class SignatureRequestSendRequest {
 
   public static final String JSON_PROPERTY_HIDE_TEXT_TAGS = "hide_text_tags";
   private Boolean hideTextTags = false;
+
+  public static final String JSON_PROPERTY_IS_QUALIFIED_SIGNATURE = "is_qualified_signature";
+  private Boolean isQualifiedSignature = false;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   private String message;
@@ -573,6 +577,32 @@ public class SignatureRequestSendRequest {
   }
 
 
+  public SignatureRequestSendRequest isQualifiedSignature(Boolean isQualifiedSignature) {
+    this.isQualifiedSignature = isQualifiedSignature;
+    return this;
+  }
+
+   /**
+   * Send with a value of &#x60;true&#x60; if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer&#39;s identity.&lt;br&gt; **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.
+   * @return isQualifiedSignature
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Send with a value of `true` if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer's identity.<br> **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in `test_mode`. Only works on requests with one signer.")
+  @JsonProperty(JSON_PROPERTY_IS_QUALIFIED_SIGNATURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsQualifiedSignature() {
+    return isQualifiedSignature;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_QUALIFIED_SIGNATURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsQualifiedSignature(Boolean isQualifiedSignature) {
+    this.isQualifiedSignature = isQualifiedSignature;
+  }
+
+
   public SignatureRequestSendRequest message(String message) {
     this.message = message;
     return this;
@@ -815,6 +845,7 @@ public class SignatureRequestSendRequest {
         Objects.equals(this.formFieldRules, signatureRequestSendRequest.formFieldRules) &&
         Objects.equals(this.formFieldsPerDocument, signatureRequestSendRequest.formFieldsPerDocument) &&
         Objects.equals(this.hideTextTags, signatureRequestSendRequest.hideTextTags) &&
+        Objects.equals(this.isQualifiedSignature, signatureRequestSendRequest.isQualifiedSignature) &&
         Objects.equals(this.message, signatureRequestSendRequest.message) &&
         Objects.equals(this.metadata, signatureRequestSendRequest.metadata) &&
         Objects.equals(this.signingOptions, signatureRequestSendRequest.signingOptions) &&
@@ -827,7 +858,7 @@ public class SignatureRequestSendRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(signers, file, fileUrl, allowDecline, allowReassign, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, message, metadata, signingOptions, signingRedirectUrl, subject, testMode, title, useTextTags);
+    return Objects.hash(signers, file, fileUrl, allowDecline, allowReassign, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, isQualifiedSignature, message, metadata, signingOptions, signingRedirectUrl, subject, testMode, title, useTextTags);
   }
 
   @Override
@@ -848,6 +879,7 @@ public class SignatureRequestSendRequest {
     sb.append("    formFieldRules: ").append(toIndentedString(formFieldRules)).append("\n");
     sb.append("    formFieldsPerDocument: ").append(toIndentedString(formFieldsPerDocument)).append("\n");
     sb.append("    hideTextTags: ").append(toIndentedString(hideTextTags)).append("\n");
+    sb.append("    isQualifiedSignature: ").append(toIndentedString(isQualifiedSignature)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    signingOptions: ").append(toIndentedString(signingOptions)).append("\n");
@@ -1114,6 +1146,24 @@ public class SignatureRequestSendRequest {
         }
         else {
             map.put("hide_text_tags", JSON.getDefault().getMapper().writeValueAsString(hideTextTags));
+        }
+    }
+    if (isQualifiedSignature != null) {
+        if (isFileTypeOrListOfFiles(isQualifiedSignature)) {
+            fileTypeFound = true;
+        }
+
+        if (isQualifiedSignature.getClass().equals(java.io.File.class) ||
+            isQualifiedSignature.getClass().equals(Integer.class) ||
+            isQualifiedSignature.getClass().equals(String.class) ) {
+            map.put("is_qualified_signature", isQualifiedSignature);
+        } else if (isListOfFile(isQualifiedSignature)) {
+            for(int i = 0; i< getListSize(isQualifiedSignature); i++) {
+                map.put("is_qualified_signature[" + i + "]", getFromList(isQualifiedSignature, i));
+            }
+        }
+        else {
+            map.put("is_qualified_signature", JSON.getDefault().getMapper().writeValueAsString(isQualifiedSignature));
         }
     }
     if (message != null) {

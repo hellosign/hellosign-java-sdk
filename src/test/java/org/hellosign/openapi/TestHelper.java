@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mockito.Mockito;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -11,8 +13,8 @@ import java.util.HashMap;
 import static org.mockito.Mockito.*;
 
 public class TestHelper {
-    public static InputStream readFileFromResource(String fileName) {
-        return TestHelper.class.getClassLoader().getResourceAsStream("fixtures/" + fileName + ".json");
+    public static InputStream readFileFromResource(String fileName) throws FileNotFoundException {
+        return new FileInputStream("oas/test_fixtures/" + fileName + ".json");
     }
 
     public static <T> T getFixtureData(Class<T> classType, String topLevelFieldName) throws IOException {

@@ -2,13 +2,11 @@ package org.hellosign.openapi;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hellosign.openapi.model.EventCallbackApiAppRequest;
 import org.hellosign.openapi.model.EventCallbackApiAppRequestPayload;
-import org.hellosign.openapi.model.EventCallbackRequestEvent;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
+import java.io.FileInputStream;
 
 public class EventCallbackHelperTest {
     public static final String APIKEY = "324e3b0840f065eb51f3fd63231d0d33daa35d4ed10d27718839e81737065782";
@@ -16,7 +14,7 @@ public class EventCallbackHelperTest {
     @Test
     public void testIsValid() throws Exception {
         ObjectMapper mapper = JSON.getDefault().getMapper();
-        JsonNode content = mapper.readTree(getClass().getClassLoader().getResourceAsStream("fixtures/EventCallbackHelper.json"));
+        JsonNode content = mapper.readTree(new FileInputStream("oas/test_fixtures/EventCallbackHelper.json"));
         for(JsonNode node : content) {
             EventCallbackApiAppRequestPayload payload = mapper.convertValue(node, EventCallbackApiAppRequestPayload.class);
             Assert.assertTrue(EventCallbackHelper.isValid(APIKEY, payload.getEvent()));
