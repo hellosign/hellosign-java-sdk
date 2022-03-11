@@ -4,11 +4,11 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiAppCreate**](ApiAppApi.md#apiAppCreate) | **POST** /api_app | Creates a new API App.
-[**apiAppDelete**](ApiAppApi.md#apiAppDelete) | **DELETE** /api_app/{client_id} | Deletes an API App.
-[**apiAppGet**](ApiAppApi.md#apiAppGet) | **GET** /api_app/{client_id} | Gets an API App.
-[**apiAppList**](ApiAppApi.md#apiAppList) | **GET** /api_app/list | Lists your API Apps.
-[**apiAppUpdate**](ApiAppApi.md#apiAppUpdate) | **PUT** /api_app/{client_id} | Updates an existing API App.
+[**apiAppCreate**](ApiAppApi.md#apiAppCreate) | **POST** /api_app | Create API App
+[**apiAppDelete**](ApiAppApi.md#apiAppDelete) | **DELETE** /api_app/{client_id} | Delete API App
+[**apiAppGet**](ApiAppApi.md#apiAppGet) | **GET** /api_app/{client_id} | Get API App
+[**apiAppList**](ApiAppApi.md#apiAppList) | **GET** /api_app/list | List API Apps
+[**apiAppUpdate**](ApiAppApi.md#apiAppUpdate) | **PUT** /api_app/{client_id} | Update API App
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > ApiAppGetResponse apiAppCreate(apiAppCreateRequest)
 
-Creates a new API App.
+Create API App
 
 Creates a new API App.
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 > apiAppDelete(clientId)
 
-Deletes an API App.
+Delete API App
 
 Deletes an API App. Can only be invoked for apps you own.
 
@@ -194,7 +194,7 @@ null (empty response body)
 
 > ApiAppGetResponse apiAppGet(clientId)
 
-Gets an API App.
+Get API App
 
 Returns an object with information about an API App.
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 > ApiAppListResponse apiAppList(page, pageSize)
 
-Lists your API Apps.
+List API Apps
 
 Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.
 
@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 
 > ApiAppGetResponse apiAppUpdate(clientId, apiAppUpdateRequest)
 
-Updates an existing API App.
+Update API App
 
 Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.
 

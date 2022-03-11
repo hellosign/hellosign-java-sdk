@@ -4,14 +4,14 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**templateAddUser**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Gives the specified Account access to the specified Template.
-[**templateCreateEmbeddedDraft**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Creates an embedded template draft for further editing.
-[**templateDelete**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Deletes the specified template.
-[**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Obtain a copy of a template&#39;s original files.
-[**templateGet**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Gets a Template which includes a list of Accounts that can access it.
-[**templateList**](TemplateApi.md#templateList) | **GET** /template/list | Lists your Templates.
-[**templateRemoveUser**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Removes the specified Account&#39;s access to the specified Template.
-[**templateUpdateFiles**](TemplateApi.md#templateUpdateFiles) | **POST** /template/update_files/{template_id} | Overlays a new file with the overlay of an existing template.
+[**templateAddUser**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template
+[**templateCreateEmbeddedDraft**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
+[**templateDelete**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template
+[**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files
+[**templateGet**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template
+[**templateList**](TemplateApi.md#templateList) | **GET** /template/list | List Templates
+[**templateRemoveUser**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template
+[**templateUpdateFiles**](TemplateApi.md#templateUpdateFiles) | **POST** /template/update_files/{template_id} | Update Template Files
 
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > TemplateGetResponse templateAddUser(templateId, templateAddUserRequest)
 
-Gives the specified Account access to the specified Template.
+Add User to Template
 
 Gives the specified Account access to the specified Template. The specified Account must be a part of your Team.
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 > TemplateCreateEmbeddedDraftResponse templateCreateEmbeddedDraft(templateCreateEmbeddedDraftRequest)
 
-Creates an embedded template draft for further editing.
+Create Embedded Template Draft
 
 The first step in an embedded template workflow. Creates a draft template that can then be further set up in the template 'edit' stage.
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 > templateDelete(templateId)
 
-Deletes the specified template.
+Delete Template
 
 Completely deletes the template specified from the account.
 
@@ -285,7 +285,7 @@ null (empty response body)
 
 > FileResponse templateFiles(templateId, fileType, getUrl, getDataUri)
 
-Obtain a copy of a template&#39;s original files.
+Get Template Files
 
 Obtain a copy of the current documents specified by the `template_id` parameter.
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 > TemplateGetResponse templateGet(templateId)
 
-Gets a Template which includes a list of Accounts that can access it.
+Get Template
 
 Returns the Template specified by the id parameter.
 
@@ -450,7 +450,7 @@ Name | Type | Description  | Notes
 
 > TemplateListResponse templateList(accountId, page, pageSize, query)
 
-Lists your Templates.
+List Templates
 
 Returns a list of the Templates that are accessible by you.
 
@@ -533,7 +533,7 @@ Name | Type | Description  | Notes
 
 > TemplateGetResponse templateRemoveUser(templateId, templateRemoveUserRequest)
 
-Removes the specified Account&#39;s access to the specified Template.
+Remove User from Template
 
 Removes the specified Account's access to the specified Template.
 
@@ -615,7 +615,7 @@ Name | Type | Description  | Notes
 
 > TemplateUpdateFilesResponse templateUpdateFiles(templateId, templateUpdateFilesRequest)
 
-Overlays a new file with the overlay of an existing template.
+Update Template Files
 
 Overlays a new file with the overlay of an existing template. The new file(s) must:
 

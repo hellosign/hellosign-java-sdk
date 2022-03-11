@@ -52,7 +52,7 @@ public class AccountApi {
   }
 
   /**
-   * Signs up for a new HelloSign Account.
+   * Create Account
    * Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
    * @param accountCreateRequest  (required)
    * @return AccountCreateResponse
@@ -69,7 +69,7 @@ public class AccountApi {
   }
 
   /**
-   * Signs up for a new HelloSign Account.
+   * Create Account
    * Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
    * @param accountCreateRequest  (required)
    * @return ApiResponse&lt;AccountCreateResponse&gt;
@@ -125,7 +125,7 @@ public class AccountApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Returns your Account settings.
+   * Get Account
    * Returns the properties and settings of your Account.
    * @return AccountGetResponse
    * @throws ApiException if fails to make API call
@@ -141,7 +141,7 @@ public class AccountApi {
   }
 
   /**
-   * Returns your Account settings.
+   * Get Account
    * Returns the properties and settings of your Account.
    * @return ApiResponse&lt;AccountGetResponse&gt;
    * @throws ApiException if fails to make API call
@@ -191,7 +191,7 @@ public class AccountApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Updates your Account&#39;s settings.
+   * Update Account
    * Updates the properties and settings of your Account.
    * @param accountUpdateRequest  (required)
    * @return AccountGetResponse
@@ -208,7 +208,7 @@ public class AccountApi {
   }
 
   /**
-   * Updates your Account&#39;s settings.
+   * Update Account
    * Updates the properties and settings of your Account.
    * @param accountUpdateRequest  (required)
    * @return ApiResponse&lt;AccountGetResponse&gt;
@@ -264,7 +264,7 @@ public class AccountApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Verify whether a HelloSign Account exists.
+   * Verify Account
    * Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
    * @param accountVerifyRequest  (required)
    * @return AccountVerifyResponse
@@ -281,7 +281,7 @@ public class AccountApi {
   }
 
   /**
-   * Verify whether a HelloSign Account exists.
+   * Verify Account
    * Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
    * @param accountVerifyRequest  (required)
    * @return ApiResponse&lt;AccountVerifyResponse&gt;

@@ -4,7 +4,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**reportCreate**](ReportApi.md#reportCreate) | **POST** /report/create | Creates one or more report(s).
+[**reportCreate**](ReportApi.md#reportCreate) | **POST** /report/create | Create Report
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > ReportCreateResponse reportCreate(reportCreateRequest)
 
-Creates one or more report(s).
+Create Report
 
 Request the creation of one or more report(s).
 

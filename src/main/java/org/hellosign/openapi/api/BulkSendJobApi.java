@@ -48,7 +48,7 @@ public class BulkSendJobApi {
   }
 
   /**
-   * Gets a BulkSendJob that includes all SignatureRequests it has sent.
+   * Get Bulk Send Job
    * Returns the status of the BulkSendJob and its SignatureRequests specified by the &#x60;bulk_send_job_id&#x60; parameter.
    * @param bulkSendJobId The id of the BulkSendJob to retrieve. (required)
    * @return BulkSendJobGetResponse
@@ -65,7 +65,7 @@ public class BulkSendJobApi {
   }
 
   /**
-   * Gets a BulkSendJob that includes all SignatureRequests it has sent.
+   * Get Bulk Send Job
    * Returns the status of the BulkSendJob and its SignatureRequests specified by the &#x60;bulk_send_job_id&#x60; parameter.
    * @param bulkSendJobId The id of the BulkSendJob to retrieve. (required)
    * @return ApiResponse&lt;BulkSendJobGetResponse&gt;
@@ -122,7 +122,7 @@ public class BulkSendJobApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Lists the BulkSendJob that you have access to.
+   * List Bulk Send Jobs
    * Returns a list of BulkSendJob that you can access.
    * @param page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
    * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)
@@ -140,7 +140,7 @@ public class BulkSendJobApi {
   }
 
   /**
-   * Lists the BulkSendJob that you have access to.
+   * List Bulk Send Jobs
    * Returns a list of BulkSendJob that you can access.
    * @param page Which page number of the BulkSendJob List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
    * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)

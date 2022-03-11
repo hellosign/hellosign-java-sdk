@@ -53,7 +53,7 @@ public class ApiAppResponseOAuth {
   private List<String> scopes = null;
 
   public static final String JSON_PROPERTY_CHARGES_USERS = "charges_users";
-  private Boolean chargesUsers;
+  private String chargesUsers;
 
   public ApiAppResponseOAuth() { 
   }
@@ -144,7 +144,7 @@ public class ApiAppResponseOAuth {
   }
 
 
-  public ApiAppResponseOAuth chargesUsers(Boolean chargesUsers) {
+  public ApiAppResponseOAuth chargesUsers(String chargesUsers) {
     this.chargesUsers = chargesUsers;
     return this;
   }
@@ -158,14 +158,14 @@ public class ApiAppResponseOAuth {
   @JsonProperty(JSON_PROPERTY_CHARGES_USERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getChargesUsers() {
+  public String getChargesUsers() {
     return chargesUsers;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CHARGES_USERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChargesUsers(Boolean chargesUsers) {
+  public void setChargesUsers(String chargesUsers) {
     this.chargesUsers = chargesUsers;
   }
 

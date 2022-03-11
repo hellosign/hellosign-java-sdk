@@ -4,10 +4,10 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accountCreate**](AccountApi.md#accountCreate) | **POST** /account/create | Signs up for a new HelloSign Account.
-[**accountGet**](AccountApi.md#accountGet) | **GET** /account | Returns your Account settings.
-[**accountUpdate**](AccountApi.md#accountUpdate) | **PUT** /account | Updates your Account&#39;s settings.
-[**accountVerify**](AccountApi.md#accountVerify) | **POST** /account/verify | Verify whether a HelloSign Account exists.
+[**accountCreate**](AccountApi.md#accountCreate) | **POST** /account/create | Create Account
+[**accountGet**](AccountApi.md#accountGet) | **GET** /account | Get Account
+[**accountUpdate**](AccountApi.md#accountUpdate) | **PUT** /account | Update Account
+[**accountVerify**](AccountApi.md#accountVerify) | **POST** /account/verify | Verify Account
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > AccountCreateResponse accountCreate(accountCreateRequest)
 
-Signs up for a new HelloSign Account.
+Create Account
 
 Creates a new HelloSign Account that is associated with the specified `email_address`.
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 > AccountGetResponse accountGet()
 
-Returns your Account settings.
+Get Account
 
 Returns the properties and settings of your Account.
 
@@ -171,7 +171,7 @@ This endpoint does not need any parameter.
 
 > AccountGetResponse accountUpdate(accountUpdateRequest)
 
-Updates your Account&#39;s settings.
+Update Account
 
 Updates the properties and settings of your Account.
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 > AccountVerifyResponse accountVerify(accountVerifyRequest)
 
-Verify whether a HelloSign Account exists.
+Verify Account
 
 Verifies whether an HelloSign Account exists for the given email address.
 

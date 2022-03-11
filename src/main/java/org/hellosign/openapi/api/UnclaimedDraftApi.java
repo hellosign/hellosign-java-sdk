@@ -51,7 +51,7 @@ public class UnclaimedDraftApi {
   }
 
   /**
-   * Creates a new Draft that can be claimed using the claim URL.
+   * Create Unclaimed Draft
    * Creates a new Draft that can be claimed using the claim URL. The first authenticated user to access the URL will claim the Draft and will be shown either the \&quot;Sign and send\&quot; or the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a 404.
    * @param unclaimedDraftCreateRequest  (required)
    * @return UnclaimedDraftCreateResponse
@@ -68,7 +68,7 @@ public class UnclaimedDraftApi {
   }
 
   /**
-   * Creates a new Draft that can be claimed using the claim URL.
+   * Create Unclaimed Draft
    * Creates a new Draft that can be claimed using the claim URL. The first authenticated user to access the URL will claim the Draft and will be shown either the \&quot;Sign and send\&quot; or the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a 404.
    * @param unclaimedDraftCreateRequest  (required)
    * @return ApiResponse&lt;UnclaimedDraftCreateResponse&gt;
@@ -124,7 +124,7 @@ public class UnclaimedDraftApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Creates a new Draft that will be claimed for use in an embedded iFrame.
+   * Create Embedded Unclaimed Draft
    * Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
    * @param unclaimedDraftCreateEmbeddedRequest  (required)
    * @return UnclaimedDraftCreateResponse
@@ -141,7 +141,7 @@ public class UnclaimedDraftApi {
   }
 
   /**
-   * Creates a new Draft that will be claimed for use in an embedded iFrame.
+   * Create Embedded Unclaimed Draft
    * Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
    * @param unclaimedDraftCreateEmbeddedRequest  (required)
    * @return ApiResponse&lt;UnclaimedDraftCreateResponse&gt;
@@ -197,7 +197,7 @@ public class UnclaimedDraftApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+   * Create Embedded Unclaimed Draft with Template
    * Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
    * @param unclaimedDraftCreateEmbeddedWithTemplateRequest  (required)
    * @return UnclaimedDraftCreateResponse
@@ -214,7 +214,7 @@ public class UnclaimedDraftApi {
   }
 
   /**
-   * Creates a new Draft using existing template(s) that will be claimed for use in an embedded iFrame.
+   * Create Embedded Unclaimed Draft with Template
    * Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
    * @param unclaimedDraftCreateEmbeddedWithTemplateRequest  (required)
    * @return ApiResponse&lt;UnclaimedDraftCreateResponse&gt;
@@ -270,7 +270,7 @@ public class UnclaimedDraftApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Creates a new signature request from an embedded request that can be edited prior to being sent.
+   * Edit and Resend Unclaimed Draft
    * Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
    * @param signatureRequestId The ID of the signature request to edit and resend. (required)
    * @param unclaimedDraftEditAndResendRequest  (required)
@@ -288,7 +288,7 @@ public class UnclaimedDraftApi {
   }
 
   /**
-   * Creates a new signature request from an embedded request that can be edited prior to being sent.
+   * Edit and Resend Unclaimed Draft
    * Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
    * @param signatureRequestId The ID of the signature request to edit and resend. (required)
    * @param unclaimedDraftEditAndResendRequest  (required)

@@ -9,7 +9,7 @@ WORKINGDIR="/app/java"
 docker run --rm \
   -v "${PWD}/:/local" \
   openapitools/openapi-generator-cli:v5.3.0 generate \
-    -i "/local/oas/openapi.yaml" \
+    -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
     -t "/local/templates" \
     -o "/local/"
@@ -40,5 +40,8 @@ docker run -it --rm \
 
 # Remove empty directory
 rm -rf "${PWD}/api"
+
+printf "Building ...\n"
+bash "${PWD}/bin/maven" mvn clean install
 
 printf "Success!\n"
