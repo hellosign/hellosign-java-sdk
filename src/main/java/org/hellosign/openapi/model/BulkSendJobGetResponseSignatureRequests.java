@@ -30,7 +30,6 @@ import org.hellosign.openapi.model.SignatureRequestResponse;
 import org.hellosign.openapi.model.SignatureRequestResponseCustomField;
 import org.hellosign.openapi.model.SignatureRequestResponseData;
 import org.hellosign.openapi.model.SignatureRequestResponseSignatures;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -61,7 +60,6 @@ import org.hellosign.openapi.ApiException;
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_CUSTOM_FIELDS,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_RESPONSE_DATA,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_SIGNATURES,
-    BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_WARNINGS,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_BULK_SEND_JOB_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -128,9 +126,6 @@ public class BulkSendJobGetResponseSignatureRequests {
 
   public static final String JSON_PROPERTY_SIGNATURES = "signatures";
   private List<SignatureRequestResponseSignatures> signatures = null;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public static final String JSON_PROPERTY_BULK_SEND_JOB_ID = "bulk_send_job_id";
   private String bulkSendJobId;
@@ -716,40 +711,6 @@ public class BulkSendJobGetResponseSignatureRequests {
   }
 
 
-  public BulkSendJobGetResponseSignatureRequests warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public BulkSendJobGetResponseSignatureRequests addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   public BulkSendJobGetResponseSignatureRequests bulkSendJobId(String bulkSendJobId) {
     this.bulkSendJobId = bulkSendJobId;
     return this;
@@ -809,13 +770,12 @@ public class BulkSendJobGetResponseSignatureRequests {
         Objects.equals(this.customFields, bulkSendJobGetResponseSignatureRequests.customFields) &&
         Objects.equals(this.responseData, bulkSendJobGetResponseSignatureRequests.responseData) &&
         Objects.equals(this.signatures, bulkSendJobGetResponseSignatureRequests.signatures) &&
-        Objects.equals(this.warnings, bulkSendJobGetResponseSignatureRequests.warnings) &&
         Objects.equals(this.bulkSendJobId, bulkSendJobGetResponseSignatureRequests.bulkSendJobId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, finalCopyUri, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, customFields, responseData, signatures, warnings, bulkSendJobId);
+    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, finalCopyUri, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, customFields, responseData, signatures, bulkSendJobId);
   }
 
   @Override
@@ -843,7 +803,6 @@ public class BulkSendJobGetResponseSignatureRequests {
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    responseData: ").append(toIndentedString(responseData)).append("\n");
     sb.append("    signatures: ").append(toIndentedString(signatures)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("    bulkSendJobId: ").append(toIndentedString(bulkSendJobId)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1229,24 +1188,6 @@ public class BulkSendJobGetResponseSignatureRequests {
         }
         else {
             map.put("signatures", JSON.getDefault().getMapper().writeValueAsString(signatures));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     if (bulkSendJobId != null) {

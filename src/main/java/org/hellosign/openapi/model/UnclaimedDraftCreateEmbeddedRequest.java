@@ -37,7 +37,7 @@ import org.hellosign.openapi.model.SubFormFieldGroup;
 import org.hellosign.openapi.model.SubFormFieldRule;
 import org.hellosign.openapi.model.SubFormFieldsPerDocumentBase;
 import org.hellosign.openapi.model.SubSigningOptions;
-import org.hellosign.openapi.model.SubUnclaimedDraftEmbeddedSigner;
+import org.hellosign.openapi.model.SubUnclaimedDraftSigner;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -144,7 +144,7 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   private Boolean showPreview;
 
   public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubUnclaimedDraftEmbeddedSigner> signers = null;
+  private List<SubUnclaimedDraftSigner> signers = null;
 
   public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
   private SubSigningOptions signingOptions;
@@ -826,12 +826,12 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   }
 
 
-  public UnclaimedDraftCreateEmbeddedRequest signers(List<SubUnclaimedDraftEmbeddedSigner> signers) {
+  public UnclaimedDraftCreateEmbeddedRequest signers(List<SubUnclaimedDraftSigner> signers) {
     this.signers = signers;
     return this;
   }
 
-  public UnclaimedDraftCreateEmbeddedRequest addSignersItem(SubUnclaimedDraftEmbeddedSigner signersItem) {
+  public UnclaimedDraftCreateEmbeddedRequest addSignersItem(SubUnclaimedDraftSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -848,14 +848,14 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SubUnclaimedDraftEmbeddedSigner> getSigners() {
+  public List<SubUnclaimedDraftSigner> getSigners() {
     return signers;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubUnclaimedDraftEmbeddedSigner> signers) {
+  public void setSigners(List<SubUnclaimedDraftSigner> signers) {
     this.signers = signers;
   }
 

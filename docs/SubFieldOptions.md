@@ -8,7 +8,7 @@ This allows the requester to specify field options for a signature request.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `dateFormat`<sup>*_required_</sup> | [```DateFormatEnum```](#DateFormatEnum) |  Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))<br><br>**Note**: Only available for Platinum and higher.  |  |
+| `dateFormat`<sup>*_required_</sup> | [```DateFormatEnum```](#DateFormatEnum) |  Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))<br><br>**Note**: Only available for Premium and higher.  |  |
 
 
 

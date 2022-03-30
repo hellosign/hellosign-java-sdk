@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateCreateEmbeddedDraft
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateDelete
@@ -278,7 +278,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateFiles
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateGet
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateList
@@ -526,7 +526,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateRemoveUser
@@ -608,7 +608,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## templateUpdateFiles
@@ -702,5 +702,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 

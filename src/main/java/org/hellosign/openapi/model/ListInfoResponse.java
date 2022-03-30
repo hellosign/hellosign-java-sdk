@@ -34,7 +34,6 @@ import org.hellosign.openapi.ApiException;
  */
 @JsonPropertyOrder({
     ListInfoResponse.JSON_PROPERTY_NUM_PAGES,
-    ListInfoResponse.JSON_PROPERTY_NUM_RESPONSE,
     ListInfoResponse.JSON_PROPERTY_NUM_RESULTS,
     ListInfoResponse.JSON_PROPERTY_PAGE,
     ListInfoResponse.JSON_PROPERTY_PAGE_SIZE
@@ -43,9 +42,6 @@ import org.hellosign.openapi.ApiException;
 public class ListInfoResponse {
   public static final String JSON_PROPERTY_NUM_PAGES = "num_pages";
   private Integer numPages;
-
-  public static final String JSON_PROPERTY_NUM_RESPONSE = "num_response";
-  private Integer numResponse;
 
   public static final String JSON_PROPERTY_NUM_RESULTS = "num_results";
   private Integer numResults;
@@ -82,32 +78,6 @@ public class ListInfoResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNumPages(Integer numPages) {
     this.numPages = numPages;
-  }
-
-
-  public ListInfoResponse numResponse(Integer numResponse) {
-    this.numResponse = numResponse;
-    return this;
-  }
-
-   /**
-   * Total number of objects available
-   * @return numResponse
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Total number of objects available")
-  @JsonProperty(JSON_PROPERTY_NUM_RESPONSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getNumResponse() {
-    return numResponse;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NUM_RESPONSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNumResponse(Integer numResponse) {
-    this.numResponse = numResponse;
   }
 
 
@@ -202,7 +172,6 @@ public class ListInfoResponse {
     }
     ListInfoResponse listInfoResponse = (ListInfoResponse) o;
     return Objects.equals(this.numPages, listInfoResponse.numPages) &&
-        Objects.equals(this.numResponse, listInfoResponse.numResponse) &&
         Objects.equals(this.numResults, listInfoResponse.numResults) &&
         Objects.equals(this.page, listInfoResponse.page) &&
         Objects.equals(this.pageSize, listInfoResponse.pageSize);
@@ -210,7 +179,7 @@ public class ListInfoResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(numPages, numResponse, numResults, page, pageSize);
+    return Objects.hash(numPages, numResults, page, pageSize);
   }
 
   @Override
@@ -218,7 +187,6 @@ public class ListInfoResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListInfoResponse {\n");
     sb.append("    numPages: ").append(toIndentedString(numPages)).append("\n");
-    sb.append("    numResponse: ").append(toIndentedString(numResponse)).append("\n");
     sb.append("    numResults: ").append(toIndentedString(numResults)).append("\n");
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
@@ -246,24 +214,6 @@ public class ListInfoResponse {
         }
         else {
             map.put("num_pages", JSON.getDefault().getMapper().writeValueAsString(numPages));
-        }
-    }
-    if (numResponse != null) {
-        if (isFileTypeOrListOfFiles(numResponse)) {
-            fileTypeFound = true;
-        }
-
-        if (numResponse.getClass().equals(java.io.File.class) ||
-            numResponse.getClass().equals(Integer.class) ||
-            numResponse.getClass().equals(String.class) ) {
-            map.put("num_response", numResponse);
-        } else if (isListOfFile(numResponse)) {
-            for(int i = 0; i< getListSize(numResponse); i++) {
-                map.put("num_response[" + i + "]", getFromList(numResponse, i));
-            }
-        }
-        else {
-            map.put("num_response", JSON.getDefault().getMapper().writeValueAsString(numResponse));
         }
     }
     if (numResults != null) {

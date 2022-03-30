@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## unclaimedDraftCreateEmbedded
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## unclaimedDraftCreateEmbeddedWithTemplate
@@ -249,7 +249,7 @@ public class Example {
 
         UnclaimedDraftApi api = new UnclaimedDraftApi(defaultClient);
 
-        SubUnclaimedDraftEmbeddedTemplateSigner signer = new SubUnclaimedDraftEmbeddedTemplateSigner()
+        SubUnclaimedDraftTemplateSigner signer = new SubUnclaimedDraftTemplateSigner()
             .role("Client")
             .name("George")
             .emailAddress("george@example.com");
@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## unclaimedDraftEditAndResend
@@ -390,5 +390,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 

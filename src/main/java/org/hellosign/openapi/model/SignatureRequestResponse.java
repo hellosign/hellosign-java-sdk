@@ -29,7 +29,6 @@ import java.util.List;
 import org.hellosign.openapi.model.SignatureRequestResponseCustomField;
 import org.hellosign.openapi.model.SignatureRequestResponseData;
 import org.hellosign.openapi.model.SignatureRequestResponseSignatures;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -59,8 +58,7 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestResponse.JSON_PROPERTY_SIGNING_REDIRECT_URL,
     SignatureRequestResponse.JSON_PROPERTY_CUSTOM_FIELDS,
     SignatureRequestResponse.JSON_PROPERTY_RESPONSE_DATA,
-    SignatureRequestResponse.JSON_PROPERTY_SIGNATURES,
-    SignatureRequestResponse.JSON_PROPERTY_WARNINGS
+    SignatureRequestResponse.JSON_PROPERTY_SIGNATURES
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SignatureRequestResponse {
@@ -126,9 +124,6 @@ public class SignatureRequestResponse {
 
   public static final String JSON_PROPERTY_SIGNATURES = "signatures";
   private List<SignatureRequestResponseSignatures> signatures = null;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public SignatureRequestResponse() { 
   }
@@ -711,40 +706,6 @@ public class SignatureRequestResponse {
   }
 
 
-  public SignatureRequestResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public SignatureRequestResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   /**
    * Return true if this SignatureRequestResponse object is equal to o.
    */
@@ -777,13 +738,12 @@ public class SignatureRequestResponse {
         Objects.equals(this.signingRedirectUrl, signatureRequestResponse.signingRedirectUrl) &&
         Objects.equals(this.customFields, signatureRequestResponse.customFields) &&
         Objects.equals(this.responseData, signatureRequestResponse.responseData) &&
-        Objects.equals(this.signatures, signatureRequestResponse.signatures) &&
-        Objects.equals(this.warnings, signatureRequestResponse.warnings);
+        Objects.equals(this.signatures, signatureRequestResponse.signatures);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, finalCopyUri, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, customFields, responseData, signatures, warnings);
+    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, finalCopyUri, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, customFields, responseData, signatures);
   }
 
   @Override
@@ -811,7 +771,6 @@ public class SignatureRequestResponse {
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    responseData: ").append(toIndentedString(responseData)).append("\n");
     sb.append("    signatures: ").append(toIndentedString(signatures)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1196,24 +1155,6 @@ public class SignatureRequestResponse {
         }
         else {
             map.put("signatures", JSON.getDefault().getMapper().writeValueAsString(signatures));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

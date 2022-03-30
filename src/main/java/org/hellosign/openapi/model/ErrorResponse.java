@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hellosign.openapi.model.ErrorResponseError;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -33,99 +34,39 @@ import org.hellosign.openapi.ApiException;
  * ErrorResponse
  */
 @JsonPropertyOrder({
-    ErrorResponse.JSON_PROPERTY_ERROR_MSG,
-    ErrorResponse.JSON_PROPERTY_ERROR_NAME,
-    ErrorResponse.JSON_PROPERTY_ERROR_PATH
+    ErrorResponse.JSON_PROPERTY_ERROR
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ErrorResponse {
-  public static final String JSON_PROPERTY_ERROR_MSG = "error_msg";
-  private String errorMsg;
-
-  public static final String JSON_PROPERTY_ERROR_NAME = "error_name";
-  private String errorName;
-
-  public static final String JSON_PROPERTY_ERROR_PATH = "error_path";
-  private String errorPath;
+  public static final String JSON_PROPERTY_ERROR = "error";
+  private ErrorResponseError error;
 
   public ErrorResponse() { 
   }
 
-  public ErrorResponse errorMsg(String errorMsg) {
-    this.errorMsg = errorMsg;
+  public ErrorResponse error(ErrorResponseError error) {
+    this.error = error;
     return this;
   }
 
    /**
-   * Get errorMsg
-   * @return errorMsg
+   * Get error
+   * @return error
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ERROR_MSG)
+  @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getErrorMsg() {
-    return errorMsg;
+  public ErrorResponseError getError() {
+    return error;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ERROR_MSG)
+  @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setErrorMsg(String errorMsg) {
-    this.errorMsg = errorMsg;
-  }
-
-
-  public ErrorResponse errorName(String errorName) {
-    this.errorName = errorName;
-    return this;
-  }
-
-   /**
-   * Get errorName
-   * @return errorName
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ERROR_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getErrorName() {
-    return errorName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setErrorName(String errorName) {
-    this.errorName = errorName;
-  }
-
-
-  public ErrorResponse errorPath(String errorPath) {
-    this.errorPath = errorPath;
-    return this;
-  }
-
-   /**
-   * Get errorPath
-   * @return errorPath
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ERROR_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getErrorPath() {
-    return errorPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorPath(String errorPath) {
-    this.errorPath = errorPath;
+  public void setError(ErrorResponseError error) {
+    this.error = error;
   }
 
 
@@ -141,23 +82,19 @@ public class ErrorResponse {
       return false;
     }
     ErrorResponse errorResponse = (ErrorResponse) o;
-    return Objects.equals(this.errorMsg, errorResponse.errorMsg) &&
-        Objects.equals(this.errorName, errorResponse.errorName) &&
-        Objects.equals(this.errorPath, errorResponse.errorPath);
+    return Objects.equals(this.error, errorResponse.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorMsg, errorName, errorPath);
+    return Objects.hash(error);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorResponse {\n");
-    sb.append("    errorMsg: ").append(toIndentedString(errorMsg)).append("\n");
-    sb.append("    errorName: ").append(toIndentedString(errorName)).append("\n");
-    sb.append("    errorPath: ").append(toIndentedString(errorPath)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -166,58 +103,22 @@ public class ErrorResponse {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
-    if (errorMsg != null) {
-        if (isFileTypeOrListOfFiles(errorMsg)) {
+    if (error != null) {
+        if (isFileTypeOrListOfFiles(error)) {
             fileTypeFound = true;
         }
 
-        if (errorMsg.getClass().equals(java.io.File.class) ||
-            errorMsg.getClass().equals(Integer.class) ||
-            errorMsg.getClass().equals(String.class) ) {
-            map.put("error_msg", errorMsg);
-        } else if (isListOfFile(errorMsg)) {
-            for(int i = 0; i< getListSize(errorMsg); i++) {
-                map.put("error_msg[" + i + "]", getFromList(errorMsg, i));
+        if (error.getClass().equals(java.io.File.class) ||
+            error.getClass().equals(Integer.class) ||
+            error.getClass().equals(String.class) ) {
+            map.put("error", error);
+        } else if (isListOfFile(error)) {
+            for(int i = 0; i< getListSize(error); i++) {
+                map.put("error[" + i + "]", getFromList(error, i));
             }
         }
         else {
-            map.put("error_msg", JSON.getDefault().getMapper().writeValueAsString(errorMsg));
-        }
-    }
-    if (errorName != null) {
-        if (isFileTypeOrListOfFiles(errorName)) {
-            fileTypeFound = true;
-        }
-
-        if (errorName.getClass().equals(java.io.File.class) ||
-            errorName.getClass().equals(Integer.class) ||
-            errorName.getClass().equals(String.class) ) {
-            map.put("error_name", errorName);
-        } else if (isListOfFile(errorName)) {
-            for(int i = 0; i< getListSize(errorName); i++) {
-                map.put("error_name[" + i + "]", getFromList(errorName, i));
-            }
-        }
-        else {
-            map.put("error_name", JSON.getDefault().getMapper().writeValueAsString(errorName));
-        }
-    }
-    if (errorPath != null) {
-        if (isFileTypeOrListOfFiles(errorPath)) {
-            fileTypeFound = true;
-        }
-
-        if (errorPath.getClass().equals(java.io.File.class) ||
-            errorPath.getClass().equals(Integer.class) ||
-            errorPath.getClass().equals(String.class) ) {
-            map.put("error_path", errorPath);
-        } else if (isListOfFile(errorPath)) {
-            for(int i = 0; i< getListSize(errorPath); i++) {
-                map.put("error_path[" + i + "]", getFromList(errorPath, i));
-            }
-        }
-        else {
-            map.put("error_path", JSON.getDefault().getMapper().writeValueAsString(errorPath));
+            map.put("error", JSON.getDefault().getMapper().writeValueAsString(error));
         }
     }
     } catch (Exception e) {

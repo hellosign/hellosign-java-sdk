@@ -67,7 +67,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public BulkSendJobSendResponse signatureRequestBulkCreateEmbeddedWithTemplate(SignatureRequestBulkCreateEmbeddedWithTemplateRequest signatureRequestBulkCreateEmbeddedWithTemplateRequest) throws ApiException {
@@ -84,7 +84,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<BulkSendJobSendResponse> signatureRequestBulkCreateEmbeddedWithTemplateWithHttpInfo(SignatureRequestBulkCreateEmbeddedWithTemplateRequest signatureRequestBulkCreateEmbeddedWithTemplateRequest) throws ApiException {
@@ -140,7 +140,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public BulkSendJobSendResponse signatureRequestBulkSendWithTemplate(SignatureRequestBulkSendWithTemplateRequest signatureRequestBulkSendWithTemplateRequest) throws ApiException {
@@ -157,7 +157,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<BulkSendJobSendResponse> signatureRequestBulkSendWithTemplateWithHttpInfo(SignatureRequestBulkSendWithTemplateRequest signatureRequestBulkSendWithTemplateRequest) throws ApiException {
@@ -212,7 +212,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public void signatureRequestCancel(String signatureRequestId) throws ApiException {
@@ -229,7 +229,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> signatureRequestCancelWithHttpInfo(String signatureRequestId) throws ApiException {
@@ -284,7 +284,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestCreateEmbedded(SignatureRequestCreateEmbeddedRequest signatureRequestCreateEmbeddedRequest) throws ApiException {
@@ -301,7 +301,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestCreateEmbeddedWithHttpInfo(SignatureRequestCreateEmbeddedRequest signatureRequestCreateEmbeddedRequest) throws ApiException {
@@ -357,7 +357,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestCreateEmbeddedWithTemplate(SignatureRequestCreateEmbeddedWithTemplateRequest signatureRequestCreateEmbeddedWithTemplateRequest) throws ApiException {
@@ -374,7 +374,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestCreateEmbeddedWithTemplateWithHttpInfo(SignatureRequestCreateEmbeddedWithTemplateRequest signatureRequestCreateEmbeddedWithTemplateRequest) throws ApiException {
@@ -433,7 +433,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public FileResponse signatureRequestFiles(String signatureRequestId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
@@ -453,7 +453,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<FileResponse> signatureRequestFilesWithHttpInfo(String signatureRequestId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
@@ -513,7 +513,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestGet(String signatureRequestId) throws ApiException {
@@ -530,7 +530,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestGetWithHttpInfo(String signatureRequestId) throws ApiException {
@@ -590,7 +590,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestListResponse signatureRequestList(String accountId, Integer page, Integer pageSize, String query) throws ApiException {
@@ -610,7 +610,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestListResponse> signatureRequestListWithHttpInfo(String accountId, Integer page, Integer pageSize, String query) throws ApiException {
@@ -665,7 +665,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestReleaseHold(String signatureRequestId) throws ApiException {
@@ -682,7 +682,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestReleaseHoldWithHttpInfo(String signatureRequestId) throws ApiException {
@@ -740,7 +740,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestRemind(String signatureRequestId, SignatureRequestRemindRequest signatureRequestRemindRequest) throws ApiException {
@@ -758,7 +758,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestRemindWithHttpInfo(String signatureRequestId, SignatureRequestRemindRequest signatureRequestRemindRequest) throws ApiException {
@@ -819,7 +819,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public void signatureRequestRemove(String signatureRequestId) throws ApiException {
@@ -836,7 +836,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> signatureRequestRemoveWithHttpInfo(String signatureRequestId) throws ApiException {
@@ -891,7 +891,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestSend(SignatureRequestSendRequest signatureRequestSendRequest) throws ApiException {
@@ -908,7 +908,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestSendWithHttpInfo(SignatureRequestSendRequest signatureRequestSendRequest) throws ApiException {
@@ -964,7 +964,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestSendWithTemplate(SignatureRequestSendWithTemplateRequest signatureRequestSendWithTemplateRequest) throws ApiException {
@@ -981,7 +981,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestSendWithTemplateWithHttpInfo(SignatureRequestSendWithTemplateRequest signatureRequestSendWithTemplateRequest) throws ApiException {
@@ -1038,7 +1038,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public SignatureRequestGetResponse signatureRequestUpdate(String signatureRequestId, SignatureRequestUpdateRequest signatureRequestUpdateRequest) throws ApiException {
@@ -1056,7 +1056,7 @@ public class SignatureRequestApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestUpdateWithHttpInfo(String signatureRequestId, SignatureRequestUpdateRequest signatureRequestUpdateRequest) throws ApiException {

@@ -65,7 +65,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public TemplateGetResponse templateAddUser(String templateId, TemplateAddUserRequest templateAddUserRequest) throws ApiException {
@@ -83,7 +83,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TemplateGetResponse> templateAddUserWithHttpInfo(String templateId, TemplateAddUserRequest templateAddUserRequest) throws ApiException {
@@ -145,7 +145,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public TemplateCreateEmbeddedDraftResponse templateCreateEmbeddedDraft(TemplateCreateEmbeddedDraftRequest templateCreateEmbeddedDraftRequest) throws ApiException {
@@ -162,7 +162,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TemplateCreateEmbeddedDraftResponse> templateCreateEmbeddedDraftWithHttpInfo(TemplateCreateEmbeddedDraftRequest templateCreateEmbeddedDraftRequest) throws ApiException {
@@ -217,7 +217,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public void templateDelete(String templateId) throws ApiException {
@@ -234,7 +234,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> templateDeleteWithHttpInfo(String templateId) throws ApiException {
@@ -292,7 +292,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public FileResponse templateFiles(String templateId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
@@ -312,7 +312,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<FileResponse> templateFilesWithHttpInfo(String templateId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
@@ -372,7 +372,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public TemplateGetResponse templateGet(String templateId) throws ApiException {
@@ -389,7 +389,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TemplateGetResponse> templateGetWithHttpInfo(String templateId) throws ApiException {
@@ -449,7 +449,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public TemplateListResponse templateList(String accountId, Integer page, Integer pageSize, String query) throws ApiException {
@@ -469,7 +469,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TemplateListResponse> templateListWithHttpInfo(String accountId, Integer page, Integer pageSize, String query) throws ApiException {
@@ -525,7 +525,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public TemplateGetResponse templateRemoveUser(String templateId, TemplateRemoveUserRequest templateRemoveUserRequest) throws ApiException {
@@ -543,7 +543,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TemplateGetResponse> templateRemoveUserWithHttpInfo(String templateId, TemplateRemoveUserRequest templateRemoveUserRequest) throws ApiException {
@@ -606,7 +606,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public TemplateUpdateFilesResponse templateUpdateFiles(String templateId, TemplateUpdateFilesRequest templateUpdateFilesRequest) throws ApiException {
@@ -624,7 +624,7 @@ public class TemplateApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TemplateUpdateFilesResponse> templateUpdateFilesWithHttpInfo(String templateId, TemplateUpdateFilesRequest templateUpdateFilesRequest) throws ApiException {

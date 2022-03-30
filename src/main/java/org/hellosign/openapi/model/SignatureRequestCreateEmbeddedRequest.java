@@ -35,7 +35,7 @@ import org.hellosign.openapi.model.SubFieldOptions;
 import org.hellosign.openapi.model.SubFormFieldGroup;
 import org.hellosign.openapi.model.SubFormFieldRule;
 import org.hellosign.openapi.model.SubFormFieldsPerDocumentBase;
-import org.hellosign.openapi.model.SubSignatureRequestEmbeddedSigner;
+import org.hellosign.openapi.model.SubSignatureRequestSigner;
 import org.hellosign.openapi.model.SubSigningOptions;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
@@ -113,7 +113,7 @@ public class SignatureRequestCreateEmbeddedRequest {
   private Map<String, Object> metadata = null;
 
   public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubSignatureRequestEmbeddedSigner> signers = null;
+  private List<SubSignatureRequestSigner> signers = null;
 
   public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
   private SubSigningOptions signingOptions;
@@ -569,12 +569,12 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
 
-  public SignatureRequestCreateEmbeddedRequest signers(List<SubSignatureRequestEmbeddedSigner> signers) {
+  public SignatureRequestCreateEmbeddedRequest signers(List<SubSignatureRequestSigner> signers) {
     this.signers = signers;
     return this;
   }
 
-  public SignatureRequestCreateEmbeddedRequest addSignersItem(SubSignatureRequestEmbeddedSigner signersItem) {
+  public SignatureRequestCreateEmbeddedRequest addSignersItem(SubSignatureRequestSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -591,14 +591,14 @@ public class SignatureRequestCreateEmbeddedRequest {
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SubSignatureRequestEmbeddedSigner> getSigners() {
+  public List<SubSignatureRequestSigner> getSigners() {
     return signers;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubSignatureRequestEmbeddedSigner> signers) {
+  public void setSigners(List<SubSignatureRequestSigner> signers) {
     this.signers = signers;
   }
 

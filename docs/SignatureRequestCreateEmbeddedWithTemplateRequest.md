@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 | `fileUrl` | ```List<String>``` |  **file_url** or **file** is required, but not both.<br><br>Use `file_url[]` to have HelloSign download the file(s) to send for signature.<br><br>Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.  |  |
 | `message` | ```String``` |  The custom message in the email that will be sent to the signers.  |  |
 | `metadata` | ```Map<String, Object>``` |  Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.<br><br>Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.  |  |
-| `signers` | [```List<SubSignatureRequestEmbeddedTemplateSigner>```](SubSignatureRequestEmbeddedTemplateSigner.md) |  Add Signers to your Templated-based Signature Request.  |  |
+| `signers` | [```List<SubSignatureRequestTemplateSigner>```](SubSignatureRequestTemplateSigner.md) |  Add Signers to your Templated-based Signature Request.  |  |
 | `signingOptions` | [```SubSigningOptions```](SubSigningOptions.md) |    |  |
 | `subject` | ```String``` |  The subject in the email that will be sent to the signers.  |  |
 | `testMode` | ```Boolean``` |  Whether this is a test, the signature request will not be legally binding if set to `true`. Defaults to `false`.  |  |

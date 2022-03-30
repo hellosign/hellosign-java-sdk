@@ -61,7 +61,7 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubBulkSignerListSigner signerList1Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList1Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("George")
             .emailAddress("george@example.com")
@@ -75,7 +75,7 @@ public class Example {
             .signers(Arrays.asList(signerList1Signer))
             .customFields(Arrays.asList(signerList1CustomFields));
 
-        SubBulkSignerListSigner signerList2Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList2Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("Mary")
             .emailAddress("mary@example.com")
@@ -113,6 +113,7 @@ public class Example {
         }
     }
 }
+
 ```
 
 ### Parameters
@@ -139,7 +140,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestBulkSendWithTemplate
@@ -182,7 +183,7 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubBulkSignerListSigner signerList1Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList1Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("George")
             .emailAddress("george@example.com")
@@ -196,7 +197,7 @@ public class Example {
             .signers(Arrays.asList(signerList1Signer))
             .customFields(Arrays.asList(signerList1CustomFields));
 
-        SubBulkSignerListSigner signerList2Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList2Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("Mary")
             .emailAddress("mary@example.com")
@@ -234,6 +235,7 @@ public class Example {
         }
     }
 }
+
 ```
 
 ### Parameters
@@ -260,7 +262,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestCancel
@@ -348,7 +350,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestCreateEmbedded
@@ -389,12 +391,12 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubSignatureRequestEmbeddedSigner signer1 = new SubSignatureRequestEmbeddedSigner()
+        SubSignatureRequestSigner signer1 = new SubSignatureRequestSigner()
             .emailAddress("jack@example.com")
             .name("Jack")
             .order(0);
 
-        SubSignatureRequestEmbeddedSigner signer2 = new SubSignatureRequestEmbeddedSigner()
+        SubSignatureRequestSigner signer2 = new SubSignatureRequestSigner()
             .emailAddress("jill@example.com")
             .name("Jill")
             .order(1);
@@ -456,7 +458,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestCreateEmbeddedWithTemplate
@@ -487,7 +489,7 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubSignatureRequestEmbeddedTemplateSigner signer1 = new SubSignatureRequestEmbeddedTemplateSigner()
+        SubSignatureRequestTemplateSigner signer1 = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("George");
 
@@ -546,7 +548,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestFiles
@@ -632,7 +634,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestGet
@@ -711,7 +713,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestList
@@ -796,7 +798,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestReleaseHold
@@ -875,7 +877,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestRemind
@@ -960,7 +962,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestRemove
@@ -1041,7 +1043,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestSend
@@ -1155,7 +1157,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestSendWithTemplate
@@ -1268,7 +1270,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## signatureRequestUpdate
@@ -1354,5 +1356,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 

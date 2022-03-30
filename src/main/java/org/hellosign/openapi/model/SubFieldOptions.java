@@ -39,7 +39,7 @@ import org.hellosign.openapi.ApiException;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubFieldOptions {
   /**
-   * Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Platinum and higher.
+   * Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Premium and higher.
    */
   public enum DateFormatEnum {
     MMDDYYYY("MM / DD / YYYY"),
@@ -93,11 +93,11 @@ public class SubFieldOptions {
   }
 
    /**
-   * Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Platinum and higher.
+   * Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Premium and higher.
    * @return dateFormat
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Platinum and higher.")
+  @ApiModelProperty(required = true, value = "Allows requester to specify the date format (see list of allowed [formats](https://app.hellosign.com/api/reference#DateFormats))  **Note**: Only available for Premium and higher.")
   @JsonProperty(JSON_PROPERTY_DATE_FORMAT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

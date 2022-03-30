@@ -36,6 +36,7 @@ docs/EmbeddedEditUrlResponseEmbedded.md
 docs/EmbeddedSignUrlResponse.md
 docs/EmbeddedSignUrlResponseEmbedded.md
 docs/ErrorResponse.md
+docs/ErrorResponseError.md
 docs/EventCallbackAccountRequest.md
 docs/EventCallbackAccountRequestPayload.md
 docs/EventCallbackApiAppRequest.md
@@ -70,7 +71,6 @@ docs/SignatureRequestUpdateRequest.md
 docs/SubAttachment.md
 docs/SubBulkSignerList.md
 docs/SubBulkSignerListCustomField.md
-docs/SubBulkSignerListSigner.md
 docs/SubCC.md
 docs/SubCustomField.md
 docs/SubEditorOptions.md
@@ -94,15 +94,12 @@ docs/SubFormFieldsPerDocumentTypeEnum.md
 docs/SubMergeField.md
 docs/SubOAuth.md
 docs/SubOptions.md
-docs/SubSignatureRequestEmbeddedSigner.md
-docs/SubSignatureRequestEmbeddedTemplateSigner.md
 docs/SubSignatureRequestSigner.md
 docs/SubSignatureRequestTemplateSigner.md
 docs/SubSigningOptions.md
 docs/SubTemplateRole.md
-docs/SubUnclaimedDraftEmbeddedSigner.md
-docs/SubUnclaimedDraftEmbeddedTemplateSigner.md
 docs/SubUnclaimedDraftSigner.md
+docs/SubUnclaimedDraftTemplateSigner.md
 docs/SubWhiteLabelingOptions.md
 docs/TeamAddMemberRequest.md
 docs/TeamApi.md
@@ -207,6 +204,7 @@ src/main/java/org/hellosign/openapi/model/EmbeddedEditUrlResponseEmbedded.java
 src/main/java/org/hellosign/openapi/model/EmbeddedSignUrlResponse.java
 src/main/java/org/hellosign/openapi/model/EmbeddedSignUrlResponseEmbedded.java
 src/main/java/org/hellosign/openapi/model/ErrorResponse.java
+src/main/java/org/hellosign/openapi/model/ErrorResponseError.java
 src/main/java/org/hellosign/openapi/model/EventCallbackAccountRequest.java
 src/main/java/org/hellosign/openapi/model/EventCallbackAccountRequestPayload.java
 src/main/java/org/hellosign/openapi/model/EventCallbackApiAppRequest.java
@@ -238,7 +236,6 @@ src/main/java/org/hellosign/openapi/model/SignatureRequestUpdateRequest.java
 src/main/java/org/hellosign/openapi/model/SubAttachment.java
 src/main/java/org/hellosign/openapi/model/SubBulkSignerList.java
 src/main/java/org/hellosign/openapi/model/SubBulkSignerListCustomField.java
-src/main/java/org/hellosign/openapi/model/SubBulkSignerListSigner.java
 src/main/java/org/hellosign/openapi/model/SubCC.java
 src/main/java/org/hellosign/openapi/model/SubCustomField.java
 src/main/java/org/hellosign/openapi/model/SubEditorOptions.java
@@ -262,15 +259,12 @@ src/main/java/org/hellosign/openapi/model/SubFormFieldsPerDocumentTypeEnum.java
 src/main/java/org/hellosign/openapi/model/SubMergeField.java
 src/main/java/org/hellosign/openapi/model/SubOAuth.java
 src/main/java/org/hellosign/openapi/model/SubOptions.java
-src/main/java/org/hellosign/openapi/model/SubSignatureRequestEmbeddedSigner.java
-src/main/java/org/hellosign/openapi/model/SubSignatureRequestEmbeddedTemplateSigner.java
 src/main/java/org/hellosign/openapi/model/SubSignatureRequestSigner.java
 src/main/java/org/hellosign/openapi/model/SubSignatureRequestTemplateSigner.java
 src/main/java/org/hellosign/openapi/model/SubSigningOptions.java
 src/main/java/org/hellosign/openapi/model/SubTemplateRole.java
-src/main/java/org/hellosign/openapi/model/SubUnclaimedDraftEmbeddedSigner.java
-src/main/java/org/hellosign/openapi/model/SubUnclaimedDraftEmbeddedTemplateSigner.java
 src/main/java/org/hellosign/openapi/model/SubUnclaimedDraftSigner.java
+src/main/java/org/hellosign/openapi/model/SubUnclaimedDraftTemplateSigner.java
 src/main/java/org/hellosign/openapi/model/SubWhiteLabelingOptions.java
 src/main/java/org/hellosign/openapi/model/TeamAddMemberRequest.java
 src/main/java/org/hellosign/openapi/model/TeamCreateRequest.java

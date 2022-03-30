@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import org.hellosign.openapi.model.SubCC;
 import org.hellosign.openapi.model.SubCustomField;
-import org.hellosign.openapi.model.SubSignatureRequestEmbeddedTemplateSigner;
+import org.hellosign.openapi.model.SubSignatureRequestTemplateSigner;
 import org.hellosign.openapi.model.SubSigningOptions;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
@@ -88,7 +88,7 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   private Map<String, Object> metadata = null;
 
   public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubSignatureRequestEmbeddedTemplateSigner> signers = null;
+  private List<SubSignatureRequestTemplateSigner> signers = null;
 
   public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
   private SubSigningOptions signingOptions;
@@ -384,12 +384,12 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
 
-  public SignatureRequestCreateEmbeddedWithTemplateRequest signers(List<SubSignatureRequestEmbeddedTemplateSigner> signers) {
+  public SignatureRequestCreateEmbeddedWithTemplateRequest signers(List<SubSignatureRequestTemplateSigner> signers) {
     this.signers = signers;
     return this;
   }
 
-  public SignatureRequestCreateEmbeddedWithTemplateRequest addSignersItem(SubSignatureRequestEmbeddedTemplateSigner signersItem) {
+  public SignatureRequestCreateEmbeddedWithTemplateRequest addSignersItem(SubSignatureRequestTemplateSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -406,14 +406,14 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SubSignatureRequestEmbeddedTemplateSigner> getSigners() {
+  public List<SubSignatureRequestTemplateSigner> getSigners() {
     return signers;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubSignatureRequestEmbeddedTemplateSigner> signers) {
+  public void setSigners(List<SubSignatureRequestTemplateSigner> signers) {
     this.signers = signers;
   }
 
