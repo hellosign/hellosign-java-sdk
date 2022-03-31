@@ -42,12 +42,11 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.hellosign.openapi.model.ErrorResponse;
 import org.threeten.bp.OffsetDateTime;
 
 import java.net.URLEncoder;
@@ -63,6 +62,8 @@ import org.hellosign.openapi.auth.Authentication;
 import org.hellosign.openapi.auth.HttpBasicAuth;
 import org.hellosign.openapi.auth.HttpBearerAuth;
 import org.hellosign.openapi.auth.ApiKeyAuth;
+
+import org.hellosign.openapi.model.ErrorResponse;
 
 /**
  * <p>ApiClient class.</p>
@@ -1079,12 +1080,12 @@ public class ApiClient extends JavaTimeFormatter {
         if (response.hasEntity()) {
           try {
             if (response.getStatusInfo().getFamily() == Status.Family.CLIENT_ERROR) {
-              errorResponse = response.readEntity(ErrorResponse.class);
-              respBody = errorResponse.toString();
-              message = respBody;
+                errorResponse = response.readEntity(ErrorResponse.class);
+                respBody = errorResponse.toString();
+                message = respBody;
             } else {
-              respBody = String.valueOf(response.readEntity(String.class));
-              message = respBody;
+                respBody = String.valueOf(response.readEntity(String.class));
+                message = respBody;
             }
           } catch (RuntimeException e) {
             // e.printStackTrace();

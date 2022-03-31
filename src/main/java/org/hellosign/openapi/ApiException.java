@@ -14,7 +14,6 @@
 package org.hellosign.openapi;
 
 import org.hellosign.openapi.model.ErrorResponse;
-
 import java.util.Map;
 import java.util.List;
 
