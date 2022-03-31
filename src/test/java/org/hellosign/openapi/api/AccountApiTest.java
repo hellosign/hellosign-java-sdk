@@ -17,7 +17,8 @@ import org.hellosign.openapi.*;
 import org.hellosign.openapi.model.*;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
+
+import java.util.stream.IntStream;
 
 /**
  * API tests for AccountApi
@@ -95,6 +96,23 @@ public class AccountApiTest {
         AccountApi accountApi = new AccountApi(apiClient);
         AccountVerifyResponse actual = accountApi.accountVerify(request);
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testHttpCodeRange() throws Exception {
+        AccountVerifyRequest request = TestHelper.getFixtureData(AccountVerifyRequest.class, "default");
+        ErrorResponse expected = TestHelper.getFixtureData(ErrorResponse.class, "default");
+        IntStream.range(400, 500).forEach(value -> {
+            try {
+                ApiClient apiClient = TestHelper.setUpMock(value, expected);
+                AccountApi accountApi = new AccountApi(apiClient);
+                accountApi.accountVerify(request);
+                Assert.fail();
+            } catch (ApiException e) {
+                Assert.assertEquals(value, e.getCode());
+                Assert.assertEquals(expected, e.getErrorResponse());
+            }
+        });
     }
 
 }
