@@ -13,6 +13,7 @@
 
 package org.hellosign.openapi;
 
+import org.hellosign.openapi.model.ErrorResponse;
 import java.util.Map;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ApiException extends Exception {
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
+    private ErrorResponse errorResponse;
 
     public ApiException() {}
 
@@ -65,6 +67,11 @@ public class ApiException extends Exception {
         this.responseBody = responseBody;
     }
 
+    public ApiException(int code, String message, Map<String, List<String>> responseHeaders, String responseBody, ErrorResponse errorResponse) {
+        this(code, message, responseHeaders, responseBody);
+        this.errorResponse = errorResponse;
+    }
+
     /**
      * Get the HTTP status code.
      *
@@ -90,5 +97,9 @@ public class ApiException extends Exception {
      */
     public String getResponseBody() {
         return responseBody;
+    }
+
+    public ErrorResponse getErrorResponse() {
+        return errorResponse;
     }
 }

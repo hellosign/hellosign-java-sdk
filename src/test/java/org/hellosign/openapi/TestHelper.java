@@ -2,6 +2,7 @@ package org.hellosign.openapi;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hellosign.openapi.model.ErrorResponse;
 import org.mockito.Mockito;
 
 import java.io.FileInputStream;
@@ -26,7 +27,12 @@ public class TestHelper {
     public static ApiClient setUpMock(int statusCode, Object obj) throws ApiException {
         ApiClient apiClient = Mockito.spy(ApiClient.class);
         ApiResponse response = new ApiResponse<>(statusCode, new HashMap<>(), obj);
-        doReturn(response).when(apiClient).invokeAPI(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), eq(false));
+        if (statusCode>= 200 && statusCode <= 299) {
+            doReturn(response).when(apiClient).invokeAPI(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), eq(false));
+        } else {
+            doThrow(new ApiException(statusCode, obj.toString(), null, obj.toString(), (ErrorResponse) obj))
+                    .when(apiClient).invokeAPI(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), eq(false));
+        }
         return apiClient;
     }
 }

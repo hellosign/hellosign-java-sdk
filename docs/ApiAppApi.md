@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## apiAppDelete
@@ -187,7 +187,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## apiAppGet
@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## apiAppList
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## apiAppUpdate
@@ -449,5 +449,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 

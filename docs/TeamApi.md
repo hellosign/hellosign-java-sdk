@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## teamCreate
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## teamDelete
@@ -242,7 +242,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## teamGet
@@ -315,8 +315,8 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
 | **404** | not found |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## teamRemoveMember
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 
 
 ## teamUpdate
@@ -474,5 +474,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **400** | failed operation |  -  |
+| **4XX** | failed operation |  -  |
 

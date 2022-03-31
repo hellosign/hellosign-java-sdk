@@ -63,6 +63,8 @@ import org.hellosign.openapi.auth.HttpBasicAuth;
 import org.hellosign.openapi.auth.HttpBearerAuth;
 import org.hellosign.openapi.auth.ApiKeyAuth;
 
+import org.hellosign.openapi.model.ErrorResponse;
+
 /**
  * <p>ApiClient class.</p>
  */
@@ -1074,16 +1076,23 @@ public class ApiClient extends JavaTimeFormatter {
       } else {
         String message = "error";
         String respBody = null;
+        ErrorResponse errorResponse = null;
         if (response.hasEntity()) {
           try {
-            respBody = String.valueOf(response.readEntity(String.class));
-            message = respBody;
+            if (response.getStatusInfo().getFamily() == Status.Family.CLIENT_ERROR) {
+                errorResponse = response.readEntity(ErrorResponse.class);
+                respBody = errorResponse.toString();
+                message = respBody;
+            } else {
+                respBody = String.valueOf(response.readEntity(String.class));
+                message = respBody;
+            }
           } catch (RuntimeException e) {
             // e.printStackTrace();
           }
         }
         throw new ApiException(
-            response.getStatus(), message, buildResponseHeaders(response), respBody);
+            response.getStatus(), message, buildResponseHeaders(response), respBody, errorResponse);
       }
     } finally {
       try {
