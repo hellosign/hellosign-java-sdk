@@ -65,11 +65,11 @@ public class SubSignatureRequestTemplateSigner {
   }
 
    /**
-   * Must match an existing role in chosen Template(s). If multiple signers share the same &#x60;role&#x60; name they will be grouped together. Any of these grouped signers is eligible to sign for the entire group.  Grouped signers will not use the &#x60;pin&#x60; or &#x60;sms_phone_number&#x60; fields.
+   * Must match an existing role in chosen Template(s).
    * @return role
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Must match an existing role in chosen Template(s). If multiple signers share the same `role` name they will be grouped together. Any of these grouped signers is eligible to sign for the entire group.  Grouped signers will not use the `pin` or `sms_phone_number` fields.")
+  @ApiModelProperty(required = true, value = "Must match an existing role in chosen Template(s).")
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -169,11 +169,11 @@ public class SubSignatureRequestTemplateSigner {
   }
 
    /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
+   * An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
    * @return smsPhoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.")
+  @ApiModelProperty(value = "An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.")
   @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

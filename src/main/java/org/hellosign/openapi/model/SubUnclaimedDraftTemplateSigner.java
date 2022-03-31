@@ -30,17 +30,15 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * SubBulkSignerListSigner
+ * SubUnclaimedDraftTemplateSigner
  */
 @JsonPropertyOrder({
-    SubBulkSignerListSigner.JSON_PROPERTY_ROLE,
-    SubBulkSignerListSigner.JSON_PROPERTY_NAME,
-    SubBulkSignerListSigner.JSON_PROPERTY_EMAIL_ADDRESS,
-    SubBulkSignerListSigner.JSON_PROPERTY_PIN,
-    SubBulkSignerListSigner.JSON_PROPERTY_SMS_PHONE_NUMBER
+    SubUnclaimedDraftTemplateSigner.JSON_PROPERTY_ROLE,
+    SubUnclaimedDraftTemplateSigner.JSON_PROPERTY_NAME,
+    SubUnclaimedDraftTemplateSigner.JSON_PROPERTY_EMAIL_ADDRESS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubBulkSignerListSigner {
+public class SubUnclaimedDraftTemplateSigner {
   public static final String JSON_PROPERTY_ROLE = "role";
   private String role;
 
@@ -50,26 +48,20 @@ public class SubBulkSignerListSigner {
   public static final String JSON_PROPERTY_EMAIL_ADDRESS = "email_address";
   private String emailAddress;
 
-  public static final String JSON_PROPERTY_PIN = "pin";
-  private String pin;
-
-  public static final String JSON_PROPERTY_SMS_PHONE_NUMBER = "sms_phone_number";
-  private String smsPhoneNumber;
-
-  public SubBulkSignerListSigner() { 
+  public SubUnclaimedDraftTemplateSigner() { 
   }
 
-  public SubBulkSignerListSigner role(String role) {
+  public SubUnclaimedDraftTemplateSigner role(String role) {
     this.role = role;
     return this;
   }
 
    /**
-   * Must match the single existing role in chosen Template(s). Currently only templates with a single role are supported. All signers must have the same &#x60;role&#x60; value.
+   * Must match an existing role in chosen Template(s).
    * @return role
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Must match the single existing role in chosen Template(s). Currently only templates with a single role are supported. All signers must have the same `role` value.")
+  @ApiModelProperty(required = true, value = "Must match an existing role in chosen Template(s).")
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -85,17 +77,17 @@ public class SubBulkSignerListSigner {
   }
 
 
-  public SubBulkSignerListSigner name(String name) {
+  public SubUnclaimedDraftTemplateSigner name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * The name of the signer.
+   * The name of the signer filling the role of &#x60;role&#x60;.
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The name of the signer.")
+  @ApiModelProperty(required = true, value = "The name of the signer filling the role of `role`.")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -111,17 +103,17 @@ public class SubBulkSignerListSigner {
   }
 
 
-  public SubBulkSignerListSigner emailAddress(String emailAddress) {
+  public SubUnclaimedDraftTemplateSigner emailAddress(String emailAddress) {
     this.emailAddress = emailAddress;
     return this;
   }
 
    /**
-   * The email address of the signer.
+   * The email address of the signer filling the role of &#x60;role&#x60;.
    * @return emailAddress
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The email address of the signer.")
+  @ApiModelProperty(required = true, value = "The email address of the signer filling the role of `role`.")
   @JsonProperty(JSON_PROPERTY_EMAIL_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -137,60 +129,8 @@ public class SubBulkSignerListSigner {
   }
 
 
-  public SubBulkSignerListSigner pin(String pin) {
-    this.pin = pin;
-    return this;
-  }
-
-   /**
-   * The 4- to 12-character access code that will secure this signer&#39;s signature page.
-   * @return pin
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The 4- to 12-character access code that will secure this signer's signature page.")
-  @JsonProperty(JSON_PROPERTY_PIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPin() {
-    return pin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPin(String pin) {
-    this.pin = pin;
-  }
-
-
-  public SubBulkSignerListSigner smsPhoneNumber(String smsPhoneNumber) {
-    this.smsPhoneNumber = smsPhoneNumber;
-    return this;
-  }
-
-   /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
-   * @return smsPhoneNumber
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.")
-  @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSmsPhoneNumber() {
-    return smsPhoneNumber;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSmsPhoneNumber(String smsPhoneNumber) {
-    this.smsPhoneNumber = smsPhoneNumber;
-  }
-
-
   /**
-   * Return true if this SubBulkSignerListSigner object is equal to o.
+   * Return true if this SubUnclaimedDraftTemplateSigner object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -200,28 +140,24 @@ public class SubBulkSignerListSigner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SubBulkSignerListSigner subBulkSignerListSigner = (SubBulkSignerListSigner) o;
-    return Objects.equals(this.role, subBulkSignerListSigner.role) &&
-        Objects.equals(this.name, subBulkSignerListSigner.name) &&
-        Objects.equals(this.emailAddress, subBulkSignerListSigner.emailAddress) &&
-        Objects.equals(this.pin, subBulkSignerListSigner.pin) &&
-        Objects.equals(this.smsPhoneNumber, subBulkSignerListSigner.smsPhoneNumber);
+    SubUnclaimedDraftTemplateSigner subUnclaimedDraftTemplateSigner = (SubUnclaimedDraftTemplateSigner) o;
+    return Objects.equals(this.role, subUnclaimedDraftTemplateSigner.role) &&
+        Objects.equals(this.name, subUnclaimedDraftTemplateSigner.name) &&
+        Objects.equals(this.emailAddress, subUnclaimedDraftTemplateSigner.emailAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, name, emailAddress, pin, smsPhoneNumber);
+    return Objects.hash(role, name, emailAddress);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SubBulkSignerListSigner {\n");
+    sb.append("class SubUnclaimedDraftTemplateSigner {\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
-    sb.append("    pin: ").append(toIndentedString(pin)).append("\n");
-    sb.append("    smsPhoneNumber: ").append(toIndentedString(smsPhoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -282,42 +218,6 @@ public class SubBulkSignerListSigner {
         }
         else {
             map.put("email_address", JSON.getDefault().getMapper().writeValueAsString(emailAddress));
-        }
-    }
-    if (pin != null) {
-        if (isFileTypeOrListOfFiles(pin)) {
-            fileTypeFound = true;
-        }
-
-        if (pin.getClass().equals(java.io.File.class) ||
-            pin.getClass().equals(Integer.class) ||
-            pin.getClass().equals(String.class) ) {
-            map.put("pin", pin);
-        } else if (isListOfFile(pin)) {
-            for(int i = 0; i< getListSize(pin); i++) {
-                map.put("pin[" + i + "]", getFromList(pin, i));
-            }
-        }
-        else {
-            map.put("pin", JSON.getDefault().getMapper().writeValueAsString(pin));
-        }
-    }
-    if (smsPhoneNumber != null) {
-        if (isFileTypeOrListOfFiles(smsPhoneNumber)) {
-            fileTypeFound = true;
-        }
-
-        if (smsPhoneNumber.getClass().equals(java.io.File.class) ||
-            smsPhoneNumber.getClass().equals(Integer.class) ||
-            smsPhoneNumber.getClass().equals(String.class) ) {
-            map.put("sms_phone_number", smsPhoneNumber);
-        } else if (isListOfFile(smsPhoneNumber)) {
-            for(int i = 0; i< getListSize(smsPhoneNumber); i++) {
-                map.put("sms_phone_number[" + i + "]", getFromList(smsPhoneNumber, i));
-            }
-        }
-        else {
-            map.put("sms_phone_number", JSON.getDefault().getMapper().writeValueAsString(smsPhoneNumber));
         }
     }
     } catch (Exception e) {

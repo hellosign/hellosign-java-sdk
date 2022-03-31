@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.hellosign.openapi.model.SubBulkSignerListCustomField;
-import org.hellosign.openapi.model.SubBulkSignerListSigner;
+import org.hellosign.openapi.model.SubSignatureRequestTemplateSigner;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -46,7 +46,7 @@ public class SubBulkSignerList {
   private List<SubBulkSignerListCustomField> customFields = null;
 
   public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubBulkSignerListSigner> signers = null;
+  private List<SubSignatureRequestTemplateSigner> signers = null;
 
   public SubBulkSignerList() { 
   }
@@ -85,12 +85,12 @@ public class SubBulkSignerList {
   }
 
 
-  public SubBulkSignerList signers(List<SubBulkSignerListSigner> signers) {
+  public SubBulkSignerList signers(List<SubSignatureRequestTemplateSigner> signers) {
     this.signers = signers;
     return this;
   }
 
-  public SubBulkSignerList addSignersItem(SubBulkSignerListSigner signersItem) {
+  public SubBulkSignerList addSignersItem(SubSignatureRequestTemplateSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -99,22 +99,22 @@ public class SubBulkSignerList {
   }
 
    /**
-   * Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document
+   * Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document.  Currently only templates with a single role are supported. All signers must have the same &#x60;role&#x60; value.
    * @return signers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document")
+  @ApiModelProperty(value = "Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document.  Currently only templates with a single role are supported. All signers must have the same `role` value.")
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SubBulkSignerListSigner> getSigners() {
+  public List<SubSignatureRequestTemplateSigner> getSigners() {
     return signers;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubBulkSignerListSigner> signers) {
+  public void setSigners(List<SubSignatureRequestTemplateSigner> signers) {
     this.signers = signers;
   }
 

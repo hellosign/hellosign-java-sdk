@@ -29,7 +29,6 @@ Name | Type | Description | Notes
 | `customFields` | [```List<SignatureRequestResponseCustomField>```](SignatureRequestResponseCustomField.md) |    |  |
 | `responseData` | [```List<SignatureRequestResponseData>```](SignatureRequestResponseData.md) |    |  |
 | `signatures` | [```List<SignatureRequestResponseSignatures>```](SignatureRequestResponseSignatures.md) |    |  |
-| `warnings` | [```List<WarningResponse>```](WarningResponse.md) |    |  |
 | `bulkSendJobId` | ```String``` |  The id of the BulkSendJob.  |  |
 
 

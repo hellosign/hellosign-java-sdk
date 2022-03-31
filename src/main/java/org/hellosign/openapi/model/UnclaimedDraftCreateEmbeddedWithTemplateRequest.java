@@ -34,7 +34,7 @@ import org.hellosign.openapi.model.SubCustomField;
 import org.hellosign.openapi.model.SubEditorOptions;
 import org.hellosign.openapi.model.SubFieldOptions;
 import org.hellosign.openapi.model.SubSigningOptions;
-import org.hellosign.openapi.model.SubUnclaimedDraftEmbeddedTemplateSigner;
+import org.hellosign.openapi.model.SubUnclaimedDraftTemplateSigner;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -127,7 +127,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   private Boolean showPreview = false;
 
   public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubUnclaimedDraftEmbeddedTemplateSigner> signers = null;
+  private List<SubUnclaimedDraftTemplateSigner> signers = null;
 
   public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
   private SubSigningOptions signingOptions;
@@ -663,12 +663,12 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
 
-  public UnclaimedDraftCreateEmbeddedWithTemplateRequest signers(List<SubUnclaimedDraftEmbeddedTemplateSigner> signers) {
+  public UnclaimedDraftCreateEmbeddedWithTemplateRequest signers(List<SubUnclaimedDraftTemplateSigner> signers) {
     this.signers = signers;
     return this;
   }
 
-  public UnclaimedDraftCreateEmbeddedWithTemplateRequest addSignersItem(SubUnclaimedDraftEmbeddedTemplateSigner signersItem) {
+  public UnclaimedDraftCreateEmbeddedWithTemplateRequest addSignersItem(SubUnclaimedDraftTemplateSigner signersItem) {
     if (this.signers == null) {
       this.signers = new ArrayList<>();
     }
@@ -685,14 +685,14 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SubUnclaimedDraftEmbeddedTemplateSigner> getSigners() {
+  public List<SubUnclaimedDraftTemplateSigner> getSigners() {
     return signers;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SIGNERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubUnclaimedDraftEmbeddedTemplateSigner> signers) {
+  public void setSigners(List<SubUnclaimedDraftTemplateSigner> signers) {
     this.signers = signers;
   }
 

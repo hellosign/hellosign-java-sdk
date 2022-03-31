@@ -27,7 +27,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.hellosign.openapi.model.AccountResponse;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -39,8 +38,7 @@ import org.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     TeamResponse.JSON_PROPERTY_NAME,
     TeamResponse.JSON_PROPERTY_ACCOUNTS,
-    TeamResponse.JSON_PROPERTY_INVITED_ACCOUNTS,
-    TeamResponse.JSON_PROPERTY_WARNINGS
+    TeamResponse.JSON_PROPERTY_INVITED_ACCOUNTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TeamResponse {
@@ -52,9 +50,6 @@ public class TeamResponse {
 
   public static final String JSON_PROPERTY_INVITED_ACCOUNTS = "invited_accounts";
   private List<AccountResponse> invitedAccounts = null;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public TeamResponse() { 
   }
@@ -153,40 +148,6 @@ public class TeamResponse {
   }
 
 
-  public TeamResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public TeamResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   /**
    * Return true if this TeamResponse object is equal to o.
    */
@@ -201,13 +162,12 @@ public class TeamResponse {
     TeamResponse teamResponse = (TeamResponse) o;
     return Objects.equals(this.name, teamResponse.name) &&
         Objects.equals(this.accounts, teamResponse.accounts) &&
-        Objects.equals(this.invitedAccounts, teamResponse.invitedAccounts) &&
-        Objects.equals(this.warnings, teamResponse.warnings);
+        Objects.equals(this.invitedAccounts, teamResponse.invitedAccounts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, accounts, invitedAccounts, warnings);
+    return Objects.hash(name, accounts, invitedAccounts);
   }
 
   @Override
@@ -217,7 +177,6 @@ public class TeamResponse {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");
     sb.append("    invitedAccounts: ").append(toIndentedString(invitedAccounts)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -278,24 +237,6 @@ public class TeamResponse {
         }
         else {
             map.put("invited_accounts", JSON.getDefault().getMapper().writeValueAsString(invitedAccounts));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

@@ -35,7 +35,6 @@ import org.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     SubSignatureRequestSigner.JSON_PROPERTY_NAME,
     SubSignatureRequestSigner.JSON_PROPERTY_EMAIL_ADDRESS,
-    SubSignatureRequestSigner.JSON_PROPERTY_GROUP,
     SubSignatureRequestSigner.JSON_PROPERTY_ORDER,
     SubSignatureRequestSigner.JSON_PROPERTY_PIN,
     SubSignatureRequestSigner.JSON_PROPERTY_SMS_PHONE_NUMBER
@@ -47,9 +46,6 @@ public class SubSignatureRequestSigner {
 
   public static final String JSON_PROPERTY_EMAIL_ADDRESS = "email_address";
   private String emailAddress;
-
-  public static final String JSON_PROPERTY_GROUP = "group";
-  private String group;
 
   public static final String JSON_PROPERTY_ORDER = "order";
   private Integer order;
@@ -115,32 +111,6 @@ public class SubSignatureRequestSigner {
   }
 
 
-  public SubSignatureRequestSigner group(String group) {
-    this.group = group;
-    return this;
-  }
-
-   /**
-   * Name of group. Use this value across multiple signers to group them together. Any of the signers is eligible to sign for the entire group.  Grouped signers will not use the &#x60;order&#x60;, &#x60;pin&#x60;, or &#x60;sms_phone_number&#x60; fields.
-   * @return group
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name of group. Use this value across multiple signers to group them together. Any of the signers is eligible to sign for the entire group.  Grouped signers will not use the `order`, `pin`, or `sms_phone_number` fields.")
-  @JsonProperty(JSON_PROPERTY_GROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getGroup() {
-    return group;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroup(String group) {
-    this.group = group;
-  }
-
-
   public SubSignatureRequestSigner order(Integer order) {
     this.order = order;
     return this;
@@ -199,11 +169,11 @@ public class SubSignatureRequestSigner {
   }
 
    /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.
+   * An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
    * @return smsPhoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Platinum plan or higher.")
+  @ApiModelProperty(value = "An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.")
   @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -233,7 +203,6 @@ public class SubSignatureRequestSigner {
     SubSignatureRequestSigner subSignatureRequestSigner = (SubSignatureRequestSigner) o;
     return Objects.equals(this.name, subSignatureRequestSigner.name) &&
         Objects.equals(this.emailAddress, subSignatureRequestSigner.emailAddress) &&
-        Objects.equals(this.group, subSignatureRequestSigner.group) &&
         Objects.equals(this.order, subSignatureRequestSigner.order) &&
         Objects.equals(this.pin, subSignatureRequestSigner.pin) &&
         Objects.equals(this.smsPhoneNumber, subSignatureRequestSigner.smsPhoneNumber);
@@ -241,7 +210,7 @@ public class SubSignatureRequestSigner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, emailAddress, group, order, pin, smsPhoneNumber);
+    return Objects.hash(name, emailAddress, order, pin, smsPhoneNumber);
   }
 
   @Override
@@ -250,7 +219,6 @@ public class SubSignatureRequestSigner {
     sb.append("class SubSignatureRequestSigner {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
-    sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    pin: ").append(toIndentedString(pin)).append("\n");
     sb.append("    smsPhoneNumber: ").append(toIndentedString(smsPhoneNumber)).append("\n");
@@ -296,24 +264,6 @@ public class SubSignatureRequestSigner {
         }
         else {
             map.put("email_address", JSON.getDefault().getMapper().writeValueAsString(emailAddress));
-        }
-    }
-    if (group != null) {
-        if (isFileTypeOrListOfFiles(group)) {
-            fileTypeFound = true;
-        }
-
-        if (group.getClass().equals(java.io.File.class) ||
-            group.getClass().equals(Integer.class) ||
-            group.getClass().equals(String.class) ) {
-            map.put("group", group);
-        } else if (isListOfFile(group)) {
-            for(int i = 0; i< getListSize(group); i++) {
-                map.put("group[" + i + "]", getFromList(group, i));
-            }
-        }
-        else {
-            map.put("group", JSON.getDefault().getMapper().writeValueAsString(group));
         }
     }
     if (order != null) {

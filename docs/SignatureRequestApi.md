@@ -61,7 +61,7 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubBulkSignerListSigner signerList1Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList1Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("George")
             .emailAddress("george@example.com")
@@ -75,7 +75,7 @@ public class Example {
             .signers(Arrays.asList(signerList1Signer))
             .customFields(Arrays.asList(signerList1CustomFields));
 
-        SubBulkSignerListSigner signerList2Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList2Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("Mary")
             .emailAddress("mary@example.com")
@@ -113,6 +113,7 @@ public class Example {
         }
     }
 }
+
 ```
 
 ### Parameters
@@ -182,7 +183,7 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubBulkSignerListSigner signerList1Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList1Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("George")
             .emailAddress("george@example.com")
@@ -196,7 +197,7 @@ public class Example {
             .signers(Arrays.asList(signerList1Signer))
             .customFields(Arrays.asList(signerList1CustomFields));
 
-        SubBulkSignerListSigner signerList2Signer = new SubBulkSignerListSigner()
+        SubSignatureRequestTemplateSigner signerList2Signer = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("Mary")
             .emailAddress("mary@example.com")
@@ -234,6 +235,7 @@ public class Example {
         }
     }
 }
+
 ```
 
 ### Parameters
@@ -389,12 +391,12 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubSignatureRequestEmbeddedSigner signer1 = new SubSignatureRequestEmbeddedSigner()
+        SubSignatureRequestSigner signer1 = new SubSignatureRequestSigner()
             .emailAddress("jack@example.com")
             .name("Jack")
             .order(0);
 
-        SubSignatureRequestEmbeddedSigner signer2 = new SubSignatureRequestEmbeddedSigner()
+        SubSignatureRequestSigner signer2 = new SubSignatureRequestSigner()
             .emailAddress("jill@example.com")
             .name("Jill")
             .order(1);
@@ -487,7 +489,7 @@ public class Example {
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
-        SubSignatureRequestEmbeddedTemplateSigner signer1 = new SubSignatureRequestEmbeddedTemplateSigner()
+        SubSignatureRequestTemplateSigner signer1 = new SubSignatureRequestTemplateSigner()
             .role("Client")
             .name("George");
 
