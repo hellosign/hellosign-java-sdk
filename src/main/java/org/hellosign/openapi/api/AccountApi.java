@@ -61,7 +61,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountCreateResponse accountCreate(AccountCreateRequest accountCreateRequest) throws ApiException {
@@ -78,7 +78,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountCreateResponse> accountCreateWithHttpInfo(AccountCreateRequest accountCreateRequest) throws ApiException {
@@ -133,7 +133,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountGetResponse accountGet() throws ApiException {
@@ -149,7 +149,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountGetResponse> accountGetWithHttpInfo() throws ApiException {
@@ -200,7 +200,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountGetResponse accountUpdate(AccountUpdateRequest accountUpdateRequest) throws ApiException {
@@ -217,7 +217,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountGetResponse> accountUpdateWithHttpInfo(AccountUpdateRequest accountUpdateRequest) throws ApiException {
@@ -273,7 +273,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountVerifyResponse accountVerify(AccountVerifyRequest accountVerifyRequest) throws ApiException {
@@ -290,7 +290,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountVerifyResponse> accountVerifyWithHttpInfo(AccountVerifyRequest accountVerifyRequest) throws ApiException {

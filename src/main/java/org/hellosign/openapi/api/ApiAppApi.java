@@ -59,7 +59,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppGetResponse apiAppCreate(ApiAppCreateRequest apiAppCreateRequest) throws ApiException {
@@ -76,7 +76,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppCreateWithHttpInfo(ApiAppCreateRequest apiAppCreateRequest) throws ApiException {
@@ -131,7 +131,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 204 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public void apiAppDelete(String clientId) throws ApiException {
@@ -148,7 +148,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 204 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> apiAppDeleteWithHttpInfo(String clientId) throws ApiException {
@@ -203,7 +203,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppGetResponse apiAppGet(String clientId) throws ApiException {
@@ -220,7 +220,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppGetWithHttpInfo(String clientId) throws ApiException {
@@ -278,7 +278,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppListResponse apiAppList(Integer page, Integer pageSize) throws ApiException {
@@ -296,7 +296,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppListResponse> apiAppListWithHttpInfo(Integer page, Integer pageSize) throws ApiException {
@@ -350,7 +350,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppGetResponse apiAppUpdate(String clientId, ApiAppUpdateRequest apiAppUpdateRequest) throws ApiException {
@@ -368,7 +368,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 400 </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppUpdateWithHttpInfo(String clientId, ApiAppUpdateRequest apiAppUpdateRequest) throws ApiException {
