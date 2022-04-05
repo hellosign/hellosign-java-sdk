@@ -24,8 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.hellosign.openapi.model.TemplateResponseAccountQuota;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
@@ -62,7 +60,7 @@ public class TemplateResponseAccount {
   private Boolean isPaidHf;
 
   public static final String JSON_PROPERTY_QUOTAS = "quotas";
-  private List<TemplateResponseAccountQuota> quotas = null;
+  private TemplateResponseAccountQuota quotas;
 
   public TemplateResponseAccount() { 
   }
@@ -197,16 +195,8 @@ public class TemplateResponseAccount {
   }
 
 
-  public TemplateResponseAccount quotas(List<TemplateResponseAccountQuota> quotas) {
+  public TemplateResponseAccount quotas(TemplateResponseAccountQuota quotas) {
     this.quotas = quotas;
-    return this;
-  }
-
-  public TemplateResponseAccount addQuotasItem(TemplateResponseAccountQuota quotasItem) {
-    if (this.quotas == null) {
-      this.quotas = new ArrayList<>();
-    }
-    this.quotas.add(quotasItem);
     return this;
   }
 
@@ -219,14 +209,14 @@ public class TemplateResponseAccount {
   @JsonProperty(JSON_PROPERTY_QUOTAS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<TemplateResponseAccountQuota> getQuotas() {
+  public TemplateResponseAccountQuota getQuotas() {
     return quotas;
   }
 
 
   @JsonProperty(JSON_PROPERTY_QUOTAS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQuotas(List<TemplateResponseAccountQuota> quotas) {
+  public void setQuotas(TemplateResponseAccountQuota quotas) {
     this.quotas = quotas;
   }
 

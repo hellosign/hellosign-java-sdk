@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 | `isLocked` | ```Boolean``` |  Returns true if the user has been locked out of their account by a team admin.  |  |
 | `isPaidHs` | ```Boolean``` |  Returns true if the user has a paid HelloSign account.  |  |
 | `isPaidHf` | ```Boolean``` |  Returns true if the user has a paid HelloFax account.  |  |
-| `quotas` | [```List<TemplateResponseAccountQuota>```](TemplateResponseAccountQuota.md) |    |  |
+| `quotas` | [```TemplateResponseAccountQuota```](TemplateResponseAccountQuota.md) |    |  |
 
 
 
