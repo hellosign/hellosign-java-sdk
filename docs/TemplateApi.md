@@ -454,7 +454,7 @@ List Templates
 
 Returns a list of the Templates that are accessible by you.
 
-Take a look at our [search guide](https://app.hellosign.com/api/reference#Search) to learn more about querying templates.
+Take a look at our [search guide](/api/reference/search/) to learn more about querying templates.
 
 ### Example
 

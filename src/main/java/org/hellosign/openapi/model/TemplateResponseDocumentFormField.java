@@ -53,7 +53,7 @@ public class TemplateResponseDocumentFormField {
   private String name;
 
   /**
-   * The type of this form field. See [field types](https://app.hellosign.com/api/reference#FieldTypes).
+   * The type of this form field. See [field types](/api/reference/constants/#field-types).
    */
   public enum TypeEnum {
     CHECKBOX("checkbox"),
@@ -185,11 +185,11 @@ public class TemplateResponseDocumentFormField {
   }
 
    /**
-   * The type of this form field. See [field types](https://app.hellosign.com/api/reference#FieldTypes).
+   * The type of this form field. See [field types](/api/reference/constants/#field-types).
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of this form field. See [field types](https://app.hellosign.com/api/reference#FieldTypes).")
+  @ApiModelProperty(value = "The type of this form field. See [field types](/api/reference/constants/#field-types).")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -204,11 +204,11 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
   }
 
    /**
-   * Auto fill type for populating fields automatically. Check out the list of [auto fill types](https://app.hellosign.com/api/reference#AutoFillTypes) to learn more about the possible values.
+   * Auto fill type for populating fields automatically. Check out the list of [auto fill types](/api/reference/constants/#auto-fill-types) to learn more about the possible values.
    * @return autoFillType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Auto fill type for populating fields automatically. Check out the list of [auto fill types](https://app.hellosign.com/api/reference#AutoFillTypes) to learn more about the possible values.")
+  @ApiModelProperty(value = "Auto fill type for populating fields automatically. Check out the list of [auto fill types](/api/reference/constants/#auto-fill-types) to learn more about the possible values.")
   @JsonProperty(JSON_PROPERTY_AUTO_FILL_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -230,11 +230,11 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
   }
 
    /**
-   * Masks entered data. For more information see [Masking sensitive information](https://app.hellosign.com/api/reference#:~:text&#x3D;Masking%20sensitive%20information). &#x60;true&#x60; for masking the data in a text field, otherwise &#x60;false&#x60;.
+   * Masks entered data. For more information see [Masking sensitive information](https://faq.hellosign.com/hc/en-us/articles/360040742811-Masking-sensitive-information). &#x60;true&#x60; for masking the data in a text field, otherwise &#x60;false&#x60;.
    * @return masked
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Masks entered data. For more information see [Masking sensitive information](https://app.hellosign.com/api/reference#:~:text=Masking%20sensitive%20information). `true` for masking the data in a text field, otherwise `false`.")
+  @ApiModelProperty(value = "Masks entered data. For more information see [Masking sensitive information](https://faq.hellosign.com/hc/en-us/articles/360040742811-Masking-sensitive-information). `true` for masking the data in a text field, otherwise `false`.")
   @JsonProperty(JSON_PROPERTY_MASKED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
