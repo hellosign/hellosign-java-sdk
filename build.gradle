@@ -17,6 +17,10 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
+processResources {
+    expand(project.properties)
+}
+
 artifacts {
     archives javadocJar, sourcesJar
 }

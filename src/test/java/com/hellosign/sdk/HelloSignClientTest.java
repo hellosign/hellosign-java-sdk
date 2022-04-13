@@ -1,5 +1,6 @@
 package com.hellosign.sdk;
 
+import com.hellosign.sdk.http.AbstractHttpRequest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -1198,5 +1199,15 @@ public class HelloSignClientTest {
     public void testRemoveSignatureRequestAccess() throws Exception {
         mockResponseCode(200);
         assertTrue(client.removeSignatureRequestAccess("44cf71a0238811c846f49483014f534cfd8caba6"));
+    }
+
+    /**
+     * Test to verify that the user agent has been resolved
+     */
+    @Test
+    public void userAgent() {
+        final String userAgent = AbstractHttpRequest.USER_AGENT;
+        System.out.println("User Agent: " + userAgent);
+        assertTrue(String.format("User Agent was %s", userAgent), !userAgent.contains("project.version"));
     }
 }
