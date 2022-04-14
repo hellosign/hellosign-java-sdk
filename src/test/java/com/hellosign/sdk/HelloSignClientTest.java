@@ -45,6 +45,10 @@ import com.hellosign.sdk.resource.support.types.UnclaimedDraftType;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -304,6 +308,9 @@ public class HelloSignClientTest {
         SignatureRequest request = client.getSignatureRequest(id);
         assertNotNull(request);
         assertEquals(id, request.getId());
+
+        assertEquals(LocalDate.of(2022, Month.FEBRUARY, 11),
+            LocalDateTime.ofInstant(request.getCreatedAt().toInstant(), ZoneId.of("UTC")).toLocalDate());
     }
 
     @Test(expected = HelloSignException.class)

@@ -9,6 +9,7 @@ import com.hellosign.sdk.resource.support.Signer;
 import com.hellosign.sdk.resource.support.Attachment;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONArray;
@@ -22,6 +23,7 @@ public class SignatureRequest extends AbstractRequest {
 
     public static final String SIGREQ_KEY = "signature_request";
     public static final String SIGREQ_ID = "signature_request_id";
+    public static final String SIGREQ_CREATED_AT = "created_at";
     public static final String SIGREQ_SIGNERS = "signers";
     public static final String SIGREQ_SIGNER_EMAIL = "email_address";
     public static final String SIGREQ_SIGNER_NAME = "name";
@@ -92,6 +94,15 @@ public class SignatureRequest extends AbstractRequest {
      */
     public boolean hasId() {
         return has(SIGREQ_ID);
+    }
+
+    /**
+     * The time that this request was created.
+     *
+     * @return Date
+     */
+    public Date getCreatedAt() {
+        return getDate(SIGREQ_CREATED_AT);
     }
 
     /**
