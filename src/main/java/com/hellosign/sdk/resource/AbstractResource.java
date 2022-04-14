@@ -66,7 +66,7 @@ public abstract class AbstractResource {
     protected void set(String key, Object value) {
         try {
             if (value instanceof Date) {
-                dataObj.put(key, ((Date) value).getTime());
+                dataObj.put(key, ((Date) value).toInstant().getEpochSecond());
             } else {
                 dataObj.put(key, value);
             }
