@@ -513,11 +513,12 @@ public class HelloSignClient {
      * JSON response.
      */
     public SignatureRequest updateSignatureRequest(String signatureRequestId, String signatureId,
-        String newEmailAddress) throws HelloSignException {
+        String newEmailAddress, String newSignerName) throws HelloSignException {
         String url = BASE_URI + SIGNATURE_REQUEST_UPDATE_URI + "/" + signatureRequestId;
         return new SignatureRequest(
             httpClient.withAuth(auth).withPostField(Signature.SIGNATURE_ID, signatureId)
-                .withPostField(SignatureRequest.SIGREQ_SIGNER_EMAIL, newEmailAddress).post(url)
+                .withPostField(SignatureRequest.SIGREQ_SIGNER_EMAIL, newEmailAddress)
+                .withPostField(SignatureRequest.SIGREQ_SIGNER_NAME, newSignerName).post(url)
                 .asJson());
     }
 

@@ -470,11 +470,12 @@ public class HelloSignClientTest {
         String id = "5fd97d3b6a2ac509b7837891d8c804e29cc35636";
         String signatureId = "c390fac7bb23c2b48e6314272ec9db17";
         String newEmailAddress = "barack@obama.com";
+        String newSignerName = "Barack";
         SignatureRequest updatedReq = client
-            .updateSignatureRequest(id, signatureId, newEmailAddress);
+            .updateSignatureRequest(id, signatureId, newEmailAddress, newSignerName);
         assertNotNull(updatedReq);
         assertEquals(id, updatedReq.getId());
-        Signature sig = updatedReq.getSignature(newEmailAddress, "Barack");
+        Signature sig = updatedReq.getSignature(newEmailAddress, newSignerName);
         assertNotNull(sig);
         assertEquals(signatureId, sig.getId());
     }
@@ -485,7 +486,8 @@ public class HelloSignClientTest {
         String id = "84f8767b525611511ed24e5eaacee537589a30be";
         String signatureId = "e477e554af09555eea762d1c204d9f3d";
         String newEmailAddress = "nightman@hotmail.com";
-        client.updateSignatureRequest(id, signatureId, newEmailAddress);
+        String newSignerName = "Night Man";
+        client.updateSignatureRequest(id, signatureId, newEmailAddress, newSignerName);
     }
 
     @Test
