@@ -80,6 +80,7 @@ public class ApiAppApi {
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppCreateWithHttpInfo(ApiAppCreateRequest apiAppCreateRequest) throws ApiException {
+    
     Object localVarPostBody = apiAppCreateRequest;
     
     // verify the required parameter 'apiAppCreateRequest' is set
@@ -152,6 +153,7 @@ public class ApiAppApi {
      </table>
    */
   public ApiResponse<Void> apiAppDeleteWithHttpInfo(String clientId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'clientId' is set
@@ -224,6 +226,7 @@ public class ApiAppApi {
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppGetWithHttpInfo(String clientId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'clientId' is set
@@ -300,6 +303,13 @@ public class ApiAppApi {
      </table>
    */
   public ApiResponse<ApiAppListResponse> apiAppListWithHttpInfo(Integer page, Integer pageSize) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -372,6 +382,7 @@ public class ApiAppApi {
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppUpdateWithHttpInfo(String clientId, ApiAppUpdateRequest apiAppUpdateRequest) throws ApiException {
+    
     Object localVarPostBody = apiAppUpdateRequest;
     
     // verify the required parameter 'clientId' is set

@@ -81,6 +81,7 @@ public class EmbeddedApi {
      </table>
    */
   public ApiResponse<EmbeddedEditUrlResponse> embeddedEditUrlWithHttpInfo(String templateId, EmbeddedEditUrlRequest embeddedEditUrlRequest) throws ApiException {
+    
     Object localVarPostBody = embeddedEditUrlRequest;
     
     // verify the required parameter 'templateId' is set
@@ -160,6 +161,7 @@ public class EmbeddedApi {
      </table>
    */
   public ApiResponse<EmbeddedSignUrlResponse> embeddedSignUrlWithHttpInfo(String signatureId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureId' is set

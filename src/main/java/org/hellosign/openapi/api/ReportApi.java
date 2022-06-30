@@ -78,6 +78,7 @@ public class ReportApi {
      </table>
    */
   public ApiResponse<ReportCreateResponse> reportCreateWithHttpInfo(ReportCreateRequest reportCreateRequest) throws ApiException {
+    
     Object localVarPostBody = reportCreateRequest;
     
     // verify the required parameter 'reportCreateRequest' is set

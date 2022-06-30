@@ -88,6 +88,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<BulkSendJobSendResponse> signatureRequestBulkCreateEmbeddedWithTemplateWithHttpInfo(SignatureRequestBulkCreateEmbeddedWithTemplateRequest signatureRequestBulkCreateEmbeddedWithTemplateRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestBulkCreateEmbeddedWithTemplateRequest;
     
     // verify the required parameter 'signatureRequestBulkCreateEmbeddedWithTemplateRequest' is set
@@ -161,6 +162,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<BulkSendJobSendResponse> signatureRequestBulkSendWithTemplateWithHttpInfo(SignatureRequestBulkSendWithTemplateRequest signatureRequestBulkSendWithTemplateRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestBulkSendWithTemplateRequest;
     
     // verify the required parameter 'signatureRequestBulkSendWithTemplateRequest' is set
@@ -233,6 +235,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<Void> signatureRequestCancelWithHttpInfo(String signatureRequestId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureRequestId' is set
@@ -305,6 +308,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestCreateEmbeddedWithHttpInfo(SignatureRequestCreateEmbeddedRequest signatureRequestCreateEmbeddedRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestCreateEmbeddedRequest;
     
     // verify the required parameter 'signatureRequestCreateEmbeddedRequest' is set
@@ -378,6 +382,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestCreateEmbeddedWithTemplateWithHttpInfo(SignatureRequestCreateEmbeddedWithTemplateRequest signatureRequestCreateEmbeddedWithTemplateRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestCreateEmbeddedWithTemplateRequest;
     
     // verify the required parameter 'signatureRequestCreateEmbeddedWithTemplateRequest' is set
@@ -457,6 +462,16 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<FileResponse> signatureRequestFilesWithHttpInfo(String signatureRequestId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
+    
+    if (fileType == null) {
+        fileType = "pdf";
+    }
+    if (getUrl == null) {
+        getUrl = false;
+    }
+    if (getDataUri == null) {
+        getDataUri = false;
+    }
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureRequestId' is set
@@ -534,6 +549,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestGetWithHttpInfo(String signatureRequestId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureRequestId' is set
@@ -614,6 +630,13 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestListResponse> signatureRequestListWithHttpInfo(String accountId, Integer page, Integer pageSize, String query) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -686,6 +709,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestReleaseHoldWithHttpInfo(String signatureRequestId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureRequestId' is set
@@ -762,6 +786,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestRemindWithHttpInfo(String signatureRequestId, SignatureRequestRemindRequest signatureRequestRemindRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestRemindRequest;
     
     // verify the required parameter 'signatureRequestId' is set
@@ -840,6 +865,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<Void> signatureRequestRemoveWithHttpInfo(String signatureRequestId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureRequestId' is set
@@ -912,6 +938,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestSendWithHttpInfo(SignatureRequestSendRequest signatureRequestSendRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestSendRequest;
     
     // verify the required parameter 'signatureRequestSendRequest' is set
@@ -985,6 +1012,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestSendWithTemplateWithHttpInfo(SignatureRequestSendWithTemplateRequest signatureRequestSendWithTemplateRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestSendWithTemplateRequest;
     
     // verify the required parameter 'signatureRequestSendWithTemplateRequest' is set
@@ -1060,6 +1088,7 @@ public class SignatureRequestApi {
      </table>
    */
   public ApiResponse<SignatureRequestGetResponse> signatureRequestUpdateWithHttpInfo(String signatureRequestId, SignatureRequestUpdateRequest signatureRequestUpdateRequest) throws ApiException {
+    
     Object localVarPostBody = signatureRequestUpdateRequest;
     
     // verify the required parameter 'signatureRequestId' is set

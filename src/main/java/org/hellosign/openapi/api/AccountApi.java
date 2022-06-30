@@ -82,6 +82,7 @@ public class AccountApi {
      </table>
    */
   public ApiResponse<AccountCreateResponse> accountCreateWithHttpInfo(AccountCreateRequest accountCreateRequest) throws ApiException {
+    
     Object localVarPostBody = accountCreateRequest;
     
     // verify the required parameter 'accountCreateRequest' is set
@@ -155,6 +156,7 @@ public class AccountApi {
      </table>
    */
   public ApiResponse<AccountGetResponse> accountGetWithHttpInfo(String accountId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -224,6 +226,7 @@ public class AccountApi {
      </table>
    */
   public ApiResponse<AccountGetResponse> accountUpdateWithHttpInfo(AccountUpdateRequest accountUpdateRequest) throws ApiException {
+    
     Object localVarPostBody = accountUpdateRequest;
     
     // verify the required parameter 'accountUpdateRequest' is set
@@ -297,6 +300,7 @@ public class AccountApi {
      </table>
    */
   public ApiResponse<AccountVerifyResponse> accountVerifyWithHttpInfo(AccountVerifyRequest accountVerifyRequest) throws ApiException {
+    
     Object localVarPostBody = accountVerifyRequest;
     
     // verify the required parameter 'accountVerifyRequest' is set

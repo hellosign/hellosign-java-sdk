@@ -81,6 +81,7 @@ public class TeamApi {
      </table>
    */
   public ApiResponse<TeamGetResponse> teamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest) throws ApiException {
+    
     Object localVarPostBody = teamAddMemberRequest;
     
     // verify the required parameter 'teamAddMemberRequest' is set
@@ -154,6 +155,7 @@ public class TeamApi {
      </table>
    */
   public ApiResponse<TeamGetResponse> teamCreateWithHttpInfo(TeamCreateRequest teamCreateRequest) throws ApiException {
+    
     Object localVarPostBody = teamCreateRequest;
     
     // verify the required parameter 'teamCreateRequest' is set
@@ -224,6 +226,7 @@ public class TeamApi {
      </table>
    */
   public ApiResponse<Void> teamDeleteWithHttpInfo() throws ApiException {
+    
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -288,6 +291,7 @@ public class TeamApi {
      </table>
    */
   public ApiResponse<TeamGetResponse> teamGetWithHttpInfo() throws ApiException {
+    
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -356,6 +360,7 @@ public class TeamApi {
      </table>
    */
   public ApiResponse<TeamGetResponse> teamRemoveMemberWithHttpInfo(TeamRemoveMemberRequest teamRemoveMemberRequest) throws ApiException {
+    
     Object localVarPostBody = teamRemoveMemberRequest;
     
     // verify the required parameter 'teamRemoveMemberRequest' is set
@@ -429,6 +434,7 @@ public class TeamApi {
      </table>
    */
   public ApiResponse<TeamGetResponse> teamUpdateWithHttpInfo(TeamUpdateRequest teamUpdateRequest) throws ApiException {
+    
     Object localVarPostBody = teamUpdateRequest;
     
     // verify the required parameter 'teamUpdateRequest' is set

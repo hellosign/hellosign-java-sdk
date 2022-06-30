@@ -81,6 +81,7 @@ public class UnclaimedDraftApi {
      </table>
    */
   public ApiResponse<UnclaimedDraftCreateResponse> unclaimedDraftCreateWithHttpInfo(UnclaimedDraftCreateRequest unclaimedDraftCreateRequest) throws ApiException {
+    
     Object localVarPostBody = unclaimedDraftCreateRequest;
     
     // verify the required parameter 'unclaimedDraftCreateRequest' is set
@@ -154,6 +155,7 @@ public class UnclaimedDraftApi {
      </table>
    */
   public ApiResponse<UnclaimedDraftCreateResponse> unclaimedDraftCreateEmbeddedWithHttpInfo(UnclaimedDraftCreateEmbeddedRequest unclaimedDraftCreateEmbeddedRequest) throws ApiException {
+    
     Object localVarPostBody = unclaimedDraftCreateEmbeddedRequest;
     
     // verify the required parameter 'unclaimedDraftCreateEmbeddedRequest' is set
@@ -227,6 +229,7 @@ public class UnclaimedDraftApi {
      </table>
    */
   public ApiResponse<UnclaimedDraftCreateResponse> unclaimedDraftCreateEmbeddedWithTemplateWithHttpInfo(UnclaimedDraftCreateEmbeddedWithTemplateRequest unclaimedDraftCreateEmbeddedWithTemplateRequest) throws ApiException {
+    
     Object localVarPostBody = unclaimedDraftCreateEmbeddedWithTemplateRequest;
     
     // verify the required parameter 'unclaimedDraftCreateEmbeddedWithTemplateRequest' is set
@@ -302,6 +305,7 @@ public class UnclaimedDraftApi {
      </table>
    */
   public ApiResponse<UnclaimedDraftCreateResponse> unclaimedDraftEditAndResendWithHttpInfo(String signatureRequestId, UnclaimedDraftEditAndResendRequest unclaimedDraftEditAndResendRequest) throws ApiException {
+    
     Object localVarPostBody = unclaimedDraftEditAndResendRequest;
     
     // verify the required parameter 'signatureRequestId' is set

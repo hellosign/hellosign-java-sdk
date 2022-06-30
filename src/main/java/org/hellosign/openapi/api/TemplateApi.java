@@ -87,6 +87,7 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<TemplateGetResponse> templateAddUserWithHttpInfo(String templateId, TemplateAddUserRequest templateAddUserRequest) throws ApiException {
+    
     Object localVarPostBody = templateAddUserRequest;
     
     // verify the required parameter 'templateId' is set
@@ -166,6 +167,7 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<TemplateCreateEmbeddedDraftResponse> templateCreateEmbeddedDraftWithHttpInfo(TemplateCreateEmbeddedDraftRequest templateCreateEmbeddedDraftRequest) throws ApiException {
+    
     Object localVarPostBody = templateCreateEmbeddedDraftRequest;
     
     // verify the required parameter 'templateCreateEmbeddedDraftRequest' is set
@@ -238,6 +240,7 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<Void> templateDeleteWithHttpInfo(String templateId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'templateId' is set
@@ -316,6 +319,13 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<FileResponse> templateFilesWithHttpInfo(String templateId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
+    
+    if (getUrl == null) {
+        getUrl = false;
+    }
+    if (getDataUri == null) {
+        getDataUri = false;
+    }
     Object localVarPostBody = null;
     
     // verify the required parameter 'templateId' is set
@@ -393,6 +403,7 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<TemplateGetResponse> templateGetWithHttpInfo(String templateId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'templateId' is set
@@ -473,6 +484,13 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<TemplateListResponse> templateListWithHttpInfo(String accountId, Integer page, Integer pageSize, String query) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -547,6 +565,7 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<TemplateGetResponse> templateRemoveUserWithHttpInfo(String templateId, TemplateRemoveUserRequest templateRemoveUserRequest) throws ApiException {
+    
     Object localVarPostBody = templateRemoveUserRequest;
     
     // verify the required parameter 'templateId' is set
@@ -628,6 +647,7 @@ public class TemplateApi {
      </table>
    */
   public ApiResponse<TemplateUpdateFilesResponse> templateUpdateFilesWithHttpInfo(String templateId, TemplateUpdateFilesRequest templateUpdateFilesRequest) throws ApiException {
+    
     Object localVarPostBody = templateUpdateFilesRequest;
     
     // verify the required parameter 'templateId' is set

@@ -78,6 +78,7 @@ public class BulkSendJobApi {
      </table>
    */
   public ApiResponse<BulkSendJobGetResponse> bulkSendJobGetWithHttpInfo(String bulkSendJobId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'bulkSendJobId' is set
@@ -154,6 +155,13 @@ public class BulkSendJobApi {
      </table>
    */
   public ApiResponse<BulkSendJobListResponse> bulkSendJobListWithHttpInfo(Integer page, Integer pageSize) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
     Object localVarPostBody = null;
     
     // create path and map variables
