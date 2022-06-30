@@ -31,9 +31,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of the Accounts that can use this Template.
+ * TemplateResponseAccount
  */
-@ApiModel(description = "An array of the Accounts that can use this Template.")
 @JsonPropertyOrder({
     TemplateResponseAccount.JSON_PROPERTY_ACCOUNT_ID,
     TemplateResponseAccount.JSON_PROPERTY_EMAIL_ADDRESS,
@@ -123,11 +122,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns true if the user has been locked out of their account by a team admin.
+   * Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin.
    * @return isLocked
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns true if the user has been locked out of their account by a team admin.")
+  @ApiModelProperty(value = "Returns `true` if the user has been locked out of their account by a team admin.")
   @JsonProperty(JSON_PROPERTY_IS_LOCKED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -149,11 +148,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns true if the user has a paid HelloSign account.
+   * Returns &#x60;true&#x60; if the user has a paid HelloSign account.
    * @return isPaidHs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns true if the user has a paid HelloSign account.")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloSign account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -175,11 +174,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns true if the user has a paid HelloFax account.
+   * Returns &#x60;true&#x60; if the user has a paid HelloFax account.
    * @return isPaidHf
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns true if the user has a paid HelloFax account.")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloFax account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

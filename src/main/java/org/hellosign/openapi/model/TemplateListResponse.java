@@ -70,11 +70,11 @@ public class TemplateListResponse {
   }
 
    /**
-   * Get templates
+   * List of templates that the API caller has access to.
    * @return templates
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of templates that the API caller has access to.")
   @JsonProperty(JSON_PROPERTY_TEMPLATES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -130,11 +130,11 @@ public class TemplateListResponse {
   }
 
    /**
-   * Get warnings
+   * A list of warnings.
    * @return warnings
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list of warnings.")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

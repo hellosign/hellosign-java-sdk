@@ -61,7 +61,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountCreateResponse accountCreate(AccountCreateRequest accountCreateRequest) throws ApiException {
@@ -78,7 +78,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountCreateResponse> accountCreateWithHttpInfo(AccountCreateRequest accountCreateRequest) throws ApiException {
@@ -127,32 +127,34 @@ public class AccountApi {
   /**
    * Get Account
    * Returns the properties and settings of your Account.
+   * @param accountId The ID of the Account (optional)
    * @return AccountGetResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public AccountGetResponse accountGet() throws ApiException {
-    return accountGetWithHttpInfo().getData();
+  public AccountGetResponse accountGet(String accountId) throws ApiException {
+    return accountGetWithHttpInfo(accountId).getData();
   }
 
   /**
    * Get Account
    * Returns the properties and settings of your Account.
+   * @param accountId The ID of the Account (optional)
    * @return ApiResponse&lt;AccountGetResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<AccountGetResponse> accountGetWithHttpInfo() throws ApiException {
+  public ApiResponse<AccountGetResponse> accountGetWithHttpInfo(String accountId) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -164,6 +166,7 @@ public class AccountApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "account_id", accountId));
 
     
     
@@ -192,7 +195,7 @@ public class AccountApi {
   }
   /**
    * Update Account
-   * Updates the properties and settings of your Account.
+   * Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
    * @param accountUpdateRequest  (required)
    * @return AccountGetResponse
    * @throws ApiException if fails to make API call
@@ -200,7 +203,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountGetResponse accountUpdate(AccountUpdateRequest accountUpdateRequest) throws ApiException {
@@ -209,7 +212,7 @@ public class AccountApi {
 
   /**
    * Update Account
-   * Updates the properties and settings of your Account.
+   * Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
    * @param accountUpdateRequest  (required)
    * @return ApiResponse&lt;AccountGetResponse&gt;
    * @throws ApiException if fails to make API call
@@ -217,7 +220,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountGetResponse> accountUpdateWithHttpInfo(AccountUpdateRequest accountUpdateRequest) throws ApiException {
@@ -265,7 +268,7 @@ public class AccountApi {
   }
   /**
    * Verify Account
-   * Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
+   * Verifies whether an HelloSign Account exists for the given email address.
    * @param accountVerifyRequest  (required)
    * @return AccountVerifyResponse
    * @throws ApiException if fails to make API call
@@ -273,7 +276,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public AccountVerifyResponse accountVerify(AccountVerifyRequest accountVerifyRequest) throws ApiException {
@@ -282,7 +285,7 @@ public class AccountApi {
 
   /**
    * Verify Account
-   * Verifies whether an HelloSign Account exists for the given email address.  **NOTE** This method is restricted to paid API users.
+   * Verifies whether an HelloSign Account exists for the given email address.
    * @param accountVerifyRequest  (required)
    * @return ApiResponse&lt;AccountVerifyResponse&gt;
    * @throws ApiException if fails to make API call
@@ -290,7 +293,7 @@ public class AccountApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<AccountVerifyResponse> accountVerifyWithHttpInfo(AccountVerifyRequest accountVerifyRequest) throws ApiException {

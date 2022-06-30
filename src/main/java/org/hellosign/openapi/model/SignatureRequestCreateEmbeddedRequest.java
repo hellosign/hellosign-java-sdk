@@ -48,6 +48,7 @@ import org.hellosign.openapi.ApiException;
 @ApiModel(description = "Calls SignatureRequestSend in controller")
 @JsonPropertyOrder({
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_CLIENT_ID,
+    SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_SIGNERS,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_FILE,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_FILE_URL,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_ALLOW_DECLINE,
@@ -59,9 +60,9 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_FORM_FIELD_GROUPS,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_FORM_FIELD_RULES,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT,
+    SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_HIDE_TEXT_TAGS,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_MESSAGE,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_METADATA,
-    SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_SIGNERS,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_SIGNING_OPTIONS,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_SUBJECT,
     SignatureRequestCreateEmbeddedRequest.JSON_PROPERTY_TEST_MODE,
@@ -72,6 +73,9 @@ import org.hellosign.openapi.ApiException;
 public class SignatureRequestCreateEmbeddedRequest {
   public static final String JSON_PROPERTY_CLIENT_ID = "client_id";
   private String clientId;
+
+  public static final String JSON_PROPERTY_SIGNERS = "signers";
+  private List<SubSignatureRequestSigner> signers = new ArrayList<>();
 
   public static final String JSON_PROPERTY_FILE = "file";
   private List<File> file = null;
@@ -104,16 +108,16 @@ public class SignatureRequestCreateEmbeddedRequest {
   private List<SubFormFieldRule> formFieldRules = null;
 
   public static final String JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT = "form_fields_per_document";
-  private List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument = null;
+  private List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = null;
+
+  public static final String JSON_PROPERTY_HIDE_TEXT_TAGS = "hide_text_tags";
+  private Boolean hideTextTags = false;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   private String message;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = null;
-
-  public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubSignatureRequestSigner> signers = null;
 
   public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
   private SubSigningOptions signingOptions;
@@ -139,11 +143,11 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * Client id of the app you&#39;re using to create this embedded signature request. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app you&#39;re using to create this embedded signature request. Used for security purposes.
    * @return clientId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this embedded signature request. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.")
+  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this embedded signature request. Used for security purposes.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -156,6 +160,37 @@ public class SignatureRequestCreateEmbeddedRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setClientId(String clientId) {
     this.clientId = clientId;
+  }
+
+
+  public SignatureRequestCreateEmbeddedRequest signers(List<SubSignatureRequestSigner> signers) {
+    this.signers = signers;
+    return this;
+  }
+
+  public SignatureRequestCreateEmbeddedRequest addSignersItem(SubSignatureRequestSigner signersItem) {
+    this.signers.add(signersItem);
+    return this;
+  }
+
+   /**
+   * Add Signers to your Signature Request.
+   * @return signers
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Add Signers to your Signature Request.")
+  @JsonProperty(JSON_PROPERTY_SIGNERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<SubSignatureRequestSigner> getSigners() {
+    return signers;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SIGNERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSigners(List<SubSignatureRequestSigner> signers) {
+    this.signers = signers;
   }
 
 
@@ -173,11 +208,11 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -207,11 +242,11 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * **file_url** or **file** is required, but not both.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -259,11 +294,11 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Premium plan.
    * @return allowReassign
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.")
+  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan.")
   @JsonProperty(JSON_PROPERTY_ALLOW_REASSIGN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -293,11 +328,11 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * Get attachments
+   * A list describing the attachments
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list describing the attachments")
   @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -361,11 +396,11 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining pre-set values in &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+   * When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).")
+  @ApiModelProperty(value = "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -475,12 +510,12 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
 
-  public SignatureRequestCreateEmbeddedRequest formFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public SignatureRequestCreateEmbeddedRequest formFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
     return this;
   }
 
-  public SignatureRequestCreateEmbeddedRequest addFormFieldsPerDocumentItem(List<SubFormFieldsPerDocumentBase> formFieldsPerDocumentItem) {
+  public SignatureRequestCreateEmbeddedRequest addFormFieldsPerDocumentItem(SubFormFieldsPerDocumentBase formFieldsPerDocumentItem) {
     if (this.formFieldsPerDocument == null) {
       this.formFieldsPerDocument = new ArrayList<>();
     }
@@ -489,23 +524,49 @@ public class SignatureRequestCreateEmbeddedRequest {
   }
 
    /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the &#x60;file[]&#x60; parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
    * @return formFieldsPerDocument
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<List<SubFormFieldsPerDocumentBase>> getFormFieldsPerDocument() {
+  public List<SubFormFieldsPerDocumentBase> getFormFieldsPerDocument() {
     return formFieldsPerDocument;
   }
 
 
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public void setFormFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
+  }
+
+
+  public SignatureRequestCreateEmbeddedRequest hideTextTags(Boolean hideTextTags) {
+    this.hideTextTags = hideTextTags;
+    return this;
+  }
+
+   /**
+   * Enables automatic Text Tag removal when set to true.  **NOTE**: Removing text tags this way can cause unwanted clipping. We recommend leaving this setting on &#x60;false&#x60; and instead hiding your text tags using white text or a similar approach. See the [Text Tags Walkthrough](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) for more information.
+   * @return hideTextTags
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Enables automatic Text Tag removal when set to true.  **NOTE**: Removing text tags this way can cause unwanted clipping. We recommend leaving this setting on `false` and instead hiding your text tags using white text or a similar approach. See the [Text Tags Walkthrough](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) for more information.")
+  @JsonProperty(JSON_PROPERTY_HIDE_TEXT_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getHideTextTags() {
+    return hideTextTags;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HIDE_TEXT_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHideTextTags(Boolean hideTextTags) {
+    this.hideTextTags = hideTextTags;
   }
 
 
@@ -566,40 +627,6 @@ public class SignatureRequestCreateEmbeddedRequest {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
-  }
-
-
-  public SignatureRequestCreateEmbeddedRequest signers(List<SubSignatureRequestSigner> signers) {
-    this.signers = signers;
-    return this;
-  }
-
-  public SignatureRequestCreateEmbeddedRequest addSignersItem(SubSignatureRequestSigner signersItem) {
-    if (this.signers == null) {
-      this.signers = new ArrayList<>();
-    }
-    this.signers.add(signersItem);
-    return this;
-  }
-
-   /**
-   * Add Signers to your Signature Request.
-   * @return signers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Add Signers to your Signature Request.")
-  @JsonProperty(JSON_PROPERTY_SIGNERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<SubSignatureRequestSigner> getSigners() {
-    return signers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIGNERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubSignatureRequestSigner> signers) {
-    this.signers = signers;
   }
 
 
@@ -746,6 +773,7 @@ public class SignatureRequestCreateEmbeddedRequest {
     }
     SignatureRequestCreateEmbeddedRequest signatureRequestCreateEmbeddedRequest = (SignatureRequestCreateEmbeddedRequest) o;
     return Objects.equals(this.clientId, signatureRequestCreateEmbeddedRequest.clientId) &&
+        Objects.equals(this.signers, signatureRequestCreateEmbeddedRequest.signers) &&
         Objects.equals(this.file, signatureRequestCreateEmbeddedRequest.file) &&
         Objects.equals(this.fileUrl, signatureRequestCreateEmbeddedRequest.fileUrl) &&
         Objects.equals(this.allowDecline, signatureRequestCreateEmbeddedRequest.allowDecline) &&
@@ -757,9 +785,9 @@ public class SignatureRequestCreateEmbeddedRequest {
         Objects.equals(this.formFieldGroups, signatureRequestCreateEmbeddedRequest.formFieldGroups) &&
         Objects.equals(this.formFieldRules, signatureRequestCreateEmbeddedRequest.formFieldRules) &&
         Objects.equals(this.formFieldsPerDocument, signatureRequestCreateEmbeddedRequest.formFieldsPerDocument) &&
+        Objects.equals(this.hideTextTags, signatureRequestCreateEmbeddedRequest.hideTextTags) &&
         Objects.equals(this.message, signatureRequestCreateEmbeddedRequest.message) &&
         Objects.equals(this.metadata, signatureRequestCreateEmbeddedRequest.metadata) &&
-        Objects.equals(this.signers, signatureRequestCreateEmbeddedRequest.signers) &&
         Objects.equals(this.signingOptions, signatureRequestCreateEmbeddedRequest.signingOptions) &&
         Objects.equals(this.subject, signatureRequestCreateEmbeddedRequest.subject) &&
         Objects.equals(this.testMode, signatureRequestCreateEmbeddedRequest.testMode) &&
@@ -769,7 +797,7 @@ public class SignatureRequestCreateEmbeddedRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, file, fileUrl, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, message, metadata, signers, signingOptions, subject, testMode, title, useTextTags);
+    return Objects.hash(clientId, signers, file, fileUrl, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, message, metadata, signingOptions, subject, testMode, title, useTextTags);
   }
 
   @Override
@@ -777,6 +805,7 @@ public class SignatureRequestCreateEmbeddedRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class SignatureRequestCreateEmbeddedRequest {\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
+    sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    allowDecline: ").append(toIndentedString(allowDecline)).append("\n");
@@ -788,9 +817,9 @@ public class SignatureRequestCreateEmbeddedRequest {
     sb.append("    formFieldGroups: ").append(toIndentedString(formFieldGroups)).append("\n");
     sb.append("    formFieldRules: ").append(toIndentedString(formFieldRules)).append("\n");
     sb.append("    formFieldsPerDocument: ").append(toIndentedString(formFieldsPerDocument)).append("\n");
+    sb.append("    hideTextTags: ").append(toIndentedString(hideTextTags)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    signingOptions: ").append(toIndentedString(signingOptions)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
@@ -820,6 +849,24 @@ public class SignatureRequestCreateEmbeddedRequest {
         }
         else {
             map.put("client_id", JSON.getDefault().getMapper().writeValueAsString(clientId));
+        }
+    }
+    if (signers != null) {
+        if (isFileTypeOrListOfFiles(signers)) {
+            fileTypeFound = true;
+        }
+
+        if (signers.getClass().equals(java.io.File.class) ||
+            signers.getClass().equals(Integer.class) ||
+            signers.getClass().equals(String.class) ) {
+            map.put("signers", signers);
+        } else if (isListOfFile(signers)) {
+            for(int i = 0; i< getListSize(signers); i++) {
+                map.put("signers[" + i + "]", getFromList(signers, i));
+            }
+        }
+        else {
+            map.put("signers", JSON.getDefault().getMapper().writeValueAsString(signers));
         }
     }
     if (file != null) {
@@ -1020,6 +1067,24 @@ public class SignatureRequestCreateEmbeddedRequest {
             map.put("form_fields_per_document", JSON.getDefault().getMapper().writeValueAsString(formFieldsPerDocument));
         }
     }
+    if (hideTextTags != null) {
+        if (isFileTypeOrListOfFiles(hideTextTags)) {
+            fileTypeFound = true;
+        }
+
+        if (hideTextTags.getClass().equals(java.io.File.class) ||
+            hideTextTags.getClass().equals(Integer.class) ||
+            hideTextTags.getClass().equals(String.class) ) {
+            map.put("hide_text_tags", hideTextTags);
+        } else if (isListOfFile(hideTextTags)) {
+            for(int i = 0; i< getListSize(hideTextTags); i++) {
+                map.put("hide_text_tags[" + i + "]", getFromList(hideTextTags, i));
+            }
+        }
+        else {
+            map.put("hide_text_tags", JSON.getDefault().getMapper().writeValueAsString(hideTextTags));
+        }
+    }
     if (message != null) {
         if (isFileTypeOrListOfFiles(message)) {
             fileTypeFound = true;
@@ -1054,24 +1119,6 @@ public class SignatureRequestCreateEmbeddedRequest {
         }
         else {
             map.put("metadata", JSON.getDefault().getMapper().writeValueAsString(metadata));
-        }
-    }
-    if (signers != null) {
-        if (isFileTypeOrListOfFiles(signers)) {
-            fileTypeFound = true;
-        }
-
-        if (signers.getClass().equals(java.io.File.class) ||
-            signers.getClass().equals(Integer.class) ||
-            signers.getClass().equals(String.class) ) {
-            map.put("signers", signers);
-        } else if (isListOfFile(signers)) {
-            for(int i = 0; i< getListSize(signers); i++) {
-                map.put("signers[" + i + "]", getFromList(signers, i));
-            }
-        }
-        else {
-            map.put("signers", JSON.getDefault().getMapper().writeValueAsString(signers));
         }
     }
     if (signingOptions != null) {

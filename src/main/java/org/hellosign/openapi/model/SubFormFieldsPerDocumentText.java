@@ -50,6 +50,7 @@ import org.hellosign.openapi.ApiException;
     SubFormFieldsPerDocumentText.JSON_PROPERTY_TYPE,
     SubFormFieldsPerDocumentText.JSON_PROPERTY_PLACEHOLDER,
     SubFormFieldsPerDocumentText.JSON_PROPERTY_AUTO_FILL_TYPE,
+    SubFormFieldsPerDocumentText.JSON_PROPERTY_LINK_ID,
     SubFormFieldsPerDocumentText.JSON_PROPERTY_MASKED,
     SubFormFieldsPerDocumentText.JSON_PROPERTY_VALIDATION_TYPE,
     SubFormFieldsPerDocumentText.JSON_PROPERTY_VALIDATION_CUSTOM_REGEX,
@@ -79,6 +80,9 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
 
   public static final String JSON_PROPERTY_AUTO_FILL_TYPE = "auto_fill_type";
   private String autoFillType;
+
+  public static final String JSON_PROPERTY_LINK_ID = "link_id";
+  private String linkId;
 
   public static final String JSON_PROPERTY_MASKED = "masked";
   private Boolean masked;
@@ -224,6 +228,32 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
   }
 
 
+  public SubFormFieldsPerDocumentText linkId(String linkId) {
+    this.linkId = linkId;
+    return this;
+  }
+
+   /**
+   * Link two or more text fields. Enter data into one linked text field, which automatically fill all other linked text fields.
+   * @return linkId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Link two or more text fields. Enter data into one linked text field, which automatically fill all other linked text fields.")
+  @JsonProperty(JSON_PROPERTY_LINK_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getLinkId() {
+    return linkId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LINK_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkId(String linkId) {
+    this.linkId = linkId;
+  }
+
+
   public SubFormFieldsPerDocumentText masked(Boolean masked) {
     this.masked = masked;
     return this;
@@ -343,6 +373,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
     return Objects.equals(this.type, subFormFieldsPerDocumentText.type) &&
         Objects.equals(this.placeholder, subFormFieldsPerDocumentText.placeholder) &&
         Objects.equals(this.autoFillType, subFormFieldsPerDocumentText.autoFillType) &&
+        Objects.equals(this.linkId, subFormFieldsPerDocumentText.linkId) &&
         Objects.equals(this.masked, subFormFieldsPerDocumentText.masked) &&
         Objects.equals(this.validationType, subFormFieldsPerDocumentText.validationType) &&
         Objects.equals(this.validationCustomRegex, subFormFieldsPerDocumentText.validationCustomRegex) &&
@@ -352,7 +383,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, placeholder, autoFillType, masked, validationType, validationCustomRegex, validationCustomRegexFormatLabel, super.hashCode());
+    return Objects.hash(type, placeholder, autoFillType, linkId, masked, validationType, validationCustomRegex, validationCustomRegexFormatLabel, super.hashCode());
   }
 
   @Override
@@ -363,6 +394,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    placeholder: ").append(toIndentedString(placeholder)).append("\n");
     sb.append("    autoFillType: ").append(toIndentedString(autoFillType)).append("\n");
+    sb.append("    linkId: ").append(toIndentedString(linkId)).append("\n");
     sb.append("    masked: ").append(toIndentedString(masked)).append("\n");
     sb.append("    validationType: ").append(toIndentedString(validationType)).append("\n");
     sb.append("    validationCustomRegex: ").append(toIndentedString(validationCustomRegex)).append("\n");
@@ -428,6 +460,24 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         }
         else {
             map.put("auto_fill_type", JSON.getDefault().getMapper().writeValueAsString(autoFillType));
+        }
+    }
+    if (linkId != null) {
+        if (isFileTypeOrListOfFiles(linkId)) {
+            fileTypeFound = true;
+        }
+
+        if (linkId.getClass().equals(java.io.File.class) ||
+            linkId.getClass().equals(Integer.class) ||
+            linkId.getClass().equals(String.class) ) {
+            map.put("link_id", linkId);
+        } else if (isListOfFile(linkId)) {
+            for(int i = 0; i< getListSize(linkId); i++) {
+                map.put("link_id[" + i + "]", getFromList(linkId, i));
+            }
+        }
+        else {
+            map.put("link_id", JSON.getDefault().getMapper().writeValueAsString(linkId));
         }
     }
     if (masked != null) {

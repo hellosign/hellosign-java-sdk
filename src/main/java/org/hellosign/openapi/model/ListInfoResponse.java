@@ -30,8 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * ListInfoResponse
+ * Contains pagination information about the data returned.
  */
+@ApiModel(description = "Contains pagination information about the data returned.")
 @JsonPropertyOrder({
     ListInfoResponse.JSON_PROPERTY_NUM_PAGES,
     ListInfoResponse.JSON_PROPERTY_NUM_RESULTS,
@@ -61,11 +62,11 @@ public class ListInfoResponse {
   }
 
    /**
-   * Total number of pages available
+   * Total number of pages available.
    * @return numPages
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Total number of pages available")
+  @ApiModelProperty(value = "Total number of pages available.")
   @JsonProperty(JSON_PROPERTY_NUM_PAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -87,11 +88,11 @@ public class ListInfoResponse {
   }
 
    /**
-   * Total number of objects available
+   * Total number of objects available.
    * @return numResults
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Total number of objects available")
+  @ApiModelProperty(value = "Total number of objects available.")
   @JsonProperty(JSON_PROPERTY_NUM_RESULTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -113,11 +114,11 @@ public class ListInfoResponse {
   }
 
    /**
-   * Number of the page being returned
+   * Number of the page being returned.
    * @return page
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of the page being returned")
+  @ApiModelProperty(value = "Number of the page being returned.")
   @JsonProperty(JSON_PROPERTY_PAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -139,11 +140,11 @@ public class ListInfoResponse {
   }
 
    /**
-   * Objects returned per page
+   * Objects returned per page.
    * @return pageSize
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Objects returned per page")
+  @ApiModelProperty(value = "Objects returned per page.")
   @JsonProperty(JSON_PROPERTY_PAGE_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -33,8 +33,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * TemplateUpdateFilesResponseTemplate
+ * Contains template id
  */
+@ApiModel(description = "Contains template id")
 @JsonPropertyOrder({
     TemplateUpdateFilesResponseTemplate.JSON_PROPERTY_TEMPLATE_ID,
     TemplateUpdateFilesResponseTemplate.JSON_PROPERTY_WARNINGS
@@ -90,11 +91,11 @@ public class TemplateUpdateFilesResponseTemplate {
   }
 
    /**
-   * Get warnings
+   * A list of warnings.
    * @return warnings
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list of warnings.")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

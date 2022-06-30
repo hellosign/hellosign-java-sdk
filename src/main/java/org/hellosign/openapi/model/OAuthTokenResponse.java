@@ -143,11 +143,11 @@ public class OAuthTokenResponse {
   }
 
    /**
-   * in seconds
+   * Number of seconds until the &#x60;access_token&#x60; expires. Uses epoch time.
    * @return expiresIn
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "in seconds")
+  @ApiModelProperty(value = "Number of seconds until the `access_token` expires. Uses epoch time.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_IN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

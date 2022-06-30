@@ -26,21 +26,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * ReportResponse
+ * Contains information about the report request.
  */
+@ApiModel(description = "Contains information about the report request.")
 @JsonPropertyOrder({
     ReportResponse.JSON_PROPERTY_SUCCESS,
     ReportResponse.JSON_PROPERTY_START_DATE,
     ReportResponse.JSON_PROPERTY_END_DATE,
-    ReportResponse.JSON_PROPERTY_REPORT_TYPE,
-    ReportResponse.JSON_PROPERTY_WARNINGS
+    ReportResponse.JSON_PROPERTY_REPORT_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportResponse {
@@ -90,9 +89,6 @@ public class ReportResponse {
 
   public static final String JSON_PROPERTY_REPORT_TYPE = "report_type";
   private List<ReportTypeEnum> reportType = null;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public ReportResponse() { 
   }
@@ -209,40 +205,6 @@ public class ReportResponse {
   }
 
 
-  public ReportResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public ReportResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   /**
    * Return true if this ReportResponse object is equal to o.
    */
@@ -258,13 +220,12 @@ public class ReportResponse {
     return Objects.equals(this.success, reportResponse.success) &&
         Objects.equals(this.startDate, reportResponse.startDate) &&
         Objects.equals(this.endDate, reportResponse.endDate) &&
-        Objects.equals(this.reportType, reportResponse.reportType) &&
-        Objects.equals(this.warnings, reportResponse.warnings);
+        Objects.equals(this.reportType, reportResponse.reportType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, startDate, endDate, reportType, warnings);
+    return Objects.hash(success, startDate, endDate, reportType);
   }
 
   @Override
@@ -275,7 +236,6 @@ public class ReportResponse {
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    reportType: ").append(toIndentedString(reportType)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -354,24 +314,6 @@ public class ReportResponse {
         }
         else {
             map.put("report_type", JSON.getDefault().getMapper().writeValueAsString(reportType));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

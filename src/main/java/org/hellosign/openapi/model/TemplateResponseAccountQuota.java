@@ -36,7 +36,8 @@ import org.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     TemplateResponseAccountQuota.JSON_PROPERTY_TEMPLATES_LEFT,
     TemplateResponseAccountQuota.JSON_PROPERTY_API_SIGNATURE_REQUESTS_LEFT,
-    TemplateResponseAccountQuota.JSON_PROPERTY_DOCUMENTS_LEFT
+    TemplateResponseAccountQuota.JSON_PROPERTY_DOCUMENTS_LEFT,
+    TemplateResponseAccountQuota.JSON_PROPERTY_SMS_VERIFICATIONS_LEFT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateResponseAccountQuota {
@@ -48,6 +49,9 @@ public class TemplateResponseAccountQuota {
 
   public static final String JSON_PROPERTY_DOCUMENTS_LEFT = "documents_left";
   private Integer documentsLeft;
+
+  public static final String JSON_PROPERTY_SMS_VERIFICATIONS_LEFT = "sms_verifications_left";
+  private Integer smsVerificationsLeft;
 
   public TemplateResponseAccountQuota() { 
   }
@@ -130,6 +134,32 @@ public class TemplateResponseAccountQuota {
   }
 
 
+  public TemplateResponseAccountQuota smsVerificationsLeft(Integer smsVerificationsLeft) {
+    this.smsVerificationsLeft = smsVerificationsLeft;
+    return this;
+  }
+
+   /**
+   * SMS verifications remaining.
+   * @return smsVerificationsLeft
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SMS verifications remaining.")
+  @JsonProperty(JSON_PROPERTY_SMS_VERIFICATIONS_LEFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getSmsVerificationsLeft() {
+    return smsVerificationsLeft;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SMS_VERIFICATIONS_LEFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmsVerificationsLeft(Integer smsVerificationsLeft) {
+    this.smsVerificationsLeft = smsVerificationsLeft;
+  }
+
+
   /**
    * Return true if this TemplateResponseAccountQuota object is equal to o.
    */
@@ -144,12 +174,13 @@ public class TemplateResponseAccountQuota {
     TemplateResponseAccountQuota templateResponseAccountQuota = (TemplateResponseAccountQuota) o;
     return Objects.equals(this.templatesLeft, templateResponseAccountQuota.templatesLeft) &&
         Objects.equals(this.apiSignatureRequestsLeft, templateResponseAccountQuota.apiSignatureRequestsLeft) &&
-        Objects.equals(this.documentsLeft, templateResponseAccountQuota.documentsLeft);
+        Objects.equals(this.documentsLeft, templateResponseAccountQuota.documentsLeft) &&
+        Objects.equals(this.smsVerificationsLeft, templateResponseAccountQuota.smsVerificationsLeft);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templatesLeft, apiSignatureRequestsLeft, documentsLeft);
+    return Objects.hash(templatesLeft, apiSignatureRequestsLeft, documentsLeft, smsVerificationsLeft);
   }
 
   @Override
@@ -159,6 +190,7 @@ public class TemplateResponseAccountQuota {
     sb.append("    templatesLeft: ").append(toIndentedString(templatesLeft)).append("\n");
     sb.append("    apiSignatureRequestsLeft: ").append(toIndentedString(apiSignatureRequestsLeft)).append("\n");
     sb.append("    documentsLeft: ").append(toIndentedString(documentsLeft)).append("\n");
+    sb.append("    smsVerificationsLeft: ").append(toIndentedString(smsVerificationsLeft)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -219,6 +251,24 @@ public class TemplateResponseAccountQuota {
         }
         else {
             map.put("documents_left", JSON.getDefault().getMapper().writeValueAsString(documentsLeft));
+        }
+    }
+    if (smsVerificationsLeft != null) {
+        if (isFileTypeOrListOfFiles(smsVerificationsLeft)) {
+            fileTypeFound = true;
+        }
+
+        if (smsVerificationsLeft.getClass().equals(java.io.File.class) ||
+            smsVerificationsLeft.getClass().equals(Integer.class) ||
+            smsVerificationsLeft.getClass().equals(String.class) ) {
+            map.put("sms_verifications_left", smsVerificationsLeft);
+        } else if (isListOfFile(smsVerificationsLeft)) {
+            for(int i = 0; i< getListSize(smsVerificationsLeft); i++) {
+                map.put("sms_verifications_left[" + i + "]", getFromList(smsVerificationsLeft, i));
+            }
+        }
+        else {
+            map.put("sms_verifications_left", JSON.getDefault().getMapper().writeValueAsString(smsVerificationsLeft));
         }
     }
     } catch (Exception e) {

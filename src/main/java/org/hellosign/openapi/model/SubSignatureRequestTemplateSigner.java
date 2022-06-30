@@ -37,7 +37,8 @@ import org.hellosign.openapi.ApiException;
     SubSignatureRequestTemplateSigner.JSON_PROPERTY_NAME,
     SubSignatureRequestTemplateSigner.JSON_PROPERTY_EMAIL_ADDRESS,
     SubSignatureRequestTemplateSigner.JSON_PROPERTY_PIN,
-    SubSignatureRequestTemplateSigner.JSON_PROPERTY_SMS_PHONE_NUMBER
+    SubSignatureRequestTemplateSigner.JSON_PROPERTY_SMS_PHONE_NUMBER,
+    SubSignatureRequestTemplateSigner.JSON_PROPERTY_SMS_PHONE_NUMBER_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubSignatureRequestTemplateSigner {
@@ -56,6 +57,44 @@ public class SubSignatureRequestTemplateSigner {
   public static final String JSON_PROPERTY_SMS_PHONE_NUMBER = "sms_phone_number";
   private String smsPhoneNumber;
 
+  /**
+   * **Note**: This only works in non embedded endpoints.  If set, the value must be either &#x60;authentication&#x60; or &#x60;delivery&#x60;. Default &#x60;authentication&#x60;.   If &#x60;authentication&#x60; is set, &#x60;sms_phone_number&#x60; will receive a code via SMS to access this signer&#39;s signature page.  If &#x60;delivery&#x60; is set, signature request will be delivered to both email and &#x60;sms_phone_number&#x60;.
+   */
+  public enum SmsPhoneNumberTypeEnum {
+    AUTHENTICATION("authentication"),
+    
+    DELIVERY("delivery");
+
+    private String value;
+
+    SmsPhoneNumberTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SmsPhoneNumberTypeEnum fromValue(String value) {
+      for (SmsPhoneNumberTypeEnum b : SmsPhoneNumberTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SMS_PHONE_NUMBER_TYPE = "sms_phone_number_type";
+  private SmsPhoneNumberTypeEnum smsPhoneNumberType;
+
   public SubSignatureRequestTemplateSigner() { 
   }
 
@@ -65,11 +104,11 @@ public class SubSignatureRequestTemplateSigner {
   }
 
    /**
-   * Must match an existing role in chosen Template(s).
+   * Must match an existing role in chosen Template(s). It&#39;s case-sensitive.
    * @return role
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Must match an existing role in chosen Template(s).")
+  @ApiModelProperty(required = true, value = "Must match an existing role in chosen Template(s). It's case-sensitive.")
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -169,11 +208,11 @@ public class SubSignatureRequestTemplateSigner {
   }
 
    /**
-   * An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.
+   * An E.164 formatted phone number.  **Note**: Not available in test mode and requires a Standard plan or higher.
    * @return smsPhoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An E.164 formatted phone number that will receive a code via SMS to access this signer's signature page.  **Note**: Not available in test mode and requires a Standard plan or higher.")
+  @ApiModelProperty(value = "An E.164 formatted phone number.  **Note**: Not available in test mode and requires a Standard plan or higher.")
   @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -186,6 +225,32 @@ public class SubSignatureRequestTemplateSigner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSmsPhoneNumber(String smsPhoneNumber) {
     this.smsPhoneNumber = smsPhoneNumber;
+  }
+
+
+  public SubSignatureRequestTemplateSigner smsPhoneNumberType(SmsPhoneNumberTypeEnum smsPhoneNumberType) {
+    this.smsPhoneNumberType = smsPhoneNumberType;
+    return this;
+  }
+
+   /**
+   * **Note**: This only works in non embedded endpoints.  If set, the value must be either &#x60;authentication&#x60; or &#x60;delivery&#x60;. Default &#x60;authentication&#x60;.   If &#x60;authentication&#x60; is set, &#x60;sms_phone_number&#x60; will receive a code via SMS to access this signer&#39;s signature page.  If &#x60;delivery&#x60; is set, signature request will be delivered to both email and &#x60;sms_phone_number&#x60;.
+   * @return smsPhoneNumberType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "**Note**: This only works in non embedded endpoints.  If set, the value must be either `authentication` or `delivery`. Default `authentication`.   If `authentication` is set, `sms_phone_number` will receive a code via SMS to access this signer's signature page.  If `delivery` is set, signature request will be delivered to both email and `sms_phone_number`.")
+  @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public SmsPhoneNumberTypeEnum getSmsPhoneNumberType() {
+    return smsPhoneNumberType;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmsPhoneNumberType(SmsPhoneNumberTypeEnum smsPhoneNumberType) {
+    this.smsPhoneNumberType = smsPhoneNumberType;
   }
 
 
@@ -205,12 +270,13 @@ public class SubSignatureRequestTemplateSigner {
         Objects.equals(this.name, subSignatureRequestTemplateSigner.name) &&
         Objects.equals(this.emailAddress, subSignatureRequestTemplateSigner.emailAddress) &&
         Objects.equals(this.pin, subSignatureRequestTemplateSigner.pin) &&
-        Objects.equals(this.smsPhoneNumber, subSignatureRequestTemplateSigner.smsPhoneNumber);
+        Objects.equals(this.smsPhoneNumber, subSignatureRequestTemplateSigner.smsPhoneNumber) &&
+        Objects.equals(this.smsPhoneNumberType, subSignatureRequestTemplateSigner.smsPhoneNumberType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, name, emailAddress, pin, smsPhoneNumber);
+    return Objects.hash(role, name, emailAddress, pin, smsPhoneNumber, smsPhoneNumberType);
   }
 
   @Override
@@ -222,6 +288,7 @@ public class SubSignatureRequestTemplateSigner {
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    pin: ").append(toIndentedString(pin)).append("\n");
     sb.append("    smsPhoneNumber: ").append(toIndentedString(smsPhoneNumber)).append("\n");
+    sb.append("    smsPhoneNumberType: ").append(toIndentedString(smsPhoneNumberType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -318,6 +385,24 @@ public class SubSignatureRequestTemplateSigner {
         }
         else {
             map.put("sms_phone_number", JSON.getDefault().getMapper().writeValueAsString(smsPhoneNumber));
+        }
+    }
+    if (smsPhoneNumberType != null) {
+        if (isFileTypeOrListOfFiles(smsPhoneNumberType)) {
+            fileTypeFound = true;
+        }
+
+        if (smsPhoneNumberType.getClass().equals(java.io.File.class) ||
+            smsPhoneNumberType.getClass().equals(Integer.class) ||
+            smsPhoneNumberType.getClass().equals(String.class) ) {
+            map.put("sms_phone_number_type", smsPhoneNumberType);
+        } else if (isListOfFile(smsPhoneNumberType)) {
+            for(int i = 0; i< getListSize(smsPhoneNumberType); i++) {
+                map.put("sms_phone_number_type[" + i + "]", getFromList(smsPhoneNumberType, i));
+            }
+        }
+        else {
+            map.put("sms_phone_number_type", JSON.getDefault().getMapper().writeValueAsString(smsPhoneNumberType));
         }
     }
     } catch (Exception e) {

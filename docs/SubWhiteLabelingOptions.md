@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 | `secondaryButtonTextColorHover` | ```String``` |    |  |
 | `textColor1` | ```String``` |    |  |
 | `textColor2` | ```String``` |    |  |
+| `resetToDefault` | ```Boolean``` |  Resets white labeling options to defaults. Only useful when updating an API App.  |  |
 
 
 

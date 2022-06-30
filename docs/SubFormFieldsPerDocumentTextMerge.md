@@ -8,7 +8,7 @@ This class extends `SubFormFieldsPerDocumentBase`.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `type`<sup>*_required_</sup> | ```String``` |  A text field that has default text set by the api. Use the `SubFormFieldsPerDocumentTextMerge` class.  |  |
+| `type`<sup>*_required_</sup> | ```String``` |  A text field that has default text set using pre-filled data. Use the `SubFormFieldsPerDocumentTextMerge` class.  |  |
 
 
 

@@ -60,7 +60,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamAddMember(TeamAddMemberRequest teamAddMemberRequest) throws ApiException {
@@ -77,7 +77,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest) throws ApiException {
@@ -133,7 +133,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamCreate(TeamCreateRequest teamCreateRequest) throws ApiException {
@@ -150,7 +150,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamCreateWithHttpInfo(TeamCreateRequest teamCreateRequest) throws ApiException {
@@ -204,7 +204,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public void teamDelete() throws ApiException {
@@ -220,7 +220,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> teamDeleteWithHttpInfo() throws ApiException {
@@ -268,8 +268,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamGet() throws ApiException {
@@ -285,8 +284,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamGetWithHttpInfo() throws ApiException {
@@ -337,7 +335,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamRemoveMember(TeamRemoveMemberRequest teamRemoveMemberRequest) throws ApiException {
@@ -354,7 +352,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamRemoveMemberWithHttpInfo(TeamRemoveMemberRequest teamRemoveMemberRequest) throws ApiException {
@@ -410,7 +408,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamUpdate(TeamUpdateRequest teamUpdateRequest) throws ApiException {
@@ -427,7 +425,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamUpdateWithHttpInfo(TeamUpdateRequest teamUpdateRequest) throws ApiException {

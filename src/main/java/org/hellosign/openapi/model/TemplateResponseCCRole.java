@@ -30,9 +30,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+ * TemplateResponseCCRole
  */
-@ApiModel(description = "An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.")
 @JsonPropertyOrder({
     TemplateResponseCCRole.JSON_PROPERTY_NAME
 })

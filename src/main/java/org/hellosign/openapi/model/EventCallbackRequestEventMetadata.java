@@ -30,8 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * EventCallbackRequestEventMetadata
+ * Specific metadata about the event.
  */
+@ApiModel(description = "Specific metadata about the event.")
 @JsonPropertyOrder({
     EventCallbackRequestEventMetadata.JSON_PROPERTY_RELATED_SIGNATURE_ID,
     EventCallbackRequestEventMetadata.JSON_PROPERTY_REPORTED_FOR_ACCOUNT_ID,
@@ -61,11 +62,11 @@ public class EventCallbackRequestEventMetadata {
   }
 
    /**
-   * Get relatedSignatureId
+   * Signature ID for a specific signer. Applicable to &#x60;signature_request_signed&#x60; and &#x60;signature_request_viewed&#x60; events.
    * @return relatedSignatureId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Signature ID for a specific signer. Applicable to `signature_request_signed` and `signature_request_viewed` events.")
   @JsonProperty(JSON_PROPERTY_RELATED_SIGNATURE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -87,11 +88,11 @@ public class EventCallbackRequestEventMetadata {
   }
 
    /**
-   * Get reportedForAccountId
+   * Account ID the event was reported for.
    * @return reportedForAccountId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Account ID the event was reported for.")
   @JsonProperty(JSON_PROPERTY_REPORTED_FOR_ACCOUNT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -113,11 +114,11 @@ public class EventCallbackRequestEventMetadata {
   }
 
    /**
-   * Get reportedForAppId
+   * App ID the event was reported for.
    * @return reportedForAppId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "App ID the event was reported for.")
   @JsonProperty(JSON_PROPERTY_REPORTED_FOR_APP_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -139,11 +140,11 @@ public class EventCallbackRequestEventMetadata {
   }
 
    /**
-   * Get eventMessage
+   * Message about a declined or failed (due to error) signature flow.
    * @return eventMessage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Message about a declined or failed (due to error) signature flow.")
   @JsonProperty(JSON_PROPERTY_EVENT_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

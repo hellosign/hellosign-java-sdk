@@ -55,6 +55,8 @@ import org.hellosign.openapi.ApiException;
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_CC_ROLES,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_EDITOR_OPTIONS,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_FIELD_OPTIONS,
+    TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_FORCE_SIGNER_ROLES,
+    TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_FORCE_SUBJECT_MESSAGE,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_FORM_FIELD_GROUPS,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_FORM_FIELD_RULES,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT,
@@ -62,6 +64,7 @@ import org.hellosign.openapi.ApiException;
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_MESSAGE,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_METADATA,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_SHOW_PREVIEW,
+    TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_SHOW_PROGRESS_STEPPER,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_SIGNER_ROLES,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_SKIP_ME_NOW,
     TemplateCreateEmbeddedDraftRequest.JSON_PROPERTY_SUBJECT,
@@ -81,7 +84,7 @@ public class TemplateCreateEmbeddedDraftRequest {
   private List<String> fileUrl = null;
 
   public static final String JSON_PROPERTY_ALLOW_CCS = "allow_ccs";
-  private Boolean allowCcs = false;
+  private Boolean allowCcs = true;
 
   public static final String JSON_PROPERTY_ALLOW_REASSIGN = "allow_reassign";
   private Boolean allowReassign = false;
@@ -98,6 +101,12 @@ public class TemplateCreateEmbeddedDraftRequest {
   public static final String JSON_PROPERTY_FIELD_OPTIONS = "field_options";
   private SubFieldOptions fieldOptions;
 
+  public static final String JSON_PROPERTY_FORCE_SIGNER_ROLES = "force_signer_roles";
+  private Boolean forceSignerRoles = false;
+
+  public static final String JSON_PROPERTY_FORCE_SUBJECT_MESSAGE = "force_subject_message";
+  private Boolean forceSubjectMessage = false;
+
   public static final String JSON_PROPERTY_FORM_FIELD_GROUPS = "form_field_groups";
   private List<SubFormFieldGroup> formFieldGroups = null;
 
@@ -105,7 +114,7 @@ public class TemplateCreateEmbeddedDraftRequest {
   private List<SubFormFieldRule> formFieldRules = null;
 
   public static final String JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT = "form_fields_per_document";
-  private List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument = null;
+  private List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = null;
 
   public static final String JSON_PROPERTY_MERGE_FIELDS = "merge_fields";
   private List<SubMergeField> mergeFields = null;
@@ -118,6 +127,9 @@ public class TemplateCreateEmbeddedDraftRequest {
 
   public static final String JSON_PROPERTY_SHOW_PREVIEW = "show_preview";
   private Boolean showPreview = false;
+
+  public static final String JSON_PROPERTY_SHOW_PROGRESS_STEPPER = "show_progress_stepper";
+  private Boolean showProgressStepper = true;
 
   public static final String JSON_PROPERTY_SIGNER_ROLES = "signer_roles";
   private List<SubTemplateRole> signerRoles = null;
@@ -146,11 +158,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * Client id of the app you&#39;re using to create this draft.
+   * Client id of the app you&#39;re using to create this draft. Used to apply the branding and callback url defined for the app.
    * @return clientId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this draft.")
+  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this draft. Used to apply the branding and callback url defined for the app.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -180,11 +192,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Use &#x60;file[]&#x60; to indicate the uploaded file(s) to use for the template  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to use for the template  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -214,11 +226,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * **file_url** or **file** is required, but not both.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to use for the template.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to use for the template.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -266,11 +278,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Premium plan and higher.
    * @return allowReassign
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.")
+  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.")
   @JsonProperty(JSON_PROPERTY_ALLOW_REASSIGN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -300,11 +312,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * Get attachments
+   * A list describing the attachments
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list describing the attachments")
   @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -406,6 +418,58 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
 
+  public TemplateCreateEmbeddedDraftRequest forceSignerRoles(Boolean forceSignerRoles) {
+    this.forceSignerRoles = forceSignerRoles;
+    return this;
+  }
+
+   /**
+   * Provide users the ability to review/edit the template signer roles.
+   * @return forceSignerRoles
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Provide users the ability to review/edit the template signer roles.")
+  @JsonProperty(JSON_PROPERTY_FORCE_SIGNER_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getForceSignerRoles() {
+    return forceSignerRoles;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORCE_SIGNER_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForceSignerRoles(Boolean forceSignerRoles) {
+    this.forceSignerRoles = forceSignerRoles;
+  }
+
+
+  public TemplateCreateEmbeddedDraftRequest forceSubjectMessage(Boolean forceSubjectMessage) {
+    this.forceSubjectMessage = forceSubjectMessage;
+    return this;
+  }
+
+   /**
+   * Provide users the ability to review/edit the template subject and message.
+   * @return forceSubjectMessage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Provide users the ability to review/edit the template subject and message.")
+  @JsonProperty(JSON_PROPERTY_FORCE_SUBJECT_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getForceSubjectMessage() {
+    return forceSubjectMessage;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORCE_SUBJECT_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForceSubjectMessage(Boolean forceSubjectMessage) {
+    this.forceSubjectMessage = forceSubjectMessage;
+  }
+
+
   public TemplateCreateEmbeddedDraftRequest formFieldGroups(List<SubFormFieldGroup> formFieldGroups) {
     this.formFieldGroups = formFieldGroups;
     return this;
@@ -474,12 +538,12 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
 
-  public TemplateCreateEmbeddedDraftRequest formFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public TemplateCreateEmbeddedDraftRequest formFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
     return this;
   }
 
-  public TemplateCreateEmbeddedDraftRequest addFormFieldsPerDocumentItem(List<SubFormFieldsPerDocumentBase> formFieldsPerDocumentItem) {
+  public TemplateCreateEmbeddedDraftRequest addFormFieldsPerDocumentItem(SubFormFieldsPerDocumentBase formFieldsPerDocumentItem) {
     if (this.formFieldsPerDocument == null) {
       this.formFieldsPerDocument = new ArrayList<>();
     }
@@ -488,22 +552,22 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the &#x60;file[]&#x60; parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
    * @return formFieldsPerDocument
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<List<SubFormFieldsPerDocumentBase>> getFormFieldsPerDocument() {
+  public List<SubFormFieldsPerDocumentBase> getFormFieldsPerDocument() {
     return formFieldsPerDocument;
   }
 
 
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public void setFormFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
   }
 
@@ -522,11 +586,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * Get mergeFields
+   * Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the &#x60;custom_fields&#x60; parameter.   If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.
    * @return mergeFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Add merge fields to the template. Merge fields are placed by the user creating the template and used to pre-fill data by passing values into signature requests with the `custom_fields` parameter.   If the signature request using that template *does not* pass a value into a merge field, then an empty field remains in the document.")
   @JsonProperty(JSON_PROPERTY_MERGE_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -628,6 +692,32 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
 
+  public TemplateCreateEmbeddedDraftRequest showProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
+    return this;
+  }
+
+   /**
+   * When only one step remains in the signature request process and this parameter is set to &#x60;false&#x60; then the progress stepper will be hidden.
+   * @return showProgressStepper
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.")
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getShowProgressStepper() {
+    return showProgressStepper;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShowProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
+  }
+
+
   public TemplateCreateEmbeddedDraftRequest signerRoles(List<SubTemplateRole> signerRoles) {
     this.signerRoles = signerRoles;
     return this;
@@ -642,11 +732,11 @@ public class TemplateCreateEmbeddedDraftRequest {
   }
 
    /**
-   * Get signerRoles
+   * An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
    * @return signerRoles
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.")
   @JsonProperty(JSON_PROPERTY_SIGNER_ROLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -813,6 +903,8 @@ public class TemplateCreateEmbeddedDraftRequest {
         Objects.equals(this.ccRoles, templateCreateEmbeddedDraftRequest.ccRoles) &&
         Objects.equals(this.editorOptions, templateCreateEmbeddedDraftRequest.editorOptions) &&
         Objects.equals(this.fieldOptions, templateCreateEmbeddedDraftRequest.fieldOptions) &&
+        Objects.equals(this.forceSignerRoles, templateCreateEmbeddedDraftRequest.forceSignerRoles) &&
+        Objects.equals(this.forceSubjectMessage, templateCreateEmbeddedDraftRequest.forceSubjectMessage) &&
         Objects.equals(this.formFieldGroups, templateCreateEmbeddedDraftRequest.formFieldGroups) &&
         Objects.equals(this.formFieldRules, templateCreateEmbeddedDraftRequest.formFieldRules) &&
         Objects.equals(this.formFieldsPerDocument, templateCreateEmbeddedDraftRequest.formFieldsPerDocument) &&
@@ -820,6 +912,7 @@ public class TemplateCreateEmbeddedDraftRequest {
         Objects.equals(this.message, templateCreateEmbeddedDraftRequest.message) &&
         Objects.equals(this.metadata, templateCreateEmbeddedDraftRequest.metadata) &&
         Objects.equals(this.showPreview, templateCreateEmbeddedDraftRequest.showPreview) &&
+        Objects.equals(this.showProgressStepper, templateCreateEmbeddedDraftRequest.showProgressStepper) &&
         Objects.equals(this.signerRoles, templateCreateEmbeddedDraftRequest.signerRoles) &&
         Objects.equals(this.skipMeNow, templateCreateEmbeddedDraftRequest.skipMeNow) &&
         Objects.equals(this.subject, templateCreateEmbeddedDraftRequest.subject) &&
@@ -830,7 +923,7 @@ public class TemplateCreateEmbeddedDraftRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, file, fileUrl, allowCcs, allowReassign, attachments, ccRoles, editorOptions, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, mergeFields, message, metadata, showPreview, signerRoles, skipMeNow, subject, testMode, title, usePreexistingFields);
+    return Objects.hash(clientId, file, fileUrl, allowCcs, allowReassign, attachments, ccRoles, editorOptions, fieldOptions, forceSignerRoles, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, mergeFields, message, metadata, showPreview, showProgressStepper, signerRoles, skipMeNow, subject, testMode, title, usePreexistingFields);
   }
 
   @Override
@@ -846,6 +939,8 @@ public class TemplateCreateEmbeddedDraftRequest {
     sb.append("    ccRoles: ").append(toIndentedString(ccRoles)).append("\n");
     sb.append("    editorOptions: ").append(toIndentedString(editorOptions)).append("\n");
     sb.append("    fieldOptions: ").append(toIndentedString(fieldOptions)).append("\n");
+    sb.append("    forceSignerRoles: ").append(toIndentedString(forceSignerRoles)).append("\n");
+    sb.append("    forceSubjectMessage: ").append(toIndentedString(forceSubjectMessage)).append("\n");
     sb.append("    formFieldGroups: ").append(toIndentedString(formFieldGroups)).append("\n");
     sb.append("    formFieldRules: ").append(toIndentedString(formFieldRules)).append("\n");
     sb.append("    formFieldsPerDocument: ").append(toIndentedString(formFieldsPerDocument)).append("\n");
@@ -853,6 +948,7 @@ public class TemplateCreateEmbeddedDraftRequest {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    showPreview: ").append(toIndentedString(showPreview)).append("\n");
+    sb.append("    showProgressStepper: ").append(toIndentedString(showProgressStepper)).append("\n");
     sb.append("    signerRoles: ").append(toIndentedString(signerRoles)).append("\n");
     sb.append("    skipMeNow: ").append(toIndentedString(skipMeNow)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
@@ -1029,6 +1125,42 @@ public class TemplateCreateEmbeddedDraftRequest {
             map.put("field_options", JSON.getDefault().getMapper().writeValueAsString(fieldOptions));
         }
     }
+    if (forceSignerRoles != null) {
+        if (isFileTypeOrListOfFiles(forceSignerRoles)) {
+            fileTypeFound = true;
+        }
+
+        if (forceSignerRoles.getClass().equals(java.io.File.class) ||
+            forceSignerRoles.getClass().equals(Integer.class) ||
+            forceSignerRoles.getClass().equals(String.class) ) {
+            map.put("force_signer_roles", forceSignerRoles);
+        } else if (isListOfFile(forceSignerRoles)) {
+            for(int i = 0; i< getListSize(forceSignerRoles); i++) {
+                map.put("force_signer_roles[" + i + "]", getFromList(forceSignerRoles, i));
+            }
+        }
+        else {
+            map.put("force_signer_roles", JSON.getDefault().getMapper().writeValueAsString(forceSignerRoles));
+        }
+    }
+    if (forceSubjectMessage != null) {
+        if (isFileTypeOrListOfFiles(forceSubjectMessage)) {
+            fileTypeFound = true;
+        }
+
+        if (forceSubjectMessage.getClass().equals(java.io.File.class) ||
+            forceSubjectMessage.getClass().equals(Integer.class) ||
+            forceSubjectMessage.getClass().equals(String.class) ) {
+            map.put("force_subject_message", forceSubjectMessage);
+        } else if (isListOfFile(forceSubjectMessage)) {
+            for(int i = 0; i< getListSize(forceSubjectMessage); i++) {
+                map.put("force_subject_message[" + i + "]", getFromList(forceSubjectMessage, i));
+            }
+        }
+        else {
+            map.put("force_subject_message", JSON.getDefault().getMapper().writeValueAsString(forceSubjectMessage));
+        }
+    }
     if (formFieldGroups != null) {
         if (isFileTypeOrListOfFiles(formFieldGroups)) {
             fileTypeFound = true;
@@ -1153,6 +1285,24 @@ public class TemplateCreateEmbeddedDraftRequest {
         }
         else {
             map.put("show_preview", JSON.getDefault().getMapper().writeValueAsString(showPreview));
+        }
+    }
+    if (showProgressStepper != null) {
+        if (isFileTypeOrListOfFiles(showProgressStepper)) {
+            fileTypeFound = true;
+        }
+
+        if (showProgressStepper.getClass().equals(java.io.File.class) ||
+            showProgressStepper.getClass().equals(Integer.class) ||
+            showProgressStepper.getClass().equals(String.class) ) {
+            map.put("show_progress_stepper", showProgressStepper);
+        } else if (isListOfFile(showProgressStepper)) {
+            for(int i = 0; i< getListSize(showProgressStepper); i++) {
+                map.put("show_progress_stepper[" + i + "]", getFromList(showProgressStepper, i));
+            }
+        }
+        else {
+            map.put("show_progress_stepper", JSON.getDefault().getMapper().writeValueAsString(showProgressStepper));
         }
     }
     if (signerRoles != null) {

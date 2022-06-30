@@ -32,8 +32,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * SubOAuth
+ * OAuth related parameters.
  */
+@ApiModel(description = "OAuth related parameters.")
 @JsonPropertyOrder({
     SubOAuth.JSON_PROPERTY_CALLBACK_URL,
     SubOAuth.JSON_PROPERTY_SCOPES
@@ -47,19 +48,9 @@ public class SubOAuth {
    * Gets or Sets scopes
    */
   public enum ScopesEnum {
-    ACCESS_DOCS("access_docs"),
-    
-    ACCESS_REUSABLE_FORMS("access_reusable_forms"),
-    
-    MANAGE_DOCS("manage_docs"),
-    
     REQUEST_SIGNATURE("request_signature"),
     
-    SEND_DOCS("send_docs"),
-    
     BASIC_ACCOUNT_INFO("basic_account_info"),
-    
-    SIGNATURES("signatures"),
     
     ACCOUNT_ACCESS("account_access"),
     
@@ -70,8 +61,6 @@ public class SubOAuth {
     TEAM_ACCESS("team_access"),
     
     API_APP_ACCESS("api_app_access"),
-    
-    UNIVERSAL_SIGNATURE_REQUEST_ACCESS("universal_signature_request_access"),
     
     EMPTY("");
 
@@ -148,11 +137,11 @@ public class SubOAuth {
   }
 
    /**
-   * A list of OAuth scopes to be granted to the app. (Required if &#x60;oauth[callback_url]&#x60; is provided).
+   * A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if &#x60;oauth[callback_url]&#x60; is provided).
    * @return scopes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of OAuth scopes to be granted to the app. (Required if `oauth[callback_url]` is provided).")
+  @ApiModelProperty(value = "A list of [OAuth scopes](/api/reference/tag/OAuth) to be granted to the app. (Required if `oauth[callback_url]` is provided).")
   @JsonProperty(JSON_PROPERTY_SCOPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

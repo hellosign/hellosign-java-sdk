@@ -30,12 +30,14 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * AccountResponseQuotas
+ * Details concerning remaining monthly quotas.
  */
+@ApiModel(description = "Details concerning remaining monthly quotas.")
 @JsonPropertyOrder({
     AccountResponseQuotas.JSON_PROPERTY_API_SIGNATURE_REQUESTS_LEFT,
     AccountResponseQuotas.JSON_PROPERTY_DOCUMENTS_LEFT,
-    AccountResponseQuotas.JSON_PROPERTY_TEMPLATES_LEFT
+    AccountResponseQuotas.JSON_PROPERTY_TEMPLATES_LEFT,
+    AccountResponseQuotas.JSON_PROPERTY_SMS_VERIFICATIONS_LEFT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AccountResponseQuotas {
@@ -48,6 +50,9 @@ public class AccountResponseQuotas {
   public static final String JSON_PROPERTY_TEMPLATES_LEFT = "templates_left";
   private Integer templatesLeft;
 
+  public static final String JSON_PROPERTY_SMS_VERIFICATIONS_LEFT = "sms_verifications_left";
+  private Integer smsVerificationsLeft;
+
   public AccountResponseQuotas() { 
   }
 
@@ -57,11 +62,11 @@ public class AccountResponseQuotas {
   }
 
    /**
-   * Get apiSignatureRequestsLeft
+   * API signature requests remaining.
    * @return apiSignatureRequestsLeft
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "API signature requests remaining.")
   @JsonProperty(JSON_PROPERTY_API_SIGNATURE_REQUESTS_LEFT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -83,11 +88,11 @@ public class AccountResponseQuotas {
   }
 
    /**
-   * Get documentsLeft
+   * Signature requests remaining.
    * @return documentsLeft
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Signature requests remaining.")
   @JsonProperty(JSON_PROPERTY_DOCUMENTS_LEFT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -109,11 +114,11 @@ public class AccountResponseQuotas {
   }
 
    /**
-   * Get templatesLeft
+   * API templates remaining.
    * @return templatesLeft
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "API templates remaining.")
   @JsonProperty(JSON_PROPERTY_TEMPLATES_LEFT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -126,6 +131,32 @@ public class AccountResponseQuotas {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplatesLeft(Integer templatesLeft) {
     this.templatesLeft = templatesLeft;
+  }
+
+
+  public AccountResponseQuotas smsVerificationsLeft(Integer smsVerificationsLeft) {
+    this.smsVerificationsLeft = smsVerificationsLeft;
+    return this;
+  }
+
+   /**
+   * SMS verifications  remaining.
+   * @return smsVerificationsLeft
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SMS verifications  remaining.")
+  @JsonProperty(JSON_PROPERTY_SMS_VERIFICATIONS_LEFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getSmsVerificationsLeft() {
+    return smsVerificationsLeft;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SMS_VERIFICATIONS_LEFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmsVerificationsLeft(Integer smsVerificationsLeft) {
+    this.smsVerificationsLeft = smsVerificationsLeft;
   }
 
 
@@ -143,12 +174,13 @@ public class AccountResponseQuotas {
     AccountResponseQuotas accountResponseQuotas = (AccountResponseQuotas) o;
     return Objects.equals(this.apiSignatureRequestsLeft, accountResponseQuotas.apiSignatureRequestsLeft) &&
         Objects.equals(this.documentsLeft, accountResponseQuotas.documentsLeft) &&
-        Objects.equals(this.templatesLeft, accountResponseQuotas.templatesLeft);
+        Objects.equals(this.templatesLeft, accountResponseQuotas.templatesLeft) &&
+        Objects.equals(this.smsVerificationsLeft, accountResponseQuotas.smsVerificationsLeft);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiSignatureRequestsLeft, documentsLeft, templatesLeft);
+    return Objects.hash(apiSignatureRequestsLeft, documentsLeft, templatesLeft, smsVerificationsLeft);
   }
 
   @Override
@@ -158,6 +190,7 @@ public class AccountResponseQuotas {
     sb.append("    apiSignatureRequestsLeft: ").append(toIndentedString(apiSignatureRequestsLeft)).append("\n");
     sb.append("    documentsLeft: ").append(toIndentedString(documentsLeft)).append("\n");
     sb.append("    templatesLeft: ").append(toIndentedString(templatesLeft)).append("\n");
+    sb.append("    smsVerificationsLeft: ").append(toIndentedString(smsVerificationsLeft)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -218,6 +251,24 @@ public class AccountResponseQuotas {
         }
         else {
             map.put("templates_left", JSON.getDefault().getMapper().writeValueAsString(templatesLeft));
+        }
+    }
+    if (smsVerificationsLeft != null) {
+        if (isFileTypeOrListOfFiles(smsVerificationsLeft)) {
+            fileTypeFound = true;
+        }
+
+        if (smsVerificationsLeft.getClass().equals(java.io.File.class) ||
+            smsVerificationsLeft.getClass().equals(Integer.class) ||
+            smsVerificationsLeft.getClass().equals(String.class) ) {
+            map.put("sms_verifications_left", smsVerificationsLeft);
+        } else if (isListOfFile(smsVerificationsLeft)) {
+            for(int i = 0; i< getListSize(smsVerificationsLeft); i++) {
+                map.put("sms_verifications_left[" + i + "]", getFromList(smsVerificationsLeft, i));
+            }
+        }
+        else {
+            map.put("sms_verifications_left", JSON.getDefault().getMapper().writeValueAsString(smsVerificationsLeft));
         }
     }
     } catch (Exception e) {

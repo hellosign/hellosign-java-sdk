@@ -59,7 +59,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppGetResponse apiAppCreate(ApiAppCreateRequest apiAppCreateRequest) throws ApiException {
@@ -76,7 +76,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppCreateWithHttpInfo(ApiAppCreateRequest apiAppCreateRequest) throws ApiException {
@@ -125,13 +125,13 @@ public class ApiAppApi {
   /**
    * Delete API App
    * Deletes an API App. Can only be invoked for apps you own.
-   * @param clientId The client id of the ApiApp to delete. (required)
+   * @param clientId The client id of the API App to delete. (required)
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 204 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public void apiAppDelete(String clientId) throws ApiException {
@@ -141,14 +141,14 @@ public class ApiAppApi {
   /**
    * Delete API App
    * Deletes an API App. Can only be invoked for apps you own.
-   * @param clientId The client id of the ApiApp to delete. (required)
+   * @param clientId The client id of the API App to delete. (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 204 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> apiAppDeleteWithHttpInfo(String clientId) throws ApiException {
@@ -196,14 +196,14 @@ public class ApiAppApi {
   /**
    * Get API App
    * Returns an object with information about an API App.
-   * @param clientId The client ID of the ApiApp to retrieve. (required)
+   * @param clientId The client id of the API App to retrieve. (required)
    * @return ApiAppGetResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppGetResponse apiAppGet(String clientId) throws ApiException {
@@ -213,14 +213,14 @@ public class ApiAppApi {
   /**
    * Get API App
    * Returns an object with information about an API App.
-   * @param clientId The client ID of the ApiApp to retrieve. (required)
+   * @param clientId The client id of the API App to retrieve. (required)
    * @return ApiResponse&lt;ApiAppGetResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppGetWithHttpInfo(String clientId) throws ApiException {
@@ -270,7 +270,7 @@ public class ApiAppApi {
   /**
    * List API Apps
    * Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.
-   * @param page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
    * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
    * @return ApiAppListResponse
    * @throws ApiException if fails to make API call
@@ -278,7 +278,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppListResponse apiAppList(Integer page, Integer pageSize) throws ApiException {
@@ -288,7 +288,7 @@ public class ApiAppApi {
   /**
    * List API Apps
    * Returns a list of API Apps that are accessible by you. If you are on a team with an Admin or Developer role, this list will include apps owned by teammates.
-   * @param page Which page number of the ApiApp List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param page Which page number of the API App List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
    * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
    * @return ApiResponse&lt;ApiAppListResponse&gt;
    * @throws ApiException if fails to make API call
@@ -296,7 +296,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppListResponse> apiAppListWithHttpInfo(Integer page, Integer pageSize) throws ApiException {
@@ -342,7 +342,7 @@ public class ApiAppApi {
   /**
    * Update API App
    * Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.
-   * @param clientId The client ID of the ApiApp to update. (required)
+   * @param clientId The client id of the API App to update. (required)
    * @param apiAppUpdateRequest  (required)
    * @return ApiAppGetResponse
    * @throws ApiException if fails to make API call
@@ -350,7 +350,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiAppGetResponse apiAppUpdate(String clientId, ApiAppUpdateRequest apiAppUpdateRequest) throws ApiException {
@@ -360,7 +360,7 @@ public class ApiAppApi {
   /**
    * Update API App
    * Updates an existing API App. Can only be invoked for apps you own. Only the fields you provide will be updated. If you wish to clear an existing optional field, provide an empty string.
-   * @param clientId The client ID of the ApiApp to update. (required)
+   * @param clientId The client id of the API App to update. (required)
    * @param apiAppUpdateRequest  (required)
    * @return ApiResponse&lt;ApiAppGetResponse&gt;
    * @throws ApiException if fails to make API call
@@ -368,7 +368,7 @@ public class ApiAppApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<ApiAppGetResponse> apiAppUpdateWithHttpInfo(String clientId, ApiAppUpdateRequest apiAppUpdateRequest) throws ApiException {

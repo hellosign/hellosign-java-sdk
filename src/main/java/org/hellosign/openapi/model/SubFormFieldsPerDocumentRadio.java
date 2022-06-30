@@ -49,7 +49,7 @@ import org.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     SubFormFieldsPerDocumentRadio.JSON_PROPERTY_TYPE,
     SubFormFieldsPerDocumentRadio.JSON_PROPERTY_GROUP,
-    SubFormFieldsPerDocumentRadio.JSON_PROPERTY_CHECKED
+    SubFormFieldsPerDocumentRadio.JSON_PROPERTY_IS_CHECKED
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
@@ -73,8 +73,8 @@ public class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
   public static final String JSON_PROPERTY_GROUP = "group";
   private String group;
 
-  public static final String JSON_PROPERTY_CHECKED = "checked";
-  private Boolean checked;
+  public static final String JSON_PROPERTY_IS_CHECKED = "is_checked";
+  private Boolean isChecked;
 
   public SubFormFieldsPerDocumentRadio() { 
   }
@@ -131,29 +131,29 @@ public class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
   }
 
 
-  public SubFormFieldsPerDocumentRadio checked(Boolean checked) {
-    this.checked = checked;
+  public SubFormFieldsPerDocumentRadio isChecked(Boolean isChecked) {
+    this.isChecked = isChecked;
     return this;
   }
 
    /**
    * &#x60;true&#x60; for checking the radio field by default, otherwise &#x60;false&#x60;. Only one radio field per group can be &#x60;true&#x60;.
-   * @return checked
+   * @return isChecked
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "`true` for checking the radio field by default, otherwise `false`. Only one radio field per group can be `true`.")
-  @JsonProperty(JSON_PROPERTY_CHECKED)
+  @JsonProperty(JSON_PROPERTY_IS_CHECKED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Boolean getChecked() {
-    return checked;
+  public Boolean getIsChecked() {
+    return isChecked;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CHECKED)
+  @JsonProperty(JSON_PROPERTY_IS_CHECKED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setChecked(Boolean checked) {
-    this.checked = checked;
+  public void setIsChecked(Boolean isChecked) {
+    this.isChecked = isChecked;
   }
 
 
@@ -171,13 +171,13 @@ public class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
     SubFormFieldsPerDocumentRadio subFormFieldsPerDocumentRadio = (SubFormFieldsPerDocumentRadio) o;
     return Objects.equals(this.type, subFormFieldsPerDocumentRadio.type) &&
         Objects.equals(this.group, subFormFieldsPerDocumentRadio.group) &&
-        Objects.equals(this.checked, subFormFieldsPerDocumentRadio.checked) &&
+        Objects.equals(this.isChecked, subFormFieldsPerDocumentRadio.isChecked) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, group, checked, super.hashCode());
+    return Objects.hash(type, group, isChecked, super.hashCode());
   }
 
   @Override
@@ -187,7 +187,7 @@ public class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
-    sb.append("    checked: ").append(toIndentedString(checked)).append("\n");
+    sb.append("    isChecked: ").append(toIndentedString(isChecked)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -233,22 +233,22 @@ public class SubFormFieldsPerDocumentRadio extends SubFormFieldsPerDocumentBase 
             map.put("group", JSON.getDefault().getMapper().writeValueAsString(group));
         }
     }
-    if (checked != null) {
-        if (isFileTypeOrListOfFiles(checked)) {
+    if (isChecked != null) {
+        if (isFileTypeOrListOfFiles(isChecked)) {
             fileTypeFound = true;
         }
 
-        if (checked.getClass().equals(java.io.File.class) ||
-            checked.getClass().equals(Integer.class) ||
-            checked.getClass().equals(String.class) ) {
-            map.put("checked", checked);
-        } else if (isListOfFile(checked)) {
-            for(int i = 0; i< getListSize(checked); i++) {
-                map.put("checked[" + i + "]", getFromList(checked, i));
+        if (isChecked.getClass().equals(java.io.File.class) ||
+            isChecked.getClass().equals(Integer.class) ||
+            isChecked.getClass().equals(String.class) ) {
+            map.put("is_checked", isChecked);
+        } else if (isListOfFile(isChecked)) {
+            for(int i = 0; i< getListSize(isChecked); i++) {
+                map.put("is_checked[" + i + "]", getFromList(isChecked, i));
             }
         }
         else {
-            map.put("checked", JSON.getDefault().getMapper().writeValueAsString(checked));
+            map.put("is_checked", JSON.getDefault().getMapper().writeValueAsString(isChecked));
         }
     }
     } catch (Exception e) {

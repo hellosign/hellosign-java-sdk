@@ -30,9 +30,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of Form Field Group objects.
+ * TemplateResponseDocumentFieldGroup
  */
-@ApiModel(description = "An array of Form Field Group objects.")
 @JsonPropertyOrder({
     TemplateResponseDocumentFieldGroup.JSON_PROPERTY_NAME,
     TemplateResponseDocumentFieldGroup.JSON_PROPERTY_RULE

@@ -39,6 +39,7 @@ import org.hellosign.openapi.ApiException;
     UnclaimedDraftEditAndResendRequest.JSON_PROPERTY_IS_FOR_EMBEDDED_SIGNING,
     UnclaimedDraftEditAndResendRequest.JSON_PROPERTY_REQUESTER_EMAIL_ADDRESS,
     UnclaimedDraftEditAndResendRequest.JSON_PROPERTY_REQUESTING_REDIRECT_URL,
+    UnclaimedDraftEditAndResendRequest.JSON_PROPERTY_SHOW_PROGRESS_STEPPER,
     UnclaimedDraftEditAndResendRequest.JSON_PROPERTY_SIGNING_REDIRECT_URL,
     UnclaimedDraftEditAndResendRequest.JSON_PROPERTY_TEST_MODE
 })
@@ -51,13 +52,16 @@ public class UnclaimedDraftEditAndResendRequest {
   private SubEditorOptions editorOptions;
 
   public static final String JSON_PROPERTY_IS_FOR_EMBEDDED_SIGNING = "is_for_embedded_signing";
-  private Boolean isForEmbeddedSigning = false;
+  private Boolean isForEmbeddedSigning;
 
   public static final String JSON_PROPERTY_REQUESTER_EMAIL_ADDRESS = "requester_email_address";
   private String requesterEmailAddress;
 
   public static final String JSON_PROPERTY_REQUESTING_REDIRECT_URL = "requesting_redirect_url";
   private String requestingRedirectUrl;
+
+  public static final String JSON_PROPERTY_SHOW_PROGRESS_STEPPER = "show_progress_stepper";
+  private Boolean showProgressStepper = true;
 
   public static final String JSON_PROPERTY_SIGNING_REDIRECT_URL = "signing_redirect_url";
   private String signingRedirectUrl;
@@ -74,11 +78,11 @@ public class UnclaimedDraftEditAndResendRequest {
   }
 
    /**
-   * Client id of the app you&#39;re using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
    * @return clientId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.")
+  @ApiModelProperty(required = true, value = "Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -126,11 +130,11 @@ public class UnclaimedDraftEditAndResendRequest {
   }
 
    /**
-   * The request created from this draft will also be signable in embedded mode if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.
+   * The request created from this draft will also be signable in embedded mode if set to &#x60;true&#x60;.
    * @return isForEmbeddedSigning
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The request created from this draft will also be signable in embedded mode if set to `true`. Defaults to `false`.")
+  @ApiModelProperty(value = "The request created from this draft will also be signable in embedded mode if set to `true`.")
   @JsonProperty(JSON_PROPERTY_IS_FOR_EMBEDDED_SIGNING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -195,6 +199,32 @@ public class UnclaimedDraftEditAndResendRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequestingRedirectUrl(String requestingRedirectUrl) {
     this.requestingRedirectUrl = requestingRedirectUrl;
+  }
+
+
+  public UnclaimedDraftEditAndResendRequest showProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
+    return this;
+  }
+
+   /**
+   * When only one step remains in the signature request process and this parameter is set to &#x60;false&#x60; then the progress stepper will be hidden.
+   * @return showProgressStepper
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.")
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getShowProgressStepper() {
+    return showProgressStepper;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShowProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
   }
 
 
@@ -267,13 +297,14 @@ public class UnclaimedDraftEditAndResendRequest {
         Objects.equals(this.isForEmbeddedSigning, unclaimedDraftEditAndResendRequest.isForEmbeddedSigning) &&
         Objects.equals(this.requesterEmailAddress, unclaimedDraftEditAndResendRequest.requesterEmailAddress) &&
         Objects.equals(this.requestingRedirectUrl, unclaimedDraftEditAndResendRequest.requestingRedirectUrl) &&
+        Objects.equals(this.showProgressStepper, unclaimedDraftEditAndResendRequest.showProgressStepper) &&
         Objects.equals(this.signingRedirectUrl, unclaimedDraftEditAndResendRequest.signingRedirectUrl) &&
         Objects.equals(this.testMode, unclaimedDraftEditAndResendRequest.testMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, editorOptions, isForEmbeddedSigning, requesterEmailAddress, requestingRedirectUrl, signingRedirectUrl, testMode);
+    return Objects.hash(clientId, editorOptions, isForEmbeddedSigning, requesterEmailAddress, requestingRedirectUrl, showProgressStepper, signingRedirectUrl, testMode);
   }
 
   @Override
@@ -285,6 +316,7 @@ public class UnclaimedDraftEditAndResendRequest {
     sb.append("    isForEmbeddedSigning: ").append(toIndentedString(isForEmbeddedSigning)).append("\n");
     sb.append("    requesterEmailAddress: ").append(toIndentedString(requesterEmailAddress)).append("\n");
     sb.append("    requestingRedirectUrl: ").append(toIndentedString(requestingRedirectUrl)).append("\n");
+    sb.append("    showProgressStepper: ").append(toIndentedString(showProgressStepper)).append("\n");
     sb.append("    signingRedirectUrl: ").append(toIndentedString(signingRedirectUrl)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
     sb.append("}");
@@ -383,6 +415,24 @@ public class UnclaimedDraftEditAndResendRequest {
         }
         else {
             map.put("requesting_redirect_url", JSON.getDefault().getMapper().writeValueAsString(requestingRedirectUrl));
+        }
+    }
+    if (showProgressStepper != null) {
+        if (isFileTypeOrListOfFiles(showProgressStepper)) {
+            fileTypeFound = true;
+        }
+
+        if (showProgressStepper.getClass().equals(java.io.File.class) ||
+            showProgressStepper.getClass().equals(Integer.class) ||
+            showProgressStepper.getClass().equals(String.class) ) {
+            map.put("show_progress_stepper", showProgressStepper);
+        } else if (isListOfFile(showProgressStepper)) {
+            for(int i = 0; i< getListSize(showProgressStepper); i++) {
+                map.put("show_progress_stepper[" + i + "]", getFromList(showProgressStepper, i));
+            }
+        }
+        else {
+            map.put("show_progress_stepper", JSON.getDefault().getMapper().writeValueAsString(showProgressStepper));
         }
     }
     if (signingRedirectUrl != null) {

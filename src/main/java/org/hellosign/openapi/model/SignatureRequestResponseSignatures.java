@@ -30,9 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of signature obects, 1 for each signer.
+ * An array of signature objects, 1 for each signer.
  */
-@ApiModel(description = "An array of signature obects, 1 for each signer.")
+@ApiModel(description = "An array of signature objects, 1 for each signer.")
 @JsonPropertyOrder({
     SignatureRequestResponseSignatures.JSON_PROPERTY_SIGNATURE_ID,
     SignatureRequestResponseSignatures.JSON_PROPERTY_SIGNER_EMAIL_ADDRESS,
@@ -46,6 +46,8 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestResponseSignatures.JSON_PROPERTY_LAST_REMINDED_AT,
     SignatureRequestResponseSignatures.JSON_PROPERTY_HAS_PIN,
     SignatureRequestResponseSignatures.JSON_PROPERTY_HAS_SMS_AUTH,
+    SignatureRequestResponseSignatures.JSON_PROPERTY_HAS_SMS_DELIVERY,
+    SignatureRequestResponseSignatures.JSON_PROPERTY_SMS_PHONE_NUMBER,
     SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNED_BY,
     SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNMENT_REASON,
     SignatureRequestResponseSignatures.JSON_PROPERTY_ERROR
@@ -87,6 +89,12 @@ public class SignatureRequestResponseSignatures {
 
   public static final String JSON_PROPERTY_HAS_SMS_AUTH = "has_sms_auth";
   private Boolean hasSmsAuth;
+
+  public static final String JSON_PROPERTY_HAS_SMS_DELIVERY = "has_sms_delivery";
+  private Boolean hasSmsDelivery;
+
+  public static final String JSON_PROPERTY_SMS_PHONE_NUMBER = "sms_phone_number";
+  private String smsPhoneNumber;
 
   public static final String JSON_PROPERTY_REASSIGNED_BY = "reassigned_by";
   private String reassignedBy;
@@ -412,6 +420,58 @@ public class SignatureRequestResponseSignatures {
   }
 
 
+  public SignatureRequestResponseSignatures hasSmsDelivery(Boolean hasSmsDelivery) {
+    this.hasSmsDelivery = hasSmsDelivery;
+    return this;
+  }
+
+   /**
+   * Boolean to indicate whether this signature has SMS delivery enabled.
+   * @return hasSmsDelivery
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Boolean to indicate whether this signature has SMS delivery enabled.")
+  @JsonProperty(JSON_PROPERTY_HAS_SMS_DELIVERY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getHasSmsDelivery() {
+    return hasSmsDelivery;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HAS_SMS_DELIVERY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasSmsDelivery(Boolean hasSmsDelivery) {
+    this.hasSmsDelivery = hasSmsDelivery;
+  }
+
+
+  public SignatureRequestResponseSignatures smsPhoneNumber(String smsPhoneNumber) {
+    this.smsPhoneNumber = smsPhoneNumber;
+    return this;
+  }
+
+   /**
+   * The SMS phone number used for authentication or signature request delivery.
+   * @return smsPhoneNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The SMS phone number used for authentication or signature request delivery.")
+  @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getSmsPhoneNumber() {
+    return smsPhoneNumber;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SMS_PHONE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmsPhoneNumber(String smsPhoneNumber) {
+    this.smsPhoneNumber = smsPhoneNumber;
+  }
+
+
   public SignatureRequestResponseSignatures reassignedBy(String reassignedBy) {
     this.reassignedBy = reassignedBy;
     return this;
@@ -514,6 +574,8 @@ public class SignatureRequestResponseSignatures {
         Objects.equals(this.lastRemindedAt, signatureRequestResponseSignatures.lastRemindedAt) &&
         Objects.equals(this.hasPin, signatureRequestResponseSignatures.hasPin) &&
         Objects.equals(this.hasSmsAuth, signatureRequestResponseSignatures.hasSmsAuth) &&
+        Objects.equals(this.hasSmsDelivery, signatureRequestResponseSignatures.hasSmsDelivery) &&
+        Objects.equals(this.smsPhoneNumber, signatureRequestResponseSignatures.smsPhoneNumber) &&
         Objects.equals(this.reassignedBy, signatureRequestResponseSignatures.reassignedBy) &&
         Objects.equals(this.reassignmentReason, signatureRequestResponseSignatures.reassignmentReason) &&
         Objects.equals(this.error, signatureRequestResponseSignatures.error);
@@ -521,7 +583,7 @@ public class SignatureRequestResponseSignatures {
 
   @Override
   public int hashCode() {
-    return Objects.hash(signatureId, signerEmailAddress, signerName, signerRole, order, statusCode, declineReason, signedAt, lastViewedAt, lastRemindedAt, hasPin, hasSmsAuth, reassignedBy, reassignmentReason, error);
+    return Objects.hash(signatureId, signerEmailAddress, signerName, signerRole, order, statusCode, declineReason, signedAt, lastViewedAt, lastRemindedAt, hasPin, hasSmsAuth, hasSmsDelivery, smsPhoneNumber, reassignedBy, reassignmentReason, error);
   }
 
   @Override
@@ -540,6 +602,8 @@ public class SignatureRequestResponseSignatures {
     sb.append("    lastRemindedAt: ").append(toIndentedString(lastRemindedAt)).append("\n");
     sb.append("    hasPin: ").append(toIndentedString(hasPin)).append("\n");
     sb.append("    hasSmsAuth: ").append(toIndentedString(hasSmsAuth)).append("\n");
+    sb.append("    hasSmsDelivery: ").append(toIndentedString(hasSmsDelivery)).append("\n");
+    sb.append("    smsPhoneNumber: ").append(toIndentedString(smsPhoneNumber)).append("\n");
     sb.append("    reassignedBy: ").append(toIndentedString(reassignedBy)).append("\n");
     sb.append("    reassignmentReason: ").append(toIndentedString(reassignmentReason)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
@@ -765,6 +829,42 @@ public class SignatureRequestResponseSignatures {
         }
         else {
             map.put("has_sms_auth", JSON.getDefault().getMapper().writeValueAsString(hasSmsAuth));
+        }
+    }
+    if (hasSmsDelivery != null) {
+        if (isFileTypeOrListOfFiles(hasSmsDelivery)) {
+            fileTypeFound = true;
+        }
+
+        if (hasSmsDelivery.getClass().equals(java.io.File.class) ||
+            hasSmsDelivery.getClass().equals(Integer.class) ||
+            hasSmsDelivery.getClass().equals(String.class) ) {
+            map.put("has_sms_delivery", hasSmsDelivery);
+        } else if (isListOfFile(hasSmsDelivery)) {
+            for(int i = 0; i< getListSize(hasSmsDelivery); i++) {
+                map.put("has_sms_delivery[" + i + "]", getFromList(hasSmsDelivery, i));
+            }
+        }
+        else {
+            map.put("has_sms_delivery", JSON.getDefault().getMapper().writeValueAsString(hasSmsDelivery));
+        }
+    }
+    if (smsPhoneNumber != null) {
+        if (isFileTypeOrListOfFiles(smsPhoneNumber)) {
+            fileTypeFound = true;
+        }
+
+        if (smsPhoneNumber.getClass().equals(java.io.File.class) ||
+            smsPhoneNumber.getClass().equals(Integer.class) ||
+            smsPhoneNumber.getClass().equals(String.class) ) {
+            map.put("sms_phone_number", smsPhoneNumber);
+        } else if (isListOfFile(smsPhoneNumber)) {
+            for(int i = 0; i< getListSize(smsPhoneNumber); i++) {
+                map.put("sms_phone_number[" + i + "]", getFromList(smsPhoneNumber, i));
+            }
+        }
+        else {
+            map.put("sms_phone_number", JSON.getDefault().getMapper().writeValueAsString(smsPhoneNumber));
         }
     }
     if (reassignedBy != null) {

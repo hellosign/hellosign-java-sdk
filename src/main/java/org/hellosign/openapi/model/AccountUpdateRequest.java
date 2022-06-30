@@ -33,15 +33,49 @@ import org.hellosign.openapi.ApiException;
  * AccountUpdateRequest
  */
 @JsonPropertyOrder({
-    AccountUpdateRequest.JSON_PROPERTY_CALLBACK_URL
+    AccountUpdateRequest.JSON_PROPERTY_ACCOUNT_ID,
+    AccountUpdateRequest.JSON_PROPERTY_CALLBACK_URL,
+    AccountUpdateRequest.JSON_PROPERTY_LOCALE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AccountUpdateRequest {
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "account_id";
+  private String accountId;
+
   public static final String JSON_PROPERTY_CALLBACK_URL = "callback_url";
   private String callbackUrl;
 
+  public static final String JSON_PROPERTY_LOCALE = "locale";
+  private String locale;
+
   public AccountUpdateRequest() { 
   }
+
+  public AccountUpdateRequest accountId(String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+   /**
+   * The ID of the Account
+   * @return accountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The ID of the Account")
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
+  }
+
 
   public AccountUpdateRequest callbackUrl(String callbackUrl) {
     this.callbackUrl = callbackUrl;
@@ -69,6 +103,32 @@ public class AccountUpdateRequest {
   }
 
 
+  public AccountUpdateRequest locale(String locale) {
+    this.locale = locale;
+    return this;
+  }
+
+   /**
+   * The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+   * @return locale
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.")
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getLocale() {
+    return locale;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocale(String locale) {
+    this.locale = locale;
+  }
+
+
   /**
    * Return true if this AccountUpdateRequest object is equal to o.
    */
@@ -81,19 +141,23 @@ public class AccountUpdateRequest {
       return false;
     }
     AccountUpdateRequest accountUpdateRequest = (AccountUpdateRequest) o;
-    return Objects.equals(this.callbackUrl, accountUpdateRequest.callbackUrl);
+    return Objects.equals(this.accountId, accountUpdateRequest.accountId) &&
+        Objects.equals(this.callbackUrl, accountUpdateRequest.callbackUrl) &&
+        Objects.equals(this.locale, accountUpdateRequest.locale);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callbackUrl);
+    return Objects.hash(accountId, callbackUrl, locale);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AccountUpdateRequest {\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -102,6 +166,24 @@ public class AccountUpdateRequest {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
+    if (accountId != null) {
+        if (isFileTypeOrListOfFiles(accountId)) {
+            fileTypeFound = true;
+        }
+
+        if (accountId.getClass().equals(java.io.File.class) ||
+            accountId.getClass().equals(Integer.class) ||
+            accountId.getClass().equals(String.class) ) {
+            map.put("account_id", accountId);
+        } else if (isListOfFile(accountId)) {
+            for(int i = 0; i< getListSize(accountId); i++) {
+                map.put("account_id[" + i + "]", getFromList(accountId, i));
+            }
+        }
+        else {
+            map.put("account_id", JSON.getDefault().getMapper().writeValueAsString(accountId));
+        }
+    }
     if (callbackUrl != null) {
         if (isFileTypeOrListOfFiles(callbackUrl)) {
             fileTypeFound = true;
@@ -118,6 +200,24 @@ public class AccountUpdateRequest {
         }
         else {
             map.put("callback_url", JSON.getDefault().getMapper().writeValueAsString(callbackUrl));
+        }
+    }
+    if (locale != null) {
+        if (isFileTypeOrListOfFiles(locale)) {
+            fileTypeFound = true;
+        }
+
+        if (locale.getClass().equals(java.io.File.class) ||
+            locale.getClass().equals(Integer.class) ||
+            locale.getClass().equals(String.class) ) {
+            map.put("locale", locale);
+        } else if (isListOfFile(locale)) {
+            for(int i = 0; i< getListSize(locale); i++) {
+                map.put("locale[" + i + "]", getFromList(locale, i));
+            }
+        }
+        else {
+            map.put("locale", JSON.getDefault().getMapper().writeValueAsString(locale));
         }
     }
     } catch (Exception e) {
