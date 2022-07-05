@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## teamAddMember
 
-> TeamGetResponse teamAddMember(teamAddMemberRequest)
+> TeamGetResponse teamAddMember(teamAddMemberRequest, teamId)
 
 Add User to Team
 
@@ -74,6 +74,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **teamAddMemberRequest** | [**TeamAddMemberRequest**](TeamAddMemberRequest.md)|  |
+ **teamId** | **String**| The id of the team. | [optional]
 
 ### Return type
 
