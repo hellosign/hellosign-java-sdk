@@ -13,11 +13,10 @@ Name | Type | Description | Notes
 | `editorOptions` | [```SubEditorOptions```](SubEditorOptions.md) |    |  |
 | `forceSignerRoles` | ```Boolean``` |  Provide users the ability to review/edit the template signer roles.  |  |
 | `forceSubjectMessage` | ```Boolean``` |  Provide users the ability to review/edit the template subject and message.  |  |
-| `mergeFields` | [```List<SubMergeField>```](SubMergeField.md) |    |  |
-| `previewOnly` | ```Boolean``` |  This allows the requester to enable the preview experience experience.<br><br>**Note**: This parameter overwrites `show_preview&#x3D;true` (if set).  |  |
+| `mergeFields` | [```List<SubMergeField>```](SubMergeField.md) |  Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array `[]`.  |  |
+| `previewOnly` | ```Boolean``` |  This allows the requester to enable the preview experience (i.e. does not allow the requester&#39;s end user to add any additional fields via the editor).<br><br>**Note**: This parameter overwrites `show_preview&#x3D;true` (if set).  |  |
 | `showPreview` | ```Boolean``` |  This allows the requester to enable the editor/preview experience.  |  |
-| `skipSignerRoles` | ```Boolean``` |  If signer roles are already provided, the user will not be prompted to edit them.<br><br>**Note**: this parameter will be deprecated in May 2020 and skipping the signer roles screen will become the default behavior. To enforce showing the signer roles screen, use the `force_signer_roles` parameter.  |  |
-| `skipSubjectMessage` | ```Boolean``` |  If the subject and message has already been provided, the user will not be prompted to edit them.<br><br>**Note**: this parameter will be deprecated in May 2020 and skipping the subject message screen will become the default behavior. To enforce showing the subject message screen, use the `force_subject_message` parameter.  |  |
+| `showProgressStepper` | ```Boolean``` |  When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.  |  |
 | `testMode` | ```Boolean``` |  Whether this is a test, locked templates will only be available for editing if this is set to `true`. Defaults to `false`.  |  |
 
 

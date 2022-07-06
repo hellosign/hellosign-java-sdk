@@ -34,7 +34,8 @@ import org.hellosign.openapi.ApiException;
  */
 @JsonPropertyOrder({
     TemplateAddUserRequest.JSON_PROPERTY_ACCOUNT_ID,
-    TemplateAddUserRequest.JSON_PROPERTY_EMAIL_ADDRESS
+    TemplateAddUserRequest.JSON_PROPERTY_EMAIL_ADDRESS,
+    TemplateAddUserRequest.JSON_PROPERTY_SKIP_NOTIFICATION
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateAddUserRequest {
@@ -43,6 +44,9 @@ public class TemplateAddUserRequest {
 
   public static final String JSON_PROPERTY_EMAIL_ADDRESS = "email_address";
   private String emailAddress;
+
+  public static final String JSON_PROPERTY_SKIP_NOTIFICATION = "skip_notification";
+  private Boolean skipNotification = false;
 
   public TemplateAddUserRequest() { 
   }
@@ -53,11 +57,11 @@ public class TemplateAddUserRequest {
   }
 
    /**
-   * The id or email address of the Account to give access to the Template. The account id prevails if both are provided.
+   * The id of the Account to give access to the Template. &lt;b&gt;Note&lt;/b&gt; The account id prevails if email address is also provided.
    * @return accountId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The id or email address of the Account to give access to the Template. The account id prevails if both are provided.")
+  @ApiModelProperty(value = "The id of the Account to give access to the Template. <b>Note</b> The account id prevails if email address is also provided.")
   @JsonProperty(JSON_PROPERTY_ACCOUNT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -79,11 +83,11 @@ public class TemplateAddUserRequest {
   }
 
    /**
-   * The id or email address of the Account to give access to the Template. The account id prevails if both are provided.
+   * The email address of the Account to give access to the Template. &lt;b&gt;Note&lt;/b&gt; The account id prevails if it is also provided.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The id or email address of the Account to give access to the Template. The account id prevails if both are provided.")
+  @ApiModelProperty(value = "The email address of the Account to give access to the Template. <b>Note</b> The account id prevails if it is also provided.")
   @JsonProperty(JSON_PROPERTY_EMAIL_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -96,6 +100,32 @@ public class TemplateAddUserRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmailAddress(String emailAddress) {
     this.emailAddress = emailAddress;
+  }
+
+
+  public TemplateAddUserRequest skipNotification(Boolean skipNotification) {
+    this.skipNotification = skipNotification;
+    return this;
+  }
+
+   /**
+   * If set to &#x60;true&#x60;, the user does not receive an email notification when a template has been shared with them. Defaults to &#x60;false&#x60;.
+   * @return skipNotification
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If set to `true`, the user does not receive an email notification when a template has been shared with them. Defaults to `false`.")
+  @JsonProperty(JSON_PROPERTY_SKIP_NOTIFICATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getSkipNotification() {
+    return skipNotification;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SKIP_NOTIFICATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSkipNotification(Boolean skipNotification) {
+    this.skipNotification = skipNotification;
   }
 
 
@@ -112,12 +142,13 @@ public class TemplateAddUserRequest {
     }
     TemplateAddUserRequest templateAddUserRequest = (TemplateAddUserRequest) o;
     return Objects.equals(this.accountId, templateAddUserRequest.accountId) &&
-        Objects.equals(this.emailAddress, templateAddUserRequest.emailAddress);
+        Objects.equals(this.emailAddress, templateAddUserRequest.emailAddress) &&
+        Objects.equals(this.skipNotification, templateAddUserRequest.skipNotification);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, emailAddress);
+    return Objects.hash(accountId, emailAddress, skipNotification);
   }
 
   @Override
@@ -126,6 +157,7 @@ public class TemplateAddUserRequest {
     sb.append("class TemplateAddUserRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+    sb.append("    skipNotification: ").append(toIndentedString(skipNotification)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -168,6 +200,24 @@ public class TemplateAddUserRequest {
         }
         else {
             map.put("email_address", JSON.getDefault().getMapper().writeValueAsString(emailAddress));
+        }
+    }
+    if (skipNotification != null) {
+        if (isFileTypeOrListOfFiles(skipNotification)) {
+            fileTypeFound = true;
+        }
+
+        if (skipNotification.getClass().equals(java.io.File.class) ||
+            skipNotification.getClass().equals(Integer.class) ||
+            skipNotification.getClass().equals(String.class) ) {
+            map.put("skip_notification", skipNotification);
+        } else if (isListOfFile(skipNotification)) {
+            for(int i = 0; i< getListSize(skipNotification); i++) {
+                map.put("skip_notification[" + i + "]", getFromList(skipNotification, i));
+            }
+        }
+        else {
+            map.put("skip_notification", JSON.getDefault().getMapper().writeValueAsString(skipNotification));
         }
     }
     } catch (Exception e) {

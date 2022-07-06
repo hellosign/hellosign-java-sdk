@@ -24,23 +24,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * BulkSendJobResponse
+ * Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.
  */
+@ApiModel(description = "Contains information about the BulkSendJob such as when it was created and how many signature requests are queued.")
 @JsonPropertyOrder({
     BulkSendJobResponse.JSON_PROPERTY_BULK_SEND_JOB_ID,
     BulkSendJobResponse.JSON_PROPERTY_TOTAL,
     BulkSendJobResponse.JSON_PROPERTY_IS_CREATOR,
-    BulkSendJobResponse.JSON_PROPERTY_CREATED_AT,
-    BulkSendJobResponse.JSON_PROPERTY_WARNINGS
+    BulkSendJobResponse.JSON_PROPERTY_CREATED_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BulkSendJobResponse {
@@ -55,9 +52,6 @@ public class BulkSendJobResponse {
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Integer createdAt;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public BulkSendJobResponse() { 
   }
@@ -94,11 +88,11 @@ public class BulkSendJobResponse {
   }
 
    /**
-   * The total amount of SignatureRequests queued for sending.
+   * The total amount of Signature Requests queued for sending.
    * @return total
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The total amount of SignatureRequests queued for sending.")
+  @ApiModelProperty(value = "The total amount of Signature Requests queued for sending.")
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -166,40 +160,6 @@ public class BulkSendJobResponse {
   }
 
 
-  public BulkSendJobResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public BulkSendJobResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   /**
    * Return true if this BulkSendJobResponse object is equal to o.
    */
@@ -215,13 +175,12 @@ public class BulkSendJobResponse {
     return Objects.equals(this.bulkSendJobId, bulkSendJobResponse.bulkSendJobId) &&
         Objects.equals(this.total, bulkSendJobResponse.total) &&
         Objects.equals(this.isCreator, bulkSendJobResponse.isCreator) &&
-        Objects.equals(this.createdAt, bulkSendJobResponse.createdAt) &&
-        Objects.equals(this.warnings, bulkSendJobResponse.warnings);
+        Objects.equals(this.createdAt, bulkSendJobResponse.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bulkSendJobId, total, isCreator, createdAt, warnings);
+    return Objects.hash(bulkSendJobId, total, isCreator, createdAt);
   }
 
   @Override
@@ -232,7 +191,6 @@ public class BulkSendJobResponse {
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    isCreator: ").append(toIndentedString(isCreator)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -311,24 +269,6 @@ public class BulkSendJobResponse {
         }
         else {
             map.put("created_at", JSON.getDefault().getMapper().writeValueAsString(createdAt));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

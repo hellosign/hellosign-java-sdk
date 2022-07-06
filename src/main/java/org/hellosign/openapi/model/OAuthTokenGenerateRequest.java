@@ -65,11 +65,11 @@ public class OAuthTokenGenerateRequest {
   }
 
    /**
-   * The client id of your app.
+   * The client id of the app requesting authorization.
    * @return clientId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The client id of your app.")
+  @ApiModelProperty(required = true, value = "The client id of the app requesting authorization.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

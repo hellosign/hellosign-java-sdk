@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import org.hellosign.openapi.model.TemplateCreateEmbeddedDraftResponseTemplate;
+import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -34,12 +37,16 @@ import org.hellosign.openapi.ApiException;
  * TemplateCreateEmbeddedDraftResponse
  */
 @JsonPropertyOrder({
-    TemplateCreateEmbeddedDraftResponse.JSON_PROPERTY_TEMPLATE
+    TemplateCreateEmbeddedDraftResponse.JSON_PROPERTY_TEMPLATE,
+    TemplateCreateEmbeddedDraftResponse.JSON_PROPERTY_WARNINGS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateCreateEmbeddedDraftResponse {
   public static final String JSON_PROPERTY_TEMPLATE = "template";
   private TemplateCreateEmbeddedDraftResponseTemplate template;
+
+  public static final String JSON_PROPERTY_WARNINGS = "warnings";
+  private List<WarningResponse> warnings = null;
 
   public TemplateCreateEmbeddedDraftResponse() { 
   }
@@ -70,6 +77,40 @@ public class TemplateCreateEmbeddedDraftResponse {
   }
 
 
+  public TemplateCreateEmbeddedDraftResponse warnings(List<WarningResponse> warnings) {
+    this.warnings = warnings;
+    return this;
+  }
+
+  public TemplateCreateEmbeddedDraftResponse addWarningsItem(WarningResponse warningsItem) {
+    if (this.warnings == null) {
+      this.warnings = new ArrayList<>();
+    }
+    this.warnings.add(warningsItem);
+    return this;
+  }
+
+   /**
+   * A list of warnings.
+   * @return warnings
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A list of warnings.")
+  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<WarningResponse> getWarnings() {
+    return warnings;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWarnings(List<WarningResponse> warnings) {
+    this.warnings = warnings;
+  }
+
+
   /**
    * Return true if this TemplateCreateEmbeddedDraftResponse object is equal to o.
    */
@@ -82,12 +123,13 @@ public class TemplateCreateEmbeddedDraftResponse {
       return false;
     }
     TemplateCreateEmbeddedDraftResponse templateCreateEmbeddedDraftResponse = (TemplateCreateEmbeddedDraftResponse) o;
-    return Objects.equals(this.template, templateCreateEmbeddedDraftResponse.template);
+    return Objects.equals(this.template, templateCreateEmbeddedDraftResponse.template) &&
+        Objects.equals(this.warnings, templateCreateEmbeddedDraftResponse.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(template);
+    return Objects.hash(template, warnings);
   }
 
   @Override
@@ -95,6 +137,7 @@ public class TemplateCreateEmbeddedDraftResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class TemplateCreateEmbeddedDraftResponse {\n");
     sb.append("    template: ").append(toIndentedString(template)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -119,6 +162,24 @@ public class TemplateCreateEmbeddedDraftResponse {
         }
         else {
             map.put("template", JSON.getDefault().getMapper().writeValueAsString(template));
+        }
+    }
+    if (warnings != null) {
+        if (isFileTypeOrListOfFiles(warnings)) {
+            fileTypeFound = true;
+        }
+
+        if (warnings.getClass().equals(java.io.File.class) ||
+            warnings.getClass().equals(Integer.class) ||
+            warnings.getClass().equals(String.class) ) {
+            map.put("warnings", warnings);
+        } else if (isListOfFile(warnings)) {
+            for(int i = 0; i< getListSize(warnings); i++) {
+                map.put("warnings[" + i + "]", getFromList(warnings, i));
+            }
+        }
+        else {
+            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

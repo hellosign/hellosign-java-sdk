@@ -30,27 +30,26 @@ import org.hellosign.openapi.model.ApiAppResponseOAuth;
 import org.hellosign.openapi.model.ApiAppResponseOptions;
 import org.hellosign.openapi.model.ApiAppResponseOwnerAccount;
 import org.hellosign.openapi.model.ApiAppResponseWhiteLabelingOptions;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * ApiAppResponse
+ * Contains information about an API App.
  */
+@ApiModel(description = "Contains information about an API App.")
 @JsonPropertyOrder({
     ApiAppResponse.JSON_PROPERTY_CALLBACK_URL,
     ApiAppResponse.JSON_PROPERTY_CLIENT_ID,
     ApiAppResponse.JSON_PROPERTY_CREATED_AT,
-    ApiAppResponse.JSON_PROPERTY_DOMAIN,
+    ApiAppResponse.JSON_PROPERTY_DOMAINS,
     ApiAppResponse.JSON_PROPERTY_NAME,
     ApiAppResponse.JSON_PROPERTY_IS_APPROVED,
     ApiAppResponse.JSON_PROPERTY_OAUTH,
     ApiAppResponse.JSON_PROPERTY_OPTIONS,
     ApiAppResponse.JSON_PROPERTY_OWNER_ACCOUNT,
-    ApiAppResponse.JSON_PROPERTY_WHITE_LABELING_OPTIONS,
-    ApiAppResponse.JSON_PROPERTY_WARNINGS
+    ApiAppResponse.JSON_PROPERTY_WHITE_LABELING_OPTIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiAppResponse {
@@ -63,8 +62,8 @@ public class ApiAppResponse {
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Integer createdAt;
 
-  public static final String JSON_PROPERTY_DOMAIN = "domain";
-  private String domain;
+  public static final String JSON_PROPERTY_DOMAINS = "domains";
+  private List<String> domains = null;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -83,9 +82,6 @@ public class ApiAppResponse {
 
   public static final String JSON_PROPERTY_WHITE_LABELING_OPTIONS = "white_labeling_options";
   private ApiAppResponseWhiteLabelingOptions whiteLabelingOptions;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public ApiAppResponse() { 
   }
@@ -122,11 +118,11 @@ public class ApiAppResponse {
   }
 
    /**
-   * The app&#39;s client ID
+   * The app&#39;s client id
    * @return clientId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The app's client ID")
+  @ApiModelProperty(value = "The app's client id")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -168,29 +164,37 @@ public class ApiAppResponse {
   }
 
 
-  public ApiAppResponse domain(String domain) {
-    this.domain = domain;
+  public ApiAppResponse domains(List<String> domains) {
+    this.domains = domains;
+    return this;
+  }
+
+  public ApiAppResponse addDomainsItem(String domainsItem) {
+    if (this.domains == null) {
+      this.domains = new ArrayList<>();
+    }
+    this.domains.add(domainsItem);
     return this;
   }
 
    /**
-   * The domain name associated with the app
-   * @return domain
+   * The domain name(s) associated with the app
+   * @return domains
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The domain name associated with the app")
-  @JsonProperty(JSON_PROPERTY_DOMAIN)
+  @ApiModelProperty(value = "The domain name(s) associated with the app")
+  @JsonProperty(JSON_PROPERTY_DOMAINS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDomain() {
-    return domain;
+  public List<String> getDomains() {
+    return domains;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DOMAIN)
+  @JsonProperty(JSON_PROPERTY_DOMAINS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDomain(String domain) {
-    this.domain = domain;
+  public void setDomains(List<String> domains) {
+    this.domains = domains;
   }
 
 
@@ -350,40 +354,6 @@ public class ApiAppResponse {
   }
 
 
-  public ApiAppResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public ApiAppResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   /**
    * Return true if this ApiAppResponse object is equal to o.
    */
@@ -399,19 +369,18 @@ public class ApiAppResponse {
     return Objects.equals(this.callbackUrl, apiAppResponse.callbackUrl) &&
         Objects.equals(this.clientId, apiAppResponse.clientId) &&
         Objects.equals(this.createdAt, apiAppResponse.createdAt) &&
-        Objects.equals(this.domain, apiAppResponse.domain) &&
+        Objects.equals(this.domains, apiAppResponse.domains) &&
         Objects.equals(this.name, apiAppResponse.name) &&
         Objects.equals(this.isApproved, apiAppResponse.isApproved) &&
         Objects.equals(this.oauth, apiAppResponse.oauth) &&
         Objects.equals(this.options, apiAppResponse.options) &&
         Objects.equals(this.ownerAccount, apiAppResponse.ownerAccount) &&
-        Objects.equals(this.whiteLabelingOptions, apiAppResponse.whiteLabelingOptions) &&
-        Objects.equals(this.warnings, apiAppResponse.warnings);
+        Objects.equals(this.whiteLabelingOptions, apiAppResponse.whiteLabelingOptions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callbackUrl, clientId, createdAt, domain, name, isApproved, oauth, options, ownerAccount, whiteLabelingOptions, warnings);
+    return Objects.hash(callbackUrl, clientId, createdAt, domains, name, isApproved, oauth, options, ownerAccount, whiteLabelingOptions);
   }
 
   @Override
@@ -421,14 +390,13 @@ public class ApiAppResponse {
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
+    sb.append("    domains: ").append(toIndentedString(domains)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    isApproved: ").append(toIndentedString(isApproved)).append("\n");
     sb.append("    oauth: ").append(toIndentedString(oauth)).append("\n");
     sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("    ownerAccount: ").append(toIndentedString(ownerAccount)).append("\n");
     sb.append("    whiteLabelingOptions: ").append(toIndentedString(whiteLabelingOptions)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -491,22 +459,22 @@ public class ApiAppResponse {
             map.put("created_at", JSON.getDefault().getMapper().writeValueAsString(createdAt));
         }
     }
-    if (domain != null) {
-        if (isFileTypeOrListOfFiles(domain)) {
+    if (domains != null) {
+        if (isFileTypeOrListOfFiles(domains)) {
             fileTypeFound = true;
         }
 
-        if (domain.getClass().equals(java.io.File.class) ||
-            domain.getClass().equals(Integer.class) ||
-            domain.getClass().equals(String.class) ) {
-            map.put("domain", domain);
-        } else if (isListOfFile(domain)) {
-            for(int i = 0; i< getListSize(domain); i++) {
-                map.put("domain[" + i + "]", getFromList(domain, i));
+        if (domains.getClass().equals(java.io.File.class) ||
+            domains.getClass().equals(Integer.class) ||
+            domains.getClass().equals(String.class) ) {
+            map.put("domains", domains);
+        } else if (isListOfFile(domains)) {
+            for(int i = 0; i< getListSize(domains); i++) {
+                map.put("domains[" + i + "]", getFromList(domains, i));
             }
         }
         else {
-            map.put("domain", JSON.getDefault().getMapper().writeValueAsString(domain));
+            map.put("domains", JSON.getDefault().getMapper().writeValueAsString(domains));
         }
     }
     if (name != null) {
@@ -615,24 +583,6 @@ public class ApiAppResponse {
         }
         else {
             map.put("white_labeling_options", JSON.getDefault().getMapper().writeValueAsString(whiteLabelingOptions));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

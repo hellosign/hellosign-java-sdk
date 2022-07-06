@@ -8,9 +8,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `apiApps` | [```List<ApiAppResponse>```](ApiAppResponse.md) |    |  |
+| `apiApps` | [```List<ApiAppResponse>```](ApiAppResponse.md) |  Contains information about API Apps.  |  |
 | `listInfo` | [```ListInfoResponse```](ListInfoResponse.md) |    |  |
-| `warnings` | [```List<WarningResponse>```](WarningResponse.md) |    |  |
+| `warnings` | [```List<WarningResponse>```](WarningResponse.md) |  A list of warnings.  |  |
 
 
 

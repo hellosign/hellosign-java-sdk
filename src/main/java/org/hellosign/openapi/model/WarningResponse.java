@@ -30,8 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * WarningResponse
+ * A list of warnings.
  */
+@ApiModel(description = "A list of warnings.")
 @JsonPropertyOrder({
     WarningResponse.JSON_PROPERTY_WARNING_MSG,
     WarningResponse.JSON_PROPERTY_WARNING_NAME
@@ -53,11 +54,11 @@ public class WarningResponse {
   }
 
    /**
-   * Get warningMsg
+   * Warning message
    * @return warningMsg
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Warning message")
   @JsonProperty(JSON_PROPERTY_WARNING_MSG)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -79,11 +80,11 @@ public class WarningResponse {
   }
 
    /**
-   * Get warningName
+   * Warning name
    * @return warningName
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Warning name")
   @JsonProperty(JSON_PROPERTY_WARNING_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

@@ -45,8 +45,7 @@ import org.hellosign.openapi.ApiException;
     EmbeddedEditUrlRequest.JSON_PROPERTY_MERGE_FIELDS,
     EmbeddedEditUrlRequest.JSON_PROPERTY_PREVIEW_ONLY,
     EmbeddedEditUrlRequest.JSON_PROPERTY_SHOW_PREVIEW,
-    EmbeddedEditUrlRequest.JSON_PROPERTY_SKIP_SIGNER_ROLES,
-    EmbeddedEditUrlRequest.JSON_PROPERTY_SKIP_SUBJECT_MESSAGE,
+    EmbeddedEditUrlRequest.JSON_PROPERTY_SHOW_PROGRESS_STEPPER,
     EmbeddedEditUrlRequest.JSON_PROPERTY_TEST_MODE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -75,11 +74,8 @@ public class EmbeddedEditUrlRequest {
   public static final String JSON_PROPERTY_SHOW_PREVIEW = "show_preview";
   private Boolean showPreview = false;
 
-  public static final String JSON_PROPERTY_SKIP_SIGNER_ROLES = "skip_signer_roles";
-  private Boolean skipSignerRoles = false;
-
-  public static final String JSON_PROPERTY_SKIP_SUBJECT_MESSAGE = "skip_subject_message";
-  private Boolean skipSubjectMessage = false;
+  public static final String JSON_PROPERTY_SHOW_PROGRESS_STEPPER = "show_progress_stepper";
+  private Boolean showProgressStepper = true;
 
   public static final String JSON_PROPERTY_TEST_MODE = "test_mode";
   private Boolean testMode = false;
@@ -239,11 +235,11 @@ public class EmbeddedEditUrlRequest {
   }
 
    /**
-   * Get mergeFields
+   * Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;.
    * @return mergeFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array `[]`.")
   @JsonProperty(JSON_PROPERTY_MERGE_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -265,11 +261,11 @@ public class EmbeddedEditUrlRequest {
   }
 
    /**
-   * This allows the requester to enable the preview experience experience.  **Note**: This parameter overwrites &#x60;show_preview&#x3D;true&#x60; (if set).
+   * This allows the requester to enable the preview experience (i.e. does not allow the requester&#39;s end user to add any additional fields via the editor).  **Note**: This parameter overwrites &#x60;show_preview&#x3D;true&#x60; (if set).
    * @return previewOnly
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "This allows the requester to enable the preview experience experience.  **Note**: This parameter overwrites `show_preview=true` (if set).")
+  @ApiModelProperty(value = "This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).  **Note**: This parameter overwrites `show_preview=true` (if set).")
   @JsonProperty(JSON_PROPERTY_PREVIEW_ONLY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -311,55 +307,29 @@ public class EmbeddedEditUrlRequest {
   }
 
 
-  public EmbeddedEditUrlRequest skipSignerRoles(Boolean skipSignerRoles) {
-    this.skipSignerRoles = skipSignerRoles;
+  public EmbeddedEditUrlRequest showProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
     return this;
   }
 
    /**
-   * If signer roles are already provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the signer roles screen will become the default behavior. To enforce showing the signer roles screen, use the &#x60;force_signer_roles&#x60; parameter.
-   * @return skipSignerRoles
+   * When only one step remains in the signature request process and this parameter is set to &#x60;false&#x60; then the progress stepper will be hidden.
+   * @return showProgressStepper
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "If signer roles are already provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the signer roles screen will become the default behavior. To enforce showing the signer roles screen, use the `force_signer_roles` parameter.")
-  @JsonProperty(JSON_PROPERTY_SKIP_SIGNER_ROLES)
+  @ApiModelProperty(value = "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.")
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getSkipSignerRoles() {
-    return skipSignerRoles;
+  public Boolean getShowProgressStepper() {
+    return showProgressStepper;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SKIP_SIGNER_ROLES)
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSkipSignerRoles(Boolean skipSignerRoles) {
-    this.skipSignerRoles = skipSignerRoles;
-  }
-
-
-  public EmbeddedEditUrlRequest skipSubjectMessage(Boolean skipSubjectMessage) {
-    this.skipSubjectMessage = skipSubjectMessage;
-    return this;
-  }
-
-   /**
-   * If the subject and message has already been provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the subject message screen will become the default behavior. To enforce showing the subject message screen, use the &#x60;force_subject_message&#x60; parameter.
-   * @return skipSubjectMessage
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "If the subject and message has already been provided, the user will not be prompted to edit them.  **Note**: this parameter will be deprecated in May 2020 and skipping the subject message screen will become the default behavior. To enforce showing the subject message screen, use the `force_subject_message` parameter.")
-  @JsonProperty(JSON_PROPERTY_SKIP_SUBJECT_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getSkipSubjectMessage() {
-    return skipSubjectMessage;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SKIP_SUBJECT_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSkipSubjectMessage(Boolean skipSubjectMessage) {
-    this.skipSubjectMessage = skipSubjectMessage;
+  public void setShowProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
   }
 
 
@@ -409,14 +379,13 @@ public class EmbeddedEditUrlRequest {
         Objects.equals(this.mergeFields, embeddedEditUrlRequest.mergeFields) &&
         Objects.equals(this.previewOnly, embeddedEditUrlRequest.previewOnly) &&
         Objects.equals(this.showPreview, embeddedEditUrlRequest.showPreview) &&
-        Objects.equals(this.skipSignerRoles, embeddedEditUrlRequest.skipSignerRoles) &&
-        Objects.equals(this.skipSubjectMessage, embeddedEditUrlRequest.skipSubjectMessage) &&
+        Objects.equals(this.showProgressStepper, embeddedEditUrlRequest.showProgressStepper) &&
         Objects.equals(this.testMode, embeddedEditUrlRequest.testMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(allowEditCcs, ccRoles, editorOptions, forceSignerRoles, forceSubjectMessage, mergeFields, previewOnly, showPreview, skipSignerRoles, skipSubjectMessage, testMode);
+    return Objects.hash(allowEditCcs, ccRoles, editorOptions, forceSignerRoles, forceSubjectMessage, mergeFields, previewOnly, showPreview, showProgressStepper, testMode);
   }
 
   @Override
@@ -431,8 +400,7 @@ public class EmbeddedEditUrlRequest {
     sb.append("    mergeFields: ").append(toIndentedString(mergeFields)).append("\n");
     sb.append("    previewOnly: ").append(toIndentedString(previewOnly)).append("\n");
     sb.append("    showPreview: ").append(toIndentedString(showPreview)).append("\n");
-    sb.append("    skipSignerRoles: ").append(toIndentedString(skipSignerRoles)).append("\n");
-    sb.append("    skipSubjectMessage: ").append(toIndentedString(skipSubjectMessage)).append("\n");
+    sb.append("    showProgressStepper: ").append(toIndentedString(showProgressStepper)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -586,40 +554,22 @@ public class EmbeddedEditUrlRequest {
             map.put("show_preview", JSON.getDefault().getMapper().writeValueAsString(showPreview));
         }
     }
-    if (skipSignerRoles != null) {
-        if (isFileTypeOrListOfFiles(skipSignerRoles)) {
+    if (showProgressStepper != null) {
+        if (isFileTypeOrListOfFiles(showProgressStepper)) {
             fileTypeFound = true;
         }
 
-        if (skipSignerRoles.getClass().equals(java.io.File.class) ||
-            skipSignerRoles.getClass().equals(Integer.class) ||
-            skipSignerRoles.getClass().equals(String.class) ) {
-            map.put("skip_signer_roles", skipSignerRoles);
-        } else if (isListOfFile(skipSignerRoles)) {
-            for(int i = 0; i< getListSize(skipSignerRoles); i++) {
-                map.put("skip_signer_roles[" + i + "]", getFromList(skipSignerRoles, i));
+        if (showProgressStepper.getClass().equals(java.io.File.class) ||
+            showProgressStepper.getClass().equals(Integer.class) ||
+            showProgressStepper.getClass().equals(String.class) ) {
+            map.put("show_progress_stepper", showProgressStepper);
+        } else if (isListOfFile(showProgressStepper)) {
+            for(int i = 0; i< getListSize(showProgressStepper); i++) {
+                map.put("show_progress_stepper[" + i + "]", getFromList(showProgressStepper, i));
             }
         }
         else {
-            map.put("skip_signer_roles", JSON.getDefault().getMapper().writeValueAsString(skipSignerRoles));
-        }
-    }
-    if (skipSubjectMessage != null) {
-        if (isFileTypeOrListOfFiles(skipSubjectMessage)) {
-            fileTypeFound = true;
-        }
-
-        if (skipSubjectMessage.getClass().equals(java.io.File.class) ||
-            skipSubjectMessage.getClass().equals(Integer.class) ||
-            skipSubjectMessage.getClass().equals(String.class) ) {
-            map.put("skip_subject_message", skipSubjectMessage);
-        } else if (isListOfFile(skipSubjectMessage)) {
-            for(int i = 0; i< getListSize(skipSubjectMessage); i++) {
-                map.put("skip_subject_message[" + i + "]", getFromList(skipSubjectMessage, i));
-            }
-        }
-        else {
-            map.put("skip_subject_message", JSON.getDefault().getMapper().writeValueAsString(skipSubjectMessage));
+            map.put("show_progress_stepper", JSON.getDefault().getMapper().writeValueAsString(showProgressStepper));
         }
     }
     if (testMode != null) {

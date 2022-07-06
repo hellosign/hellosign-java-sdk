@@ -77,11 +77,11 @@ public class SubFormFieldsPerDocumentTextMerge extends SubFormFieldsPerDocumentB
   }
 
    /**
-   * A text field that has default text set by the api. Use the &#x60;SubFormFieldsPerDocumentTextMerge&#x60; class.
+   * A text field that has default text set using pre-filled data. Use the &#x60;SubFormFieldsPerDocumentTextMerge&#x60; class.
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "A text field that has default text set by the api. Use the `SubFormFieldsPerDocumentTextMerge` class.")
+  @ApiModelProperty(required = true, value = "A text field that has default text set using pre-filled data. Use the `SubFormFieldsPerDocumentTextMerge` class.")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

@@ -45,7 +45,7 @@ public class TeamApiTest {
         TeamGetResponse expected = TestHelper.getFixtureData(TeamGetResponse.class, "default");
         ApiClient apiClient = TestHelper.setUpMock(200, expected);
         TeamApi api = new TeamApi(apiClient);
-        TeamGetResponse actual = api.teamAddMember(request);
+        TeamGetResponse actual = api.teamAddMember(request, null);
         Assert.assertEquals(expected, actual);
     }
 

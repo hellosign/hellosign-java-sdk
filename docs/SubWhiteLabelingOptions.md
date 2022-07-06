@@ -4,7 +4,7 @@
 
 An array of elements and values serialized to a string, to be used to customize the app&#39;s signer page. (Only applies to some API plans)
 
-Take a look at our [white labeling guide](https://app.hellosign.com/api/reference#WhiteLabeling) to learn more.
+Take a look at our [white labeling guide](/api/reference/white-labeling/) to learn more.
 
 ## Properties
 
@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 | `secondaryButtonTextColorHover` | ```String``` |    |  |
 | `textColor1` | ```String``` |    |  |
 | `textColor2` | ```String``` |    |  |
+| `resetToDefault` | ```Boolean``` |  Resets white labeling options to defaults. Only useful when updating an API App.  |  |
 
 
 

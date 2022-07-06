@@ -30,9 +30,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of Form Field Group objects.
+ * TemplateResponseDocumentFieldGroup
  */
-@ApiModel(description = "An array of Form Field Group objects.")
 @JsonPropertyOrder({
     TemplateResponseDocumentFieldGroup.JSON_PROPERTY_NAME,
     TemplateResponseDocumentFieldGroup.JSON_PROPERTY_RULE
@@ -80,11 +79,11 @@ public class TemplateResponseDocumentFieldGroup {
   }
 
    /**
-   * The rule used to validate checkboxes in the form field group. See [checkbox field grouping](https://app.hellosign.com/api/reference#CheckboxFieldGrouping).
+   * The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping).
    * @return rule
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The rule used to validate checkboxes in the form field group. See [checkbox field grouping](https://app.hellosign.com/api/reference#CheckboxFieldGrouping).")
+  @ApiModelProperty(value = "The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping).")
   @JsonProperty(JSON_PROPERTY_RULE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

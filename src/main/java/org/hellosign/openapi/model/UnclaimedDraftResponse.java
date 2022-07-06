@@ -24,25 +24,22 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * UnclaimedDraftResponse
+ * A group of documents that a user can take ownership of via the claim URL.
  */
+@ApiModel(description = "A group of documents that a user can take ownership of via the claim URL.")
 @JsonPropertyOrder({
     UnclaimedDraftResponse.JSON_PROPERTY_SIGNATURE_REQUEST_ID,
     UnclaimedDraftResponse.JSON_PROPERTY_CLAIM_URL,
     UnclaimedDraftResponse.JSON_PROPERTY_SIGNING_REDIRECT_URL,
     UnclaimedDraftResponse.JSON_PROPERTY_REQUESTING_REDIRECT_URL,
     UnclaimedDraftResponse.JSON_PROPERTY_EXPIRES_AT,
-    UnclaimedDraftResponse.JSON_PROPERTY_TEST_MODE,
-    UnclaimedDraftResponse.JSON_PROPERTY_WARNINGS
+    UnclaimedDraftResponse.JSON_PROPERTY_TEST_MODE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftResponse {
@@ -63,9 +60,6 @@ public class UnclaimedDraftResponse {
 
   public static final String JSON_PROPERTY_TEST_MODE = "test_mode";
   private Boolean testMode;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public UnclaimedDraftResponse() { 
   }
@@ -226,40 +220,6 @@ public class UnclaimedDraftResponse {
   }
 
 
-  public UnclaimedDraftResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public UnclaimedDraftResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-  }
-
-
   /**
    * Return true if this UnclaimedDraftResponse object is equal to o.
    */
@@ -277,13 +237,12 @@ public class UnclaimedDraftResponse {
         Objects.equals(this.signingRedirectUrl, unclaimedDraftResponse.signingRedirectUrl) &&
         Objects.equals(this.requestingRedirectUrl, unclaimedDraftResponse.requestingRedirectUrl) &&
         Objects.equals(this.expiresAt, unclaimedDraftResponse.expiresAt) &&
-        Objects.equals(this.testMode, unclaimedDraftResponse.testMode) &&
-        Objects.equals(this.warnings, unclaimedDraftResponse.warnings);
+        Objects.equals(this.testMode, unclaimedDraftResponse.testMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signatureRequestId, claimUrl, signingRedirectUrl, requestingRedirectUrl, expiresAt, testMode, warnings);
+    return Objects.hash(signatureRequestId, claimUrl, signingRedirectUrl, requestingRedirectUrl, expiresAt, testMode);
   }
 
   @Override
@@ -296,7 +255,6 @@ public class UnclaimedDraftResponse {
     sb.append("    requestingRedirectUrl: ").append(toIndentedString(requestingRedirectUrl)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -411,24 +369,6 @@ public class UnclaimedDraftResponse {
         }
         else {
             map.put("test_mode", JSON.getDefault().getMapper().writeValueAsString(testMode));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

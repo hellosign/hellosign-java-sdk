@@ -24,26 +24,30 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hellosign.openapi.model.TemplateResponseDocumentCustomFieldAvgTextLength;
+import org.hellosign.openapi.model.TemplateResponseFieldAvgTextLength;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
+ * TemplateResponseDocumentCustomField
  */
-@ApiModel(description = "An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.")
 @JsonPropertyOrder({
     TemplateResponseDocumentCustomField.JSON_PROPERTY_NAME,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_TYPE,
+    TemplateResponseDocumentCustomField.JSON_PROPERTY_SIGNER,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_X,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_Y,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_WIDTH,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_HEIGHT,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_REQUIRED,
+    TemplateResponseDocumentCustomField.JSON_PROPERTY_API_ID,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_GROUP,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_AVG_TEXT_LENGTH,
+    TemplateResponseDocumentCustomField.JSON_PROPERTY_IS_MULTILINE,
+    TemplateResponseDocumentCustomField.JSON_PROPERTY_ORIGINAL_FONT_SIZE,
+    TemplateResponseDocumentCustomField.JSON_PROPERTY_FONT_FAMILY,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_NAMED_FORM_FIELDS,
     TemplateResponseDocumentCustomField.JSON_PROPERTY_REUSABLE_FORM_ID
 })
@@ -90,6 +94,9 @@ public class TemplateResponseDocumentCustomField {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
+  public static final String JSON_PROPERTY_SIGNER = "signer";
+  private String signer;
+
   public static final String JSON_PROPERTY_X = "x";
   private Integer x;
 
@@ -105,11 +112,23 @@ public class TemplateResponseDocumentCustomField {
   public static final String JSON_PROPERTY_REQUIRED = "required";
   private Boolean required;
 
+  public static final String JSON_PROPERTY_API_ID = "api_id";
+  private String apiId;
+
   public static final String JSON_PROPERTY_GROUP = "group";
   private String group;
 
   public static final String JSON_PROPERTY_AVG_TEXT_LENGTH = "avg_text_length";
-  private TemplateResponseDocumentCustomFieldAvgTextLength avgTextLength;
+  private TemplateResponseFieldAvgTextLength avgTextLength;
+
+  public static final String JSON_PROPERTY_IS_MULTILINE = "isMultiline";
+  private Boolean isMultiline;
+
+  public static final String JSON_PROPERTY_ORIGINAL_FONT_SIZE = "originalFontSize";
+  private Integer originalFontSize;
+
+  public static final String JSON_PROPERTY_FONT_FAMILY = "fontFamily";
+  private String fontFamily;
 
   public static final String JSON_PROPERTY_NAMED_FORM_FIELDS = "named_form_fields";
   private Object namedFormFields;
@@ -169,6 +188,32 @@ public class TemplateResponseDocumentCustomField {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+
+  public TemplateResponseDocumentCustomField signer(String signer) {
+    this.signer = signer;
+    return this;
+  }
+
+   /**
+   * The signer of the Custom Field.
+   * @return signer
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The signer of the Custom Field.")
+  @JsonProperty(JSON_PROPERTY_SIGNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getSigner() {
+    return signer;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SIGNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSigner(String signer) {
+    this.signer = signer;
   }
 
 
@@ -302,6 +347,32 @@ public class TemplateResponseDocumentCustomField {
   }
 
 
+  public TemplateResponseDocumentCustomField apiId(String apiId) {
+    this.apiId = apiId;
+    return this;
+  }
+
+   /**
+   * The unique ID for this field.
+   * @return apiId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The unique ID for this field.")
+  @JsonProperty(JSON_PROPERTY_API_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getApiId() {
+    return apiId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_API_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setApiId(String apiId) {
+    this.apiId = apiId;
+  }
+
+
   public TemplateResponseDocumentCustomField group(String group) {
     this.group = group;
     return this;
@@ -328,7 +399,7 @@ public class TemplateResponseDocumentCustomField {
   }
 
 
-  public TemplateResponseDocumentCustomField avgTextLength(TemplateResponseDocumentCustomFieldAvgTextLength avgTextLength) {
+  public TemplateResponseDocumentCustomField avgTextLength(TemplateResponseFieldAvgTextLength avgTextLength) {
     this.avgTextLength = avgTextLength;
     return this;
   }
@@ -342,15 +413,93 @@ public class TemplateResponseDocumentCustomField {
   @JsonProperty(JSON_PROPERTY_AVG_TEXT_LENGTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TemplateResponseDocumentCustomFieldAvgTextLength getAvgTextLength() {
+  public TemplateResponseFieldAvgTextLength getAvgTextLength() {
     return avgTextLength;
   }
 
 
   @JsonProperty(JSON_PROPERTY_AVG_TEXT_LENGTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvgTextLength(TemplateResponseDocumentCustomFieldAvgTextLength avgTextLength) {
+  public void setAvgTextLength(TemplateResponseFieldAvgTextLength avgTextLength) {
     this.avgTextLength = avgTextLength;
+  }
+
+
+  public TemplateResponseDocumentCustomField isMultiline(Boolean isMultiline) {
+    this.isMultiline = isMultiline;
+    return this;
+  }
+
+   /**
+   * Whether this form field is multiline text.
+   * @return isMultiline
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether this form field is multiline text.")
+  @JsonProperty(JSON_PROPERTY_IS_MULTILINE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsMultiline() {
+    return isMultiline;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_MULTILINE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsMultiline(Boolean isMultiline) {
+    this.isMultiline = isMultiline;
+  }
+
+
+  public TemplateResponseDocumentCustomField originalFontSize(Integer originalFontSize) {
+    this.originalFontSize = originalFontSize;
+    return this;
+  }
+
+   /**
+   * Original font size used in this form field&#39;s text.
+   * @return originalFontSize
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Original font size used in this form field's text.")
+  @JsonProperty(JSON_PROPERTY_ORIGINAL_FONT_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getOriginalFontSize() {
+    return originalFontSize;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ORIGINAL_FONT_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOriginalFontSize(Integer originalFontSize) {
+    this.originalFontSize = originalFontSize;
+  }
+
+
+  public TemplateResponseDocumentCustomField fontFamily(String fontFamily) {
+    this.fontFamily = fontFamily;
+    return this;
+  }
+
+   /**
+   * Font family used in this form field&#39;s text.
+   * @return fontFamily
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Font family used in this form field's text.")
+  @JsonProperty(JSON_PROPERTY_FONT_FAMILY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFontFamily() {
+    return fontFamily;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FONT_FAMILY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFontFamily(String fontFamily) {
+    this.fontFamily = fontFamily;
   }
 
 
@@ -360,13 +509,13 @@ public class TemplateResponseDocumentCustomField {
   }
 
    /**
-   * Use &#x60;form_fields&#x60; under the &#x60;documents&#x60; array instead.
+   * _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
    * @return namedFormFields
    * @deprecated
   **/
   @Deprecated
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Use `form_fields` under the `documents` array instead.")
+  @ApiModelProperty(value = "_t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS")
   @JsonProperty(JSON_PROPERTY_NAMED_FORM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -424,20 +573,25 @@ public class TemplateResponseDocumentCustomField {
     TemplateResponseDocumentCustomField templateResponseDocumentCustomField = (TemplateResponseDocumentCustomField) o;
     return Objects.equals(this.name, templateResponseDocumentCustomField.name) &&
         Objects.equals(this.type, templateResponseDocumentCustomField.type) &&
+        Objects.equals(this.signer, templateResponseDocumentCustomField.signer) &&
         Objects.equals(this.x, templateResponseDocumentCustomField.x) &&
         Objects.equals(this.y, templateResponseDocumentCustomField.y) &&
         Objects.equals(this.width, templateResponseDocumentCustomField.width) &&
         Objects.equals(this.height, templateResponseDocumentCustomField.height) &&
         Objects.equals(this.required, templateResponseDocumentCustomField.required) &&
+        Objects.equals(this.apiId, templateResponseDocumentCustomField.apiId) &&
         Objects.equals(this.group, templateResponseDocumentCustomField.group) &&
         Objects.equals(this.avgTextLength, templateResponseDocumentCustomField.avgTextLength) &&
+        Objects.equals(this.isMultiline, templateResponseDocumentCustomField.isMultiline) &&
+        Objects.equals(this.originalFontSize, templateResponseDocumentCustomField.originalFontSize) &&
+        Objects.equals(this.fontFamily, templateResponseDocumentCustomField.fontFamily) &&
         Objects.equals(this.namedFormFields, templateResponseDocumentCustomField.namedFormFields) &&
         Objects.equals(this.reusableFormId, templateResponseDocumentCustomField.reusableFormId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, x, y, width, height, required, group, avgTextLength, namedFormFields, reusableFormId);
+    return Objects.hash(name, type, signer, x, y, width, height, required, apiId, group, avgTextLength, isMultiline, originalFontSize, fontFamily, namedFormFields, reusableFormId);
   }
 
   @Override
@@ -446,13 +600,18 @@ public class TemplateResponseDocumentCustomField {
     sb.append("class TemplateResponseDocumentCustomField {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    signer: ").append(toIndentedString(signer)).append("\n");
     sb.append("    x: ").append(toIndentedString(x)).append("\n");
     sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
+    sb.append("    apiId: ").append(toIndentedString(apiId)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
     sb.append("    avgTextLength: ").append(toIndentedString(avgTextLength)).append("\n");
+    sb.append("    isMultiline: ").append(toIndentedString(isMultiline)).append("\n");
+    sb.append("    originalFontSize: ").append(toIndentedString(originalFontSize)).append("\n");
+    sb.append("    fontFamily: ").append(toIndentedString(fontFamily)).append("\n");
     sb.append("    namedFormFields: ").append(toIndentedString(namedFormFields)).append("\n");
     sb.append("    reusableFormId: ").append(toIndentedString(reusableFormId)).append("\n");
     sb.append("}");
@@ -497,6 +656,24 @@ public class TemplateResponseDocumentCustomField {
         }
         else {
             map.put("type", JSON.getDefault().getMapper().writeValueAsString(type));
+        }
+    }
+    if (signer != null) {
+        if (isFileTypeOrListOfFiles(signer)) {
+            fileTypeFound = true;
+        }
+
+        if (signer.getClass().equals(java.io.File.class) ||
+            signer.getClass().equals(Integer.class) ||
+            signer.getClass().equals(String.class) ) {
+            map.put("signer", signer);
+        } else if (isListOfFile(signer)) {
+            for(int i = 0; i< getListSize(signer); i++) {
+                map.put("signer[" + i + "]", getFromList(signer, i));
+            }
+        }
+        else {
+            map.put("signer", JSON.getDefault().getMapper().writeValueAsString(signer));
         }
     }
     if (x != null) {
@@ -589,6 +766,24 @@ public class TemplateResponseDocumentCustomField {
             map.put("required", JSON.getDefault().getMapper().writeValueAsString(required));
         }
     }
+    if (apiId != null) {
+        if (isFileTypeOrListOfFiles(apiId)) {
+            fileTypeFound = true;
+        }
+
+        if (apiId.getClass().equals(java.io.File.class) ||
+            apiId.getClass().equals(Integer.class) ||
+            apiId.getClass().equals(String.class) ) {
+            map.put("api_id", apiId);
+        } else if (isListOfFile(apiId)) {
+            for(int i = 0; i< getListSize(apiId); i++) {
+                map.put("api_id[" + i + "]", getFromList(apiId, i));
+            }
+        }
+        else {
+            map.put("api_id", JSON.getDefault().getMapper().writeValueAsString(apiId));
+        }
+    }
     if (group != null) {
         if (isFileTypeOrListOfFiles(group)) {
             fileTypeFound = true;
@@ -623,6 +818,60 @@ public class TemplateResponseDocumentCustomField {
         }
         else {
             map.put("avg_text_length", JSON.getDefault().getMapper().writeValueAsString(avgTextLength));
+        }
+    }
+    if (isMultiline != null) {
+        if (isFileTypeOrListOfFiles(isMultiline)) {
+            fileTypeFound = true;
+        }
+
+        if (isMultiline.getClass().equals(java.io.File.class) ||
+            isMultiline.getClass().equals(Integer.class) ||
+            isMultiline.getClass().equals(String.class) ) {
+            map.put("isMultiline", isMultiline);
+        } else if (isListOfFile(isMultiline)) {
+            for(int i = 0; i< getListSize(isMultiline); i++) {
+                map.put("isMultiline[" + i + "]", getFromList(isMultiline, i));
+            }
+        }
+        else {
+            map.put("isMultiline", JSON.getDefault().getMapper().writeValueAsString(isMultiline));
+        }
+    }
+    if (originalFontSize != null) {
+        if (isFileTypeOrListOfFiles(originalFontSize)) {
+            fileTypeFound = true;
+        }
+
+        if (originalFontSize.getClass().equals(java.io.File.class) ||
+            originalFontSize.getClass().equals(Integer.class) ||
+            originalFontSize.getClass().equals(String.class) ) {
+            map.put("originalFontSize", originalFontSize);
+        } else if (isListOfFile(originalFontSize)) {
+            for(int i = 0; i< getListSize(originalFontSize); i++) {
+                map.put("originalFontSize[" + i + "]", getFromList(originalFontSize, i));
+            }
+        }
+        else {
+            map.put("originalFontSize", JSON.getDefault().getMapper().writeValueAsString(originalFontSize));
+        }
+    }
+    if (fontFamily != null) {
+        if (isFileTypeOrListOfFiles(fontFamily)) {
+            fileTypeFound = true;
+        }
+
+        if (fontFamily.getClass().equals(java.io.File.class) ||
+            fontFamily.getClass().equals(Integer.class) ||
+            fontFamily.getClass().equals(String.class) ) {
+            map.put("fontFamily", fontFamily);
+        } else if (isListOfFile(fontFamily)) {
+            for(int i = 0; i< getListSize(fontFamily); i++) {
+                map.put("fontFamily[" + i + "]", getFromList(fontFamily, i));
+            }
+        }
+        else {
+            map.put("fontFamily", JSON.getDefault().getMapper().writeValueAsString(fontFamily));
         }
     }
     if (namedFormFields != null) {

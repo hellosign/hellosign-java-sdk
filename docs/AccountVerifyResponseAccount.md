@@ -8,7 +8,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `emailAddress` | ```String``` |    |  |
+| `emailAddress` | ```String``` |  The email address associated with the Account.  |  |
 
 
 

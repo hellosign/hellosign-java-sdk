@@ -57,7 +57,7 @@ public class BulkSendJobApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public BulkSendJobGetResponse bulkSendJobGet(String bulkSendJobId) throws ApiException {
@@ -74,10 +74,11 @@ public class BulkSendJobApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<BulkSendJobGetResponse> bulkSendJobGetWithHttpInfo(String bulkSendJobId) throws ApiException {
+    
     Object localVarPostBody = null;
     
     // verify the required parameter 'bulkSendJobId' is set
@@ -132,7 +133,7 @@ public class BulkSendJobApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public BulkSendJobListResponse bulkSendJobList(Integer page, Integer pageSize) throws ApiException {
@@ -150,10 +151,17 @@ public class BulkSendJobApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<BulkSendJobListResponse> bulkSendJobListWithHttpInfo(Integer page, Integer pageSize) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
     Object localVarPostBody = null;
     
     // create path and map variables

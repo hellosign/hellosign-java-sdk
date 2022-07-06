@@ -54,33 +54,36 @@ public class TeamApi {
    * Add User to Team
    * Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
    * @param teamAddMemberRequest  (required)
+   * @param teamId The id of the team. (optional)
    * @return TeamGetResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public TeamGetResponse teamAddMember(TeamAddMemberRequest teamAddMemberRequest) throws ApiException {
-    return teamAddMemberWithHttpInfo(teamAddMemberRequest).getData();
+  public TeamGetResponse teamAddMember(TeamAddMemberRequest teamAddMemberRequest, String teamId) throws ApiException {
+    return teamAddMemberWithHttpInfo(teamAddMemberRequest, teamId).getData();
   }
 
   /**
    * Add User to Team
    * Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
    * @param teamAddMemberRequest  (required)
+   * @param teamId The id of the team. (optional)
    * @return ApiResponse&lt;TeamGetResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<TeamGetResponse> teamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest) throws ApiException {
+  public ApiResponse<TeamGetResponse> teamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest, String teamId) throws ApiException {
+    
     Object localVarPostBody = teamAddMemberRequest;
     
     // verify the required parameter 'teamAddMemberRequest' is set
@@ -97,6 +100,7 @@ public class TeamApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "team_id", teamId));
 
     
     
@@ -133,7 +137,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamCreate(TeamCreateRequest teamCreateRequest) throws ApiException {
@@ -150,10 +154,11 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamCreateWithHttpInfo(TeamCreateRequest teamCreateRequest) throws ApiException {
+    
     Object localVarPostBody = teamCreateRequest;
     
     // verify the required parameter 'teamCreateRequest' is set
@@ -204,7 +209,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public void teamDelete() throws ApiException {
@@ -220,10 +225,11 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<Void> teamDeleteWithHttpInfo() throws ApiException {
+    
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -268,8 +274,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamGet() throws ApiException {
@@ -285,11 +290,11 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamGetWithHttpInfo() throws ApiException {
+    
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -337,7 +342,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamRemoveMember(TeamRemoveMemberRequest teamRemoveMemberRequest) throws ApiException {
@@ -354,10 +359,11 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamRemoveMemberWithHttpInfo(TeamRemoveMemberRequest teamRemoveMemberRequest) throws ApiException {
+    
     Object localVarPostBody = teamRemoveMemberRequest;
     
     // verify the required parameter 'teamRemoveMemberRequest' is set
@@ -410,7 +416,7 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public TeamGetResponse teamUpdate(TeamUpdateRequest teamUpdateRequest) throws ApiException {
@@ -427,10 +433,11 @@ public class TeamApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 4XX </td><td> failed operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
   public ApiResponse<TeamGetResponse> teamUpdateWithHttpInfo(TeamUpdateRequest teamUpdateRequest) throws ApiException {
+    
     Object localVarPostBody = teamUpdateRequest;
     
     // verify the required parameter 'teamUpdateRequest' is set

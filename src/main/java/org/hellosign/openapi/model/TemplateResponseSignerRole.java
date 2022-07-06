@@ -30,9 +30,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
+ * TemplateResponseSignerRole
  */
-@ApiModel(description = "An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.")
 @JsonPropertyOrder({
     TemplateResponseSignerRole.JSON_PROPERTY_NAME,
     TemplateResponseSignerRole.JSON_PROPERTY_ORDER

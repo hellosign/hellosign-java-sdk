@@ -35,7 +35,9 @@ import org.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     TeamRemoveMemberRequest.JSON_PROPERTY_ACCOUNT_ID,
     TeamRemoveMemberRequest.JSON_PROPERTY_EMAIL_ADDRESS,
-    TeamRemoveMemberRequest.JSON_PROPERTY_NEW_OWNER_EMAIL_ADDRESS
+    TeamRemoveMemberRequest.JSON_PROPERTY_NEW_OWNER_EMAIL_ADDRESS,
+    TeamRemoveMemberRequest.JSON_PROPERTY_NEW_TEAM_ID,
+    TeamRemoveMemberRequest.JSON_PROPERTY_NEW_ROLE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TeamRemoveMemberRequest {
@@ -48,6 +50,51 @@ public class TeamRemoveMemberRequest {
   public static final String JSON_PROPERTY_NEW_OWNER_EMAIL_ADDRESS = "new_owner_email_address";
   private String newOwnerEmailAddress;
 
+  public static final String JSON_PROPERTY_NEW_TEAM_ID = "new_team_id";
+  private String newTeamId;
+
+  /**
+   * A new role member will take in a new Team.  **Note**: This parameter is used only if &#x60;new_team_id&#x60; is provided.
+   */
+  public enum NewRoleEnum {
+    MEMBER("Member"),
+    
+    DEVELOPER("Developer"),
+    
+    TEAM_MANAGER("Team Manager"),
+    
+    ADMIN("Admin");
+
+    private String value;
+
+    NewRoleEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NewRoleEnum fromValue(String value) {
+      for (NewRoleEnum b : NewRoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NEW_ROLE = "new_role";
+  private NewRoleEnum newRole;
+
   public TeamRemoveMemberRequest() { 
   }
 
@@ -57,11 +104,11 @@ public class TeamRemoveMemberRequest {
   }
 
    /**
-   * The ID or email address of the Account to remove from your Team. The account ID prevails if both are provided.
+   * **account_id** or **email_address** is required. If both are provided, the account id prevails.   Account id to remove from your Team.
    * @return accountId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The ID or email address of the Account to remove from your Team. The account ID prevails if both are provided.")
+  @ApiModelProperty(value = "**account_id** or **email_address** is required. If both are provided, the account id prevails.   Account id to remove from your Team.")
   @JsonProperty(JSON_PROPERTY_ACCOUNT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -83,11 +130,11 @@ public class TeamRemoveMemberRequest {
   }
 
    /**
-   * The ID or email address of the Account to remove from your Team. The account ID prevails if both are provided.
+   * **account_id** or **email_address** is required. If both are provided, the account id prevails.   Email address of the Account to remove from your Team.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The ID or email address of the Account to remove from your Team. The account ID prevails if both are provided.")
+  @ApiModelProperty(value = "**account_id** or **email_address** is required. If both are provided, the account id prevails.   Email address of the Account to remove from your Team.")
   @JsonProperty(JSON_PROPERTY_EMAIL_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -129,6 +176,58 @@ public class TeamRemoveMemberRequest {
   }
 
 
+  public TeamRemoveMemberRequest newTeamId(String newTeamId) {
+    this.newTeamId = newTeamId;
+    return this;
+  }
+
+   /**
+   * Id of the new Team.
+   * @return newTeamId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Id of the new Team.")
+  @JsonProperty(JSON_PROPERTY_NEW_TEAM_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getNewTeamId() {
+    return newTeamId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NEW_TEAM_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNewTeamId(String newTeamId) {
+    this.newTeamId = newTeamId;
+  }
+
+
+  public TeamRemoveMemberRequest newRole(NewRoleEnum newRole) {
+    this.newRole = newRole;
+    return this;
+  }
+
+   /**
+   * A new role member will take in a new Team.  **Note**: This parameter is used only if &#x60;new_team_id&#x60; is provided.
+   * @return newRole
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A new role member will take in a new Team.  **Note**: This parameter is used only if `new_team_id` is provided.")
+  @JsonProperty(JSON_PROPERTY_NEW_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public NewRoleEnum getNewRole() {
+    return newRole;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NEW_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNewRole(NewRoleEnum newRole) {
+    this.newRole = newRole;
+  }
+
+
   /**
    * Return true if this TeamRemoveMemberRequest object is equal to o.
    */
@@ -143,12 +242,14 @@ public class TeamRemoveMemberRequest {
     TeamRemoveMemberRequest teamRemoveMemberRequest = (TeamRemoveMemberRequest) o;
     return Objects.equals(this.accountId, teamRemoveMemberRequest.accountId) &&
         Objects.equals(this.emailAddress, teamRemoveMemberRequest.emailAddress) &&
-        Objects.equals(this.newOwnerEmailAddress, teamRemoveMemberRequest.newOwnerEmailAddress);
+        Objects.equals(this.newOwnerEmailAddress, teamRemoveMemberRequest.newOwnerEmailAddress) &&
+        Objects.equals(this.newTeamId, teamRemoveMemberRequest.newTeamId) &&
+        Objects.equals(this.newRole, teamRemoveMemberRequest.newRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, emailAddress, newOwnerEmailAddress);
+    return Objects.hash(accountId, emailAddress, newOwnerEmailAddress, newTeamId, newRole);
   }
 
   @Override
@@ -158,6 +259,8 @@ public class TeamRemoveMemberRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    newOwnerEmailAddress: ").append(toIndentedString(newOwnerEmailAddress)).append("\n");
+    sb.append("    newTeamId: ").append(toIndentedString(newTeamId)).append("\n");
+    sb.append("    newRole: ").append(toIndentedString(newRole)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -218,6 +321,42 @@ public class TeamRemoveMemberRequest {
         }
         else {
             map.put("new_owner_email_address", JSON.getDefault().getMapper().writeValueAsString(newOwnerEmailAddress));
+        }
+    }
+    if (newTeamId != null) {
+        if (isFileTypeOrListOfFiles(newTeamId)) {
+            fileTypeFound = true;
+        }
+
+        if (newTeamId.getClass().equals(java.io.File.class) ||
+            newTeamId.getClass().equals(Integer.class) ||
+            newTeamId.getClass().equals(String.class) ) {
+            map.put("new_team_id", newTeamId);
+        } else if (isListOfFile(newTeamId)) {
+            for(int i = 0; i< getListSize(newTeamId); i++) {
+                map.put("new_team_id[" + i + "]", getFromList(newTeamId, i));
+            }
+        }
+        else {
+            map.put("new_team_id", JSON.getDefault().getMapper().writeValueAsString(newTeamId));
+        }
+    }
+    if (newRole != null) {
+        if (isFileTypeOrListOfFiles(newRole)) {
+            fileTypeFound = true;
+        }
+
+        if (newRole.getClass().equals(java.io.File.class) ||
+            newRole.getClass().equals(Integer.class) ||
+            newRole.getClass().equals(String.class) ) {
+            map.put("new_role", newRole);
+        } else if (isListOfFile(newRole)) {
+            for(int i = 0; i< getListSize(newRole); i++) {
+                map.put("new_role[" + i + "]", getFromList(newRole, i));
+            }
+        }
+        else {
+            map.put("new_role", JSON.getDefault().getMapper().writeValueAsString(newRole));
         }
     }
     } catch (Exception e) {

@@ -45,6 +45,7 @@ import org.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_TEMPLATE_IDS,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_CLIENT_ID,
+    SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNERS,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_ALLOW_DECLINE,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_CCS,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_CUSTOM_FIELDS,
@@ -52,7 +53,6 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_FILE_URL,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_MESSAGE,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_METADATA,
-    SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNERS,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNING_OPTIONS,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SUBJECT,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_TEST_MODE,
@@ -65,6 +65,9 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
 
   public static final String JSON_PROPERTY_CLIENT_ID = "client_id";
   private String clientId;
+
+  public static final String JSON_PROPERTY_SIGNERS = "signers";
+  private List<SubSignatureRequestTemplateSigner> signers = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ALLOW_DECLINE = "allow_decline";
   private Boolean allowDecline = false;
@@ -86,9 +89,6 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = null;
-
-  public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubSignatureRequestTemplateSigner> signers = null;
 
   public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
   private SubSigningOptions signingOptions;
@@ -142,11 +142,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Client id of the app you&#39;re using to create this embedded signature request. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app you&#39;re using to create this embedded signature request. Used for security purposes.
    * @return clientId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this embedded signature request. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.")
+  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this embedded signature request. Used for security purposes.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -159,6 +159,37 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setClientId(String clientId) {
     this.clientId = clientId;
+  }
+
+
+  public SignatureRequestCreateEmbeddedWithTemplateRequest signers(List<SubSignatureRequestTemplateSigner> signers) {
+    this.signers = signers;
+    return this;
+  }
+
+  public SignatureRequestCreateEmbeddedWithTemplateRequest addSignersItem(SubSignatureRequestTemplateSigner signersItem) {
+    this.signers.add(signersItem);
+    return this;
+  }
+
+   /**
+   * Add Signers to your Templated-based Signature Request.
+   * @return signers
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Add Signers to your Templated-based Signature Request.")
+  @JsonProperty(JSON_PROPERTY_SIGNERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<SubSignatureRequestTemplateSigner> getSigners() {
+    return signers;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SIGNERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSigners(List<SubSignatureRequestTemplateSigner> signers) {
+    this.signers = signers;
   }
 
 
@@ -236,11 +267,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+   * An array defining values and options for custom fields. Required when a custom field exists in the Template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.")
+  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when a custom field exists in the Template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -270,11 +301,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -304,11 +335,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * **file_url** or **file** is required, but not both.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -381,40 +412,6 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
-  }
-
-
-  public SignatureRequestCreateEmbeddedWithTemplateRequest signers(List<SubSignatureRequestTemplateSigner> signers) {
-    this.signers = signers;
-    return this;
-  }
-
-  public SignatureRequestCreateEmbeddedWithTemplateRequest addSignersItem(SubSignatureRequestTemplateSigner signersItem) {
-    if (this.signers == null) {
-      this.signers = new ArrayList<>();
-    }
-    this.signers.add(signersItem);
-    return this;
-  }
-
-   /**
-   * Add Signers to your Templated-based Signature Request.
-   * @return signers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Add Signers to your Templated-based Signature Request.")
-  @JsonProperty(JSON_PROPERTY_SIGNERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<SubSignatureRequestTemplateSigner> getSigners() {
-    return signers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIGNERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSigners(List<SubSignatureRequestTemplateSigner> signers) {
-    this.signers = signers;
   }
 
 
@@ -536,6 +533,7 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
     SignatureRequestCreateEmbeddedWithTemplateRequest signatureRequestCreateEmbeddedWithTemplateRequest = (SignatureRequestCreateEmbeddedWithTemplateRequest) o;
     return Objects.equals(this.templateIds, signatureRequestCreateEmbeddedWithTemplateRequest.templateIds) &&
         Objects.equals(this.clientId, signatureRequestCreateEmbeddedWithTemplateRequest.clientId) &&
+        Objects.equals(this.signers, signatureRequestCreateEmbeddedWithTemplateRequest.signers) &&
         Objects.equals(this.allowDecline, signatureRequestCreateEmbeddedWithTemplateRequest.allowDecline) &&
         Objects.equals(this.ccs, signatureRequestCreateEmbeddedWithTemplateRequest.ccs) &&
         Objects.equals(this.customFields, signatureRequestCreateEmbeddedWithTemplateRequest.customFields) &&
@@ -543,7 +541,6 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
         Objects.equals(this.fileUrl, signatureRequestCreateEmbeddedWithTemplateRequest.fileUrl) &&
         Objects.equals(this.message, signatureRequestCreateEmbeddedWithTemplateRequest.message) &&
         Objects.equals(this.metadata, signatureRequestCreateEmbeddedWithTemplateRequest.metadata) &&
-        Objects.equals(this.signers, signatureRequestCreateEmbeddedWithTemplateRequest.signers) &&
         Objects.equals(this.signingOptions, signatureRequestCreateEmbeddedWithTemplateRequest.signingOptions) &&
         Objects.equals(this.subject, signatureRequestCreateEmbeddedWithTemplateRequest.subject) &&
         Objects.equals(this.testMode, signatureRequestCreateEmbeddedWithTemplateRequest.testMode) &&
@@ -552,7 +549,7 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateIds, clientId, allowDecline, ccs, customFields, file, fileUrl, message, metadata, signers, signingOptions, subject, testMode, title);
+    return Objects.hash(templateIds, clientId, signers, allowDecline, ccs, customFields, file, fileUrl, message, metadata, signingOptions, subject, testMode, title);
   }
 
   @Override
@@ -561,6 +558,7 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
     sb.append("class SignatureRequestCreateEmbeddedWithTemplateRequest {\n");
     sb.append("    templateIds: ").append(toIndentedString(templateIds)).append("\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
+    sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    allowDecline: ").append(toIndentedString(allowDecline)).append("\n");
     sb.append("    ccs: ").append(toIndentedString(ccs)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
@@ -568,7 +566,6 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    signingOptions: ").append(toIndentedString(signingOptions)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
@@ -615,6 +612,24 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
         }
         else {
             map.put("client_id", JSON.getDefault().getMapper().writeValueAsString(clientId));
+        }
+    }
+    if (signers != null) {
+        if (isFileTypeOrListOfFiles(signers)) {
+            fileTypeFound = true;
+        }
+
+        if (signers.getClass().equals(java.io.File.class) ||
+            signers.getClass().equals(Integer.class) ||
+            signers.getClass().equals(String.class) ) {
+            map.put("signers", signers);
+        } else if (isListOfFile(signers)) {
+            for(int i = 0; i< getListSize(signers); i++) {
+                map.put("signers[" + i + "]", getFromList(signers, i));
+            }
+        }
+        else {
+            map.put("signers", JSON.getDefault().getMapper().writeValueAsString(signers));
         }
     }
     if (allowDecline != null) {
@@ -741,24 +756,6 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
         }
         else {
             map.put("metadata", JSON.getDefault().getMapper().writeValueAsString(metadata));
-        }
-    }
-    if (signers != null) {
-        if (isFileTypeOrListOfFiles(signers)) {
-            fileTypeFound = true;
-        }
-
-        if (signers.getClass().equals(java.io.File.class) ||
-            signers.getClass().equals(Integer.class) ||
-            signers.getClass().equals(String.class) ) {
-            map.put("signers", signers);
-        } else if (isListOfFile(signers)) {
-            for(int i = 0; i< getListSize(signers); i++) {
-                map.put("signers[" + i + "]", getFromList(signers, i));
-            }
-        }
-        else {
-            map.put("signers", JSON.getDefault().getMapper().writeValueAsString(signers));
         }
     }
     if (signingOptions != null) {

@@ -41,7 +41,8 @@ import org.hellosign.openapi.ApiException;
     AccountResponse.JSON_PROPERTY_IS_PAID_HF,
     AccountResponse.JSON_PROPERTY_QUOTAS,
     AccountResponse.JSON_PROPERTY_CALLBACK_URL,
-    AccountResponse.JSON_PROPERTY_ROLE_CODE
+    AccountResponse.JSON_PROPERTY_ROLE_CODE,
+    AccountResponse.JSON_PROPERTY_LOCALE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AccountResponse {
@@ -69,6 +70,9 @@ public class AccountResponse {
   public static final String JSON_PROPERTY_ROLE_CODE = "role_code";
   private String roleCode;
 
+  public static final String JSON_PROPERTY_LOCALE = "locale";
+  private String locale;
+
   public AccountResponse() { 
   }
 
@@ -78,11 +82,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get accountId
+   * The ID of the Account
    * @return accountId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the Account")
   @JsonProperty(JSON_PROPERTY_ACCOUNT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -104,11 +108,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get emailAddress
+   * The email address associated with the Account.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The email address associated with the Account.")
   @JsonProperty(JSON_PROPERTY_EMAIL_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -130,11 +134,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get isLocked
+   * Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin.
    * @return isLocked
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Returns `true` if the user has been locked out of their account by a team admin.")
   @JsonProperty(JSON_PROPERTY_IS_LOCKED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -156,11 +160,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get isPaidHs
+   * Returns &#x60;true&#x60; if the user has a paid HelloSign account.
    * @return isPaidHs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloSign account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -182,11 +186,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get isPaidHf
+   * Returns &#x60;true&#x60; if the user has a paid HelloFax account.
    * @return isPaidHf
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloFax account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -234,11 +238,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get callbackUrl
+   * The URL that HelloSign events will &#x60;POST&#x60; to.
    * @return callbackUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The URL that HelloSign events will `POST` to.")
   @JsonProperty(JSON_PROPERTY_CALLBACK_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -260,11 +264,11 @@ public class AccountResponse {
   }
 
    /**
-   * Get roleCode
+   * The membership role for the team.
    * @return roleCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The membership role for the team.")
   @JsonProperty(JSON_PROPERTY_ROLE_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -277,6 +281,32 @@ public class AccountResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoleCode(String roleCode) {
     this.roleCode = roleCode;
+  }
+
+
+  public AccountResponse locale(String locale) {
+    this.locale = locale;
+    return this;
+  }
+
+   /**
+   * The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
+   * @return locale
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.")
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getLocale() {
+    return locale;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocale(String locale) {
+    this.locale = locale;
   }
 
 
@@ -299,12 +329,13 @@ public class AccountResponse {
         Objects.equals(this.isPaidHf, accountResponse.isPaidHf) &&
         Objects.equals(this.quotas, accountResponse.quotas) &&
         Objects.equals(this.callbackUrl, accountResponse.callbackUrl) &&
-        Objects.equals(this.roleCode, accountResponse.roleCode);
+        Objects.equals(this.roleCode, accountResponse.roleCode) &&
+        Objects.equals(this.locale, accountResponse.locale);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, emailAddress, isLocked, isPaidHs, isPaidHf, quotas, callbackUrl, roleCode);
+    return Objects.hash(accountId, emailAddress, isLocked, isPaidHs, isPaidHf, quotas, callbackUrl, roleCode, locale);
   }
 
   @Override
@@ -319,6 +350,7 @@ public class AccountResponse {
     sb.append("    quotas: ").append(toIndentedString(quotas)).append("\n");
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    roleCode: ").append(toIndentedString(roleCode)).append("\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -469,6 +501,24 @@ public class AccountResponse {
         }
         else {
             map.put("role_code", JSON.getDefault().getMapper().writeValueAsString(roleCode));
+        }
+    }
+    if (locale != null) {
+        if (isFileTypeOrListOfFiles(locale)) {
+            fileTypeFound = true;
+        }
+
+        if (locale.getClass().equals(java.io.File.class) ||
+            locale.getClass().equals(Integer.class) ||
+            locale.getClass().equals(String.class) ) {
+            map.put("locale", locale);
+        } else if (isListOfFile(locale)) {
+            for(int i = 0; i< getListSize(locale); i++) {
+                map.put("locale[" + i + "]", getFromList(locale, i));
+            }
+        }
+        else {
+            map.put("locale", JSON.getDefault().getMapper().writeValueAsString(locale));
         }
     }
     } catch (Exception e) {

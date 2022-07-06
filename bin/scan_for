@@ -11,7 +11,6 @@ scan_for () {
     "src/main/java/org/hellosign/openapi/api" \
     "src/main/java/org/hellosign/openapi/model" \
     "src/test/java/org/hellosign/openapi/api" \
-    "src/test/java/org/hellosign/openapi/model" \
     "README.md"
   )
 

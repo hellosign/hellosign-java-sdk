@@ -30,9 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of elements and values serialized to a string, to be used to customize the app&#39;s signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](https://app.hellosign.com/api/reference#WhiteLabeling) to learn more.
+ * An array of elements and values serialized to a string, to be used to customize the app&#39;s signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](/api/reference/white-labeling/) to learn more.
  */
-@ApiModel(description = "An array of elements and values serialized to a string, to be used to customize the app's signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](https://app.hellosign.com/api/reference#WhiteLabeling) to learn more.")
+@ApiModel(description = "An array of elements and values serialized to a string, to be used to customize the app's signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](/api/reference/white-labeling/) to learn more.")
 @JsonPropertyOrder({
     SubWhiteLabelingOptions.JSON_PROPERTY_HEADER_BACKGROUND_COLOR,
     SubWhiteLabelingOptions.JSON_PROPERTY_LEGAL_VERSION,
@@ -47,7 +47,8 @@ import org.hellosign.openapi.ApiException;
     SubWhiteLabelingOptions.JSON_PROPERTY_SECONDARY_BUTTON_TEXT_COLOR,
     SubWhiteLabelingOptions.JSON_PROPERTY_SECONDARY_BUTTON_TEXT_COLOR_HOVER,
     SubWhiteLabelingOptions.JSON_PROPERTY_TEXT_COLOR1,
-    SubWhiteLabelingOptions.JSON_PROPERTY_TEXT_COLOR2
+    SubWhiteLabelingOptions.JSON_PROPERTY_TEXT_COLOR2,
+    SubWhiteLabelingOptions.JSON_PROPERTY_RESET_TO_DEFAULT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubWhiteLabelingOptions {
@@ -127,6 +128,9 @@ public class SubWhiteLabelingOptions {
 
   public static final String JSON_PROPERTY_TEXT_COLOR2 = "text_color2";
   private String textColor2 = "#FFFFFF";
+
+  public static final String JSON_PROPERTY_RESET_TO_DEFAULT = "reset_to_default";
+  private Boolean resetToDefault;
 
   public SubWhiteLabelingOptions() { 
   }
@@ -495,6 +499,32 @@ public class SubWhiteLabelingOptions {
   }
 
 
+  public SubWhiteLabelingOptions resetToDefault(Boolean resetToDefault) {
+    this.resetToDefault = resetToDefault;
+    return this;
+  }
+
+   /**
+   * Resets white labeling options to defaults. Only useful when updating an API App.
+   * @return resetToDefault
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Resets white labeling options to defaults. Only useful when updating an API App.")
+  @JsonProperty(JSON_PROPERTY_RESET_TO_DEFAULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getResetToDefault() {
+    return resetToDefault;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_RESET_TO_DEFAULT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setResetToDefault(Boolean resetToDefault) {
+    this.resetToDefault = resetToDefault;
+  }
+
+
   /**
    * Return true if this SubWhiteLabelingOptions object is equal to o.
    */
@@ -520,12 +550,13 @@ public class SubWhiteLabelingOptions {
         Objects.equals(this.secondaryButtonTextColor, subWhiteLabelingOptions.secondaryButtonTextColor) &&
         Objects.equals(this.secondaryButtonTextColorHover, subWhiteLabelingOptions.secondaryButtonTextColorHover) &&
         Objects.equals(this.textColor1, subWhiteLabelingOptions.textColor1) &&
-        Objects.equals(this.textColor2, subWhiteLabelingOptions.textColor2);
+        Objects.equals(this.textColor2, subWhiteLabelingOptions.textColor2) &&
+        Objects.equals(this.resetToDefault, subWhiteLabelingOptions.resetToDefault);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headerBackgroundColor, legalVersion, linkColor, pageBackgroundColor, primaryButtonColor, primaryButtonColorHover, primaryButtonTextColor, primaryButtonTextColorHover, secondaryButtonColor, secondaryButtonColorHover, secondaryButtonTextColor, secondaryButtonTextColorHover, textColor1, textColor2);
+    return Objects.hash(headerBackgroundColor, legalVersion, linkColor, pageBackgroundColor, primaryButtonColor, primaryButtonColorHover, primaryButtonTextColor, primaryButtonTextColorHover, secondaryButtonColor, secondaryButtonColorHover, secondaryButtonTextColor, secondaryButtonTextColorHover, textColor1, textColor2, resetToDefault);
   }
 
   @Override
@@ -546,6 +577,7 @@ public class SubWhiteLabelingOptions {
     sb.append("    secondaryButtonTextColorHover: ").append(toIndentedString(secondaryButtonTextColorHover)).append("\n");
     sb.append("    textColor1: ").append(toIndentedString(textColor1)).append("\n");
     sb.append("    textColor2: ").append(toIndentedString(textColor2)).append("\n");
+    sb.append("    resetToDefault: ").append(toIndentedString(resetToDefault)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -804,6 +836,24 @@ public class SubWhiteLabelingOptions {
         }
         else {
             map.put("text_color2", JSON.getDefault().getMapper().writeValueAsString(textColor2));
+        }
+    }
+    if (resetToDefault != null) {
+        if (isFileTypeOrListOfFiles(resetToDefault)) {
+            fileTypeFound = true;
+        }
+
+        if (resetToDefault.getClass().equals(java.io.File.class) ||
+            resetToDefault.getClass().equals(Integer.class) ||
+            resetToDefault.getClass().equals(String.class) ) {
+            map.put("reset_to_default", resetToDefault);
+        } else if (isListOfFile(resetToDefault)) {
+            for(int i = 0; i< getListSize(resetToDefault); i++) {
+                map.put("reset_to_default[" + i + "]", getFromList(resetToDefault, i));
+            }
+        }
+        else {
+            map.put("reset_to_default", JSON.getDefault().getMapper().writeValueAsString(resetToDefault));
         }
     }
     } catch (Exception e) {

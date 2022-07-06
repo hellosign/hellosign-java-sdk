@@ -30,8 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * SubOptions
+ * Additional options supported by API App.
  */
+@ApiModel(description = "Additional options supported by API App.")
 @JsonPropertyOrder({
     SubOptions.JSON_PROPERTY_CAN_INSERT_EVERYWHERE
 })
