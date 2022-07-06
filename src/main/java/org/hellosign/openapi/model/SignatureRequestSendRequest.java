@@ -109,7 +109,7 @@ public class SignatureRequestSendRequest {
   private List<SubFormFieldRule> formFieldRules = null;
 
   public static final String JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT = "form_fields_per_document";
-  private List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument = null;
+  private List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = null;
 
   public static final String JSON_PROPERTY_HIDE_TEXT_TAGS = "hide_text_tags";
   private Boolean hideTextTags = false;
@@ -189,11 +189,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -223,11 +223,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * **file_url** or **file** is required, but not both.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -275,11 +275,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Premium plan and higher.
    * @return allowReassign
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.")
+  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.")
   @JsonProperty(JSON_PROPERTY_ALLOW_REASSIGN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -309,11 +309,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * Get attachments
+   * A list describing the attachments
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list describing the attachments")
   @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -369,11 +369,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * The client ID of the ApiApp you want to associate with this request.
+   * The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.
    * @return clientId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The client ID of the ApiApp you want to associate with this request.")
+  @ApiModelProperty(value = "The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -403,11 +403,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining pre-set values in &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+   * When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).")
+  @ApiModelProperty(value = "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -517,12 +517,12 @@ public class SignatureRequestSendRequest {
   }
 
 
-  public SignatureRequestSendRequest formFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public SignatureRequestSendRequest formFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
     return this;
   }
 
-  public SignatureRequestSendRequest addFormFieldsPerDocumentItem(List<SubFormFieldsPerDocumentBase> formFieldsPerDocumentItem) {
+  public SignatureRequestSendRequest addFormFieldsPerDocumentItem(SubFormFieldsPerDocumentBase formFieldsPerDocumentItem) {
     if (this.formFieldsPerDocument == null) {
       this.formFieldsPerDocument = new ArrayList<>();
     }
@@ -531,22 +531,22 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the &#x60;file[]&#x60; parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](https://app.hellosign.com/api/reference#FormFieldsPerDocument) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
    * @return formFieldsPerDocument
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](https://app.hellosign.com/api/reference#FormFieldsPerDocument) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<List<SubFormFieldsPerDocumentBase>> getFormFieldsPerDocument() {
+  public List<SubFormFieldsPerDocumentBase> getFormFieldsPerDocument() {
     return formFieldsPerDocument;
   }
 
 
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public void setFormFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
   }
 
@@ -557,11 +557,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * Send with a value of &#x60;true&#x60; if you wish to enable automatic Text Tag removal. Defaults to &#x60;false&#x60;. When using Text Tags it is preferred that you set this to &#x60;false&#x60; and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.
+   * Enables automatic Text Tag removal when set to true.  **NOTE**: Removing text tags this way can cause unwanted clipping. We recommend leaving this setting on &#x60;false&#x60; and instead hiding your text tags using white text or a similar approach. See the [Text Tags Walkthrough](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) for more information.
    * @return hideTextTags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Send with a value of `true` if you wish to enable automatic Text Tag removal. Defaults to `false`. When using Text Tags it is preferred that you set this to `false` and hide your tags with white text or something similar because the automatic removal system can cause unwanted clipping. See the [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) walkthrough for more details.")
+  @ApiModelProperty(value = "Enables automatic Text Tag removal when set to true.  **NOTE**: Removing text tags this way can cause unwanted clipping. We recommend leaving this setting on `false` and instead hiding your text tags using white text or a similar approach. See the [Text Tags Walkthrough](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) for more information.")
   @JsonProperty(JSON_PROPERTY_HIDE_TEXT_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

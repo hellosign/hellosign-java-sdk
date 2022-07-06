@@ -24,21 +24,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * EmbeddedEditUrlResponseEmbedded
+ * An embedded template object.
  */
+@ApiModel(description = "An embedded template object.")
 @JsonPropertyOrder({
     EmbeddedEditUrlResponseEmbedded.JSON_PROPERTY_EDIT_URL,
-    EmbeddedEditUrlResponseEmbedded.JSON_PROPERTY_EXPIRES_AT,
-    EmbeddedEditUrlResponseEmbedded.JSON_PROPERTY_WARNINGS
+    EmbeddedEditUrlResponseEmbedded.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EmbeddedEditUrlResponseEmbedded {
@@ -47,9 +44,6 @@ public class EmbeddedEditUrlResponseEmbedded {
 
   public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
   private Integer expiresAt;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public EmbeddedEditUrlResponseEmbedded() { 
   }
@@ -60,11 +54,11 @@ public class EmbeddedEditUrlResponseEmbedded {
   }
 
    /**
-   * Get editUrl
+   * A template url that can be opened in an iFrame.
    * @return editUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A template url that can be opened in an iFrame.")
   @JsonProperty(JSON_PROPERTY_EDIT_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -86,11 +80,11 @@ public class EmbeddedEditUrlResponseEmbedded {
   }
 
    /**
-   * Get expiresAt
+   * The specific time that the the &#x60;edit_url&#x60; link expires, in epoch.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The specific time that the the `edit_url` link expires, in epoch.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -103,40 +97,6 @@ public class EmbeddedEditUrlResponseEmbedded {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiresAt(Integer expiresAt) {
     this.expiresAt = expiresAt;
-  }
-
-
-  public EmbeddedEditUrlResponseEmbedded warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public EmbeddedEditUrlResponseEmbedded addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
   }
 
 
@@ -153,13 +113,12 @@ public class EmbeddedEditUrlResponseEmbedded {
     }
     EmbeddedEditUrlResponseEmbedded embeddedEditUrlResponseEmbedded = (EmbeddedEditUrlResponseEmbedded) o;
     return Objects.equals(this.editUrl, embeddedEditUrlResponseEmbedded.editUrl) &&
-        Objects.equals(this.expiresAt, embeddedEditUrlResponseEmbedded.expiresAt) &&
-        Objects.equals(this.warnings, embeddedEditUrlResponseEmbedded.warnings);
+        Objects.equals(this.expiresAt, embeddedEditUrlResponseEmbedded.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(editUrl, expiresAt, warnings);
+    return Objects.hash(editUrl, expiresAt);
   }
 
   @Override
@@ -168,7 +127,6 @@ public class EmbeddedEditUrlResponseEmbedded {
     sb.append("class EmbeddedEditUrlResponseEmbedded {\n");
     sb.append("    editUrl: ").append(toIndentedString(editUrl)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,24 +169,6 @@ public class EmbeddedEditUrlResponseEmbedded {
         }
         else {
             map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

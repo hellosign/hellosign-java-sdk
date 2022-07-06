@@ -77,11 +77,11 @@ public class SubFormFieldsPerDocumentCheckboxMerge extends SubFormFieldsPerDocum
   }
 
    /**
-   * A checkbox field that has default value set by the api. Use the &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60; class.
+   * A checkbox field that has default value set using pre-filled data. Use the &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60; class.
    * @return type
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "A checkbox field that has default value set by the api. Use the `SubFormFieldsPerDocumentCheckboxMerge` class.")
+  @ApiModelProperty(required = true, value = "A checkbox field that has default value set using pre-filled data. Use the `SubFormFieldsPerDocumentCheckboxMerge` class.")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

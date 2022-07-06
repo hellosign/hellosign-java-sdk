@@ -37,8 +37,6 @@ import org.hellosign.openapi.ApiException;
  */
 @JsonPropertyOrder({
     EventCallbackAccountRequestPayload.JSON_PROPERTY_EVENT,
-    EventCallbackAccountRequestPayload.JSON_PROPERTY_ACCOUNT_GUID,
-    EventCallbackAccountRequestPayload.JSON_PROPERTY_CLIENT_ID,
     EventCallbackAccountRequestPayload.JSON_PROPERTY_SIGNATURE_REQUEST,
     EventCallbackAccountRequestPayload.JSON_PROPERTY_TEMPLATE
 })
@@ -46,12 +44,6 @@ import org.hellosign.openapi.ApiException;
 public class EventCallbackAccountRequestPayload {
   public static final String JSON_PROPERTY_EVENT = "event";
   private EventCallbackRequestEvent event;
-
-  public static final String JSON_PROPERTY_ACCOUNT_GUID = "account_guid";
-  private String accountGuid;
-
-  public static final String JSON_PROPERTY_CLIENT_ID = "client_id";
-  private String clientId;
 
   public static final String JSON_PROPERTY_SIGNATURE_REQUEST = "signature_request";
   private SignatureRequestResponse signatureRequest;
@@ -85,62 +77,6 @@ public class EventCallbackAccountRequestPayload {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEvent(EventCallbackRequestEvent event) {
     this.event = event;
-  }
-
-
-  public EventCallbackAccountRequestPayload accountGuid(String accountGuid) {
-    this.accountGuid = accountGuid;
-    return this;
-  }
-
-   /**
-   * Get accountGuid
-   * @return accountGuid
-   * @deprecated
-  **/
-  @Deprecated
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ACCOUNT_GUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getAccountGuid() {
-    return accountGuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACCOUNT_GUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountGuid(String accountGuid) {
-    this.accountGuid = accountGuid;
-  }
-
-
-  public EventCallbackAccountRequestPayload clientId(String clientId) {
-    this.clientId = clientId;
-    return this;
-  }
-
-   /**
-   * Get clientId
-   * @return clientId
-   * @deprecated
-  **/
-  @Deprecated
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CLIENT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getClientId() {
-    return clientId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLIENT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
   }
 
 
@@ -209,15 +145,13 @@ public class EventCallbackAccountRequestPayload {
     }
     EventCallbackAccountRequestPayload eventCallbackAccountRequestPayload = (EventCallbackAccountRequestPayload) o;
     return Objects.equals(this.event, eventCallbackAccountRequestPayload.event) &&
-        Objects.equals(this.accountGuid, eventCallbackAccountRequestPayload.accountGuid) &&
-        Objects.equals(this.clientId, eventCallbackAccountRequestPayload.clientId) &&
         Objects.equals(this.signatureRequest, eventCallbackAccountRequestPayload.signatureRequest) &&
         Objects.equals(this.template, eventCallbackAccountRequestPayload.template);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, accountGuid, clientId, signatureRequest, template);
+    return Objects.hash(event, signatureRequest, template);
   }
 
   @Override
@@ -225,8 +159,6 @@ public class EventCallbackAccountRequestPayload {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventCallbackAccountRequestPayload {\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
-    sb.append("    accountGuid: ").append(toIndentedString(accountGuid)).append("\n");
-    sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    signatureRequest: ").append(toIndentedString(signatureRequest)).append("\n");
     sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("}");
@@ -253,42 +185,6 @@ public class EventCallbackAccountRequestPayload {
         }
         else {
             map.put("event", JSON.getDefault().getMapper().writeValueAsString(event));
-        }
-    }
-    if (accountGuid != null) {
-        if (isFileTypeOrListOfFiles(accountGuid)) {
-            fileTypeFound = true;
-        }
-
-        if (accountGuid.getClass().equals(java.io.File.class) ||
-            accountGuid.getClass().equals(Integer.class) ||
-            accountGuid.getClass().equals(String.class) ) {
-            map.put("account_guid", accountGuid);
-        } else if (isListOfFile(accountGuid)) {
-            for(int i = 0; i< getListSize(accountGuid); i++) {
-                map.put("account_guid[" + i + "]", getFromList(accountGuid, i));
-            }
-        }
-        else {
-            map.put("account_guid", JSON.getDefault().getMapper().writeValueAsString(accountGuid));
-        }
-    }
-    if (clientId != null) {
-        if (isFileTypeOrListOfFiles(clientId)) {
-            fileTypeFound = true;
-        }
-
-        if (clientId.getClass().equals(java.io.File.class) ||
-            clientId.getClass().equals(Integer.class) ||
-            clientId.getClass().equals(String.class) ) {
-            map.put("client_id", clientId);
-        } else if (isListOfFile(clientId)) {
-            for(int i = 0; i< getListSize(clientId); i++) {
-                map.put("client_id[" + i + "]", getFromList(clientId, i));
-            }
-        }
-        else {
-            map.put("client_id", JSON.getDefault().getMapper().writeValueAsString(clientId));
         }
     }
     if (signatureRequest != null) {

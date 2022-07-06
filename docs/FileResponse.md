@@ -8,8 +8,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `fileUrl` | ```String``` |    |  |
-| `expiresAt` | ```Integer``` |    |  |
+| `fileUrl` | ```String``` |  URL to the file.  |  |
+| `expiresAt` | ```Integer``` |  When the link expires.  |  |
 
 
 

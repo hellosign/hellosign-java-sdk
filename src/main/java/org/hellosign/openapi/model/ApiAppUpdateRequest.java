@@ -79,11 +79,11 @@ public class ApiAppUpdateRequest {
   }
 
    /**
-   * The URL at which the ApiApp should receive event callbacks.
+   * The URL at which the API App should receive event callbacks.
    * @return callbackUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The URL at which the ApiApp should receive event callbacks.")
+  @ApiModelProperty(value = "The URL at which the API App should receive event callbacks.")
   @JsonProperty(JSON_PROPERTY_CALLBACK_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

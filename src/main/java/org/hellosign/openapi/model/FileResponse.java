@@ -53,11 +53,11 @@ public class FileResponse {
   }
 
    /**
-   * Get fileUrl
+   * URL to the file.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "URL to the file.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -79,11 +79,11 @@ public class FileResponse {
   }
 
    /**
-   * Get expiresAt
+   * When the link expires.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "When the link expires.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -30,9 +30,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * The merge fields that can be placed on the template&#39;s document(s) by the user editing the template. These are typically fields that can be pre-populated by your application when using the resulting template to send a signature request. Each merge field object must have two parameters: name and type. Names must be unique and type can only be \&quot;text\&quot; or \&quot;checkbox\&quot;. Existing fields for removed merge fields will not be removed from the document, but will default to empty if no custom field is supplied with the signature request. To remove all merge fields, pass in an empty json array. For use in a POST request.
+ * SubMergeField
  */
-@ApiModel(description = "The merge fields that can be placed on the template's document(s) by the user editing the template. These are typically fields that can be pre-populated by your application when using the resulting template to send a signature request. Each merge field object must have two parameters: name and type. Names must be unique and type can only be \"text\" or \"checkbox\". Existing fields for removed merge fields will not be removed from the document, but will default to empty if no custom field is supplied with the signature request. To remove all merge fields, pass in an empty json array. For use in a POST request.")
 @JsonPropertyOrder({
     SubMergeField.JSON_PROPERTY_NAME,
     SubMergeField.JSON_PROPERTY_TYPE
@@ -43,7 +42,7 @@ public class SubMergeField {
   private String name;
 
   /**
-   * Gets or Sets type
+   * The type of merge field.
    */
   public enum TypeEnum {
     TEXT("text"),
@@ -89,13 +88,13 @@ public class SubMergeField {
   }
 
    /**
-   * Get name
+   * The name of the merge field. Must be unique.
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The name of the merge field. Must be unique.")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -103,7 +102,7 @@ public class SubMergeField {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -115,13 +114,13 @@ public class SubMergeField {
   }
 
    /**
-   * Get type
+   * The type of merge field.
    * @return type
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The type of merge field.")
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public TypeEnum getType() {
     return type;
@@ -129,7 +128,7 @@ public class SubMergeField {
 
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(TypeEnum type) {
     this.type = type;
   }

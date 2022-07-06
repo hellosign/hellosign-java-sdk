@@ -8,8 +8,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-| `accountId` | ```String``` |  The id or email address of the Account of the user to invite to your Team. The account id prevails if both are provided.  |  |
-| `emailAddress` | ```String``` |  The id or email address of the Account of the user to invite to your Team. The account id prevails if both are provided.  |  |
+| `accountId` | ```String``` |  `account_id` or `email_address` is required. If both are provided, the account id prevails. <br><br>Account id of the user to invite to your Team.  |  |
+| `emailAddress` | ```String``` |  `account_id` or `email_address` is required, If both are provided, the account id prevails. <br><br>Email address of the user to invite to your Team.  |  |
 
 
 

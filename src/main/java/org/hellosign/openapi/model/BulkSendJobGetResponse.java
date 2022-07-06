@@ -127,11 +127,11 @@ public class BulkSendJobGetResponse {
   }
 
    /**
-   * Get signatureRequests
+   * Contains information about the Signature Requests sent in bulk.
    * @return signatureRequests
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Contains information about the Signature Requests sent in bulk.")
   @JsonProperty(JSON_PROPERTY_SIGNATURE_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -161,11 +161,11 @@ public class BulkSendJobGetResponse {
   }
 
    /**
-   * Get warnings
+   * A list of warnings.
    * @return warnings
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list of warnings.")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

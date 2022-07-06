@@ -40,10 +40,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        /*
+        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        */
 
         AccountApi api = new AccountApi(defaultClient);
 
@@ -89,12 +91,12 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## accountGet
 
-> AccountGetResponse accountGet()
+> AccountGetResponse accountGet(accountId)
 
 Get Account
 
@@ -121,10 +123,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        /*
+        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        */
 
         AccountApi api = new AccountApi(defaultClient);
 
@@ -145,7 +149,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**| The ID of the Account | [optional]
 
 ### Return type
 
@@ -164,7 +171,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## accountUpdate
@@ -173,7 +180,7 @@ This endpoint does not need any parameter.
 
 Update Account
 
-Updates the properties and settings of your Account.
+Updates the properties and settings of your Account. Currently only allows for updates to the [Callback URL](/api/reference/tag/Callbacks-and-Events) and locale.
 
 ### Example
 
@@ -196,10 +203,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        /*
+        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        */
 
         AccountApi api = new AccountApi(defaultClient);
 
@@ -245,7 +254,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## accountVerify
@@ -255,8 +264,6 @@ Name | Type | Description  | Notes
 Verify Account
 
 Verifies whether an HelloSign Account exists for the given email address.
-
-**NOTE** This method is restricted to paid API users.
 
 ### Example
 
@@ -279,10 +286,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        /*
+        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        */
 
         AccountApi api = new AccountApi(defaultClient);
 
@@ -328,5 +337,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 

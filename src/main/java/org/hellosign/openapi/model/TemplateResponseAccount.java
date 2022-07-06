@@ -24,8 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.hellosign.openapi.model.TemplateResponseAccountQuota;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
@@ -33,9 +31,8 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array of the Accounts that can use this Template.
+ * TemplateResponseAccount
  */
-@ApiModel(description = "An array of the Accounts that can use this Template.")
 @JsonPropertyOrder({
     TemplateResponseAccount.JSON_PROPERTY_ACCOUNT_ID,
     TemplateResponseAccount.JSON_PROPERTY_EMAIL_ADDRESS,
@@ -62,7 +59,7 @@ public class TemplateResponseAccount {
   private Boolean isPaidHf;
 
   public static final String JSON_PROPERTY_QUOTAS = "quotas";
-  private List<TemplateResponseAccountQuota> quotas = null;
+  private TemplateResponseAccountQuota quotas;
 
   public TemplateResponseAccount() { 
   }
@@ -125,11 +122,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns true if the user has been locked out of their account by a team admin.
+   * Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin.
    * @return isLocked
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns true if the user has been locked out of their account by a team admin.")
+  @ApiModelProperty(value = "Returns `true` if the user has been locked out of their account by a team admin.")
   @JsonProperty(JSON_PROPERTY_IS_LOCKED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -151,11 +148,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns true if the user has a paid HelloSign account.
+   * Returns &#x60;true&#x60; if the user has a paid HelloSign account.
    * @return isPaidHs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns true if the user has a paid HelloSign account.")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloSign account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -177,11 +174,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns true if the user has a paid HelloFax account.
+   * Returns &#x60;true&#x60; if the user has a paid HelloFax account.
    * @return isPaidHf
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns true if the user has a paid HelloFax account.")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloFax account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -197,16 +194,8 @@ public class TemplateResponseAccount {
   }
 
 
-  public TemplateResponseAccount quotas(List<TemplateResponseAccountQuota> quotas) {
+  public TemplateResponseAccount quotas(TemplateResponseAccountQuota quotas) {
     this.quotas = quotas;
-    return this;
-  }
-
-  public TemplateResponseAccount addQuotasItem(TemplateResponseAccountQuota quotasItem) {
-    if (this.quotas == null) {
-      this.quotas = new ArrayList<>();
-    }
-    this.quotas.add(quotasItem);
     return this;
   }
 
@@ -219,14 +208,14 @@ public class TemplateResponseAccount {
   @JsonProperty(JSON_PROPERTY_QUOTAS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<TemplateResponseAccountQuota> getQuotas() {
+  public TemplateResponseAccountQuota getQuotas() {
     return quotas;
   }
 
 
   @JsonProperty(JSON_PROPERTY_QUOTAS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQuotas(List<TemplateResponseAccountQuota> quotas) {
+  public void setQuotas(TemplateResponseAccountQuota quotas) {
     this.quotas = quotas;
   }
 

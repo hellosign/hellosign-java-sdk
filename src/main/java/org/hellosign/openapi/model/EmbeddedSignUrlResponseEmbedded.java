@@ -24,21 +24,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * EmbeddedSignUrlResponseEmbedded
+ * An object that contains necessary information to set up embedded signing.
  */
+@ApiModel(description = "An object that contains necessary information to set up embedded signing.")
 @JsonPropertyOrder({
     EmbeddedSignUrlResponseEmbedded.JSON_PROPERTY_SIGN_URL,
-    EmbeddedSignUrlResponseEmbedded.JSON_PROPERTY_EXPIRES_AT,
-    EmbeddedSignUrlResponseEmbedded.JSON_PROPERTY_WARNINGS
+    EmbeddedSignUrlResponseEmbedded.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EmbeddedSignUrlResponseEmbedded {
@@ -47,9 +44,6 @@ public class EmbeddedSignUrlResponseEmbedded {
 
   public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
   private Integer expiresAt;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public EmbeddedSignUrlResponseEmbedded() { 
   }
@@ -60,11 +54,11 @@ public class EmbeddedSignUrlResponseEmbedded {
   }
 
    /**
-   * Get signUrl
+   * A signature url that can be opened in an iFrame.
    * @return signUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A signature url that can be opened in an iFrame.")
   @JsonProperty(JSON_PROPERTY_SIGN_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -86,11 +80,11 @@ public class EmbeddedSignUrlResponseEmbedded {
   }
 
    /**
-   * Get expiresAt
+   * The specific time that the the &#x60;sign_url&#x60; link expires, in epoch.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The specific time that the the `sign_url` link expires, in epoch.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -103,40 +97,6 @@ public class EmbeddedSignUrlResponseEmbedded {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiresAt(Integer expiresAt) {
     this.expiresAt = expiresAt;
-  }
-
-
-  public EmbeddedSignUrlResponseEmbedded warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public EmbeddedSignUrlResponseEmbedded addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
   }
 
 
@@ -153,13 +113,12 @@ public class EmbeddedSignUrlResponseEmbedded {
     }
     EmbeddedSignUrlResponseEmbedded embeddedSignUrlResponseEmbedded = (EmbeddedSignUrlResponseEmbedded) o;
     return Objects.equals(this.signUrl, embeddedSignUrlResponseEmbedded.signUrl) &&
-        Objects.equals(this.expiresAt, embeddedSignUrlResponseEmbedded.expiresAt) &&
-        Objects.equals(this.warnings, embeddedSignUrlResponseEmbedded.warnings);
+        Objects.equals(this.expiresAt, embeddedSignUrlResponseEmbedded.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signUrl, expiresAt, warnings);
+    return Objects.hash(signUrl, expiresAt);
   }
 
   @Override
@@ -168,7 +127,6 @@ public class EmbeddedSignUrlResponseEmbedded {
     sb.append("class EmbeddedSignUrlResponseEmbedded {\n");
     sb.append("    signUrl: ").append(toIndentedString(signUrl)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,24 +169,6 @@ public class EmbeddedSignUrlResponseEmbedded {
         }
         else {
             map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

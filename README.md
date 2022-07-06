@@ -119,10 +119,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        /*
+        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        */
 
         AccountApi api = new AccountApi(defaultClient);
 
@@ -282,7 +284,11 @@ Class | Method | HTTP request | Description
  - [SignatureRequestListResponse](docs/SignatureRequestListResponse.md)
  - [SignatureRequestRemindRequest](docs/SignatureRequestRemindRequest.md)
  - [SignatureRequestResponse](docs/SignatureRequestResponse.md)
- - [SignatureRequestResponseCustomField](docs/SignatureRequestResponseCustomField.md)
+ - [SignatureRequestResponseAttachment](docs/SignatureRequestResponseAttachment.md)
+ - [SignatureRequestResponseCustomFieldBase](docs/SignatureRequestResponseCustomFieldBase.md)
+ - [SignatureRequestResponseCustomFieldCheckbox](docs/SignatureRequestResponseCustomFieldCheckbox.md)
+ - [SignatureRequestResponseCustomFieldText](docs/SignatureRequestResponseCustomFieldText.md)
+ - [SignatureRequestResponseCustomFieldTypeEnum](docs/SignatureRequestResponseCustomFieldTypeEnum.md)
  - [SignatureRequestResponseData](docs/SignatureRequestResponseData.md)
  - [SignatureRequestResponseSignatures](docs/SignatureRequestResponseSignatures.md)
  - [SignatureRequestSendRequest](docs/SignatureRequestSendRequest.md)
@@ -342,9 +348,11 @@ Class | Method | HTTP request | Description
  - [TemplateResponseCustomField](docs/TemplateResponseCustomField.md)
  - [TemplateResponseDocument](docs/TemplateResponseDocument.md)
  - [TemplateResponseDocumentCustomField](docs/TemplateResponseDocumentCustomField.md)
- - [TemplateResponseDocumentCustomFieldAvgTextLength](docs/TemplateResponseDocumentCustomFieldAvgTextLength.md)
  - [TemplateResponseDocumentFieldGroup](docs/TemplateResponseDocumentFieldGroup.md)
  - [TemplateResponseDocumentFormField](docs/TemplateResponseDocumentFormField.md)
+ - [TemplateResponseDocumentStaticField](docs/TemplateResponseDocumentStaticField.md)
+ - [TemplateResponseFieldAvgTextLength](docs/TemplateResponseFieldAvgTextLength.md)
+ - [TemplateResponseNamedFormField](docs/TemplateResponseNamedFormField.md)
  - [TemplateResponseSignerRole](docs/TemplateResponseSignerRole.md)
  - [TemplateUpdateFilesRequest](docs/TemplateUpdateFilesRequest.md)
  - [TemplateUpdateFilesResponse](docs/TemplateUpdateFilesResponse.md)

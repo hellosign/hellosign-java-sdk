@@ -33,8 +33,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * TeamResponse
+ * Contains information about your team and its members
  */
+@ApiModel(description = "Contains information about your team and its members")
 @JsonPropertyOrder({
     TeamResponse.JSON_PROPERTY_NAME,
     TeamResponse.JSON_PROPERTY_ACCOUNTS,

@@ -70,11 +70,11 @@ public class ApiAppListResponse {
   }
 
    /**
-   * Get apiApps
+   * Contains information about API Apps.
    * @return apiApps
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Contains information about API Apps.")
   @JsonProperty(JSON_PROPERTY_API_APPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -130,11 +130,11 @@ public class ApiAppListResponse {
   }
 
    /**
-   * Get warnings
+   * A list of warnings.
    * @return warnings
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list of warnings.")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

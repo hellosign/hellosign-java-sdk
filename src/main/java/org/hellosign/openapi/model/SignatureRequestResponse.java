@@ -26,7 +26,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.hellosign.openapi.model.SignatureRequestResponseCustomField;
+import org.hellosign.openapi.model.SignatureRequestResponseAttachment;
+import org.hellosign.openapi.model.SignatureRequestResponseCustomFieldBase;
 import org.hellosign.openapi.model.SignatureRequestResponseData;
 import org.hellosign.openapi.model.SignatureRequestResponseSignatures;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -35,8 +36,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * SignatureRequestResponse
+ * Contains information about a signature request.
  */
+@ApiModel(description = "Contains information about a signature request.")
 @JsonPropertyOrder({
     SignatureRequestResponse.JSON_PROPERTY_TEST_MODE,
     SignatureRequestResponse.JSON_PROPERTY_SIGNATURE_REQUEST_ID,
@@ -50,13 +52,14 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestResponse.JSON_PROPERTY_IS_COMPLETE,
     SignatureRequestResponse.JSON_PROPERTY_IS_DECLINED,
     SignatureRequestResponse.JSON_PROPERTY_HAS_ERROR,
-    SignatureRequestResponse.JSON_PROPERTY_FINAL_COPY_URI,
     SignatureRequestResponse.JSON_PROPERTY_FILES_URL,
     SignatureRequestResponse.JSON_PROPERTY_SIGNING_URL,
     SignatureRequestResponse.JSON_PROPERTY_DETAILS_URL,
     SignatureRequestResponse.JSON_PROPERTY_CC_EMAIL_ADDRESSES,
     SignatureRequestResponse.JSON_PROPERTY_SIGNING_REDIRECT_URL,
+    SignatureRequestResponse.JSON_PROPERTY_TEMPLATE_IDS,
     SignatureRequestResponse.JSON_PROPERTY_CUSTOM_FIELDS,
+    SignatureRequestResponse.JSON_PROPERTY_ATTACHMENTS,
     SignatureRequestResponse.JSON_PROPERTY_RESPONSE_DATA,
     SignatureRequestResponse.JSON_PROPERTY_SIGNATURES
 })
@@ -98,9 +101,6 @@ public class SignatureRequestResponse {
   public static final String JSON_PROPERTY_HAS_ERROR = "has_error";
   private Boolean hasError;
 
-  public static final String JSON_PROPERTY_FINAL_COPY_URI = "final_copy_uri";
-  private String finalCopyUri;
-
   public static final String JSON_PROPERTY_FILES_URL = "files_url";
   private String filesUrl;
 
@@ -116,8 +116,14 @@ public class SignatureRequestResponse {
   public static final String JSON_PROPERTY_SIGNING_REDIRECT_URL = "signing_redirect_url";
   private String signingRedirectUrl;
 
+  public static final String JSON_PROPERTY_TEMPLATE_IDS = "template_ids";
+  private List<String> templateIds = null;
+
   public static final String JSON_PROPERTY_CUSTOM_FIELDS = "custom_fields";
-  private List<SignatureRequestResponseCustomField> customFields = null;
+  private List<SignatureRequestResponseCustomFieldBase> customFields = null;
+
+  public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
+  private List<SignatureRequestResponseAttachment> attachments = null;
 
   public static final String JSON_PROPERTY_RESPONSE_DATA = "response_data";
   private List<SignatureRequestResponseData> responseData = null;
@@ -440,32 +446,6 @@ public class SignatureRequestResponse {
   }
 
 
-  public SignatureRequestResponse finalCopyUri(String finalCopyUri) {
-    this.finalCopyUri = finalCopyUri;
-    return this;
-  }
-
-   /**
-   * (Deprecated) The relative URI where the PDF copy of the finalized documents can be downloaded. Only present when &#x60;is_complete &#x3D; true&#x60;. This will be removed at some point; use the files_url instead.
-   * @return finalCopyUri
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "(Deprecated) The relative URI where the PDF copy of the finalized documents can be downloaded. Only present when `is_complete = true`. This will be removed at some point; use the files_url instead.")
-  @JsonProperty(JSON_PROPERTY_FINAL_COPY_URI)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFinalCopyUri() {
-    return finalCopyUri;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FINAL_COPY_URI)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFinalCopyUri(String finalCopyUri) {
-    this.finalCopyUri = finalCopyUri;
-  }
-
-
   public SignatureRequestResponse filesUrl(String filesUrl) {
     this.filesUrl = filesUrl;
     return this;
@@ -604,12 +584,46 @@ public class SignatureRequestResponse {
   }
 
 
-  public SignatureRequestResponse customFields(List<SignatureRequestResponseCustomField> customFields) {
+  public SignatureRequestResponse templateIds(List<String> templateIds) {
+    this.templateIds = templateIds;
+    return this;
+  }
+
+  public SignatureRequestResponse addTemplateIdsItem(String templateIdsItem) {
+    if (this.templateIds == null) {
+      this.templateIds = new ArrayList<>();
+    }
+    this.templateIds.add(templateIdsItem);
+    return this;
+  }
+
+   /**
+   * Templates IDs used in this SignatureRequest (if any).
+   * @return templateIds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Templates IDs used in this SignatureRequest (if any).")
+  @JsonProperty(JSON_PROPERTY_TEMPLATE_IDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getTemplateIds() {
+    return templateIds;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TEMPLATE_IDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateIds(List<String> templateIds) {
+    this.templateIds = templateIds;
+  }
+
+
+  public SignatureRequestResponse customFields(List<SignatureRequestResponseCustomFieldBase> customFields) {
     this.customFields = customFields;
     return this;
   }
 
-  public SignatureRequestResponse addCustomFieldsItem(SignatureRequestResponseCustomField customFieldsItem) {
+  public SignatureRequestResponse addCustomFieldsItem(SignatureRequestResponseCustomFieldBase customFieldsItem) {
     if (this.customFields == null) {
       this.customFields = new ArrayList<>();
     }
@@ -618,23 +632,57 @@ public class SignatureRequestResponse {
   }
 
    /**
-   * Get customFields
+   * An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses &#x60;SignatureRequestResponseCustomFieldText&#x60; * Checkbox Field uses &#x60;SignatureRequestResponseCustomFieldCheckbox&#x60;
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses `SignatureRequestResponseCustomFieldText` * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SignatureRequestResponseCustomField> getCustomFields() {
+  public List<SignatureRequestResponseCustomFieldBase> getCustomFields() {
     return customFields;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomFields(List<SignatureRequestResponseCustomField> customFields) {
+  public void setCustomFields(List<SignatureRequestResponseCustomFieldBase> customFields) {
     this.customFields = customFields;
+  }
+
+
+  public SignatureRequestResponse attachments(List<SignatureRequestResponseAttachment> attachments) {
+    this.attachments = attachments;
+    return this;
+  }
+
+  public SignatureRequestResponse addAttachmentsItem(SignatureRequestResponseAttachment attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
+    }
+    this.attachments.add(attachmentsItem);
+    return this;
+  }
+
+   /**
+   * Signer attachments.
+   * @return attachments
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Signer attachments.")
+  @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<SignatureRequestResponseAttachment> getAttachments() {
+    return attachments;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttachments(List<SignatureRequestResponseAttachment> attachments) {
+    this.attachments = attachments;
   }
 
 
@@ -652,11 +700,11 @@ public class SignatureRequestResponse {
   }
 
    /**
-   * Get responseData
+   * An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
    * @return responseData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.")
   @JsonProperty(JSON_PROPERTY_RESPONSE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -686,11 +734,11 @@ public class SignatureRequestResponse {
   }
 
    /**
-   * Get signatures
+   * An array of signature objects, 1 for each signer.
    * @return signatures
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of signature objects, 1 for each signer.")
   @JsonProperty(JSON_PROPERTY_SIGNATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -730,20 +778,21 @@ public class SignatureRequestResponse {
         Objects.equals(this.isComplete, signatureRequestResponse.isComplete) &&
         Objects.equals(this.isDeclined, signatureRequestResponse.isDeclined) &&
         Objects.equals(this.hasError, signatureRequestResponse.hasError) &&
-        Objects.equals(this.finalCopyUri, signatureRequestResponse.finalCopyUri) &&
         Objects.equals(this.filesUrl, signatureRequestResponse.filesUrl) &&
         Objects.equals(this.signingUrl, signatureRequestResponse.signingUrl) &&
         Objects.equals(this.detailsUrl, signatureRequestResponse.detailsUrl) &&
         Objects.equals(this.ccEmailAddresses, signatureRequestResponse.ccEmailAddresses) &&
         Objects.equals(this.signingRedirectUrl, signatureRequestResponse.signingRedirectUrl) &&
+        Objects.equals(this.templateIds, signatureRequestResponse.templateIds) &&
         Objects.equals(this.customFields, signatureRequestResponse.customFields) &&
+        Objects.equals(this.attachments, signatureRequestResponse.attachments) &&
         Objects.equals(this.responseData, signatureRequestResponse.responseData) &&
         Objects.equals(this.signatures, signatureRequestResponse.signatures);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, finalCopyUri, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, customFields, responseData, signatures);
+    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, templateIds, customFields, attachments, responseData, signatures);
   }
 
   @Override
@@ -762,13 +811,14 @@ public class SignatureRequestResponse {
     sb.append("    isComplete: ").append(toIndentedString(isComplete)).append("\n");
     sb.append("    isDeclined: ").append(toIndentedString(isDeclined)).append("\n");
     sb.append("    hasError: ").append(toIndentedString(hasError)).append("\n");
-    sb.append("    finalCopyUri: ").append(toIndentedString(finalCopyUri)).append("\n");
     sb.append("    filesUrl: ").append(toIndentedString(filesUrl)).append("\n");
     sb.append("    signingUrl: ").append(toIndentedString(signingUrl)).append("\n");
     sb.append("    detailsUrl: ").append(toIndentedString(detailsUrl)).append("\n");
     sb.append("    ccEmailAddresses: ").append(toIndentedString(ccEmailAddresses)).append("\n");
     sb.append("    signingRedirectUrl: ").append(toIndentedString(signingRedirectUrl)).append("\n");
+    sb.append("    templateIds: ").append(toIndentedString(templateIds)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    responseData: ").append(toIndentedString(responseData)).append("\n");
     sb.append("    signatures: ").append(toIndentedString(signatures)).append("\n");
     sb.append("}");
@@ -995,24 +1045,6 @@ public class SignatureRequestResponse {
             map.put("has_error", JSON.getDefault().getMapper().writeValueAsString(hasError));
         }
     }
-    if (finalCopyUri != null) {
-        if (isFileTypeOrListOfFiles(finalCopyUri)) {
-            fileTypeFound = true;
-        }
-
-        if (finalCopyUri.getClass().equals(java.io.File.class) ||
-            finalCopyUri.getClass().equals(Integer.class) ||
-            finalCopyUri.getClass().equals(String.class) ) {
-            map.put("final_copy_uri", finalCopyUri);
-        } else if (isListOfFile(finalCopyUri)) {
-            for(int i = 0; i< getListSize(finalCopyUri); i++) {
-                map.put("final_copy_uri[" + i + "]", getFromList(finalCopyUri, i));
-            }
-        }
-        else {
-            map.put("final_copy_uri", JSON.getDefault().getMapper().writeValueAsString(finalCopyUri));
-        }
-    }
     if (filesUrl != null) {
         if (isFileTypeOrListOfFiles(filesUrl)) {
             fileTypeFound = true;
@@ -1103,6 +1135,24 @@ public class SignatureRequestResponse {
             map.put("signing_redirect_url", JSON.getDefault().getMapper().writeValueAsString(signingRedirectUrl));
         }
     }
+    if (templateIds != null) {
+        if (isFileTypeOrListOfFiles(templateIds)) {
+            fileTypeFound = true;
+        }
+
+        if (templateIds.getClass().equals(java.io.File.class) ||
+            templateIds.getClass().equals(Integer.class) ||
+            templateIds.getClass().equals(String.class) ) {
+            map.put("template_ids", templateIds);
+        } else if (isListOfFile(templateIds)) {
+            for(int i = 0; i< getListSize(templateIds); i++) {
+                map.put("template_ids[" + i + "]", getFromList(templateIds, i));
+            }
+        }
+        else {
+            map.put("template_ids", JSON.getDefault().getMapper().writeValueAsString(templateIds));
+        }
+    }
     if (customFields != null) {
         if (isFileTypeOrListOfFiles(customFields)) {
             fileTypeFound = true;
@@ -1119,6 +1169,24 @@ public class SignatureRequestResponse {
         }
         else {
             map.put("custom_fields", JSON.getDefault().getMapper().writeValueAsString(customFields));
+        }
+    }
+    if (attachments != null) {
+        if (isFileTypeOrListOfFiles(attachments)) {
+            fileTypeFound = true;
+        }
+
+        if (attachments.getClass().equals(java.io.File.class) ||
+            attachments.getClass().equals(Integer.class) ||
+            attachments.getClass().equals(String.class) ) {
+            map.put("attachments", attachments);
+        } else if (isListOfFile(attachments)) {
+            for(int i = 0; i< getListSize(attachments); i++) {
+                map.put("attachments[" + i + "]", getFromList(attachments, i));
+            }
+        }
+        else {
+            map.put("attachments", JSON.getDefault().getMapper().writeValueAsString(attachments));
         }
     }
     if (responseData != null) {

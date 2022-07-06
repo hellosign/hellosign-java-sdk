@@ -46,6 +46,7 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_SIGNER_LIST,
     SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_ALLOW_DECLINE,
     SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_CCS,
+    SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_CLIENT_ID,
     SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_CUSTOM_FIELDS,
     SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_MESSAGE,
     SignatureRequestBulkSendWithTemplateRequest.JSON_PROPERTY_METADATA,
@@ -70,6 +71,9 @@ public class SignatureRequestBulkSendWithTemplateRequest {
 
   public static final String JSON_PROPERTY_CCS = "ccs";
   private List<SubCC> ccs = null;
+
+  public static final String JSON_PROPERTY_CLIENT_ID = "client_id";
+  private String clientId;
 
   public static final String JSON_PROPERTY_CUSTOM_FIELDS = "custom_fields";
   private List<SubCustomField> customFields = null;
@@ -246,6 +250,32 @@ public class SignatureRequestBulkSendWithTemplateRequest {
   }
 
 
+  public SignatureRequestBulkSendWithTemplateRequest clientId(String clientId) {
+    this.clientId = clientId;
+    return this;
+  }
+
+   /**
+   * The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.
+   * @return clientId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.")
+  @JsonProperty(JSON_PROPERTY_CLIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getClientId() {
+    return clientId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CLIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClientId(String clientId) {
+    this.clientId = clientId;
+  }
+
+
   public SignatureRequestBulkSendWithTemplateRequest customFields(List<SubCustomField> customFields) {
     this.customFields = customFields;
     return this;
@@ -260,11 +290,11 @@ public class SignatureRequestBulkSendWithTemplateRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining pre-set values in &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+   * When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).")
+  @ApiModelProperty(value = "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -461,6 +491,7 @@ public class SignatureRequestBulkSendWithTemplateRequest {
         Objects.equals(this.signerList, signatureRequestBulkSendWithTemplateRequest.signerList) &&
         Objects.equals(this.allowDecline, signatureRequestBulkSendWithTemplateRequest.allowDecline) &&
         Objects.equals(this.ccs, signatureRequestBulkSendWithTemplateRequest.ccs) &&
+        Objects.equals(this.clientId, signatureRequestBulkSendWithTemplateRequest.clientId) &&
         Objects.equals(this.customFields, signatureRequestBulkSendWithTemplateRequest.customFields) &&
         Objects.equals(this.message, signatureRequestBulkSendWithTemplateRequest.message) &&
         Objects.equals(this.metadata, signatureRequestBulkSendWithTemplateRequest.metadata) &&
@@ -472,7 +503,7 @@ public class SignatureRequestBulkSendWithTemplateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateIds, signerFile, signerList, allowDecline, ccs, customFields, message, metadata, signingRedirectUrl, subject, testMode, title);
+    return Objects.hash(templateIds, signerFile, signerList, allowDecline, ccs, clientId, customFields, message, metadata, signingRedirectUrl, subject, testMode, title);
   }
 
   @Override
@@ -484,6 +515,7 @@ public class SignatureRequestBulkSendWithTemplateRequest {
     sb.append("    signerList: ").append(toIndentedString(signerList)).append("\n");
     sb.append("    allowDecline: ").append(toIndentedString(allowDecline)).append("\n");
     sb.append("    ccs: ").append(toIndentedString(ccs)).append("\n");
+    sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
@@ -587,6 +619,24 @@ public class SignatureRequestBulkSendWithTemplateRequest {
         }
         else {
             map.put("ccs", JSON.getDefault().getMapper().writeValueAsString(ccs));
+        }
+    }
+    if (clientId != null) {
+        if (isFileTypeOrListOfFiles(clientId)) {
+            fileTypeFound = true;
+        }
+
+        if (clientId.getClass().equals(java.io.File.class) ||
+            clientId.getClass().equals(Integer.class) ||
+            clientId.getClass().equals(String.class) ) {
+            map.put("client_id", clientId);
+        } else if (isListOfFile(clientId)) {
+            for(int i = 0; i< getListSize(clientId); i++) {
+                map.put("client_id[" + i + "]", getFromList(clientId, i));
+            }
+        }
+        else {
+            map.put("client_id", JSON.getDefault().getMapper().writeValueAsString(clientId));
         }
     }
     if (customFields != null) {

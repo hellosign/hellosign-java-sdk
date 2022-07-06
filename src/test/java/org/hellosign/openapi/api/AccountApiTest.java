@@ -58,7 +58,7 @@ public class AccountApiTest {
         AccountGetResponse expected = TestHelper.getFixtureData(AccountGetResponse.class, "default");
         ApiClient apiClient = TestHelper.setUpMock(200, expected);
         AccountApi accountApi = new AccountApi(apiClient);
-        AccountGetResponse actual = accountApi.accountGet();
+        AccountGetResponse actual = accountApi.accountGet(null);
         Assert.assertEquals(expected, actual);
     }
 

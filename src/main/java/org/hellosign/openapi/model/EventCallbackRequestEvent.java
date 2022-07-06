@@ -31,8 +31,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * EventCallbackRequestEvent
+ * Basic information about the event that occurred.
  */
+@ApiModel(description = "Basic information about the event that occurred.")
 @JsonPropertyOrder({
     EventCallbackRequestEvent.JSON_PROPERTY_EVENT_TIME,
     EventCallbackRequestEvent.JSON_PROPERTY_EVENT_TYPE,
@@ -45,7 +46,7 @@ public class EventCallbackRequestEvent {
   private String eventTime;
 
   /**
-   * Gets or Sets eventType
+   * Type of callback event that was triggered.
    */
   public enum EventTypeEnum {
     ACCOUNT_CONFIRMED("account_confirmed"),
@@ -133,11 +134,11 @@ public class EventCallbackRequestEvent {
   }
 
    /**
-   * Get eventTime
+   * Time the event was created (using Unix time).
    * @return eventTime
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Time the event was created (using Unix time).")
   @JsonProperty(JSON_PROPERTY_EVENT_TIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -159,11 +160,11 @@ public class EventCallbackRequestEvent {
   }
 
    /**
-   * Get eventType
+   * Type of callback event that was triggered.
    * @return eventType
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Type of callback event that was triggered.")
   @JsonProperty(JSON_PROPERTY_EVENT_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -185,11 +186,11 @@ public class EventCallbackRequestEvent {
   }
 
    /**
-   * Get eventHash
+   * Generated hash used to verify source of event data.
    * @return eventHash
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Generated hash used to verify source of event data.")
   @JsonProperty(JSON_PROPERTY_EVENT_HASH)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

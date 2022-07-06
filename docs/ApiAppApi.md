@@ -46,10 +46,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         ApiAppApi api = new ApiAppApi(defaultClient);
 
@@ -109,7 +111,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## apiAppDelete
@@ -141,10 +143,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         ApiAppApi api = new ApiAppApi(defaultClient);
 
@@ -168,7 +172,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String**| The client id of the ApiApp to delete. |
+ **clientId** | **String**| The client id of the API App to delete. |
 
 ### Return type
 
@@ -187,7 +191,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## apiAppGet
@@ -219,10 +223,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         ApiAppApi api = new ApiAppApi(defaultClient);
 
@@ -247,7 +253,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String**| The client ID of the ApiApp to retrieve. |
+ **clientId** | **String**| The client id of the API App to retrieve. |
 
 ### Return type
 
@@ -266,7 +272,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## apiAppList
@@ -298,10 +304,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         ApiAppApi api = new ApiAppApi(defaultClient);
 
@@ -327,7 +335,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Integer**| Which page number of the ApiApp List to return. Defaults to `1`. | [optional] [default to 1]
+ **page** | **Integer**| Which page number of the API App List to return. Defaults to `1`. | [optional] [default to 1]
  **pageSize** | **Integer**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20]
 
 ### Return type
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## apiAppUpdate
@@ -384,10 +392,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         ApiAppApi api = new ApiAppApi(defaultClient);
 
@@ -429,7 +439,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String**| The client ID of the ApiApp to update. |
+ **clientId** | **String**| The client id of the API App to update. |
  **apiAppUpdateRequest** | [**ApiAppUpdateRequest**](ApiAppUpdateRequest.md)|  |
 
 ### Return type
@@ -449,5 +459,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 

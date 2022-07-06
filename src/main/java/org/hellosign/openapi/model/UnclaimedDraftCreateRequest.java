@@ -46,11 +46,13 @@ import org.hellosign.openapi.ApiException;
  * UnclaimedDraftCreateRequest
  */
 @JsonPropertyOrder({
+    UnclaimedDraftCreateRequest.JSON_PROPERTY_TYPE,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_FILE,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_FILE_URL,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_ALLOW_DECLINE,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_ATTACHMENTS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_CC_EMAIL_ADDRESSES,
+    UnclaimedDraftCreateRequest.JSON_PROPERTY_CLIENT_ID,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_CUSTOM_FIELDS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_FIELD_OPTIONS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_FORM_FIELD_GROUPS,
@@ -59,71 +61,17 @@ import org.hellosign.openapi.ApiException;
     UnclaimedDraftCreateRequest.JSON_PROPERTY_HIDE_TEXT_TAGS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_MESSAGE,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_METADATA,
+    UnclaimedDraftCreateRequest.JSON_PROPERTY_SHOW_PROGRESS_STEPPER,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_SIGNERS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_SIGNING_OPTIONS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_SIGNING_REDIRECT_URL,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_SUBJECT,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_TEST_MODE,
-    UnclaimedDraftCreateRequest.JSON_PROPERTY_TYPE,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_USE_PREEXISTING_FIELDS,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_USE_TEXT_TAGS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftCreateRequest {
-  public static final String JSON_PROPERTY_FILE = "file";
-  private List<File> file = null;
-
-  public static final String JSON_PROPERTY_FILE_URL = "file_url";
-  private List<String> fileUrl = null;
-
-  public static final String JSON_PROPERTY_ALLOW_DECLINE = "allow_decline";
-  private Boolean allowDecline = false;
-
-  public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
-  private List<SubAttachment> attachments = null;
-
-  public static final String JSON_PROPERTY_CC_EMAIL_ADDRESSES = "cc_email_addresses";
-  private List<String> ccEmailAddresses = null;
-
-  public static final String JSON_PROPERTY_CUSTOM_FIELDS = "custom_fields";
-  private List<SubCustomField> customFields = null;
-
-  public static final String JSON_PROPERTY_FIELD_OPTIONS = "field_options";
-  private SubFieldOptions fieldOptions;
-
-  public static final String JSON_PROPERTY_FORM_FIELD_GROUPS = "form_field_groups";
-  private List<SubFormFieldGroup> formFieldGroups = null;
-
-  public static final String JSON_PROPERTY_FORM_FIELD_RULES = "form_field_rules";
-  private List<SubFormFieldRule> formFieldRules = null;
-
-  public static final String JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT = "form_fields_per_document";
-  private List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument = null;
-
-  public static final String JSON_PROPERTY_HIDE_TEXT_TAGS = "hide_text_tags";
-  private Boolean hideTextTags = false;
-
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  private String message;
-
-  public static final String JSON_PROPERTY_METADATA = "metadata";
-  private Map<String, Object> metadata = null;
-
-  public static final String JSON_PROPERTY_SIGNERS = "signers";
-  private List<SubUnclaimedDraftSigner> signers = null;
-
-  public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
-  private SubSigningOptions signingOptions;
-
-  public static final String JSON_PROPERTY_SIGNING_REDIRECT_URL = "signing_redirect_url";
-  private String signingRedirectUrl;
-
-  public static final String JSON_PROPERTY_SUBJECT = "subject";
-  private String subject;
-
-  public static final String JSON_PROPERTY_TEST_MODE = "test_mode";
-  private Boolean testMode = false;
-
   /**
    * The type of unclaimed draft to create. Use &#x60;send_document&#x60; to create a claimable file, and &#x60;request_signature&#x60; for a claimable signature request. If the type is &#x60;request_signature&#x60; then signers name and email_address are not optional.
    */
@@ -162,6 +110,66 @@ public class UnclaimedDraftCreateRequest {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
+  public static final String JSON_PROPERTY_FILE = "file";
+  private List<File> file = null;
+
+  public static final String JSON_PROPERTY_FILE_URL = "file_url";
+  private List<String> fileUrl = null;
+
+  public static final String JSON_PROPERTY_ALLOW_DECLINE = "allow_decline";
+  private Boolean allowDecline = false;
+
+  public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
+  private List<SubAttachment> attachments = null;
+
+  public static final String JSON_PROPERTY_CC_EMAIL_ADDRESSES = "cc_email_addresses";
+  private List<String> ccEmailAddresses = null;
+
+  public static final String JSON_PROPERTY_CLIENT_ID = "client_id";
+  private String clientId;
+
+  public static final String JSON_PROPERTY_CUSTOM_FIELDS = "custom_fields";
+  private List<SubCustomField> customFields = null;
+
+  public static final String JSON_PROPERTY_FIELD_OPTIONS = "field_options";
+  private SubFieldOptions fieldOptions;
+
+  public static final String JSON_PROPERTY_FORM_FIELD_GROUPS = "form_field_groups";
+  private List<SubFormFieldGroup> formFieldGroups = null;
+
+  public static final String JSON_PROPERTY_FORM_FIELD_RULES = "form_field_rules";
+  private List<SubFormFieldRule> formFieldRules = null;
+
+  public static final String JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT = "form_fields_per_document";
+  private List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = null;
+
+  public static final String JSON_PROPERTY_HIDE_TEXT_TAGS = "hide_text_tags";
+  private Boolean hideTextTags = false;
+
+  public static final String JSON_PROPERTY_MESSAGE = "message";
+  private String message;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  private Map<String, Object> metadata = null;
+
+  public static final String JSON_PROPERTY_SHOW_PROGRESS_STEPPER = "show_progress_stepper";
+  private Boolean showProgressStepper = true;
+
+  public static final String JSON_PROPERTY_SIGNERS = "signers";
+  private List<SubUnclaimedDraftSigner> signers = null;
+
+  public static final String JSON_PROPERTY_SIGNING_OPTIONS = "signing_options";
+  private SubSigningOptions signingOptions;
+
+  public static final String JSON_PROPERTY_SIGNING_REDIRECT_URL = "signing_redirect_url";
+  private String signingRedirectUrl;
+
+  public static final String JSON_PROPERTY_SUBJECT = "subject";
+  private String subject;
+
+  public static final String JSON_PROPERTY_TEST_MODE = "test_mode";
+  private Boolean testMode = false;
+
   public static final String JSON_PROPERTY_USE_PREEXISTING_FIELDS = "use_preexisting_fields";
   private Boolean usePreexistingFields = false;
 
@@ -170,6 +178,32 @@ public class UnclaimedDraftCreateRequest {
 
   public UnclaimedDraftCreateRequest() { 
   }
+
+  public UnclaimedDraftCreateRequest type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of unclaimed draft to create. Use &#x60;send_document&#x60; to create a claimable file, and &#x60;request_signature&#x60; for a claimable signature request. If the type is &#x60;request_signature&#x60; then signers name and email_address are not optional.
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional.")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
 
   public UnclaimedDraftCreateRequest file(List<File> file) {
     this.file = file;
@@ -185,11 +219,11 @@ public class UnclaimedDraftCreateRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -219,11 +253,11 @@ public class UnclaimedDraftCreateRequest {
   }
 
    /**
-   * **file_url** or **file** is required, but not both.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -279,11 +313,11 @@ public class UnclaimedDraftCreateRequest {
   }
 
    /**
-   * Get attachments
+   * A list describing the attachments
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list describing the attachments")
   @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -333,6 +367,32 @@ public class UnclaimedDraftCreateRequest {
   }
 
 
+  public UnclaimedDraftCreateRequest clientId(String clientId) {
+    this.clientId = clientId;
+    return this;
+  }
+
+   /**
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
+   * @return clientId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.")
+  @JsonProperty(JSON_PROPERTY_CLIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getClientId() {
+    return clientId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CLIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClientId(String clientId) {
+    this.clientId = clientId;
+  }
+
+
   public UnclaimedDraftCreateRequest customFields(List<SubCustomField> customFields) {
     this.customFields = customFields;
     return this;
@@ -347,11 +407,11 @@ public class UnclaimedDraftCreateRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining pre-set values in &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).
+   * When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining pre-set values in `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro).")
+  @ApiModelProperty(value = "When used together with merge fields, `custom_fields` allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \"send-once\" signature requests by adding merge fields with `form_fields_per_document` or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with `custom_fields` together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing `custom_fields` on subsequent signature requests referencing that template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -461,12 +521,12 @@ public class UnclaimedDraftCreateRequest {
   }
 
 
-  public UnclaimedDraftCreateRequest formFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public UnclaimedDraftCreateRequest formFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
     return this;
   }
 
-  public UnclaimedDraftCreateRequest addFormFieldsPerDocumentItem(List<SubFormFieldsPerDocumentBase> formFieldsPerDocumentItem) {
+  public UnclaimedDraftCreateRequest addFormFieldsPerDocumentItem(SubFormFieldsPerDocumentBase formFieldsPerDocumentItem) {
     if (this.formFieldsPerDocument == null) {
       this.formFieldsPerDocument = new ArrayList<>();
     }
@@ -475,22 +535,22 @@ public class UnclaimedDraftCreateRequest {
   }
 
    /**
-   * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the &#x60;file[]&#x60; parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](https://app.hellosign.com/api/reference#FormFieldsPerDocument) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
    * @return formFieldsPerDocument
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](https://app.hellosign.com/api/reference#FormFieldsPerDocument) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<List<SubFormFieldsPerDocumentBase>> getFormFieldsPerDocument() {
+  public List<SubFormFieldsPerDocumentBase> getFormFieldsPerDocument() {
     return formFieldsPerDocument;
   }
 
 
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormFieldsPerDocument(List<List<SubFormFieldsPerDocumentBase>> formFieldsPerDocument) {
+  public void setFormFieldsPerDocument(List<SubFormFieldsPerDocumentBase> formFieldsPerDocument) {
     this.formFieldsPerDocument = formFieldsPerDocument;
   }
 
@@ -578,6 +638,32 @@ public class UnclaimedDraftCreateRequest {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
+  }
+
+
+  public UnclaimedDraftCreateRequest showProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
+    return this;
+  }
+
+   /**
+   * When only one step remains in the signature request process and this parameter is set to &#x60;false&#x60; then the progress stepper will be hidden.
+   * @return showProgressStepper
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.")
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getShowProgressStepper() {
+    return showProgressStepper;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShowProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
   }
 
 
@@ -719,32 +805,6 @@ public class UnclaimedDraftCreateRequest {
   }
 
 
-  public UnclaimedDraftCreateRequest type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of unclaimed draft to create. Use &#x60;send_document&#x60; to create a claimable file, and &#x60;request_signature&#x60; for a claimable signature request. If the type is &#x60;request_signature&#x60; then signers name and email_address are not optional.
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of unclaimed draft to create. Use `send_document` to create a claimable file, and `request_signature` for a claimable signature request. If the type is `request_signature` then signers name and email_address are not optional.")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
   public UnclaimedDraftCreateRequest usePreexistingFields(Boolean usePreexistingFields) {
     this.usePreexistingFields = usePreexistingFields;
     return this;
@@ -809,11 +869,13 @@ public class UnclaimedDraftCreateRequest {
       return false;
     }
     UnclaimedDraftCreateRequest unclaimedDraftCreateRequest = (UnclaimedDraftCreateRequest) o;
-    return Objects.equals(this.file, unclaimedDraftCreateRequest.file) &&
+    return Objects.equals(this.type, unclaimedDraftCreateRequest.type) &&
+        Objects.equals(this.file, unclaimedDraftCreateRequest.file) &&
         Objects.equals(this.fileUrl, unclaimedDraftCreateRequest.fileUrl) &&
         Objects.equals(this.allowDecline, unclaimedDraftCreateRequest.allowDecline) &&
         Objects.equals(this.attachments, unclaimedDraftCreateRequest.attachments) &&
         Objects.equals(this.ccEmailAddresses, unclaimedDraftCreateRequest.ccEmailAddresses) &&
+        Objects.equals(this.clientId, unclaimedDraftCreateRequest.clientId) &&
         Objects.equals(this.customFields, unclaimedDraftCreateRequest.customFields) &&
         Objects.equals(this.fieldOptions, unclaimedDraftCreateRequest.fieldOptions) &&
         Objects.equals(this.formFieldGroups, unclaimedDraftCreateRequest.formFieldGroups) &&
@@ -822,30 +884,32 @@ public class UnclaimedDraftCreateRequest {
         Objects.equals(this.hideTextTags, unclaimedDraftCreateRequest.hideTextTags) &&
         Objects.equals(this.message, unclaimedDraftCreateRequest.message) &&
         Objects.equals(this.metadata, unclaimedDraftCreateRequest.metadata) &&
+        Objects.equals(this.showProgressStepper, unclaimedDraftCreateRequest.showProgressStepper) &&
         Objects.equals(this.signers, unclaimedDraftCreateRequest.signers) &&
         Objects.equals(this.signingOptions, unclaimedDraftCreateRequest.signingOptions) &&
         Objects.equals(this.signingRedirectUrl, unclaimedDraftCreateRequest.signingRedirectUrl) &&
         Objects.equals(this.subject, unclaimedDraftCreateRequest.subject) &&
         Objects.equals(this.testMode, unclaimedDraftCreateRequest.testMode) &&
-        Objects.equals(this.type, unclaimedDraftCreateRequest.type) &&
         Objects.equals(this.usePreexistingFields, unclaimedDraftCreateRequest.usePreexistingFields) &&
         Objects.equals(this.useTextTags, unclaimedDraftCreateRequest.useTextTags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(file, fileUrl, allowDecline, attachments, ccEmailAddresses, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, message, metadata, signers, signingOptions, signingRedirectUrl, subject, testMode, type, usePreexistingFields, useTextTags);
+    return Objects.hash(type, file, fileUrl, allowDecline, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, message, metadata, showProgressStepper, signers, signingOptions, signingRedirectUrl, subject, testMode, usePreexistingFields, useTextTags);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UnclaimedDraftCreateRequest {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    allowDecline: ").append(toIndentedString(allowDecline)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    ccEmailAddresses: ").append(toIndentedString(ccEmailAddresses)).append("\n");
+    sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    fieldOptions: ").append(toIndentedString(fieldOptions)).append("\n");
     sb.append("    formFieldGroups: ").append(toIndentedString(formFieldGroups)).append("\n");
@@ -854,12 +918,12 @@ public class UnclaimedDraftCreateRequest {
     sb.append("    hideTextTags: ").append(toIndentedString(hideTextTags)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    showProgressStepper: ").append(toIndentedString(showProgressStepper)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    signingOptions: ").append(toIndentedString(signingOptions)).append("\n");
     sb.append("    signingRedirectUrl: ").append(toIndentedString(signingRedirectUrl)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    usePreexistingFields: ").append(toIndentedString(usePreexistingFields)).append("\n");
     sb.append("    useTextTags: ").append(toIndentedString(useTextTags)).append("\n");
     sb.append("}");
@@ -870,6 +934,24 @@ public class UnclaimedDraftCreateRequest {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
+    if (type != null) {
+        if (isFileTypeOrListOfFiles(type)) {
+            fileTypeFound = true;
+        }
+
+        if (type.getClass().equals(java.io.File.class) ||
+            type.getClass().equals(Integer.class) ||
+            type.getClass().equals(String.class) ) {
+            map.put("type", type);
+        } else if (isListOfFile(type)) {
+            for(int i = 0; i< getListSize(type); i++) {
+                map.put("type[" + i + "]", getFromList(type, i));
+            }
+        }
+        else {
+            map.put("type", JSON.getDefault().getMapper().writeValueAsString(type));
+        }
+    }
     if (file != null) {
         if (isFileTypeOrListOfFiles(file)) {
             fileTypeFound = true;
@@ -958,6 +1040,24 @@ public class UnclaimedDraftCreateRequest {
         }
         else {
             map.put("cc_email_addresses", JSON.getDefault().getMapper().writeValueAsString(ccEmailAddresses));
+        }
+    }
+    if (clientId != null) {
+        if (isFileTypeOrListOfFiles(clientId)) {
+            fileTypeFound = true;
+        }
+
+        if (clientId.getClass().equals(java.io.File.class) ||
+            clientId.getClass().equals(Integer.class) ||
+            clientId.getClass().equals(String.class) ) {
+            map.put("client_id", clientId);
+        } else if (isListOfFile(clientId)) {
+            for(int i = 0; i< getListSize(clientId); i++) {
+                map.put("client_id[" + i + "]", getFromList(clientId, i));
+            }
+        }
+        else {
+            map.put("client_id", JSON.getDefault().getMapper().writeValueAsString(clientId));
         }
     }
     if (customFields != null) {
@@ -1104,6 +1204,24 @@ public class UnclaimedDraftCreateRequest {
             map.put("metadata", JSON.getDefault().getMapper().writeValueAsString(metadata));
         }
     }
+    if (showProgressStepper != null) {
+        if (isFileTypeOrListOfFiles(showProgressStepper)) {
+            fileTypeFound = true;
+        }
+
+        if (showProgressStepper.getClass().equals(java.io.File.class) ||
+            showProgressStepper.getClass().equals(Integer.class) ||
+            showProgressStepper.getClass().equals(String.class) ) {
+            map.put("show_progress_stepper", showProgressStepper);
+        } else if (isListOfFile(showProgressStepper)) {
+            for(int i = 0; i< getListSize(showProgressStepper); i++) {
+                map.put("show_progress_stepper[" + i + "]", getFromList(showProgressStepper, i));
+            }
+        }
+        else {
+            map.put("show_progress_stepper", JSON.getDefault().getMapper().writeValueAsString(showProgressStepper));
+        }
+    }
     if (signers != null) {
         if (isFileTypeOrListOfFiles(signers)) {
             fileTypeFound = true;
@@ -1192,24 +1310,6 @@ public class UnclaimedDraftCreateRequest {
         }
         else {
             map.put("test_mode", JSON.getDefault().getMapper().writeValueAsString(testMode));
-        }
-    }
-    if (type != null) {
-        if (isFileTypeOrListOfFiles(type)) {
-            fileTypeFound = true;
-        }
-
-        if (type.getClass().equals(java.io.File.class) ||
-            type.getClass().equals(Integer.class) ||
-            type.getClass().equals(String.class) ) {
-            map.put("type", type);
-        } else if (isListOfFile(type)) {
-            for(int i = 0; i< getListSize(type); i++) {
-                map.put("type[" + i + "]", getFromList(type, i));
-            }
-        }
-        else {
-            map.put("type", JSON.getDefault().getMapper().writeValueAsString(type));
         }
     }
     if (usePreexistingFields != null) {

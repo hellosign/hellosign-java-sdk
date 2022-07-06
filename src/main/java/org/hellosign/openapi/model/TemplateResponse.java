@@ -30,16 +30,17 @@ import org.hellosign.openapi.model.TemplateResponseAccount;
 import org.hellosign.openapi.model.TemplateResponseCCRole;
 import org.hellosign.openapi.model.TemplateResponseCustomField;
 import org.hellosign.openapi.model.TemplateResponseDocument;
+import org.hellosign.openapi.model.TemplateResponseNamedFormField;
 import org.hellosign.openapi.model.TemplateResponseSignerRole;
-import org.hellosign.openapi.model.WarningResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * TemplateResponse
+ * Contains information about the templates you and your team have created.
  */
+@ApiModel(description = "Contains information about the templates you and your team have created.")
 @JsonPropertyOrder({
     TemplateResponse.JSON_PROPERTY_TEMPLATE_ID,
     TemplateResponse.JSON_PROPERTY_TITLE,
@@ -54,8 +55,8 @@ import org.hellosign.openapi.ApiException;
     TemplateResponse.JSON_PROPERTY_CC_ROLES,
     TemplateResponse.JSON_PROPERTY_DOCUMENTS,
     TemplateResponse.JSON_PROPERTY_CUSTOM_FIELDS,
-    TemplateResponse.JSON_PROPERTY_ACCOUNTS,
-    TemplateResponse.JSON_PROPERTY_WARNINGS
+    TemplateResponse.JSON_PROPERTY_NAMED_FORM_FIELDS,
+    TemplateResponse.JSON_PROPERTY_ACCOUNTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateResponse {
@@ -98,11 +99,11 @@ public class TemplateResponse {
   public static final String JSON_PROPERTY_CUSTOM_FIELDS = "custom_fields";
   private List<TemplateResponseCustomField> customFields = null;
 
+  public static final String JSON_PROPERTY_NAMED_FORM_FIELDS = "named_form_fields";
+  private List<TemplateResponseNamedFormField> namedFormFields = null;
+
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   private List<TemplateResponseAccount> accounts = null;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  private List<WarningResponse> warnings = null;
 
   public TemplateResponse() { 
   }
@@ -295,11 +296,11 @@ public class TemplateResponse {
   }
 
    /**
-   * &#x60;true&#x60; if you exceed Template quota; these can only be used in test mode. &#x60;false&#x60; if the template is included with the Template quota; these can be used at any time.
+   * Indicates whether the template is locked.  If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;.  If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests.
    * @return isLocked
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "`true` if you exceed Template quota; these can only be used in test mode. `false` if the template is included with the Template quota; these can be used at any time.")
+  @ApiModelProperty(value = "Indicates whether the template is locked.  If `true`, then the template was created outside your quota and can only be used in `test_mode`.  If `false`, then the template is within your quota and can be used to create signature requests.")
   @JsonProperty(JSON_PROPERTY_IS_LOCKED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -355,11 +356,11 @@ public class TemplateResponse {
   }
 
    /**
-   * Get signerRoles
+   * An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.
    * @return signerRoles
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template.")
   @JsonProperty(JSON_PROPERTY_SIGNER_ROLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -389,11 +390,11 @@ public class TemplateResponse {
   }
 
    /**
-   * Get ccRoles
+   * An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.
    * @return ccRoles
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template.")
   @JsonProperty(JSON_PROPERTY_CC_ROLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -423,11 +424,11 @@ public class TemplateResponse {
   }
 
    /**
-   * Get documents
+   * An array describing each document associated with this Template. Includes form field data for each document.
    * @return documents
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array describing each document associated with this Template. Includes form field data for each document.")
   @JsonProperty(JSON_PROPERTY_DOCUMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -457,11 +458,11 @@ public class TemplateResponse {
   }
 
    /**
-   * Get customFields
+   * An array of Custom Field objects.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of Custom Field objects.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -474,6 +475,42 @@ public class TemplateResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCustomFields(List<TemplateResponseCustomField> customFields) {
     this.customFields = customFields;
+  }
+
+
+  public TemplateResponse namedFormFields(List<TemplateResponseNamedFormField> namedFormFields) {
+    this.namedFormFields = namedFormFields;
+    return this;
+  }
+
+  public TemplateResponse addNamedFormFieldsItem(TemplateResponseNamedFormField namedFormFieldsItem) {
+    if (this.namedFormFields == null) {
+      this.namedFormFields = new ArrayList<>();
+    }
+    this.namedFormFields.add(namedFormFieldsItem);
+    return this;
+  }
+
+   /**
+   * Use \&quot;form_fields\&quot; under the \&quot;documents\&quot; array instead.
+   * @return namedFormFields
+   * @deprecated
+  **/
+  @Deprecated
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Use \"form_fields\" under the \"documents\" array instead.")
+  @JsonProperty(JSON_PROPERTY_NAMED_FORM_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<TemplateResponseNamedFormField> getNamedFormFields() {
+    return namedFormFields;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAMED_FORM_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNamedFormFields(List<TemplateResponseNamedFormField> namedFormFields) {
+    this.namedFormFields = namedFormFields;
   }
 
 
@@ -491,11 +528,11 @@ public class TemplateResponse {
   }
 
    /**
-   * Get accounts
+   * An array of the Accounts that can use this Template.
    * @return accounts
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of the Accounts that can use this Template.")
   @JsonProperty(JSON_PROPERTY_ACCOUNTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -508,40 +545,6 @@ public class TemplateResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccounts(List<TemplateResponseAccount> accounts) {
     this.accounts = accounts;
-  }
-
-
-  public TemplateResponse warnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public TemplateResponse addWarningsItem(WarningResponse warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-   /**
-   * Get warnings
-   * @return warnings
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<WarningResponse> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<WarningResponse> warnings) {
-    this.warnings = warnings;
   }
 
 
@@ -570,13 +573,13 @@ public class TemplateResponse {
         Objects.equals(this.ccRoles, templateResponse.ccRoles) &&
         Objects.equals(this.documents, templateResponse.documents) &&
         Objects.equals(this.customFields, templateResponse.customFields) &&
-        Objects.equals(this.accounts, templateResponse.accounts) &&
-        Objects.equals(this.warnings, templateResponse.warnings);
+        Objects.equals(this.namedFormFields, templateResponse.namedFormFields) &&
+        Objects.equals(this.accounts, templateResponse.accounts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, title, message, updatedAt, isEmbedded, isCreator, canEdit, isLocked, metadata, signerRoles, ccRoles, documents, customFields, accounts, warnings);
+    return Objects.hash(templateId, title, message, updatedAt, isEmbedded, isCreator, canEdit, isLocked, metadata, signerRoles, ccRoles, documents, customFields, namedFormFields, accounts);
   }
 
   @Override
@@ -596,8 +599,8 @@ public class TemplateResponse {
     sb.append("    ccRoles: ").append(toIndentedString(ccRoles)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
+    sb.append("    namedFormFields: ").append(toIndentedString(namedFormFields)).append("\n");
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -840,6 +843,24 @@ public class TemplateResponse {
             map.put("custom_fields", JSON.getDefault().getMapper().writeValueAsString(customFields));
         }
     }
+    if (namedFormFields != null) {
+        if (isFileTypeOrListOfFiles(namedFormFields)) {
+            fileTypeFound = true;
+        }
+
+        if (namedFormFields.getClass().equals(java.io.File.class) ||
+            namedFormFields.getClass().equals(Integer.class) ||
+            namedFormFields.getClass().equals(String.class) ) {
+            map.put("named_form_fields", namedFormFields);
+        } else if (isListOfFile(namedFormFields)) {
+            for(int i = 0; i< getListSize(namedFormFields); i++) {
+                map.put("named_form_fields[" + i + "]", getFromList(namedFormFields, i));
+            }
+        }
+        else {
+            map.put("named_form_fields", JSON.getDefault().getMapper().writeValueAsString(namedFormFields));
+        }
+    }
     if (accounts != null) {
         if (isFileTypeOrListOfFiles(accounts)) {
             fileTypeFound = true;
@@ -856,24 +877,6 @@ public class TemplateResponse {
         }
         else {
             map.put("accounts", JSON.getDefault().getMapper().writeValueAsString(accounts));
-        }
-    }
-    if (warnings != null) {
-        if (isFileTypeOrListOfFiles(warnings)) {
-            fileTypeFound = true;
-        }
-
-        if (warnings.getClass().equals(java.io.File.class) ||
-            warnings.getClass().equals(Integer.class) ||
-            warnings.getClass().equals(String.class) ) {
-            map.put("warnings", warnings);
-        } else if (isListOfFile(warnings)) {
-            for(int i = 0; i< getListSize(warnings); i++) {
-                map.put("warnings[" + i + "]", getFromList(warnings, i));
-            }
-        }
-        else {
-            map.put("warnings", JSON.getDefault().getMapper().writeValueAsString(warnings));
         }
     }
     } catch (Exception e) {

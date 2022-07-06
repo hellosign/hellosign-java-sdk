@@ -76,6 +76,7 @@ public class OAuthApi {
      </table>
    */
   public ApiResponse<OAuthTokenResponse> oauthTokenGenerateWithHttpInfo(OAuthTokenGenerateRequest oauthTokenGenerateRequest) throws ApiException {
+    
     Object localVarPostBody = oauthTokenGenerateRequest;
     
     // verify the required parameter 'oauthTokenGenerateRequest' is set
@@ -147,6 +148,7 @@ public class OAuthApi {
      </table>
    */
   public ApiResponse<OAuthTokenResponse> oauthTokenRefreshWithHttpInfo(OAuthTokenRefreshRequest oauthTokenRefreshRequest) throws ApiException {
+    
     Object localVarPostBody = oauthTokenRefreshRequest;
     
     // verify the required parameter 'oauthTokenRefreshRequest' is set

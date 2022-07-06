@@ -29,7 +29,7 @@ Embedded Bulk Send with Template
 
 Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
 
-**NOTE**: Only available for Gold plan and higher.
+**NOTE**: Only available for Standard plan and higher.
 
 ### Example
 
@@ -54,10 +54,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -140,7 +142,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestBulkSendWithTemplate
@@ -151,7 +153,7 @@ Bulk Send with Template
 
 Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter.
 
-**NOTE**: Only available for Gold plan and higher.
+**NOTE**: Only available for Standard plan and higher.
 
 ### Example
 
@@ -176,10 +178,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -262,7 +266,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestCancel
@@ -275,7 +279,7 @@ Cancels an incomplete signature request. This action is **not reversible**.
 
 The request will be canceled and signers will no longer be able to sign. If they try to access the signature request they will receive a HTTP 410 status code indicating that the resource has been deleted. Cancelation is asynchronous and a successful call to this endpoint will return an empty 200 OK response if the signature request is eligible to be canceled and has been successfully queued.
 
-This 200 OK response does not indicate a successful cancelation of the signature request itself. The cancelation is confirmed via the `signature_request_canceled` event. It is recommended that a  [callback handler](https://app.hellosign.com/api/eventsAndCallbacksWalkthrough) be implemented to listen for the `signature_request_canceled` event. This callback will be sent only when the cancelation has completed successfully. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the [API Dashboard](https://app.hellosign.com/apidashboard) and retry the cancelation if necessary.
+This 200 OK response does not indicate a successful cancelation of the signature request itself. The cancelation is confirmed via the `signature_request_canceled` event. It is recommended that a  [callback handler](/api/reference/tag/Callbacks-and-Events) be implemented to listen for the `signature_request_canceled` event. This callback will be sent only when the cancelation has completed successfully. If a callback handler has been configured and the event has not been received within 60 minutes of making the call, check the status of the request in the [API Dashboard](https://app.hellosign.com/apidashboard) and retry the cancelation if necessary.
 
 To be eligible for cancelation, a signature request must have been sent successfully, must not yet have been signed by all signers, and you must either be the sender or own the API app under which it was sent. A partially signed signature request can be canceled.
 
@@ -304,10 +308,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -350,7 +356,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestCreateEmbedded
@@ -384,10 +390,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -458,7 +466,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestCreateEmbeddedWithTemplate
@@ -482,10 +490,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -548,7 +558,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestFiles
@@ -584,10 +594,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -634,7 +646,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestGet
@@ -666,10 +678,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -713,7 +727,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestList
@@ -724,7 +738,7 @@ List Signature Requests
 
 Returns a list of SignatureRequests that you can access. This includes SignatureRequests you have sent as well as received, but not ones that you have been CCed on.
 
-Take a look at our [search guide](https://app.hellosign.com/api/reference#Search) to learn more about querying signature requests.
+Take a look at our [search guide](/api/reference/search/) to learn more about querying signature requests.
 
 ### Example
 
@@ -747,10 +761,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -798,7 +814,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestReleaseHold
@@ -807,7 +823,7 @@ Name | Type | Description  | Notes
 
 Release On-Hold Signature Request
 
-Releases a held SignatureRequest that was claimed and prepared from an [UnclaimedDraft](https://app.hellosign.com/api/reference#UnclaimedDraft). The owner of the Draft must indicate at Draft creation that the SignatureRequest created from the Draft should be held. Releasing the SignatureRequest will send requests to all signers.
+Releases a held SignatureRequest that was claimed and prepared from an [UnclaimedDraft](/api/reference/tag/Unclaimed-Draft). The owner of the Draft must indicate at Draft creation that the SignatureRequest created from the Draft should be held. Releasing the SignatureRequest will send requests to all signers.
 
 ### Example
 
@@ -829,10 +845,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -877,7 +895,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestRemind
@@ -910,10 +928,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -962,7 +982,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestRemove
@@ -997,10 +1017,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -1043,7 +1065,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestSend
@@ -1079,10 +1101,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -1157,7 +1181,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestSendWithTemplate
@@ -1193,10 +1217,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -1270,7 +1296,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## signatureRequestUpdate
@@ -1303,10 +1329,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         SignatureRequestApi api = new SignatureRequestApi(defaultClient);
 
@@ -1356,5 +1384,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 

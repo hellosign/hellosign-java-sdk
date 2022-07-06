@@ -240,11 +240,11 @@ public class SignatureRequestSendWithTemplateRequest {
   }
 
    /**
-   * The client ID of the ApiApp you want to associate with this request.
+   * Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.
    * @return clientId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The client ID of the ApiApp you want to associate with this request.")
+  @ApiModelProperty(value = "Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -274,11 +274,11 @@ public class SignatureRequestSendWithTemplateRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+   * An array defining values and options for custom fields. Required when a custom field exists in the Template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.")
+  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when a custom field exists in the Template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -308,11 +308,11 @@ public class SignatureRequestSendWithTemplateRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Use `file[]` to indicate the uploaded file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -342,11 +342,11 @@ public class SignatureRequestSendWithTemplateRequest {
   }
 
    /**
-   * **file_url** or **file** is required, but not both.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file_url** or **file** is required, but not both.  Use `file_url[]` to have HelloSign download the file(s) to send for signature.  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

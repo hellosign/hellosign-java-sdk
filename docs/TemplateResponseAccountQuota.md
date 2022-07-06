@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 | `templatesLeft` | ```Integer``` |  API templates remaining.  |  |
 | `apiSignatureRequestsLeft` | ```Integer``` |  API signature requests remaining.  |  |
 | `documentsLeft` | ```Integer``` |  Signature requests remaining.  |  |
+| `smsVerificationsLeft` | ```Integer``` |  SMS verifications remaining.  |  |
 
 
 

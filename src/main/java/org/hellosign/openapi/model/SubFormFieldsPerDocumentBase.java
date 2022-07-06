@@ -42,20 +42,21 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the &#x60;file[]&#x60; parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](https://app.hellosign.com/api/reference#FormFieldsPerDocument) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+ * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
  */
-@ApiModel(description = "The fields that should appear on the document, expressed as a 2-dimensional JSON array serialized to a string. The main array represents documents, with each containing an array of form fields. One document array is required for each file provided by the `file[]` parameter. In the case of a file with no fields, an empty list must be specified.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](https://app.hellosign.com/api/reference#FormFieldsPerDocument) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+@ApiModel(description = "The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
 @JsonPropertyOrder({
+    SubFormFieldsPerDocumentBase.JSON_PROPERTY_DOCUMENT_INDEX,
+    SubFormFieldsPerDocumentBase.JSON_PROPERTY_API_ID,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_HEIGHT,
+    SubFormFieldsPerDocumentBase.JSON_PROPERTY_REQUIRED,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_SIGNER,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_TYPE,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_WIDTH,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_X,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_Y,
-    SubFormFieldsPerDocumentBase.JSON_PROPERTY_API_ID,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_NAME,
-    SubFormFieldsPerDocumentBase.JSON_PROPERTY_PAGE,
-    SubFormFieldsPerDocumentBase.JSON_PROPERTY_REQUIRED
+    SubFormFieldsPerDocumentBase.JSON_PROPERTY_PAGE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
@@ -83,8 +84,17 @@ import org.hellosign.openapi.ApiException;
 })
 
 public class SubFormFieldsPerDocumentBase {
+  public static final String JSON_PROPERTY_DOCUMENT_INDEX = "document_index";
+  private Integer documentIndex;
+
+  public static final String JSON_PROPERTY_API_ID = "api_id";
+  private String apiId;
+
   public static final String JSON_PROPERTY_HEIGHT = "height";
   private Integer height;
+
+  public static final String JSON_PROPERTY_REQUIRED = "required";
+  private Boolean required;
 
   public static final String JSON_PROPERTY_SIGNER = "signer";
   private String signer;
@@ -101,20 +111,66 @@ public class SubFormFieldsPerDocumentBase {
   public static final String JSON_PROPERTY_Y = "y";
   private Integer y;
 
-  public static final String JSON_PROPERTY_API_ID = "api_id";
-  private String apiId;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_PAGE = "page";
   private Integer page;
 
-  public static final String JSON_PROPERTY_REQUIRED = "required";
-  private Boolean required;
-
   public SubFormFieldsPerDocumentBase() { 
   }
+
+  public SubFormFieldsPerDocumentBase documentIndex(Integer documentIndex) {
+    this.documentIndex = documentIndex;
+    return this;
+  }
+
+   /**
+   * Represents the integer index of the &#x60;file&#x60; or &#x60;file_url&#x60; document the field should be attached to.
+   * @return documentIndex
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Represents the integer index of the `file` or `file_url` document the field should be attached to.")
+  @JsonProperty(JSON_PROPERTY_DOCUMENT_INDEX)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Integer getDocumentIndex() {
+    return documentIndex;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DOCUMENT_INDEX)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDocumentIndex(Integer documentIndex) {
+    this.documentIndex = documentIndex;
+  }
+
+
+  public SubFormFieldsPerDocumentBase apiId(String apiId) {
+    this.apiId = apiId;
+    return this;
+  }
+
+   /**
+   * An identifier for the field that is unique across all documents in the request.
+   * @return apiId
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "An identifier for the field that is unique across all documents in the request.")
+  @JsonProperty(JSON_PROPERTY_API_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getApiId() {
+    return apiId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_API_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setApiId(String apiId) {
+    this.apiId = apiId;
+  }
+
 
   public SubFormFieldsPerDocumentBase height(Integer height) {
     this.height = height;
@@ -142,17 +198,43 @@ public class SubFormFieldsPerDocumentBase {
   }
 
 
+  public SubFormFieldsPerDocumentBase required(Boolean required) {
+    this.required = required;
+    return this;
+  }
+
+   /**
+   * Whether this field is required.
+   * @return required
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Whether this field is required.")
+  @JsonProperty(JSON_PROPERTY_REQUIRED)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getRequired() {
+    return required;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REQUIRED)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRequired(Boolean required) {
+    this.required = required;
+  }
+
+
   public SubFormFieldsPerDocumentBase signer(String signer) {
     this.signer = signer;
     return this;
   }
 
    /**
-   * Signer index identified by the offset &#x60;%i%&#x60; in the &#x60;signers[%i%]&#x60; parameter, indicating which signer should fill out the field. If your type is &#x60;text-merge&#x60; you can set this to &#x60;sender&#x60;, so the field is non-editable by any signer.
+   * Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.  **NOTE**: If type is &#x60;text-merge&#x60; or &#x60;checkbox-merge&#x60;, you must set this to sender in order to use pre-filled data.
    * @return signer
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Signer index identified by the offset `%i%` in the `signers[%i%]` parameter, indicating which signer should fill out the field. If your type is `text-merge` you can set this to `sender`, so the field is non-editable by any signer.")
+  @ApiModelProperty(required = true, value = "Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.  **NOTE**: If type is `text-merge` or `checkbox-merge`, you must set this to sender in order to use pre-filled data.")
   @JsonProperty(JSON_PROPERTY_SIGNER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -272,32 +354,6 @@ public class SubFormFieldsPerDocumentBase {
   }
 
 
-  public SubFormFieldsPerDocumentBase apiId(String apiId) {
-    this.apiId = apiId;
-    return this;
-  }
-
-   /**
-   * An identifier for the field that is unique across all documents in the request.
-   * @return apiId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "An identifier for the field that is unique across all documents in the request.")
-  @JsonProperty(JSON_PROPERTY_API_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getApiId() {
-    return apiId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_API_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApiId(String apiId) {
-    this.apiId = apiId;
-  }
-
-
   public SubFormFieldsPerDocumentBase name(String name) {
     this.name = name;
     return this;
@@ -350,32 +406,6 @@ public class SubFormFieldsPerDocumentBase {
   }
 
 
-  public SubFormFieldsPerDocumentBase required(Boolean required) {
-    this.required = required;
-    return this;
-  }
-
-   /**
-   * Whether this field is required.
-   * @return required
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Whether this field is required.")
-  @JsonProperty(JSON_PROPERTY_REQUIRED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getRequired() {
-    return required;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REQUIRED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequired(Boolean required) {
-    this.required = required;
-  }
-
-
   /**
    * Return true if this SubFormFieldsPerDocumentBase object is equal to o.
    */
@@ -388,37 +418,39 @@ public class SubFormFieldsPerDocumentBase {
       return false;
     }
     SubFormFieldsPerDocumentBase subFormFieldsPerDocumentBase = (SubFormFieldsPerDocumentBase) o;
-    return Objects.equals(this.height, subFormFieldsPerDocumentBase.height) &&
+    return Objects.equals(this.documentIndex, subFormFieldsPerDocumentBase.documentIndex) &&
+        Objects.equals(this.apiId, subFormFieldsPerDocumentBase.apiId) &&
+        Objects.equals(this.height, subFormFieldsPerDocumentBase.height) &&
+        Objects.equals(this.required, subFormFieldsPerDocumentBase.required) &&
         Objects.equals(this.signer, subFormFieldsPerDocumentBase.signer) &&
         Objects.equals(this.type, subFormFieldsPerDocumentBase.type) &&
         Objects.equals(this.width, subFormFieldsPerDocumentBase.width) &&
         Objects.equals(this.x, subFormFieldsPerDocumentBase.x) &&
         Objects.equals(this.y, subFormFieldsPerDocumentBase.y) &&
-        Objects.equals(this.apiId, subFormFieldsPerDocumentBase.apiId) &&
         Objects.equals(this.name, subFormFieldsPerDocumentBase.name) &&
-        Objects.equals(this.page, subFormFieldsPerDocumentBase.page) &&
-        Objects.equals(this.required, subFormFieldsPerDocumentBase.required);
+        Objects.equals(this.page, subFormFieldsPerDocumentBase.page);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, signer, type, width, x, y, apiId, name, page, required);
+    return Objects.hash(documentIndex, apiId, height, required, signer, type, width, x, y, name, page);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubFormFieldsPerDocumentBase {\n");
+    sb.append("    documentIndex: ").append(toIndentedString(documentIndex)).append("\n");
+    sb.append("    apiId: ").append(toIndentedString(apiId)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    required: ").append(toIndentedString(required)).append("\n");
     sb.append("    signer: ").append(toIndentedString(signer)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    x: ").append(toIndentedString(x)).append("\n");
     sb.append("    y: ").append(toIndentedString(y)).append("\n");
-    sb.append("    apiId: ").append(toIndentedString(apiId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
-    sb.append("    required: ").append(toIndentedString(required)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -427,6 +459,42 @@ public class SubFormFieldsPerDocumentBase {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
+    if (documentIndex != null) {
+        if (isFileTypeOrListOfFiles(documentIndex)) {
+            fileTypeFound = true;
+        }
+
+        if (documentIndex.getClass().equals(java.io.File.class) ||
+            documentIndex.getClass().equals(Integer.class) ||
+            documentIndex.getClass().equals(String.class) ) {
+            map.put("document_index", documentIndex);
+        } else if (isListOfFile(documentIndex)) {
+            for(int i = 0; i< getListSize(documentIndex); i++) {
+                map.put("document_index[" + i + "]", getFromList(documentIndex, i));
+            }
+        }
+        else {
+            map.put("document_index", JSON.getDefault().getMapper().writeValueAsString(documentIndex));
+        }
+    }
+    if (apiId != null) {
+        if (isFileTypeOrListOfFiles(apiId)) {
+            fileTypeFound = true;
+        }
+
+        if (apiId.getClass().equals(java.io.File.class) ||
+            apiId.getClass().equals(Integer.class) ||
+            apiId.getClass().equals(String.class) ) {
+            map.put("api_id", apiId);
+        } else if (isListOfFile(apiId)) {
+            for(int i = 0; i< getListSize(apiId); i++) {
+                map.put("api_id[" + i + "]", getFromList(apiId, i));
+            }
+        }
+        else {
+            map.put("api_id", JSON.getDefault().getMapper().writeValueAsString(apiId));
+        }
+    }
     if (height != null) {
         if (isFileTypeOrListOfFiles(height)) {
             fileTypeFound = true;
@@ -443,6 +511,24 @@ public class SubFormFieldsPerDocumentBase {
         }
         else {
             map.put("height", JSON.getDefault().getMapper().writeValueAsString(height));
+        }
+    }
+    if (required != null) {
+        if (isFileTypeOrListOfFiles(required)) {
+            fileTypeFound = true;
+        }
+
+        if (required.getClass().equals(java.io.File.class) ||
+            required.getClass().equals(Integer.class) ||
+            required.getClass().equals(String.class) ) {
+            map.put("required", required);
+        } else if (isListOfFile(required)) {
+            for(int i = 0; i< getListSize(required); i++) {
+                map.put("required[" + i + "]", getFromList(required, i));
+            }
+        }
+        else {
+            map.put("required", JSON.getDefault().getMapper().writeValueAsString(required));
         }
     }
     if (signer != null) {
@@ -535,24 +621,6 @@ public class SubFormFieldsPerDocumentBase {
             map.put("y", JSON.getDefault().getMapper().writeValueAsString(y));
         }
     }
-    if (apiId != null) {
-        if (isFileTypeOrListOfFiles(apiId)) {
-            fileTypeFound = true;
-        }
-
-        if (apiId.getClass().equals(java.io.File.class) ||
-            apiId.getClass().equals(Integer.class) ||
-            apiId.getClass().equals(String.class) ) {
-            map.put("api_id", apiId);
-        } else if (isListOfFile(apiId)) {
-            for(int i = 0; i< getListSize(apiId); i++) {
-                map.put("api_id[" + i + "]", getFromList(apiId, i));
-            }
-        }
-        else {
-            map.put("api_id", JSON.getDefault().getMapper().writeValueAsString(apiId));
-        }
-    }
     if (name != null) {
         if (isFileTypeOrListOfFiles(name)) {
             fileTypeFound = true;
@@ -587,24 +655,6 @@ public class SubFormFieldsPerDocumentBase {
         }
         else {
             map.put("page", JSON.getDefault().getMapper().writeValueAsString(page));
-        }
-    }
-    if (required != null) {
-        if (isFileTypeOrListOfFiles(required)) {
-            fileTypeFound = true;
-        }
-
-        if (required.getClass().equals(java.io.File.class) ||
-            required.getClass().equals(Integer.class) ||
-            required.getClass().equals(String.class) ) {
-            map.put("required", required);
-        } else if (isListOfFile(required)) {
-            for(int i = 0; i< getListSize(required); i++) {
-                map.put("required[" + i + "]", getFromList(required, i));
-            }
-        }
-        else {
-            map.put("required", JSON.getDefault().getMapper().writeValueAsString(required));
         }
     }
     } catch (Exception e) {

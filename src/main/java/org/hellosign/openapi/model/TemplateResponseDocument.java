@@ -29,21 +29,22 @@ import java.util.List;
 import org.hellosign.openapi.model.TemplateResponseDocumentCustomField;
 import org.hellosign.openapi.model.TemplateResponseDocumentFieldGroup;
 import org.hellosign.openapi.model.TemplateResponseDocumentFormField;
+import org.hellosign.openapi.model.TemplateResponseDocumentStaticField;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
 
 import org.hellosign.openapi.ApiException;
 /**
- * An array describing each document associated with this Template. Includes form field data for each document.
+ * TemplateResponseDocument
  */
-@ApiModel(description = "An array describing each document associated with this Template. Includes form field data for each document.")
 @JsonPropertyOrder({
     TemplateResponseDocument.JSON_PROPERTY_NAME,
     TemplateResponseDocument.JSON_PROPERTY_INDEX,
     TemplateResponseDocument.JSON_PROPERTY_FIELD_GROUPS,
     TemplateResponseDocument.JSON_PROPERTY_FORM_FIELDS,
-    TemplateResponseDocument.JSON_PROPERTY_CUSTOM_FIELDS
+    TemplateResponseDocument.JSON_PROPERTY_CUSTOM_FIELDS,
+    TemplateResponseDocument.JSON_PROPERTY_STATIC_FIELDS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateResponseDocument {
@@ -61,6 +62,9 @@ public class TemplateResponseDocument {
 
   public static final String JSON_PROPERTY_CUSTOM_FIELDS = "custom_fields";
   private List<TemplateResponseDocumentCustomField> customFields = null;
+
+  public static final String JSON_PROPERTY_STATIC_FIELDS = "static_fields";
+  private List<TemplateResponseDocumentStaticField> staticFields = null;
 
   public TemplateResponseDocument() { 
   }
@@ -97,11 +101,11 @@ public class TemplateResponseDocument {
   }
 
    /**
-   * Document ordering, the lowest index is displayed first and the highest last.
+   * Document ordering, the lowest index is displayed first and the highest last (0-based indexing).
    * @return index
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Document ordering, the lowest index is displayed first and the highest last.")
+  @ApiModelProperty(value = "Document ordering, the lowest index is displayed first and the highest last (0-based indexing).")
   @JsonProperty(JSON_PROPERTY_INDEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -131,11 +135,11 @@ public class TemplateResponseDocument {
   }
 
    /**
-   * Get fieldGroups
+   * An array of Form Field Group objects.
    * @return fieldGroups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of Form Field Group objects.")
   @JsonProperty(JSON_PROPERTY_FIELD_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -165,11 +169,11 @@ public class TemplateResponseDocument {
   }
 
    /**
-   * Get formFields
+   * An array of Form Field objects containing the name and type of each named textbox and checkmark field.
    * @return formFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of Form Field objects containing the name and type of each named textbox and checkmark field.")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -199,11 +203,11 @@ public class TemplateResponseDocument {
   }
 
    /**
-   * Get customFields
+   * An array of Document Custom Field objects.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "An array of Document Custom Field objects.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -216,6 +220,40 @@ public class TemplateResponseDocument {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCustomFields(List<TemplateResponseDocumentCustomField> customFields) {
     this.customFields = customFields;
+  }
+
+
+  public TemplateResponseDocument staticFields(List<TemplateResponseDocumentStaticField> staticFields) {
+    this.staticFields = staticFields;
+    return this;
+  }
+
+  public TemplateResponseDocument addStaticFieldsItem(TemplateResponseDocumentStaticField staticFieldsItem) {
+    if (this.staticFields == null) {
+      this.staticFields = new ArrayList<>();
+    }
+    this.staticFields.add(staticFieldsItem);
+    return this;
+  }
+
+   /**
+   * An array describing static overlay fields. &lt;b&gt;Note&lt;/b&gt; only available for certain subscriptions.
+   * @return staticFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array describing static overlay fields. <b>Note</b> only available for certain subscriptions.")
+  @JsonProperty(JSON_PROPERTY_STATIC_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<TemplateResponseDocumentStaticField> getStaticFields() {
+    return staticFields;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATIC_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStaticFields(List<TemplateResponseDocumentStaticField> staticFields) {
+    this.staticFields = staticFields;
   }
 
 
@@ -235,12 +273,13 @@ public class TemplateResponseDocument {
         Objects.equals(this.index, templateResponseDocument.index) &&
         Objects.equals(this.fieldGroups, templateResponseDocument.fieldGroups) &&
         Objects.equals(this.formFields, templateResponseDocument.formFields) &&
-        Objects.equals(this.customFields, templateResponseDocument.customFields);
+        Objects.equals(this.customFields, templateResponseDocument.customFields) &&
+        Objects.equals(this.staticFields, templateResponseDocument.staticFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, index, fieldGroups, formFields, customFields);
+    return Objects.hash(name, index, fieldGroups, formFields, customFields, staticFields);
   }
 
   @Override
@@ -252,6 +291,7 @@ public class TemplateResponseDocument {
     sb.append("    fieldGroups: ").append(toIndentedString(fieldGroups)).append("\n");
     sb.append("    formFields: ").append(toIndentedString(formFields)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
+    sb.append("    staticFields: ").append(toIndentedString(staticFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -348,6 +388,24 @@ public class TemplateResponseDocument {
         }
         else {
             map.put("custom_fields", JSON.getDefault().getMapper().writeValueAsString(customFields));
+        }
+    }
+    if (staticFields != null) {
+        if (isFileTypeOrListOfFiles(staticFields)) {
+            fileTypeFound = true;
+        }
+
+        if (staticFields.getClass().equals(java.io.File.class) ||
+            staticFields.getClass().equals(Integer.class) ||
+            staticFields.getClass().equals(String.class) ) {
+            map.put("static_fields", staticFields);
+        } else if (isListOfFile(staticFields)) {
+            for(int i = 0; i< getListSize(staticFields); i++) {
+                map.put("static_fields[" + i + "]", getFromList(staticFields, i));
+            }
+        }
+        else {
+            map.put("static_fields", JSON.getDefault().getMapper().writeValueAsString(staticFields));
         }
     }
     } catch (Exception e) {

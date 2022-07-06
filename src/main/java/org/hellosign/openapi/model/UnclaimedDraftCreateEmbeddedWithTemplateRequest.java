@@ -55,6 +55,8 @@ import org.hellosign.openapi.ApiException;
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_FIELD_OPTIONS,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_FILE,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_FILE_URL,
+    UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_FORCE_SIGNER_ROLES,
+    UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_FORCE_SUBJECT_MESSAGE,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_HOLD_REQUEST,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_IS_FOR_EMBEDDED_SIGNING,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_MESSAGE,
@@ -62,6 +64,7 @@ import org.hellosign.openapi.ApiException;
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_PREVIEW_ONLY,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_REQUESTING_REDIRECT_URL,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SHOW_PREVIEW,
+    UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SHOW_PROGRESS_STEPPER,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNERS,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNING_OPTIONS,
     UnclaimedDraftCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNING_REDIRECT_URL,
@@ -105,6 +108,12 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   public static final String JSON_PROPERTY_FILE_URL = "file_url";
   private List<String> fileUrl = null;
 
+  public static final String JSON_PROPERTY_FORCE_SIGNER_ROLES = "force_signer_roles";
+  private Boolean forceSignerRoles = false;
+
+  public static final String JSON_PROPERTY_FORCE_SUBJECT_MESSAGE = "force_subject_message";
+  private Boolean forceSubjectMessage = false;
+
   public static final String JSON_PROPERTY_HOLD_REQUEST = "hold_request";
   private Boolean holdRequest = false;
 
@@ -125,6 +134,9 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
 
   public static final String JSON_PROPERTY_SHOW_PREVIEW = "show_preview";
   private Boolean showPreview = false;
+
+  public static final String JSON_PROPERTY_SHOW_PROGRESS_STEPPER = "show_progress_stepper";
+  private Boolean showProgressStepper = true;
 
   public static final String JSON_PROPERTY_SIGNERS = "signers";
   private List<SubUnclaimedDraftTemplateSigner> signers = null;
@@ -156,11 +168,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Client id of the app you&#39;re using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.
+   * Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.
    * @return clientId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Client id of the app you're using to create this draft. Visit our [embedded page](https://app.hellosign.com/api/embeddedSigningWalkthrough) to learn more about this parameter.")
+  @ApiModelProperty(required = true, value = "Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app.")
   @JsonProperty(JSON_PROPERTY_CLIENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -182,11 +194,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * The email address of the user that should be designated as the requester of this draft, if the draft type is &#x60;request_signature&#x60;.
+   * The email address of the user that should be designated as the requester of this draft.
    * @return requesterEmailAddress
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The email address of the user that should be designated as the requester of this draft, if the draft type is `request_signature`.")
+  @ApiModelProperty(required = true, value = "The email address of the user that should be designated as the requester of this draft.")
   @JsonProperty(JSON_PROPERTY_REQUESTER_EMAIL_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -265,11 +277,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Gold plan and higher.
+   * Allows signers to reassign their signature requests to other signers if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;.  **Note**: Only available for Premium plan and higher.
    * @return allowReassign
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Gold plan and higher.")
+  @ApiModelProperty(value = "Allows signers to reassign their signature requests to other signers if set to `true`. Defaults to `false`.  **Note**: Only available for Premium plan and higher.")
   @JsonProperty(JSON_PROPERTY_ALLOW_REASSIGN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -333,11 +345,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.
+   * An array defining values and options for custom fields. Required when a custom field exists in the Template.
    * @return customFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when defining when a custom field exists in the Template.")
+  @ApiModelProperty(value = "An array defining values and options for custom fields. Required when a custom field exists in the Template.")
   @JsonProperty(JSON_PROPERTY_CUSTOM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -419,11 +431,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Append additional files to the signature request. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough). Text tags for signers not on the template(s) will be ignored.  Use &#x60;file[]&#x60; to pass the uploaded file(s).  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
    * @return file
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Append additional files to the signature request. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough). Text tags for signers not on the template(s) will be ignored.  Use `file[]` to pass the uploaded file(s).  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use `file[]` to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -453,11 +465,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * **file** or **file_url** is required, but not both.  Append additional files to the signature request. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough). Text tags for signers not on the template(s) will be ignored.  Use &#x60;file_url[]&#x60; to have HelloSign download the file(s).  Currently we only support use of either the &#x60;file[]&#x60; parameter or &#x60;file_url[]&#x60; parameter, not both.
+   * Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**file** or **file_url** is required, but not both.  Append additional files to the signature request. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough). Text tags for signers not on the template(s) will be ignored.  Use `file_url[]` to have HelloSign download the file(s).  Currently we only support use of either the `file[]` parameter or `file_url[]` parameter, not both.")
+  @ApiModelProperty(value = "Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -473,17 +485,69 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
 
+  public UnclaimedDraftCreateEmbeddedWithTemplateRequest forceSignerRoles(Boolean forceSignerRoles) {
+    this.forceSignerRoles = forceSignerRoles;
+    return this;
+  }
+
+   /**
+   * Provide users the ability to review/edit the template signer roles.
+   * @return forceSignerRoles
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Provide users the ability to review/edit the template signer roles.")
+  @JsonProperty(JSON_PROPERTY_FORCE_SIGNER_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getForceSignerRoles() {
+    return forceSignerRoles;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORCE_SIGNER_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForceSignerRoles(Boolean forceSignerRoles) {
+    this.forceSignerRoles = forceSignerRoles;
+  }
+
+
+  public UnclaimedDraftCreateEmbeddedWithTemplateRequest forceSubjectMessage(Boolean forceSubjectMessage) {
+    this.forceSubjectMessage = forceSubjectMessage;
+    return this;
+  }
+
+   /**
+   * Provide users the ability to review/edit the template subject and message.
+   * @return forceSubjectMessage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Provide users the ability to review/edit the template subject and message.")
+  @JsonProperty(JSON_PROPERTY_FORCE_SUBJECT_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getForceSubjectMessage() {
+    return forceSubjectMessage;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORCE_SUBJECT_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForceSubjectMessage(Boolean forceSubjectMessage) {
+    this.forceSubjectMessage = forceSubjectMessage;
+  }
+
+
   public UnclaimedDraftCreateEmbeddedWithTemplateRequest holdRequest(Boolean holdRequest) {
     this.holdRequest = holdRequest;
     return this;
   }
 
    /**
-   * The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](https://app.hellosign.com/api/reference#release_on-hold_signature_request) the request from hold when ready to send. Defaults to &#x60;false&#x60;.
+   * The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to &#x60;false&#x60;.
    * @return holdRequest
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](https://app.hellosign.com/api/reference#release_on-hold_signature_request) the request from hold when ready to send. Defaults to `false`.")
+  @ApiModelProperty(value = "The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.")
   @JsonProperty(JSON_PROPERTY_HOLD_REQUEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -591,11 +655,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * This allows the requester to enable the preview experience experience.  - &#x60;preview_only&#x3D;true&#x60;: Allows requesters to enable the preview only experience. - &#x60;preview_only&#x3D;false&#x60;: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites &#x60;show_preview&#x3D;1&#x60; (if set).
+   * This allows the requester to enable the preview experience (i.e. does not allow the requester&#39;s end user to add any additional fields via the editor).  - &#x60;preview_only&#x3D;true&#x60;: Allows requesters to enable the preview only experience. - &#x60;preview_only&#x3D;false&#x60;: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites &#x60;show_preview&#x3D;1&#x60; (if set).
    * @return previewOnly
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "This allows the requester to enable the preview experience experience.  - `preview_only=true`: Allows requesters to enable the preview only experience. - `preview_only=false`: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites `show_preview=1` (if set).")
+  @ApiModelProperty(value = "This allows the requester to enable the preview experience (i.e. does not allow the requester's end user to add any additional fields via the editor).  - `preview_only=true`: Allows requesters to enable the preview only experience. - `preview_only=false`: Allows requesters to disable the preview only experience.  **Note**: This parameter overwrites `show_preview=1` (if set).")
   @JsonProperty(JSON_PROPERTY_PREVIEW_ONLY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -660,6 +724,32 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShowPreview(Boolean showPreview) {
     this.showPreview = showPreview;
+  }
+
+
+  public UnclaimedDraftCreateEmbeddedWithTemplateRequest showProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
+    return this;
+  }
+
+   /**
+   * When only one step remains in the signature request process and this parameter is set to &#x60;false&#x60; then the progress stepper will be hidden.
+   * @return showProgressStepper
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When only one step remains in the signature request process and this parameter is set to `false` then the progress stepper will be hidden.")
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getShowProgressStepper() {
+    return showProgressStepper;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHOW_PROGRESS_STEPPER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShowProgressStepper(Boolean showProgressStepper) {
+    this.showProgressStepper = showProgressStepper;
   }
 
 
@@ -876,6 +966,8 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         Objects.equals(this.fieldOptions, unclaimedDraftCreateEmbeddedWithTemplateRequest.fieldOptions) &&
         Objects.equals(this.file, unclaimedDraftCreateEmbeddedWithTemplateRequest.file) &&
         Objects.equals(this.fileUrl, unclaimedDraftCreateEmbeddedWithTemplateRequest.fileUrl) &&
+        Objects.equals(this.forceSignerRoles, unclaimedDraftCreateEmbeddedWithTemplateRequest.forceSignerRoles) &&
+        Objects.equals(this.forceSubjectMessage, unclaimedDraftCreateEmbeddedWithTemplateRequest.forceSubjectMessage) &&
         Objects.equals(this.holdRequest, unclaimedDraftCreateEmbeddedWithTemplateRequest.holdRequest) &&
         Objects.equals(this.isForEmbeddedSigning, unclaimedDraftCreateEmbeddedWithTemplateRequest.isForEmbeddedSigning) &&
         Objects.equals(this.message, unclaimedDraftCreateEmbeddedWithTemplateRequest.message) &&
@@ -883,6 +975,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         Objects.equals(this.previewOnly, unclaimedDraftCreateEmbeddedWithTemplateRequest.previewOnly) &&
         Objects.equals(this.requestingRedirectUrl, unclaimedDraftCreateEmbeddedWithTemplateRequest.requestingRedirectUrl) &&
         Objects.equals(this.showPreview, unclaimedDraftCreateEmbeddedWithTemplateRequest.showPreview) &&
+        Objects.equals(this.showProgressStepper, unclaimedDraftCreateEmbeddedWithTemplateRequest.showProgressStepper) &&
         Objects.equals(this.signers, unclaimedDraftCreateEmbeddedWithTemplateRequest.signers) &&
         Objects.equals(this.signingOptions, unclaimedDraftCreateEmbeddedWithTemplateRequest.signingOptions) &&
         Objects.equals(this.signingRedirectUrl, unclaimedDraftCreateEmbeddedWithTemplateRequest.signingRedirectUrl) &&
@@ -894,7 +987,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, requesterEmailAddress, templateIds, allowDecline, allowReassign, ccs, customFields, editorOptions, fieldOptions, file, fileUrl, holdRequest, isForEmbeddedSigning, message, metadata, previewOnly, requestingRedirectUrl, showPreview, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, title);
+    return Objects.hash(clientId, requesterEmailAddress, templateIds, allowDecline, allowReassign, ccs, customFields, editorOptions, fieldOptions, file, fileUrl, forceSignerRoles, forceSubjectMessage, holdRequest, isForEmbeddedSigning, message, metadata, previewOnly, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, title);
   }
 
   @Override
@@ -912,6 +1005,8 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
     sb.append("    fieldOptions: ").append(toIndentedString(fieldOptions)).append("\n");
     sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
+    sb.append("    forceSignerRoles: ").append(toIndentedString(forceSignerRoles)).append("\n");
+    sb.append("    forceSubjectMessage: ").append(toIndentedString(forceSubjectMessage)).append("\n");
     sb.append("    holdRequest: ").append(toIndentedString(holdRequest)).append("\n");
     sb.append("    isForEmbeddedSigning: ").append(toIndentedString(isForEmbeddedSigning)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
@@ -919,6 +1014,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
     sb.append("    previewOnly: ").append(toIndentedString(previewOnly)).append("\n");
     sb.append("    requestingRedirectUrl: ").append(toIndentedString(requestingRedirectUrl)).append("\n");
     sb.append("    showPreview: ").append(toIndentedString(showPreview)).append("\n");
+    sb.append("    showProgressStepper: ").append(toIndentedString(showProgressStepper)).append("\n");
     sb.append("    signers: ").append(toIndentedString(signers)).append("\n");
     sb.append("    signingOptions: ").append(toIndentedString(signingOptions)).append("\n");
     sb.append("    signingRedirectUrl: ").append(toIndentedString(signingRedirectUrl)).append("\n");
@@ -1132,6 +1228,42 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
             map.put("file_url", JSON.getDefault().getMapper().writeValueAsString(fileUrl));
         }
     }
+    if (forceSignerRoles != null) {
+        if (isFileTypeOrListOfFiles(forceSignerRoles)) {
+            fileTypeFound = true;
+        }
+
+        if (forceSignerRoles.getClass().equals(java.io.File.class) ||
+            forceSignerRoles.getClass().equals(Integer.class) ||
+            forceSignerRoles.getClass().equals(String.class) ) {
+            map.put("force_signer_roles", forceSignerRoles);
+        } else if (isListOfFile(forceSignerRoles)) {
+            for(int i = 0; i< getListSize(forceSignerRoles); i++) {
+                map.put("force_signer_roles[" + i + "]", getFromList(forceSignerRoles, i));
+            }
+        }
+        else {
+            map.put("force_signer_roles", JSON.getDefault().getMapper().writeValueAsString(forceSignerRoles));
+        }
+    }
+    if (forceSubjectMessage != null) {
+        if (isFileTypeOrListOfFiles(forceSubjectMessage)) {
+            fileTypeFound = true;
+        }
+
+        if (forceSubjectMessage.getClass().equals(java.io.File.class) ||
+            forceSubjectMessage.getClass().equals(Integer.class) ||
+            forceSubjectMessage.getClass().equals(String.class) ) {
+            map.put("force_subject_message", forceSubjectMessage);
+        } else if (isListOfFile(forceSubjectMessage)) {
+            for(int i = 0; i< getListSize(forceSubjectMessage); i++) {
+                map.put("force_subject_message[" + i + "]", getFromList(forceSubjectMessage, i));
+            }
+        }
+        else {
+            map.put("force_subject_message", JSON.getDefault().getMapper().writeValueAsString(forceSubjectMessage));
+        }
+    }
     if (holdRequest != null) {
         if (isFileTypeOrListOfFiles(holdRequest)) {
             fileTypeFound = true;
@@ -1256,6 +1388,24 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         }
         else {
             map.put("show_preview", JSON.getDefault().getMapper().writeValueAsString(showPreview));
+        }
+    }
+    if (showProgressStepper != null) {
+        if (isFileTypeOrListOfFiles(showProgressStepper)) {
+            fileTypeFound = true;
+        }
+
+        if (showProgressStepper.getClass().equals(java.io.File.class) ||
+            showProgressStepper.getClass().equals(Integer.class) ||
+            showProgressStepper.getClass().equals(String.class) ) {
+            map.put("show_progress_stepper", showProgressStepper);
+        } else if (isListOfFile(showProgressStepper)) {
+            for(int i = 0; i< getListSize(showProgressStepper); i++) {
+                map.put("show_progress_stepper[" + i + "]", getFromList(showProgressStepper, i));
+            }
+        }
+        else {
+            map.put("show_progress_stepper", JSON.getDefault().getMapper().writeValueAsString(showProgressStepper));
         }
     }
     if (signers != null) {

@@ -122,11 +122,11 @@ public class AccountCreateResponse {
   }
 
    /**
-   * Get warnings
+   * A list of warnings.
    * @return warnings
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list of warnings.")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

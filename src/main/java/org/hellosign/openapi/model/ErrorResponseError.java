@@ -30,8 +30,9 @@ import org.hellosign.openapi.JSON;
 
 import org.hellosign.openapi.ApiException;
 /**
- * ErrorResponseError
+ * Contains information about an error that occurred.
  */
+@ApiModel(description = "Contains information about an error that occurred.")
 @JsonPropertyOrder({
     ErrorResponseError.JSON_PROPERTY_ERROR_MSG,
     ErrorResponseError.JSON_PROPERTY_ERROR_NAME,
@@ -57,11 +58,11 @@ public class ErrorResponseError {
   }
 
    /**
-   * Get errorMsg
+   * Message describing an error.
    * @return errorMsg
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Message describing an error.")
   @JsonProperty(JSON_PROPERTY_ERROR_MSG)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -83,11 +84,11 @@ public class ErrorResponseError {
   }
 
    /**
-   * Get errorName
+   * Name of the error.
    * @return errorName
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Name of the error.")
   @JsonProperty(JSON_PROPERTY_ERROR_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -109,11 +110,11 @@ public class ErrorResponseError {
   }
 
    /**
-   * Get errorPath
+   * Path at which an error occurred.
    * @return errorPath
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Path at which an error occurred.")
   @JsonProperty(JSON_PROPERTY_ERROR_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

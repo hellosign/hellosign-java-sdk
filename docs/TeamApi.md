@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## teamAddMember
 
-> TeamGetResponse teamAddMember(teamAddMemberRequest)
+> TeamGetResponse teamAddMember(teamAddMemberRequest, teamId)
 
 Add User to Team
 
@@ -41,10 +41,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         TeamApi api = new TeamApi(defaultClient);
 
@@ -72,6 +74,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **teamAddMemberRequest** | [**TeamAddMemberRequest**](TeamAddMemberRequest.md)|  |
+ **teamId** | **String**| The id of the team. | [optional]
 
 ### Return type
 
@@ -90,7 +93,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## teamCreate
@@ -121,10 +124,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         TeamApi api = new TeamApi(defaultClient);
 
@@ -170,7 +175,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## teamDelete
@@ -201,10 +206,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         TeamApi api = new TeamApi(defaultClient);
 
@@ -242,7 +249,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## teamGet
@@ -273,10 +280,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         TeamApi api = new TeamApi(defaultClient);
 
@@ -315,8 +324,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **404** | not found |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## teamRemoveMember
@@ -347,10 +355,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         TeamApi api = new TeamApi(defaultClient);
 
@@ -396,7 +406,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
 
 ## teamUpdate
@@ -427,10 +437,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-/*      HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");*/
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
 
         TeamApi api = new TeamApi(defaultClient);
         TeamUpdateRequest data = new TeamUpdateRequest()
@@ -474,5 +486,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **4XX** | failed operation |  -  |
+| **4XX** | failed_operation |  -  |
 
