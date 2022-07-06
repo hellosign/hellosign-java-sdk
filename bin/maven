@@ -7,7 +7,7 @@ DIR=$(cd `dirname $0` && pwd)
 ROOT_DIR="${DIR}/.."
 WORKINGDIR="/app/java"
 
-docker run --rm -it \
+docker run --rm \
   -v "${ROOT_DIR}:${WORKINGDIR}" \
   -v "hellosign-sdk-maven-cache:/root/.m2" \
   -w "${WORKINGDIR}" \
