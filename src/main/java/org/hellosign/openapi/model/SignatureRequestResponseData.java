@@ -20,10 +20,21 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueCheckbox;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueCheckboxMerge;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueDateSigned;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueDropdown;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueInitials;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueRadio;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueSignature;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueText;
+import org.hellosign.openapi.model.SignatureRequestResponseDataValueTextMerge;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.hellosign.openapi.JSON;
 
@@ -37,11 +48,31 @@ import org.hellosign.openapi.ApiException;
     SignatureRequestResponseData.JSON_PROPERTY_API_ID,
     SignatureRequestResponseData.JSON_PROPERTY_SIGNATURE_ID,
     SignatureRequestResponseData.JSON_PROPERTY_NAME,
-    SignatureRequestResponseData.JSON_PROPERTY_VALUE,
-    SignatureRequestResponseData.JSON_PROPERTY_REQUIRED,
-    SignatureRequestResponseData.JSON_PROPERTY_TYPE
+    SignatureRequestResponseData.JSON_PROPERTY_REQUIRED
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueCheckbox.class, name = "SignatureRequestResponseDataValueCheckbox"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueCheckboxMerge.class, name = "SignatureRequestResponseDataValueCheckboxMerge"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueDateSigned.class, name = "SignatureRequestResponseDataValueDateSigned"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueDropdown.class, name = "SignatureRequestResponseDataValueDropdown"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueInitials.class, name = "SignatureRequestResponseDataValueInitials"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueRadio.class, name = "SignatureRequestResponseDataValueRadio"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueSignature.class, name = "SignatureRequestResponseDataValueSignature"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueText.class, name = "SignatureRequestResponseDataValueText"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueTextMerge.class, name = "SignatureRequestResponseDataValueTextMerge"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueCheckbox.class, name = "checkbox"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueCheckboxMerge.class, name = "checkbox-merge"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueDateSigned.class, name = "date_signed"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueDropdown.class, name = "dropdown"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueInitials.class, name = "initials"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueRadio.class, name = "radio"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueSignature.class, name = "signature"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueText.class, name = "text"),
+  @JsonSubTypes.Type(value = SignatureRequestResponseDataValueTextMerge.class, name = "text-merge"),
+})
+
 public class SignatureRequestResponseData {
   public static final String JSON_PROPERTY_API_ID = "api_id";
   private String apiId;
@@ -52,63 +83,8 @@ public class SignatureRequestResponseData {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String JSON_PROPERTY_VALUE = "value";
-  private String value;
-
   public static final String JSON_PROPERTY_REQUIRED = "required";
   private Boolean required;
-
-  /**
-   * - &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api
-   */
-  public enum TypeEnum {
-    TEXT("text"),
-    
-    CHECKBOX("checkbox"),
-    
-    DATE_SIGNED("date_signed"),
-    
-    DROPDOWN("dropdown"),
-    
-    INITIALS("initials"),
-    
-    RADIO("radio"),
-    
-    SIGNATURE("signature"),
-    
-    TEXT_MERGE("text-merge"),
-    
-    CHECKBOX_MERGE("checkbox-merge");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
 
   public SignatureRequestResponseData() { 
   }
@@ -191,32 +167,6 @@ public class SignatureRequestResponseData {
   }
 
 
-  public SignatureRequestResponseData value(String value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * The value of the form field.
-   * @return value
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The value of the form field.")
-  @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getValue() {
-    return value;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-
   public SignatureRequestResponseData required(Boolean required) {
     this.required = required;
     return this;
@@ -243,32 +193,6 @@ public class SignatureRequestResponseData {
   }
 
 
-  public SignatureRequestResponseData type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * - &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "- `text`: A text input field - `checkbox`: A yes/no checkbox - `date_signed`: A date - `dropdown`: An input field for dropdowns - `initials`: An input field for initials - `radio`: An input field for radios - `signature`: A signature input field - `text-merge`: A text field that has default text set by the api - `checkbox-merge`: A checkbox field that has default value set by the api")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
   /**
    * Return true if this SignatureRequestResponseData object is equal to o.
    */
@@ -284,14 +208,12 @@ public class SignatureRequestResponseData {
     return Objects.equals(this.apiId, signatureRequestResponseData.apiId) &&
         Objects.equals(this.signatureId, signatureRequestResponseData.signatureId) &&
         Objects.equals(this.name, signatureRequestResponseData.name) &&
-        Objects.equals(this.value, signatureRequestResponseData.value) &&
-        Objects.equals(this.required, signatureRequestResponseData.required) &&
-        Objects.equals(this.type, signatureRequestResponseData.type);
+        Objects.equals(this.required, signatureRequestResponseData.required);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiId, signatureId, name, value, required, type);
+    return Objects.hash(apiId, signatureId, name, required);
   }
 
   @Override
@@ -301,9 +223,7 @@ public class SignatureRequestResponseData {
     sb.append("    apiId: ").append(toIndentedString(apiId)).append("\n");
     sb.append("    signatureId: ").append(toIndentedString(signatureId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -366,24 +286,6 @@ public class SignatureRequestResponseData {
             map.put("name", JSON.getDefault().getMapper().writeValueAsString(name));
         }
     }
-    if (value != null) {
-        if (isFileTypeOrListOfFiles(value)) {
-            fileTypeFound = true;
-        }
-
-        if (value.getClass().equals(java.io.File.class) ||
-            value.getClass().equals(Integer.class) ||
-            value.getClass().equals(String.class) ) {
-            map.put("value", value);
-        } else if (isListOfFile(value)) {
-            for(int i = 0; i< getListSize(value); i++) {
-                map.put("value[" + i + "]", getFromList(value, i));
-            }
-        }
-        else {
-            map.put("value", JSON.getDefault().getMapper().writeValueAsString(value));
-        }
-    }
     if (required != null) {
         if (isFileTypeOrListOfFiles(required)) {
             fileTypeFound = true;
@@ -400,24 +302,6 @@ public class SignatureRequestResponseData {
         }
         else {
             map.put("required", JSON.getDefault().getMapper().writeValueAsString(required));
-        }
-    }
-    if (type != null) {
-        if (isFileTypeOrListOfFiles(type)) {
-            fileTypeFound = true;
-        }
-
-        if (type.getClass().equals(java.io.File.class) ||
-            type.getClass().equals(Integer.class) ||
-            type.getClass().equals(String.class) ) {
-            map.put("type", type);
-        } else if (isListOfFile(type)) {
-            for(int i = 0; i< getListSize(type); i++) {
-                map.put("type[" + i + "]", getFromList(type, i));
-            }
-        }
-        else {
-            map.put("type", JSON.getDefault().getMapper().writeValueAsString(type));
         }
     }
     } catch (Exception e) {
@@ -458,5 +342,29 @@ public class SignatureRequestResponseData {
     return o.toString().replace("\n", "\n    ");
   }
 
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("SignatureRequestResponseDataValueCheckbox", SignatureRequestResponseDataValueCheckbox.class);
+  mappings.put("SignatureRequestResponseDataValueCheckboxMerge", SignatureRequestResponseDataValueCheckboxMerge.class);
+  mappings.put("SignatureRequestResponseDataValueDateSigned", SignatureRequestResponseDataValueDateSigned.class);
+  mappings.put("SignatureRequestResponseDataValueDropdown", SignatureRequestResponseDataValueDropdown.class);
+  mappings.put("SignatureRequestResponseDataValueInitials", SignatureRequestResponseDataValueInitials.class);
+  mappings.put("SignatureRequestResponseDataValueRadio", SignatureRequestResponseDataValueRadio.class);
+  mappings.put("SignatureRequestResponseDataValueSignature", SignatureRequestResponseDataValueSignature.class);
+  mappings.put("SignatureRequestResponseDataValueText", SignatureRequestResponseDataValueText.class);
+  mappings.put("SignatureRequestResponseDataValueTextMerge", SignatureRequestResponseDataValueTextMerge.class);
+  mappings.put("checkbox", SignatureRequestResponseDataValueCheckbox.class);
+  mappings.put("checkbox-merge", SignatureRequestResponseDataValueCheckboxMerge.class);
+  mappings.put("date_signed", SignatureRequestResponseDataValueDateSigned.class);
+  mappings.put("dropdown", SignatureRequestResponseDataValueDropdown.class);
+  mappings.put("initials", SignatureRequestResponseDataValueInitials.class);
+  mappings.put("radio", SignatureRequestResponseDataValueRadio.class);
+  mappings.put("signature", SignatureRequestResponseDataValueSignature.class);
+  mappings.put("text", SignatureRequestResponseDataValueText.class);
+  mappings.put("text-merge", SignatureRequestResponseDataValueTextMerge.class);
+  mappings.put("SignatureRequestResponseData", SignatureRequestResponseData.class);
+  JSON.registerDiscriminator(SignatureRequestResponseData.class, "type", mappings);
+}
 }
 

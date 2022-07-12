@@ -11,8 +11,11 @@ import javax.ws.rs.core.GenericType;
 import org.hellosign.openapi.model.ErrorResponse;
 import org.hellosign.openapi.model.TeamAddMemberRequest;
 import org.hellosign.openapi.model.TeamCreateRequest;
+import org.hellosign.openapi.model.TeamGetInfoResponse;
 import org.hellosign.openapi.model.TeamGetResponse;
+import org.hellosign.openapi.model.TeamMembersResponse;
 import org.hellosign.openapi.model.TeamRemoveMemberRequest;
+import org.hellosign.openapi.model.TeamSubTeamsResponse;
 import org.hellosign.openapi.model.TeamUpdateRequest;
 
 import java.util.ArrayList;
@@ -333,6 +336,163 @@ public class TeamApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
+   * Get Team Info
+   * Provides information about a team.
+   * @param teamId The id of the team. (optional)
+   * @return TeamGetInfoResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public TeamGetInfoResponse teamInfo(String teamId) throws ApiException {
+    return teamInfoWithHttpInfo(teamId).getData();
+  }
+
+  /**
+   * Get Team Info
+   * Provides information about a team.
+   * @param teamId The id of the team. (optional)
+   * @return ApiResponse&lt;TeamGetInfoResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<TeamGetInfoResponse> teamInfoWithHttpInfo(String teamId) throws ApiException {
+    
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/team/info";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "team_id", teamId));
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+
+    localVarFormParams = new HashMap<String, Object>();
+    boolean isFileTypeFound = !localVarFormParams.isEmpty();
+
+    final String localVarContentType = isFileTypeFound? "multipart/form-data" : apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "api_key", "oauth2" };
+
+    GenericType<TeamGetInfoResponse> localVarReturnType = new GenericType<TeamGetInfoResponse>() {};
+
+    return apiClient.invokeAPI("TeamApi.teamInfo", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
+   * List Team Members
+   * Provides a paginated list of members (and their roles) that belong to a given team.
+   * @param teamId The id of the team that a member list is being requested from. (required)
+   * @param page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+   * @return TeamMembersResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public TeamMembersResponse teamMembers(String teamId, Integer page, Integer pageSize) throws ApiException {
+    return teamMembersWithHttpInfo(teamId, page, pageSize).getData();
+  }
+
+  /**
+   * List Team Members
+   * Provides a paginated list of members (and their roles) that belong to a given team.
+   * @param teamId The id of the team that a member list is being requested from. (required)
+   * @param page Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+   * @return ApiResponse&lt;TeamMembersResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<TeamMembersResponse> teamMembersWithHttpInfo(String teamId, Integer page, Integer pageSize) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'teamId' is set
+    if (teamId == null) {
+      throw new ApiException(400, "Missing the required parameter 'teamId' when calling teamMembers");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/team/members/{team_id}"
+      .replaceAll("\\{" + "team_id" + "\\}", apiClient.escapeString(teamId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page_size", pageSize));
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+
+    localVarFormParams = new HashMap<String, Object>();
+    boolean isFileTypeFound = !localVarFormParams.isEmpty();
+
+    final String localVarContentType = isFileTypeFound? "multipart/form-data" : apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "api_key", "oauth2" };
+
+    GenericType<TeamMembersResponse> localVarReturnType = new GenericType<TeamMembersResponse>() {};
+
+    return apiClient.invokeAPI("TeamApi.teamMembers", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
    * Remove User from Team
    * Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the &#x60;new_owner_email_address&#x60; parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed.
    * @param teamRemoveMemberRequest  (required)
@@ -403,6 +563,93 @@ public class TeamApi {
     GenericType<TeamGetResponse> localVarReturnType = new GenericType<TeamGetResponse>() {};
 
     return apiClient.invokeAPI("TeamApi.teamRemoveMember", localVarPath, "POST", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
+   * List Sub Teams
+   * Provides a paginated list of sub teams that belong to a given team.
+   * @param teamId The id of the parent Team. (required)
+   * @param page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+   * @return TeamSubTeamsResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public TeamSubTeamsResponse teamSubTeams(String teamId, Integer page, Integer pageSize) throws ApiException {
+    return teamSubTeamsWithHttpInfo(teamId, page, pageSize).getData();
+  }
+
+  /**
+   * List Sub Teams
+   * Provides a paginated list of sub teams that belong to a given team.
+   * @param teamId The id of the parent Team. (required)
+   * @param page Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)
+   * @return ApiResponse&lt;TeamSubTeamsResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<TeamSubTeamsResponse> teamSubTeamsWithHttpInfo(String teamId, Integer page, Integer pageSize) throws ApiException {
+    
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'teamId' is set
+    if (teamId == null) {
+      throw new ApiException(400, "Missing the required parameter 'teamId' when calling teamSubTeams");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/team/sub_teams/{team_id}"
+      .replaceAll("\\{" + "team_id" + "\\}", apiClient.escapeString(teamId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page_size", pageSize));
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+
+    localVarFormParams = new HashMap<String, Object>();
+    boolean isFileTypeFound = !localVarFormParams.isEmpty();
+
+    final String localVarContentType = isFileTypeFound? "multipart/form-data" : apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "api_key", "oauth2" };
+
+    GenericType<TeamSubTeamsResponse> localVarReturnType = new GenericType<TeamSubTeamsResponse>() {};
+
+    return apiClient.invokeAPI("TeamApi.teamSubTeams", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }

@@ -214,7 +214,10 @@ Class | Method | HTTP request | Description
 *TeamApi* | [**teamCreate**](docs/TeamApi.md#teamCreate) | **POST** /team/create | Create Team
 *TeamApi* | [**teamDelete**](docs/TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team
 *TeamApi* | [**teamGet**](docs/TeamApi.md#teamGet) | **GET** /team | Get Team
+*TeamApi* | [**teamInfo**](docs/TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info
+*TeamApi* | [**teamMembers**](docs/TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members
 *TeamApi* | [**teamRemoveMember**](docs/TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team
+*TeamApi* | [**teamSubTeams**](docs/TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams
 *TeamApi* | [**teamUpdate**](docs/TeamApi.md#teamUpdate) | **PUT** /team | Update Team
 *TemplateApi* | [**templateAddUser**](docs/TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template
 *TemplateApi* | [**templateCreateEmbeddedDraft**](docs/TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
@@ -290,6 +293,16 @@ Class | Method | HTTP request | Description
  - [SignatureRequestResponseCustomFieldText](docs/SignatureRequestResponseCustomFieldText.md)
  - [SignatureRequestResponseCustomFieldTypeEnum](docs/SignatureRequestResponseCustomFieldTypeEnum.md)
  - [SignatureRequestResponseData](docs/SignatureRequestResponseData.md)
+ - [SignatureRequestResponseDataTypeEnum](docs/SignatureRequestResponseDataTypeEnum.md)
+ - [SignatureRequestResponseDataValueCheckbox](docs/SignatureRequestResponseDataValueCheckbox.md)
+ - [SignatureRequestResponseDataValueCheckboxMerge](docs/SignatureRequestResponseDataValueCheckboxMerge.md)
+ - [SignatureRequestResponseDataValueDateSigned](docs/SignatureRequestResponseDataValueDateSigned.md)
+ - [SignatureRequestResponseDataValueDropdown](docs/SignatureRequestResponseDataValueDropdown.md)
+ - [SignatureRequestResponseDataValueInitials](docs/SignatureRequestResponseDataValueInitials.md)
+ - [SignatureRequestResponseDataValueRadio](docs/SignatureRequestResponseDataValueRadio.md)
+ - [SignatureRequestResponseDataValueSignature](docs/SignatureRequestResponseDataValueSignature.md)
+ - [SignatureRequestResponseDataValueText](docs/SignatureRequestResponseDataValueText.md)
+ - [SignatureRequestResponseDataValueTextMerge](docs/SignatureRequestResponseDataValueTextMerge.md)
  - [SignatureRequestResponseSignatures](docs/SignatureRequestResponseSignatures.md)
  - [SignatureRequestSendRequest](docs/SignatureRequestSendRequest.md)
  - [SignatureRequestSendWithTemplateRequest](docs/SignatureRequestSendWithTemplateRequest.md)
@@ -323,15 +336,22 @@ Class | Method | HTTP request | Description
  - [SubSignatureRequestSigner](docs/SubSignatureRequestSigner.md)
  - [SubSignatureRequestTemplateSigner](docs/SubSignatureRequestTemplateSigner.md)
  - [SubSigningOptions](docs/SubSigningOptions.md)
+ - [SubTeamResponse](docs/SubTeamResponse.md)
  - [SubTemplateRole](docs/SubTemplateRole.md)
  - [SubUnclaimedDraftSigner](docs/SubUnclaimedDraftSigner.md)
  - [SubUnclaimedDraftTemplateSigner](docs/SubUnclaimedDraftTemplateSigner.md)
  - [SubWhiteLabelingOptions](docs/SubWhiteLabelingOptions.md)
  - [TeamAddMemberRequest](docs/TeamAddMemberRequest.md)
  - [TeamCreateRequest](docs/TeamCreateRequest.md)
+ - [TeamGetInfoResponse](docs/TeamGetInfoResponse.md)
  - [TeamGetResponse](docs/TeamGetResponse.md)
+ - [TeamInfoResponse](docs/TeamInfoResponse.md)
+ - [TeamMemberResponse](docs/TeamMemberResponse.md)
+ - [TeamMembersResponse](docs/TeamMembersResponse.md)
+ - [TeamParentResponse](docs/TeamParentResponse.md)
  - [TeamRemoveMemberRequest](docs/TeamRemoveMemberRequest.md)
  - [TeamResponse](docs/TeamResponse.md)
+ - [TeamSubTeamsResponse](docs/TeamSubTeamsResponse.md)
  - [TeamUpdateRequest](docs/TeamUpdateRequest.md)
  - [TemplateAddUserRequest](docs/TemplateAddUserRequest.md)
  - [TemplateCreateEmbeddedDraftRequest](docs/TemplateCreateEmbeddedDraftRequest.md)
