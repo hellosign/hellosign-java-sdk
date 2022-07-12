@@ -27,13 +27,13 @@ printf "Adding examples to Docs ...\n"
 bash "${PWD}/bin/php" ./bin/generate-examples.php
 
 printf "Replacing strings ...\n"
-docker run -it --rm \
+docker run --rm \
   -v "${PWD}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/replace
 
 printf "Scanning for prohibited keywords ...\n"
-docker run -it --rm \
+docker run --rm \
   -v "${PWD}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
   perl bash ./bin/scan_for
