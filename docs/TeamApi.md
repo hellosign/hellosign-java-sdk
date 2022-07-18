@@ -8,7 +8,10 @@ Method | HTTP request | Description
 [**teamCreate**](TeamApi.md#teamCreate) | **POST** /team/create | Create Team
 [**teamDelete**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team
 [**teamGet**](TeamApi.md#teamGet) | **GET** /team | Get Team
+[**teamInfo**](TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info
+[**teamMembers**](TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members
 [**teamRemoveMember**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team
+[**teamSubTeams**](TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams
 [**teamUpdate**](TeamApi.md#teamUpdate) | **PUT** /team | Update Team
 
 
@@ -327,6 +330,168 @@ This endpoint does not need any parameter.
 | **4XX** | failed_operation |  -  |
 
 
+## teamInfo
+
+> TeamGetInfoResponse teamInfo(teamId)
+
+Get Team Info
+
+Provides information about a team.
+
+### Example
+
+```java
+import org.hellosign.openapi.ApiClient;
+import org.hellosign.openapi.ApiException;
+import org.hellosign.openapi.Configuration;
+import org.hellosign.openapi.api.*;
+import org.hellosign.openapi.auth.HttpBasicAuth;
+import org.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        TeamApi api = new TeamApi(defaultClient);
+
+        try {
+            TeamGetInfoResponse result = api.teamInfo();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TeamApi#teamInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **String**| The id of the team. | [optional]
+
+### Return type
+
+[**TeamGetInfoResponse**](TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **4XX** | failed_operation |  -  |
+
+
+## teamMembers
+
+> TeamMembersResponse teamMembers(teamId, page, pageSize)
+
+List Team Members
+
+Provides a paginated list of members (and their roles) that belong to a given team.
+
+### Example
+
+```java
+import org.hellosign.openapi.ApiClient;
+import org.hellosign.openapi.ApiException;
+import org.hellosign.openapi.Configuration;
+import org.hellosign.openapi.api.*;
+import org.hellosign.openapi.auth.HttpBasicAuth;
+import org.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        TeamApi api = new TeamApi(defaultClient);
+
+        String teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+        try {
+            TeamMembersResponse result = api.teamMembers(teamId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TeamApi#teamMembers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **String**| The id of the team that a member list is being requested from. |
+ **page** | **Integer**| Which page number of the team member list to return. Defaults to `1`. | [optional] [default to 1]
+ **pageSize** | **Integer**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20]
+
+### Return type
+
+[**TeamMembersResponse**](TeamMembersResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **4XX** | failed_operation |  -  |
+
+
 ## teamRemoveMember
 
 > TeamGetResponse teamRemoveMember(teamRemoveMemberRequest)
@@ -400,6 +565,89 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **4XX** | failed_operation |  -  |
+
+
+## teamSubTeams
+
+> TeamSubTeamsResponse teamSubTeams(teamId, page, pageSize)
+
+List Sub Teams
+
+Provides a paginated list of sub teams that belong to a given team.
+
+### Example
+
+```java
+import org.hellosign.openapi.ApiClient;
+import org.hellosign.openapi.ApiException;
+import org.hellosign.openapi.Configuration;
+import org.hellosign.openapi.api.*;
+import org.hellosign.openapi.auth.HttpBasicAuth;
+import org.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        TeamApi api = new TeamApi(defaultClient);
+
+        String teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
+
+        try {
+            TeamSubTeamsResponse result = api.teamSubTeams(teamId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TeamApi#teamSubTeams");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **teamId** | **String**| The id of the parent Team. |
+ **page** | **Integer**| Which page number of the SubTeam List to return. Defaults to `1`. | [optional] [default to 1]
+ **pageSize** | **Integer**| Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20]
+
+### Return type
+
+[**TeamSubTeamsResponse**](TeamSubTeamsResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
