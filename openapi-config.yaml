@@ -3,9 +3,9 @@ additionalProperties:
   library: jersey2
   openApiNullable: false
   java8: true
-  invokerPackage: org.hellosign.openapi
-  apiPackage: org.hellosign.openapi.api
-  modelPackage: org.hellosign.openapi.model
+  invokerPackage: com.hellosign.openapi
+  apiPackage: com.hellosign.openapi.api
+  modelPackage: com.hellosign.openapi.model
   developerEmail: apisupport@hellosign.com
   developerName: HelloSign API Team
   developerOrganizationUrl: https://hellosign.com
@@ -14,7 +14,7 @@ additionalProperties:
 files:
   EventCallbackHelper.mustache:
     templateType: SupportingFiles
-    destinationFilename: src/main/java/org/hellosign/openapi/EventCallbackHelper.java
+    destinationFilename: src/main/java/com/hellosign/openapi/EventCallbackHelper.java
 globalProperties:
   apiTests: false
   modelTests: false

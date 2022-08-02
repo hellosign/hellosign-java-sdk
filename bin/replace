@@ -8,9 +8,9 @@ rep () {
   SEARCH_STRING=$1
   REPLACE_STRING=$2
   SCAN_DIRS=( \
-    "src/main/java/org/hellosign/openapi/api" \
-    "src/main/java/org/hellosign/openapi/model" \
-    "src/test/java/org/hellosign/openapi/api" \
+    "src/main/java/com/hellosign/openapi/api" \
+    "src/main/java/com/hellosign/openapi/model" \
+    "src/test/java/com/hellosign/openapi/api" \
   )
 
   printf "\nScanning for '${SEARCH_STRING}': "
@@ -25,4 +25,4 @@ rep () {
 
 perl -pi -e 's/(.*)AllOf.md\)\n//g' "${ROOT_DIR}/README.md"
 
-rep 'import org.hellosign.(.*)AllOf;\n' ''
+rep 'import com.hellosign.(.*)AllOf;\n' ''
