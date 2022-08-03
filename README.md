@@ -156,8 +156,8 @@ public class Example {
     import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
     import org.glassfish.jersey.client.ClientConfig;
     import org.glassfish.jersey.client.ClientProperties;
-    import org.hellosign.openapi.*;
-    import org.hellosign.openapi.api.AccountApi;
+    import com.hellosign.openapi.*;
+    import com.hellosign.openapi.api.AccountApi;
 
     ...
 
