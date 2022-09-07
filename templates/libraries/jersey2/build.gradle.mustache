@@ -1,9 +1,13 @@
-apply plugin: 'idea'
-apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'com.diffplug.spotless'
+apply plugin: 'signing'
 
 group = '{{groupId}}'
 version = '{{artifactVersion}}'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 
 buildscript {
     repositories {
@@ -20,93 +24,90 @@ repositories {
     mavenCentral()
 }
 
-if(hasProperty('target') && target == 'android') {
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.addAll(['--release', '8']) // for java 8 cross-compilation
+}
 
-    apply plugin: 'com.android.library'
-    apply plugin: 'com.github.dcendents.android-maven'
+if (JavaVersion.current().isJava8Compatible()) {
+    tasks.withType(Javadoc) {
+        // disable the crazy super-strict doclint tool in Java 8
+        //noinspection SpellCheckingInspection
+    options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
 
-    android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.2'
-        defaultConfig {
-            minSdkVersion 14
-            targetSdkVersion 25
-        }
-        compileOptions {
-            {{#java8}}
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-            {{/java8}}
-            {{^java8}}
-            sourceCompatibility JavaVersion.VERSION_1_7
-            targetCompatibility JavaVersion.VERSION_1_7
-            {{/java8}}
-        }
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
 
-        // Rename the aar correctly
-        libraryVariants.all { variant ->
-            variant.outputs.each { output ->
-                def outputFile = output.outputFile
-                if (outputFile != null && outputFile.name.endsWith('.aar')) {
-                    def fileName = "${project.name}-${variant.baseName}-${version}.aar"
-                    output.outputFile = new File(outputFile.parent, fileName)
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+processResources {
+    expand(project.properties)
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName:  findProperty('ossrhUsername'), password:  findProperty('ossrhPassword'))
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName:  findProperty('ossrhUsername'), password:  findProperty('ossrhPassword'))
+            }
+
+            pom.project {
+                name 'HelloSign'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Use the HelloSign Java SDK to connect your Java app to HelloSign\'s service in microseconds!'
+                url 'https://www.hellosign.com/'
+
+                scm {
+                    connection 'scm:git:git://github.com/hellosign/hellosign-java-sdk.git'
+                    developerConnection 'scm:git:git@github.com:hellosign/hellosign-java-sdk.git'
+                    url 'https://github.com/hellosign/hellosign-java-sdk'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name '{{developerName}}'
+                        email '{{developerEmail}}'
+                        url 'https://www.hellosign.com'
+                    }
                 }
             }
         }
-
-        dependencies {
-            provided "jakarta.annotation:jakarta.annotation-api:$jakarta_annotation_version"
-        }
     }
+}
 
-    afterEvaluate {
-        android.libraryVariants.all { variant ->
-            def task = project.tasks.create "jar${variant.name.capitalize()}", Jar
-            task.description = "Create jar artifact for ${variant.name}"
-            task.dependsOn variant.javaCompile
-            task.from variant.javaCompile.destinationDir
-            task.destinationDir = project.file("${project.buildDir}/outputs/jar")
-            task.archiveName = "${project.name}-${variant.baseName}-${version}.jar"
-            artifacts.add('archives', task);
-        }
-    }
-
-    task sourcesJar(type: Jar) {
-        from android.sourceSets.main.java.srcDirs
-        classifier = 'sources'
-    }
-
-    artifacts {
-        archives sourcesJar
-    }
-
-} else {
-
-    apply plugin: 'java'
-    apply plugin: 'maven-publish'
-    {{#java8}}
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-    {{/java8}}
-    {{^java8}}
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
-    {{/java8}}
-
-    publishing {
-        publications {
-            maven(MavenPublication) {
-               artifactId = '{{artifactId}}'
-
-               from components.java
-            }
-        }
-    }
-
-    task execute(type:JavaExec) {
-       main = System.getProperty('mainClass')
-       classpath = sourceSets.main.runtimeClasspath
-    }
+task fatJar(type: Jar) {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 ext {
