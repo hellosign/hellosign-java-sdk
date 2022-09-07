@@ -22,12 +22,12 @@ Creates a new Draft that can be claimed using the claim URL. The first authentic
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -137,12 +137,12 @@ Creates a new Draft that can be claimed and used in an embedded iFrame. The firs
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
 
 import java.util.List;
 
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -226,12 +226,12 @@ Creates a new Draft with a previously saved template(s) that can be claimed and 
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -327,12 +327,12 @@ Creates a new signature request from an embedded request that can be edited prio
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
 
 public class Example {
     public static void main(String[] args) {
@@ -397,6 +397,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 

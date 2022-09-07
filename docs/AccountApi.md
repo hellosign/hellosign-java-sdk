@@ -22,13 +22,13 @@ Creates a new HelloSign Account that is associated with the specified `email_add
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.auth.HttpBearerAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.auth.HttpBearerAuth;
+import com.hellosign.openapi.model.*;
 
 public class Example {
     public static void main(String[] args) {
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -105,13 +105,13 @@ Returns the properties and settings of your Account.
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.auth.HttpBearerAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.auth.HttpBearerAuth;
+import com.hellosign.openapi.model.*;
 
 public class Example {
     public static void main(String[] args) {
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -185,13 +185,13 @@ Updates the properties and settings of your Account. Currently only allows for u
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.auth.HttpBearerAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.auth.HttpBearerAuth;
+import com.hellosign.openapi.model.*;
 
 public class Example {
     public static void main(String[] args) {
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -268,13 +268,13 @@ Verifies whether an HelloSign Account exists for the given email address.
 ### Example
 
 ```java
-import org.hellosign.openapi.ApiClient;
-import org.hellosign.openapi.ApiException;
-import org.hellosign.openapi.Configuration;
-import org.hellosign.openapi.api.*;
-import org.hellosign.openapi.auth.HttpBasicAuth;
-import org.hellosign.openapi.auth.HttpBearerAuth;
-import org.hellosign.openapi.model.*;
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.auth.HttpBearerAuth;
+import com.hellosign.openapi.model.*;
 
 public class Example {
     public static void main(String[] args) {
@@ -336,6 +336,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 

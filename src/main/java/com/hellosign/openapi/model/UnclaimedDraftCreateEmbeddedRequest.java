@@ -80,7 +80,8 @@ import com.hellosign.openapi.ApiException;
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_TEST_MODE,
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_TYPE,
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_PREEXISTING_FIELDS,
-    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_TEXT_TAGS
+    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_TEXT_TAGS,
+    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftCreateEmbeddedRequest {
@@ -220,6 +221,9 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
   public static final String JSON_PROPERTY_USE_TEXT_TAGS = "use_text_tags";
   private Boolean useTextTags = false;
+
+  public static final String JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS = "populate_auto_fill_fields";
+  private Boolean populateAutoFillFields = false;
 
   public UnclaimedDraftCreateEmbeddedRequest() { 
   }
@@ -710,11 +714,11 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   }
 
    /**
-   * The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+   * The fields that should appear on the document, expressed as an array of objects. (We&#39;re currently fixing a bug where this property only accepts a two-dimensional array. You can read about it here: &lt;a href&#x3D;\&quot;/docs/placing-fields/form-fields-per-document\&quot; target&#x3D;\&quot;_blank\&quot;&gt;Using Form Fields per Document&lt;/a&gt;.)  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
    * @return formFieldsPerDocument
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects.  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects. (We're currently fixing a bug where this property only accepts a two-dimensional array. You can read about it here: <a href=\"/docs/placing-fields/form-fields-per-document\" target=\"_blank\">Using Form Fields per Document</a>.)  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -848,11 +852,11 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   }
 
    /**
-   * Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.
+   * Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.")
+  @ApiModelProperty(value = "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.")
   @JsonProperty(JSON_PROPERTY_METADATA)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -1188,6 +1192,32 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   }
 
 
+  public UnclaimedDraftCreateEmbeddedRequest populateAutoFillFields(Boolean populateAutoFillFields) {
+    this.populateAutoFillFields = populateAutoFillFields;
+    return this;
+  }
+
+   /**
+   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
+   * @return populateAutoFillFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.    ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.")
+  @JsonProperty(JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getPopulateAutoFillFields() {
+    return populateAutoFillFields;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPopulateAutoFillFields(Boolean populateAutoFillFields) {
+    this.populateAutoFillFields = populateAutoFillFields;
+  }
+
+
   /**
    * Return true if this UnclaimedDraftCreateEmbeddedRequest object is equal to o.
    */
@@ -1233,12 +1263,13 @@ public class UnclaimedDraftCreateEmbeddedRequest {
         Objects.equals(this.testMode, unclaimedDraftCreateEmbeddedRequest.testMode) &&
         Objects.equals(this.type, unclaimedDraftCreateEmbeddedRequest.type) &&
         Objects.equals(this.usePreexistingFields, unclaimedDraftCreateEmbeddedRequest.usePreexistingFields) &&
-        Objects.equals(this.useTextTags, unclaimedDraftCreateEmbeddedRequest.useTextTags);
+        Objects.equals(this.useTextTags, unclaimedDraftCreateEmbeddedRequest.useTextTags) &&
+        Objects.equals(this.populateAutoFillFields, unclaimedDraftCreateEmbeddedRequest.populateAutoFillFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, requesterEmailAddress, file, fileUrl, allowCcs, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, editorOptions, fieldOptions, forceSignerPage, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, holdRequest, isForEmbeddedSigning, message, metadata, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, type, usePreexistingFields, useTextTags);
+    return Objects.hash(clientId, requesterEmailAddress, file, fileUrl, allowCcs, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, editorOptions, fieldOptions, forceSignerPage, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, holdRequest, isForEmbeddedSigning, message, metadata, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, type, usePreexistingFields, useTextTags, populateAutoFillFields);
   }
 
   @Override
@@ -1279,6 +1310,7 @@ public class UnclaimedDraftCreateEmbeddedRequest {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    usePreexistingFields: ").append(toIndentedString(usePreexistingFields)).append("\n");
     sb.append("    useTextTags: ").append(toIndentedString(useTextTags)).append("\n");
+    sb.append("    populateAutoFillFields: ").append(toIndentedString(populateAutoFillFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1897,6 +1929,24 @@ public class UnclaimedDraftCreateEmbeddedRequest {
         }
         else {
             map.put("use_text_tags", JSON.getDefault().getMapper().writeValueAsString(useTextTags));
+        }
+    }
+    if (populateAutoFillFields != null) {
+        if (isFileTypeOrListOfFiles(populateAutoFillFields)) {
+            fileTypeFound = true;
+        }
+
+        if (populateAutoFillFields.getClass().equals(java.io.File.class) ||
+            populateAutoFillFields.getClass().equals(Integer.class) ||
+            populateAutoFillFields.getClass().equals(String.class) ) {
+            map.put("populate_auto_fill_fields", populateAutoFillFields);
+        } else if (isListOfFile(populateAutoFillFields)) {
+            for(int i = 0; i< getListSize(populateAutoFillFields); i++) {
+                map.put("populate_auto_fill_fields[" + i + "]", getFromList(populateAutoFillFields, i));
+            }
+        }
+        else {
+            map.put("populate_auto_fill_fields", JSON.getDefault().getMapper().writeValueAsString(populateAutoFillFields));
         }
     }
     } catch (Exception e) {

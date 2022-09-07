@@ -1,8 +1,8 @@
 lazy val root = (project in file(".")).
   settings(
-    organization := "org.openapitools",
-    name := "openapi-java-client",
-    version := "3.0.0",
+    organization := "com.hellosign",
+    name := "hellosign-java-sdk",
+    version := "6.0.0-beta",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     Compile / javacOptions ++= Seq("-Xlint:deprecation"),

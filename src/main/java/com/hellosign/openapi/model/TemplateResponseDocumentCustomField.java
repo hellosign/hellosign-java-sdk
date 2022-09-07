@@ -509,13 +509,13 @@ public class TemplateResponseDocumentCustomField {
   }
 
    /**
-   * _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
+   * Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead.
    * @return namedFormFields
    * @deprecated
   **/
   @Deprecated
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "_t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS")
+  @ApiModelProperty(value = "Deprecated. Use `form_fields` inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c=200&path=template/documents&t=response) array instead.")
   @JsonProperty(JSON_PROPERTY_NAMED_FORM_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

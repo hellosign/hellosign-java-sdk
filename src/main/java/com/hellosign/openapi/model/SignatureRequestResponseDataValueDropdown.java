@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hellosign.openapi.model.SignatureRequestResponseData;
+import com.hellosign.openapi.model.SignatureRequestResponseDataBase;
 import com.hellosign.openapi.model.SignatureRequestResponseDataValueCheckbox;
 import com.hellosign.openapi.model.SignatureRequestResponseDataValueCheckboxMerge;
 import com.hellosign.openapi.model.SignatureRequestResponseDataValueDateSigned;
@@ -62,7 +62,7 @@ import com.hellosign.openapi.ApiException;
   @JsonSubTypes.Type(value = SignatureRequestResponseDataValueTextMerge.class, name = "text-merge"),
 })
 
-public class SignatureRequestResponseDataValueDropdown extends SignatureRequestResponseData {
+public class SignatureRequestResponseDataValueDropdown extends SignatureRequestResponseDataBase {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type = "dropdown";
 
