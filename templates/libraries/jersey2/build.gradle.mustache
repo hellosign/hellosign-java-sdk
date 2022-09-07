@@ -4,6 +4,7 @@ apply plugin: 'com.diffplug.spotless'
 apply plugin: 'signing'
 
 group = '{{groupId}}'
+archivesBaseName = '{{artifactId}}'
 version = '{{artifactVersion}}'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -77,18 +78,19 @@ uploadArchives {
                 name 'HelloSign'
                 packaging 'jar'
                 // optionally artifactId can be defined here
+                artifactId '{{artifactId}}'
                 description 'Use the HelloSign Java SDK to connect your Java app to HelloSign\'s service in microseconds!'
                 url 'https://www.hellosign.com/'
 
                 scm {
-                    connection 'scm:git:git://github.com/hellosign/hellosign-java-sdk.git'
-                    developerConnection 'scm:git:git@github.com:hellosign/hellosign-java-sdk.git'
-                    url 'https://github.com/hellosign/hellosign-java-sdk'
+                    connection '{{scmConnection}}'
+                    developerConnection '{{scmDeveloperConnection}}'
+                    url '{{scmUrl}}'
                 }
 
                 licenses {
                     license {
-                        name 'MIT License'
+                        name '{{licenseName}}'
                         url 'http://www.opensource.org/licenses/mit-license.php'
                     }
                 }
