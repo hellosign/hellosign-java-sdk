@@ -56,7 +56,8 @@ import com.hellosign.openapi.ApiException;
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SIGNING_OPTIONS,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_SUBJECT,
     SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_TEST_MODE,
-    SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_TITLE
+    SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_TITLE,
+    SignatureRequestCreateEmbeddedWithTemplateRequest.JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SignatureRequestCreateEmbeddedWithTemplateRequest {
@@ -101,6 +102,9 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
 
   public static final String JSON_PROPERTY_TITLE = "title";
   private String title;
+
+  public static final String JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS = "populate_auto_fill_fields";
+  private Boolean populateAutoFillFields = false;
 
   public SignatureRequestCreateEmbeddedWithTemplateRequest() { 
   }
@@ -395,11 +399,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.
+   * Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys, with key names up to 40 characters long and values up to 1000 characters long.")
+  @ApiModelProperty(value = "Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer's order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.")
   @JsonProperty(JSON_PROPERTY_METADATA)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -519,6 +523,32 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
 
+  public SignatureRequestCreateEmbeddedWithTemplateRequest populateAutoFillFields(Boolean populateAutoFillFields) {
+    this.populateAutoFillFields = populateAutoFillFields;
+    return this;
+  }
+
+   /**
+   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
+   * @return populateAutoFillFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.    ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.")
+  @JsonProperty(JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getPopulateAutoFillFields() {
+    return populateAutoFillFields;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPopulateAutoFillFields(Boolean populateAutoFillFields) {
+    this.populateAutoFillFields = populateAutoFillFields;
+  }
+
+
   /**
    * Return true if this SignatureRequestCreateEmbeddedWithTemplateRequest object is equal to o.
    */
@@ -544,12 +574,13 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
         Objects.equals(this.signingOptions, signatureRequestCreateEmbeddedWithTemplateRequest.signingOptions) &&
         Objects.equals(this.subject, signatureRequestCreateEmbeddedWithTemplateRequest.subject) &&
         Objects.equals(this.testMode, signatureRequestCreateEmbeddedWithTemplateRequest.testMode) &&
-        Objects.equals(this.title, signatureRequestCreateEmbeddedWithTemplateRequest.title);
+        Objects.equals(this.title, signatureRequestCreateEmbeddedWithTemplateRequest.title) &&
+        Objects.equals(this.populateAutoFillFields, signatureRequestCreateEmbeddedWithTemplateRequest.populateAutoFillFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateIds, clientId, signers, allowDecline, ccs, customFields, file, fileUrl, message, metadata, signingOptions, subject, testMode, title);
+    return Objects.hash(templateIds, clientId, signers, allowDecline, ccs, customFields, file, fileUrl, message, metadata, signingOptions, subject, testMode, title, populateAutoFillFields);
   }
 
   @Override
@@ -570,6 +601,7 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    populateAutoFillFields: ").append(toIndentedString(populateAutoFillFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -828,6 +860,24 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
         }
         else {
             map.put("title", JSON.getDefault().getMapper().writeValueAsString(title));
+        }
+    }
+    if (populateAutoFillFields != null) {
+        if (isFileTypeOrListOfFiles(populateAutoFillFields)) {
+            fileTypeFound = true;
+        }
+
+        if (populateAutoFillFields.getClass().equals(java.io.File.class) ||
+            populateAutoFillFields.getClass().equals(Integer.class) ||
+            populateAutoFillFields.getClass().equals(String.class) ) {
+            map.put("populate_auto_fill_fields", populateAutoFillFields);
+        } else if (isListOfFile(populateAutoFillFields)) {
+            for(int i = 0; i< getListSize(populateAutoFillFields); i++) {
+                map.put("populate_auto_fill_fields[" + i + "]", getFromList(populateAutoFillFields, i));
+            }
+        }
+        else {
+            map.put("populate_auto_fill_fields", JSON.getDefault().getMapper().writeValueAsString(populateAutoFillFields));
         }
     }
     } catch (Exception e) {

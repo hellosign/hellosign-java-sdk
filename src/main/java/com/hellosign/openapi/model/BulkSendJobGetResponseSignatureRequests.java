@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.hellosign.openapi.model.SignatureRequestResponse;
 import com.hellosign.openapi.model.SignatureRequestResponseAttachment;
 import com.hellosign.openapi.model.SignatureRequestResponseCustomFieldBase;
-import com.hellosign.openapi.model.SignatureRequestResponseData;
+import com.hellosign.openapi.model.SignatureRequestResponseDataBase;
 import com.hellosign.openapi.model.SignatureRequestResponseSignatures;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -127,7 +127,7 @@ public class BulkSendJobGetResponseSignatureRequests {
   private List<SignatureRequestResponseAttachment> attachments = null;
 
   public static final String JSON_PROPERTY_RESPONSE_DATA = "response_data";
-  private List<SignatureRequestResponseData> responseData = null;
+  private List<SignatureRequestResponseDataBase> responseData = null;
 
   public static final String JSON_PROPERTY_SIGNATURES = "signatures";
   private List<SignatureRequestResponseSignatures> signatures = null;
@@ -690,12 +690,12 @@ public class BulkSendJobGetResponseSignatureRequests {
   }
 
 
-  public BulkSendJobGetResponseSignatureRequests responseData(List<SignatureRequestResponseData> responseData) {
+  public BulkSendJobGetResponseSignatureRequests responseData(List<SignatureRequestResponseDataBase> responseData) {
     this.responseData = responseData;
     return this;
   }
 
-  public BulkSendJobGetResponseSignatureRequests addResponseDataItem(SignatureRequestResponseData responseDataItem) {
+  public BulkSendJobGetResponseSignatureRequests addResponseDataItem(SignatureRequestResponseDataBase responseDataItem) {
     if (this.responseData == null) {
       this.responseData = new ArrayList<>();
     }
@@ -712,14 +712,14 @@ public class BulkSendJobGetResponseSignatureRequests {
   @JsonProperty(JSON_PROPERTY_RESPONSE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<SignatureRequestResponseData> getResponseData() {
+  public List<SignatureRequestResponseDataBase> getResponseData() {
     return responseData;
   }
 
 
   @JsonProperty(JSON_PROPERTY_RESPONSE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponseData(List<SignatureRequestResponseData> responseData) {
+  public void setResponseData(List<SignatureRequestResponseDataBase> responseData) {
     this.responseData = responseData;
   }
 

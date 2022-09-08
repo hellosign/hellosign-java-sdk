@@ -1,22 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.openapitools</groupId>
-    <artifactId>openapi-java-client</artifactId>
+    <groupId>com.hellosign</groupId>
+    <artifactId>hellosign-java-sdk</artifactId>
     <packaging>jar</packaging>
-    <name>openapi-java-client</name>
-    <version>3.0.0</version>
-    <url>https://github.com/openapitools/openapi-generator</url>
-    <description>OpenAPI Java</description>
+    <name>hellosign-java-sdk</name>
+    <version>6.0.0-beta</version>
+    <url>https://github.com/hellosign/hellosign-java-sdk</url>
+    <description>Use the HelloSign Java SDK to connect your Java app to HelloSign\&#39;s service in microseconds!</description>
     <scm>
-        <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>
-        <url>https://github.com/openapitools/openapi-generator</url>
+        <connection>scm:git:git://github.com/hellosign/hellosign-java-sdk.git</connection>
+        <developerConnection>scm:git:git@github.com:hellosign/hellosign-java-sdk.git</developerConnection>
+        <url>https://github.com/hellosign/hellosign-java-sdk</url>
     </scm>
 
     <licenses>
         <license>
-            <name>Unlicense</name>
+            <name>MIT License</name>
             <url>https://opensource.org/licenses/MIT</url>
             <distribution>repo</distribution>
         </license>
@@ -26,7 +26,7 @@
         <developer>
             <name>HelloSign API Team</name>
             <email>apisupport@hellosign.com</email>
-            <organization>OpenAPITools.org</organization>
+            <organization>HelloSign</organization>
             <organizationUrl>https://hellosign.com</organizationUrl>
         </developer>
     </developers>

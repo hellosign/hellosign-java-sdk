@@ -67,7 +67,7 @@ docs/SignatureRequestResponseCustomFieldBase.md
 docs/SignatureRequestResponseCustomFieldCheckbox.md
 docs/SignatureRequestResponseCustomFieldText.md
 docs/SignatureRequestResponseCustomFieldTypeEnum.md
-docs/SignatureRequestResponseData.md
+docs/SignatureRequestResponseDataBase.md
 docs/SignatureRequestResponseDataTypeEnum.md
 docs/SignatureRequestResponseDataValueCheckbox.md
 docs/SignatureRequestResponseDataValueCheckboxMerge.md
@@ -255,7 +255,7 @@ src/main/java/com/hellosign/openapi/model/SignatureRequestResponseCustomFieldBas
 src/main/java/com/hellosign/openapi/model/SignatureRequestResponseCustomFieldCheckbox.java
 src/main/java/com/hellosign/openapi/model/SignatureRequestResponseCustomFieldText.java
 src/main/java/com/hellosign/openapi/model/SignatureRequestResponseCustomFieldTypeEnum.java
-src/main/java/com/hellosign/openapi/model/SignatureRequestResponseData.java
+src/main/java/com/hellosign/openapi/model/SignatureRequestResponseDataBase.java
 src/main/java/com/hellosign/openapi/model/SignatureRequestResponseDataTypeEnum.java
 src/main/java/com/hellosign/openapi/model/SignatureRequestResponseDataValueCheckbox.java
 src/main/java/com/hellosign/openapi/model/SignatureRequestResponseDataValueCheckboxMerge.java
