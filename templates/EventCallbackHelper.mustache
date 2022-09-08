@@ -15,7 +15,7 @@ public class EventCallbackHelper {
     *
     * @param apiKey
     * @param event
-    * @return
+    * @return a boolean value indicating whether the callback event is valid
     */
     public static boolean isValid(String apiKey, EventCallbackRequestEvent event) {
         return new HmacUtils(HmacAlgorithms.HMAC_SHA_256, apiKey)
