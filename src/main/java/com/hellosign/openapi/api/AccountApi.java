@@ -128,7 +128,8 @@ public class AccountApi {
   /**
    * Get Account
    * Returns the properties and settings of your Account.
-   * @param accountId The ID of the Account (optional)
+   * @param accountId &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+   * @param emailAddress &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
    * @return AccountGetResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -138,14 +139,15 @@ public class AccountApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public AccountGetResponse accountGet(String accountId) throws ApiException {
-    return accountGetWithHttpInfo(accountId).getData();
+  public AccountGetResponse accountGet(String accountId, String emailAddress) throws ApiException {
+    return accountGetWithHttpInfo(accountId, emailAddress).getData();
   }
 
   /**
    * Get Account
    * Returns the properties and settings of your Account.
-   * @param accountId The ID of the Account (optional)
+   * @param accountId &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)
+   * @param emailAddress &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)
    * @return ApiResponse&lt;AccountGetResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -155,7 +157,7 @@ public class AccountApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<AccountGetResponse> accountGetWithHttpInfo(String accountId) throws ApiException {
+  public ApiResponse<AccountGetResponse> accountGetWithHttpInfo(String accountId, String emailAddress) throws ApiException {
     
     Object localVarPostBody = null;
     
@@ -169,6 +171,7 @@ public class AccountApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "account_id", accountId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "email_address", emailAddress));
 
     
     

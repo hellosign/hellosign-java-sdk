@@ -42,6 +42,7 @@ import com.hellosign.openapi.ApiException;
     AccountResponse.JSON_PROPERTY_QUOTAS,
     AccountResponse.JSON_PROPERTY_CALLBACK_URL,
     AccountResponse.JSON_PROPERTY_ROLE_CODE,
+    AccountResponse.JSON_PROPERTY_TEAM_ID,
     AccountResponse.JSON_PROPERTY_LOCALE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -69,6 +70,9 @@ public class AccountResponse {
 
   public static final String JSON_PROPERTY_ROLE_CODE = "role_code";
   private String roleCode;
+
+  public static final String JSON_PROPERTY_TEAM_ID = "team_id";
+  private String teamId;
 
   public static final String JSON_PROPERTY_LOCALE = "locale";
   private String locale;
@@ -284,6 +288,32 @@ public class AccountResponse {
   }
 
 
+  public AccountResponse teamId(String teamId) {
+    this.teamId = teamId;
+    return this;
+  }
+
+   /**
+   * The id of the team account belongs to.
+   * @return teamId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The id of the team account belongs to.")
+  @JsonProperty(JSON_PROPERTY_TEAM_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTeamId() {
+    return teamId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TEAM_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTeamId(String teamId) {
+    this.teamId = teamId;
+  }
+
+
   public AccountResponse locale(String locale) {
     this.locale = locale;
     return this;
@@ -330,12 +360,13 @@ public class AccountResponse {
         Objects.equals(this.quotas, accountResponse.quotas) &&
         Objects.equals(this.callbackUrl, accountResponse.callbackUrl) &&
         Objects.equals(this.roleCode, accountResponse.roleCode) &&
+        Objects.equals(this.teamId, accountResponse.teamId) &&
         Objects.equals(this.locale, accountResponse.locale);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, emailAddress, isLocked, isPaidHs, isPaidHf, quotas, callbackUrl, roleCode, locale);
+    return Objects.hash(accountId, emailAddress, isLocked, isPaidHs, isPaidHf, quotas, callbackUrl, roleCode, teamId, locale);
   }
 
   @Override
@@ -350,6 +381,7 @@ public class AccountResponse {
     sb.append("    quotas: ").append(toIndentedString(quotas)).append("\n");
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    roleCode: ").append(toIndentedString(roleCode)).append("\n");
+    sb.append("    teamId: ").append(toIndentedString(teamId)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -501,6 +533,24 @@ public class AccountResponse {
         }
         else {
             map.put("role_code", JSON.getDefault().getMapper().writeValueAsString(roleCode));
+        }
+    }
+    if (teamId != null) {
+        if (isFileTypeOrListOfFiles(teamId)) {
+            fileTypeFound = true;
+        }
+
+        if (teamId.getClass().equals(java.io.File.class) ||
+            teamId.getClass().equals(Integer.class) ||
+            teamId.getClass().equals(String.class) ) {
+            map.put("team_id", teamId);
+        } else if (isListOfFile(teamId)) {
+            for(int i = 0; i< getListSize(teamId); i++) {
+                map.put("team_id[" + i + "]", getFromList(teamId, i));
+            }
+        }
+        else {
+            map.put("team_id", JSON.getDefault().getMapper().writeValueAsString(teamId));
         }
     }
     if (locale != null) {
