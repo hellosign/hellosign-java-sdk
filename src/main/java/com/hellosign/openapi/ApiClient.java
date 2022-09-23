@@ -10,6 +10,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import com.hellosign.openapi.model.FileResponse;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
@@ -136,7 +137,7 @@ public class ApiClient extends JavaTimeFormatter {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("OpenAPI-Generator/6.0.0-beta/java");
+    setUserAgent("OpenAPI-Generator/6.0.0-beta.2/java");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
@@ -886,6 +887,17 @@ public class ApiClient extends JavaTimeFormatter {
 
     // read the entity stream multiple times
     response.bufferEntity();
+
+    // If user has requested to download the file directly, we convert the binary data response
+    // into a field "File" of "FileResponse"
+    if (returnType.getType().getTypeName().equals(FileResponse.class.getTypeName())
+        && Arrays.asList("application/pdf", "application/zip").contains(contentType))
+    {
+        File file = response.readEntity(File.class);
+        FileResponse fileResponse = new FileResponse();
+        fileResponse.file(file);
+        return (T) fileResponse;
+    }
 
     return response.readEntity(returnType);
   }
