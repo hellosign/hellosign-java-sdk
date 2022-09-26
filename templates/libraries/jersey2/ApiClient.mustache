@@ -10,7 +10,6 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import com.hellosign.openapi.model.FileResponse;
 
 {{#hasOAuthMethods}}
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -1066,17 +1065,6 @@ public class ApiClient{{#jsr310}} extends JavaTimeFormatter{{/jsr310}} {
 
     // read the entity stream multiple times
     response.bufferEntity();
-
-    // If user has requested to download the file directly, we convert the binary data response
-    // into a field "File" of "FileResponse"
-    if (returnType.getType().getTypeName().equals(FileResponse.class.getTypeName())
-        && Arrays.asList("application/pdf", "application/zip").contains(contentType))
-    {
-        File file = response.readEntity(File.class);
-        FileResponse fileResponse = new FileResponse();
-        fileResponse.file(file);
-        return (T) fileResponse;
-    }
 
     return response.readEntity(returnType);
   }

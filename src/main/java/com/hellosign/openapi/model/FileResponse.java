@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.File;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.hellosign.openapi.JSON;
 
@@ -35,9 +34,7 @@ import com.hellosign.openapi.ApiException;
  */
 @JsonPropertyOrder({
     FileResponse.JSON_PROPERTY_FILE_URL,
-    FileResponse.JSON_PROPERTY_EXPIRES_AT,
-    FileResponse.JSON_PROPERTY_DATA_URI,
-    FileResponse.JSON_PROPERTY_FILE
+    FileResponse.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileResponse {
@@ -46,12 +43,6 @@ public class FileResponse {
 
   public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
   private Integer expiresAt;
-
-  public static final String JSON_PROPERTY_DATA_URI = "data_uri";
-  private String dataUri;
-
-  public static final String JSON_PROPERTY_FILE = "file";
-  private File file;
 
   public FileResponse() { 
   }
@@ -108,58 +99,6 @@ public class FileResponse {
   }
 
 
-  public FileResponse dataUri(String dataUri) {
-    this.dataUri = dataUri;
-    return this;
-  }
-
-   /**
-   * File as base64 encoded string.
-   * @return dataUri
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "File as base64 encoded string.")
-  @JsonProperty(JSON_PROPERTY_DATA_URI)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDataUri() {
-    return dataUri;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DATA_URI)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDataUri(String dataUri) {
-    this.dataUri = dataUri;
-  }
-
-
-  public FileResponse file(File file) {
-    this.file = file;
-    return this;
-  }
-
-   /**
-   * Requested file. This field is used by SDK only.
-   * @return file
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Requested file. This field is used by SDK only.")
-  @JsonProperty(JSON_PROPERTY_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public File getFile() {
-    return file;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFile(File file) {
-    this.file = file;
-  }
-
-
   /**
    * Return true if this FileResponse object is equal to o.
    */
@@ -173,14 +112,12 @@ public class FileResponse {
     }
     FileResponse fileResponse = (FileResponse) o;
     return Objects.equals(this.fileUrl, fileResponse.fileUrl) &&
-        Objects.equals(this.expiresAt, fileResponse.expiresAt) &&
-        Objects.equals(this.dataUri, fileResponse.dataUri) &&
-        Objects.equals(this.file, fileResponse.file);
+        Objects.equals(this.expiresAt, fileResponse.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileUrl, expiresAt, dataUri, file);
+    return Objects.hash(fileUrl, expiresAt);
   }
 
   @Override
@@ -189,8 +126,6 @@ public class FileResponse {
     sb.append("class FileResponse {\n");
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
-    sb.append("    dataUri: ").append(toIndentedString(dataUri)).append("\n");
-    sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -233,42 +168,6 @@ public class FileResponse {
         }
         else {
             map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
-        }
-    }
-    if (dataUri != null) {
-        if (isFileTypeOrListOfFiles(dataUri)) {
-            fileTypeFound = true;
-        }
-
-        if (dataUri.getClass().equals(java.io.File.class) ||
-            dataUri.getClass().equals(Integer.class) ||
-            dataUri.getClass().equals(String.class) ) {
-            map.put("data_uri", dataUri);
-        } else if (isListOfFile(dataUri)) {
-            for(int i = 0; i< getListSize(dataUri); i++) {
-                map.put("data_uri[" + i + "]", getFromList(dataUri, i));
-            }
-        }
-        else {
-            map.put("data_uri", JSON.getDefault().getMapper().writeValueAsString(dataUri));
-        }
-    }
-    if (file != null) {
-        if (isFileTypeOrListOfFiles(file)) {
-            fileTypeFound = true;
-        }
-
-        if (file.getClass().equals(java.io.File.class) ||
-            file.getClass().equals(Integer.class) ||
-            file.getClass().equals(String.class) ) {
-            map.put("file", file);
-        } else if (isListOfFile(file)) {
-            for(int i = 0; i< getListSize(file); i++) {
-                map.put("file[" + i + "]", getFromList(file, i));
-            }
-        }
-        else {
-            map.put("file", JSON.getDefault().getMapper().writeValueAsString(file));
         }
     }
     } catch (Exception e) {
