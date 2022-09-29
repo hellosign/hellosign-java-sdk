@@ -44,6 +44,7 @@ docs/EventCallbackApiAppRequestPayload.md
 docs/EventCallbackRequestEvent.md
 docs/EventCallbackRequestEventMetadata.md
 docs/FileResponse.md
+docs/FileResponseDataUri.md
 docs/ListInfoResponse.md
 docs/OAuthApi.md
 docs/OAuthTokenGenerateRequest.md
@@ -235,6 +236,7 @@ src/main/java/com/hellosign/openapi/model/EventCallbackApiAppRequestPayload.java
 src/main/java/com/hellosign/openapi/model/EventCallbackRequestEvent.java
 src/main/java/com/hellosign/openapi/model/EventCallbackRequestEventMetadata.java
 src/main/java/com/hellosign/openapi/model/FileResponse.java
+src/main/java/com/hellosign/openapi/model/FileResponseDataUri.java
 src/main/java/com/hellosign/openapi/model/ListInfoResponse.java
 src/main/java/com/hellosign/openapi/model/OAuthTokenGenerateRequest.java
 src/main/java/com/hellosign/openapi/model/OAuthTokenRefreshRequest.java

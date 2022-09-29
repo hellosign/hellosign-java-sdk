@@ -93,7 +93,7 @@ public class TemplateApiTest {
         FileResponse expected = TestHelper.getFixtureData(FileResponse.class, "default");
         ApiClient apiClient = TestHelper.setUpMock(200, expected);
         TemplateApi api = new TemplateApi(apiClient);
-        FileResponse actual = api.templateFiles(templateId, "pdf", false, false);
+        FileResponse actual = api.templateFilesAsFileUrl(templateId);
         Assert.assertEquals(expected, actual);
     }
 
