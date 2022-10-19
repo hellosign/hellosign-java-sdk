@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**templateAddUser**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template
 [**templateCreateEmbeddedDraft**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
 [**templateDelete**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template
-[**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files
+[**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File
 [**templateGet**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template
 [**templateList**](TemplateApi.md#templateList) | **GET** /template/list | List Templates
 [**templateRemoveUser**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template
@@ -291,11 +291,9 @@ null (empty response body)
 
 > FileResponse templateFiles(templateId, fileType, getUrl, getDataUri)
 
-Get Template Files
+Get Template File
 
-Obtain a copy of the current documents specified by the `template_id` parameter.
-
-Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.
 
 If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
@@ -331,7 +329,7 @@ public class Example {
         String templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try {
-            FileResponse result = api.templateFiles(templateId, "pdf", false, false);
+            File result = api.templateFiles(templateId, "pdf");
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountApi#accountCreate");

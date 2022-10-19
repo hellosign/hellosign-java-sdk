@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.hellosign.openapi.model.TeamInviteResponse;
 import com.hellosign.openapi.model.WarningResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,56 +34,63 @@ import com.hellosign.openapi.JSON;
 
 import com.hellosign.openapi.ApiException;
 /**
- * Contains template id
+ * TeamInvitesResponse
  */
-@ApiModel(description = "Contains template id")
 @JsonPropertyOrder({
-    TemplateUpdateFilesResponseTemplate.JSON_PROPERTY_TEMPLATE_ID,
-    TemplateUpdateFilesResponseTemplate.JSON_PROPERTY_WARNINGS
+    TeamInvitesResponse.JSON_PROPERTY_TEAM_INVITES,
+    TeamInvitesResponse.JSON_PROPERTY_WARNINGS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TemplateUpdateFilesResponseTemplate {
-  public static final String JSON_PROPERTY_TEMPLATE_ID = "template_id";
-  private String templateId;
+public class TeamInvitesResponse {
+  public static final String JSON_PROPERTY_TEAM_INVITES = "team_invites";
+  private List<TeamInviteResponse> teamInvites = null;
 
   public static final String JSON_PROPERTY_WARNINGS = "warnings";
   private List<WarningResponse> warnings = null;
 
-  public TemplateUpdateFilesResponseTemplate() { 
+  public TeamInvitesResponse() { 
   }
 
-  public TemplateUpdateFilesResponseTemplate templateId(String templateId) {
-    this.templateId = templateId;
+  public TeamInvitesResponse teamInvites(List<TeamInviteResponse> teamInvites) {
+    this.teamInvites = teamInvites;
+    return this;
+  }
+
+  public TeamInvitesResponse addTeamInvitesItem(TeamInviteResponse teamInvitesItem) {
+    if (this.teamInvites == null) {
+      this.teamInvites = new ArrayList<>();
+    }
+    this.teamInvites.add(teamInvitesItem);
     return this;
   }
 
    /**
-   * The id of the Template.
-   * @return templateId
+   * Contains a list of team invites and their roles.
+   * @return teamInvites
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The id of the Template.")
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
+  @ApiModelProperty(value = "Contains a list of team invites and their roles.")
+  @JsonProperty(JSON_PROPERTY_TEAM_INVITES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getTemplateId() {
-    return templateId;
+  public List<TeamInviteResponse> getTeamInvites() {
+    return teamInvites;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
+  @JsonProperty(JSON_PROPERTY_TEAM_INVITES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTemplateId(String templateId) {
-    this.templateId = templateId;
+  public void setTeamInvites(List<TeamInviteResponse> teamInvites) {
+    this.teamInvites = teamInvites;
   }
 
 
-  public TemplateUpdateFilesResponseTemplate warnings(List<WarningResponse> warnings) {
+  public TeamInvitesResponse warnings(List<WarningResponse> warnings) {
     this.warnings = warnings;
     return this;
   }
 
-  public TemplateUpdateFilesResponseTemplate addWarningsItem(WarningResponse warningsItem) {
+  public TeamInvitesResponse addWarningsItem(WarningResponse warningsItem) {
     if (this.warnings == null) {
       this.warnings = new ArrayList<>();
     }
@@ -91,11 +99,11 @@ public class TemplateUpdateFilesResponseTemplate {
   }
 
    /**
-   * A list of warnings.
+   * Get warnings
    * @return warnings
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of warnings.")
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -112,7 +120,7 @@ public class TemplateUpdateFilesResponseTemplate {
 
 
   /**
-   * Return true if this TemplateUpdateFilesResponseTemplate object is equal to o.
+   * Return true if this TeamInvitesResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -122,21 +130,21 @@ public class TemplateUpdateFilesResponseTemplate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TemplateUpdateFilesResponseTemplate templateUpdateFilesResponseTemplate = (TemplateUpdateFilesResponseTemplate) o;
-    return Objects.equals(this.templateId, templateUpdateFilesResponseTemplate.templateId) &&
-        Objects.equals(this.warnings, templateUpdateFilesResponseTemplate.warnings);
+    TeamInvitesResponse teamInvitesResponse = (TeamInvitesResponse) o;
+    return Objects.equals(this.teamInvites, teamInvitesResponse.teamInvites) &&
+        Objects.equals(this.warnings, teamInvitesResponse.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, warnings);
+    return Objects.hash(teamInvites, warnings);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TemplateUpdateFilesResponseTemplate {\n");
-    sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
+    sb.append("class TeamInvitesResponse {\n");
+    sb.append("    teamInvites: ").append(toIndentedString(teamInvites)).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -146,23 +154,23 @@ public class TemplateUpdateFilesResponseTemplate {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
-    if (templateId != null) {
-        if (isFileTypeOrListOfFiles(templateId)) {
+    if (teamInvites != null) {
+        if (isFileTypeOrListOfFiles(teamInvites)) {
             fileTypeFound = true;
         }
 
-        if (templateId.getClass().equals(java.io.File.class) ||
-            templateId.getClass().equals(Integer.class) ||
-            templateId.getClass().equals(String.class) ||
-            templateId.getClass().isEnum()) {
-            map.put("template_id", templateId);
-        } else if (isListOfFile(templateId)) {
-            for(int i = 0; i< getListSize(templateId); i++) {
-                map.put("template_id[" + i + "]", getFromList(templateId, i));
+        if (teamInvites.getClass().equals(java.io.File.class) ||
+            teamInvites.getClass().equals(Integer.class) ||
+            teamInvites.getClass().equals(String.class) ||
+            teamInvites.getClass().isEnum()) {
+            map.put("team_invites", teamInvites);
+        } else if (isListOfFile(teamInvites)) {
+            for(int i = 0; i< getListSize(teamInvites); i++) {
+                map.put("team_invites[" + i + "]", getFromList(teamInvites, i));
             }
         }
         else {
-            map.put("template_id", JSON.getDefault().getMapper().writeValueAsString(templateId));
+            map.put("team_invites", JSON.getDefault().getMapper().writeValueAsString(teamInvites));
         }
     }
     if (warnings != null) {

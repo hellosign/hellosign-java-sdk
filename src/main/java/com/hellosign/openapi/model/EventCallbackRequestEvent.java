@@ -85,6 +85,8 @@ public class EventCallbackRequestEvent {
     
     SIGNATURE_REQUEST_PREPARED("signature_request_prepared"),
     
+    SIGNATURE_REQUEST_EXPIRED("signature_request_expired"),
+    
     TEMPLATE_CREATED("template_created"),
     
     TEMPLATE_ERROR("template_error");
@@ -278,7 +280,8 @@ public class EventCallbackRequestEvent {
 
         if (eventTime.getClass().equals(java.io.File.class) ||
             eventTime.getClass().equals(Integer.class) ||
-            eventTime.getClass().equals(String.class) ) {
+            eventTime.getClass().equals(String.class) ||
+            eventTime.getClass().isEnum()) {
             map.put("event_time", eventTime);
         } else if (isListOfFile(eventTime)) {
             for(int i = 0; i< getListSize(eventTime); i++) {
@@ -296,7 +299,8 @@ public class EventCallbackRequestEvent {
 
         if (eventType.getClass().equals(java.io.File.class) ||
             eventType.getClass().equals(Integer.class) ||
-            eventType.getClass().equals(String.class) ) {
+            eventType.getClass().equals(String.class) ||
+            eventType.getClass().isEnum()) {
             map.put("event_type", eventType);
         } else if (isListOfFile(eventType)) {
             for(int i = 0; i< getListSize(eventType); i++) {
@@ -314,7 +318,8 @@ public class EventCallbackRequestEvent {
 
         if (eventHash.getClass().equals(java.io.File.class) ||
             eventHash.getClass().equals(Integer.class) ||
-            eventHash.getClass().equals(String.class) ) {
+            eventHash.getClass().equals(String.class) ||
+            eventHash.getClass().isEnum()) {
             map.put("event_hash", eventHash);
         } else if (isListOfFile(eventHash)) {
             for(int i = 0; i< getListSize(eventHash); i++) {
@@ -332,7 +337,8 @@ public class EventCallbackRequestEvent {
 
         if (eventMetadata.getClass().equals(java.io.File.class) ||
             eventMetadata.getClass().equals(Integer.class) ||
-            eventMetadata.getClass().equals(String.class) ) {
+            eventMetadata.getClass().equals(String.class) ||
+            eventMetadata.getClass().isEnum()) {
             map.put("event_metadata", eventMetadata);
         } else if (isListOfFile(eventMetadata)) {
             for(int i = 0; i< getListSize(eventMetadata); i++) {

@@ -50,6 +50,7 @@ import com.hellosign.openapi.ApiException;
     SignatureRequestResponseSignatures.JSON_PROPERTY_SMS_PHONE_NUMBER,
     SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNED_BY,
     SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNMENT_REASON,
+    SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNED_FROM,
     SignatureRequestResponseSignatures.JSON_PROPERTY_ERROR
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -101,6 +102,9 @@ public class SignatureRequestResponseSignatures {
 
   public static final String JSON_PROPERTY_REASSIGNMENT_REASON = "reassignment_reason";
   private String reassignmentReason;
+
+  public static final String JSON_PROPERTY_REASSIGNED_FROM = "reassigned_from";
+  private String reassignedFrom;
 
   public static final String JSON_PROPERTY_ERROR = "error";
   private String error;
@@ -524,6 +528,32 @@ public class SignatureRequestResponseSignatures {
   }
 
 
+  public SignatureRequestResponseSignatures reassignedFrom(String reassignedFrom) {
+    this.reassignedFrom = reassignedFrom;
+    return this;
+  }
+
+   /**
+   * Previous signature identifier.
+   * @return reassignedFrom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Previous signature identifier.")
+  @JsonProperty(JSON_PROPERTY_REASSIGNED_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getReassignedFrom() {
+    return reassignedFrom;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REASSIGNED_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReassignedFrom(String reassignedFrom) {
+    this.reassignedFrom = reassignedFrom;
+  }
+
+
   public SignatureRequestResponseSignatures error(String error) {
     this.error = error;
     return this;
@@ -578,12 +608,13 @@ public class SignatureRequestResponseSignatures {
         Objects.equals(this.smsPhoneNumber, signatureRequestResponseSignatures.smsPhoneNumber) &&
         Objects.equals(this.reassignedBy, signatureRequestResponseSignatures.reassignedBy) &&
         Objects.equals(this.reassignmentReason, signatureRequestResponseSignatures.reassignmentReason) &&
+        Objects.equals(this.reassignedFrom, signatureRequestResponseSignatures.reassignedFrom) &&
         Objects.equals(this.error, signatureRequestResponseSignatures.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signatureId, signerEmailAddress, signerName, signerRole, order, statusCode, declineReason, signedAt, lastViewedAt, lastRemindedAt, hasPin, hasSmsAuth, hasSmsDelivery, smsPhoneNumber, reassignedBy, reassignmentReason, error);
+    return Objects.hash(signatureId, signerEmailAddress, signerName, signerRole, order, statusCode, declineReason, signedAt, lastViewedAt, lastRemindedAt, hasPin, hasSmsAuth, hasSmsDelivery, smsPhoneNumber, reassignedBy, reassignmentReason, reassignedFrom, error);
   }
 
   @Override
@@ -606,6 +637,7 @@ public class SignatureRequestResponseSignatures {
     sb.append("    smsPhoneNumber: ").append(toIndentedString(smsPhoneNumber)).append("\n");
     sb.append("    reassignedBy: ").append(toIndentedString(reassignedBy)).append("\n");
     sb.append("    reassignmentReason: ").append(toIndentedString(reassignmentReason)).append("\n");
+    sb.append("    reassignedFrom: ").append(toIndentedString(reassignedFrom)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -622,7 +654,8 @@ public class SignatureRequestResponseSignatures {
 
         if (signatureId.getClass().equals(java.io.File.class) ||
             signatureId.getClass().equals(Integer.class) ||
-            signatureId.getClass().equals(String.class) ) {
+            signatureId.getClass().equals(String.class) ||
+            signatureId.getClass().isEnum()) {
             map.put("signature_id", signatureId);
         } else if (isListOfFile(signatureId)) {
             for(int i = 0; i< getListSize(signatureId); i++) {
@@ -640,7 +673,8 @@ public class SignatureRequestResponseSignatures {
 
         if (signerEmailAddress.getClass().equals(java.io.File.class) ||
             signerEmailAddress.getClass().equals(Integer.class) ||
-            signerEmailAddress.getClass().equals(String.class) ) {
+            signerEmailAddress.getClass().equals(String.class) ||
+            signerEmailAddress.getClass().isEnum()) {
             map.put("signer_email_address", signerEmailAddress);
         } else if (isListOfFile(signerEmailAddress)) {
             for(int i = 0; i< getListSize(signerEmailAddress); i++) {
@@ -658,7 +692,8 @@ public class SignatureRequestResponseSignatures {
 
         if (signerName.getClass().equals(java.io.File.class) ||
             signerName.getClass().equals(Integer.class) ||
-            signerName.getClass().equals(String.class) ) {
+            signerName.getClass().equals(String.class) ||
+            signerName.getClass().isEnum()) {
             map.put("signer_name", signerName);
         } else if (isListOfFile(signerName)) {
             for(int i = 0; i< getListSize(signerName); i++) {
@@ -676,7 +711,8 @@ public class SignatureRequestResponseSignatures {
 
         if (signerRole.getClass().equals(java.io.File.class) ||
             signerRole.getClass().equals(Integer.class) ||
-            signerRole.getClass().equals(String.class) ) {
+            signerRole.getClass().equals(String.class) ||
+            signerRole.getClass().isEnum()) {
             map.put("signer_role", signerRole);
         } else if (isListOfFile(signerRole)) {
             for(int i = 0; i< getListSize(signerRole); i++) {
@@ -694,7 +730,8 @@ public class SignatureRequestResponseSignatures {
 
         if (order.getClass().equals(java.io.File.class) ||
             order.getClass().equals(Integer.class) ||
-            order.getClass().equals(String.class) ) {
+            order.getClass().equals(String.class) ||
+            order.getClass().isEnum()) {
             map.put("order", order);
         } else if (isListOfFile(order)) {
             for(int i = 0; i< getListSize(order); i++) {
@@ -712,7 +749,8 @@ public class SignatureRequestResponseSignatures {
 
         if (statusCode.getClass().equals(java.io.File.class) ||
             statusCode.getClass().equals(Integer.class) ||
-            statusCode.getClass().equals(String.class) ) {
+            statusCode.getClass().equals(String.class) ||
+            statusCode.getClass().isEnum()) {
             map.put("status_code", statusCode);
         } else if (isListOfFile(statusCode)) {
             for(int i = 0; i< getListSize(statusCode); i++) {
@@ -730,7 +768,8 @@ public class SignatureRequestResponseSignatures {
 
         if (declineReason.getClass().equals(java.io.File.class) ||
             declineReason.getClass().equals(Integer.class) ||
-            declineReason.getClass().equals(String.class) ) {
+            declineReason.getClass().equals(String.class) ||
+            declineReason.getClass().isEnum()) {
             map.put("decline_reason", declineReason);
         } else if (isListOfFile(declineReason)) {
             for(int i = 0; i< getListSize(declineReason); i++) {
@@ -748,7 +787,8 @@ public class SignatureRequestResponseSignatures {
 
         if (signedAt.getClass().equals(java.io.File.class) ||
             signedAt.getClass().equals(Integer.class) ||
-            signedAt.getClass().equals(String.class) ) {
+            signedAt.getClass().equals(String.class) ||
+            signedAt.getClass().isEnum()) {
             map.put("signed_at", signedAt);
         } else if (isListOfFile(signedAt)) {
             for(int i = 0; i< getListSize(signedAt); i++) {
@@ -766,7 +806,8 @@ public class SignatureRequestResponseSignatures {
 
         if (lastViewedAt.getClass().equals(java.io.File.class) ||
             lastViewedAt.getClass().equals(Integer.class) ||
-            lastViewedAt.getClass().equals(String.class) ) {
+            lastViewedAt.getClass().equals(String.class) ||
+            lastViewedAt.getClass().isEnum()) {
             map.put("last_viewed_at", lastViewedAt);
         } else if (isListOfFile(lastViewedAt)) {
             for(int i = 0; i< getListSize(lastViewedAt); i++) {
@@ -784,7 +825,8 @@ public class SignatureRequestResponseSignatures {
 
         if (lastRemindedAt.getClass().equals(java.io.File.class) ||
             lastRemindedAt.getClass().equals(Integer.class) ||
-            lastRemindedAt.getClass().equals(String.class) ) {
+            lastRemindedAt.getClass().equals(String.class) ||
+            lastRemindedAt.getClass().isEnum()) {
             map.put("last_reminded_at", lastRemindedAt);
         } else if (isListOfFile(lastRemindedAt)) {
             for(int i = 0; i< getListSize(lastRemindedAt); i++) {
@@ -802,7 +844,8 @@ public class SignatureRequestResponseSignatures {
 
         if (hasPin.getClass().equals(java.io.File.class) ||
             hasPin.getClass().equals(Integer.class) ||
-            hasPin.getClass().equals(String.class) ) {
+            hasPin.getClass().equals(String.class) ||
+            hasPin.getClass().isEnum()) {
             map.put("has_pin", hasPin);
         } else if (isListOfFile(hasPin)) {
             for(int i = 0; i< getListSize(hasPin); i++) {
@@ -820,7 +863,8 @@ public class SignatureRequestResponseSignatures {
 
         if (hasSmsAuth.getClass().equals(java.io.File.class) ||
             hasSmsAuth.getClass().equals(Integer.class) ||
-            hasSmsAuth.getClass().equals(String.class) ) {
+            hasSmsAuth.getClass().equals(String.class) ||
+            hasSmsAuth.getClass().isEnum()) {
             map.put("has_sms_auth", hasSmsAuth);
         } else if (isListOfFile(hasSmsAuth)) {
             for(int i = 0; i< getListSize(hasSmsAuth); i++) {
@@ -838,7 +882,8 @@ public class SignatureRequestResponseSignatures {
 
         if (hasSmsDelivery.getClass().equals(java.io.File.class) ||
             hasSmsDelivery.getClass().equals(Integer.class) ||
-            hasSmsDelivery.getClass().equals(String.class) ) {
+            hasSmsDelivery.getClass().equals(String.class) ||
+            hasSmsDelivery.getClass().isEnum()) {
             map.put("has_sms_delivery", hasSmsDelivery);
         } else if (isListOfFile(hasSmsDelivery)) {
             for(int i = 0; i< getListSize(hasSmsDelivery); i++) {
@@ -856,7 +901,8 @@ public class SignatureRequestResponseSignatures {
 
         if (smsPhoneNumber.getClass().equals(java.io.File.class) ||
             smsPhoneNumber.getClass().equals(Integer.class) ||
-            smsPhoneNumber.getClass().equals(String.class) ) {
+            smsPhoneNumber.getClass().equals(String.class) ||
+            smsPhoneNumber.getClass().isEnum()) {
             map.put("sms_phone_number", smsPhoneNumber);
         } else if (isListOfFile(smsPhoneNumber)) {
             for(int i = 0; i< getListSize(smsPhoneNumber); i++) {
@@ -874,7 +920,8 @@ public class SignatureRequestResponseSignatures {
 
         if (reassignedBy.getClass().equals(java.io.File.class) ||
             reassignedBy.getClass().equals(Integer.class) ||
-            reassignedBy.getClass().equals(String.class) ) {
+            reassignedBy.getClass().equals(String.class) ||
+            reassignedBy.getClass().isEnum()) {
             map.put("reassigned_by", reassignedBy);
         } else if (isListOfFile(reassignedBy)) {
             for(int i = 0; i< getListSize(reassignedBy); i++) {
@@ -892,7 +939,8 @@ public class SignatureRequestResponseSignatures {
 
         if (reassignmentReason.getClass().equals(java.io.File.class) ||
             reassignmentReason.getClass().equals(Integer.class) ||
-            reassignmentReason.getClass().equals(String.class) ) {
+            reassignmentReason.getClass().equals(String.class) ||
+            reassignmentReason.getClass().isEnum()) {
             map.put("reassignment_reason", reassignmentReason);
         } else if (isListOfFile(reassignmentReason)) {
             for(int i = 0; i< getListSize(reassignmentReason); i++) {
@@ -903,6 +951,25 @@ public class SignatureRequestResponseSignatures {
             map.put("reassignment_reason", JSON.getDefault().getMapper().writeValueAsString(reassignmentReason));
         }
     }
+    if (reassignedFrom != null) {
+        if (isFileTypeOrListOfFiles(reassignedFrom)) {
+            fileTypeFound = true;
+        }
+
+        if (reassignedFrom.getClass().equals(java.io.File.class) ||
+            reassignedFrom.getClass().equals(Integer.class) ||
+            reassignedFrom.getClass().equals(String.class) ||
+            reassignedFrom.getClass().isEnum()) {
+            map.put("reassigned_from", reassignedFrom);
+        } else if (isListOfFile(reassignedFrom)) {
+            for(int i = 0; i< getListSize(reassignedFrom); i++) {
+                map.put("reassigned_from[" + i + "]", getFromList(reassignedFrom, i));
+            }
+        }
+        else {
+            map.put("reassigned_from", JSON.getDefault().getMapper().writeValueAsString(reassignedFrom));
+        }
+    }
     if (error != null) {
         if (isFileTypeOrListOfFiles(error)) {
             fileTypeFound = true;
@@ -910,7 +977,8 @@ public class SignatureRequestResponseSignatures {
 
         if (error.getClass().equals(java.io.File.class) ||
             error.getClass().equals(Integer.class) ||
-            error.getClass().equals(String.class) ) {
+            error.getClass().equals(String.class) ||
+            error.getClass().isEnum()) {
             map.put("error", error);
         } else if (isListOfFile(error)) {
             for(int i = 0; i< getListSize(error); i++) {

@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 | `title` | ```String``` |  The title you want to assign to the SignatureRequest.  |  |
 | `useTextTags` | ```Boolean``` |  Send with a value of `true` if you wish to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document. Defaults to disabled, or `false`.  |  |
 | `populateAutoFillFields` | ```Boolean``` |  Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.  <br><br>⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.  |  |
+| `expiresAt` | ```Integer``` |  _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT  |  |
 
 
 

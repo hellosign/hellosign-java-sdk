@@ -81,7 +81,8 @@ import com.hellosign.openapi.ApiException;
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_TYPE,
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_PREEXISTING_FIELDS,
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_TEXT_TAGS,
-    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS
+    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS,
+    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftCreateEmbeddedRequest {
@@ -224,6 +225,9 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
   public static final String JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS = "populate_auto_fill_fields";
   private Boolean populateAutoFillFields = false;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public UnclaimedDraftCreateEmbeddedRequest() { 
   }
@@ -1218,6 +1222,32 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   }
 
 
+  public UnclaimedDraftCreateEmbeddedRequest expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__UnclaimedDraftCreateEmbedded::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
   /**
    * Return true if this UnclaimedDraftCreateEmbeddedRequest object is equal to o.
    */
@@ -1264,12 +1294,13 @@ public class UnclaimedDraftCreateEmbeddedRequest {
         Objects.equals(this.type, unclaimedDraftCreateEmbeddedRequest.type) &&
         Objects.equals(this.usePreexistingFields, unclaimedDraftCreateEmbeddedRequest.usePreexistingFields) &&
         Objects.equals(this.useTextTags, unclaimedDraftCreateEmbeddedRequest.useTextTags) &&
-        Objects.equals(this.populateAutoFillFields, unclaimedDraftCreateEmbeddedRequest.populateAutoFillFields);
+        Objects.equals(this.populateAutoFillFields, unclaimedDraftCreateEmbeddedRequest.populateAutoFillFields) &&
+        Objects.equals(this.expiresAt, unclaimedDraftCreateEmbeddedRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, requesterEmailAddress, file, fileUrl, allowCcs, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, editorOptions, fieldOptions, forceSignerPage, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, holdRequest, isForEmbeddedSigning, message, metadata, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, type, usePreexistingFields, useTextTags, populateAutoFillFields);
+    return Objects.hash(clientId, requesterEmailAddress, file, fileUrl, allowCcs, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, editorOptions, fieldOptions, forceSignerPage, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, holdRequest, isForEmbeddedSigning, message, metadata, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, type, usePreexistingFields, useTextTags, populateAutoFillFields, expiresAt);
   }
 
   @Override
@@ -1311,6 +1342,7 @@ public class UnclaimedDraftCreateEmbeddedRequest {
     sb.append("    usePreexistingFields: ").append(toIndentedString(usePreexistingFields)).append("\n");
     sb.append("    useTextTags: ").append(toIndentedString(useTextTags)).append("\n");
     sb.append("    populateAutoFillFields: ").append(toIndentedString(populateAutoFillFields)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1326,7 +1358,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (clientId.getClass().equals(java.io.File.class) ||
             clientId.getClass().equals(Integer.class) ||
-            clientId.getClass().equals(String.class) ) {
+            clientId.getClass().equals(String.class) ||
+            clientId.getClass().isEnum()) {
             map.put("client_id", clientId);
         } else if (isListOfFile(clientId)) {
             for(int i = 0; i< getListSize(clientId); i++) {
@@ -1344,7 +1377,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (requesterEmailAddress.getClass().equals(java.io.File.class) ||
             requesterEmailAddress.getClass().equals(Integer.class) ||
-            requesterEmailAddress.getClass().equals(String.class) ) {
+            requesterEmailAddress.getClass().equals(String.class) ||
+            requesterEmailAddress.getClass().isEnum()) {
             map.put("requester_email_address", requesterEmailAddress);
         } else if (isListOfFile(requesterEmailAddress)) {
             for(int i = 0; i< getListSize(requesterEmailAddress); i++) {
@@ -1362,7 +1396,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (file.getClass().equals(java.io.File.class) ||
             file.getClass().equals(Integer.class) ||
-            file.getClass().equals(String.class) ) {
+            file.getClass().equals(String.class) ||
+            file.getClass().isEnum()) {
             map.put("file", file);
         } else if (isListOfFile(file)) {
             for(int i = 0; i< getListSize(file); i++) {
@@ -1380,7 +1415,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (fileUrl.getClass().equals(java.io.File.class) ||
             fileUrl.getClass().equals(Integer.class) ||
-            fileUrl.getClass().equals(String.class) ) {
+            fileUrl.getClass().equals(String.class) ||
+            fileUrl.getClass().isEnum()) {
             map.put("file_url", fileUrl);
         } else if (isListOfFile(fileUrl)) {
             for(int i = 0; i< getListSize(fileUrl); i++) {
@@ -1398,7 +1434,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (allowCcs.getClass().equals(java.io.File.class) ||
             allowCcs.getClass().equals(Integer.class) ||
-            allowCcs.getClass().equals(String.class) ) {
+            allowCcs.getClass().equals(String.class) ||
+            allowCcs.getClass().isEnum()) {
             map.put("allow_ccs", allowCcs);
         } else if (isListOfFile(allowCcs)) {
             for(int i = 0; i< getListSize(allowCcs); i++) {
@@ -1416,7 +1453,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (allowDecline.getClass().equals(java.io.File.class) ||
             allowDecline.getClass().equals(Integer.class) ||
-            allowDecline.getClass().equals(String.class) ) {
+            allowDecline.getClass().equals(String.class) ||
+            allowDecline.getClass().isEnum()) {
             map.put("allow_decline", allowDecline);
         } else if (isListOfFile(allowDecline)) {
             for(int i = 0; i< getListSize(allowDecline); i++) {
@@ -1434,7 +1472,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (allowReassign.getClass().equals(java.io.File.class) ||
             allowReassign.getClass().equals(Integer.class) ||
-            allowReassign.getClass().equals(String.class) ) {
+            allowReassign.getClass().equals(String.class) ||
+            allowReassign.getClass().isEnum()) {
             map.put("allow_reassign", allowReassign);
         } else if (isListOfFile(allowReassign)) {
             for(int i = 0; i< getListSize(allowReassign); i++) {
@@ -1452,7 +1491,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (attachments.getClass().equals(java.io.File.class) ||
             attachments.getClass().equals(Integer.class) ||
-            attachments.getClass().equals(String.class) ) {
+            attachments.getClass().equals(String.class) ||
+            attachments.getClass().isEnum()) {
             map.put("attachments", attachments);
         } else if (isListOfFile(attachments)) {
             for(int i = 0; i< getListSize(attachments); i++) {
@@ -1470,7 +1510,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (ccEmailAddresses.getClass().equals(java.io.File.class) ||
             ccEmailAddresses.getClass().equals(Integer.class) ||
-            ccEmailAddresses.getClass().equals(String.class) ) {
+            ccEmailAddresses.getClass().equals(String.class) ||
+            ccEmailAddresses.getClass().isEnum()) {
             map.put("cc_email_addresses", ccEmailAddresses);
         } else if (isListOfFile(ccEmailAddresses)) {
             for(int i = 0; i< getListSize(ccEmailAddresses); i++) {
@@ -1488,7 +1529,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (customFields.getClass().equals(java.io.File.class) ||
             customFields.getClass().equals(Integer.class) ||
-            customFields.getClass().equals(String.class) ) {
+            customFields.getClass().equals(String.class) ||
+            customFields.getClass().isEnum()) {
             map.put("custom_fields", customFields);
         } else if (isListOfFile(customFields)) {
             for(int i = 0; i< getListSize(customFields); i++) {
@@ -1506,7 +1548,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (editorOptions.getClass().equals(java.io.File.class) ||
             editorOptions.getClass().equals(Integer.class) ||
-            editorOptions.getClass().equals(String.class) ) {
+            editorOptions.getClass().equals(String.class) ||
+            editorOptions.getClass().isEnum()) {
             map.put("editor_options", editorOptions);
         } else if (isListOfFile(editorOptions)) {
             for(int i = 0; i< getListSize(editorOptions); i++) {
@@ -1524,7 +1567,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (fieldOptions.getClass().equals(java.io.File.class) ||
             fieldOptions.getClass().equals(Integer.class) ||
-            fieldOptions.getClass().equals(String.class) ) {
+            fieldOptions.getClass().equals(String.class) ||
+            fieldOptions.getClass().isEnum()) {
             map.put("field_options", fieldOptions);
         } else if (isListOfFile(fieldOptions)) {
             for(int i = 0; i< getListSize(fieldOptions); i++) {
@@ -1542,7 +1586,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (forceSignerPage.getClass().equals(java.io.File.class) ||
             forceSignerPage.getClass().equals(Integer.class) ||
-            forceSignerPage.getClass().equals(String.class) ) {
+            forceSignerPage.getClass().equals(String.class) ||
+            forceSignerPage.getClass().isEnum()) {
             map.put("force_signer_page", forceSignerPage);
         } else if (isListOfFile(forceSignerPage)) {
             for(int i = 0; i< getListSize(forceSignerPage); i++) {
@@ -1560,7 +1605,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (forceSubjectMessage.getClass().equals(java.io.File.class) ||
             forceSubjectMessage.getClass().equals(Integer.class) ||
-            forceSubjectMessage.getClass().equals(String.class) ) {
+            forceSubjectMessage.getClass().equals(String.class) ||
+            forceSubjectMessage.getClass().isEnum()) {
             map.put("force_subject_message", forceSubjectMessage);
         } else if (isListOfFile(forceSubjectMessage)) {
             for(int i = 0; i< getListSize(forceSubjectMessage); i++) {
@@ -1578,7 +1624,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (formFieldGroups.getClass().equals(java.io.File.class) ||
             formFieldGroups.getClass().equals(Integer.class) ||
-            formFieldGroups.getClass().equals(String.class) ) {
+            formFieldGroups.getClass().equals(String.class) ||
+            formFieldGroups.getClass().isEnum()) {
             map.put("form_field_groups", formFieldGroups);
         } else if (isListOfFile(formFieldGroups)) {
             for(int i = 0; i< getListSize(formFieldGroups); i++) {
@@ -1596,7 +1643,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (formFieldRules.getClass().equals(java.io.File.class) ||
             formFieldRules.getClass().equals(Integer.class) ||
-            formFieldRules.getClass().equals(String.class) ) {
+            formFieldRules.getClass().equals(String.class) ||
+            formFieldRules.getClass().isEnum()) {
             map.put("form_field_rules", formFieldRules);
         } else if (isListOfFile(formFieldRules)) {
             for(int i = 0; i< getListSize(formFieldRules); i++) {
@@ -1614,7 +1662,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (formFieldsPerDocument.getClass().equals(java.io.File.class) ||
             formFieldsPerDocument.getClass().equals(Integer.class) ||
-            formFieldsPerDocument.getClass().equals(String.class) ) {
+            formFieldsPerDocument.getClass().equals(String.class) ||
+            formFieldsPerDocument.getClass().isEnum()) {
             map.put("form_fields_per_document", formFieldsPerDocument);
         } else if (isListOfFile(formFieldsPerDocument)) {
             for(int i = 0; i< getListSize(formFieldsPerDocument); i++) {
@@ -1632,7 +1681,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (hideTextTags.getClass().equals(java.io.File.class) ||
             hideTextTags.getClass().equals(Integer.class) ||
-            hideTextTags.getClass().equals(String.class) ) {
+            hideTextTags.getClass().equals(String.class) ||
+            hideTextTags.getClass().isEnum()) {
             map.put("hide_text_tags", hideTextTags);
         } else if (isListOfFile(hideTextTags)) {
             for(int i = 0; i< getListSize(hideTextTags); i++) {
@@ -1650,7 +1700,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (holdRequest.getClass().equals(java.io.File.class) ||
             holdRequest.getClass().equals(Integer.class) ||
-            holdRequest.getClass().equals(String.class) ) {
+            holdRequest.getClass().equals(String.class) ||
+            holdRequest.getClass().isEnum()) {
             map.put("hold_request", holdRequest);
         } else if (isListOfFile(holdRequest)) {
             for(int i = 0; i< getListSize(holdRequest); i++) {
@@ -1668,7 +1719,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (isForEmbeddedSigning.getClass().equals(java.io.File.class) ||
             isForEmbeddedSigning.getClass().equals(Integer.class) ||
-            isForEmbeddedSigning.getClass().equals(String.class) ) {
+            isForEmbeddedSigning.getClass().equals(String.class) ||
+            isForEmbeddedSigning.getClass().isEnum()) {
             map.put("is_for_embedded_signing", isForEmbeddedSigning);
         } else if (isListOfFile(isForEmbeddedSigning)) {
             for(int i = 0; i< getListSize(isForEmbeddedSigning); i++) {
@@ -1686,7 +1738,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (message.getClass().equals(java.io.File.class) ||
             message.getClass().equals(Integer.class) ||
-            message.getClass().equals(String.class) ) {
+            message.getClass().equals(String.class) ||
+            message.getClass().isEnum()) {
             map.put("message", message);
         } else if (isListOfFile(message)) {
             for(int i = 0; i< getListSize(message); i++) {
@@ -1704,7 +1757,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (metadata.getClass().equals(java.io.File.class) ||
             metadata.getClass().equals(Integer.class) ||
-            metadata.getClass().equals(String.class) ) {
+            metadata.getClass().equals(String.class) ||
+            metadata.getClass().isEnum()) {
             map.put("metadata", metadata);
         } else if (isListOfFile(metadata)) {
             for(int i = 0; i< getListSize(metadata); i++) {
@@ -1722,7 +1776,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (requestingRedirectUrl.getClass().equals(java.io.File.class) ||
             requestingRedirectUrl.getClass().equals(Integer.class) ||
-            requestingRedirectUrl.getClass().equals(String.class) ) {
+            requestingRedirectUrl.getClass().equals(String.class) ||
+            requestingRedirectUrl.getClass().isEnum()) {
             map.put("requesting_redirect_url", requestingRedirectUrl);
         } else if (isListOfFile(requestingRedirectUrl)) {
             for(int i = 0; i< getListSize(requestingRedirectUrl); i++) {
@@ -1740,7 +1795,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (showPreview.getClass().equals(java.io.File.class) ||
             showPreview.getClass().equals(Integer.class) ||
-            showPreview.getClass().equals(String.class) ) {
+            showPreview.getClass().equals(String.class) ||
+            showPreview.getClass().isEnum()) {
             map.put("show_preview", showPreview);
         } else if (isListOfFile(showPreview)) {
             for(int i = 0; i< getListSize(showPreview); i++) {
@@ -1758,7 +1814,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (showProgressStepper.getClass().equals(java.io.File.class) ||
             showProgressStepper.getClass().equals(Integer.class) ||
-            showProgressStepper.getClass().equals(String.class) ) {
+            showProgressStepper.getClass().equals(String.class) ||
+            showProgressStepper.getClass().isEnum()) {
             map.put("show_progress_stepper", showProgressStepper);
         } else if (isListOfFile(showProgressStepper)) {
             for(int i = 0; i< getListSize(showProgressStepper); i++) {
@@ -1776,7 +1833,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (signers.getClass().equals(java.io.File.class) ||
             signers.getClass().equals(Integer.class) ||
-            signers.getClass().equals(String.class) ) {
+            signers.getClass().equals(String.class) ||
+            signers.getClass().isEnum()) {
             map.put("signers", signers);
         } else if (isListOfFile(signers)) {
             for(int i = 0; i< getListSize(signers); i++) {
@@ -1794,7 +1852,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (signingOptions.getClass().equals(java.io.File.class) ||
             signingOptions.getClass().equals(Integer.class) ||
-            signingOptions.getClass().equals(String.class) ) {
+            signingOptions.getClass().equals(String.class) ||
+            signingOptions.getClass().isEnum()) {
             map.put("signing_options", signingOptions);
         } else if (isListOfFile(signingOptions)) {
             for(int i = 0; i< getListSize(signingOptions); i++) {
@@ -1812,7 +1871,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (signingRedirectUrl.getClass().equals(java.io.File.class) ||
             signingRedirectUrl.getClass().equals(Integer.class) ||
-            signingRedirectUrl.getClass().equals(String.class) ) {
+            signingRedirectUrl.getClass().equals(String.class) ||
+            signingRedirectUrl.getClass().isEnum()) {
             map.put("signing_redirect_url", signingRedirectUrl);
         } else if (isListOfFile(signingRedirectUrl)) {
             for(int i = 0; i< getListSize(signingRedirectUrl); i++) {
@@ -1830,7 +1890,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (skipMeNow.getClass().equals(java.io.File.class) ||
             skipMeNow.getClass().equals(Integer.class) ||
-            skipMeNow.getClass().equals(String.class) ) {
+            skipMeNow.getClass().equals(String.class) ||
+            skipMeNow.getClass().isEnum()) {
             map.put("skip_me_now", skipMeNow);
         } else if (isListOfFile(skipMeNow)) {
             for(int i = 0; i< getListSize(skipMeNow); i++) {
@@ -1848,7 +1909,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (subject.getClass().equals(java.io.File.class) ||
             subject.getClass().equals(Integer.class) ||
-            subject.getClass().equals(String.class) ) {
+            subject.getClass().equals(String.class) ||
+            subject.getClass().isEnum()) {
             map.put("subject", subject);
         } else if (isListOfFile(subject)) {
             for(int i = 0; i< getListSize(subject); i++) {
@@ -1866,7 +1928,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (testMode.getClass().equals(java.io.File.class) ||
             testMode.getClass().equals(Integer.class) ||
-            testMode.getClass().equals(String.class) ) {
+            testMode.getClass().equals(String.class) ||
+            testMode.getClass().isEnum()) {
             map.put("test_mode", testMode);
         } else if (isListOfFile(testMode)) {
             for(int i = 0; i< getListSize(testMode); i++) {
@@ -1884,7 +1947,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (type.getClass().equals(java.io.File.class) ||
             type.getClass().equals(Integer.class) ||
-            type.getClass().equals(String.class) ) {
+            type.getClass().equals(String.class) ||
+            type.getClass().isEnum()) {
             map.put("type", type);
         } else if (isListOfFile(type)) {
             for(int i = 0; i< getListSize(type); i++) {
@@ -1902,7 +1966,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (usePreexistingFields.getClass().equals(java.io.File.class) ||
             usePreexistingFields.getClass().equals(Integer.class) ||
-            usePreexistingFields.getClass().equals(String.class) ) {
+            usePreexistingFields.getClass().equals(String.class) ||
+            usePreexistingFields.getClass().isEnum()) {
             map.put("use_preexisting_fields", usePreexistingFields);
         } else if (isListOfFile(usePreexistingFields)) {
             for(int i = 0; i< getListSize(usePreexistingFields); i++) {
@@ -1920,7 +1985,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (useTextTags.getClass().equals(java.io.File.class) ||
             useTextTags.getClass().equals(Integer.class) ||
-            useTextTags.getClass().equals(String.class) ) {
+            useTextTags.getClass().equals(String.class) ||
+            useTextTags.getClass().isEnum()) {
             map.put("use_text_tags", useTextTags);
         } else if (isListOfFile(useTextTags)) {
             for(int i = 0; i< getListSize(useTextTags); i++) {
@@ -1938,7 +2004,8 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
         if (populateAutoFillFields.getClass().equals(java.io.File.class) ||
             populateAutoFillFields.getClass().equals(Integer.class) ||
-            populateAutoFillFields.getClass().equals(String.class) ) {
+            populateAutoFillFields.getClass().equals(String.class) ||
+            populateAutoFillFields.getClass().isEnum()) {
             map.put("populate_auto_fill_fields", populateAutoFillFields);
         } else if (isListOfFile(populateAutoFillFields)) {
             for(int i = 0; i< getListSize(populateAutoFillFields); i++) {
@@ -1947,6 +2014,25 @@ public class UnclaimedDraftCreateEmbeddedRequest {
         }
         else {
             map.put("populate_auto_fill_fields", JSON.getDefault().getMapper().writeValueAsString(populateAutoFillFields));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ||
+            expiresAt.getClass().isEnum()) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     } catch (Exception e) {

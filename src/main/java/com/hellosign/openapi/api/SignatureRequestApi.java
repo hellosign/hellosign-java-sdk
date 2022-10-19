@@ -426,8 +426,8 @@ public class SignatureRequestApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Download Files
-   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter.  Returns a PDF or ZIP file, or if &#x60;get_url&#x60; is set, a JSON object with a url to the file (PDFs only). If &#x60;get_data_uri&#x60; is set, a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+   * Download File
+   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)
    * @param getUrl If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
@@ -446,8 +446,8 @@ public class SignatureRequestApi {
   }
 
   /**
-   * Download Files
-   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter.  Returns a PDF or ZIP file, or if &#x60;get_url&#x60; is set, a JSON object with a url to the file (PDFs only). If &#x60;get_data_uri&#x60; is set, a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+   * Download File
+   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)
    * @param getUrl If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)

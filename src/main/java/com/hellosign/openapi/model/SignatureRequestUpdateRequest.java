@@ -35,7 +35,8 @@ import com.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     SignatureRequestUpdateRequest.JSON_PROPERTY_SIGNATURE_ID,
     SignatureRequestUpdateRequest.JSON_PROPERTY_EMAIL_ADDRESS,
-    SignatureRequestUpdateRequest.JSON_PROPERTY_NAME
+    SignatureRequestUpdateRequest.JSON_PROPERTY_NAME,
+    SignatureRequestUpdateRequest.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SignatureRequestUpdateRequest {
@@ -47,6 +48,9 @@ public class SignatureRequestUpdateRequest {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public SignatureRequestUpdateRequest() { 
   }
@@ -129,6 +133,32 @@ public class SignatureRequestUpdateRequest {
   }
 
 
+  public SignatureRequestUpdateRequest expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__SignatureRequestUpdate::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__SignatureRequestUpdate::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
   /**
    * Return true if this SignatureRequestUpdateRequest object is equal to o.
    */
@@ -143,12 +173,13 @@ public class SignatureRequestUpdateRequest {
     SignatureRequestUpdateRequest signatureRequestUpdateRequest = (SignatureRequestUpdateRequest) o;
     return Objects.equals(this.signatureId, signatureRequestUpdateRequest.signatureId) &&
         Objects.equals(this.emailAddress, signatureRequestUpdateRequest.emailAddress) &&
-        Objects.equals(this.name, signatureRequestUpdateRequest.name);
+        Objects.equals(this.name, signatureRequestUpdateRequest.name) &&
+        Objects.equals(this.expiresAt, signatureRequestUpdateRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signatureId, emailAddress, name);
+    return Objects.hash(signatureId, emailAddress, name, expiresAt);
   }
 
   @Override
@@ -158,6 +189,7 @@ public class SignatureRequestUpdateRequest {
     sb.append("    signatureId: ").append(toIndentedString(signatureId)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -173,7 +205,8 @@ public class SignatureRequestUpdateRequest {
 
         if (signatureId.getClass().equals(java.io.File.class) ||
             signatureId.getClass().equals(Integer.class) ||
-            signatureId.getClass().equals(String.class) ) {
+            signatureId.getClass().equals(String.class) ||
+            signatureId.getClass().isEnum()) {
             map.put("signature_id", signatureId);
         } else if (isListOfFile(signatureId)) {
             for(int i = 0; i< getListSize(signatureId); i++) {
@@ -191,7 +224,8 @@ public class SignatureRequestUpdateRequest {
 
         if (emailAddress.getClass().equals(java.io.File.class) ||
             emailAddress.getClass().equals(Integer.class) ||
-            emailAddress.getClass().equals(String.class) ) {
+            emailAddress.getClass().equals(String.class) ||
+            emailAddress.getClass().isEnum()) {
             map.put("email_address", emailAddress);
         } else if (isListOfFile(emailAddress)) {
             for(int i = 0; i< getListSize(emailAddress); i++) {
@@ -209,7 +243,8 @@ public class SignatureRequestUpdateRequest {
 
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
-            name.getClass().equals(String.class) ) {
+            name.getClass().equals(String.class) ||
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -218,6 +253,25 @@ public class SignatureRequestUpdateRequest {
         }
         else {
             map.put("name", JSON.getDefault().getMapper().writeValueAsString(name));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ||
+            expiresAt.getClass().isEnum()) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     } catch (Exception e) {
