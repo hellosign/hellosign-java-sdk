@@ -122,6 +122,8 @@ docs/TeamCreateRequest.md
 docs/TeamGetInfoResponse.md
 docs/TeamGetResponse.md
 docs/TeamInfoResponse.md
+docs/TeamInviteResponse.md
+docs/TeamInvitesResponse.md
 docs/TeamMemberResponse.md
 docs/TeamMembersResponse.md
 docs/TeamParentResponse.md
@@ -309,6 +311,8 @@ src/main/java/com/hellosign/openapi/model/TeamCreateRequest.java
 src/main/java/com/hellosign/openapi/model/TeamGetInfoResponse.java
 src/main/java/com/hellosign/openapi/model/TeamGetResponse.java
 src/main/java/com/hellosign/openapi/model/TeamInfoResponse.java
+src/main/java/com/hellosign/openapi/model/TeamInviteResponse.java
+src/main/java/com/hellosign/openapi/model/TeamInvitesResponse.java
 src/main/java/com/hellosign/openapi/model/TeamMemberResponse.java
 src/main/java/com/hellosign/openapi/model/TeamMembersResponse.java
 src/main/java/com/hellosign/openapi/model/TeamParentResponse.java

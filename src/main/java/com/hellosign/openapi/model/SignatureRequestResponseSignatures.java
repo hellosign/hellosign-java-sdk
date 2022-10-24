@@ -50,6 +50,7 @@ import com.hellosign.openapi.ApiException;
     SignatureRequestResponseSignatures.JSON_PROPERTY_SMS_PHONE_NUMBER,
     SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNED_BY,
     SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNMENT_REASON,
+    SignatureRequestResponseSignatures.JSON_PROPERTY_REASSIGNED_FROM,
     SignatureRequestResponseSignatures.JSON_PROPERTY_ERROR
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -101,6 +102,9 @@ public class SignatureRequestResponseSignatures {
 
   public static final String JSON_PROPERTY_REASSIGNMENT_REASON = "reassignment_reason";
   private String reassignmentReason;
+
+  public static final String JSON_PROPERTY_REASSIGNED_FROM = "reassigned_from";
+  private String reassignedFrom;
 
   public static final String JSON_PROPERTY_ERROR = "error";
   private String error;
@@ -524,6 +528,32 @@ public class SignatureRequestResponseSignatures {
   }
 
 
+  public SignatureRequestResponseSignatures reassignedFrom(String reassignedFrom) {
+    this.reassignedFrom = reassignedFrom;
+    return this;
+  }
+
+   /**
+   * Previous signature identifier.
+   * @return reassignedFrom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Previous signature identifier.")
+  @JsonProperty(JSON_PROPERTY_REASSIGNED_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getReassignedFrom() {
+    return reassignedFrom;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REASSIGNED_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReassignedFrom(String reassignedFrom) {
+    this.reassignedFrom = reassignedFrom;
+  }
+
+
   public SignatureRequestResponseSignatures error(String error) {
     this.error = error;
     return this;
@@ -578,12 +608,13 @@ public class SignatureRequestResponseSignatures {
         Objects.equals(this.smsPhoneNumber, signatureRequestResponseSignatures.smsPhoneNumber) &&
         Objects.equals(this.reassignedBy, signatureRequestResponseSignatures.reassignedBy) &&
         Objects.equals(this.reassignmentReason, signatureRequestResponseSignatures.reassignmentReason) &&
+        Objects.equals(this.reassignedFrom, signatureRequestResponseSignatures.reassignedFrom) &&
         Objects.equals(this.error, signatureRequestResponseSignatures.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signatureId, signerEmailAddress, signerName, signerRole, order, statusCode, declineReason, signedAt, lastViewedAt, lastRemindedAt, hasPin, hasSmsAuth, hasSmsDelivery, smsPhoneNumber, reassignedBy, reassignmentReason, error);
+    return Objects.hash(signatureId, signerEmailAddress, signerName, signerRole, order, statusCode, declineReason, signedAt, lastViewedAt, lastRemindedAt, hasPin, hasSmsAuth, hasSmsDelivery, smsPhoneNumber, reassignedBy, reassignmentReason, reassignedFrom, error);
   }
 
   @Override
@@ -606,6 +637,7 @@ public class SignatureRequestResponseSignatures {
     sb.append("    smsPhoneNumber: ").append(toIndentedString(smsPhoneNumber)).append("\n");
     sb.append("    reassignedBy: ").append(toIndentedString(reassignedBy)).append("\n");
     sb.append("    reassignmentReason: ").append(toIndentedString(reassignmentReason)).append("\n");
+    sb.append("    reassignedFrom: ").append(toIndentedString(reassignedFrom)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -901,6 +933,24 @@ public class SignatureRequestResponseSignatures {
         }
         else {
             map.put("reassignment_reason", JSON.getDefault().getMapper().writeValueAsString(reassignmentReason));
+        }
+    }
+    if (reassignedFrom != null) {
+        if (isFileTypeOrListOfFiles(reassignedFrom)) {
+            fileTypeFound = true;
+        }
+
+        if (reassignedFrom.getClass().equals(java.io.File.class) ||
+            reassignedFrom.getClass().equals(Integer.class) ||
+            reassignedFrom.getClass().equals(String.class) ) {
+            map.put("reassigned_from", reassignedFrom);
+        } else if (isListOfFile(reassignedFrom)) {
+            for(int i = 0; i< getListSize(reassignedFrom); i++) {
+                map.put("reassigned_from[" + i + "]", getFromList(reassignedFrom, i));
+            }
+        }
+        else {
+            map.put("reassigned_from", JSON.getDefault().getMapper().writeValueAsString(reassignedFrom));
         }
     }
     if (error != null) {

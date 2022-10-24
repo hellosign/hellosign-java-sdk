@@ -13,6 +13,7 @@ import com.hellosign.openapi.model.TeamAddMemberRequest;
 import com.hellosign.openapi.model.TeamCreateRequest;
 import com.hellosign.openapi.model.TeamGetInfoResponse;
 import com.hellosign.openapi.model.TeamGetResponse;
+import com.hellosign.openapi.model.TeamInvitesResponse;
 import com.hellosign.openapi.model.TeamMembersResponse;
 import com.hellosign.openapi.model.TeamRemoveMemberRequest;
 import com.hellosign.openapi.model.TeamSubTeamsResponse;
@@ -402,6 +403,76 @@ public class TeamApi {
     GenericType<TeamGetInfoResponse> localVarReturnType = new GenericType<TeamGetInfoResponse>() {};
 
     return apiClient.invokeAPI("TeamApi.teamInfo", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
+   * List Team Invites
+   * Provides a list of team invites (and their roles).
+   * @param emailAddress The email address for which to display the team invites. (optional)
+   * @return TeamInvitesResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public TeamInvitesResponse teamInvites(String emailAddress) throws ApiException {
+    return teamInvitesWithHttpInfo(emailAddress).getData();
+  }
+
+  /**
+   * List Team Invites
+   * Provides a list of team invites (and their roles).
+   * @param emailAddress The email address for which to display the team invites. (optional)
+   * @return ApiResponse&lt;TeamInvitesResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<TeamInvitesResponse> teamInvitesWithHttpInfo(String emailAddress) throws ApiException {
+    
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/team/invites";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "email_address", emailAddress));
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+
+    localVarFormParams = new HashMap<String, Object>();
+    boolean isFileTypeFound = !localVarFormParams.isEmpty();
+
+    final String localVarContentType = isFileTypeFound? "multipart/form-data" : apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "api_key", "oauth2" };
+
+    GenericType<TeamInvitesResponse> localVarReturnType = new GenericType<TeamInvitesResponse>() {};
+
+    return apiClient.invokeAPI("TeamApi.teamInvites", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }

@@ -68,7 +68,8 @@ import com.hellosign.openapi.ApiException;
     UnclaimedDraftCreateRequest.JSON_PROPERTY_SUBJECT,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_TEST_MODE,
     UnclaimedDraftCreateRequest.JSON_PROPERTY_USE_PREEXISTING_FIELDS,
-    UnclaimedDraftCreateRequest.JSON_PROPERTY_USE_TEXT_TAGS
+    UnclaimedDraftCreateRequest.JSON_PROPERTY_USE_TEXT_TAGS,
+    UnclaimedDraftCreateRequest.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftCreateRequest {
@@ -175,6 +176,9 @@ public class UnclaimedDraftCreateRequest {
 
   public static final String JSON_PROPERTY_USE_TEXT_TAGS = "use_text_tags";
   private Boolean useTextTags = false;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public UnclaimedDraftCreateRequest() { 
   }
@@ -857,6 +861,32 @@ public class UnclaimedDraftCreateRequest {
   }
 
 
+  public UnclaimedDraftCreateRequest expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__UnclaimedDraftCreate::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__UnclaimedDraftCreate::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
   /**
    * Return true if this UnclaimedDraftCreateRequest object is equal to o.
    */
@@ -891,12 +921,13 @@ public class UnclaimedDraftCreateRequest {
         Objects.equals(this.subject, unclaimedDraftCreateRequest.subject) &&
         Objects.equals(this.testMode, unclaimedDraftCreateRequest.testMode) &&
         Objects.equals(this.usePreexistingFields, unclaimedDraftCreateRequest.usePreexistingFields) &&
-        Objects.equals(this.useTextTags, unclaimedDraftCreateRequest.useTextTags);
+        Objects.equals(this.useTextTags, unclaimedDraftCreateRequest.useTextTags) &&
+        Objects.equals(this.expiresAt, unclaimedDraftCreateRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, file, fileUrl, allowDecline, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, message, metadata, showProgressStepper, signers, signingOptions, signingRedirectUrl, subject, testMode, usePreexistingFields, useTextTags);
+    return Objects.hash(type, file, fileUrl, allowDecline, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, message, metadata, showProgressStepper, signers, signingOptions, signingRedirectUrl, subject, testMode, usePreexistingFields, useTextTags, expiresAt);
   }
 
   @Override
@@ -926,6 +957,7 @@ public class UnclaimedDraftCreateRequest {
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
     sb.append("    usePreexistingFields: ").append(toIndentedString(usePreexistingFields)).append("\n");
     sb.append("    useTextTags: ").append(toIndentedString(useTextTags)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1346,6 +1378,24 @@ public class UnclaimedDraftCreateRequest {
         }
         else {
             map.put("use_text_tags", JSON.getDefault().getMapper().writeValueAsString(useTextTags));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     } catch (Exception e) {

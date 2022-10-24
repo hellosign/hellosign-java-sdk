@@ -68,7 +68,8 @@ import com.hellosign.openapi.ApiException;
     SignatureRequestSendRequest.JSON_PROPERTY_SUBJECT,
     SignatureRequestSendRequest.JSON_PROPERTY_TEST_MODE,
     SignatureRequestSendRequest.JSON_PROPERTY_TITLE,
-    SignatureRequestSendRequest.JSON_PROPERTY_USE_TEXT_TAGS
+    SignatureRequestSendRequest.JSON_PROPERTY_USE_TEXT_TAGS,
+    SignatureRequestSendRequest.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SignatureRequestSendRequest {
@@ -140,6 +141,9 @@ public class SignatureRequestSendRequest {
 
   public static final String JSON_PROPERTY_USE_TEXT_TAGS = "use_text_tags";
   private Boolean useTextTags = false;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public SignatureRequestSendRequest() { 
   }
@@ -819,6 +823,32 @@ public class SignatureRequestSendRequest {
   }
 
 
+  public SignatureRequestSendRequest expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__SignatureRequestSend::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__SignatureRequestSend::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
   /**
    * Return true if this SignatureRequestSendRequest object is equal to o.
    */
@@ -853,12 +883,13 @@ public class SignatureRequestSendRequest {
         Objects.equals(this.subject, signatureRequestSendRequest.subject) &&
         Objects.equals(this.testMode, signatureRequestSendRequest.testMode) &&
         Objects.equals(this.title, signatureRequestSendRequest.title) &&
-        Objects.equals(this.useTextTags, signatureRequestSendRequest.useTextTags);
+        Objects.equals(this.useTextTags, signatureRequestSendRequest.useTextTags) &&
+        Objects.equals(this.expiresAt, signatureRequestSendRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signers, file, fileUrl, allowDecline, allowReassign, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, isQualifiedSignature, message, metadata, signingOptions, signingRedirectUrl, subject, testMode, title, useTextTags);
+    return Objects.hash(signers, file, fileUrl, allowDecline, allowReassign, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, isQualifiedSignature, message, metadata, signingOptions, signingRedirectUrl, subject, testMode, title, useTextTags, expiresAt);
   }
 
   @Override
@@ -888,6 +919,7 @@ public class SignatureRequestSendRequest {
     sb.append("    testMode: ").append(toIndentedString(testMode)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    useTextTags: ").append(toIndentedString(useTextTags)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1308,6 +1340,24 @@ public class SignatureRequestSendRequest {
         }
         else {
             map.put("use_text_tags", JSON.getDefault().getMapper().writeValueAsString(useTextTags));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     } catch (Exception e) {
