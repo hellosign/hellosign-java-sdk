@@ -1,6 +1,6 @@
 /*
- * HelloSign API
- * HelloSign v3 API
+ * Dropbox Sign API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -83,11 +83,11 @@ public class AccountUpdateRequest {
   }
 
    /**
-   * The URL that HelloSign should POST events to.
+   * The URL that Dropbox Sign should POST events to.
    * @return callbackUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The URL that HelloSign should POST events to.")
+  @ApiModelProperty(value = "The URL that Dropbox Sign should POST events to.")
   @JsonProperty(JSON_PROPERTY_CALLBACK_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

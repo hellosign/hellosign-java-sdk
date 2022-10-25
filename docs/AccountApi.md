@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Create Account
 
-Creates a new HelloSign Account that is associated with the specified `email_address`.
+Creates a new Dropbox Sign Account that is associated with the specified `email_address`.
 
 ### Example
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 Verify Account
 
-Verifies whether an HelloSign Account exists for the given email address.
+Verifies whether an Dropbox Sign Account exists for the given email address.
 
 ### Example
 

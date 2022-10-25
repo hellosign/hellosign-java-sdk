@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**templateCreateEmbeddedDraft**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
 [**templateDelete**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template
 [**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File
+[**templateFilesAsEncodedString**](TemplateApi.md#templateFilesAsEncodedString) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String
+[**templateFilesAsFileUrl**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url
 [**templateGet**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template
 [**templateList**](TemplateApi.md#templateList) | **GET** /template/list | List Templates
 [**templateRemoveUser**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template
@@ -289,7 +291,7 @@ null (empty response body)
 
 ## templateFiles
 
-> FileResponse templateFiles(templateId, fileType, getUrl, getDataUri)
+> File templateFiles(templateId, fileType)
 
 Get Template File
 
@@ -350,8 +352,172 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateId** | **String**| The id of the template files to retrieve. |
  **fileType** | **String**| Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] [enum: pdf, zip]
- **getUrl** | **Boolean**| If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false]
- **getDataUri** | **Boolean**| If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false]
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/pdf, application/zip, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+
+## templateFilesAsEncodedString
+
+> FileResponseDataUri templateFilesAsEncodedString(templateId)
+
+Get Template File as Encoded String
+
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only). 
+
+If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+
+### Example
+
+```java
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        TemplateApi api = new TemplateApi(defaultClient);
+
+        String templateId = "f57db65d3f933b5316d398057a36176831451a35";
+
+        try {
+            FileResponseDataUri result = api.templateFilesAsEncodedString(templateId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountApi#accountCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **String**| The id of the template files to retrieve. |
+
+### Return type
+
+[**FileResponseDataUri**](FileResponseDataUri.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+
+## templateFilesAsFileUrl
+
+> FileResponse templateFilesAsFileUrl(templateId)
+
+Get Template File as File Url
+
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only). 
+
+If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+
+### Example
+
+```java
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        TemplateApi api = new TemplateApi(defaultClient);
+
+        String templateId = "f57db65d3f933b5316d398057a36176831451a35";
+
+        try {
+            FileResponse result = api.templateFilesAsFileUrl(templateId, "pdf", false, false);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountApi#accountCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateId** | **String**| The id of the template files to retrieve. |
 
 ### Return type
 

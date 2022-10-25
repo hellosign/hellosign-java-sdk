@@ -133,7 +133,7 @@ public class SignatureRequestApiTest {
         FileResponse expected = TestHelper.getFixtureData(FileResponse.class, "default");
         ApiClient apiClient = TestHelper.setUpMock(200, expected);
         SignatureRequestApi api = new SignatureRequestApi(apiClient);
-        FileResponse actual = api.signatureRequestFiles(signatureRequestId, "pdf", false, false);
+        FileResponse actual = api.signatureRequestFilesAsFileUrl(signatureRequestId);
         Assert.assertEquals(expected, actual);
     }
 

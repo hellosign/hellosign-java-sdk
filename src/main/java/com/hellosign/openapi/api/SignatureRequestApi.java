@@ -10,7 +10,9 @@ import javax.ws.rs.core.GenericType;
 
 import com.hellosign.openapi.model.BulkSendJobSendResponse;
 import com.hellosign.openapi.model.ErrorResponse;
+import java.io.File;
 import com.hellosign.openapi.model.FileResponse;
+import com.hellosign.openapi.model.FileResponseDataUri;
 import com.hellosign.openapi.model.SignatureRequestBulkCreateEmbeddedWithTemplateRequest;
 import com.hellosign.openapi.model.SignatureRequestBulkSendWithTemplateRequest;
 import com.hellosign.openapi.model.SignatureRequestCreateEmbeddedRequest;
@@ -59,7 +61,7 @@ public class SignatureRequestApi {
 
   /**
    * Embedded Bulk Send with Template
-   * Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+   * Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
    * @param signatureRequestBulkCreateEmbeddedWithTemplateRequest  (required)
    * @return BulkSendJobSendResponse
    * @throws ApiException if fails to make API call
@@ -76,7 +78,7 @@ public class SignatureRequestApi {
 
   /**
    * Embedded Bulk Send with Template
-   * Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+   * Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
    * @param signatureRequestBulkCreateEmbeddedWithTemplateRequest  (required)
    * @return ApiResponse&lt;BulkSendJobSendResponse&gt;
    * @throws ApiException if fails to make API call
@@ -279,7 +281,7 @@ public class SignatureRequestApi {
   }
   /**
    * Create Embedded Signature Request
-   * Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+   * Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
    * @param signatureRequestCreateEmbeddedRequest  (required)
    * @return SignatureRequestGetResponse
    * @throws ApiException if fails to make API call
@@ -296,7 +298,7 @@ public class SignatureRequestApi {
 
   /**
    * Create Embedded Signature Request
-   * Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+   * Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
    * @param signatureRequestCreateEmbeddedRequest  (required)
    * @return ApiResponse&lt;SignatureRequestGetResponse&gt;
    * @throws ApiException if fails to make API call
@@ -353,7 +355,7 @@ public class SignatureRequestApi {
   }
   /**
    * Create Embedded Signature Request with Template
-   * Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+   * Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
    * @param signatureRequestCreateEmbeddedWithTemplateRequest  (required)
    * @return SignatureRequestGetResponse
    * @throws ApiException if fails to make API call
@@ -370,7 +372,7 @@ public class SignatureRequestApi {
 
   /**
    * Create Embedded Signature Request with Template
-   * Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+   * Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
    * @param signatureRequestCreateEmbeddedWithTemplateRequest  (required)
    * @return ApiResponse&lt;SignatureRequestGetResponse&gt;
    * @throws ApiException if fails to make API call
@@ -430,9 +432,7 @@ public class SignatureRequestApi {
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)
-   * @param getUrl If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-   * @param getDataUri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
-   * @return FileResponse
+   * @return File
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -441,8 +441,8 @@ public class SignatureRequestApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public FileResponse signatureRequestFiles(String signatureRequestId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
-    return signatureRequestFilesWithHttpInfo(signatureRequestId, fileType, getUrl, getDataUri).getData();
+  public File signatureRequestFiles(String signatureRequestId, String fileType) throws ApiException {
+    return signatureRequestFilesWithHttpInfo(signatureRequestId, fileType).getData();
   }
 
   /**
@@ -450,9 +450,7 @@ public class SignatureRequestApi {
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)
-   * @param getUrl If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)
-   * @param getDataUri If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)
-   * @return ApiResponse&lt;FileResponse&gt;
+   * @return ApiResponse&lt;File&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
@@ -461,16 +459,10 @@ public class SignatureRequestApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<FileResponse> signatureRequestFilesWithHttpInfo(String signatureRequestId, String fileType, Boolean getUrl, Boolean getDataUri) throws ApiException {
+  public ApiResponse<File> signatureRequestFilesWithHttpInfo(String signatureRequestId, String fileType) throws ApiException {
     
     if (fileType == null) {
         fileType = "pdf";
-    }
-    if (getUrl == null) {
-        getUrl = false;
-    }
-    if (getDataUri == null) {
-        getDataUri = false;
     }
     Object localVarPostBody = null;
     
@@ -490,8 +482,156 @@ public class SignatureRequestApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "file_type", fileType));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "get_url", getUrl));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "get_data_uri", getDataUri));
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/pdf", "application/zip", "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+
+    localVarFormParams = new HashMap<String, Object>();
+    boolean isFileTypeFound = !localVarFormParams.isEmpty();
+
+    final String localVarContentType = isFileTypeFound? "multipart/form-data" : apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "api_key", "oauth2" };
+
+    GenericType<File> localVarReturnType = new GenericType<File>() {};
+
+    return apiClient.invokeAPI("SignatureRequestApi.signatureRequestFiles", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
+   * Download File as Encoded String
+   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+   * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
+   * @return FileResponseDataUri
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public FileResponseDataUri signatureRequestFilesAsEncodedString(String signatureRequestId) throws ApiException {
+    return signatureRequestFilesAsEncodedStringWithHttpInfo(signatureRequestId).getData();
+  }
+
+  /**
+   * Download File as Encoded String
+   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+   * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
+   * @return ApiResponse&lt;FileResponseDataUri&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<FileResponseDataUri> signatureRequestFilesAsEncodedStringWithHttpInfo(String signatureRequestId) throws ApiException {
+    
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'signatureRequestId' is set
+    if (signatureRequestId == null) {
+      throw new ApiException(400, "Missing the required parameter 'signatureRequestId' when calling signatureRequestFilesAsEncodedString");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf"
+      .replaceAll("\\{" + "signature_request_id" + "\\}", apiClient.escapeString(signatureRequestId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+
+    localVarFormParams = new HashMap<String, Object>();
+    boolean isFileTypeFound = !localVarFormParams.isEmpty();
+
+    final String localVarContentType = isFileTypeFound? "multipart/form-data" : apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "api_key", "oauth2" };
+
+    GenericType<FileResponseDataUri> localVarReturnType = new GenericType<FileResponseDataUri>() {};
+
+    return apiClient.invokeAPI("SignatureRequestApi.signatureRequestFilesAsEncodedString", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+                               localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
+   * Download File as File Url
+   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+   * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
+   * @return FileResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public FileResponse signatureRequestFilesAsFileUrl(String signatureRequestId) throws ApiException {
+    return signatureRequestFilesAsFileUrlWithHttpInfo(signatureRequestId).getData();
+  }
+
+  /**
+   * Download File as File Url
+   * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+   * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
+   * @return ApiResponse&lt;FileResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  </td></tr>
+       <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<FileResponse> signatureRequestFilesAsFileUrlWithHttpInfo(String signatureRequestId) throws ApiException {
+    
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'signatureRequestId' is set
+    if (signatureRequestId == null) {
+      throw new ApiException(400, "Missing the required parameter 'signatureRequestId' when calling signatureRequestFilesAsFileUrl");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf"
+      .replaceAll("\\{" + "signature_request_id" + "\\}", apiClient.escapeString(signatureRequestId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
 
     
     
@@ -514,7 +654,7 @@ public class SignatureRequestApi {
 
     GenericType<FileResponse> localVarReturnType = new GenericType<FileResponse>() {};
 
-    return apiClient.invokeAPI("SignatureRequestApi.signatureRequestFiles", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.invokeAPI("SignatureRequestApi.signatureRequestFilesAsFileUrl", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }
