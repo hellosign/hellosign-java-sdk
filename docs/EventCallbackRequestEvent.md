@@ -37,6 +37,7 @@ Name | Value
 | SIGNATURE_REQUEST_REASSIGNED | &quot;signature_request_reassigned&quot; |
 | SIGNATURE_REQUEST_INVALID | &quot;signature_request_invalid&quot; |
 | SIGNATURE_REQUEST_PREPARED | &quot;signature_request_prepared&quot; |
+| SIGNATURE_REQUEST_EXPIRED | &quot;signature_request_expired&quot; |
 | TEMPLATE_CREATED | &quot;template_created&quot; |
 | TEMPLATE_ERROR | &quot;template_error&quot; |
 

@@ -201,7 +201,7 @@ Class | Method | HTTP request | Description
 *SignatureRequestApi* | [**signatureRequestCancel**](docs/SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request
 *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](docs/SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request
 *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](docs/SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template
-*SignatureRequestApi* | [**signatureRequestFiles**](docs/SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download Files
+*SignatureRequestApi* | [**signatureRequestFiles**](docs/SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download File
 *SignatureRequestApi* | [**signatureRequestGet**](docs/SignatureRequestApi.md#signatureRequestGet) | **GET** /signature_request/{signature_request_id} | Get Signature Request
 *SignatureRequestApi* | [**signatureRequestList**](docs/SignatureRequestApi.md#signatureRequestList) | **GET** /signature_request/list | List Signature Requests
 *SignatureRequestApi* | [**signatureRequestReleaseHold**](docs/SignatureRequestApi.md#signatureRequestReleaseHold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request
@@ -215,6 +215,7 @@ Class | Method | HTTP request | Description
 *TeamApi* | [**teamDelete**](docs/TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team
 *TeamApi* | [**teamGet**](docs/TeamApi.md#teamGet) | **GET** /team | Get Team
 *TeamApi* | [**teamInfo**](docs/TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info
+*TeamApi* | [**teamInvites**](docs/TeamApi.md#teamInvites) | **GET** /team/invites | List Team Invites
 *TeamApi* | [**teamMembers**](docs/TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members
 *TeamApi* | [**teamRemoveMember**](docs/TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team
 *TeamApi* | [**teamSubTeams**](docs/TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams
@@ -222,7 +223,7 @@ Class | Method | HTTP request | Description
 *TemplateApi* | [**templateAddUser**](docs/TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template
 *TemplateApi* | [**templateCreateEmbeddedDraft**](docs/TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
 *TemplateApi* | [**templateDelete**](docs/TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template
-*TemplateApi* | [**templateFiles**](docs/TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files
+*TemplateApi* | [**templateFiles**](docs/TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File
 *TemplateApi* | [**templateGet**](docs/TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template
 *TemplateApi* | [**templateList**](docs/TemplateApi.md#templateList) | **GET** /template/list | List Templates
 *TemplateApi* | [**templateRemoveUser**](docs/TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template
@@ -346,6 +347,8 @@ Class | Method | HTTP request | Description
  - [TeamGetInfoResponse](docs/TeamGetInfoResponse.md)
  - [TeamGetResponse](docs/TeamGetResponse.md)
  - [TeamInfoResponse](docs/TeamInfoResponse.md)
+ - [TeamInviteResponse](docs/TeamInviteResponse.md)
+ - [TeamInvitesResponse](docs/TeamInvitesResponse.md)
  - [TeamMemberResponse](docs/TeamMemberResponse.md)
  - [TeamMembersResponse](docs/TeamMembersResponse.md)
  - [TeamParentResponse](docs/TeamParentResponse.md)

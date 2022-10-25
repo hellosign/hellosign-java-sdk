@@ -22,15 +22,15 @@ public class Example {
         oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
 		*/
 
-        TemplateApi api = new TemplateApi(defaultClient);
+        TeamApi api = new TeamApi(defaultClient);
 
-        String templateId = "f57db65d3f933b5316d398057a36176831451a35";
+        String emailAddress = "user@hellosign.com";
 
         try {
-            File result = api.templateFiles(templateId, "pdf");
+            TeamInvitesResponse result = api.teamInvites(emailAddress);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AccountApi#accountCreate");
+            System.err.println("Exception when calling TeamApi#teamMembers");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());

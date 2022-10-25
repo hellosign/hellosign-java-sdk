@@ -85,6 +85,8 @@ public class EventCallbackRequestEvent {
     
     SIGNATURE_REQUEST_PREPARED("signature_request_prepared"),
     
+    SIGNATURE_REQUEST_EXPIRED("signature_request_expired"),
+    
     TEMPLATE_CREATED("template_created"),
     
     TEMPLATE_ERROR("template_error");

@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**teamDelete**](TeamApi.md#teamDelete) | **DELETE** /team/destroy | Delete Team
 [**teamGet**](TeamApi.md#teamGet) | **GET** /team | Get Team
 [**teamInfo**](TeamApi.md#teamInfo) | **GET** /team/info | Get Team Info
+[**teamInvites**](TeamApi.md#teamInvites) | **GET** /team/invites | List Team Invites
 [**teamMembers**](TeamApi.md#teamMembers) | **GET** /team/members/{team_id} | List Team Members
 [**teamRemoveMember**](TeamApi.md#teamRemoveMember) | **POST** /team/remove_member | Remove User from Team
 [**teamSubTeams**](TeamApi.md#teamSubTeams) | **GET** /team/sub_teams/{team_id} | List Sub Teams
@@ -392,6 +393,87 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TeamGetInfoResponse**](TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+
+## teamInvites
+
+> TeamInvitesResponse teamInvites(emailAddress)
+
+List Team Invites
+
+Provides a list of team invites (and their roles).
+
+### Example
+
+```java
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        TeamApi api = new TeamApi(defaultClient);
+
+        String emailAddress = "user@hellosign.com";
+
+        try {
+            TeamInvitesResponse result = api.teamInvites(emailAddress);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TeamApi#teamMembers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **emailAddress** | **String**| The email address for which to display the team invites. | [optional]
+
+### Return type
+
+[**TeamInvitesResponse**](TeamInvitesResponse.md)
 
 ### Authorization
 

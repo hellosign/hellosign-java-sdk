@@ -49,6 +49,7 @@ import com.hellosign.openapi.ApiException;
     SignatureRequestResponse.JSON_PROPERTY_MESSAGE,
     SignatureRequestResponse.JSON_PROPERTY_METADATA,
     SignatureRequestResponse.JSON_PROPERTY_CREATED_AT,
+    SignatureRequestResponse.JSON_PROPERTY_EXPIRES_AT,
     SignatureRequestResponse.JSON_PROPERTY_IS_COMPLETE,
     SignatureRequestResponse.JSON_PROPERTY_IS_DECLINED,
     SignatureRequestResponse.JSON_PROPERTY_HAS_ERROR,
@@ -91,6 +92,9 @@ public class SignatureRequestResponse {
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Integer createdAt;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public static final String JSON_PROPERTY_IS_COMPLETE = "is_complete";
   private Boolean isComplete;
@@ -365,6 +369,32 @@ public class SignatureRequestResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
+  }
+
+
+  public SignatureRequestResponse expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__SignatureRequestResponse::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__SignatureRequestResponse::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
   }
 
 
@@ -775,6 +805,7 @@ public class SignatureRequestResponse {
         Objects.equals(this.message, signatureRequestResponse.message) &&
         Objects.equals(this.metadata, signatureRequestResponse.metadata) &&
         Objects.equals(this.createdAt, signatureRequestResponse.createdAt) &&
+        Objects.equals(this.expiresAt, signatureRequestResponse.expiresAt) &&
         Objects.equals(this.isComplete, signatureRequestResponse.isComplete) &&
         Objects.equals(this.isDeclined, signatureRequestResponse.isDeclined) &&
         Objects.equals(this.hasError, signatureRequestResponse.hasError) &&
@@ -792,7 +823,7 @@ public class SignatureRequestResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, templateIds, customFields, attachments, responseData, signatures);
+    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, expiresAt, isComplete, isDeclined, hasError, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, templateIds, customFields, attachments, responseData, signatures);
   }
 
   @Override
@@ -808,6 +839,7 @@ public class SignatureRequestResponse {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    isComplete: ").append(toIndentedString(isComplete)).append("\n");
     sb.append("    isDeclined: ").append(toIndentedString(isDeclined)).append("\n");
     sb.append("    hasError: ").append(toIndentedString(hasError)).append("\n");
@@ -989,6 +1021,24 @@ public class SignatureRequestResponse {
         }
         else {
             map.put("created_at", JSON.getDefault().getMapper().writeValueAsString(createdAt));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     if (isComplete != null) {

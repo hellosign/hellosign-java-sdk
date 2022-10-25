@@ -81,7 +81,8 @@ import com.hellosign.openapi.ApiException;
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_TYPE,
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_PREEXISTING_FIELDS,
     UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_USE_TEXT_TAGS,
-    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS
+    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS,
+    UnclaimedDraftCreateEmbeddedRequest.JSON_PROPERTY_EXPIRES_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftCreateEmbeddedRequest {
@@ -224,6 +225,9 @@ public class UnclaimedDraftCreateEmbeddedRequest {
 
   public static final String JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS = "populate_auto_fill_fields";
   private Boolean populateAutoFillFields = false;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public UnclaimedDraftCreateEmbeddedRequest() { 
   }
@@ -1218,6 +1222,32 @@ public class UnclaimedDraftCreateEmbeddedRequest {
   }
 
 
+  public UnclaimedDraftCreateEmbeddedRequest expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__UnclaimedDraftCreateEmbedded::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
   /**
    * Return true if this UnclaimedDraftCreateEmbeddedRequest object is equal to o.
    */
@@ -1264,12 +1294,13 @@ public class UnclaimedDraftCreateEmbeddedRequest {
         Objects.equals(this.type, unclaimedDraftCreateEmbeddedRequest.type) &&
         Objects.equals(this.usePreexistingFields, unclaimedDraftCreateEmbeddedRequest.usePreexistingFields) &&
         Objects.equals(this.useTextTags, unclaimedDraftCreateEmbeddedRequest.useTextTags) &&
-        Objects.equals(this.populateAutoFillFields, unclaimedDraftCreateEmbeddedRequest.populateAutoFillFields);
+        Objects.equals(this.populateAutoFillFields, unclaimedDraftCreateEmbeddedRequest.populateAutoFillFields) &&
+        Objects.equals(this.expiresAt, unclaimedDraftCreateEmbeddedRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, requesterEmailAddress, file, fileUrl, allowCcs, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, editorOptions, fieldOptions, forceSignerPage, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, holdRequest, isForEmbeddedSigning, message, metadata, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, type, usePreexistingFields, useTextTags, populateAutoFillFields);
+    return Objects.hash(clientId, requesterEmailAddress, file, fileUrl, allowCcs, allowDecline, allowReassign, attachments, ccEmailAddresses, customFields, editorOptions, fieldOptions, forceSignerPage, forceSubjectMessage, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, holdRequest, isForEmbeddedSigning, message, metadata, requestingRedirectUrl, showPreview, showProgressStepper, signers, signingOptions, signingRedirectUrl, skipMeNow, subject, testMode, type, usePreexistingFields, useTextTags, populateAutoFillFields, expiresAt);
   }
 
   @Override
@@ -1311,6 +1342,7 @@ public class UnclaimedDraftCreateEmbeddedRequest {
     sb.append("    usePreexistingFields: ").append(toIndentedString(usePreexistingFields)).append("\n");
     sb.append("    useTextTags: ").append(toIndentedString(useTextTags)).append("\n");
     sb.append("    populateAutoFillFields: ").append(toIndentedString(populateAutoFillFields)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1947,6 +1979,24 @@ public class UnclaimedDraftCreateEmbeddedRequest {
         }
         else {
             map.put("populate_auto_fill_fields", JSON.getDefault().getMapper().writeValueAsString(populateAutoFillFields));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     } catch (Exception e) {

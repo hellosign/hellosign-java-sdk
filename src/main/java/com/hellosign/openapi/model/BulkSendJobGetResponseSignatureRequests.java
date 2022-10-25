@@ -49,6 +49,7 @@ import com.hellosign.openapi.ApiException;
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_MESSAGE,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_METADATA,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_CREATED_AT,
+    BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_EXPIRES_AT,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_IS_COMPLETE,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_IS_DECLINED,
     BulkSendJobGetResponseSignatureRequests.JSON_PROPERTY_HAS_ERROR,
@@ -92,6 +93,9 @@ public class BulkSendJobGetResponseSignatureRequests {
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Integer createdAt;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Integer expiresAt;
 
   public static final String JSON_PROPERTY_IS_COMPLETE = "is_complete";
   private Boolean isComplete;
@@ -369,6 +373,32 @@ public class BulkSendJobGetResponseSignatureRequests {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Integer createdAt) {
     this.createdAt = createdAt;
+  }
+
+
+  public BulkSendJobGetResponseSignatureRequests expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * _t__SignatureRequestResponse::EXPIRES_AT
+   * @return expiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "_t__SignatureRequestResponse::EXPIRES_AT")
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
   }
 
 
@@ -805,6 +835,7 @@ public class BulkSendJobGetResponseSignatureRequests {
         Objects.equals(this.message, bulkSendJobGetResponseSignatureRequests.message) &&
         Objects.equals(this.metadata, bulkSendJobGetResponseSignatureRequests.metadata) &&
         Objects.equals(this.createdAt, bulkSendJobGetResponseSignatureRequests.createdAt) &&
+        Objects.equals(this.expiresAt, bulkSendJobGetResponseSignatureRequests.expiresAt) &&
         Objects.equals(this.isComplete, bulkSendJobGetResponseSignatureRequests.isComplete) &&
         Objects.equals(this.isDeclined, bulkSendJobGetResponseSignatureRequests.isDeclined) &&
         Objects.equals(this.hasError, bulkSendJobGetResponseSignatureRequests.hasError) &&
@@ -823,7 +854,7 @@ public class BulkSendJobGetResponseSignatureRequests {
 
   @Override
   public int hashCode() {
-    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, isComplete, isDeclined, hasError, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, templateIds, customFields, attachments, responseData, signatures, bulkSendJobId);
+    return Objects.hash(testMode, signatureRequestId, requesterEmailAddress, title, originalTitle, subject, message, metadata, createdAt, expiresAt, isComplete, isDeclined, hasError, filesUrl, signingUrl, detailsUrl, ccEmailAddresses, signingRedirectUrl, templateIds, customFields, attachments, responseData, signatures, bulkSendJobId);
   }
 
   @Override
@@ -839,6 +870,7 @@ public class BulkSendJobGetResponseSignatureRequests {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    isComplete: ").append(toIndentedString(isComplete)).append("\n");
     sb.append("    isDeclined: ").append(toIndentedString(isDeclined)).append("\n");
     sb.append("    hasError: ").append(toIndentedString(hasError)).append("\n");
@@ -1021,6 +1053,24 @@ public class BulkSendJobGetResponseSignatureRequests {
         }
         else {
             map.put("created_at", JSON.getDefault().getMapper().writeValueAsString(createdAt));
+        }
+    }
+    if (expiresAt != null) {
+        if (isFileTypeOrListOfFiles(expiresAt)) {
+            fileTypeFound = true;
+        }
+
+        if (expiresAt.getClass().equals(java.io.File.class) ||
+            expiresAt.getClass().equals(Integer.class) ||
+            expiresAt.getClass().equals(String.class) ) {
+            map.put("expires_at", expiresAt);
+        } else if (isListOfFile(expiresAt)) {
+            for(int i = 0; i< getListSize(expiresAt); i++) {
+                map.put("expires_at[" + i + "]", getFromList(expiresAt, i));
+            }
+        }
+        else {
+            map.put("expires_at", JSON.getDefault().getMapper().writeValueAsString(expiresAt));
         }
     }
     if (isComplete != null) {

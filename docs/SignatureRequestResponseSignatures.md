@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 | `smsPhoneNumber` | ```String``` |  The SMS phone number used for authentication or signature request delivery.  |  |
 | `reassignedBy` | ```String``` |  Email address of original signer who reassigned to this signer.  |  |
 | `reassignmentReason` | ```String``` |  Reason provided by original signer who reassigned to this signer.  |  |
+| `reassignedFrom` | ```String``` |  Previous signature identifier.  |  |
 | `error` | ```String``` |  Error message pertaining to this signer, or null.  |  |
 
 
