@@ -16,7 +16,7 @@ public class SubFormFieldsPerDocumentTest {
     @Test
     public void testSubFormFieldsPerDocumentBase() throws Exception {
         ObjectMapper mapper = JSON.getDefault().getMapper();
-        JsonNode content = mapper.readTree(new FileInputStream("oas/test_fixtures//SubFormFieldsPerDocument.json"));
+        JsonNode content = mapper.readTree(new FileInputStream("test_fixtures//SubFormFieldsPerDocument.json"));
         Iterator<Map.Entry<String, JsonNode>> fields = content.fields();
         while (fields.hasNext()) {
             Map.Entry<String, JsonNode> kv = fields.next();

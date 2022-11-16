@@ -54,7 +54,7 @@ public class FixtureTest {
 
         ObjectMapper mapper = JSON.getDefault().getMapper();
         for (String fixtureName : fixtures) {
-            JsonNode fixture = mapper.readTree(new FileInputStream("oas/test_fixtures/" + fixtureName + ".json"));
+            JsonNode fixture = mapper.readTree(new FileInputStream("test_fixtures/" + fixtureName + ".json"));
 
             for (JsonNode expected : fixture) {
                 String data = expected.toString();

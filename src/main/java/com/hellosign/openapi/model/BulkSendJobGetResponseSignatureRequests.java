@@ -1,6 +1,6 @@
 /*
- * HelloSign API
- * HelloSign v3 API
+ * Dropbox Sign API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -382,11 +382,11 @@ public class BulkSendJobGetResponseSignatureRequests {
   }
 
    /**
-   * _t__SignatureRequestResponse::EXPIRES_AT
+   * The time when the signature request will expire pending signatures.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "_t__SignatureRequestResponse::EXPIRES_AT")
+  @ApiModelProperty(value = "The time when the signature request will expire pending signatures.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -512,11 +512,11 @@ public class BulkSendJobGetResponseSignatureRequests {
   }
 
    /**
-   * The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.
+   * The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
    * @return signingUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.")
+  @ApiModelProperty(value = "The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.")
   @JsonProperty(JSON_PROPERTY_SIGNING_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

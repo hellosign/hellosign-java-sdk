@@ -9,7 +9,9 @@ Method | HTTP request | Description
 [**signatureRequestCancel**](SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request
 [**signatureRequestCreateEmbedded**](SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request
 [**signatureRequestCreateEmbeddedWithTemplate**](SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template
-[**signatureRequestFiles**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download File
+[**signatureRequestFiles**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download Files
+[**signatureRequestFilesAsDataUri**](SignatureRequestApi.md#signatureRequestFilesAsDataUri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri
+[**signatureRequestFilesAsFileUrl**](SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url
 [**signatureRequestGet**](SignatureRequestApi.md#signatureRequestGet) | **GET** /signature_request/{signature_request_id} | Get Signature Request
 [**signatureRequestList**](SignatureRequestApi.md#signatureRequestList) | **GET** /signature_request/list | List Signature Requests
 [**signatureRequestReleaseHold**](SignatureRequestApi.md#signatureRequestReleaseHold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request
@@ -27,7 +29,7 @@ Method | HTTP request | Description
 
 Embedded Bulk Send with Template
 
-Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 **NOTE**: Only available for Standard plan and higher.
 
@@ -365,7 +367,7 @@ null (empty response body)
 
 Create Embedded Signature Request
 
-Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 ### Example
 
@@ -475,7 +477,7 @@ Name | Type | Description  | Notes
 
 Create Embedded Signature Request with Template
 
-Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 ### Example
 
@@ -563,9 +565,9 @@ Name | Type | Description  | Notes
 
 ## signatureRequestFiles
 
-> FileResponse signatureRequestFiles(signatureRequestId, fileType, getUrl, getDataUri)
+> File signatureRequestFiles(signatureRequestId, fileType)
 
-Download File
+Download Files
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file. 
 
@@ -624,8 +626,172 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **signatureRequestId** | **String**| The id of the SignatureRequest to retrieve. |
  **fileType** | **String**| Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] [default to pdf] [enum: pdf, zip]
- **getUrl** | **Boolean**| If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false]
- **getDataUri** | **Boolean**| If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false]
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/pdf, application/zip, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+
+## signatureRequestFilesAsDataUri
+
+> FileResponseDataUri signatureRequestFilesAsDataUri(signatureRequestId)
+
+Download Files as Data Uri
+
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only). 
+
+If the files are currently being prepared, a status code of `409` will be returned instead.
+
+### Example
+
+```java
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.auth.HttpBearerAuth;
+import com.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        SignatureRequestApi api = new SignatureRequestApi(defaultClient);
+
+        String signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+
+        try {
+            FileResponseDataUri result = api.signatureRequestFilesAsDataUri(signatureRequestId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountApi#accountCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **signatureRequestId** | **String**| The id of the SignatureRequest to retrieve. |
+
+### Return type
+
+[**FileResponseDataUri**](FileResponseDataUri.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+
+## signatureRequestFilesAsFileUrl
+
+> FileResponse signatureRequestFilesAsFileUrl(signatureRequestId)
+
+Download Files as File Url
+
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only). 
+
+If the files are currently being prepared, a status code of `409` will be returned instead.
+
+### Example
+
+```java
+import com.hellosign.openapi.ApiClient;
+import com.hellosign.openapi.ApiException;
+import com.hellosign.openapi.Configuration;
+import com.hellosign.openapi.api.*;
+import com.hellosign.openapi.auth.HttpBasicAuth;
+import com.hellosign.openapi.auth.HttpBearerAuth;
+import com.hellosign.openapi.model.*;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure HTTP basic authorization: api_key
+        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+            .getAuthentication("api_key");
+        api_key.setUsername("YOUR_API_KEY");
+
+        // or, configure Bearer (JWT) authorization: oauth2
+		/*
+		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+            .getAuthentication("oauth2");
+
+        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+		*/
+
+        SignatureRequestApi api = new SignatureRequestApi(defaultClient);
+
+        String signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+
+        try {
+            FileResponse result = api.signatureRequestFilesAsFileUrl(signatureRequestId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountApi#accountCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **signatureRequestId** | **String**| The id of the SignatureRequest to retrieve. |
 
 ### Return type
 

@@ -14,7 +14,7 @@ public class EventCallbackHelperTest {
     @Test
     public void testIsValid() throws Exception {
         ObjectMapper mapper = JSON.getDefault().getMapper();
-        JsonNode content = mapper.readTree(new FileInputStream("oas/test_fixtures/EventCallbackHelper.json"));
+        JsonNode content = mapper.readTree(new FileInputStream("test_fixtures/EventCallbackHelper.json"));
         for(JsonNode node : content) {
             EventCallbackApiAppRequestPayload payload = mapper.convertValue(node, EventCallbackApiAppRequestPayload.class);
             Assert.assertTrue(EventCallbackHelper.isValid(APIKEY, payload.getEvent()));

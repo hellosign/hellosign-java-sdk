@@ -1,6 +1,6 @@
 /*
- * HelloSign API
- * HelloSign v3 API
+ * Dropbox Sign API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -140,11 +140,11 @@ public class TemplateUpdateFilesRequest {
   }
 
    /**
-   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.
+   * Use &#x60;file_url[]&#x60; to have Dropbox Sign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have Dropbox Sign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

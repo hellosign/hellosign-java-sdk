@@ -56,7 +56,7 @@ public class TeamApi {
 
   /**
    * Add User to Team
-   * Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+   * Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
    * @param teamAddMemberRequest  (required)
    * @param teamId The id of the team. (optional)
    * @return TeamGetResponse
@@ -74,7 +74,7 @@ public class TeamApi {
 
   /**
    * Add User to Team
-   * Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+   * Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
    * @param teamAddMemberRequest  (required)
    * @param teamId The id of the team. (optional)
    * @return ApiResponse&lt;TeamGetResponse&gt;
