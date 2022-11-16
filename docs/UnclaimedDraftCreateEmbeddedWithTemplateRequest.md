@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 | `customFields` | [```List<SubCustomField>```](SubCustomField.md) |  An array defining values and options for custom fields. Required when a custom field exists in the Template.  |  |
 | `editorOptions` | [```SubEditorOptions```](SubEditorOptions.md) |    |  |
 | `fieldOptions` | [```SubFieldOptions```](SubFieldOptions.md) |    |  |
-| `file` | ```List<File>``` |  Use `file[]` to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.<br><br>**file** or **file_url[]** is required, but not both.  |  |
-| `fileUrl` | ```List<String>``` |  Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.<br><br>**file** or **file_url[]** is required, but not both.  |  |
+| `file` | ```List<File>``` |  Use `file[]` to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.<br><br>**file** or **file_url[]** is required, but not both.  |  |
+| `fileUrl` | ```List<String>``` |  Use file_url[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.<br><br>**file** or **file_url[]** is required, but not both.  |  |
 | `forceSignerRoles` | ```Boolean``` |  Provide users the ability to review/edit the template signer roles.  |  |
 | `forceSubjectMessage` | ```Boolean``` |  Provide users the ability to review/edit the template subject and message.  |  |
 | `holdRequest` | ```Boolean``` |  The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to `false`.  |  |
@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 | `subject` | ```String``` |  The subject in the email that will be sent to the signers.  |  |
 | `testMode` | ```Boolean``` |  Whether this is a test, the signature request created from this draft will not be legally binding if set to `true`. Defaults to `false`.  |  |
 | `title` | ```String``` |  The title you want to assign to the SignatureRequest.  |  |
-| `populateAutoFillFields` | ```Boolean``` |  Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.  <br><br>⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.  |  |
+| `populateAutoFillFields` | ```Boolean``` |  Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.<br><br>⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.  |  |
 
 
 

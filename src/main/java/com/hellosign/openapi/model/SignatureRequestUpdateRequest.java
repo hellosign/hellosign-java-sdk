@@ -1,6 +1,6 @@
 /*
- * HelloSign API
- * HelloSign v3 API
+ * Dropbox Sign API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -139,11 +139,11 @@ public class SignatureRequestUpdateRequest {
   }
 
    /**
-   * _t__SignatureRequestUpdate::EXPIRES_AT
+   * The new time when the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "_t__SignatureRequestUpdate::EXPIRES_AT")
+  @ApiModelProperty(value = "The new time when the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

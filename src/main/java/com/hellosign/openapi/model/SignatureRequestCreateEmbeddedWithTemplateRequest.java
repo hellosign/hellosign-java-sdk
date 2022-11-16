@@ -1,6 +1,6 @@
 /*
- * HelloSign API
- * HelloSign v3 API
+ * Dropbox Sign API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -339,11 +339,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
+   * Use &#x60;file_url[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
    * @return fileUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Use `file_url[]` to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
+  @ApiModelProperty(value = "Use `file_url[]` to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.")
   @JsonProperty(JSON_PROPERTY_FILE_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -529,11 +529,11 @@ public class SignatureRequestCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
+   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.  ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
    * @return populateAutoFillFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.    ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.")
+  @ApiModelProperty(value = "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.  ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.")
   @JsonProperty(JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

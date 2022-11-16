@@ -1,6 +1,6 @@
 /*
- * HelloSign API
- * HelloSign v3 API
+ * Dropbox Sign API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -148,11 +148,11 @@ public class TemplateResponseAccount {
   }
 
    /**
-   * Returns &#x60;true&#x60; if the user has a paid HelloSign account.
+   * Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account.
    * @return isPaidHs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Returns `true` if the user has a paid HelloSign account.")
+  @ApiModelProperty(value = "Returns `true` if the user has a paid Dropbox Sign account.")
   @JsonProperty(JSON_PROPERTY_IS_PAID_HS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -53,7 +53,7 @@ public class AccountApi {
 
   /**
    * Create Account
-   * Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+   * Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
    * @param accountCreateRequest  (required)
    * @return AccountCreateResponse
    * @throws ApiException if fails to make API call
@@ -70,7 +70,7 @@ public class AccountApi {
 
   /**
    * Create Account
-   * Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+   * Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
    * @param accountCreateRequest  (required)
    * @return ApiResponse&lt;AccountCreateResponse&gt;
    * @throws ApiException if fails to make API call
@@ -274,7 +274,7 @@ public class AccountApi {
   }
   /**
    * Verify Account
-   * Verifies whether an HelloSign Account exists for the given email address.
+   * Verifies whether an Dropbox Sign Account exists for the given email address.
    * @param accountVerifyRequest  (required)
    * @return AccountVerifyResponse
    * @throws ApiException if fails to make API call
@@ -291,7 +291,7 @@ public class AccountApi {
 
   /**
    * Verify Account
-   * Verifies whether an HelloSign Account exists for the given email address.
+   * Verifies whether an Dropbox Sign Account exists for the given email address.
    * @param accountVerifyRequest  (required)
    * @return ApiResponse&lt;AccountVerifyResponse&gt;
    * @throws ApiException if fails to make API call
