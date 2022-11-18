@@ -241,7 +241,7 @@ public class SubFormFieldRuleAction {
         if (hidden.getClass().equals(java.io.File.class) ||
             hidden.getClass().equals(Integer.class) ||
             hidden.getClass().equals(String.class) ||
-            hidden.getClass().isEnum() ) {
+            hidden.getClass().isEnum()) {
             map.put("hidden", hidden);
         } else if (isListOfFile(hidden)) {
             for(int i = 0; i< getListSize(hidden); i++) {
@@ -260,7 +260,7 @@ public class SubFormFieldRuleAction {
         if (type.getClass().equals(java.io.File.class) ||
             type.getClass().equals(Integer.class) ||
             type.getClass().equals(String.class) ||
-            type.getClass().isEnum() ) {
+            type.getClass().isEnum()) {
             map.put("type", type);
         } else if (isListOfFile(type)) {
             for(int i = 0; i< getListSize(type); i++) {
@@ -279,7 +279,7 @@ public class SubFormFieldRuleAction {
         if (fieldId.getClass().equals(java.io.File.class) ||
             fieldId.getClass().equals(Integer.class) ||
             fieldId.getClass().equals(String.class) ||
-            fieldId.getClass().isEnum() ) {
+            fieldId.getClass().isEnum()) {
             map.put("field_id", fieldId);
         } else if (isListOfFile(fieldId)) {
             for(int i = 0; i< getListSize(fieldId); i++) {
@@ -298,7 +298,7 @@ public class SubFormFieldRuleAction {
         if (groupId.getClass().equals(java.io.File.class) ||
             groupId.getClass().equals(Integer.class) ||
             groupId.getClass().equals(String.class) ||
-            groupId.getClass().isEnum() ) {
+            groupId.getClass().isEnum()) {
             map.put("group_id", groupId);
         } else if (isListOfFile(groupId)) {
             for(int i = 0; i< getListSize(groupId); i++) {

@@ -207,7 +207,7 @@ public class ListInfoResponse {
         if (numPages.getClass().equals(java.io.File.class) ||
             numPages.getClass().equals(Integer.class) ||
             numPages.getClass().equals(String.class) ||
-            numPages.getClass().isEnum() ) {
+            numPages.getClass().isEnum()) {
             map.put("num_pages", numPages);
         } else if (isListOfFile(numPages)) {
             for(int i = 0; i< getListSize(numPages); i++) {
@@ -226,7 +226,7 @@ public class ListInfoResponse {
         if (numResults.getClass().equals(java.io.File.class) ||
             numResults.getClass().equals(Integer.class) ||
             numResults.getClass().equals(String.class) ||
-            numResults.getClass().isEnum() ) {
+            numResults.getClass().isEnum()) {
             map.put("num_results", numResults);
         } else if (isListOfFile(numResults)) {
             for(int i = 0; i< getListSize(numResults); i++) {
@@ -245,7 +245,7 @@ public class ListInfoResponse {
         if (page.getClass().equals(java.io.File.class) ||
             page.getClass().equals(Integer.class) ||
             page.getClass().equals(String.class) ||
-            page.getClass().isEnum() ) {
+            page.getClass().isEnum()) {
             map.put("page", page);
         } else if (isListOfFile(page)) {
             for(int i = 0; i< getListSize(page); i++) {
@@ -264,7 +264,7 @@ public class ListInfoResponse {
         if (pageSize.getClass().equals(java.io.File.class) ||
             pageSize.getClass().equals(Integer.class) ||
             pageSize.getClass().equals(String.class) ||
-            pageSize.getClass().isEnum() ) {
+            pageSize.getClass().isEnum()) {
             map.put("page_size", pageSize);
         } else if (isListOfFile(pageSize)) {
             for(int i = 0; i< getListSize(pageSize); i++) {

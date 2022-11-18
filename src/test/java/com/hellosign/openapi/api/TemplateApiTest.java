@@ -88,13 +88,7 @@ public class TemplateApiTest {
      */
     @Test
     public void templateFilesTest() throws Exception {
-        String templateId = "f57db65d3f933b5316d398057a36176831451a35";
-
-        FileResponse expected = TestHelper.getFixtureData(FileResponse.class, "default");
-        ApiClient apiClient = TestHelper.setUpMock(200, expected);
-        TemplateApi api = new TemplateApi(apiClient);
-        FileResponse actual = api.templateFilesAsFileUrl(templateId);
-        Assert.assertEquals(expected, actual);
+        // TODO: test validations
     }
 
     /**

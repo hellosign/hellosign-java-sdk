@@ -174,7 +174,7 @@ public class SubUnclaimedDraftSigner {
         if (emailAddress.getClass().equals(java.io.File.class) ||
             emailAddress.getClass().equals(Integer.class) ||
             emailAddress.getClass().equals(String.class) ||
-            emailAddress.getClass().isEnum() ) {
+            emailAddress.getClass().isEnum()) {
             map.put("email_address", emailAddress);
         } else if (isListOfFile(emailAddress)) {
             for(int i = 0; i< getListSize(emailAddress); i++) {
@@ -193,7 +193,7 @@ public class SubUnclaimedDraftSigner {
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
             name.getClass().equals(String.class) ||
-            name.getClass().isEnum() ) {
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -212,7 +212,7 @@ public class SubUnclaimedDraftSigner {
         if (order.getClass().equals(java.io.File.class) ||
             order.getClass().equals(Integer.class) ||
             order.getClass().equals(String.class) ||
-            order.getClass().isEnum() ) {
+            order.getClass().isEnum()) {
             map.put("order", order);
         } else if (isListOfFile(order)) {
             for(int i = 0; i< getListSize(order); i++) {

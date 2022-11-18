@@ -9,9 +9,9 @@ Method | HTTP request | Description
 [**signatureRequestCancel**](SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request
 [**signatureRequestCreateEmbedded**](SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request
 [**signatureRequestCreateEmbeddedWithTemplate**](SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template
-[**signatureRequestFiles**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download File
-[**signatureRequestFilesAsEncodedString**](SignatureRequestApi.md#signatureRequestFilesAsEncodedString) | **GET** /signature_request/files/{signature_request_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Download File as Encoded String
-[**signatureRequestFilesAsFileUrl**](SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files/{signature_request_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Download File as File Url
+[**signatureRequestFiles**](SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download Files
+[**signatureRequestFilesAsDataUri**](SignatureRequestApi.md#signatureRequestFilesAsDataUri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri
+[**signatureRequestFilesAsFileUrl**](SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url
 [**signatureRequestGet**](SignatureRequestApi.md#signatureRequestGet) | **GET** /signature_request/{signature_request_id} | Get Signature Request
 [**signatureRequestList**](SignatureRequestApi.md#signatureRequestList) | **GET** /signature_request/list | List Signature Requests
 [**signatureRequestReleaseHold**](SignatureRequestApi.md#signatureRequestReleaseHold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request
@@ -567,7 +567,7 @@ Name | Type | Description  | Notes
 
 > File signatureRequestFiles(signatureRequestId, fileType)
 
-Download File
+Download Files
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file. 
 
@@ -647,11 +647,11 @@ Name | Type | Description  | Notes
 | **4XX** | failed_operation |  -  |
 
 
-## signatureRequestFilesAsEncodedString
+## signatureRequestFilesAsDataUri
 
-> FileResponseDataUri signatureRequestFilesAsEncodedString(signatureRequestId)
+> FileResponseDataUri signatureRequestFilesAsDataUri(signatureRequestId)
 
-Download File as Encoded String
+Download Files as Data Uri
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only). 
 
@@ -690,7 +690,7 @@ public class Example {
         String signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
         try {
-            FileResponseDataUri result = api.signatureRequestFilesAsEncodedString(signatureRequestId);
+            FileResponseDataUri result = api.signatureRequestFilesAsDataUri(signatureRequestId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountApi#accountCreate");
@@ -734,7 +734,7 @@ Name | Type | Description  | Notes
 
 > FileResponse signatureRequestFilesAsFileUrl(signatureRequestId)
 
-Download File as File Url
+Download Files as File Url
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only). 
 

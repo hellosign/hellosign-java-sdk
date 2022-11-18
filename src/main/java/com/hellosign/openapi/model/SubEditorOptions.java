@@ -143,7 +143,7 @@ public class SubEditorOptions {
         if (allowEditSigners.getClass().equals(java.io.File.class) ||
             allowEditSigners.getClass().equals(Integer.class) ||
             allowEditSigners.getClass().equals(String.class) ||
-            allowEditSigners.getClass().isEnum() ) {
+            allowEditSigners.getClass().isEnum()) {
             map.put("allow_edit_signers", allowEditSigners);
         } else if (isListOfFile(allowEditSigners)) {
             for(int i = 0; i< getListSize(allowEditSigners); i++) {
@@ -162,7 +162,7 @@ public class SubEditorOptions {
         if (allowEditDocuments.getClass().equals(java.io.File.class) ||
             allowEditDocuments.getClass().equals(Integer.class) ||
             allowEditDocuments.getClass().equals(String.class) ||
-            allowEditDocuments.getClass().isEnum() ) {
+            allowEditDocuments.getClass().isEnum()) {
             map.put("allow_edit_documents", allowEditDocuments);
         } else if (isListOfFile(allowEditDocuments)) {
             for(int i = 0; i< getListSize(allowEditDocuments); i++) {

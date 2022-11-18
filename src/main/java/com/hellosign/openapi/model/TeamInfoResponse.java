@@ -239,7 +239,7 @@ public class TeamInfoResponse {
         if (teamId.getClass().equals(java.io.File.class) ||
             teamId.getClass().equals(Integer.class) ||
             teamId.getClass().equals(String.class) ||
-            teamId.getClass().isEnum() ) {
+            teamId.getClass().isEnum()) {
             map.put("team_id", teamId);
         } else if (isListOfFile(teamId)) {
             for(int i = 0; i< getListSize(teamId); i++) {
@@ -258,7 +258,7 @@ public class TeamInfoResponse {
         if (teamParent.getClass().equals(java.io.File.class) ||
             teamParent.getClass().equals(Integer.class) ||
             teamParent.getClass().equals(String.class) ||
-            teamParent.getClass().isEnum() ) {
+            teamParent.getClass().isEnum()) {
             map.put("team_parent", teamParent);
         } else if (isListOfFile(teamParent)) {
             for(int i = 0; i< getListSize(teamParent); i++) {
@@ -277,7 +277,7 @@ public class TeamInfoResponse {
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
             name.getClass().equals(String.class) ||
-            name.getClass().isEnum() ) {
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -296,7 +296,7 @@ public class TeamInfoResponse {
         if (numMembers.getClass().equals(java.io.File.class) ||
             numMembers.getClass().equals(Integer.class) ||
             numMembers.getClass().equals(String.class) ||
-            numMembers.getClass().isEnum() ) {
+            numMembers.getClass().isEnum()) {
             map.put("num_members", numMembers);
         } else if (isListOfFile(numMembers)) {
             for(int i = 0; i< getListSize(numMembers); i++) {
@@ -315,7 +315,7 @@ public class TeamInfoResponse {
         if (numSubTeams.getClass().equals(java.io.File.class) ||
             numSubTeams.getClass().equals(Integer.class) ||
             numSubTeams.getClass().equals(String.class) ||
-            numSubTeams.getClass().isEnum() ) {
+            numSubTeams.getClass().isEnum()) {
             map.put("num_sub_teams", numSubTeams);
         } else if (isListOfFile(numSubTeams)) {
             for(int i = 0; i< getListSize(numSubTeams); i++) {

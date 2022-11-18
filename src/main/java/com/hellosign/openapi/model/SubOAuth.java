@@ -200,7 +200,7 @@ public class SubOAuth {
         if (callbackUrl.getClass().equals(java.io.File.class) ||
             callbackUrl.getClass().equals(Integer.class) ||
             callbackUrl.getClass().equals(String.class) ||
-            callbackUrl.getClass().isEnum() ) {
+            callbackUrl.getClass().isEnum()) {
             map.put("callback_url", callbackUrl);
         } else if (isListOfFile(callbackUrl)) {
             for(int i = 0; i< getListSize(callbackUrl); i++) {
@@ -219,7 +219,7 @@ public class SubOAuth {
         if (scopes.getClass().equals(java.io.File.class) ||
             scopes.getClass().equals(Integer.class) ||
             scopes.getClass().equals(String.class) ||
-            scopes.getClass().isEnum() ) {
+            scopes.getClass().isEnum()) {
             map.put("scopes", scopes);
         } else if (isListOfFile(scopes)) {
             for(int i = 0; i< getListSize(scopes); i++) {

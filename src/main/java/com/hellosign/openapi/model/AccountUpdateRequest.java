@@ -174,7 +174,7 @@ public class AccountUpdateRequest {
         if (accountId.getClass().equals(java.io.File.class) ||
             accountId.getClass().equals(Integer.class) ||
             accountId.getClass().equals(String.class) ||
-            accountId.getClass().isEnum() ) {
+            accountId.getClass().isEnum()) {
             map.put("account_id", accountId);
         } else if (isListOfFile(accountId)) {
             for(int i = 0; i< getListSize(accountId); i++) {
@@ -193,7 +193,7 @@ public class AccountUpdateRequest {
         if (callbackUrl.getClass().equals(java.io.File.class) ||
             callbackUrl.getClass().equals(Integer.class) ||
             callbackUrl.getClass().equals(String.class) ||
-            callbackUrl.getClass().isEnum() ) {
+            callbackUrl.getClass().isEnum()) {
             map.put("callback_url", callbackUrl);
         } else if (isListOfFile(callbackUrl)) {
             for(int i = 0; i< getListSize(callbackUrl); i++) {
@@ -212,7 +212,7 @@ public class AccountUpdateRequest {
         if (locale.getClass().equals(java.io.File.class) ||
             locale.getClass().equals(Integer.class) ||
             locale.getClass().equals(String.class) ||
-            locale.getClass().isEnum() ) {
+            locale.getClass().isEnum()) {
             map.put("locale", locale);
         } else if (isListOfFile(locale)) {
             for(int i = 0; i< getListSize(locale); i++) {

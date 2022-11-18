@@ -128,13 +128,7 @@ public class SignatureRequestApiTest {
      */
     @Test
     public void signatureRequestFilesTest() throws Exception {
-        String signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
-
-        FileResponse expected = TestHelper.getFixtureData(FileResponse.class, "default");
-        ApiClient apiClient = TestHelper.setUpMock(200, expected);
-        SignatureRequestApi api = new SignatureRequestApi(apiClient);
-        FileResponse actual = api.signatureRequestFilesAsFileUrl(signatureRequestId);
-        Assert.assertEquals(expected, actual);
+        // TODO: test validations
     }
 
     /**

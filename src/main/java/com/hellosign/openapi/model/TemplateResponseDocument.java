@@ -308,7 +308,7 @@ public class TemplateResponseDocument {
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
             name.getClass().equals(String.class) ||
-            name.getClass().isEnum() ) {
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -327,7 +327,7 @@ public class TemplateResponseDocument {
         if (index.getClass().equals(java.io.File.class) ||
             index.getClass().equals(Integer.class) ||
             index.getClass().equals(String.class) ||
-            index.getClass().isEnum() ) {
+            index.getClass().isEnum()) {
             map.put("index", index);
         } else if (isListOfFile(index)) {
             for(int i = 0; i< getListSize(index); i++) {
@@ -346,7 +346,7 @@ public class TemplateResponseDocument {
         if (fieldGroups.getClass().equals(java.io.File.class) ||
             fieldGroups.getClass().equals(Integer.class) ||
             fieldGroups.getClass().equals(String.class) ||
-            fieldGroups.getClass().isEnum() ) {
+            fieldGroups.getClass().isEnum()) {
             map.put("field_groups", fieldGroups);
         } else if (isListOfFile(fieldGroups)) {
             for(int i = 0; i< getListSize(fieldGroups); i++) {
@@ -365,7 +365,7 @@ public class TemplateResponseDocument {
         if (formFields.getClass().equals(java.io.File.class) ||
             formFields.getClass().equals(Integer.class) ||
             formFields.getClass().equals(String.class) ||
-            formFields.getClass().isEnum() ) {
+            formFields.getClass().isEnum()) {
             map.put("form_fields", formFields);
         } else if (isListOfFile(formFields)) {
             for(int i = 0; i< getListSize(formFields); i++) {
@@ -384,7 +384,7 @@ public class TemplateResponseDocument {
         if (customFields.getClass().equals(java.io.File.class) ||
             customFields.getClass().equals(Integer.class) ||
             customFields.getClass().equals(String.class) ||
-            customFields.getClass().isEnum() ) {
+            customFields.getClass().isEnum()) {
             map.put("custom_fields", customFields);
         } else if (isListOfFile(customFields)) {
             for(int i = 0; i< getListSize(customFields); i++) {
@@ -403,7 +403,7 @@ public class TemplateResponseDocument {
         if (staticFields.getClass().equals(java.io.File.class) ||
             staticFields.getClass().equals(Integer.class) ||
             staticFields.getClass().equals(String.class) ||
-            staticFields.getClass().isEnum() ) {
+            staticFields.getClass().isEnum()) {
             map.put("static_fields", staticFields);
         } else if (isListOfFile(staticFields)) {
             for(int i = 0; i< getListSize(staticFields); i++) {

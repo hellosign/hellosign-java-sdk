@@ -154,7 +154,7 @@ public class ReportCreateResponse {
         if (report.getClass().equals(java.io.File.class) ||
             report.getClass().equals(Integer.class) ||
             report.getClass().equals(String.class) ||
-            report.getClass().isEnum() ) {
+            report.getClass().isEnum()) {
             map.put("report", report);
         } else if (isListOfFile(report)) {
             for(int i = 0; i< getListSize(report); i++) {
@@ -173,7 +173,7 @@ public class ReportCreateResponse {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

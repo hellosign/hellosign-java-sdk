@@ -416,7 +416,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (type.getClass().equals(java.io.File.class) ||
             type.getClass().equals(Integer.class) ||
             type.getClass().equals(String.class) ||
-            type.getClass().isEnum() ) {
+            type.getClass().isEnum()) {
             map.put("type", type);
         } else if (isListOfFile(type)) {
             for(int i = 0; i< getListSize(type); i++) {
@@ -435,7 +435,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (placeholder.getClass().equals(java.io.File.class) ||
             placeholder.getClass().equals(Integer.class) ||
             placeholder.getClass().equals(String.class) ||
-            placeholder.getClass().isEnum() ) {
+            placeholder.getClass().isEnum()) {
             map.put("placeholder", placeholder);
         } else if (isListOfFile(placeholder)) {
             for(int i = 0; i< getListSize(placeholder); i++) {
@@ -454,7 +454,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (autoFillType.getClass().equals(java.io.File.class) ||
             autoFillType.getClass().equals(Integer.class) ||
             autoFillType.getClass().equals(String.class) ||
-            autoFillType.getClass().isEnum() ) {
+            autoFillType.getClass().isEnum()) {
             map.put("auto_fill_type", autoFillType);
         } else if (isListOfFile(autoFillType)) {
             for(int i = 0; i< getListSize(autoFillType); i++) {
@@ -473,7 +473,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (linkId.getClass().equals(java.io.File.class) ||
             linkId.getClass().equals(Integer.class) ||
             linkId.getClass().equals(String.class) ||
-            linkId.getClass().isEnum() ) {
+            linkId.getClass().isEnum()) {
             map.put("link_id", linkId);
         } else if (isListOfFile(linkId)) {
             for(int i = 0; i< getListSize(linkId); i++) {
@@ -492,7 +492,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (masked.getClass().equals(java.io.File.class) ||
             masked.getClass().equals(Integer.class) ||
             masked.getClass().equals(String.class) ||
-            masked.getClass().isEnum() ) {
+            masked.getClass().isEnum()) {
             map.put("masked", masked);
         } else if (isListOfFile(masked)) {
             for(int i = 0; i< getListSize(masked); i++) {
@@ -511,7 +511,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (validationType.getClass().equals(java.io.File.class) ||
             validationType.getClass().equals(Integer.class) ||
             validationType.getClass().equals(String.class) ||
-            validationType.getClass().isEnum() ) {
+            validationType.getClass().isEnum()) {
             map.put("validation_type", validationType);
         } else if (isListOfFile(validationType)) {
             for(int i = 0; i< getListSize(validationType); i++) {
@@ -530,7 +530,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (validationCustomRegex.getClass().equals(java.io.File.class) ||
             validationCustomRegex.getClass().equals(Integer.class) ||
             validationCustomRegex.getClass().equals(String.class) ||
-            validationCustomRegex.getClass().isEnum() ) {
+            validationCustomRegex.getClass().isEnum()) {
             map.put("validation_custom_regex", validationCustomRegex);
         } else if (isListOfFile(validationCustomRegex)) {
             for(int i = 0; i< getListSize(validationCustomRegex); i++) {
@@ -549,7 +549,7 @@ public class SubFormFieldsPerDocumentText extends SubFormFieldsPerDocumentBase {
         if (validationCustomRegexFormatLabel.getClass().equals(java.io.File.class) ||
             validationCustomRegexFormatLabel.getClass().equals(Integer.class) ||
             validationCustomRegexFormatLabel.getClass().equals(String.class) ||
-            validationCustomRegexFormatLabel.getClass().isEnum() ) {
+            validationCustomRegexFormatLabel.getClass().isEnum()) {
             map.put("validation_custom_regex_format_label", validationCustomRegexFormatLabel);
         } else if (isListOfFile(validationCustomRegexFormatLabel)) {
             for(int i = 0; i< getListSize(validationCustomRegexFormatLabel); i++) {

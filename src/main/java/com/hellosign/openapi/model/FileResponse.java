@@ -142,7 +142,7 @@ public class FileResponse {
         if (fileUrl.getClass().equals(java.io.File.class) ||
             fileUrl.getClass().equals(Integer.class) ||
             fileUrl.getClass().equals(String.class) ||
-            fileUrl.getClass().isEnum() ) {
+            fileUrl.getClass().isEnum()) {
             map.put("file_url", fileUrl);
         } else if (isListOfFile(fileUrl)) {
             for(int i = 0; i< getListSize(fileUrl); i++) {
@@ -161,7 +161,7 @@ public class FileResponse {
         if (expiresAt.getClass().equals(java.io.File.class) ||
             expiresAt.getClass().equals(Integer.class) ||
             expiresAt.getClass().equals(String.class) ||
-            expiresAt.getClass().isEnum() ) {
+            expiresAt.getClass().isEnum()) {
             map.put("expires_at", expiresAt);
         } else if (isListOfFile(expiresAt)) {
             for(int i = 0; i< getListSize(expiresAt); i++) {

@@ -238,7 +238,7 @@ public class OAuthTokenGenerateRequest {
         if (clientId.getClass().equals(java.io.File.class) ||
             clientId.getClass().equals(Integer.class) ||
             clientId.getClass().equals(String.class) ||
-            clientId.getClass().isEnum() ) {
+            clientId.getClass().isEnum()) {
             map.put("client_id", clientId);
         } else if (isListOfFile(clientId)) {
             for(int i = 0; i< getListSize(clientId); i++) {
@@ -257,7 +257,7 @@ public class OAuthTokenGenerateRequest {
         if (clientSecret.getClass().equals(java.io.File.class) ||
             clientSecret.getClass().equals(Integer.class) ||
             clientSecret.getClass().equals(String.class) ||
-            clientSecret.getClass().isEnum() ) {
+            clientSecret.getClass().isEnum()) {
             map.put("client_secret", clientSecret);
         } else if (isListOfFile(clientSecret)) {
             for(int i = 0; i< getListSize(clientSecret); i++) {
@@ -276,7 +276,7 @@ public class OAuthTokenGenerateRequest {
         if (code.getClass().equals(java.io.File.class) ||
             code.getClass().equals(Integer.class) ||
             code.getClass().equals(String.class) ||
-            code.getClass().isEnum() ) {
+            code.getClass().isEnum()) {
             map.put("code", code);
         } else if (isListOfFile(code)) {
             for(int i = 0; i< getListSize(code); i++) {
@@ -295,7 +295,7 @@ public class OAuthTokenGenerateRequest {
         if (grantType.getClass().equals(java.io.File.class) ||
             grantType.getClass().equals(Integer.class) ||
             grantType.getClass().equals(String.class) ||
-            grantType.getClass().isEnum() ) {
+            grantType.getClass().isEnum()) {
             map.put("grant_type", grantType);
         } else if (isListOfFile(grantType)) {
             for(int i = 0; i< getListSize(grantType); i++) {
@@ -314,7 +314,7 @@ public class OAuthTokenGenerateRequest {
         if (state.getClass().equals(java.io.File.class) ||
             state.getClass().equals(Integer.class) ||
             state.getClass().equals(String.class) ||
-            state.getClass().isEnum() ) {
+            state.getClass().isEnum()) {
             map.put("state", state);
         } else if (isListOfFile(state)) {
             for(int i = 0; i< getListSize(state); i++) {

@@ -207,7 +207,7 @@ public class BulkSendJobResponse {
         if (bulkSendJobId.getClass().equals(java.io.File.class) ||
             bulkSendJobId.getClass().equals(Integer.class) ||
             bulkSendJobId.getClass().equals(String.class) ||
-            bulkSendJobId.getClass().isEnum() ) {
+            bulkSendJobId.getClass().isEnum()) {
             map.put("bulk_send_job_id", bulkSendJobId);
         } else if (isListOfFile(bulkSendJobId)) {
             for(int i = 0; i< getListSize(bulkSendJobId); i++) {
@@ -226,7 +226,7 @@ public class BulkSendJobResponse {
         if (total.getClass().equals(java.io.File.class) ||
             total.getClass().equals(Integer.class) ||
             total.getClass().equals(String.class) ||
-            total.getClass().isEnum() ) {
+            total.getClass().isEnum()) {
             map.put("total", total);
         } else if (isListOfFile(total)) {
             for(int i = 0; i< getListSize(total); i++) {
@@ -245,7 +245,7 @@ public class BulkSendJobResponse {
         if (isCreator.getClass().equals(java.io.File.class) ||
             isCreator.getClass().equals(Integer.class) ||
             isCreator.getClass().equals(String.class) ||
-            isCreator.getClass().isEnum() ) {
+            isCreator.getClass().isEnum()) {
             map.put("is_creator", isCreator);
         } else if (isListOfFile(isCreator)) {
             for(int i = 0; i< getListSize(isCreator); i++) {
@@ -264,7 +264,7 @@ public class BulkSendJobResponse {
         if (createdAt.getClass().equals(java.io.File.class) ||
             createdAt.getClass().equals(Integer.class) ||
             createdAt.getClass().equals(String.class) ||
-            createdAt.getClass().isEnum() ) {
+            createdAt.getClass().isEnum()) {
             map.put("created_at", createdAt);
         } else if (isListOfFile(createdAt)) {
             for(int i = 0; i< getListSize(createdAt); i++) {

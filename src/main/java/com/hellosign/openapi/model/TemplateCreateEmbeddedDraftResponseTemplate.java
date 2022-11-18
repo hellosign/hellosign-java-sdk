@@ -218,7 +218,7 @@ public class TemplateCreateEmbeddedDraftResponseTemplate {
         if (templateId.getClass().equals(java.io.File.class) ||
             templateId.getClass().equals(Integer.class) ||
             templateId.getClass().equals(String.class) ||
-            templateId.getClass().isEnum() ) {
+            templateId.getClass().isEnum()) {
             map.put("template_id", templateId);
         } else if (isListOfFile(templateId)) {
             for(int i = 0; i< getListSize(templateId); i++) {
@@ -237,7 +237,7 @@ public class TemplateCreateEmbeddedDraftResponseTemplate {
         if (editUrl.getClass().equals(java.io.File.class) ||
             editUrl.getClass().equals(Integer.class) ||
             editUrl.getClass().equals(String.class) ||
-            editUrl.getClass().isEnum() ) {
+            editUrl.getClass().isEnum()) {
             map.put("edit_url", editUrl);
         } else if (isListOfFile(editUrl)) {
             for(int i = 0; i< getListSize(editUrl); i++) {
@@ -256,7 +256,7 @@ public class TemplateCreateEmbeddedDraftResponseTemplate {
         if (expiresAt.getClass().equals(java.io.File.class) ||
             expiresAt.getClass().equals(Integer.class) ||
             expiresAt.getClass().equals(String.class) ||
-            expiresAt.getClass().isEnum() ) {
+            expiresAt.getClass().isEnum()) {
             map.put("expires_at", expiresAt);
         } else if (isListOfFile(expiresAt)) {
             for(int i = 0; i< getListSize(expiresAt); i++) {
@@ -275,7 +275,7 @@ public class TemplateCreateEmbeddedDraftResponseTemplate {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

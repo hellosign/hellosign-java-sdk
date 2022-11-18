@@ -154,7 +154,7 @@ public class UnclaimedDraftCreateResponse {
         if (unclaimedDraft.getClass().equals(java.io.File.class) ||
             unclaimedDraft.getClass().equals(Integer.class) ||
             unclaimedDraft.getClass().equals(String.class) ||
-            unclaimedDraft.getClass().isEnum() ) {
+            unclaimedDraft.getClass().isEnum()) {
             map.put("unclaimed_draft", unclaimedDraft);
         } else if (isListOfFile(unclaimedDraft)) {
             for(int i = 0; i< getListSize(unclaimedDraft); i++) {
@@ -173,7 +173,7 @@ public class UnclaimedDraftCreateResponse {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

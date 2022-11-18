@@ -7,9 +7,9 @@ Method | HTTP request | Description
 [**templateAddUser**](TemplateApi.md#templateAddUser) | **POST** /template/add_user/{template_id} | Add User to Template
 [**templateCreateEmbeddedDraft**](TemplateApi.md#templateCreateEmbeddedDraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
 [**templateDelete**](TemplateApi.md#templateDelete) | **POST** /template/delete/{template_id} | Delete Template
-[**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template File
-[**templateFilesAsEncodedString**](TemplateApi.md#templateFilesAsEncodedString) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String
-[**templateFilesAsFileUrl**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url
+[**templateFiles**](TemplateApi.md#templateFiles) | **GET** /template/files/{template_id} | Get Template Files
+[**templateFilesAsDataUri**](TemplateApi.md#templateFilesAsDataUri) | **GET** /template/files_as_data_uri/{template_id} | Get Template Files as Data Uri
+[**templateFilesAsFileUrl**](TemplateApi.md#templateFilesAsFileUrl) | **GET** /template/files_as_file_url/{template_id} | Get Template Files as File Url
 [**templateGet**](TemplateApi.md#templateGet) | **GET** /template/{template_id} | Get Template
 [**templateList**](TemplateApi.md#templateList) | **GET** /template/list | List Templates
 [**templateRemoveUser**](TemplateApi.md#templateRemoveUser) | **POST** /template/remove_user/{template_id} | Remove User from Template
@@ -293,7 +293,7 @@ null (empty response body)
 
 > File templateFiles(templateId, fileType)
 
-Get Template File
+Get Template Files
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.
 
@@ -373,11 +373,11 @@ Name | Type | Description  | Notes
 | **4XX** | failed_operation |  -  |
 
 
-## templateFilesAsEncodedString
+## templateFilesAsDataUri
 
-> FileResponseDataUri templateFilesAsEncodedString(templateId)
+> FileResponseDataUri templateFilesAsDataUri(templateId)
 
-Get Template File as Encoded String
+Get Template Files as Data Uri
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only). 
 
@@ -415,7 +415,7 @@ public class Example {
         String templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try {
-            FileResponseDataUri result = api.templateFilesAsEncodedString(templateId);
+            FileResponseDataUri result = api.templateFilesAsDataUri(templateId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountApi#accountCreate");
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 > FileResponse templateFilesAsFileUrl(templateId)
 
-Get Template File as File Url
+Get Template Files as File Url
 
 Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only). 
 

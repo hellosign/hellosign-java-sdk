@@ -289,7 +289,7 @@ public class TemplateUpdateFilesRequest {
         if (clientId.getClass().equals(java.io.File.class) ||
             clientId.getClass().equals(Integer.class) ||
             clientId.getClass().equals(String.class) ||
-            clientId.getClass().isEnum() ) {
+            clientId.getClass().isEnum()) {
             map.put("client_id", clientId);
         } else if (isListOfFile(clientId)) {
             for(int i = 0; i< getListSize(clientId); i++) {
@@ -308,7 +308,7 @@ public class TemplateUpdateFilesRequest {
         if (file.getClass().equals(java.io.File.class) ||
             file.getClass().equals(Integer.class) ||
             file.getClass().equals(String.class) ||
-            file.getClass().isEnum() ) {
+            file.getClass().isEnum()) {
             map.put("file", file);
         } else if (isListOfFile(file)) {
             for(int i = 0; i< getListSize(file); i++) {
@@ -327,7 +327,7 @@ public class TemplateUpdateFilesRequest {
         if (fileUrl.getClass().equals(java.io.File.class) ||
             fileUrl.getClass().equals(Integer.class) ||
             fileUrl.getClass().equals(String.class) ||
-            fileUrl.getClass().isEnum() ) {
+            fileUrl.getClass().isEnum()) {
             map.put("file_url", fileUrl);
         } else if (isListOfFile(fileUrl)) {
             for(int i = 0; i< getListSize(fileUrl); i++) {
@@ -346,7 +346,7 @@ public class TemplateUpdateFilesRequest {
         if (message.getClass().equals(java.io.File.class) ||
             message.getClass().equals(Integer.class) ||
             message.getClass().equals(String.class) ||
-            message.getClass().isEnum() ) {
+            message.getClass().isEnum()) {
             map.put("message", message);
         } else if (isListOfFile(message)) {
             for(int i = 0; i< getListSize(message); i++) {
@@ -365,7 +365,7 @@ public class TemplateUpdateFilesRequest {
         if (subject.getClass().equals(java.io.File.class) ||
             subject.getClass().equals(Integer.class) ||
             subject.getClass().equals(String.class) ||
-            subject.getClass().isEnum() ) {
+            subject.getClass().isEnum()) {
             map.put("subject", subject);
         } else if (isListOfFile(subject)) {
             for(int i = 0; i< getListSize(subject); i++) {
@@ -384,7 +384,7 @@ public class TemplateUpdateFilesRequest {
         if (testMode.getClass().equals(java.io.File.class) ||
             testMode.getClass().equals(Integer.class) ||
             testMode.getClass().equals(String.class) ||
-            testMode.getClass().isEnum() ) {
+            testMode.getClass().isEnum()) {
             map.put("test_mode", testMode);
         } else if (isListOfFile(testMode)) {
             for(int i = 0; i< getListSize(testMode); i++) {

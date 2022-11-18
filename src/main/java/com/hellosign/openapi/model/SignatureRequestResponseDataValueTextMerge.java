@@ -170,7 +170,7 @@ public class SignatureRequestResponseDataValueTextMerge extends SignatureRequest
         if (type.getClass().equals(java.io.File.class) ||
             type.getClass().equals(Integer.class) ||
             type.getClass().equals(String.class) ||
-            type.getClass().isEnum() ) {
+            type.getClass().isEnum()) {
             map.put("type", type);
         } else if (isListOfFile(type)) {
             for(int i = 0; i< getListSize(type); i++) {
@@ -189,7 +189,7 @@ public class SignatureRequestResponseDataValueTextMerge extends SignatureRequest
         if (value.getClass().equals(java.io.File.class) ||
             value.getClass().equals(Integer.class) ||
             value.getClass().equals(String.class) ||
-            value.getClass().isEnum() ) {
+            value.getClass().isEnum()) {
             map.put("value", value);
         } else if (isListOfFile(value)) {
             for(int i = 0; i< getListSize(value); i++) {

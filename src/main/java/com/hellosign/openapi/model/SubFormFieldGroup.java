@@ -174,7 +174,7 @@ public class SubFormFieldGroup {
         if (groupId.getClass().equals(java.io.File.class) ||
             groupId.getClass().equals(Integer.class) ||
             groupId.getClass().equals(String.class) ||
-            groupId.getClass().isEnum() ) {
+            groupId.getClass().isEnum()) {
             map.put("group_id", groupId);
         } else if (isListOfFile(groupId)) {
             for(int i = 0; i< getListSize(groupId); i++) {
@@ -193,7 +193,7 @@ public class SubFormFieldGroup {
         if (groupLabel.getClass().equals(java.io.File.class) ||
             groupLabel.getClass().equals(Integer.class) ||
             groupLabel.getClass().equals(String.class) ||
-            groupLabel.getClass().isEnum() ) {
+            groupLabel.getClass().isEnum()) {
             map.put("group_label", groupLabel);
         } else if (isListOfFile(groupLabel)) {
             for(int i = 0; i< getListSize(groupLabel); i++) {
@@ -212,7 +212,7 @@ public class SubFormFieldGroup {
         if (requirement.getClass().equals(java.io.File.class) ||
             requirement.getClass().equals(Integer.class) ||
             requirement.getClass().equals(String.class) ||
-            requirement.getClass().isEnum() ) {
+            requirement.getClass().isEnum()) {
             map.put("requirement", requirement);
         } else if (isListOfFile(requirement)) {
             for(int i = 0; i< getListSize(requirement); i++) {

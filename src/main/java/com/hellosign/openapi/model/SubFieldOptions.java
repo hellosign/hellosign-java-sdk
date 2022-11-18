@@ -154,7 +154,7 @@ public class SubFieldOptions {
         if (dateFormat.getClass().equals(java.io.File.class) ||
             dateFormat.getClass().equals(Integer.class) ||
             dateFormat.getClass().equals(String.class) ||
-            dateFormat.getClass().isEnum() ) {
+            dateFormat.getClass().isEnum()) {
             map.put("date_format", dateFormat);
         } else if (isListOfFile(dateFormat)) {
             for(int i = 0; i< getListSize(dateFormat); i++) {

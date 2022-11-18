@@ -467,7 +467,7 @@ public class SubFormFieldsPerDocumentBase {
         if (documentIndex.getClass().equals(java.io.File.class) ||
             documentIndex.getClass().equals(Integer.class) ||
             documentIndex.getClass().equals(String.class) ||
-            documentIndex.getClass().isEnum() ) {
+            documentIndex.getClass().isEnum()) {
             map.put("document_index", documentIndex);
         } else if (isListOfFile(documentIndex)) {
             for(int i = 0; i< getListSize(documentIndex); i++) {
@@ -486,7 +486,7 @@ public class SubFormFieldsPerDocumentBase {
         if (apiId.getClass().equals(java.io.File.class) ||
             apiId.getClass().equals(Integer.class) ||
             apiId.getClass().equals(String.class) ||
-            apiId.getClass().isEnum() ) {
+            apiId.getClass().isEnum()) {
             map.put("api_id", apiId);
         } else if (isListOfFile(apiId)) {
             for(int i = 0; i< getListSize(apiId); i++) {
@@ -505,7 +505,7 @@ public class SubFormFieldsPerDocumentBase {
         if (height.getClass().equals(java.io.File.class) ||
             height.getClass().equals(Integer.class) ||
             height.getClass().equals(String.class) ||
-            height.getClass().isEnum() ) {
+            height.getClass().isEnum()) {
             map.put("height", height);
         } else if (isListOfFile(height)) {
             for(int i = 0; i< getListSize(height); i++) {
@@ -524,7 +524,7 @@ public class SubFormFieldsPerDocumentBase {
         if (required.getClass().equals(java.io.File.class) ||
             required.getClass().equals(Integer.class) ||
             required.getClass().equals(String.class) ||
-            required.getClass().isEnum() ) {
+            required.getClass().isEnum()) {
             map.put("required", required);
         } else if (isListOfFile(required)) {
             for(int i = 0; i< getListSize(required); i++) {
@@ -543,7 +543,7 @@ public class SubFormFieldsPerDocumentBase {
         if (signer.getClass().equals(java.io.File.class) ||
             signer.getClass().equals(Integer.class) ||
             signer.getClass().equals(String.class) ||
-            signer.getClass().isEnum() ) {
+            signer.getClass().isEnum()) {
             map.put("signer", signer);
         } else if (isListOfFile(signer)) {
             for(int i = 0; i< getListSize(signer); i++) {
@@ -562,7 +562,7 @@ public class SubFormFieldsPerDocumentBase {
         if (type.getClass().equals(java.io.File.class) ||
             type.getClass().equals(Integer.class) ||
             type.getClass().equals(String.class) ||
-            type.getClass().isEnum() ) {
+            type.getClass().isEnum()) {
             map.put("type", type);
         } else if (isListOfFile(type)) {
             for(int i = 0; i< getListSize(type); i++) {
@@ -581,7 +581,7 @@ public class SubFormFieldsPerDocumentBase {
         if (width.getClass().equals(java.io.File.class) ||
             width.getClass().equals(Integer.class) ||
             width.getClass().equals(String.class) ||
-            width.getClass().isEnum() ) {
+            width.getClass().isEnum()) {
             map.put("width", width);
         } else if (isListOfFile(width)) {
             for(int i = 0; i< getListSize(width); i++) {
@@ -600,7 +600,7 @@ public class SubFormFieldsPerDocumentBase {
         if (x.getClass().equals(java.io.File.class) ||
             x.getClass().equals(Integer.class) ||
             x.getClass().equals(String.class) ||
-            x.getClass().isEnum() ) {
+            x.getClass().isEnum()) {
             map.put("x", x);
         } else if (isListOfFile(x)) {
             for(int i = 0; i< getListSize(x); i++) {
@@ -619,7 +619,7 @@ public class SubFormFieldsPerDocumentBase {
         if (y.getClass().equals(java.io.File.class) ||
             y.getClass().equals(Integer.class) ||
             y.getClass().equals(String.class) ||
-            y.getClass().isEnum() ) {
+            y.getClass().isEnum()) {
             map.put("y", y);
         } else if (isListOfFile(y)) {
             for(int i = 0; i< getListSize(y); i++) {
@@ -638,7 +638,7 @@ public class SubFormFieldsPerDocumentBase {
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
             name.getClass().equals(String.class) ||
-            name.getClass().isEnum() ) {
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -657,7 +657,7 @@ public class SubFormFieldsPerDocumentBase {
         if (page.getClass().equals(java.io.File.class) ||
             page.getClass().equals(Integer.class) ||
             page.getClass().equals(String.class) ||
-            page.getClass().isEnum() ) {
+            page.getClass().isEnum()) {
             map.put("page", page);
         } else if (isListOfFile(page)) {
             for(int i = 0; i< getListSize(page); i++) {

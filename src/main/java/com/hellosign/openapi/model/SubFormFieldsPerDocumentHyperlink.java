@@ -205,7 +205,7 @@ public class SubFormFieldsPerDocumentHyperlink extends SubFormFieldsPerDocumentB
         if (type.getClass().equals(java.io.File.class) ||
             type.getClass().equals(Integer.class) ||
             type.getClass().equals(String.class) ||
-            type.getClass().isEnum() ) {
+            type.getClass().isEnum()) {
             map.put("type", type);
         } else if (isListOfFile(type)) {
             for(int i = 0; i< getListSize(type); i++) {
@@ -224,7 +224,7 @@ public class SubFormFieldsPerDocumentHyperlink extends SubFormFieldsPerDocumentB
         if (content.getClass().equals(java.io.File.class) ||
             content.getClass().equals(Integer.class) ||
             content.getClass().equals(String.class) ||
-            content.getClass().isEnum() ) {
+            content.getClass().isEnum()) {
             map.put("content", content);
         } else if (isListOfFile(content)) {
             for(int i = 0; i< getListSize(content); i++) {
@@ -243,7 +243,7 @@ public class SubFormFieldsPerDocumentHyperlink extends SubFormFieldsPerDocumentB
         if (contentUrl.getClass().equals(java.io.File.class) ||
             contentUrl.getClass().equals(Integer.class) ||
             contentUrl.getClass().equals(String.class) ||
-            contentUrl.getClass().isEnum() ) {
+            contentUrl.getClass().isEnum()) {
             map.put("content_url", contentUrl);
         } else if (isListOfFile(contentUrl)) {
             for(int i = 0; i< getListSize(contentUrl); i++) {

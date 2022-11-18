@@ -428,7 +428,7 @@ public class SignatureRequestApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Download File
+   * Download Files
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)
@@ -446,7 +446,7 @@ public class SignatureRequestApi {
   }
 
   /**
-   * Download File
+   * Download Files
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)
@@ -509,7 +509,7 @@ public class SignatureRequestApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Download File as Encoded String
+   * Download Files as Data Uri
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @return FileResponseDataUri
@@ -521,12 +521,12 @@ public class SignatureRequestApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public FileResponseDataUri signatureRequestFilesAsEncodedString(String signatureRequestId) throws ApiException {
-    return signatureRequestFilesAsEncodedStringWithHttpInfo(signatureRequestId).getData();
+  public FileResponseDataUri signatureRequestFilesAsDataUri(String signatureRequestId) throws ApiException {
+    return signatureRequestFilesAsDataUriWithHttpInfo(signatureRequestId).getData();
   }
 
   /**
-   * Download File as Encoded String
+   * Download Files as Data Uri
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @return ApiResponse&lt;FileResponseDataUri&gt;
@@ -538,17 +538,17 @@ public class SignatureRequestApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<FileResponseDataUri> signatureRequestFilesAsEncodedStringWithHttpInfo(String signatureRequestId) throws ApiException {
+  public ApiResponse<FileResponseDataUri> signatureRequestFilesAsDataUriWithHttpInfo(String signatureRequestId) throws ApiException {
     
     Object localVarPostBody = null;
     
     // verify the required parameter 'signatureRequestId' is set
     if (signatureRequestId == null) {
-      throw new ApiException(400, "Missing the required parameter 'signatureRequestId' when calling signatureRequestFilesAsEncodedString");
+      throw new ApiException(400, "Missing the required parameter 'signatureRequestId' when calling signatureRequestFilesAsDataUri");
     }
     
     // create path and map variables
-    String localVarPath = "/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf"
+    String localVarPath = "/signature_request/files_as_data_uri/{signature_request_id}"
       .replaceAll("\\{" + "signature_request_id" + "\\}", apiClient.escapeString(signatureRequestId.toString()));
 
     // query params
@@ -579,12 +579,12 @@ public class SignatureRequestApi {
 
     GenericType<FileResponseDataUri> localVarReturnType = new GenericType<FileResponseDataUri>() {};
 
-    return apiClient.invokeAPI("SignatureRequestApi.signatureRequestFilesAsEncodedString", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.invokeAPI("SignatureRequestApi.signatureRequestFilesAsDataUri", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Download File as File Url
+   * Download Files as File Url
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @return FileResponse
@@ -601,7 +601,7 @@ public class SignatureRequestApi {
   }
 
   /**
-   * Download File as File Url
+   * Download Files as File Url
    * Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
    * @param signatureRequestId The id of the SignatureRequest to retrieve. (required)
    * @return ApiResponse&lt;FileResponse&gt;
@@ -623,7 +623,7 @@ public class SignatureRequestApi {
     }
     
     // create path and map variables
-    String localVarPath = "/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf"
+    String localVarPath = "/signature_request/files_as_file_url/{signature_request_id}"
       .replaceAll("\\{" + "signature_request_id" + "\\}", apiClient.escapeString(signatureRequestId.toString()));
 
     // query params

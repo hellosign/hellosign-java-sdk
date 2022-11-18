@@ -154,7 +154,7 @@ public class SignatureRequestGetResponse {
         if (signatureRequest.getClass().equals(java.io.File.class) ||
             signatureRequest.getClass().equals(Integer.class) ||
             signatureRequest.getClass().equals(String.class) ||
-            signatureRequest.getClass().isEnum() ) {
+            signatureRequest.getClass().isEnum()) {
             map.put("signature_request", signatureRequest);
         } else if (isListOfFile(signatureRequest)) {
             for(int i = 0; i< getListSize(signatureRequest); i++) {
@@ -173,7 +173,7 @@ public class SignatureRequestGetResponse {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

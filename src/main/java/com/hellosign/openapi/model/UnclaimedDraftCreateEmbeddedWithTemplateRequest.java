@@ -953,11 +953,11 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
   }
 
    /**
-   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
+   * Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.  ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
    * @return populateAutoFillFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.    ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.")
+  @ApiModelProperty(value = "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing.  ⚠️ **Note** ⚠️: Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.")
   @JsonProperty(JSON_PROPERTY_POPULATE_AUTO_FILL_FIELDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -1070,7 +1070,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (clientId.getClass().equals(java.io.File.class) ||
             clientId.getClass().equals(Integer.class) ||
             clientId.getClass().equals(String.class) ||
-            clientId.getClass().isEnum() ) {
+            clientId.getClass().isEnum()) {
             map.put("client_id", clientId);
         } else if (isListOfFile(clientId)) {
             for(int i = 0; i< getListSize(clientId); i++) {
@@ -1089,7 +1089,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (requesterEmailAddress.getClass().equals(java.io.File.class) ||
             requesterEmailAddress.getClass().equals(Integer.class) ||
             requesterEmailAddress.getClass().equals(String.class) ||
-            requesterEmailAddress.getClass().isEnum() ) {
+            requesterEmailAddress.getClass().isEnum()) {
             map.put("requester_email_address", requesterEmailAddress);
         } else if (isListOfFile(requesterEmailAddress)) {
             for(int i = 0; i< getListSize(requesterEmailAddress); i++) {
@@ -1108,7 +1108,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (templateIds.getClass().equals(java.io.File.class) ||
             templateIds.getClass().equals(Integer.class) ||
             templateIds.getClass().equals(String.class) ||
-            templateIds.getClass().isEnum() ) {
+            templateIds.getClass().isEnum()) {
             map.put("template_ids", templateIds);
         } else if (isListOfFile(templateIds)) {
             for(int i = 0; i< getListSize(templateIds); i++) {
@@ -1127,7 +1127,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (allowDecline.getClass().equals(java.io.File.class) ||
             allowDecline.getClass().equals(Integer.class) ||
             allowDecline.getClass().equals(String.class) ||
-            allowDecline.getClass().isEnum() ) {
+            allowDecline.getClass().isEnum()) {
             map.put("allow_decline", allowDecline);
         } else if (isListOfFile(allowDecline)) {
             for(int i = 0; i< getListSize(allowDecline); i++) {
@@ -1146,7 +1146,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (allowReassign.getClass().equals(java.io.File.class) ||
             allowReassign.getClass().equals(Integer.class) ||
             allowReassign.getClass().equals(String.class) ||
-            allowReassign.getClass().isEnum() ) {
+            allowReassign.getClass().isEnum()) {
             map.put("allow_reassign", allowReassign);
         } else if (isListOfFile(allowReassign)) {
             for(int i = 0; i< getListSize(allowReassign); i++) {
@@ -1165,7 +1165,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (ccs.getClass().equals(java.io.File.class) ||
             ccs.getClass().equals(Integer.class) ||
             ccs.getClass().equals(String.class) ||
-            ccs.getClass().isEnum() ) {
+            ccs.getClass().isEnum()) {
             map.put("ccs", ccs);
         } else if (isListOfFile(ccs)) {
             for(int i = 0; i< getListSize(ccs); i++) {
@@ -1184,7 +1184,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (customFields.getClass().equals(java.io.File.class) ||
             customFields.getClass().equals(Integer.class) ||
             customFields.getClass().equals(String.class) ||
-            customFields.getClass().isEnum() ) {
+            customFields.getClass().isEnum()) {
             map.put("custom_fields", customFields);
         } else if (isListOfFile(customFields)) {
             for(int i = 0; i< getListSize(customFields); i++) {
@@ -1203,7 +1203,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (editorOptions.getClass().equals(java.io.File.class) ||
             editorOptions.getClass().equals(Integer.class) ||
             editorOptions.getClass().equals(String.class) ||
-            editorOptions.getClass().isEnum() ) {
+            editorOptions.getClass().isEnum()) {
             map.put("editor_options", editorOptions);
         } else if (isListOfFile(editorOptions)) {
             for(int i = 0; i< getListSize(editorOptions); i++) {
@@ -1222,7 +1222,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (fieldOptions.getClass().equals(java.io.File.class) ||
             fieldOptions.getClass().equals(Integer.class) ||
             fieldOptions.getClass().equals(String.class) ||
-            fieldOptions.getClass().isEnum() ) {
+            fieldOptions.getClass().isEnum()) {
             map.put("field_options", fieldOptions);
         } else if (isListOfFile(fieldOptions)) {
             for(int i = 0; i< getListSize(fieldOptions); i++) {
@@ -1241,7 +1241,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (file.getClass().equals(java.io.File.class) ||
             file.getClass().equals(Integer.class) ||
             file.getClass().equals(String.class) ||
-            file.getClass().isEnum() ) {
+            file.getClass().isEnum()) {
             map.put("file", file);
         } else if (isListOfFile(file)) {
             for(int i = 0; i< getListSize(file); i++) {
@@ -1260,7 +1260,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (fileUrl.getClass().equals(java.io.File.class) ||
             fileUrl.getClass().equals(Integer.class) ||
             fileUrl.getClass().equals(String.class) ||
-            fileUrl.getClass().isEnum() ) {
+            fileUrl.getClass().isEnum()) {
             map.put("file_url", fileUrl);
         } else if (isListOfFile(fileUrl)) {
             for(int i = 0; i< getListSize(fileUrl); i++) {
@@ -1279,7 +1279,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (forceSignerRoles.getClass().equals(java.io.File.class) ||
             forceSignerRoles.getClass().equals(Integer.class) ||
             forceSignerRoles.getClass().equals(String.class) ||
-            forceSignerRoles.getClass().isEnum() ) {
+            forceSignerRoles.getClass().isEnum()) {
             map.put("force_signer_roles", forceSignerRoles);
         } else if (isListOfFile(forceSignerRoles)) {
             for(int i = 0; i< getListSize(forceSignerRoles); i++) {
@@ -1298,7 +1298,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (forceSubjectMessage.getClass().equals(java.io.File.class) ||
             forceSubjectMessage.getClass().equals(Integer.class) ||
             forceSubjectMessage.getClass().equals(String.class) ||
-            forceSubjectMessage.getClass().isEnum() ) {
+            forceSubjectMessage.getClass().isEnum()) {
             map.put("force_subject_message", forceSubjectMessage);
         } else if (isListOfFile(forceSubjectMessage)) {
             for(int i = 0; i< getListSize(forceSubjectMessage); i++) {
@@ -1317,7 +1317,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (holdRequest.getClass().equals(java.io.File.class) ||
             holdRequest.getClass().equals(Integer.class) ||
             holdRequest.getClass().equals(String.class) ||
-            holdRequest.getClass().isEnum() ) {
+            holdRequest.getClass().isEnum()) {
             map.put("hold_request", holdRequest);
         } else if (isListOfFile(holdRequest)) {
             for(int i = 0; i< getListSize(holdRequest); i++) {
@@ -1336,7 +1336,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (isForEmbeddedSigning.getClass().equals(java.io.File.class) ||
             isForEmbeddedSigning.getClass().equals(Integer.class) ||
             isForEmbeddedSigning.getClass().equals(String.class) ||
-            isForEmbeddedSigning.getClass().isEnum() ) {
+            isForEmbeddedSigning.getClass().isEnum()) {
             map.put("is_for_embedded_signing", isForEmbeddedSigning);
         } else if (isListOfFile(isForEmbeddedSigning)) {
             for(int i = 0; i< getListSize(isForEmbeddedSigning); i++) {
@@ -1355,7 +1355,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (message.getClass().equals(java.io.File.class) ||
             message.getClass().equals(Integer.class) ||
             message.getClass().equals(String.class) ||
-            message.getClass().isEnum() ) {
+            message.getClass().isEnum()) {
             map.put("message", message);
         } else if (isListOfFile(message)) {
             for(int i = 0; i< getListSize(message); i++) {
@@ -1374,7 +1374,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (metadata.getClass().equals(java.io.File.class) ||
             metadata.getClass().equals(Integer.class) ||
             metadata.getClass().equals(String.class) ||
-            metadata.getClass().isEnum() ) {
+            metadata.getClass().isEnum()) {
             map.put("metadata", metadata);
         } else if (isListOfFile(metadata)) {
             for(int i = 0; i< getListSize(metadata); i++) {
@@ -1393,7 +1393,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (previewOnly.getClass().equals(java.io.File.class) ||
             previewOnly.getClass().equals(Integer.class) ||
             previewOnly.getClass().equals(String.class) ||
-            previewOnly.getClass().isEnum() ) {
+            previewOnly.getClass().isEnum()) {
             map.put("preview_only", previewOnly);
         } else if (isListOfFile(previewOnly)) {
             for(int i = 0; i< getListSize(previewOnly); i++) {
@@ -1412,7 +1412,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (requestingRedirectUrl.getClass().equals(java.io.File.class) ||
             requestingRedirectUrl.getClass().equals(Integer.class) ||
             requestingRedirectUrl.getClass().equals(String.class) ||
-            requestingRedirectUrl.getClass().isEnum() ) {
+            requestingRedirectUrl.getClass().isEnum()) {
             map.put("requesting_redirect_url", requestingRedirectUrl);
         } else if (isListOfFile(requestingRedirectUrl)) {
             for(int i = 0; i< getListSize(requestingRedirectUrl); i++) {
@@ -1431,7 +1431,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (showPreview.getClass().equals(java.io.File.class) ||
             showPreview.getClass().equals(Integer.class) ||
             showPreview.getClass().equals(String.class) ||
-            showPreview.getClass().isEnum() ) {
+            showPreview.getClass().isEnum()) {
             map.put("show_preview", showPreview);
         } else if (isListOfFile(showPreview)) {
             for(int i = 0; i< getListSize(showPreview); i++) {
@@ -1450,7 +1450,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (showProgressStepper.getClass().equals(java.io.File.class) ||
             showProgressStepper.getClass().equals(Integer.class) ||
             showProgressStepper.getClass().equals(String.class) ||
-            showProgressStepper.getClass().isEnum() ) {
+            showProgressStepper.getClass().isEnum()) {
             map.put("show_progress_stepper", showProgressStepper);
         } else if (isListOfFile(showProgressStepper)) {
             for(int i = 0; i< getListSize(showProgressStepper); i++) {
@@ -1469,7 +1469,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (signers.getClass().equals(java.io.File.class) ||
             signers.getClass().equals(Integer.class) ||
             signers.getClass().equals(String.class) ||
-            signers.getClass().isEnum() ) {
+            signers.getClass().isEnum()) {
             map.put("signers", signers);
         } else if (isListOfFile(signers)) {
             for(int i = 0; i< getListSize(signers); i++) {
@@ -1488,7 +1488,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (signingOptions.getClass().equals(java.io.File.class) ||
             signingOptions.getClass().equals(Integer.class) ||
             signingOptions.getClass().equals(String.class) ||
-            signingOptions.getClass().isEnum() ) {
+            signingOptions.getClass().isEnum()) {
             map.put("signing_options", signingOptions);
         } else if (isListOfFile(signingOptions)) {
             for(int i = 0; i< getListSize(signingOptions); i++) {
@@ -1507,7 +1507,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (signingRedirectUrl.getClass().equals(java.io.File.class) ||
             signingRedirectUrl.getClass().equals(Integer.class) ||
             signingRedirectUrl.getClass().equals(String.class) ||
-            signingRedirectUrl.getClass().isEnum() ) {
+            signingRedirectUrl.getClass().isEnum()) {
             map.put("signing_redirect_url", signingRedirectUrl);
         } else if (isListOfFile(signingRedirectUrl)) {
             for(int i = 0; i< getListSize(signingRedirectUrl); i++) {
@@ -1526,7 +1526,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (skipMeNow.getClass().equals(java.io.File.class) ||
             skipMeNow.getClass().equals(Integer.class) ||
             skipMeNow.getClass().equals(String.class) ||
-            skipMeNow.getClass().isEnum() ) {
+            skipMeNow.getClass().isEnum()) {
             map.put("skip_me_now", skipMeNow);
         } else if (isListOfFile(skipMeNow)) {
             for(int i = 0; i< getListSize(skipMeNow); i++) {
@@ -1545,7 +1545,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (subject.getClass().equals(java.io.File.class) ||
             subject.getClass().equals(Integer.class) ||
             subject.getClass().equals(String.class) ||
-            subject.getClass().isEnum() ) {
+            subject.getClass().isEnum()) {
             map.put("subject", subject);
         } else if (isListOfFile(subject)) {
             for(int i = 0; i< getListSize(subject); i++) {
@@ -1564,7 +1564,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (testMode.getClass().equals(java.io.File.class) ||
             testMode.getClass().equals(Integer.class) ||
             testMode.getClass().equals(String.class) ||
-            testMode.getClass().isEnum() ) {
+            testMode.getClass().isEnum()) {
             map.put("test_mode", testMode);
         } else if (isListOfFile(testMode)) {
             for(int i = 0; i< getListSize(testMode); i++) {
@@ -1583,7 +1583,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (title.getClass().equals(java.io.File.class) ||
             title.getClass().equals(Integer.class) ||
             title.getClass().equals(String.class) ||
-            title.getClass().isEnum() ) {
+            title.getClass().isEnum()) {
             map.put("title", title);
         } else if (isListOfFile(title)) {
             for(int i = 0; i< getListSize(title); i++) {
@@ -1602,7 +1602,7 @@ public class UnclaimedDraftCreateEmbeddedWithTemplateRequest {
         if (populateAutoFillFields.getClass().equals(java.io.File.class) ||
             populateAutoFillFields.getClass().equals(Integer.class) ||
             populateAutoFillFields.getClass().equals(String.class) ||
-            populateAutoFillFields.getClass().isEnum() ) {
+            populateAutoFillFields.getClass().isEnum()) {
             map.put("populate_auto_fill_fields", populateAutoFillFields);
         } else if (isListOfFile(populateAutoFillFields)) {
             for(int i = 0; i< getListSize(populateAutoFillFields); i++) {

@@ -154,7 +154,7 @@ public class BulkSendJobSendResponse {
         if (bulkSendJob.getClass().equals(java.io.File.class) ||
             bulkSendJob.getClass().equals(Integer.class) ||
             bulkSendJob.getClass().equals(String.class) ||
-            bulkSendJob.getClass().isEnum() ) {
+            bulkSendJob.getClass().isEnum()) {
             map.put("bulk_send_job", bulkSendJob);
         } else if (isListOfFile(bulkSendJob)) {
             for(int i = 0; i< getListSize(bulkSendJob); i++) {
@@ -173,7 +173,7 @@ public class BulkSendJobSendResponse {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

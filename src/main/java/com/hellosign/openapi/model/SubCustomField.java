@@ -207,7 +207,7 @@ public class SubCustomField {
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
             name.getClass().equals(String.class) ||
-            name.getClass().isEnum() ) {
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -226,7 +226,7 @@ public class SubCustomField {
         if (editor.getClass().equals(java.io.File.class) ||
             editor.getClass().equals(Integer.class) ||
             editor.getClass().equals(String.class) ||
-            editor.getClass().isEnum() ) {
+            editor.getClass().isEnum()) {
             map.put("editor", editor);
         } else if (isListOfFile(editor)) {
             for(int i = 0; i< getListSize(editor); i++) {
@@ -245,7 +245,7 @@ public class SubCustomField {
         if (required.getClass().equals(java.io.File.class) ||
             required.getClass().equals(Integer.class) ||
             required.getClass().equals(String.class) ||
-            required.getClass().isEnum() ) {
+            required.getClass().isEnum()) {
             map.put("required", required);
         } else if (isListOfFile(required)) {
             for(int i = 0; i< getListSize(required); i++) {
@@ -264,7 +264,7 @@ public class SubCustomField {
         if (value.getClass().equals(java.io.File.class) ||
             value.getClass().equals(Integer.class) ||
             value.getClass().equals(String.class) ||
-            value.getClass().isEnum() ) {
+            value.getClass().isEnum()) {
             map.put("value", value);
         } else if (isListOfFile(value)) {
             for(int i = 0; i< getListSize(value); i++) {

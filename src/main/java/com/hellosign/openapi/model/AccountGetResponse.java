@@ -154,7 +154,7 @@ public class AccountGetResponse {
         if (account.getClass().equals(java.io.File.class) ||
             account.getClass().equals(Integer.class) ||
             account.getClass().equals(String.class) ||
-            account.getClass().isEnum() ) {
+            account.getClass().isEnum()) {
             map.put("account", account);
         } else if (isListOfFile(account)) {
             for(int i = 0; i< getListSize(account); i++) {
@@ -173,7 +173,7 @@ public class AccountGetResponse {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

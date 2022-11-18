@@ -285,7 +285,7 @@ public class TemplateApi {
                                localVarAuthNames, null, false);
   }
   /**
-   * Get Template File
+   * Get Template Files
    * Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
    * @param templateId The id of the template files to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -303,7 +303,7 @@ public class TemplateApi {
   }
 
   /**
-   * Get Template File
+   * Get Template Files
    * Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
    * @param templateId The id of the template files to retrieve. (required)
    * @param fileType Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)
@@ -363,7 +363,7 @@ public class TemplateApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get Template File as Encoded String
+   * Get Template Files as Data Uri
    * Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
    * @param templateId The id of the template files to retrieve. (required)
    * @return FileResponseDataUri
@@ -375,12 +375,12 @@ public class TemplateApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public FileResponseDataUri templateFilesAsEncodedString(String templateId) throws ApiException {
-    return templateFilesAsEncodedStringWithHttpInfo(templateId).getData();
+  public FileResponseDataUri templateFilesAsDataUri(String templateId) throws ApiException {
+    return templateFilesAsDataUriWithHttpInfo(templateId).getData();
   }
 
   /**
-   * Get Template File as Encoded String
+   * Get Template Files as Data Uri
    * Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
    * @param templateId The id of the template files to retrieve. (required)
    * @return ApiResponse&lt;FileResponseDataUri&gt;
@@ -392,17 +392,17 @@ public class TemplateApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<FileResponseDataUri> templateFilesAsEncodedStringWithHttpInfo(String templateId) throws ApiException {
+  public ApiResponse<FileResponseDataUri> templateFilesAsDataUriWithHttpInfo(String templateId) throws ApiException {
     
     Object localVarPostBody = null;
     
     // verify the required parameter 'templateId' is set
     if (templateId == null) {
-      throw new ApiException(400, "Missing the required parameter 'templateId' when calling templateFilesAsEncodedString");
+      throw new ApiException(400, "Missing the required parameter 'templateId' when calling templateFilesAsDataUri");
     }
     
     // create path and map variables
-    String localVarPath = "/template/files/{template_id}?get_data_uri=1&file_type=pdf"
+    String localVarPath = "/template/files_as_data_uri/{template_id}"
       .replaceAll("\\{" + "template_id" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params
@@ -433,12 +433,12 @@ public class TemplateApi {
 
     GenericType<FileResponseDataUri> localVarReturnType = new GenericType<FileResponseDataUri>() {};
 
-    return apiClient.invokeAPI("TemplateApi.templateFilesAsEncodedString", localVarPath, "GET", localVarQueryParams, localVarPostBody,
+    return apiClient.invokeAPI("TemplateApi.templateFilesAsDataUri", localVarPath, "GET", localVarQueryParams, localVarPostBody,
                                localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get Template File as File Url
+   * Get Template Files as File Url
    * Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
    * @param templateId The id of the template files to retrieve. (required)
    * @return FileResponse
@@ -455,7 +455,7 @@ public class TemplateApi {
   }
 
   /**
-   * Get Template File as File Url
+   * Get Template Files as File Url
    * Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
    * @param templateId The id of the template files to retrieve. (required)
    * @return ApiResponse&lt;FileResponse&gt;
@@ -477,7 +477,7 @@ public class TemplateApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/files/{template_id}?get_url=1&file_type=pdf"
+    String localVarPath = "/template/files_as_file_url/{template_id}"
       .replaceAll("\\{" + "template_id" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params

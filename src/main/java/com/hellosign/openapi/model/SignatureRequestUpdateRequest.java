@@ -139,11 +139,11 @@ public class SignatureRequestUpdateRequest {
   }
 
    /**
-   * _t__SignatureRequestUpdate::EXPIRES_AT
+   * The new time when the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "_t__SignatureRequestUpdate::EXPIRES_AT")
+  @ApiModelProperty(value = "The new time when the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable.")
   @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -206,7 +206,7 @@ public class SignatureRequestUpdateRequest {
         if (signatureId.getClass().equals(java.io.File.class) ||
             signatureId.getClass().equals(Integer.class) ||
             signatureId.getClass().equals(String.class) ||
-            signatureId.getClass().isEnum() ) {
+            signatureId.getClass().isEnum()) {
             map.put("signature_id", signatureId);
         } else if (isListOfFile(signatureId)) {
             for(int i = 0; i< getListSize(signatureId); i++) {
@@ -225,7 +225,7 @@ public class SignatureRequestUpdateRequest {
         if (emailAddress.getClass().equals(java.io.File.class) ||
             emailAddress.getClass().equals(Integer.class) ||
             emailAddress.getClass().equals(String.class) ||
-            emailAddress.getClass().isEnum() ) {
+            emailAddress.getClass().isEnum()) {
             map.put("email_address", emailAddress);
         } else if (isListOfFile(emailAddress)) {
             for(int i = 0; i< getListSize(emailAddress); i++) {
@@ -244,7 +244,7 @@ public class SignatureRequestUpdateRequest {
         if (name.getClass().equals(java.io.File.class) ||
             name.getClass().equals(Integer.class) ||
             name.getClass().equals(String.class) ||
-            name.getClass().isEnum() ) {
+            name.getClass().isEnum()) {
             map.put("name", name);
         } else if (isListOfFile(name)) {
             for(int i = 0; i< getListSize(name); i++) {
@@ -263,7 +263,7 @@ public class SignatureRequestUpdateRequest {
         if (expiresAt.getClass().equals(java.io.File.class) ||
             expiresAt.getClass().equals(Integer.class) ||
             expiresAt.getClass().equals(String.class) ||
-            expiresAt.getClass().isEnum() ) {
+            expiresAt.getClass().isEnum()) {
             map.put("expires_at", expiresAt);
         } else if (isListOfFile(expiresAt)) {
             for(int i = 0; i< getListSize(expiresAt); i++) {

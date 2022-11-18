@@ -154,7 +154,7 @@ public class ApiAppGetResponse {
         if (apiApp.getClass().equals(java.io.File.class) ||
             apiApp.getClass().equals(Integer.class) ||
             apiApp.getClass().equals(String.class) ||
-            apiApp.getClass().isEnum() ) {
+            apiApp.getClass().isEnum()) {
             map.put("api_app", apiApp);
         } else if (isListOfFile(apiApp)) {
             for(int i = 0; i< getListSize(apiApp); i++) {
@@ -173,7 +173,7 @@ public class ApiAppGetResponse {
         if (warnings.getClass().equals(java.io.File.class) ||
             warnings.getClass().equals(Integer.class) ||
             warnings.getClass().equals(String.class) ||
-            warnings.getClass().isEnum() ) {
+            warnings.getClass().isEnum()) {
             map.put("warnings", warnings);
         } else if (isListOfFile(warnings)) {
             for(int i = 0; i< getListSize(warnings); i++) {

@@ -143,7 +143,7 @@ public class TemplateResponseFieldAvgTextLength {
         if (numLines.getClass().equals(java.io.File.class) ||
             numLines.getClass().equals(Integer.class) ||
             numLines.getClass().equals(String.class) ||
-            numLines.getClass().isEnum() ) {
+            numLines.getClass().isEnum()) {
             map.put("num_lines", numLines);
         } else if (isListOfFile(numLines)) {
             for(int i = 0; i< getListSize(numLines); i++) {
@@ -162,7 +162,7 @@ public class TemplateResponseFieldAvgTextLength {
         if (numCharsPerLine.getClass().equals(java.io.File.class) ||
             numCharsPerLine.getClass().equals(Integer.class) ||
             numCharsPerLine.getClass().equals(String.class) ||
-            numCharsPerLine.getClass().isEnum() ) {
+            numCharsPerLine.getClass().isEnum()) {
             map.put("num_chars_per_line", numCharsPerLine);
         } else if (isListOfFile(numCharsPerLine)) {
             for(int i = 0; i< getListSize(numCharsPerLine); i++) {
