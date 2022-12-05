@@ -36,6 +36,7 @@ import com.hellosign.openapi.ApiException;
 @JsonPropertyOrder({
     AccountResponseQuotas.JSON_PROPERTY_API_SIGNATURE_REQUESTS_LEFT,
     AccountResponseQuotas.JSON_PROPERTY_DOCUMENTS_LEFT,
+    AccountResponseQuotas.JSON_PROPERTY_TOTAL_TEMPLATES,
     AccountResponseQuotas.JSON_PROPERTY_TEMPLATES_LEFT,
     AccountResponseQuotas.JSON_PROPERTY_SMS_VERIFICATIONS_LEFT
 })
@@ -46,6 +47,9 @@ public class AccountResponseQuotas {
 
   public static final String JSON_PROPERTY_DOCUMENTS_LEFT = "documents_left";
   private Integer documentsLeft;
+
+  public static final String JSON_PROPERTY_TOTAL_TEMPLATES = "total_templates";
+  private Integer totalTemplates;
 
   public static final String JSON_PROPERTY_TEMPLATES_LEFT = "templates_left";
   private Integer templatesLeft;
@@ -105,6 +109,32 @@ public class AccountResponseQuotas {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDocumentsLeft(Integer documentsLeft) {
     this.documentsLeft = documentsLeft;
+  }
+
+
+  public AccountResponseQuotas totalTemplates(Integer totalTemplates) {
+    this.totalTemplates = totalTemplates;
+    return this;
+  }
+
+   /**
+   * Total API templates allowed.
+   * @return totalTemplates
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Total API templates allowed.")
+  @JsonProperty(JSON_PROPERTY_TOTAL_TEMPLATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getTotalTemplates() {
+    return totalTemplates;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TOTAL_TEMPLATES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTotalTemplates(Integer totalTemplates) {
+    this.totalTemplates = totalTemplates;
   }
 
 
@@ -174,13 +204,14 @@ public class AccountResponseQuotas {
     AccountResponseQuotas accountResponseQuotas = (AccountResponseQuotas) o;
     return Objects.equals(this.apiSignatureRequestsLeft, accountResponseQuotas.apiSignatureRequestsLeft) &&
         Objects.equals(this.documentsLeft, accountResponseQuotas.documentsLeft) &&
+        Objects.equals(this.totalTemplates, accountResponseQuotas.totalTemplates) &&
         Objects.equals(this.templatesLeft, accountResponseQuotas.templatesLeft) &&
         Objects.equals(this.smsVerificationsLeft, accountResponseQuotas.smsVerificationsLeft);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiSignatureRequestsLeft, documentsLeft, templatesLeft, smsVerificationsLeft);
+    return Objects.hash(apiSignatureRequestsLeft, documentsLeft, totalTemplates, templatesLeft, smsVerificationsLeft);
   }
 
   @Override
@@ -189,6 +220,7 @@ public class AccountResponseQuotas {
     sb.append("class AccountResponseQuotas {\n");
     sb.append("    apiSignatureRequestsLeft: ").append(toIndentedString(apiSignatureRequestsLeft)).append("\n");
     sb.append("    documentsLeft: ").append(toIndentedString(documentsLeft)).append("\n");
+    sb.append("    totalTemplates: ").append(toIndentedString(totalTemplates)).append("\n");
     sb.append("    templatesLeft: ").append(toIndentedString(templatesLeft)).append("\n");
     sb.append("    smsVerificationsLeft: ").append(toIndentedString(smsVerificationsLeft)).append("\n");
     sb.append("}");
@@ -206,7 +238,8 @@ public class AccountResponseQuotas {
 
         if (apiSignatureRequestsLeft.getClass().equals(java.io.File.class) ||
             apiSignatureRequestsLeft.getClass().equals(Integer.class) ||
-            apiSignatureRequestsLeft.getClass().equals(String.class) ) {
+            apiSignatureRequestsLeft.getClass().equals(String.class) ||
+            apiSignatureRequestsLeft.getClass().isEnum()) {
             map.put("api_signature_requests_left", apiSignatureRequestsLeft);
         } else if (isListOfFile(apiSignatureRequestsLeft)) {
             for(int i = 0; i< getListSize(apiSignatureRequestsLeft); i++) {
@@ -224,7 +257,8 @@ public class AccountResponseQuotas {
 
         if (documentsLeft.getClass().equals(java.io.File.class) ||
             documentsLeft.getClass().equals(Integer.class) ||
-            documentsLeft.getClass().equals(String.class) ) {
+            documentsLeft.getClass().equals(String.class) ||
+            documentsLeft.getClass().isEnum()) {
             map.put("documents_left", documentsLeft);
         } else if (isListOfFile(documentsLeft)) {
             for(int i = 0; i< getListSize(documentsLeft); i++) {
@@ -235,6 +269,25 @@ public class AccountResponseQuotas {
             map.put("documents_left", JSON.getDefault().getMapper().writeValueAsString(documentsLeft));
         }
     }
+    if (totalTemplates != null) {
+        if (isFileTypeOrListOfFiles(totalTemplates)) {
+            fileTypeFound = true;
+        }
+
+        if (totalTemplates.getClass().equals(java.io.File.class) ||
+            totalTemplates.getClass().equals(Integer.class) ||
+            totalTemplates.getClass().equals(String.class) ||
+            totalTemplates.getClass().isEnum()) {
+            map.put("total_templates", totalTemplates);
+        } else if (isListOfFile(totalTemplates)) {
+            for(int i = 0; i< getListSize(totalTemplates); i++) {
+                map.put("total_templates[" + i + "]", getFromList(totalTemplates, i));
+            }
+        }
+        else {
+            map.put("total_templates", JSON.getDefault().getMapper().writeValueAsString(totalTemplates));
+        }
+    }
     if (templatesLeft != null) {
         if (isFileTypeOrListOfFiles(templatesLeft)) {
             fileTypeFound = true;
@@ -242,7 +295,8 @@ public class AccountResponseQuotas {
 
         if (templatesLeft.getClass().equals(java.io.File.class) ||
             templatesLeft.getClass().equals(Integer.class) ||
-            templatesLeft.getClass().equals(String.class) ) {
+            templatesLeft.getClass().equals(String.class) ||
+            templatesLeft.getClass().isEnum()) {
             map.put("templates_left", templatesLeft);
         } else if (isListOfFile(templatesLeft)) {
             for(int i = 0; i< getListSize(templatesLeft); i++) {
@@ -260,7 +314,8 @@ public class AccountResponseQuotas {
 
         if (smsVerificationsLeft.getClass().equals(java.io.File.class) ||
             smsVerificationsLeft.getClass().equals(Integer.class) ||
-            smsVerificationsLeft.getClass().equals(String.class) ) {
+            smsVerificationsLeft.getClass().equals(String.class) ||
+            smsVerificationsLeft.getClass().isEnum()) {
             map.put("sms_verifications_left", smsVerificationsLeft);
         } else if (isListOfFile(smsVerificationsLeft)) {
             for(int i = 0; i< getListSize(smsVerificationsLeft); i++) {
