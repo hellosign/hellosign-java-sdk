@@ -1,6 +1,6 @@
 
 
-# EventCallbackApiAppRequestPayload
+# EventCallbackRequest
 
 
 

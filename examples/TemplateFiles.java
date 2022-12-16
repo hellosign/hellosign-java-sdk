@@ -5,6 +5,8 @@ import com.hellosign.openapi.api.*;
 import com.hellosign.openapi.auth.HttpBasicAuth;
 import com.hellosign.openapi.model.*;
 
+import java.io.File;
+
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -15,12 +17,12 @@ public class Example {
         api_key.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
-		/*
-		HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        /*
+        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
             .getAuthentication("oauth2");
 
         oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
-		*/
+        */
 
         TemplateApi api = new TemplateApi(defaultClient);
 
@@ -28,7 +30,7 @@ public class Example {
 
         try {
             File result = api.templateFiles(templateId, "pdf");
-            System.out.println(result);
+            result.renameTo(new File("file_response.pdf"));
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountApi#accountCreate");
             System.err.println("Status code: " + e.getCode());

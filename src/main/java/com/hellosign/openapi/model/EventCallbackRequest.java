@@ -34,16 +34,16 @@ import com.hellosign.openapi.JSON;
 
 import com.hellosign.openapi.ApiException;
 /**
- * EventCallbackApiAppRequestPayload
+ * EventCallbackRequest
  */
 @JsonPropertyOrder({
-    EventCallbackApiAppRequestPayload.JSON_PROPERTY_EVENT,
-    EventCallbackApiAppRequestPayload.JSON_PROPERTY_ACCOUNT,
-    EventCallbackApiAppRequestPayload.JSON_PROPERTY_SIGNATURE_REQUEST,
-    EventCallbackApiAppRequestPayload.JSON_PROPERTY_TEMPLATE
+    EventCallbackRequest.JSON_PROPERTY_EVENT,
+    EventCallbackRequest.JSON_PROPERTY_ACCOUNT,
+    EventCallbackRequest.JSON_PROPERTY_SIGNATURE_REQUEST,
+    EventCallbackRequest.JSON_PROPERTY_TEMPLATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EventCallbackApiAppRequestPayload {
+public class EventCallbackRequest {
   public static final String JSON_PROPERTY_EVENT = "event";
   private EventCallbackRequestEvent event;
 
@@ -56,10 +56,10 @@ public class EventCallbackApiAppRequestPayload {
   public static final String JSON_PROPERTY_TEMPLATE = "template";
   private TemplateResponse template;
 
-  public EventCallbackApiAppRequestPayload() { 
+  public EventCallbackRequest() { 
   }
 
-  public EventCallbackApiAppRequestPayload event(EventCallbackRequestEvent event) {
+  public EventCallbackRequest event(EventCallbackRequestEvent event) {
     this.event = event;
     return this;
   }
@@ -85,7 +85,7 @@ public class EventCallbackApiAppRequestPayload {
   }
 
 
-  public EventCallbackApiAppRequestPayload account(AccountResponse account) {
+  public EventCallbackRequest account(AccountResponse account) {
     this.account = account;
     return this;
   }
@@ -111,7 +111,7 @@ public class EventCallbackApiAppRequestPayload {
   }
 
 
-  public EventCallbackApiAppRequestPayload signatureRequest(SignatureRequestResponse signatureRequest) {
+  public EventCallbackRequest signatureRequest(SignatureRequestResponse signatureRequest) {
     this.signatureRequest = signatureRequest;
     return this;
   }
@@ -137,7 +137,7 @@ public class EventCallbackApiAppRequestPayload {
   }
 
 
-  public EventCallbackApiAppRequestPayload template(TemplateResponse template) {
+  public EventCallbackRequest template(TemplateResponse template) {
     this.template = template;
     return this;
   }
@@ -164,7 +164,7 @@ public class EventCallbackApiAppRequestPayload {
 
 
   /**
-   * Return true if this EventCallbackApiAppRequestPayload object is equal to o.
+   * Return true if this EventCallbackRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -174,11 +174,11 @@ public class EventCallbackApiAppRequestPayload {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EventCallbackApiAppRequestPayload eventCallbackApiAppRequestPayload = (EventCallbackApiAppRequestPayload) o;
-    return Objects.equals(this.event, eventCallbackApiAppRequestPayload.event) &&
-        Objects.equals(this.account, eventCallbackApiAppRequestPayload.account) &&
-        Objects.equals(this.signatureRequest, eventCallbackApiAppRequestPayload.signatureRequest) &&
-        Objects.equals(this.template, eventCallbackApiAppRequestPayload.template);
+    EventCallbackRequest eventCallbackRequest = (EventCallbackRequest) o;
+    return Objects.equals(this.event, eventCallbackRequest.event) &&
+        Objects.equals(this.account, eventCallbackRequest.account) &&
+        Objects.equals(this.signatureRequest, eventCallbackRequest.signatureRequest) &&
+        Objects.equals(this.template, eventCallbackRequest.template);
   }
 
   @Override
@@ -189,7 +189,7 @@ public class EventCallbackApiAppRequestPayload {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EventCallbackApiAppRequestPayload {\n");
+    sb.append("class EventCallbackRequest {\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    signatureRequest: ").append(toIndentedString(signatureRequest)).append("\n");
