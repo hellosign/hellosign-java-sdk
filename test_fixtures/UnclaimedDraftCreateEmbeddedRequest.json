@@ -12,7 +12,7 @@
       }
     ],
     "cc_email_addresses": [
-      "lawyer@hellosign.com",
+      "lawyer@dropboxsign.com",
       "lawyer@example.com"
     ],
     "client_id": "b6b8e7deaf8f0b95c029dca049356d4a2cf9710a",
@@ -31,10 +31,7 @@
     "field_options": {
       "date_format": "DD - MM - YYYY"
     },
-    "file": [
-      "pdf-sample.pdf"
-    ],
-    "file_url": [
+    "file_urls": [
       "https://app.hellosign.com/docs/example_signature_request.pdf"
     ],
     "force_signer_page": false,
@@ -103,7 +100,8 @@
       "custom_id": 1234,
       "custom_text": "NDA #9"
     },
-    "requester_email_address": "jack@hellosign.com",
+    "populate_auto_fill_fields": false,
+    "requester_email_address": "jack@dropboxsign.com",
     "show_preview": true,
     "signers": [
       {
@@ -131,7 +129,6 @@
     "test_mode": true,
     "type": "send_document",
     "use_preexisting_fields": true,
-    "use_text_tags": true,
-    "populate_auto_fill_fields": false
+    "use_text_tags": true
   }
 }

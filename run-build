@@ -5,7 +5,7 @@
 set -e
 
 DIR=$(cd `dirname $0` && pwd)
-WORKINGDIR="/app/java"
+WORKING_DIR="/app/java"
 
 docker run --rm \
   -v "${DIR}/:/local" \
@@ -25,20 +25,29 @@ bash "${DIR}/bin/php" ./bin/generate-examples.php
 
 printf "Replacing strings ...\n"
 docker run --rm \
-  -v "${DIR}:${WORKINGDIR}" \
-  -w "${WORKINGDIR}" \
+  -v "${DIR}:${WORKING_DIR}" \
+  -w "${WORKING_DIR}" \
   perl bash ./bin/replace
 
 printf "Scanning for prohibited keywords ...\n"
 docker run --rm \
-  -v "${DIR}:${WORKINGDIR}" \
-  -w "${WORKINGDIR}" \
+  -v "${DIR}:${WORKING_DIR}" \
+  -w "${WORKING_DIR}" \
   perl bash ./bin/scan_for
+
+# avoid docker messing with permissions
+if [[ -z "$GITHUB_ACTIONS" ]]; then
+  chmod 644 "${DIR}/README.md"
+  find "${DIR}/docs/" -type f -exec chmod 644 {} \;
+  find "${DIR}/examples/" -type f -exec chmod 644 {} \;
+  find "${DIR}/test_fixtures/" -type f -exec chmod 644 {} \;
+  find "${DIR}/src/" -type f -exec chmod 644 {} \;
+fi
 
 # Remove empty directory
 rm -rf "${DIR}/api"
 
 printf "Building ...\n"
-bash "${DIR}/bin/maven" mvn clean install
+bash "${DIR}/bin/gradle" ./gradlew clean build
 
 printf "Success!\n"

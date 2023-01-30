@@ -1,16 +1,14 @@
-# hellosign-java-sdk
+# dropbox-sign
 
 Dropbox Sign v3 API
 
 
-## ⚠ This package is not yet ready for production use ⚠
+## Migrating from legacy SDK
 
-We are working hard on getting this package ready, but it is not there, yet!
-
-You should think twice before using package on anything critical.
-
-The interfaces may change without warning. Backwards compatibility is not yet
-guaranteed nor implied!
+This SDK is generated from our officially maintained [OpenAPI spec](https://github.com/hellosign/hellosign-openapi/blob/development/openapi.yaml).
+We've made important updates that introduce new functionality and create feature parity between the Dropbox Sign API and the SDK.
+However, some of these changes are considered "breaking" in the sense that they'll require you to update your existing code in order to continue using the SDK.
+Please refer to this [migration guide](https://developers.hellosign.com/docs/sdks/java/migration-guide/) for more information.
 
 ## Contributing
 
@@ -50,9 +48,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>com.hellosign</groupId>
-  <artifactId>hellosign-java-sdk</artifactId>
-  <version>6.0.0-beta22.22</version>
+  <groupId>com.dropbox.sign</groupId>
+  <artifactId>dropbox-sign</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -63,12 +61,12 @@ Add this dependency to your project's build file:
 
 ```groovy
   repositories {
-    mavenCentral()     // Needed if the 'hellosign-java-sdk' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'hellosign-java-sdk' jar has been published to the local maven repo.
+    mavenCentral()     // Needed if the 'dropbox-sign' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'dropbox-sign' jar has been published to the local maven repo.
   }
 
   dependencies {
-     implementation "com.hellosign:hellosign-java-sdk:6.0.0-beta22.22"
+     implementation "com.dropbox.sign:dropbox-sign:1.0.0-SNAPSHOT"
   }
 ```
 
@@ -82,7 +80,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/hellosign-java-sdk-6.0.0-beta22.22.jar`
+- `target/dropbox-sign-1.0.0-SNAPSHOT.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -91,38 +89,38 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 
 ```java
-import com.hellosign.openapi.ApiClient;
-import com.hellosign.openapi.ApiException;
-import com.hellosign.openapi.Configuration;
-import com.hellosign.openapi.api.*;
-import com.hellosign.openapi.auth.HttpBasicAuth;
-import com.hellosign.openapi.auth.HttpBearerAuth;
-import com.hellosign.openapi.model.*;
+import com.dropbox.sign.ApiClient;
+import com.dropbox.sign.ApiException;
+import com.dropbox.sign.Configuration;
+import com.dropbox.sign.api.*;
+import com.dropbox.sign.auth.HttpBasicAuth;
+import com.dropbox.sign.auth.HttpBearerAuth;
+import com.dropbox.sign.model.*;
 
 public class Example {
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        ApiClient apiClient = Configuration.getDefaultApiClient();
 
         // Configure HTTP basic authorization: api_key
-        HttpBasicAuth api_key = (HttpBasicAuth) defaultClient
+        HttpBasicAuth apiKey = (HttpBasicAuth) apiClient
             .getAuthentication("api_key");
-        api_key.setUsername("YOUR_API_KEY");
+        apiKey.setUsername("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        HttpBearerAuth oauth2 = (HttpBearerAuth) defaultClient
+        HttpBearerAuth oauth2 = (HttpBearerAuth) apiClient
             .getAuthentication("oauth2");
 
         oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
-        AccountApi api = new AccountApi(defaultClient);
+        AccountApi accountApi = new AccountApi(apiClient);
 
         AccountCreateRequest data = new AccountCreateRequest()
-            .emailAddress("newuser@hellosign.com");
+            .emailAddress("newuser@dropboxsign.com");
 
         try {
-            AccountCreateResponse result = api.accountCreate(data);
+            AccountCreateResponse result = accountApi.accountCreate(data);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountApi#accountCreate");
@@ -146,8 +144,8 @@ public class Example {
     import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
     import org.glassfish.jersey.client.ClientConfig;
     import org.glassfish.jersey.client.ClientProperties;
-    import com.hellosign.openapi.*;
-    import com.hellosign.openapi.api.AccountApi;
+    import com.dropbox.sign.*;
+    import com.dropbox.sign.api.AccountApi;
 
     ...
 
@@ -260,10 +258,7 @@ Class | Method | HTTP request | Description
  - [EmbeddedSignUrlResponseEmbedded](docs/EmbeddedSignUrlResponseEmbedded.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [ErrorResponseError](docs/ErrorResponseError.md)
- - [EventCallbackAccountRequest](docs/EventCallbackAccountRequest.md)
- - [EventCallbackAccountRequestPayload](docs/EventCallbackAccountRequestPayload.md)
- - [EventCallbackApiAppRequest](docs/EventCallbackApiAppRequest.md)
- - [EventCallbackApiAppRequestPayload](docs/EventCallbackApiAppRequestPayload.md)
+ - [EventCallbackRequest](docs/EventCallbackRequest.md)
  - [EventCallbackRequestEvent](docs/EventCallbackRequestEvent.md)
  - [EventCallbackRequestEventMetadata](docs/EventCallbackRequestEventMetadata.md)
  - [FileResponse](docs/FileResponse.md)
@@ -329,6 +324,7 @@ Class | Method | HTTP request | Description
  - [SubMergeField](docs/SubMergeField.md)
  - [SubOAuth](docs/SubOAuth.md)
  - [SubOptions](docs/SubOptions.md)
+ - [SubSignatureRequestGroupedSigners](docs/SubSignatureRequestGroupedSigners.md)
  - [SubSignatureRequestSigner](docs/SubSignatureRequestSigner.md)
  - [SubSignatureRequestTemplateSigner](docs/SubSignatureRequestTemplateSigner.md)
  - [SubSigningOptions](docs/SubSigningOptions.md)
@@ -412,7 +408,7 @@ apisupport@hellosign.com
 This Java package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `3.0.0`
-    - Package version: `6.0.0-beta22.22`
+    - Package version: `1.0.0-SNAPSHOT`
 - Build package: `org.openapitools.codegen.languages.JavaClientCodegen`
 
 

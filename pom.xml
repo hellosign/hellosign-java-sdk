@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.hellosign</groupId>
-    <artifactId>hellosign-java-sdk</artifactId>
+    <groupId>com.dropbox.sign</groupId>
+    <artifactId>dropbox-sign</artifactId>
     <packaging>jar</packaging>
-    <name>hellosign-java-sdk</name>
-    <version>6.0.0-beta22.22</version>
-    <url>https://github.com/hellosign/hellosign-java-sdk</url>
-    <description>Use the HelloSign Java SDK to connect your Java app to HelloSign\&#39;s service in microseconds!</description>
+    <name>dropbox-sign</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <url>https://github.com/hellosign/dropbox-sign-java</url>
+    <description>Use the Dropbox Sign Java SDK to connect your Java app to the service of Dropbox Sign in microseconds!</description>
     <scm>
-        <connection>scm:git:git://github.com/hellosign/hellosign-java-sdk.git</connection>
-        <developerConnection>scm:git:git@github.com:hellosign/hellosign-java-sdk.git</developerConnection>
-        <url>https://github.com/hellosign/hellosign-java-sdk</url>
+        <connection>scm:git:git://github.com/hellosign/dropbox-sign-java.git</connection>
+        <developerConnection>scm:git:git@github.com:hellosign/dropbox-sign-java.git</developerConnection>
+        <url>https://github.com/hellosign/dropbox-sign-java</url>
     </scm>
 
     <licenses>
@@ -24,9 +24,9 @@
 
     <developers>
         <developer>
-            <name>HelloSign API Team</name>
+            <name>Dropbox Sign API Team</name>
             <email>apisupport@hellosign.com</email>
-            <organization>HelloSign</organization>
+            <organization>Dropbox Sign</organization>
             <organizationUrl>https://hellosign.com</organizationUrl>
         </developer>
     </developers>
@@ -83,6 +83,22 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
             </plugin>
             <!-- attach test jar -->
             <plugin>

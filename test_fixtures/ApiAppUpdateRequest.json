@@ -4,8 +4,7 @@
     "domains": [
       "example.com"
     ],
-    "callback_url": "http://example.com/hellosign",
-    "custom_logo_file": "pdf-sample.pdf",
+    "callback_url": "http://example.com/dropboxsign",
     "oauth": {
       "callback_url": "https://example.com/oauth",
       "scopes": [

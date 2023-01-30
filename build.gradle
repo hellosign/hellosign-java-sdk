@@ -1,15 +1,3 @@
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'com.diffplug.spotless'
-apply plugin: 'signing'
-
-group = 'com.hellosign'
-archivesBaseName = 'hellosign-java-sdk'
-version = '6.0.0-beta22.22'
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-
 buildscript {
     repositories {
         mavenCentral()
@@ -21,13 +9,27 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.vanniktech.maven.publish' version '0.18.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'com.diffplug.spotless'
+apply plugin: 'signing'
+
+group = 'com.dropbox.sign'
+archivesBaseName = 'dropbox-sign'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 repositories {
     mavenCentral()
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    options.compilerArgs.addAll(['--release', '8']) // for java 8 cross-compilation
 }
 
 if (JavaVersion.current().isJava8Compatible()) {
@@ -48,17 +50,20 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
+task fatJar(type: Jar) {
+    classifier = 'all'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
 processResources {
     expand(project.properties)
 }
 
 artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    required { gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+    archives javadocJar, sourcesJar, fatJar
 }
 
 uploadArchives {
@@ -75,17 +80,17 @@ uploadArchives {
             }
 
             pom.project {
-                name 'HelloSign'
+                name 'Dropbox Sign'
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                artifactId 'hellosign-java-sdk'
-                description 'Use the HelloSign Java SDK to connect your Java app to HelloSign\'s service in microseconds!'
+                artifactId 'dropbox-sign'
+                description 'Use the Dropbox SIgn Java SDK to connect your Java app to Dropbox Sign\'s service in microseconds!'
                 url 'https://www.hellosign.com/'
 
                 scm {
-                    connection 'scm:git:git://github.com/hellosign/hellosign-java-sdk.git'
-                    developerConnection 'scm:git:git@github.com:hellosign/hellosign-java-sdk.git'
-                    url 'https://github.com/hellosign/hellosign-java-sdk'
+                    connection 'scm:git:git://github.com/hellosign/dropbox-sign-java.git'
+                    developerConnection 'scm:git:git@github.com:hellosign/dropbox-sign-java.git'
+                    url 'https://github.com/hellosign/dropbox-sign-java'
                 }
 
                 licenses {
@@ -97,7 +102,7 @@ uploadArchives {
 
                 developers {
                     developer {
-                        name 'HelloSign API Team'
+                        name 'Dropbox Sign API Team'
                         email 'apisupport@hellosign.com'
                         url 'https://www.hellosign.com'
                     }
@@ -105,11 +110,6 @@ uploadArchives {
             }
         }
     }
-}
-
-task fatJar(type: Jar) {
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
 
 ext {
