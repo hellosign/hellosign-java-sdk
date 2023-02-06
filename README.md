@@ -1,3 +1,15 @@
+# ⚠ This SDK has been deprecated ⚠
+
+This SDK is now deprecated and will no longer receive feature updates or bug fixes. Security fixes will still be applied as needed.
+
+The new `dropbox-sign` SDK can be found at [hellosign/dropbox-sign-java](https://github.com/hellosign/dropbox-sign-java)!
+
+The new SDK and this legacy SDK are _not_ backwards-compatible!
+
+Please [see here for a comprehensive migration guide](https://developers.hellosign.com/docs/sdks/java/migration-guide/).
+
+----
+
 # HelloSign Java SDK 
 [![Build Status](https://travis-ci.org/hellosign/hellosign-java-sdk.svg?branch=v3)](https://travis-ci.org/hellosign/hellosign-java-sdk) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hellosign/hellosign-java-sdk/) [![Javadocs](http://javadoc.io/badge/com.hellosign/hellosign-java-sdk.svg)](http://javadoc.io/doc/com.hellosign/hellosign-java-sdk)
 
